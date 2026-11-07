@@ -9,9 +9,7 @@ export function normalizeLog(text: string): string {
     .filter(l => l !== ' restricted \\write18 enabled.' && l !== ' %&-line parsing enabled.' && !l.startsWith('**'))
     .map(l => l
       .replace(/\(\.\//g, '(')
-      .replace(/\/Users\/g\/texlive\/[^ )]*\//g, '')
-      .replace(/\/private\/tmp\/[^ )]*\//g, '')
-      .replace(/\/tmp\/[^ )]*\//g, '')
+      .replace(/(^|[ (])\/[^ ()]*\//g, '$1') // absolute path -> basename
       .trimEnd())
     .join('\n')
     .replace(/\n*$/, '\n')

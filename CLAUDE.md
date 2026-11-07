@@ -10,7 +10,7 @@ Ponytail, level full: the smallest change that fully solves the task. No abstrac
 
 - `spec/tex.web` is the spec. Port the §, cite it as `// §NNN name`. Never invent an algorithm TeX already has.
 - Definition of done = oracle test passes: `node --test test/`. Add the `.tex` and its `pdftex` `.expected.log` (via `tools/oracle.sh`) before implementing.
-- Zero runtime dependencies. `typescript` is the only devDependency. Erasable TS syntax only; `node src/...ts` must run without a build step.
+- Zero runtime dependencies. `typescript` and `@types/node` are the only devDependencies. Erasable TS syntax only; `node src/...ts` must run without a build step.
 - All output through `src/print.ts`. No `console.*` in `src/`.
 - Scaled arithmetic ends in `|0`; multiply via `Math.imul` or `src/arith.ts`.
 - One file per tex.web command code in `src/primitives/`; primitive files never import each other.

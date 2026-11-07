@@ -5,7 +5,15 @@
     "module": "nodenext",
     "target": "es2022",
     "noEmit": true,
-    "allowImportingTsExtensions": true
+    "allowImportingTsExtensions": true,
+    "types": [
+      "node"
+    ]
   },
-  "include": ["src", "test", "tools", "bin"]
+  "include": [
+    "src",
+    "test",
+    "tools",
+    "bin"
+  ]
 }

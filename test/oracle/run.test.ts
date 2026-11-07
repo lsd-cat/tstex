@@ -19,7 +19,7 @@ for (const file of readdirSync(dir).filter(f => f.endsWith('.tex')).sort()) {
   if (!existsSync(`${dir}${name}.expected.log`)) continue
   test(name, async () => {
     const expected = readFileSync(`${dir}${name}.expected.log`, 'utf8')
-    const mode = readFileSync(dir + file, 'utf8').split('\n')[0]!.match(/^%! oracle: *(\w+)/)?.[1] ?? 'ini'
+    const mode = (readFileSync(dir + file, 'utf8').split('\n')[0]!.match(/^%! oracle: *(\w+)/)?.[1] ?? 'ini') as 'ini' | 'etex' | 'latex'
     // string specifiers keep tsc quiet while the modules do not exist yet
     const [{ Engine }, { nodeFS }] = await Promise.all([
       import('../../src/engine' + '.ts').catch(() => assert.fail('src/engine.ts missing')),

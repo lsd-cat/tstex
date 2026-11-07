@@ -15,7 +15,7 @@ Goal: a `pdflatex` replacement in TypeScript, zero runtime dependencies, running
 | State | `eqtb`, save stack, registers as plain data so `\dump` is serialisation and `structuredClone` works. |
 | Unicode | 8‑bit input like pdftex. No XeTeX/LuaTeX. |
 | Runtime split | Only `src/platform/*` differs between Node/Bun/browser: file lookup and reading. Everything else is pure. |
-| Tooling | Erasable‑syntax TS only (no `enum`, `namespace`, parameter properties) so Node/Bun run `.ts` directly. `typescript` is the single devDependency, used for `tsc --noEmit` and the browser build. Tests use `node:test`. |
+| Tooling | Erasable‑syntax TS only (no `enum`, `namespace`, parameter properties) so Node/Bun run `.ts` directly. `typescript` and `@types/node` (types only) are the only devDependencies, used for `tsc --noEmit` and the browser build. Tests use `node:test`. |
 | Limits | Match TeX Live defaults where macros can observe them: `\maxdimen`, 32768 registers (e‑TeX), `max_print_line=79`, `error_line=79`, `half_error_line=50`. Do not replicate `mem` size limits. |
 
 ## Prerequisites (one‑time, by a human)
@@ -163,7 +163,7 @@ XeTeX/LuaTeX, OpenType, Unicode input, Type1 subsetting, `\valign`, TeXXeT, `\ma
 
 ## Progress
 
-- [ ] M0 oracle harness
+- [x] M0 oracle harness (2026-11-07)
 - [ ] M1 mouth and expansion
 - [ ] M2 boxes, paragraphs, DVI
 - [ ] M3 math and alignment
