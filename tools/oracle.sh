@@ -21,6 +21,8 @@ cp "$dir"/*.tex "$root"/test/texmf/*.tex "$tmp/"
 [ -f "$tmp/$name.log" ] || { echo "oracle.sh: pdftex produced no log" >&2; exit 1; }
 node "$root/tools/normalize-log.ts" "$tmp/$name.log" > "$dir/$name.expected.log"
 [ -f "$tmp/$name.dvi" ] && cp "$tmp/$name.dvi" "$dir/$name.expected.dvi"
+# a \write file named \jobname.out is compared too
+[ -f "$tmp/$name.out" ] && cp "$tmp/$name.out" "$dir/$name.expected.out"
 if [ -f "$tmp/$name.dvi" ] && [ -n "$dvitype" ]; then
   (cd "$tmp" && "$dvitype" -output-level=4 "$name.dvi") | awk '
     /This is DVItype/ && NR==1 { next }

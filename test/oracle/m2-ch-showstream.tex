@@ -1,0 +1,17 @@
+%! oracle: ini
+\catcode`\{=1 \catcode`\}=2 \catcode`\#=6
+\showthe\showstream \show\showstream
+\setbox0\hbox{}
+\immediate\openout3=\jobname.out
+\showstream=3
+\showbox0 \message{a}
+\show\par \message{b}
+\showthe\count0 \message{c}
+\showlists
+\showbox0
+\showstream=16 \showbox0
+\showstream=4 \showbox0
+\showstream=-1 \showthe\showstream
+\immediate\closeout3
+\showstream=3 \showthe\showstream
+\end

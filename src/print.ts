@@ -71,9 +71,9 @@ export function slow_print(e: Engine, s: string): void {
   for (let j = 0; j < s.length; j++) print(e, s.charCodeAt(j))
 }
 
-// §62 print_nl
+// §62 print_nl (showstream.ch: always a new line on a \write stream)
 export function print_nl(e: Engine, s: string | number): void {
-  if ((e.term_offset > 0 && (e.selector & 1) === 1) || (e.file_offset > 0 && e.selector >= log_only)) print_ln(e)
+  if (e.selector < no_print || (e.term_offset > 0 && (e.selector & 1) === 1) || (e.file_offset > 0 && e.selector >= log_only)) print_ln(e)
   print(e, s)
 }
 

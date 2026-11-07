@@ -13,7 +13,7 @@ import { level_zero, level_one, active_base, glue_base, local_base, par_shape_lo
   scaled_base, eqtb_size, int_pars, dimen_pars, int_par_names, dimen_par_names, glue_par_names, glue_pars, skip_base, mu_skip_base,
   thin_mu_skip_code, etex_pen_base, math_font_base, font_id_base, frozen_primitive, mag_code, tolerance_code, hang_after_code, max_dead_cycles_code,
   escape_char_code, end_line_char_code, frozen_control_sequence, frozen_dont_expand, frozen_protection, time_code, day_code,
-  month_code, year_code, tracing_restores_code } from './types.ts'
+  month_code, year_code, tracing_restores_code, show_stream_code } from './types.ts'
 // the eqtb layout constants live in types.ts so that cyclic imports never see them uninitialised
 export * from './types.ts'
 
@@ -79,6 +79,7 @@ export function init_eqtb(e: Engine): void {
   e.equiv[int_base + escape_char_code] = 92; e.equiv[int_base + end_line_char_code] = 13
   for (let k = 0; k <= 255; k++) e.equiv[del_code_base + k] = -1
   e.equiv[del_code_base + 46] = 0
+  e.equiv[int_base + show_stream_code] = -1 // showstream.ch
   // pdftex.web §32a Initialize pdfTeX's parameters (codes from §236 and §247 of pdftex.web)
   e.equiv[dimen_base + 21] = e.equiv[dimen_base + 22] = Math.trunc((473628672 + 50) / 100) // \pdfhorigin, \pdfvorigin: 1in
   e.equiv[int_base + 66] = 9; e.equiv[int_base + 67] = 3; e.equiv[int_base + 69] = 72 // compresslevel, decimaldigits, imageresolution

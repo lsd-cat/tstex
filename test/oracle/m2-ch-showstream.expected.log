@@ -1,0 +1,36 @@
+(m2-ch-showstream.tex
+> -1.
+l.3 \showthe\showstream
+                        \show\showstream
+
+> \showstream=\showstream.
+l.3 \showthe\showstream \show\showstream
+
+
+\openout3 = `m2-ch-showstream.out'.
+
+a b c
+> \box0=
+\hbox(0.0+0.0)x0.0
+
+! OK.
+l.12 \showstream=16 \showbox0
+
+
+> \box0=
+\hbox(0.0+0.0)x0.0
+
+! OK.
+l.13 \showstream=4 \showbox0
+
+
+> -1.
+l.14 \showstream=-1 \showthe\showstream
+
+
+> 3.
+l.16 \showstream=3 \showthe\showstream
+
+
+ )
+No pages of output.

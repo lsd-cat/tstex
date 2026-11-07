@@ -37,6 +37,7 @@ for (const file of readdirSync(dir).filter(f => f.endsWith('.tex')).sort()) {
     const engine = new Engine({ fs: nodeFS([dir, texmf, lvt]) })
     await engine.run({ jobname: name, mode })
     assert.strictEqual(normalizeLog(engine.log), expected)
+    if (existsSync(`${dir}${name}.expected.out`)) assert.strictEqual(engine.outputFiles.get(`${name}.out`), readFileSync(`${dir}${name}.expected.out`, 'utf8'))
     if (!existsSync(`${dir}${name}.expected.dvi`)) return
     const want = maskDvi(readFileSync(`${dir}${name}.expected.dvi`))
     const got = engine.dvi ? maskDvi(engine.dvi) : new Uint8Array()

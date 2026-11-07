@@ -1,0 +1,27 @@
+
+> \box0=
+\hbox(0.0+0.0)x0.0
+
+
+
+! OK
+
+> \par=\par
+
+> 0
+
+
+
+### vertical mode entered at line 0
+
+prevdepth ignored
+
+
+! OK
+
+> \box0=
+\hbox(0.0+0.0)x0.0
+
+
+
+! OK
