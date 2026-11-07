@@ -20,7 +20,10 @@ Findings from porting. The port reproduces TeX's behaviour, bugs included; entri
 - `\openin16`: "Bad number (16)" then the file opens on stream 0. (§1275)
 - `\errmessage` long help is shown once per job (`long_help_seen`); with a non-empty `\errhelp` the help is the token list, printed after a `print_ln`, and `\newlinechar` applies. (§1283, §90)
 - `\the\ignorespaces` (pdftex's `ignore_spaces:` trap in `scan_something_internal`, §413): with `chr=0` nothing happens, no error, and `cur_val`/`cur_val_level` keep whatever the previous scan left (`\count0=42 \showthe\ignorespaces` shows `42`).
-- `\ifvoid`/`\ifhbox`/`\ifvbox` and `\showlists` only see empty/void state until M2.
+- `line_break` turns a final glue node into the `\penalty10000` in place (§816): the penalty keeps the glue's subtype byte (invisible in `\showbox`).
+- The page builder and `fire_up` write eqtb directly, outside the save stack: `\splittopskip` is set to each split insertion's `split_top_ptr` and restored, `\vbadness`/`\vfuzz` are forced to 10000/`\maxdimen` while `\box255` is packed, and `\leftskip`/`\rightskip` with infinite shrink are replaced in eqtb by their finite copies (§827, §1014, §1017, §1021).
+- `\box n` for an insertion class starts as an empty *hbox* (`new_null_box`) while it acts as a queue, and is repacked as a vbox only when its last insertion is wrapped up (§1018, §1021).
+- `\pagegoal` reads `\maxdimen` and the other page dimensions read 0 while the page is empty and no output is active (§421); `\pagedepth`=… etc. assign `page_so_far` even then, and the next box overwrites it.
 
 ## Known bugs in the original
 
@@ -42,14 +45,13 @@ Findings from porting. The port reproduces TeX's behaviour, bugs included; entri
 - Glue specs are TS objects in `Engine.spec[]` addressed by integer; `zero_glue = 0 = null`, as in tex.web.
 - Interaction is always batch mode: no dialog, `term_input`, interrupts or `pause_for_instructions`.
 - `jump_out` is a thrown exception caught by `run()`, which then calls `close_files_and_terminate` (as tex.ch).
-- Only `\nullfont` exists until M2: `em`/`ex` give 0; `\fontname`, font dimens unsupported.
-- `\lastpenalty`, `\lastkern`, `\lastskip`, `\badness` return 0/`zero_glue`; `\pdftexversion` returns 140. Revisit when lists exist (M2).
+- `\pdftexversion` returns 140.
 - `scan_register_num` is `scan_eight_bit_int`; no sparse (e‑TeX) registers.
 - e‑TeX‑mode‑only machinery not ported yet: `group_warning`, `if_warning`, `grp_stack`/`if_stack`, `\tracingassigns`/`\tracinggroups`/`\tracingifs` hooks. Registered via `etex_primitives` only when `init_prim(e, true)` runs (M4).
-- `handle_right_brace` calls `confusion` for box/insert/align/output/math groups (none can be opened yet).
+- `handle_right_brace` calls `confusion` for align, no_align, math, vcenter and math_choice groups (none can be opened before M3).
 - `ignore_spaces` with `chr = 1` (frozen `\pdfprimitive`) inside `scan_something_internal` is unsupported; pdftex resets the token and rescans.
 - `nodeFS` refuses names containing `..` (no path escape from the roots).
-- File names (tex.ch): `scan_file_name` keeps `cur_name/cur_area/cur_ext` as JS strings; `"` toggles quoting and is dropped; area ends at the last `/`, extension starts at the last `.` after it. Braced names (`\input{...}`, `scan_file_name_braced`) are unsupported. Lookup tries `name.tex` then `name` unless the extension is `.tex` (kpathsea order); the name printed after `(` is the one found, without `./`. `in_name_ok` (openin_any) is not checked beyond `nodeFS`'s `..` rule.
+- File names (tex.ch): `scan_file_name` keeps `cur_name/cur_area/cur_ext` as JS strings; `"` toggles quoting and is dropped; area ends at the last `/`, extension starts at the last `.` after it. Braced names (`\input{...}`, `scan_file_name_braced`) are unsupported. Lookup tries `name.tex` then `name` unless the extension is `.tex` (kpathsea order); the name printed after `(` is `./` + the name found (`shortcut:` every `nodeFS` root is treated as the cwd, as kpathsea prints a cwd hit; an ls-R texmf root (M5) must report the real path, which changes the 79-column wrap positions). `in_name_ok` (openin_any) is not checked beyond `nodeFS`'s `..` rule.
 - `prompt_file_name` and terminal `\read` always end in `fatal_error`; in scroll/errorstop mode that would be a terminal prompt, which is `unsupported: terminal input`.
 - The command-line file goes through the real `start_input`/`scan_file_name` on the `**` line; a missing main file now gives TeX's "I can't find file" + fatal error instead of a JS exception.
 - `\csname` does not track `is_in_csname` (only `\ifincsname`, e‑TeX, reads it). `\pdfprimitive`, `\scantokens`, `\readline` remain unsupported.
@@ -57,6 +59,35 @@ Findings from porting. The port reproduces TeX's behaviour, bugs included; entri
 - `\tracingstats>0` at the end prints §1334's memory block (pdftex/tex.ch form, `15000+600000` hash) with this engine's own figures: 0 strings and string characters (no pool), token-memory high water for "words of memory", `cs_count`, and the real `max_in_stack`/`max_param_stack`/`max_buf_stack`/`max_save_stack` against TeX Live's sizes; nest is 0 until M2. `tools/normalize-log.ts` drops the block (from "Here is how much…" to "… stack positions out of …") on both sides since the figures depend on mem/pool sizes.
 - `\pdfoutput>0` at the end (pdftex `close_files_and_terminate`): after a fatal error `!  ==> Fatal error occurred, no output PDF file produced!`; otherwise "No pages of output." plus the four-line "PDF statistics" block, whose figures are constant while no page or PDF object can exist (not normalised). `fix_pdfoutput` is implicit: nothing can be shipped yet, so `\pdfoutput` is read at the end.
 - Banner is `This is tstex, Version 3.141592653 (INITEX)  <date>`; no `restricted \write18` line, no `SOURCE_DATE_EPOCH`.
+
+### M2 pass 1 (nodes, TFM, packaging, main loop, DVI)
+
+- `\font` drops a `.tfm` extension from the name; TFM names longer than 255 characters give "file name too long"; a truncated TFM is a bad metric file.
+- `\tracinglostchars>2` makes a missing character an error (TeX Live), with no help text.
+- `\pdfignoreddimen` replaces `ignore_depth` everywhere `prev_depth` is tested (pdftex).
+- The `?.?` glue-set display (§186) reads the high 32 bits of the double, as web2c's `mem[p+glue_offset].int` does on little-endian machines.
+- `character(tail)` in the main loop (§1034) reads the subtype byte of a non-char tail, as TeX's memory layout does.
+- `\special shipout{…}` (pdftex) delays expansion to shipout.
+- `\closeout`/`\write` use `scan_int` and map out-of-range streams to 16/17, `\openout` uses `scan_four_bit_int`; `\write18` is its own stream and always logs `runsystem(…)...disabled (restricted).`
+- DVI output simulates TeX Live's 16384-byte half-buffered `dvi_buf`, because the `y`/`z` movement optimisation (§611) depends on `dvi_gone`.
+- `undefined_control_sequence = frozen_null_font + 9001` (tex.ch's `max_font_max+1`).
+- Box registers (and every node pointer kept in eqtb or on the save stack) are integer handles into `Engine.nodes[]`; list heads are char nodes so `is_char_node(head)` holds as in tex.web.
+- `\openout` names are checked with an approximation of `openout_any=p`.
+- `\tracingstats>1` at shipout prints zero memory figures (no `mem` array).
+
+### M2 pass 2 (line breaking, hyphenation, page builder)
+
+- Active, passive and delta nodes of `line_break` are TS objects (a delta node keeps its six differences in `w[1..6]`); `temp_head`, `hold_head` and the active-list sentinel are per-call objects. `page_head` is a glue-typed object so an initial page glue is not a breakpoint (§988).
+- `\parshape` values live in `Engine.shapes[]` as `[n, i1, l1, …]`; `par_shape_loc` holds a handle (0 = null). Handles are not reused (`shortcut:` grows by one array per `\parshape` assignment; reuse freed slots if a document assigns it in a loop).
+- `\pdfadjustspacing` or `\pdfprotrudechars` non-zero at a paragraph end stops with `unsupported:`; `\pdfeachlineheight` and friends are honoured (§888). e-TeX's `\lastlinefit`, `\interlinepenalties`/`\clubpenalties`/`\widowpenalties` arrays, `\savinghyphcodes` (so `hyph_index` is always 0), `\savingvdiscards`, `\marks` classes and `\interactionmode` are not ported (e-TeX mode, M4).
+- Hyphenation exceptions are a `Map` keyed by the word plus language: tex.ch's `hyph_link` chaining only decides where an entry sits, so lookups and `hyph_count` (repeated words replace and do not count, tex.ch §940) are unaffected; the `hyph_size=8191` overflow is kept.
+- `\patterns`: `new_trie_op`'s and `trie_node`'s open-addressing hash tables are `Map`s (both return the first equal entry, so op codes and the compressed trie are identical); `first_fit`, `trie_pack`, `trie_fix` and the op sort are ported as is, with `trie_size=1000000`, `trie_op_size=35111`, 65535 ops per language and `max_op_used` (printed only by `\dump`, M5). web2c stores `trie_back` in `trie_op`; here it has its own array (holes are cleared before use, so this is invisible).
+- `\patterns` is always INITEX: pdftex's "Patterns can be loaded only by INITEX" path is unreachable; after the first paragraph that needs hyphenation it gives "Too late for \patterns".
+- `Engine.terminal` collects what TeX prints to the terminal; under the forced batch mode that is next to nothing (the log is complete).
+
+## Harness
+
+- `.gitignore` ignored `*.dvi`, so the `.expected.dvi` files the harness compares were never committed and a fresh checkout skipped every DVI comparison; `!*.expected.dvi` now keeps them.
 
 ## Security
 
