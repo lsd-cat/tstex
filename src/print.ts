@@ -51,11 +51,9 @@ export function print(e: Engine, s: string | number): void {
   if (typeof s === 'number') {
     if (e.selector > pseudo) { print_char(e, s); return }
     if (s === e.equiv[int_base + new_line_char_code] && e.selector < pseudo) { print_ln(e); return }
-    const nl = e.equiv[int_base + new_line_char_code]!
-    e.equiv[int_base + new_line_char_code] = -1
+    // pdftex does not disable new_line_char here (unlike tex.web's nl:=-1): `^^Z` with \newlinechar=`Z prints `^^` + newline
     const r = char_rep(s)
     for (let j = 0; j < r.length; j++) print_char(e, r.charCodeAt(j))
-    e.equiv[int_base + new_line_char_code] = nl
     return
   }
   for (let j = 0; j < s.length; j++) print_char(e, s.charCodeAt(j))

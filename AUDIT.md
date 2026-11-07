@@ -31,6 +31,7 @@ Findings from porting. The port reproduces TeX's behaviour, bugs included; entri
 - `undefined_control_sequence = frozen_null_font + 257` in tex.web; pdftex uses `font_max`. We follow pdftex's layout.
 - `hash_size` is tex.ch's 15000 plus TeX Live's `hash_extra = 600000`, kept as one block. No hash function is replicated: names live in two `Map`s.
 - `\ifeof18` (tex.ch) is `not shellenabledp`. pdftex runs with restricted shell escape, so it is false; we report shell escape as enabled for log compatibility although no `\write18` exists.
+- `print` (§59) of an unprintable character: the pdftex binary does not set `new_line_char:=-1` while printing the `^^` form, so each of its characters can become a line break (`\newlinechar=`Z \message{^^Z}` prints `^^` and a newline), although pdftex.web still shows the `nl` save/restore. We follow the binary.
 - Expansion depth limit of 10000 (`expand_depth`, tex.ch) is enforced.
 
 ## Port deviations (deliberate; each has a `// §NNN` or `shortcut:` comment in code)
