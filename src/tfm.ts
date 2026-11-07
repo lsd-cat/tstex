@@ -127,7 +127,18 @@ export function read_font_info(e: Engine, u: number, nom: string, aire: string, 
         if (z < unity) throw bad
         while (lh > 2) { fget(); fget(); fget(); fget(); lh-- }
         e.font_dsize[f] = z
-        if (s !== -1000) z = s >= 0 ? s : xn_over_d(e, z, -s, 1000)
+        if (s !== -1000) {
+          if (s >= 0) z = s
+          else { // tex.ch [30.568] Avoid scaling fonts to 2048pt or more
+            const save_arith_error = e.arith_error, sw = z
+            z = xn_over_d(e, z, -s, 1000)
+            if (e.arith_error || z >= 0o1000000000) {
+              start_font_error_message(); print(e, ' scaled to 2048pt or higher')
+              help(e, 'I will ignore the scaling factor.'); error(e); z = sw
+            }
+            e.arith_error = save_arith_error
+          }
+        }
         e.font_size[f] = z
         // §569 Read character data
         for (let k = e.fmem_ptr; k <= e.width_base[f]! - 1; k++) {

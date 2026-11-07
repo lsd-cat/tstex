@@ -1,0 +1,9 @@
+%! oracle: ini
+\input plain
+\tracingonline=0 \showboxbreadth=10000 \showboxdepth=10000 \tracingoutput=1
+\font\a=big100 scaled 30000 \message{\fontname\a}
+\font\b=big100 scaled 30000 \message{\fontname\b}
+\font\c=big100 scaled 2000 \font\d=big100 scaled 2000 \message{\fontname\c\fontname\d}
+\font\e=cmr10 scaled 30000 \message{\fontname\e}
+\setbox0\hbox{\a A\e B}\showbox0
+\end

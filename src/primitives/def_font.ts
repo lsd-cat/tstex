@@ -49,7 +49,11 @@ export function assign(e: Engine, a: number): void {
   let f = -1
   for (let g = 1; g <= e.font_ptr && f < 0; g++) {
     if (e.font_name[g] === e.cur_name && e.font_area[g] === e.cur_area) {
-      if (s > 0 ? s === e.font_size[g] : e.font_size[g] === xn_over_d(e, e.font_dsize[g]!, -s, 1000)) f = g
+      if (s > 0) { if (s === e.font_size[g]) f = g }
+      else { // tex.ch [49.1260]
+        e.arith_error = false
+        if (e.font_size[g] === xn_over_d(e, e.font_dsize[g]!, -s, 1000) && !e.arith_error) f = g
+      }
     }
   }
   if (f < 0) f = read_font_info(e, u, e.cur_name, e.cur_area, s)
