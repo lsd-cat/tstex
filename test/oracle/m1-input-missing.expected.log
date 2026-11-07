@@ -13,5 +13,6 @@ Please type another input file name
 ! Emergency stop.
 l.5 \input m1-no-such-file
 
+*** (job aborted, file error in nonstop mode)
 
 No pages of output.

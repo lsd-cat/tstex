@@ -10,5 +10,6 @@ before
 
 l.5 \read5 to \x
 
+*** (cannot \read from terminal in nonstop modes)
 
 No pages of output.

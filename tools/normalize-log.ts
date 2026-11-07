@@ -6,7 +6,7 @@ export function normalizeLog(text: string): string {
   const lines = text.split('\n')
   if (lines[0]?.startsWith('This is ')) lines.shift()
   return lines
-    .filter(l => l !== ' restricted \\write18 enabled.' && l !== ' %&-line parsing enabled.' && !l.startsWith('**'))
+    .filter(l => l !== ' restricted \\write18 enabled.' && l !== ' %&-line parsing enabled.' && !/^\*\*(?!\*)/.test(l)) // the ** prompt echo, not '*** (job aborted' fatal lines
     .map(l => l
       .replace(/\(\.\//g, '(')
       .replace(/(^|[ (])\/[^ ()]*\//g, '$1') // absolute path -> basename

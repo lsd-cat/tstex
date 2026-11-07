@@ -64,5 +64,6 @@ you'd better type `E' or `X' now and fix your file.
 ! Emergency stop.
 <*> m1-errors-runaway.tex
 
+*** (job aborted, no legal \end found)
 
 No pages of output.
