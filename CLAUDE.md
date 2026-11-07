@@ -8,7 +8,7 @@ Ponytail, level full: the smallest change that fully solves the task. No abstrac
 
 ## Hard rules
 
-- `spec/tex.web` is the spec. Port the §, cite it as `// §NNN name`. Never invent an algorithm TeX already has.
+- The spec is `spec/pdftex.web` plus the pdftex.am change-file chain in `spec/` (see PLAN.md → Decisions → Spec); `tex.web` § numbers are the citation key: `// §NNN name`. Never invent an algorithm TeX already has.
 - Definition of done = oracle test passes: `node --test test/`. Add the `.tex` and its `pdftex` `.expected.log` (via `tools/oracle.sh`) before implementing.
 - Zero runtime dependencies. `typescript` and `@types/node` are the only devDependencies. Erasable TS syntax only; `node src/...ts` must run without a build step.
 - All output through `src/print.ts`. No `console.*` in `src/`.
