@@ -1,0 +1,18 @@
+(m2-ch-char-warning.tex
+Missing character: There is no ^^c8 in font cmr10!
+Missing character: There is no ^^ff in font cmr10!
+Missing character: There is no ^^c8 in font cmr10!
+! Missing character: There is no ^^c8 ("C8) in font cmr10.
+l.6 \tracinglostchars=3 \char200
+                                 \char128
+
+! Missing character: There is no ^^80 ("80) in font cmr10.
+l.6 \tracinglostchars=3 \char200 \char128
+
+
+! Missing character: There is no ^^c8 ("C8) in font cmr10.
+l.7 \tracingonline=1 \tracinglostchars=4 \char"C8
+
+
+[0] )
+Output written on m2-ch-char-warning.dvi (1 page, 128 bytes).
