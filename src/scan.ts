@@ -264,9 +264,12 @@ export function scan_dimen(e: Engine, mu: boolean, inf: boolean, shortcut: boole
       negative = get_sign(e)
       if (e.cur_cmd >= Cmd.min_internal && e.cur_cmd <= Cmd.max_internal) { // §449 Fetch an internal dimension and goto attach_sign, or fetch an internal integer
         if (mu) {
-          scan_something_internal(e, mu_val, false); coerce_glue(e)
-          if (e.cur_val_level === mu_val) break attach_sign
-          if (e.cur_val_level !== int_val) mu_error(e)
+          scan_something_internal(e, mu_val, false)
+          if (e.cur_val_level !== int_val) { // tex.ch [26.449]
+            coerce_glue(e)
+            if (e.cur_val_level !== mu_val) mu_error(e)
+            break attach_sign
+          }
         } else {
           scan_something_internal(e, dimen_val, false)
           if (e.cur_val_level === dimen_val) break attach_sign

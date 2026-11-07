@@ -1,0 +1,16 @@
+(m1-review-mu-glue.tex
+! Incompatible glue units.
+l.3 \dimen1=1pt \muskip0=0mu plus\dimen1
+                                         \showthe\muskip0
+I'm going to assume that 1mu=1pt when they're mixed.
+
+> 0.0mu plus 1.0mu.
+l.3 ...t \muskip0=0mu plus\dimen1 \showthe\muskip0
+
+
+> 3.0mu plus 1.0mu.
+l.4 ...us\muskip1 minus\count1 mu \showthe\muskip0
+
+
+ )
+No pages of output.
