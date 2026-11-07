@@ -79,6 +79,12 @@ export function init_eqtb(e: Engine): void {
   e.equiv[int_base + escape_char_code] = 92; e.equiv[int_base + end_line_char_code] = 13
   for (let k = 0; k <= 255; k++) e.equiv[del_code_base + k] = -1
   e.equiv[del_code_base + 46] = 0
+  // pdftex.web §32a Initialize pdfTeX's parameters (codes from §236 and §247 of pdftex.web)
+  e.equiv[dimen_base + 21] = e.equiv[dimen_base + 22] = Math.trunc((473628672 + 50) / 100) // \pdfhorigin, \pdfvorigin: 1in
+  e.equiv[int_base + 56] = 9; e.equiv[int_base + 57] = 3; e.equiv[int_base + 59] = 72 // compresslevel, decimaldigits, imageresolution
+  e.equiv[int_base + 64] = 1; e.equiv[int_base + 65] = 4 // \pdfmajorversion, \pdfminorversion
+  e.equiv[int_base + 69] = 1000; e.equiv[int_base + 70] = 2200; e.equiv[int_base + 71] = 1 // gamma, imagegamma, imagehicolor
+  e.equiv[dimen_base + 33] = 65782 // \pdfpxdimen: one_bp
   // §283
   e.xeq_level.fill(level_one, int_base)
   // §258, §1216
