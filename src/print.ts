@@ -14,9 +14,9 @@ function char_rep(k: number): string {
 // §57 print_ln
 export function print_ln(e: Engine): void {
   switch (e.selector) {
-    case term_and_log: e.log += '\n'; e.term_offset = 0; e.file_offset = 0; break
+    case term_and_log: e.log += '\n'; e.terminal += '\n'; e.term_offset = 0; e.file_offset = 0; break
     case log_only: e.log += '\n'; e.file_offset = 0; break
-    case term_only: e.term_offset = 0; break
+    case term_only: e.terminal += '\n'; e.term_offset = 0; break
     default: if (e.selector < 16) write_file_out(e, '\n') // §57 write_ln(write_file[selector])
   }
 }
@@ -27,13 +27,13 @@ function write_file_out(e: Engine, s: string): void {
   e.outputFiles.set(n, e.outputFiles.get(n)! + s)
 }
 
-// §58 print_char; terminal output is discarded, only |term_offset| is kept
+// §58 print_char; terminal output is collected in Engine.terminal
 export function print_char(e: Engine, s: number): void {
   if (s === e.equiv[int_base + new_line_char_code] && e.selector < pseudo) { print_ln(e); return }
   switch (e.selector) {
     case term_and_log:
-      e.log += String.fromCharCode(s); e.term_offset++; e.file_offset++
-      if (e.term_offset === max_print_line) e.term_offset = 0
+      e.log += String.fromCharCode(s); e.terminal += String.fromCharCode(s); e.term_offset++; e.file_offset++
+      if (e.term_offset === max_print_line) { e.terminal += '\n'; e.term_offset = 0 }
       if (e.file_offset === max_print_line) { e.log += '\n'; e.file_offset = 0 }
       break
     case log_only:
@@ -41,7 +41,7 @@ export function print_char(e: Engine, s: number): void {
       if (e.file_offset === max_print_line) print_ln(e)
       break
     case term_only:
-      e.term_offset++
+      e.terminal += String.fromCharCode(s); e.term_offset++
       if (e.term_offset === max_print_line) print_ln(e)
       break
     case no_print: break
