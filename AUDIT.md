@@ -50,6 +50,7 @@ Findings from porting. The port reproduces TeX's behaviour, bugs included; entri
 - `prompt_file_name` and terminal `\read` always end in `fatal_error`; in scroll/errorstop mode that would be a terminal prompt, which is `unsupported: terminal input`.
 - The command-line file goes through the real `start_input`/`scan_file_name` on the `**` line; a missing main file now gives TeX's "I can't find file" + fatal error instead of a JS exception.
 - `\csname` does not track `is_in_csname` (only `\ifincsname`, e‑TeX, reads it). `\pdfprimitive`, `\scantokens`, `\readline` remain unsupported.
+- Expansion depth: the JS stack runs out after roughly 1500 nested `expand` calls (node's default stack), far below `expand_depth=10000`. Past depth 100 `expand` probes for JS stack headroom and reports `TeX capacity exceeded, sorry [expansion depth=10000]` in the same state pdftex would, so the log matches pdftex's for runaway recursion; legitimate nestings between ~1500 and 9999 levels (e.g. `\message{` + 2000×`\number` + `1}`) fail where pdftex succeeds. `Engine.run` also maps any stray `RangeError` stack overflow to that message.
 - Banner is `This is tstex, Version 3.141592653 (INITEX)  <date>`; no `restricted \write18` line, no `SOURCE_DATE_EPOCH`.
 
 ## Security

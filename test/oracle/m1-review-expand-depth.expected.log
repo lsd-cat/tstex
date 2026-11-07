@@ -1,0 +1,10 @@
+(m1-review-expand-depth.tex
+! TeX capacity exceeded, sorry [expansion depth=10000].
+\a ->\number
+             \a
+l.3 \def\a{\number\a}\a
+
+If you really absolutely need more capacity,
+you can ask a wizard to enlarge me.
+
+No pages of output.

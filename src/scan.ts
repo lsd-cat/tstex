@@ -184,8 +184,11 @@ function get_sign(e: Engine): boolean {
 // §440 scan_int
 export function scan_int(e: Engine): void {
   e.radix = 0
-  let OK_so_far = true
-  const negative = get_sign(e)
+  let OK_so_far = true, negative = false
+  do { // §441 inline: one JS frame less per nested \number
+    do get_x_token(e); while (e.cur_cmd === Cmd.spacer)
+    if (e.cur_tok === other_token + 45) { negative = !negative; e.cur_tok = other_token + 43 }
+  } while (e.cur_tok === other_token + 43)
   if (e.cur_tok === alpha_token) {
     // §442 Scan an alphabetic character code into cur_val
     get_token(e)

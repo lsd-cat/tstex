@@ -3,7 +3,7 @@ import type { TexFS } from './platform/fs.ts'
 import { Cmd, vmode, batch_mode, fatal_error_stop, spotless, no_print, term_only, int_val, warning_issued, error_stop_mode, term_and_log } from './types.ts'
 import type { InState } from './types.ts'
 import { print, print_nl, print_char, print_esc, print_int } from './print.ts'
-import { JumpOut, fatal_error, token_list } from './error.ts'
+import { JumpOut, fatal_error, overflow, token_list } from './error.ts'
 import { init_eqtb, fix_date_and_time, eqtb_size, int_base, new_line_char_code, end_line_char_code, cat_code_base, level_one } from './eqtb.ts'
 import { init_prim } from './primitives/index.ts'
 import { new_line, end_token_list, end_file_reading, normal } from './input.ts'
@@ -14,6 +14,7 @@ import type { CondNode } from './conditional.ts'
 import { open_log_file, start_input } from './files.ts'
 import { print_cmd_chr } from './tokens.ts'
 import { main_control } from './main.ts'
+import { expand_depth } from './expand.ts'
 
 export class Engine {
   fs: TexFS
@@ -90,7 +91,10 @@ export class Engine {
       main_control(this)
       final_cleanup(this)
     } catch (x) {
-      if (!(x instanceof JumpOut)) throw x
+      // shortcut: the JS stack runs out (~1500 nested expansions) before TeX's expand_depth=10000; report it as TeX does, upgrade by making expand iterative if documents need more
+      if (x instanceof RangeError && /call stack/.test(x.message)) {
+        try { overflow(this, 'expansion depth', expand_depth) } catch (y) { if (!(y instanceof JumpOut)) throw y }
+      } else if (!(x instanceof JumpOut)) throw x
     }
     close_files_and_terminate(this)
   }

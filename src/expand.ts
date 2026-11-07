@@ -11,11 +11,14 @@ import { get_next, get_token, back_input, back_error, ins_error, end_token_list,
 import { registry } from './primitives/index.ts'
 import { unsupported } from './main.ts'
 
-const expand_depth = 10000, param_size = 10000 // TeX Live defaults
+export const expand_depth = 10000, param_size = 10000 // TeX Live defaults
 
 // §366 expand (with tex.ch's expansion depth check)
 export function expand(e: Engine): void {
   if (++e.expand_depth_count >= expand_depth) overflow(e, 'expansion depth', expand_depth)
+  // shortcut: the JS stack runs out after ~1500 nested expansions, far below expand_depth; past depth 100 we probe for
+  // headroom so the overflow is reported here, in the state pdftex reports it in. Upgrade by making expand iterative.
+  if (e.expand_depth_count > 100) try { stack_probe(500) } catch { overflow(e, 'expansion depth', expand_depth) }
   const cv_backup = e.cur_val, cvl_backup = e.cur_val_level, radix_backup = e.radix
   const co_backup = e.cur_order, backup_backup = e.link[backup_head]!
   if (e.cur_cmd < Cmd.call) {
@@ -37,6 +40,8 @@ export function expand(e: Engine): void {
   e.cur_order = co_backup; e.link[backup_head] = backup_backup
   e.expand_depth_count--
 }
+
+function stack_probe(n: number): number { return n > 0 ? stack_probe(n - 1) + 1 : 0 }
 
 // §379 insert_relax
 export function insert_relax(e: Engine): void {
