@@ -90,10 +90,11 @@ export function confusion(e: Engine, s: string): never {
 // §307 token_type codes
 export const token_list = 0
 export const parameter = 0, u_template = 1, v_template = 2, backed_up = 3, inserted = 4, macro = 5,
-  output_text = 6, every_par_text = 7, every_job_text = 12, mark_text = 14, write_text = 15
+  output_text = 6, every_par_text = 7, every_job_text = 12, mark_text = 14,
+  every_eof_text = 19, write_text = 20 // pdftex: loc - eTeX_text_offset, past the four pdftex token lists
 const token_type_names = ['<argument> ', '<template> ', '<template> ', '', '<inserted text> ', '',
   '<output> ', '<everypar> ', '<everymath> ', '<everydisplay> ', '<everyhbox> ', '<everyvbox> ',
-  '<everyjob> ', '<everycr> ', '<mark> ', '<write> ']
+  '<everyjob> ', '<everycr> ', '<mark> ', '?', '?', '?', '?', '<everyeof> ', '<write> ']
 
 // §311 show_context
 export function show_context(e: Engine): void {
