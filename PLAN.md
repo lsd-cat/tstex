@@ -170,7 +170,7 @@ XeTeX/LuaTeX, OpenType, Unicode input, Type1 subsetting, `\valign`, TeXXeT, `\ma
 
 - [x] M0 oracle harness (2026-11-07)
 - [x] M1 mouth and expansion (2026-11-07; 48 tests; known limit: nested expansion depth ~1500 vs pdftex 10000, see AUDIT.md)
-- [ ] M2 boxes, paragraphs, DVI
+- [x] M2 boxes, paragraphs, DVI (2026-11-07; 25 oracle tests, logs and DVI byte-identical)
 - [ ] M3 math and alignment
 - [ ] M4 e‑TeX
 - [ ] M5 LaTeX boots, trip test
