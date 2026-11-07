@@ -9,12 +9,14 @@ import { init_eqtb, fix_date_and_time, eqtb_size, save_size, int_base, new_line_
 import { init_prim } from './primitives/index.ts'
 import { new_line, end_token_list, end_file_reading, normal, stack_size, buf_size } from './input.ts'
 import type { InputFile } from './input.ts'
-import { init_specs, new_char } from './nodes.ts'
+import { init_specs, new_char, glue_node } from './nodes.ts'
+import { new_page_ins_head } from './page.ts'
 import type { GlueSpec, Node, CharNode } from './nodes.ts'
 import type { ListState } from './main.ts'
 import type { Movement } from './dvi.ts'
 import { dvi_buf_size } from './dvi.ts'
 import { init_fonts } from './tfm.ts'
+import { hyph_state } from './hyphenate.ts'
 
 const contrib_head0 = new_char(0, 0) // replaced per Engine in the constructor
 const ignore_depth = -65536000
@@ -27,7 +29,7 @@ import { expand_depth, param_size } from './expand.ts'
 
 export class Engine {
   fs: TexFS
-  log = ''
+  log = ''; terminal = ''
   // §54 printing
   selector = term_only; tally = 0; term_offset = 0; file_offset = 0
   trick_buf: number[] = []; trick_count = 0; first_count = 0; dig: number[] = []; old_setting = 0
@@ -53,9 +55,14 @@ export class Engine {
   prev_depth = ignore_depth; space_factor = 0; clang = 0
   nest: ListState[] = []; nest_ptr = 0; max_nest_stack = 0
   // §162, §980–982 fixed list heads and page builder state
-  contrib_head: CharNode = contrib_head0; page_head: Node = new_char(0, 0); page_tail: Node = this.page_head
+  // type(page_head)=glue_node, so an initial glue node on the current page is not a legal breakpoint
+  contrib_head: CharNode = contrib_head0; page_head: Node = { type: glue_node, subtype: 0, link: null, glue_ptr: 0, leader_ptr: null }
+  page_tail: Node = this.page_head
   page_contents = 0; output_active = false; dead_cycles = 0; insert_penalties = 0
-  last_glue = 0o17777777777; last_penalty = 0; last_kern = 0
+  last_glue = 0o17777777777; last_penalty = 0; last_kern = 0; last_node_type = -1
+  page_so_far = [0, 0, 0, 0, 0, 0, 0, 0]; page_max_depth = 0; best_page_break: Node | null = null; least_page_cost = 0; best_size = 0
+  page_ins_head = new_page_ins_head(); best_height_plus_depth = 0
+  cur_mark = [0, 0, 0, 0, 0] // §382 top, first, bot, split_first, split_bot mark token lists
   // §133 node pointers kept in eqtb (box registers) are handles into nodes[]; §115 temp_ptr
   nodes: (Node | null)[] = [null]; nodes_free: number[] = []; temp_ptr = 0
   // §173, §181 displaying boxes
@@ -72,6 +79,8 @@ export class Engine {
   total_stretch = [0, 0, 0, 0]; total_shrink = [0, 0, 0, 0]; last_badness = 0; pack_begin_line = 0
   adjust_head: Node = new_char(0, 0); adjust_tail: Node | null = null
   pre_adjust_head: Node = new_char(0, 0); pre_adjust_tail: Node | null = null
+  // §814 just_box, §892–965 hyphenation (hyphenate.ts), §1248 \parshape arrays [n, indent1, width1, ...] addressed by eqtb handles
+  just_box: Node | null = null; hy = hyph_state(); shapes: (number[] | undefined)[] = [undefined]
   // §1074 cur_box, §1241
   cur_box: Node | null = null; set_box_allowed = true
   // §1032 main loop

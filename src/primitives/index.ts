@@ -76,6 +76,12 @@ import * as char_num from './char_num.ts'
 import * as no_boundary from './no_boundary.ts'
 import * as end_cs_name from './end_cs_name.ts'
 import * as extension from './extension.ts'
+import * as def_family from './def_family.ts'
+import * as hyph_data from './hyph_data.ts'
+import * as set_shape from './set_shape.ts'
+import * as set_page_dimen from './set_page_dimen.ts'
+import * as set_page_int from './set_page_int.ts'
+import * as top_bot_mark from './top_bot_mark.ts'
 
 export type Prim = {
   cmd: number
@@ -91,7 +97,7 @@ const prims: Prim[] = [relax, par_end, stop, def, register, assign_int, assign_d
   end_group, expand_after, if_test, fi_or_else, convert, case_shift, last_item, set_font, message, xray, the, no_expand, cs_name, input, in_stream, read_to_cs,
   set_box, set_box_dimen, set_aux, set_prev_graf, def_font, assign_font_dimen, assign_font_int, make_box, hmove, vmove, leader_ship,
   un_hbox, un_vbox, remove_item, hskip, vskip, kern, hrule, vrule, insert, vadjust, mark, break_penalty, start_par, ital_corr, accent,
-  discretionary, ex_space, char_num, no_boundary, end_cs_name, extension, ...unsupported.prims]
+  discretionary, ex_space, char_num, no_boundary, end_cs_name, extension, def_family, hyph_data, set_shape, set_page_dimen, set_page_int, top_bot_mark, ...unsupported.prims]
 export const registry = new Map<number, Prim>() // filled by init_prim, after every module is evaluated
 
 // §1336 init_prim (with the frozen copies of §265, §334, §491, §553, §780, §1188, §1344)

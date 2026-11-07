@@ -1,6 +1,6 @@
 // §115–123 one-word token nodes, §150–153 and §177–178 glue specifications, §162 fixed list heads, §200–203 reference counts
 // Token lists keep TeX's numeric pointers (info/link arrays, null=0) so that equiv, cur_chr,
-// loc and cur_val stay integers as in tex.web; box/glue nodes will be objects (M2).
+// loc and cur_val stay integers as in tex.web; box/glue nodes are objects.
 import type { Engine } from './engine.ts'
 import { print, print_char, print_esc, print_int, print_ln, print_current_string } from './print.ts'
 import { print_scaled } from './arith.ts'

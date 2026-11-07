@@ -59,7 +59,7 @@ export function token_show(e: Engine, p: number): void {
 export function print_meaning(e: Engine): void {
   print_cmd_chr(e, e.cur_cmd, e.cur_chr)
   if (e.cur_cmd >= Cmd.call) { print_char(e, 58); print_ln(e); token_show(e, e.cur_chr) }
-  else if (e.cur_cmd === Cmd.top_bot_mark && e.cur_chr < 5) { print_char(e, 58); print_ln(e) } // cur_mark[] is null until marks exist (M2)
+  else if (e.cur_cmd === Cmd.top_bot_mark && e.cur_chr < 5) { print_char(e, 58); print_ln(e); token_show(e, e.cur_mark[e.cur_chr]!) }
 }
 
 // §298 print_cmd_chr; primitive commands print through their primitives/* file

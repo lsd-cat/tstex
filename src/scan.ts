@@ -5,7 +5,7 @@ import { print, print_int, print_esc } from './print.ts'
 import { print_scaled, round_decimals, xn_over_d, nx_plus_y, unity } from './arith.ts'
 import { error, print_err, help, int_error, fatal_error } from './error.ts'
 import { count_base, scaled_base, skip_base, mu_skip_base, toks_base, active_base, single_base, dimen_base, int_par, mag_code, prepare_mag, end_line_char_code, font_id_base, cur_font_loc } from './eqtb.ts'
-import { vmode } from './types.ts'
+import { vmode, par_shape_loc } from './types.ts'
 import { box, is_char_node, math_node, penalty_node, kern_node, glue_node, mu_glue, unset_node } from './nodes.ts'
 import type { Node } from './nodes.ts'
 import { scan_font_ident, find_font_dimen, param, quad_code, x_height_code } from './tfm.ts'
@@ -113,6 +113,20 @@ export function scan_something_internal(e: Engine, level: number, negative: bool
       }
       e.cur_val_level = int_val
       break
+    case Cmd.set_page_int: // §419 Fetch the dead_cycles or the insert_penalties
+      if (m === 2) unsupported(e) // \interactionmode (e-TeX)
+      e.cur_val = m === 0 ? e.dead_cycles : e.insert_penalties; e.cur_val_level = int_val
+      break
+    case Cmd.set_page_dimen: // §421 Fetch something on the page_so_far
+      if (e.page_contents === 0 && !e.output_active) e.cur_val = m === 0 ? max_dimen : 0
+      else e.cur_val = e.page_so_far[m]!
+      e.cur_val_level = dimen_val
+      break
+    case Cmd.set_shape: // §423 Fetch the par_shape size (e-TeX's penalty arrays are unsupported)
+      if (m > par_shape_loc) unsupported(e)
+      e.cur_val = e.equiv[par_shape_loc] === 0 ? 0 : e.shapes[e.equiv[par_shape_loc]!]![0]!
+      e.cur_val_level = int_val
+      break
     case Cmd.set_box_dimen: { // §420 Fetch a box dimension
       scan_eight_bit_int(e)
       const q = box(e, e.cur_val)
@@ -163,7 +177,7 @@ export function scan_something_internal(e: Engine, level: number, negative: bool
             case int_val: e.cur_val = e.last_penalty; break
             case dimen_val: e.cur_val = e.last_kern; break
             case glue_val: if (e.last_glue !== 0o17777777777) e.cur_val = e.last_glue; break
-            case last_node_type_code: unsupported(e) // last_node_type (page builder, pass 2)
+            case last_node_type_code: e.cur_val = e.last_node_type; break
           }
         }
       }

@@ -27,6 +27,8 @@ import { char_info, char_exists, char_width, char_italic, char_height, height_de
   new_character, param, space_code, x_height_code, slant_code, extra_space_code } from './tfm.ts'
 import { hpack, vpack, vpackage, append_to_vlist, scan_spec, saved, set_saved, additional } from './pack.ts'
 import { ship_out } from './dvi.ts'
+import { line_break } from './linebreak.ts'
+import { build_page, its_all_over, vsplit, show_page_status, resume_page_builder } from './page.ts'
 
 // §269 group codes
 export const bottom_level = 0, simple_group = 1, hbox_group = 2, adjusted_hbox_group = 3, vbox_group = 4, vtop_group = 5,
@@ -89,8 +91,7 @@ export function show_activities(e: Engine): void {
     }
     if (n.mode_line < 0) print(e, ' (\\output routine)')
     if (p === 0) {
-      // §986 Show the status of the current page: the page builder is pass 2, so page_head=page_tail always
-      if (e.page_head !== e.page_tail) confusion(e, 'page')
+      show_page_status(e) // §986
       if (e.contrib_head.link !== null) print_nl(e, '### recent contributions:')
     }
     show_box(e, n.head.link)
@@ -113,11 +114,7 @@ export function show_activities(e: Engine): void {
   }
 }
 
-// §994 build_page; shortcut: the page builder is pass 2, so anything reaching the contribution list stops the run
-export function build_page(e: Engine): void {
-  if (e.contrib_head.link === null || e.output_active) return
-  fatal_error(e, 'unsupported: page builder')
-}
+export { build_page, its_all_over }
 
 // commands that start a paragraph in vertical mode (§1090)
 const starts_par = new Set<number>([Cmd.letter, Cmd.other_char, Cmd.char_num, Cmd.char_given, Cmd.math_shift, Cmd.un_hbox,
@@ -388,16 +385,6 @@ export function privileged(e: Engine): boolean {
   report_illegal_case(e); return false
 }
 
-// §1054 its_all_over
-export function its_all_over(e: Engine): boolean {
-  if (privileged(e)) {
-    if (e.page_head === e.page_tail && e.head === e.tail && e.dead_cycles === 0) return true
-    // shortcut: ejecting residual material needs the page builder (pass 2)
-    fatal_error(e, 'unsupported: page builder')
-  }
-  return false
-}
-
 // §1060 append_glue
 export function append_glue(e: Engine): void {
   const s = e.cur_chr
@@ -424,12 +411,12 @@ export function append_kern(e: Engine): void {
   const k = new_kern(e.cur_val); k.subtype = s; tail_append(e, k)
 }
 
-// §1070 normal_paragraph (\parshape and e-TeX's \interlinepenalties are always null: both are unsupported)
+// §1070 normal_paragraph (e-TeX's \interlinepenalties is always null)
 export function normal_paragraph(e: Engine): void {
   if (int_par(e, looseness_code) !== 0) eq_word_define(e, int_base + looseness_code, 0)
   if (e.equiv[dimen_base + hang_indent_code] !== 0) eq_word_define(e, dimen_base + hang_indent_code, 0)
   if (int_par(e, hang_after_code) !== 1) eq_word_define(e, int_base + hang_after_code, 1)
-  if (e.equiv[par_shape_loc] !== 0) confusion(e, 'parshape')
+  if (e.equiv[par_shape_loc] !== 0) eq_define(e, par_shape_loc, Cmd.shape_ref, 0)
 }
 
 // §1075 box_end
@@ -496,7 +483,17 @@ export function begin_box(e: Engine, box_context: number): void {
         }
       }
       break
-    case vsplit_code: fatal_error(e, 'unsupported: \\vsplit') // §1082 vsplit is pass 2
+    case vsplit_code: { // §1082 Split off part of a vertical box, make cur_box point to it
+      scan_eight_bit_int(e); const n = e.cur_val
+      if (!scan_keyword(e, 'to')) {
+        print_err(e, "Missing `to' inserted")
+        help(e, "I'm working on `\\vsplit<box number> to <dimen>';", 'will look for the <dimen> next.')
+        error(e)
+      }
+      scan_normal_dimen(e)
+      e.cur_box = vsplit(e, n, e.cur_val)
+      break
+    }
     default: { // §1083 Initiate the construction of an hbox or vbox, then return
       let k = e.cur_chr - vtop_code
       set_saved(e, 0, box_context)
@@ -639,7 +636,7 @@ export function head_for_vmode(e: Engine): void {
 export function end_graf(e: Engine): void {
   if (e.mode === hmode) {
     if (e.head === e.tail) pop_nest(e)
-    else fatal_error(e, 'unsupported: paragraph') // shortcut: line_break is pass 2
+    else line_break(e, false)
     normal_paragraph(e)
     e.error_count = 0
   }
@@ -1074,6 +1071,7 @@ function handle_right_brace(e: Engine): void {
       break
     }
     case disc_group: build_discretionary(e); break // §1118
+    case output_group: resume_page_builder(e); break // §1100
     default: confusion(e, 'rightbrace') // align, no_align, output, math, vcenter, math_choice groups: not yet
   }
 }

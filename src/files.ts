@@ -80,7 +80,8 @@ export function open_tex_file(e: Engine): { name: string, file: InputFile } | nu
   const full = e.cur_area + e.cur_name + e.cur_ext
   for (const name of e.cur_ext === '.tex' ? [full] : [full + '.tex', full]) {
     const data = e.fs.find(name, 'tex')
-    if (data !== null) return { name, file: { data, pos: 0 } }
+    // shortcut: every nodeFS root is cwd-like, so TeX prints `./name' as kpathsea does for a cwd hit; when an ls-R texmf root lands (M5) the fs reports the real path
+    if (data !== null) return { name: name.startsWith('/') ? name : './' + name, file: { data, pos: 0 } }
   }
   return null
 }

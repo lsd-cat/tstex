@@ -119,8 +119,9 @@ export function show_eqtb(e: Engine, n: number): void {
     else { print_esc(e, 'muskip'); print_int(e, n - mu_skip_base); print_char(e, 61); print_spec(e, e.equiv[n]!, 'mu') }
   }
   else if (n < int_base) { // §233
-    if (n === par_shape_loc || (n >= etex_pen_base && n < box_base)) { // shape_ref equivalents are always null so far
-      print_cmd_chr(e, Cmd.set_shape, n); print_char(e, 61); print_char(e, 48)
+    if (n === par_shape_loc || (n >= etex_pen_base && n < box_base)) { // e-TeX's penalty arrays are always null
+      print_cmd_chr(e, Cmd.set_shape, n); print_char(e, 61)
+      if (e.equiv[n] === 0) print_char(e, 48); else print_int(e, e.shapes[e.equiv[n]!]![0]!)
     }
     else if (n < toks_base) {
       print_cmd_chr(e, Cmd.assign_toks, n); print_char(e, 61)
@@ -179,8 +180,9 @@ export function new_save_level(e: Engine, c: number): void {
   e.cur_boundary = e.save_ptr; e.cur_level++; e.save_ptr++; e.cur_group = c
 }
 
-// §275 eq_destroy; shape equivalents are always null so far (\parshape is unsupported)
+// §275 eq_destroy
 function eq_destroy(e: Engine, type: number, equiv: number): void {
+  if (type === Cmd.shape_ref) e.shapes[equiv] = undefined
   if (type >= Cmd.call && type <= Cmd.long_outer_call) delete_token_ref(e, equiv)
   else if (type === Cmd.glue_ref) delete_glue_ref(e, equiv)
   else if (type === Cmd.box_ref) { flush_node_list(e, node_at(e, equiv)); node_free(e, equiv) }

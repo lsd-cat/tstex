@@ -10,6 +10,7 @@ import { get_x_token, insert_relax } from './expand.ts'
 import { scan_int, scan_dimen, scan_eight_bit_int, scan_four_bit_int_or_18 } from './scan.ts'
 import { closed } from './files.ts'
 import { unsupported } from './main.ts'
+import { box, hlist_node, vlist_node } from './nodes.ts'
 
 // §489
 export type CondNode = { link: CondNode | null, if_limit: number, cur_if: number, if_line: number }
@@ -138,8 +139,13 @@ export function conditional(e: Engine): void {
       return
     }
     case if_void_code: case if_hbox_code: case if_vbox_code: // §505 Test box register status
-      // shortcut: every box register is void until M2 builds boxes, so p=null
-      scan_eight_bit_int(e); b = this_if === if_void_code; break
+      scan_eight_bit_int(e)
+      const p = box(e, e.cur_val)
+      if (this_if === if_void_code) b = p === null
+      else if (p === null) b = false
+      else if (this_if === if_hbox_code) b = p.type === hlist_node
+      else b = p.type === vlist_node
+      break
     case if_eof_code: // tex.ch; shellenabledp is reported true, as pdftex's restricted shell escape (AUDIT.md)
       scan_four_bit_int_or_18(e); b = e.cur_val === 18 ? false : e.read_open[e.cur_val] === closed; break
     default: unsupported(e) // \ifpdfprimitive
