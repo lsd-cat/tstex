@@ -1,0 +1,20 @@
+(m2-ch-write-unbalanced.tex
+! Unbalanced write command.
+<write> a\iffalse {\fi }b
+
+...
+l.3 \immediate\write-1{a\iffalse{\fi}b}
+
+On this page there's a \write with fewer real {'s than }'s.
+I can't handle that very well; good luck.
+
+a
+ok
+! Emergency stop.
+<inserted text> }\endwrite
+
+l.5 \immediate\write-1{{\iffalse}\fi}
+
+Unbalanced write command
+
+No pages of output.

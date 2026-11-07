@@ -3,7 +3,7 @@ import type { Engine } from './engine.ts'
 import { Cmd, log_only, nonstop_mode, error_line } from './types.ts'
 import { print, print_char, print_nl, print_ln, print_esc, print_int, begin_diagnostic, end_diagnostic } from './print.ts'
 import { error, print_err, help, fatal_error, overflow, token_list, parameter, u_template, v_template, backed_up, inserted, macro, output_text, mark_text, write_text } from './error.ts'
-import { int_par, tracing_macros_code, end_line_char_code, cat_code_base, null_cs, single_base, active_base, output_routine_loc, frozen_fi } from './eqtb.ts'
+import { int_par, tracing_macros_code, end_line_char_code, cat_code_base, null_cs, single_base, active_base, output_routine_loc, frozen_fi, end_write } from './eqtb.ts'
 import { id_lookup, sprint_cs } from './hash.ts'
 import { get_avail, flush_list, add_token_ref, delete_token_ref, temp_head } from './nodes.ts'
 import { cs_token_flag, right_brace_token, right_brace_limit, left_brace_limit, show_token_list, token_show, print_cmd_chr } from './tokens.ts'
@@ -329,7 +329,10 @@ export function get_next(e: Engine): void {
               e.cur_cs = e.info[ci.loc]! - cs_token_flag; ci.loc = 0
               e.cur_cmd = e.eq_type[e.cur_cs]!; e.cur_chr = e.equiv[e.cur_cs]!
               if (e.cur_cmd > Cmd.max_command) { e.cur_cmd = Cmd.relax; e.cur_chr = 257 }
-            } else check_outer_validity(e)
+            } else {
+              if (e.cur_cs === end_write && e.mode === 0) fatal_error(e, 'Unbalanced write command') // unbalanced-braces.ch
+              check_outer_validity(e)
+            }
           }
         } else {
           e.cur_cmd = t >> 8; e.cur_chr = t & 0xff

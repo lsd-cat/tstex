@@ -447,6 +447,7 @@ function expand_write_tokens(e: Engine, p: WhatsitNode): void {
   q = get_avail(e); e.info[q] = left_brace_token + 123; ins_list(e, q)
   const old_mode = e.mode; e.mode = 0
   e.cur_cs = e.write_loc; scan_toks(e, false, true)
+  e.mode = old_mode // unbalanced-braces.ch: before the final get_token
   get_token(e)
   if (e.cur_tok !== cs_token_flag + end_write) { // §1372 Recover from an unbalanced write command
     print_err(e, 'Unbalanced write command')
@@ -454,7 +455,6 @@ function expand_write_tokens(e: Engine, p: WhatsitNode): void {
     error(e)
     do get_token(e); while (e.cur_tok !== cs_token_flag + end_write)
   }
-  e.mode = old_mode
   end_token_list(e)
 }
 

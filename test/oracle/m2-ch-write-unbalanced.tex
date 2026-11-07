@@ -1,0 +1,7 @@
+%! oracle: ini
+\catcode`\{=1 \catcode`\}=2
+\immediate\write-1{a\iffalse{\fi}b}
+\immediate\write-1{ok}
+\immediate\write-1{{\iffalse}\fi}
+\immediate\write-1{not reached}
+\end
