@@ -7,7 +7,8 @@ import { int_par, tracing_commands_code, active_base } from './eqtb.ts'
 import { cs_token_flag, other_token, print_cmd_chr } from './tokens.ts'
 import { get_next, back_error, skipping } from './input.ts'
 import { get_x_token, insert_relax } from './expand.ts'
-import { scan_int, scan_dimen } from './scan.ts'
+import { scan_int, scan_dimen, scan_eight_bit_int, scan_four_bit_int } from './scan.ts'
+import { closed } from './files.ts'
 import { unsupported } from './main.ts'
 
 // §489
@@ -136,7 +137,11 @@ export function conditional(e: Engine): void {
       change_if_limit(e, or_code, save_cond_ptr)
       return
     }
-    default: unsupported(e) // \ifvoid \ifhbox \ifvbox \ifeof \ifpdfprimitive: boxes and \openin come later
+    case if_void_code: case if_hbox_code: case if_vbox_code: // §505 Test box register status
+      // shortcut: every box register is void until M2 builds boxes, so p=null
+      scan_eight_bit_int(e); b = this_if === if_void_code; break
+    case if_eof_code: scan_four_bit_int(e); b = e.read_open[e.cur_val] === closed; break
+    default: unsupported(e) // \ifpdfprimitive
   }
   if (is_unless) b = !b
   if (int_par(e, tracing_commands_code) > 1) { // §502

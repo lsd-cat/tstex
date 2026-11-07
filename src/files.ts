@@ -6,6 +6,9 @@ import { int_par, end_line_char_code } from './eqtb.ts'
 import { begin_file_reading, input_ln, firm_up_the_line, new_line } from './input.ts'
 import { max_print_line } from './types.ts'
 
+// §480 read_open states
+export const just_open = 1, closed = 2
+
 // §534 open_log_file; the log lives in Engine.log
 export function open_log_file(e: Engine): void {
   const old_setting = e.selector

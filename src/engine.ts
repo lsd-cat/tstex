@@ -59,6 +59,8 @@ export class Engine {
   spec: (GlueSpec | undefined)[] = []; spec_avail: number[] = []; mag_set = 0
   // §489 the condition stack, §493
   cond_ptr: CondNode | null = null; if_limit = 0; cur_if = 0; if_line = 0; skip_line = 0
+  // §480 \read streams 0..15; 16 is the terminal
+  read_file: InputFile[] = []; read_open: number[] = new Array(17).fill(2)
   // §246
   sys_time = 0; sys_day = 0; sys_month = 0; sys_year = 0
 
