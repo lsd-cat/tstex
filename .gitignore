@@ -4,3 +4,4 @@ node_modules
 !*.expected.log
 *.fmt
 test/lvt/_src/
+!*.expected.dvi

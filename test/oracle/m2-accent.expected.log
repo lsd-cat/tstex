@@ -1,0 +1,163 @@
+(m2-accent.tex (plain.tex Preloading the plain format: codes, registers,
+\maxdimen=\dimen10
+\hideskip=\skip10
+\centering=\skip11
+\p@=\dimen11
+\z@=\dimen12
+\z@skip=\skip12
+\voidb@x=\box10
+parameters,
+\smallskipamount=\skip13
+\medskipamount=\skip14
+\bigskipamount=\skip15
+\normalbaselineskip=\skip16
+\normallineskip=\skip17
+\normallineskiplimit=\dimen13
+\jot=\dimen14
+\interdisplaylinepenalty=\count23
+\interfootnotelinepenalty=\count24
+fonts, more fonts,
+\itfam=\fam4
+\slfam=\fam5
+\bffam=\fam6
+\ttfam=\fam7
+macros,
+\strutbox=\box11
+\mscount=\count25
+\tabs=\box12
+\tabsyet=\box13
+\tabsdone=\box14
+math definitions,
+\rootbox=\box15
+\p@renwd=\dimen15
+output routines,
+\headline=\toks10
+\footline=\toks11
+\footins=\insert254
+\topins=\insert253
+hyphenation (hyphen.tex))
+> \box0=
+\hbox(6.94444+0.0)x48.25258
+.\kern 0.0 (for accent)
+.\tenrm ^^?
+.\kern -5.00002 (for accent)
+.\tenrm o
+.\glue 3.33333 plus 1.66666 minus 1.11111
+.\kern -0.25557 (for accent)
+.\tenit ^^R
+.\kern -4.85551 (for accent)
+.\tenit e
+.\glue 3.33333 plus 1.66666 minus 1.11111
+.\kern 0.37498 (for accent)
+.\hbox(6.67859+0.0)x5.00002, shifted -0.1389
+..\tenrm ^^?
+.\kern -5.375 (for accent)
+.\tenbf o
+.\glue 3.83331 plus 1.91666 minus 1.27777
+.\tenbf ^^?
+.\hbox(4.44444+0.0)x6.06941
+..\tenbf x
+.\glue 3.83331 plus 1.91666 minus 1.27777
+.\tenbf ^^?
+.\kern 1.0
+
+! OK.
+l.6 \showbox0
+
+
+
+Completed box being shipped out [1]
+\vbox(667.20255+0.0)x200.0
+.\vbox(0.0+0.0)x200.0, glue set 14.0fil
+..\glue -22.5
+..\hbox(8.5+0.0)x200.0, glue set 200.0fil
+...\vbox(8.5+0.0)x0.0
+...\glue 0.0 plus 1.0fil
+..\glue 0.0 plus 1.0fil minus 1.0fil
+.\vbox(643.20255+0.0)x200.0, glue set 631.2581fill
+..\glue(\topskip) 3.05556
+..\hbox(6.94444+1.94444)x200.0, glue set 4.89836fil
+...\hbox(0.0+0.0)x20.0
+...\tenrm C
+...\tenrm a
+...\tenrm f
+...\kern -0.27779 (for accent)
+...\tenrm ^^S
+...\kern -4.72223 (for accent)
+...\tenrm e
+...\glue 3.33333 plus 1.66666 minus 1.11111
+...\tenrm n
+...\tenrm a
+...\kern -1.11111 (for accent)
+...\tenrm ^^?
+...\kern -3.8889 (for accent)
+...\tenrm ^^P
+...\tenrm v
+...\kern-0.27779
+...\tenrm e
+...\glue 3.33333 plus 1.66666 minus 1.11111
+...\tenrm r
+...\kern 0.0 (for accent)
+...\tenrm ^
+...\kern -5.00002 (for accent)
+...\tenrm o
+...\tenrm l
+...\tenrm e
+...\glue 3.33333 plus 1.66666 minus 1.11111
+...\kern 0.0 (for accent)
+...\tenrm ^^?
+...\kern -5.00002 (for accent)
+...\tenrm o
+...\glue 3.33333 plus 1.66666 minus 1.11111
+...\tenrm a
+...\tenrm n
+...\tenrm d
+...\glue 3.33333 plus 1.66666 minus 1.11111
+...\kern -0.25557 (for accent)
+...\tenit ^^R
+...\kern -4.85551 (for accent)
+...\tenit e
+...\kern 0.75139
+...\tenrm ,
+...\glue 3.33333 plus 2.08331 minus 0.88889
+...\tenrm d
+...\kern -0.27779 (for accent)
+...\tenrm ^^S
+...\kern -4.72223 (for accent)
+...\tenrm e
+...\tenrm j
+...\kern 0.0 (for accent)
+...\tenrm ^^R
+...\kern -5.00002 (for accent)
+...\tenrm a
+...\glue 3.33333 plus 1.66666 minus 1.11111
+...\tenrm v
+...\tenrm u
+...\tenrm ,
+...\glue 3.33333 plus 2.08331 minus 0.88889
+...\kern 0.0 (for accent)
+...\tenrm ^^R
+...\kern -5.00002 (for accent)
+...\tenrm a
+...\glue 3.33333 plus 1.66666 minus 1.11111
+...\tenrm l
+...\tenrm a
+...\glue 3.33333 plus 1.66666 minus 1.11111
+...\kern 0.0 (for accent)
+...\tenrm ^^X
+...\kern -4.44444 (for accent)
+...\tenrm c
+...\tenrm a
+...\penalty 10000
+...\glue(\parfillskip) 0.0 plus 1.0fil
+...\glue(\rightskip) 0.0
+..\hbox(0.0+0.0)x200.0
+..\glue 0.0 plus 1.0fill
+.\glue(\baselineskip) 17.55556
+.\hbox(6.44444+0.0)x200.0, glue set 97.5fil
+..\glue 0.0 plus 1.0fil minus 1.0fil
+..\tenrm 1
+..\glue 0.0 plus 1.0fil minus 1.0fil
+
+ )
+Output written on m2-accent.dvi (1 page, 352 bytes).
