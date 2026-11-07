@@ -3,7 +3,7 @@ import type { Engine } from './engine.ts'
 import { print, print_char, print_esc } from './print.ts'
 import { overflow } from './error.ts'
 import { hash_base, single_base, active_base, null_cs, undefined_control_sequence, cat_code_base, level_one } from './eqtb.ts'
-import { Cmd } from './types.ts'
+import { Cmd, hash_size } from './types.ts'
 
 // §259 id_lookup, for a name of length l>1 in buffer[j..j+l-1]
 export function id_lookup(e: Engine, j: number, l: number): number {
@@ -16,7 +16,7 @@ function lookup(e: Engine, s: string): number {
   if (p !== undefined) return p
   if (e.no_new_control_sequence) return undefined_control_sequence
   do {
-    if (e.hash_used === hash_base) overflow(e, 'hash size', e.hash_used - hash_base)
+    if (e.hash_used === hash_base) overflow(e, 'hash size', hash_size) // tex.ch: hash_size+hash_extra
     e.hash_used--
   } while (e.text.has(e.hash_used))
   e.hash.set(s, e.hash_used); e.text.set(e.hash_used, s); e.cs_count++
