@@ -10,13 +10,12 @@ const vtop_code = 4
 // [name, cmd, chr, 1 if e-TeX mode only, 2 if print-only]
 const table: [string, number, number, number?][] = [
   [' ', Cmd.ex_space, 0], ['/', Cmd.ital_corr, 0], ['accent', Cmd.accent, 0], ['char', Cmd.char_num, 0],
-  ['csname', Cmd.cs_name, 0], ['delimiter', Cmd.delim_num, 0], ['endcsname', Cmd.end_cs_name, 0],
+  ['delimiter', Cmd.delim_num, 0], ['endcsname', Cmd.end_cs_name, 0],
   ['font', Cmd.def_font, 0], ['letterspacefont', Cmd.letterspace_font, 0], ['pdfcopyfont', Cmd.pdf_copy_font, 0],
   ['fontdimen', Cmd.assign_font_dimen, 0], ['halign', Cmd.halign, 0], ['hrule', Cmd.hrule, 0],
   ['ignorespaces', Cmd.ignore_spaces, 0], ['insert', Cmd.insert, 0], ['mark', Cmd.mark, 0],
   ['mathaccent', Cmd.math_accent, 0], ['mathchar', Cmd.math_char_num, 0], ['mathchoice', Cmd.math_choice, 0],
-  ['noalign', Cmd.no_align, 0], ['noboundary', Cmd.no_boundary, 0], ['noexpand', Cmd.no_expand, 0],
-  ['pdfprimitive', Cmd.no_expand, 1], ['nonscript', Cmd.non_script, 0], ['omit', Cmd.omit, 0],
+  ['noalign', Cmd.no_align, 0], ['noboundary', Cmd.no_boundary, 0], ['nonscript', Cmd.non_script, 0], ['omit', Cmd.omit, 0],
   ['parshape', Cmd.set_shape, par_shape_loc], ['penalty', Cmd.break_penalty, 0], ['prevgraf', Cmd.set_prev_graf, 0],
   ['radical', Cmd.radical, 0], ['read', Cmd.read_to_cs, 0], ['setbox', Cmd.set_box, 0], ['vadjust', Cmd.vadjust, 0],
   ['valign', Cmd.valign, 0], ['vcenter', Cmd.vcenter, 0], ['vrule', Cmd.vrule, 0], ['input', Cmd.input, 0],
