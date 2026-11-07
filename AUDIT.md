@@ -13,6 +13,13 @@ Findings from porting. The port reproduces TeX's behaviour, bugs included; entri
 - INITEX already sets `\pdfhorigin`, `\pdfvorigin`, `\pdfpxdimen` (1bp), `\pdfcompresslevel=9`, `\pdfminorversion=4` etc. (pdftex.web §32a); a `-ini` log therefore depends on pdftex defaults, not only tex.web's.
 - `input_ln` (web2c): a line ends at LF, CR or CRLF; trailing spaces are stripped, tabs kept.
 - `show_context` (pdftex/e‑TeX): the "bottom line" test is `name > 19`, and non‑top levels use `line_stack[index+1]`.
+- `show_context` stops at the innermost *file* level: an error inside a file `\input` from another file shows only the inner `l.N` line, never the outer file's line. (§311)
+- `\endinput` only sets `force_eof`; the rest of the current line is still read, including tokens after `\endinput`. (§362, §378)
+- `\read` from a closed or out-of-range stream (n<0 or n>15 → `<read *>`) is a terminal read and a fatal error in batch/nonstop mode, after `begin_file_reading` has pushed the `<read n>` level, so the context shows an empty `<read n>` line. (§483–484)
+- `\read` at end of file with unbalanced braces: "Runaway definition?" (scanner_status is `defining`), then "File ended within \read"; the stream closes, `limit:=0` is immediately overwritten by `limit:=last`. (§486)
+- `\openin16`: "Bad number (16)" then the file opens on stream 0. (§1275)
+- `\errmessage` long help is shown once per job (`long_help_seen`); with a non-empty `\errhelp` the help is the token list, printed after a `print_ln`, and `\newlinechar` applies. (§1283, §90)
+- `\ifvoid`/`\ifhbox`/`\ifvbox` and `\showlists` only see empty/void state until M2.
 
 ## Known bugs in the original
 
@@ -39,6 +46,10 @@ Findings from porting. The port reproduces TeX's behaviour, bugs included; entri
 - `handle_right_brace` calls `confusion` for box/insert/align/output/math groups (none can be opened yet).
 - `ignore_spaces` with `chr = 1` (frozen `\pdfprimitive`) inside `scan_something_internal` is unsupported; pdftex resets the token and rescans.
 - `nodeFS` refuses names containing `..` (no path escape from the roots).
+- File names (tex.ch): `scan_file_name` keeps `cur_name/cur_area/cur_ext` as JS strings; `"` toggles quoting and is dropped; area ends at the last `/`, extension starts at the last `.` after it. Braced names (`\input{...}`, `scan_file_name_braced`) are unsupported. Lookup tries `name.tex` then `name` unless the extension is `.tex` (kpathsea order); the name printed after `(` is the one found, without `./`. `in_name_ok` (openin_any) is not checked beyond `nodeFS`'s `..` rule.
+- `prompt_file_name` and terminal `\read` always end in `fatal_error`; in scroll/errorstop mode that would be a terminal prompt, which is `unsupported: terminal input`.
+- The command-line file goes through the real `start_input`/`scan_file_name` on the `**` line; a missing main file now gives TeX's "I can't find file" + fatal error instead of a JS exception.
+- `\csname` does not track `is_in_csname` (only `\ifincsname`, e‑TeX, reads it). `\pdfprimitive`, `\scantokens`, `\readline` remain unsupported.
 - Banner is `This is tstex, Version 3.141592653 (INITEX)  <date>`; no `restricted \write18` line, no `SOURCE_DATE_EPOCH`.
 
 ## Security
