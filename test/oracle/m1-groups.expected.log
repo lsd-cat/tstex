@@ -1,0 +1,113 @@
+(m1-groups.tex
+{vertical mode: \tracingmacros}
+{\tracingrestores}
+{\tracingonline}
+{\count}
+{begin-group character {}
+{\count}
+{\global}
+{\showthe}
+> 2.
+<to be read again>
+                   }
+l.4 ...\count1=2 \global\count2=5 \showthe\count1}
+                                                  \showthe\count1 \showthe\c...
+
+
+{end-group character }}
+{restoring \count1=1}
+{\showthe}
+> 1.
+l.4 ...l\count2=5 \showthe\count1}\showthe\count1
+                                                  \showthe\count2
+
+{\showthe}
+> 5.
+l.4 ...wthe\count1}\showthe\count1 \showthe\count2
+
+
+{\begingroup}
+{\count}
+{\endgroup}
+{restoring \count1=1}
+{begin-group character {}
+{\def}
+{begin-group character {}
+{\def}
+{begin-group character {}
+{\global}
+{end-group character }}
+{\show}
+> \a=macro:
+->z.
+l.6 {\def\a{x}{\def\a{y}{\global\def\a{z}}\show\a
+                                                 }\show\a}\show\a
+
+{end-group character }}
+{retaining \a=macro:->z}
+{\show}
+> \a=macro:
+->z.
+l.6 ...{\def\a{y}{\global\def\a{z}}\show\a}\show\a
+                                                  }\show\a
+
+{end-group character }}
+{retaining \a=macro:->z}
+{\show}
+> \a=macro:
+->z.
+l.6 ...y}{\global\def\a{z}}\show\a}\show\a}\show\a
+
+
+{\def}
+{begin-group character {}
+{\aftergroup}
+{\aftergroup}
+{\message}
+in
+{end-group character }}
+
+\b ->\message {after}
+{\message}
+after
+{\relax}
+{blank space  }
+{\begingroup}
+{\aftergroup}
+{\endgroup}
+
+\b ->\message {after}
+{\message}
+after
+{begin-group character {}
+{\count}
+{\global}
+{\count}
+{end-group character }}
+{restoring \count3=2}
+{retaining \count3=2}
+{\showthe}
+> 2.
+l.9 ...\global\count3=2 \count3=3 }\showthe\count3
+
+
+{begin-group character {}
+{\begingroup}
+{\count}
+{end-group character }}
+! Extra }, or forgotten \endgroup.
+l.10 {\begingroup\count4=9 }
+
+I've deleted a group-closing symbol because it seems to be
+spurious, as in `$x}$'. But perhaps the } is legitimate and
+you forgot something else, as in `\hbox{$x}'. In such cases
+the way to recover is to insert both the forgotten and the
+deleted material, e.g., by typing `I$}'.
+
+{blank space  }
+{\endgroup}
+{restoring \count4=0}
+{\end}
+ )
+(\end occurred inside a group at level 1)
+No pages of output.

@@ -1,0 +1,15 @@
+%! oracle: ini
+\catcode`\{=1 \catcode`\}=2 \catcode`\#=6
+\tracingcommands=2 \tracingmacros=2 \tracingonline=0
+\def\x{1}\def\y{\x}\edef\z{\x\x}
+\def\x{2}
+\show\y \show\z
+\edef\w{\noexpand\x\x}\show\w
+\count1=7 \toks0={a\x b}
+\edef\v{\the\count1,\the\toks0}\show\v
+\xdef\u{\x}\show\u
+{\xdef\g{\x}\def\h{\x}}\show\g \show\h
+\edef\t#1{#1\x}\show\t
+\edef\s{\noexpand\noexpand\x}\show\s
+\def\q{\x}\edef\r{\expandafter\noexpand\q}\show\r
+\end

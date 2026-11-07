@@ -1,0 +1,84 @@
+(m1-par-and-spaces.tex
+{vertical mode: \tracingmacros}
+{\tracingonline}
+{\def}
+{\message}
+
+\space ->
+
+\space ->
+
+\space ->
+a b  c
+{blank space  }
+{\def}
+{\message}
+
+\cw ->x
+
+\cw ->x
+[xy][xy]
+{blank space  }
+{\par}
+{\par}
+{\message}
+after blank lines
+{blank space  }
+{\par}
+{\def}
+{blank space  }
+
+\a #1->\message {#1}
+#1<-one two
+{\message}
+one two
+{blank space  }
+
+\a #1->\message {#1}
+Runaway argument?
+{p
+! Paragraph ended before \a was complete.
+<to be read again>
+                   \par
+l.14
+
+I suspect you've forgotten a `}', causing me to apply this
+control sequence to too much text. How can we recover?
+My plan is to forget the whole thing and hope for the best.
+
+{\par}
+{\relax}
+{end-group character }}
+! Too many }'s.
+l.15 \relax}
+
+You've closed more groups than you opened.
+Such booboos are generally harmless, so keep going.
+
+{blank space  }
+{\message}
+x y
+{blank space  }
+{\endlinechar}
+{\message}
+x y
+{\message}
+abcd
+{\endlinechar}
+{\def}
+
+\b #1->
+Runaway argument?
+! Paragraph ended before \b was complete.
+<to be read again>
+                   \par
+l.23 \def\b#1{}\b\par
+
+I suspect you've forgotten a `}', causing me to apply this
+control sequence to too much text. How can we recover?
+My plan is to forget the whole thing and hope for the best.
+
+{\par}
+{\end}
+ )
+No pages of output.

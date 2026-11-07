@@ -1,0 +1,13 @@
+%! oracle: ini
+\catcode`\{=1 \catcode`\}=2 \catcode`\#=6
+\tracingcommands=2 \tracingmacros=2 \tracingonline=0
+\foo
+\def\a{\bar}\def\b{\a}
+\b
+\def\c#1{\baz\relax#1}
+\c{\relax}
+\expandafter\show\csname undefinedcs\endcsname
+\expandafter\foo\csname nothing\endcsname
+\message{[\undefined]}
+\edef\d{\nope}
+\end

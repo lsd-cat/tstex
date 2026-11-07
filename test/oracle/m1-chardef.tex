@@ -1,0 +1,18 @@
+%! oracle: ini
+\catcode`\{=1 \catcode`\}=2 \catcode`\#=6
+\tracingcommands=2 \tracingmacros=2 \tracingonline=0
+\chardef\a=65 \show\a \message{\meaning\a}
+\mathchardef\b="7141 \show\b
+\countdef\c=3 \show\c \dimendef\d=3 \show\d \skipdef\e=3 \show\e
+\muskipdef\f=3 \show\f \toksdef\g=3 \show\g
+\count0=\a \showthe\count0
+\count0=\b \showthe\count0
+\chardef\h=255 \showthe\h
+\chardef\i=256
+\mathchardef\j="8001
+\chardef\k=-1
+\count\a=7 \showthe\count65
+\message{\number\a,\number\b}
+\advance\count0 by \h \showthe\count0
+\dimen0=\a pt \showthe\dimen0
+\end

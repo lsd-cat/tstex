@@ -1,0 +1,118 @@
+(m1-toks.tex
+{vertical mode: \tracingmacros}
+{\tracingonline}
+{\toks}
+{blank space  }
+{\showthe}
+> a##b\foo c.
+l.4 \toks0={a#b\foo c} \showthe\toks0
+
+
+{\toksdef}
+{\toks3}
+{blank space  }
+{\show}
+> \t=\toks3.
+l.5 \toksdef\t=3 \t={x} \show\t
+                                \showthe\t
+
+{\showthe}
+> x.
+l.5 \toksdef\t=3 \t={x} \show\t \showthe\t
+
+
+{\toks}
+{\showthe}
+> a##b\foo c.
+l.6 \toks1=\toks0 \showthe\toks1
+
+
+{\toks}
+{\showthe}
+> x.
+l.7 \toks1=\t \showthe\toks1
+
+
+{\def}
+{\edef}
+
+\x ->X
+{\show}
+> \y=macro:
+->a##b\foo cX.
+l.8 \def\x{X}\edef\y{\the\toks0 \x}\show\y
+
+
+{\toks}
+{blank space  }
+{\showthe}
+> .
+l.9 \toks2={} \showthe\toks2
+
+
+{\toks}
+{\expandafter}
+
+\x ->X
+{blank space  }
+{\showthe}
+> X.
+l.10 \toks4=\expandafter{\x} \showthe\toks4
+
+
+{\toks3}
+{\expandafter}
+{\expandafter}
+
+\x ->X
+{blank space  }
+{\showthe}
+> \x X.
+l.11 \t=\expandafter{\expandafter\x\x} \showthe\t
+
+
+{\toks}
+{blank space  }
+{\showthe}
+> {nested}{ }.
+l.12 \toks5={{nested}{ }} \showthe\toks5
+
+
+{\edef}
+{\show}
+> \z=macro:
+->{nested}{ }.
+l.13 \edef\z{\the\toks5}\show\z
+
+
+{\toks}
+{\showthe}
+> last.
+l.14 \toks255={last}\showthe\toks255
+
+
+{\toks}
+! Bad register code (256).
+<to be read again>
+                   =
+l.15 \toks256=
+              {}
+A register number must be between 0 and 255.
+I changed this one to zero.
+
+{blank space  }
+{\toks}
+! Missing { inserted.
+<to be read again>
+                   x
+l.16 \toks6=x
+             }
+A left brace was mandatory here, so I've put one in.
+You might want to delete and/or insert some corrections
+so that I will find a matching right brace soon.
+(If you're confused by all this, try typing `I}' now.)
+
+{blank space  }
+{\end}
+ )
+No pages of output.

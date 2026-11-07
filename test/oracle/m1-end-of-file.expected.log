@@ -1,0 +1,21 @@
+(m1-end-of-file.tex
+{vertical mode: \tracingmacros}
+{\tracingonline}
+{\message}
+start
+{blank space  }
+{begin-group character {}
+{\begingroup}
+{\ifnum}
+{true}
+{\iftrue}
+{true}
+{\message}
+inside
+{blank space  }
+{\end}
+ )
+(\end occurred inside a group at level 2)
+(\end occurred when \iftrue on line 6 was incomplete)
+(\end occurred when \ifnum on line 6 was incomplete)
+No pages of output.

@@ -1,0 +1,18 @@
+%! oracle: ini
+\catcode`\{=1 \catcode`\}=2 \catcode`\#=6
+\tracingcommands=2 \tracingmacros=2 \tracingonline=0
+\count0=5 \count255=-3 \showthe\count255
+\countdef\c=17 \c=100 \show\c \showthe\count17
+\advance\c by 5 \advance\c-200 \showthe\c
+\multiply\c by 3 \showthe\c
+\divide\c by 4 \showthe\c
+\c=7 \divide\c by -2 \showthe\c
+\c=-7 \divide\c by 2 \showthe\c
+\c=-7 \divide\c by -2 \showthe\c
+\c=2147483647 \showthe\c \advance\c by 1 \showthe\c
+\multiply\c by 1000000 \showthe\c
+\c=1000000 \multiply\c by 1000000 \showthe\c
+\divide\c by 0 \showthe\c
+\count256=1
+\c="7FFFFFFF \advance\c by -"7FFFFFFF \showthe\c
+\end

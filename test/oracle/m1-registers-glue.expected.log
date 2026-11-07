@@ -1,0 +1,116 @@
+(m1-registers-glue.tex
+{vertical mode: \tracingmacros}
+{\tracingonline}
+{\skip}
+{\showthe}
+> 1.0pt plus 2.0pt minus 3.0pt.
+l.4 \skip0=1pt plus 2pt minus 3pt \showthe\skip0
+
+
+{\skip}
+{\showthe}
+> 1.0pt plus 1.0fil minus 2.0fill.
+l.5 ...p1=1pt plus 1fil minus 2fill \showthe\skip1
+
+
+{\skip}
+{\showthe}
+> 0.0pt plus -1.0filll.
+l.6 \skip2=0pt plus -1filll \showthe\skip2
+
+
+{\skipdef}
+{\skip5}
+{\show}
+> \s=\skip5.
+l.7 \skipdef\s=5 \s=3pt plus 1pt \show\s
+                                         \showthe\s
+
+{\showthe}
+> 3.0pt plus 1.0pt.
+l.7 ...pdef\s=5 \s=3pt plus 1pt \show\s \showthe\s
+
+
+{\advance}
+{\showthe}
+> 4.0pt plus 3.0pt minus 3.0pt.
+l.8 \advance\s by \skip0 \showthe\s
+
+
+{\advance}
+{\showthe}
+> 5.0pt plus 1.0fil minus 2.0fill.
+l.9 \advance\s by \skip1 \showthe\s
+
+
+{\multiply}
+{\showthe}
+> 10.0pt plus 2.0fil minus 4.0fill.
+l.10 \multiply\s by 2 \showthe\s
+
+
+{\divide}
+{\showthe}
+> 2.5pt plus 0.5fil minus 1.0fill.
+l.11 \divide\s by 4 \showthe\s
+
+
+{\skip5}
+{\showthe}
+> 1.0pt plus 2.0pt minus 3.0pt.
+l.12 \s=\skip0 \showthe\s
+
+
+{\skip5}
+{\showthe}
+> 2.0pt.
+l.13 \s=2\skip0 \showthe\s
+
+
+{\muskip}
+{\showthe}
+> 3.0mu plus 1.0fill minus 2.0mu.
+l.14 ...=3mu plus 1fill minus 2mu \showthe\muskip0
+
+
+{\muskip}
+{\advance}
+{\showthe}
+> 21.0mu plus 1.0fill minus 2.0mu.
+l.15 ...vance\muskip1 by \muskip0 \showthe\muskip1
+
+
+{\muskipdef}
+{\muskip7}
+{\show}
+> \m=\muskip7.
+l.16 \muskipdef\m=7 \m=1.5mu \show\m
+
+
+{\skip5}
+{\showthe}
+> 1.0pt plus 1.0fil minus 1.0fill.
+l.17 \s=1pt plus 1fil minus 1fill \showthe\s
+
+
+{\skip5}
+{\showthe}
+> 1.0pt plus 1.0pt minus 1.0fil.
+l.18 \s=1pt plus 1pt minus 1fil \showthe\s
+
+
+{\muskip}
+! Illegal unit of measure (mu inserted).
+<to be read again>
+                   \relax
+l.19 \muskip2=3\relax
+
+The unit of measurement in math glue must be mu.
+To recover gracefully from this error, it's best to
+delete the erroneous units; e.g., type `2' to delete
+two letters. (See Chapter 27 of The TeXbook.)
+
+{\relax}
+{\end}
+ )
+No pages of output.

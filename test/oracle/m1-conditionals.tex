@@ -1,0 +1,20 @@
+%! oracle: ini
+\catcode`\{=1 \catcode`\}=2 \catcode`\#=6
+\tracingcommands=2 \tracingmacros=2 \tracingonline=0
+\ifnum1<2 \message{lt}\fi \ifnum2=2 \message{eq}\fi \ifnum3>4 \else\message{not gt}\fi
+\ifdim1pt<2pt \message{dlt}\fi \ifdim 1in=72.27pt \message{din}\fi
+\ifodd3 \message{odd}\fi \ifodd-2 \else\message{even}\fi
+\def\a{x}\def\b{x}\def\c{y}
+\ifx\a\b \message{ab}\fi \ifx\a\c\else\message{ac differ}\fi
+\ifx\undefa\undefb \message{both undef}\fi
+\ifx aa\message{chars}\fi \ifx ab\else\message{chars differ}\fi
+\if aa\message{if}\fi \if\a x\message{if exp}\fi \if\relax\relax\message{relax}\fi
+\ifcat a b\message{cat}\fi
+\ifcase 2 \message{zero}\or\message{one}\or\message{two}\else\message{other}\fi
+\ifcase 7 \message{zero}\or\message{one}\else\message{other}\fi
+\ifcase -1 \message{zero}\or\message{one}\fi
+\ifnum1=2 \else\ifnum2=2 \message{nested}\else\message{no}\fi\fi
+\ifvmode\message{v}\fi \ifhmode\else\message{noth}\fi \ifmmode\else\message{nom}\fi \ifinner\else\message{noinner}\fi
+\iftrue\message{t}\else\message{f}\fi \iffalse\message{t}\else\message{f}\fi
+\ifeof 5 \message{eof}\fi
+\end

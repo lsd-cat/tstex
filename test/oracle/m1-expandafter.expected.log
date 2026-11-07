@@ -1,0 +1,87 @@
+(m1-expandafter.tex
+{vertical mode: \tracingmacros}
+{\tracingonline}
+{\def}
+{\def}
+{blank space  }
+{\expandafter}
+
+\b ->{xy}
+
+\a #1->\message {(#1)}
+#1<-xy
+{\message}
+(xy)
+{\def}
+{\expandafter}
+{\expandafter}
+{\expandafter}
+
+\b ->{xy}
+{\expandafter}
+
+\b ->{xy}
+
+\d #1#2->\message {(#1)(#2)}
+#1<-xy
+#2<-xy
+{\message}
+(xy)(xy)
+{\expandafter}
+{\csname}
+{\show}
+> \foo bar=\relax.
+<recently read> \foo bar
+
+l.7 \expandafter\show\csname foo bar\endcsname
+
+
+{\expandafter}
+{\csname}
+{\string}
+{\show}
+> \\foo=\relax.
+<recently read> \\foo
+
+l.8 \expandafter\show\csname\string\foo\endcsname
+
+
+{\expandafter}
+{\csname}
+{\ifx}
+{true}
+{\message}
+relax
+{\fi}
+{\message}
+{\string}
+{\string}
+{\string}
+{\meaning}
+{\meaning}
+{\meaning}
+\fooa ~ macro:->{xy}\relaxthe letter a
+{blank space  }
+{\message}
+{\romannumeral}
+{\romannumeral}
+{\romannumeral}
+{\romannumeral}
+mcmxciviv
+{blank space  }
+{\message}
+{\number}
+{\number}
+{\number}
+{\number}
+{\number}
+{\number}
+7-12-5973115
+{blank space  }
+{\message}
+{\number}
+3
+{blank space  }
+{\end}
+ )
+No pages of output.

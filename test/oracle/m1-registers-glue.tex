@@ -1,0 +1,20 @@
+%! oracle: ini
+\catcode`\{=1 \catcode`\}=2 \catcode`\#=6
+\tracingcommands=2 \tracingmacros=2 \tracingonline=0
+\skip0=1pt plus 2pt minus 3pt \showthe\skip0
+\skip1=1pt plus 1fil minus 2fill \showthe\skip1
+\skip2=0pt plus -1filll \showthe\skip2
+\skipdef\s=5 \s=3pt plus 1pt \show\s \showthe\s
+\advance\s by \skip0 \showthe\s
+\advance\s by \skip1 \showthe\s
+\multiply\s by 2 \showthe\s
+\divide\s by 4 \showthe\s
+\s=\skip0 \showthe\s
+\s=2\skip0 \showthe\s
+\muskip0=3mu plus 1fill minus 2mu \showthe\muskip0
+\muskip1=18mu \advance\muskip1 by \muskip0 \showthe\muskip1
+\muskipdef\m=7 \m=1.5mu \show\m
+\s=1pt plus 1fil minus 1fill \showthe\s
+\s=1pt plus 1pt minus 1fil \showthe\s
+\muskip2=3\relax
+\end

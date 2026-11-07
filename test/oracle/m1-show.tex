@@ -1,0 +1,15 @@
+%! oracle: ini
+\catcode`\{=1 \catcode`\}=2 \catcode`\#=6
+\tracingcommands=2 \tracingmacros=2 \tracingonline=0
+\def\a#1#2.{x#1y#2}\show\a
+\long\outer\def\b{}\show\b
+\show\def \show\count \show\relax \show\undefinedcs \show\par \show a \show{ \show #
+\count5=-9 \dimen5=1.5pt \skip5=1pt plus 1fil \muskip5=2mu \toks5={t}
+\showthe\count5 \showthe\dimen5 \showthe\skip5 \showthe\muskip5 \showthe\toks5
+\showthe\catcode`\a \showthe\endlinechar \showthe\escapechar \showthe\tolerance
+\showthe\parindent \showthe\baselineskip \showthe\thinmuskip \showthe\everypar
+\showthe\inputlineno \showthe\lastpenalty \showthe\lastskip \showthe\badness
+\showthe\fam
+\showlists
+\showthe a
+\end

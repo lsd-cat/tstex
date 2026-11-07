@@ -1,0 +1,17 @@
+%! oracle: ini
+\catcode`\{=1 \catcode`\}=2 \catcode`\#=6
+\tracingcommands=2 \tracingmacros=2 \tracingonline=0
+\toks0={a#b\foo c} \showthe\toks0
+\toksdef\t=3 \t={x} \show\t \showthe\t
+\toks1=\toks0 \showthe\toks1
+\toks1=\t \showthe\toks1
+\def\x{X}\edef\y{\the\toks0 \x}\show\y
+\toks2={} \showthe\toks2
+\toks4=\expandafter{\x} \showthe\toks4
+\t=\expandafter{\expandafter\x\x} \showthe\t
+\toks5={{nested}{ }} \showthe\toks5
+\edef\z{\the\toks5}\show\z
+\toks255={last}\showthe\toks255
+\toks256={}
+\toks6=x}
+\end

@@ -1,0 +1,15 @@
+%! oracle: ini
+\catcode`\{=1 \catcode`\}=2 \catcode`\#=6
+\tracingcommands=2 \tracingmacros=2 \tracingonline=0
+\def\a#1{}
+\a{abc
+
+\message{after par}
+\def\b{abc
+\message{x}
+}
+\message{extra}}
+\toks0=x}
+\message{done}
+\def\c{unfinished
+\end

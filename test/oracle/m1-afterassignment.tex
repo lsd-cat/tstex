@@ -1,0 +1,14 @@
+%! oracle: ini
+\catcode`\{=1 \catcode`\}=2 \catcode`\#=6
+\tracingcommands=2 \tracingmacros=2 \tracingonline=0
+\def\x{\message{AA}}
+\afterassignment\x \count0=5 \message{next}
+\afterassignment\x \def\a{} \message{next2}
+\afterassignment\x \let\b=\relax \message{next3}
+\afterassignment\x \message{no assign}
+\afterassignment\x \count1=1 \afterassignment\relax \count2=2
+{\afterassignment\x \aftergroup\x \count3=3 }
+{\aftergroup\x \afterassignment\x \count3=3 }
+\afterassignment\x \global\count0=4 \message{g}
+\afterassignment\x \catcode`\a=11 \message{end}
+\end

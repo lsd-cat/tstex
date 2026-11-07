@@ -1,0 +1,89 @@
+(m1-read.tex
+{vertical mode: \tracingmacros}
+{\tracingonline}
+{\ifeof}
+{true}
+{\message}
+1 closed
+{\fi}
+{\openin}
+{\ifeof}
+{false}
+{\message}
+open
+{\fi}
+{\read}
+{\show}
+> \x=macro:
+->\def \inner {from inner} .
+l.7 \read1 to \x \show\x
+
+
+{\read}
+{\show}
+> \x=macro:
+->\message {loading inner} .
+l.8 \read1 to \x \show\x
+
+
+{\global}
+{\show}
+> \y=macro:
+->\endinput \message {rest of the endinput line is still read} .
+l.9 \global\read1 to \y \show\y
+
+
+{\ifeof}
+{false}
+{\message}
+not eof
+{\fi}
+{\read}
+{\show}
+> \x=macro:
+->\message {must not appear} .
+l.11 \read1 to \x \show\x
+
+
+{\read}
+{\show}
+> \x=macro:
+->\par .
+l.12 \read1 to \x \show\x
+
+
+{\ifeof}
+{true}
+{\message}
+eof now
+{\fi}
+{\closein}
+{\ifeof}
+{true}
+{\message}
+closed
+{\fi}
+{\openin}
+{\ifeof}
+{true}
+{\message}
+2 absent
+{\fi}
+{\openin}
+{\ifeof}
+{false}
+{\message}
+3 found
+{\fi}
+{\openin}
+! Bad number (16).
+<to be read again>
+                   =
+l.17 \openin16=
+               m1-input-inner
+Since I expected to read a number between 0 and 15,
+I changed this one to zero.
+
+{\end}
+ )
+No pages of output.

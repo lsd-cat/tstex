@@ -1,0 +1,136 @@
+(m1-let.tex
+{vertical mode: \tracingmacros}
+{\tracingonline}
+{\let}
+{blank space  }
+{\show}
+> \a=the letter x.
+l.4 \let\a=x \show\a
+                     \let\b={ \show\b \let\c=\relax \show\c
+
+{\let}
+{blank space  }
+{\show}
+> \b=begin-group character {.
+l.4 \let\a=x \show\a \let\b={ \show\b
+                                      \let\c=\relax \show\c
+
+{\let}
+{\show}
+> \c=\relax.
+l.4 ...ow\a \let\b={ \show\b \let\c=\relax \show\c
+
+
+{\def}
+{\let}
+{\show}
+> \d=macro:
+#1->#1.
+l.5 \def\m#1{#1}\let\d=\m \show\d
+
+
+{\let}
+{\show}
+> \e=\relax.
+l.6 \let\e= \relax \show\e
+
+
+{\let}
+{\show}
+> \f=the letter y.
+l.7 \let\f=  y\show\f
+
+
+{\let}
+{blank space  }
+{\show}
+> \g=the character =.
+l.8 \let\g== \show\g
+
+
+{\let}
+{\show}
+> \h=the letter x.
+l.9 \let\h\a \show\h
+
+
+{\let}
+{\show}
+> \i=begin-group character {.
+l.10 \let\i= {\show\i
+
+
+{\let}
+{\show}
+> \undef=undefined.
+l.11 \let\undef=\undefinedcs \show\undef
+
+
+{\def}
+{\def}
+{\def}
+{blank space  }
+{\futurelet}
+
+\pk ->\show \n \message
+{\show}
+> \n=begin-group character {.
+\pk ->\show \n
+               \message
+...
+l.13 \futurelet\n\pk{
+                     abc}
+
+{\message}
+abc
+{blank space  }
+{\futurelet}
+
+\pkk ->\show \n \gobble
+{\show}
+> \n=the letter a.
+\pkk ->\show \n
+                \gobble
+...
+l.14 \futurelet\n\pkk a
+
+
+
+\gobble #1->
+#1<-a
+{blank space  }
+{\futurelet}
+
+\pk ->\show \n \message
+{\show}
+> \n=\relax.
+\pk ->\show \n
+               \message
+...
+l.15 \futurelet\n\pk\relax
+                          {r}
+
+{\message}
+r
+{blank space  }
+{\ifx}
+{true}
+{\message}
+same
+{\fi}
+{\let}
+{blank space  }
+{\ifx}
+{false}
+{\message}
+differ now
+{\fi}
+{\let}
+{\show}
+> \par=\relax.
+l.18 \let\par=\relax \show\par
+
+
+{\end}
+ )
+No pages of output.

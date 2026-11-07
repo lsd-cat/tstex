@@ -1,0 +1,14 @@
+(m1-read-terminal.tex
+{vertical mode: \tracingmacros}
+{\tracingonline}
+{\message}
+before
+{blank space  }
+{\read}
+! Emergency stop.
+<read 5>
+
+l.5 \read5 to \x
+
+
+No pages of output.

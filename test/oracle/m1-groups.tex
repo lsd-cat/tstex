@@ -1,0 +1,12 @@
+%! oracle: ini
+\catcode`\{=1 \catcode`\}=2 \catcode`\#=6
+\tracingcommands=2 \tracingmacros=2 \tracingrestores=1 \tracingonline=0
+\count1=1 {\count1=2 \global\count2=5 \showthe\count1}\showthe\count1 \showthe\count2
+\begingroup\count1=3 \endgroup
+{\def\a{x}{\def\a{y}{\global\def\a{z}}\show\a}\show\a}\show\a
+\def\b{\message{after}}{\aftergroup\b\aftergroup\relax\message{in}}
+\begingroup\aftergroup\b\endgroup
+{\count3=1 \global\count3=2 \count3=3 }\showthe\count3
+{\begingroup\count4=9 }
+\endgroup
+\end

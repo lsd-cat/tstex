@@ -1,0 +1,24 @@
+%! oracle: ini
+\catcode`\{=1 \catcode`\}=2 \catcode`\#=6
+\tracingcommands=2 \tracingmacros=2 \tracingonline=0
+\def\space{ }\message{a\space b\space\space c}
+\def\cw{x}\message{[\cw  y][\cw y]}
+
+
+\message{after blank lines}
+
+\def\a#1{\message{#1}}
+\a{one
+two}
+\a{p
+
+\relax}
+\message{x
+y}
+\endlinechar=-1 \message{x
+y}
+\message{ab
+ cd}
+\endlinechar=13
+\def\b#1{}\b\par
+\end

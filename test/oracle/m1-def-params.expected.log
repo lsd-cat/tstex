@@ -1,0 +1,149 @@
+(m1-def-params.tex
+{vertical mode: \tracingmacros}
+{\tracingonline}
+{\def}
+{blank space  }
+
+\a #1#2->\message {[#1][#2]}
+#1<-x
+#2<-y
+{\message}
+[x][y]
+{blank space  }
+
+\a #1#2->\message {[#1][#2]}
+#1<-xy
+#2<-z
+{\message}
+[xy][z]
+{blank space  }
+
+\a #1#2->\message {[#1][#2]}
+#1<-ab
+#2<-c
+{\message}
+[ab][c]
+{blank space  }
+{\def}
+{blank space  }
+
+\b #1.#2;->\message {<#1|#2>}
+#1<-one
+#2<-two
+{\message}
+<one|two>
+{blank space  }
+
+\b #1.#2;->\message {<#1|#2>}
+#1<-a.b
+#2<-c;d
+{\message}
+<a.b|c;d>
+{blank space  }
+{\def}
+{blank space  }
+{\let}
+{blank space  }
+
+\c #1{->\message {[#1]}\bgroup {
+#1<-abc
+{\message}
+[abc]
+{begin-group character {}
+{begin-group character {}
+{undefined}
+! Undefined control sequence.
+l.9 \let\bgroup={ \c abc{\egroup
+                                }
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+{end-group character }}
+{blank space  }
+{\let}
+{blank space  }
+{\def}
+{blank space  }
+
+\d #1->\def \e ##1{#1##1}
+#1<-X
+{\def}
+{\show}
+> \e=macro:
+#1->X#1.
+l.12 \d{X}\show\e
+
+
+{\long}
+{blank space  }
+
+\l #1->\message {long:#1}
+#1<-a\par b
+{\message}
+long:a\par b
+{blank space  }
+{\def}
+{blank space  }
+
+\n #1->
+Runaway argument?
+{\relax
+! Paragraph ended before \n was complete.
+<to be read again>
+                   \par
+l.16 \n{\relax\par
+                  }
+I suspect you've forgotten a `}', causing me to apply this
+control sequence to too much text. How can we recover?
+My plan is to forget the whole thing and hope for the best.
+
+{\par}
+{end-group character }}
+{blank space  }
+{\outer}
+{blank space  }
+{\show}
+> \o=\outer macro:
+->.
+l.18 \show\o
+
+
+{undefined}
+! Undefined control sequence.
+l.19 \n
+       {\o}
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+{begin-group character {}
+
+\o ->
+{end-group character }}
+{blank space  }
+{\def}
+{blank space  }
+
+\p #1->
+Runaway argument?
+! Forbidden control sequence found while scanning use of \p.
+<inserted text>
+                \par
+...
+l.20 \def\p#1{} \p\o
+
+I suspect you have forgotten a `}', causing me
+to read past where you wanted me to stop.
+I'll try to recover; but if the error is serious,
+you'd better type `E' or `X' now and fix your file.
+
+
+\o ->
+{\end}
+ )
+No pages of output.

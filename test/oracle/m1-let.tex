@@ -1,0 +1,19 @@
+%! oracle: ini
+\catcode`\{=1 \catcode`\}=2 \catcode`\#=6
+\tracingcommands=2 \tracingmacros=2 \tracingonline=0
+\let\a=x \show\a \let\b={ \show\b \let\c=\relax \show\c
+\def\m#1{#1}\let\d=\m \show\d
+\let\e= \relax \show\e
+\let\f=  y\show\f
+\let\g== \show\g
+\let\h\a \show\h
+\let\i= {\show\i
+\let\undef=\undefinedcs \show\undef
+\def\gobble#1{}\def\pk{\show\n\message}\def\pkk{\show\n\gobble}
+\futurelet\n\pk{abc}
+\futurelet\n\pkk a
+\futurelet\n\pk\relax{r}
+\ifx\a\h \message{same}\fi
+\let\a=y \ifx\a\h \else\message{differ now}\fi
+\let\par=\relax \show\par
+\end

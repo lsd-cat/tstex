@@ -1,0 +1,13 @@
+%! oracle: ini
+\catcode`\{=1 \catcode`\}=2 \catcode`\#=6
+\tracingcommands=2 \tracingmacros=2 \tracingonline=0
+\else
+\fi
+\or
+\iftrue \else \else \fi
+\ifnum 1 2 \message{x}\fi
+\ifnum 1 \relax 2 \fi
+\ifdim 1pt 2pt \fi
+\message{before}
+\ifnum 3=3 \iftrue \message{open}
+\end

@@ -1,0 +1,59 @@
+(m1-tracingcommands.tex
+\b ->
+
+\a #1->\message {#1}\b
+#1<-
+{vertical mode: \message}
+
+\b ->
+{\relax}
+{\count}
+{\message}
+y
+{\tracingcommands}
+{\tracingmacros}
+{\expandafter}
+{\expandafter}
+
+\b ->
+
+\a #1->\message {#1}\b
+#1<-
+{\message}
+
+\b ->
+{\relax}
+{\count}
+{\ifnum}
+{true}
+{\message}
+y
+{\fi}
+{\tracingmacros}
+
+\a #1->\message {#1}\b
+#1<-one
+{\message}
+one
+\b ->
+{blank space  }
+{\tracingmacros}
+{\message}
+two
+{blank space  }
+{\tracingcommands}
+three
+{\message}
+four
+{blank space  }
+{\tracingmacros}
+
+\a #1->\message {#1}\b
+#1<-five
+{\message}
+five
+\b ->
+{blank space  }
+{\end}
+ )
+No pages of output.

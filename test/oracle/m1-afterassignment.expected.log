@@ -1,0 +1,95 @@
+(m1-afterassignment.tex
+{vertical mode: \tracingmacros}
+{\tracingonline}
+{\def}
+{blank space  }
+{\afterassignment}
+{\count}
+
+\x ->\message {AA}
+{\message}
+AA
+{\message}
+next
+{blank space  }
+{\afterassignment}
+{\def}
+
+\x ->\message {AA}
+{\message}
+AA
+{blank space  }
+{\message}
+next2
+{blank space  }
+{\afterassignment}
+{\let}
+
+\x ->\message {AA}
+{\message}
+AA
+{\message}
+next3
+{blank space  }
+{\afterassignment}
+{\message}
+no assign
+{blank space  }
+{\afterassignment}
+{\count}
+
+\x ->\message {AA}
+{\message}
+AA
+{\afterassignment}
+{\count}
+{\relax}
+{begin-group character {}
+{\afterassignment}
+{\aftergroup}
+{\count}
+
+\x ->\message {AA}
+{\message}
+AA
+{end-group character }}
+
+\x ->\message {AA}
+{\message}
+AA
+{blank space  }
+{begin-group character {}
+{\aftergroup}
+{\afterassignment}
+{\count}
+
+\x ->\message {AA}
+{\message}
+AA
+{end-group character }}
+
+\x ->\message {AA}
+{\message}
+AA
+{blank space  }
+{\afterassignment}
+{\global}
+
+\x ->\message {AA}
+{\message}
+AA
+{\message}
+g
+{blank space  }
+{\afterassignment}
+{\catcode}
+
+\x ->\message {AA}
+{\message}
+AA
+{\message}
+end
+{blank space  }
+{\end}
+ )
+No pages of output.

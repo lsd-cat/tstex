@@ -1,0 +1,194 @@
+(m1-show.tex
+{vertical mode: \tracingmacros}
+{\tracingonline}
+{\def}
+{\show}
+> \a=macro:
+#1#2.->x#1y#2.
+l.4 \def\a#1#2.{x#1y#2}\show\a
+
+
+{\long}
+{\show}
+> \b=\long\outer macro:
+->.
+l.5 \long\outer\def\b{}\show\b
+
+
+{\show}
+> \def=\def.
+l.6 \show\def
+              \show\count \show\relax \show\undefinedcs \show\par \show a \s...
+
+
+{\show}
+> \count=\count.
+l.6 \show\def \show\count
+                          \show\relax \show\undefinedcs \show\par \show a \s...
+
+
+{\show}
+> \relax=\relax.
+l.6 \show\def \show\count \show\relax
+                                      \show\undefinedcs \show\par \show a \s...
+
+
+{\show}
+> \undefinedcs=undefined.
+l.6 ...f \show\count \show\relax \show\undefinedcs
+                                                   \show\par \show a \show{ ...
+
+
+{\show}
+> \par=\par.
+l.6 ...unt \show\relax \show\undefinedcs \show\par
+                                                   \show a \show{ \show #
+
+{\show}
+> the letter a.
+l.6 ...w\relax \show\undefinedcs \show\par \show a
+                                                   \show{ \show #
+
+{blank space  }
+{\show}
+> begin-group character {.
+l.6 ... \show\undefinedcs \show\par \show a \show{
+                                                   \show #
+
+{blank space  }
+{\show}
+> macro parameter character #.
+l.6 ...ndefinedcs \show\par \show a \show{ \show #
+
+
+{blank space  }
+{\count}
+{\dimen}
+{\skip}
+{\muskip}
+{\toks}
+{blank space  }
+{\showthe}
+> -9.
+l.8 \showthe\count5
+                    \showthe\dimen5 \showthe\skip5 \showthe\muskip5 \showthe...
+
+
+{\showthe}
+> 1.5pt.
+l.8 \showthe\count5 \showthe\dimen5
+                                    \showthe\skip5 \showthe\muskip5 \showthe...
+
+
+{\showthe}
+> 1.0pt plus 1.0fil.
+l.8 ...wthe\count5 \showthe\dimen5 \showthe\skip5
+                                                  \showthe\muskip5 \showthe\...
+
+
+{\showthe}
+> 2.0mu.
+l.8 ...the\dimen5 \showthe\skip5 \showthe\muskip5
+                                                  \showthe\toks5
+
+{\showthe}
+> t.
+l.8 ...owthe\skip5 \showthe\muskip5 \showthe\toks5
+
+
+{\showthe}
+> 11.
+<to be read again>
+                   \showthe
+l.9 \showthe\catcode`\a \showthe
+                                \endlinechar \showthe\escapechar \showthe\to...
+
+
+{\showthe}
+> 13.
+l.9 \showthe\catcode`\a \showthe\endlinechar
+                                             \showthe\escapechar \showthe\to...
+
+
+{\showthe}
+> 92.
+l.9 ...\a \showthe\endlinechar \showthe\escapechar
+                                                   \showthe\tolerance
+
+{\showthe}
+> 10000.
+l.9 ...char \showthe\escapechar \showthe\tolerance
+
+
+{\showthe}
+> 0.0pt.
+l.10 \showthe\parindent
+                        \showthe\baselineskip \showthe\thinmuskip \showthe\e...
+
+
+{\showthe}
+> 0.0pt.
+l.10 \showthe\parindent \showthe\baselineskip
+                                              \showthe\thinmuskip \showthe\e...
+
+
+{\showthe}
+> 0.0mu.
+l.10 ... \showthe\baselineskip \showthe\thinmuskip
+                                                   \showthe\everypar
+
+{\showthe}
+> .
+l.10 ...skip \showthe\thinmuskip \showthe\everypar
+
+
+{\showthe}
+> 11.
+l.11 \showthe\inputlineno
+                          \showthe\lastpenalty \showthe\lastskip \showthe\ba...
+
+
+{\showthe}
+> 0.
+l.11 \showthe\inputlineno \showthe\lastpenalty
+                                               \showthe\lastskip \showthe\ba...
+
+
+{\showthe}
+> 0.0pt.
+l.11 ...eno \showthe\lastpenalty \showthe\lastskip
+                                                   \showthe\badness
+
+{\showthe}
+> 0.
+l.11 ...penalty \showthe\lastskip \showthe\badness
+
+
+{\showthe}
+> 0.
+l.12 \showthe\fam
+
+
+{\showlists}
+
+### vertical mode entered at line 0
+prevdepth ignored
+
+! OK.
+l.13 \showlists
+
+
+{\showthe}
+! You can't use `the letter a' after \the.
+l.14 \showthe a
+
+I'm forgetting what you said and using zero instead.
+
+> 0.
+l.14 \showthe a
+
+
+{blank space  }
+{\end}
+ )
+No pages of output.

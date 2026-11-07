@@ -1,0 +1,21 @@
+%! oracle: ini
+\catcode`\{=1 \catcode`\}=2 \catcode`\#=6
+\tracingcommands=2 \tracingmacros=2 \tracingonline=0
+\def\a#1#2{\message{[#1][#2]}}
+\a xy \a {xy}{z} \a{ab}c
+\def\b#1.#2;{\message{<#1|#2>}}
+\b one.two; \b {a.b}.{c;d};
+\def\c#1#{\message{[#1]}\bgroup}
+\let\bgroup={ \c abc{\egroup}
+\let\egroup=}
+\def\d#1{\def\e##1{#1##1}}
+\d{X}\show\e
+\long\def\l#1{\message{long:#1}}
+\l{a\par b}
+\def\n#1{}
+\n{\relax\par}
+\outer\def\o{}
+\show\o
+\n{\o}
+\def\p#1{} \p\o
+\end

@@ -1,0 +1,66 @@
+(m1-catcodes.tex
+{vertical mode: \tracingmacros}
+{\tracingonline}
+{\message}
+{\the}
+011514
+{blank space  }
+{\catcode}
+{\def}
+
+~->\message {active}
+{\message}
+active
+{blank space  }
+{\catcode}
+{\ifcat}
+{true}
+{\message}
+letter
+{\else}
+{\ifcat}
+{false}
+{\message}
+diff
+{\fi}
+{\message}
+AZz?
+{blank space  }
+{\catcode}
+{\ifcat}
+{true}
+{\message}
+other-eq
+{\fi}
+{\showthe}
+> 13.
+l.10 \showthe\endlinechar
+
+
+{\endlinechar}
+{\showthe}
+> 37.
+l.11 \endlinechar=`\% \showthe\endlinechar
+                                          ^^M
+
+{\endlinechar}
+{\newlinechar}
+{\message}
+a
+b
+{\newlinechar}
+{\message}
+aZb
+{blank space  }
+{\catcode}
+{\message}
+escape
+{blank space  }
+{\showthe}
+> 0.
+l.16 \showthe\catcode`\Q
+
+
+{\end}
+ )
+No pages of output.

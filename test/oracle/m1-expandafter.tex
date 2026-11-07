@@ -1,0 +1,14 @@
+%! oracle: ini
+\catcode`\{=1 \catcode`\}=2 \catcode`\#=6
+\tracingcommands=2 \tracingmacros=2 \tracingonline=0
+\def\a#1{\message{(#1)}}\def\b{{xy}}
+\expandafter\a\b
+\def\d#1#2{\message{(#1)(#2)}}\expandafter\expandafter\expandafter\d\expandafter\b\b
+\expandafter\show\csname foo bar\endcsname
+\expandafter\show\csname\string\foo\endcsname
+\expandafter\ifx\csname undefd\endcsname\relax\message{relax}\fi
+\message{\string\foo \string a \string~ \meaning\b \meaning\relax \meaning a}
+\message{\romannumeral 1994 \romannumeral0 \romannumeral-5 \romannumeral 4}
+\message{\number 007 \number-0012 \number+-+5 \number`\a \number"1F \number'17}
+\message{\number --3 }
+\end

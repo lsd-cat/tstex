@@ -1,0 +1,16 @@
+%! oracle: ini
+\catcode`\{=1 \catcode`\}=2 \catcode`\#=6
+\tracingmacros=1 \tracingonline=0
+\def\a#1{\message{#1}\b}\def\b{}
+\tracingcommands=1
+\expandafter\a\expandafter{\b}\relax
+\count1=2 \ifnum\count1=2 \message{y}\fi
+\tracingcommands=2 \tracingmacros=2
+\expandafter\a\expandafter{\b}\relax
+\count1=2 \ifnum\count1=2 \message{y}\fi
+\tracingmacros=1
+\a{one}
+\tracingmacros=0 \a{two}
+\tracingcommands=0 \a{three} \tracingcommands=3 \a{four}
+\tracingmacros=3 \a{five}
+\end

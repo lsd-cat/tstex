@@ -1,0 +1,114 @@
+(m1-chardef.tex
+{vertical mode: \tracingmacros}
+{\tracingonline}
+{\chardef}
+{\show}
+> \a=\char"41.
+l.4 \chardef\a=65 \show\a
+                          \message{\meaning\a}
+
+{\message}
+{\meaning}
+\char"41
+{blank space  }
+{\mathchardef}
+{\show}
+> \b=\mathchar"7141.
+l.5 \mathchardef\b="7141 \show\b
+
+
+{\countdef}
+{\show}
+> \c=\count3.
+l.6 \countdef\c=3 \show\c
+                          \dimendef\d=3 \show\d \skipdef\e=3 \show\e
+
+{\dimendef}
+{\show}
+> \d=\dimen3.
+l.6 \countdef\c=3 \show\c \dimendef\d=3 \show\d
+                                                \skipdef\e=3 \show\e
+
+{\skipdef}
+{\show}
+> \e=\skip3.
+l.6 ... \dimendef\d=3 \show\d \skipdef\e=3 \show\e
+
+
+{\muskipdef}
+{\show}
+> \f=\muskip3.
+l.7 \muskipdef\f=3 \show\f
+                           \toksdef\g=3 \show\g
+
+{\toksdef}
+{\show}
+> \g=\toks3.
+l.7 \muskipdef\f=3 \show\f \toksdef\g=3 \show\g
+
+
+{\count}
+{\showthe}
+> 65.
+l.8 \count0=\a \showthe\count0
+
+
+{\count}
+{\showthe}
+> 28993.
+l.9 \count0=\b \showthe\count0
+
+
+{\chardef}
+{\showthe}
+> 255.
+l.10 \chardef\h=255 \showthe\h
+
+
+{\chardef}
+! Bad character code (256).
+l.11 \chardef\i=256
+
+A character number must be between 0 and 255.
+I changed this one to zero.
+
+{\mathchardef}
+! Bad mathchar (32769).
+l.12 \mathchardef\j="8001
+
+A mathchar number must be between 0 and 32767.
+I changed this one to zero.
+
+{\chardef}
+! Bad character code (-1).
+l.13 \chardef\k=-1
+
+A character number must be between 0 and 255.
+I changed this one to zero.
+
+{\count}
+{\showthe}
+> 7.
+l.14 \count\a=7 \showthe\count65
+
+
+{\message}
+{\number}
+{\number}
+65,28993
+{blank space  }
+{\advance}
+{\showthe}
+> 29248.
+l.16 \advance\count0 by \h \showthe\count0
+
+
+{\dimen}
+{\showthe}
+> 65.0pt.
+l.17 \dimen0=\a pt \showthe\dimen0
+
+
+{\end}
+ )
+No pages of output.

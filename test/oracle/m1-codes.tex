@@ -1,0 +1,19 @@
+%! oracle: ini
+\catcode`\{=1 \catcode`\}=2 \catcode`\#=6
+\tracingcommands=2 \tracingmacros=2 \tracingonline=0
+\message{\the\lccode`A \the\lccode`a \the\uccode`a \the\uccode`A \the\lccode`1}
+\message{\the\sfcode`A \the\sfcode`a \the\sfcode`. \the\mathcode`A \the\mathcode`1 \the\mathcode`+ \the\delcode`( \the\delcode`.}
+\uppercase{\message{abc xyz}}
+\lowercase{\message{ABC XYZ \foo}}
+\def\x{abc}\uppercase{\message{\x}}
+\lccode`\1=`\a \lowercase{\message{1A2}}
+\uccode`\a=`\Z \uppercase{\message{aAb}}
+\lccode`\A=0 \lowercase{\message{AB}}
+\sfcode`\a=1000 \showthe\sfcode`\a
+\mathcode`\a="8000 \showthe\mathcode`\a
+\delcode`\a=-1 \showthe\delcode`\a
+\lccode`\a=256
+\mathcode`\a="8001
+\sfcode`\a=32768
+\uppercase \relax}
+\end

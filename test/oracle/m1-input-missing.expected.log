@@ -1,0 +1,17 @@
+(m1-input-missing.tex
+{vertical mode: \tracingmacros}
+{\tracingonline}
+{\message}
+before
+{blank space  }
+{\input}
+! I can't find file `m1-no-such-file'.
+l.5 \input m1-no-such-file
+
+(Press Enter to retry, or Control-D to exit)
+Please type another input file name
+! Emergency stop.
+l.5 \input m1-no-such-file
+
+
+No pages of output.

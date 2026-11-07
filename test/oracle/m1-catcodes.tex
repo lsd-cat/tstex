@@ -1,0 +1,17 @@
+%! oracle: ini
+\catcode`\{=1 \catcode`\}=2 \catcode`\#=6 \catcode`\^=7
+\tracingcommands=2 \tracingmacros=2 \tracingonline=0
+\message{\the\catcode`\\ \the\catcode`\a \the\catcode`\^^M \the\catcode`\%}
+\catcode`\~=13 \def~{\message{active}}~
+\catcode`\!=11 \ifcat a!\message{letter}\else\message{other}\fi
+\ifcat a1\message{same}\else\message{diff}\fi
+\message{^^41^^5a^^7a^^3f}
+\catcode`\@=12 \ifcat @1\message{other-eq}\fi
+\showthe\endlinechar
+\endlinechar=`\% \showthe\endlinechar
+\endlinechar=13
+\newlinechar=`\Z \message{aZb}
+\newlinechar=-1 \message{aZb}
+\catcode`\Q=0 Qmessage{escape}
+\showthe\catcode`\Q
+\end

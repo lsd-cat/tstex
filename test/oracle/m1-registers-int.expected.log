@@ -1,0 +1,130 @@
+(m1-registers-int.tex
+{vertical mode: \tracingmacros}
+{\tracingonline}
+{\count}
+{\count}
+{\showthe}
+> -3.
+l.4 \count0=5 \count255=-3 \showthe\count255
+
+
+{\countdef}
+{\count17}
+{\show}
+> \c=\count17.
+l.5 \countdef\c=17 \c=100 \show\c
+                                  \showthe\count17
+
+{\showthe}
+> 100.
+l.5 \countdef\c=17 \c=100 \show\c \showthe\count17
+
+
+{\advance}
+{\advance}
+{\showthe}
+> -95.
+l.6 \advance\c by 5 \advance\c-200 \showthe\c
+
+
+{\multiply}
+{\showthe}
+> -285.
+l.7 \multiply\c by 3 \showthe\c
+
+
+{\divide}
+{\showthe}
+> -71.
+l.8 \divide\c by 4 \showthe\c
+
+
+{\count17}
+{\divide}
+{\showthe}
+> -3.
+l.9 \c=7 \divide\c by -2 \showthe\c
+
+
+{\count17}
+{\divide}
+{\showthe}
+> -3.
+l.10 \c=-7 \divide\c by 2 \showthe\c
+
+
+{\count17}
+{\divide}
+{\showthe}
+> 3.
+l.11 \c=-7 \divide\c by -2 \showthe\c
+
+
+{\count17}
+{\showthe}
+> 2147483647.
+l.12 \c=2147483647 \showthe\c
+                              \advance\c by 1 \showthe\c
+
+{\advance}
+{\showthe}
+> -2147483648.
+l.12 ...3647 \showthe\c \advance\c by 1 \showthe\c
+
+
+{\multiply}
+! Arithmetic overflow.
+l.13 \multiply\c by 1000000
+                            \showthe\c
+I can't carry out that multiplication or division,
+since the result is out of range.
+
+{\showthe}
+> -2147483648.
+l.13 \multiply\c by 1000000 \showthe\c
+
+
+{\count17}
+{\multiply}
+! Arithmetic overflow.
+l.14 \c=1000000 \multiply\c by 1000000
+                                       \showthe\c
+I can't carry out that multiplication or division,
+since the result is out of range.
+
+{\showthe}
+> 1000000.
+l.14 \c=1000000 \multiply\c by 1000000 \showthe\c
+
+
+{\divide}
+! Arithmetic overflow.
+l.15 \divide\c by 0
+                    \showthe\c
+I can't carry out that multiplication or division,
+since the result is out of range.
+
+{\showthe}
+> 1000000.
+l.15 \divide\c by 0 \showthe\c
+
+
+{\count}
+! Bad register code (256).
+<to be read again>
+                   =
+l.16 \count256=
+               1
+A register number must be between 0 and 255.
+I changed this one to zero.
+
+{\count17}
+{\advance}
+{\showthe}
+> 0.
+l.17 ...FFFFFF \advance\c by -"7FFFFFFF \showthe\c
+
+
+{\end}
+ )
+No pages of output.

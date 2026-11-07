@@ -1,0 +1,105 @@
+(m1-edef.tex
+{vertical mode: \tracingmacros}
+{\tracingonline}
+{\def}
+{\def}
+{\edef}
+
+\x ->1
+
+\x ->1
+{blank space  }
+{\def}
+{blank space  }
+{\show}
+> \y=macro:
+->\x .
+l.6 \show\y
+            \show\z
+
+{\show}
+> \z=macro:
+->11.
+l.6 \show\y \show\z
+
+
+{\edef}
+{\noexpand}
+
+\x ->2
+{\show}
+> \w=macro:
+->\x 2.
+l.7 \edef\w{\noexpand\x\x}\show\w
+
+
+{\count}
+{\toks}
+{blank space  }
+{\edef}
+{\show}
+> \v=macro:
+->7,a\x b.
+l.9 \edef\v{\the\count1,\the\toks0}\show\v
+
+
+{\xdef}
+
+\x ->2
+{\show}
+> \u=macro:
+->2.
+l.10 \xdef\u{\x}\show\u
+
+
+{begin-group character {}
+{\xdef}
+
+\x ->2
+{\def}
+{end-group character }}
+{\show}
+> \g=macro:
+->2.
+l.11 {\xdef\g{\x}\def\h{\x}}\show\g
+                                    \show\h
+
+{\show}
+> \h=undefined.
+l.11 {\xdef\g{\x}\def\h{\x}}\show\g \show\h
+
+
+{\edef}
+
+\x ->2
+{\show}
+> \t=macro:
+#1->#12.
+l.12 \edef\t#1{#1\x}\show\t
+
+
+{\edef}
+{\noexpand}
+
+\x ->2
+{\show}
+> \s=macro:
+->\noexpand 2.
+l.13 \edef\s{\noexpand\noexpand\x}\show\s
+
+
+{\def}
+{\edef}
+{\expandafter}
+
+\q ->\x
+{\noexpand}
+{\show}
+> \r=macro:
+->\x .
+l.14 ...\x}\edef\r{\expandafter\noexpand\q}\show\r
+
+
+{\end}
+ )
+No pages of output.

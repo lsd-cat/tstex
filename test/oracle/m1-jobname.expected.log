@@ -1,0 +1,85 @@
+(m1-jobname.tex
+{vertical mode: \tracingmacros}
+{\tracingonline}
+{\message}
+{\jobname}
+m1-jobname
+{\message}
+{\meaning}
+\jobname
+{blank space  }
+{\expandafter}
+{\csname}
+{\show}
+> \csname\endcsname=\relax.
+<recently read> \csname\endcsname
+
+l.5 \expandafter\show\csname\endcsname
+
+
+{\expandafter}
+{\csname}
+{\jobname}
+{\show}
+> \m1-jobname=\relax.
+<recently read> \m1-jobname
+
+l.6 \expandafter\show\csname\jobname\endcsname
+
+
+{\catcode}
+{\def}
+{\message}
+{\string}
+~
+{\show}
+> ~=macro:
+->.
+l.7 \catcode`\~=13 \def~{}\message{\string~}\show~
+
+
+{blank space  }
+{\message}
+{\string}
+{\string}
+{\string}
+\relax\ \\
+{blank space  }
+{\escapechar}
+{message}
+{string}
+{meaning}
+relaxrelax
+{show}
+> relax=relax.
+l.9 ...ge{\string\relax \meaning\relax}\show\relax
+
+
+{escapechar}
+{!message}
+{!string}
+{!meaning}
+!relax!relax
+{!show}
+> !relax=!relax.
+l.10 ...e{\string\relax \meaning\relax}\show\relax
+
+
+{!escapechar}
+{^^Mmessage}
+{^^Mstring}
+^^Mrelax
+{blank space  }
+{^^Mescapechar}
+{message}
+{string}
+relax
+{blank space  }
+{escapechar}
+{\message}
+{\string}
+\relax
+{blank space  }
+{\end}
+ )
+No pages of output.

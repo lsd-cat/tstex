@@ -1,0 +1,75 @@
+(m1-if-errors.tex
+{vertical mode: \tracingmacros}
+{\tracingonline}
+{\else}
+! Extra \else.
+l.4 \else
+
+I'm ignoring this; it doesn't match any \if.
+
+{\fi}
+! Extra \fi.
+l.5 \fi
+
+I'm ignoring this; it doesn't match any \if.
+
+{\or}
+! Extra \or.
+l.6 \or
+
+I'm ignoring this; it doesn't match any \if.
+
+{\iftrue}
+{true}
+{\else}
+{\ifnum}
+! Missing = inserted for \ifnum.
+<to be read again>
+                   2
+l.8 \ifnum 1 2
+               \message{x}\fi
+I was expecting to see `<', `=', or `>'. Didn't.
+
+{false}
+{\ifnum}
+! Missing = inserted for \ifnum.
+<to be read again>
+                   \relax
+l.9 \ifnum 1 \relax
+                    2 \fi
+I was expecting to see `<', `=', or `>'. Didn't.
+
+! Missing number, treated as zero.
+<to be read again>
+                   \relax
+l.9 \ifnum 1 \relax
+                    2 \fi
+A number should have been here; I inserted `0'.
+(If you can't figure out why I needed to see a number,
+look up `weird error' in the index to The TeXbook.)
+
+{false}
+{\ifdim}
+! Missing = inserted for \ifdim.
+<to be read again>
+                   2
+l.10 \ifdim 1pt 2
+                 pt \fi
+I was expecting to see `<', `=', or `>'. Didn't.
+
+{false}
+{\message}
+before
+{blank space  }
+{\ifnum}
+{true}
+{\iftrue}
+{true}
+{\message}
+open
+{blank space  }
+{\end}
+ )
+(\end occurred when \iftrue on line 12 was incomplete)
+(\end occurred when \ifnum on line 12 was incomplete)
+No pages of output.

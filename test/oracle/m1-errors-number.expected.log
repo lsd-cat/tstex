@@ -1,0 +1,159 @@
+(m1-errors-number.tex
+{vertical mode: \tracingmacros}
+{\tracingonline}
+{\count}
+! Missing number, treated as zero.
+<to be read again>
+                   \relax
+l.4 \count0=\relax
+
+A number should have been here; I inserted `0'.
+(If you can't figure out why I needed to see a number,
+look up `weird error' in the index to The TeXbook.)
+
+{\relax}
+{\showthe}
+> 0.
+l.5 \showthe\count0
+
+
+{\dimen}
+! Illegal unit of measure (pt inserted).
+<to be read again>
+                   \showthe
+l.7 \showthe
+            \dimen0
+Dimensions can be in units of em, ex, in, pt, pc,
+cm, mm, dd, cc, nd, nc, bp, or sp; but yours is a new one!
+I'll assume that you meant to say pt, for printer's points.
+To recover gracefully from this error, it's best to
+delete the erroneous units; e.g., type `2' to delete
+two letters. (See Chapter 27 of The TeXbook.)
+
+{\showthe}
+> 3.0pt.
+l.7 \showthe\dimen0
+
+
+{\dimen}
+! Illegal unit of measure (pt inserted).
+<to be read again>
+                   \relax
+l.8 \dimen0=3\relax
+
+Dimensions can be in units of em, ex, in, pt, pc,
+cm, mm, dd, cc, nd, nc, bp, or sp; but yours is a new one!
+I'll assume that you meant to say pt, for printer's points.
+To recover gracefully from this error, it's best to
+delete the erroneous units; e.g., type `2' to delete
+two letters. (See Chapter 27 of The TeXbook.)
+
+{\relax}
+{\count}
+! Number too big.
+l.9 \count0=2147483648
+
+I can only go up to 2147483647='17777777777="7FFFFFFF,
+so I'm using that number instead of yours.
+
+{\showthe}
+> 2147483647.
+l.10 \showthe\count0
+
+
+{\dimen}
+! Dimension too large.
+l.11 \dimen0=20000pt
+
+I can't work with sizes bigger than about 19 feet.
+Continue and I'll use the largest value I can.
+
+{\showthe}
+> 16383.99998pt.
+l.12 \showthe\dimen0
+
+
+{\dimen}
+! Dimension too large.
+l.13 \dimen0=16384pt
+
+I can't work with sizes bigger than about 19 feet.
+Continue and I'll use the largest value I can.
+
+{\count}
+! Number too big.
+l.14 \count0="80000000
+
+I can only go up to 2147483647='17777777777="7FFFFFFF,
+so I'm using that number instead of yours.
+
+{\count}
+! Number too big.
+l.15 \count0=9999999999
+                       9
+I can only go up to 2147483647='17777777777="7FFFFFFF,
+so I'm using that number instead of yours.
+
+{\dimen}
+! Missing number, treated as zero.
+<to be read again>
+                   p
+l.16 \dimen0=p
+              t
+A number should have been here; I inserted `0'.
+(If you can't figure out why I needed to see a number,
+look up `weird error' in the index to The TeXbook.)
+
+{\dimen}
+{\skip}
+! Missing number, treated as zero.
+<to be read again>
+                   \relax
+l.18 \skip0=1pt plus\relax
+
+A number should have been here; I inserted `0'.
+(If you can't figure out why I needed to see a number,
+look up `weird error' in the index to The TeXbook.)
+
+! Illegal unit of measure (pt inserted).
+<to be read again>
+                   \relax
+l.18 \skip0=1pt plus\relax
+
+Dimensions can be in units of em, ex, in, pt, pc,
+cm, mm, dd, cc, nd, nc, bp, or sp; but yours is a new one!
+I'll assume that you meant to say pt, for printer's points.
+To recover gracefully from this error, it's best to
+delete the erroneous units; e.g., type `2' to delete
+two letters. (See Chapter 27 of The TeXbook.)
+
+{\relax}
+{\count}
+! Missing number, treated as zero.
+<to be read again>
+                   \relax
+l.19 \count1=\relax
+
+A number should have been here; I inserted `0'.
+(If you can't figure out why I needed to see a number,
+look up `weird error' in the index to The TeXbook.)
+
+{\relax}
+{\catcode}
+! Invalid code (16), should be in the range 0..15.
+l.20 \catcode`\~=16
+
+I'm going to use 0 instead of that illegal code value.
+
+{\catcode}
+! Bad character code (300).
+<to be read again>
+                   =
+l.21 \catcode300=
+                 1
+A character number must be between 0 and 255.
+I changed this one to zero.
+
+{\end}
+ )
+No pages of output.

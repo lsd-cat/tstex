@@ -1,0 +1,141 @@
+(m1-conditionals.tex
+{vertical mode: \tracingmacros}
+{\tracingonline}
+{\ifnum}
+{true}
+{\message}
+lt
+{\fi}
+{\ifnum}
+{true}
+{\message}
+eq
+{\fi}
+{\ifnum}
+{false}
+{\message}
+not gt
+{\fi}
+{\ifdim}
+{true}
+{\message}
+dlt
+{\fi}
+{\ifdim}
+{false}
+{\ifodd}
+{true}
+{\message}
+odd
+{\fi}
+{\ifodd}
+{false}
+{\message}
+even
+{\fi}
+{\def}
+{\def}
+{\def}
+{blank space  }
+{\ifx}
+{true}
+{\message}
+ab
+{\fi}
+{\ifx}
+{false}
+{\message}
+ac differ
+{\fi}
+{\ifx}
+{true}
+{\message}
+both undef
+{\fi}
+{\ifx}
+{true}
+{\message}
+chars
+{\fi}
+{\ifx}
+{false}
+{\message}
+chars differ
+{\fi}
+{\if}
+{true}
+{\message}
+if
+{\fi}
+{\if}
+
+\a ->x
+{true}
+{\message}
+if exp
+{\fi}
+{\if}
+{true}
+{\message}
+relax
+{\fi}
+{\ifcat}
+{false}
+{\ifcase}
+{case 2}
+{\message}
+two
+{\else}
+{\ifcase}
+{case 7}
+{\message}
+other
+{\fi}
+{\ifcase}
+{case -1}
+{\ifnum}
+{false}
+{\ifnum}
+{true}
+{\message}
+nested
+{\else}
+{\fi}
+{\ifvmode}
+{true}
+{\message}
+v
+{\fi}
+{\ifhmode}
+{false}
+{\message}
+noth
+{\fi}
+{\ifmmode}
+{false}
+{\message}
+nom
+{\fi}
+{\ifinner}
+{false}
+{\message}
+noinner
+{\fi}
+{\iftrue}
+{true}
+{\message}
+t
+{\else}
+{\iffalse}
+{false}
+{\message}
+f
+{\fi}
+{\ifeof}
+{true}
+{\message}
+eof
+{\fi}
+{\end}
+ )
+No pages of output.

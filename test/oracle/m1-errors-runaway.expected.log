@@ -1,0 +1,68 @@
+(m1-errors-runaway.tex
+{vertical mode: \tracingmacros}
+{\tracingonline}
+{\def}
+{blank space  }
+
+\a #1->
+Runaway argument?
+{abc
+! Paragraph ended before \a was complete.
+<to be read again>
+                   \par
+l.6
+
+I suspect you've forgotten a `}', causing me to apply this
+control sequence to too much text. How can we recover?
+My plan is to forget the whole thing and hope for the best.
+
+{\par}
+{\message}
+after par
+{blank space  }
+{\def}
+{blank space  }
+{\message}
+extra
+{end-group character }}
+! Too many }'s.
+l.11 \message{extra}}
+
+You've closed more groups than you opened.
+Such booboos are generally harmless, so keep going.
+
+{blank space  }
+{\toks}
+! Missing { inserted.
+<to be read again>
+                   x
+l.12 \toks0=x
+             }
+A left brace was mandatory here, so I've put one in.
+You might want to delete and/or insert some corrections
+so that I will find a matching right brace soon.
+(If you're confused by all this, try typing `I}' now.)
+
+{blank space  }
+{\message}
+done
+{blank space  }
+{\def}
+)
+Runaway definition?
+->unfinished \end
+! File ended while scanning definition of \c.
+<inserted text>
+                }
+<*> m1-errors-runaway.tex
+
+I suspect you have forgotten a `}', causing me
+to read past where you wanted me to stop.
+I'll try to recover; but if the error is serious,
+you'd better type `E' or `X' now and fix your file.
+
+! Emergency stop.
+<*> m1-errors-runaway.tex
+
+
+No pages of output.

@@ -1,0 +1,108 @@
+(m1-codes.tex
+{vertical mode: \tracingmacros}
+{\tracingonline}
+{\message}
+979765650
+{blank space  }
+{\message}
+99910001000289932872143-10
+{blank space  }
+{\uppercase}
+{\message}
+ABC XYZ
+{blank space  }
+{\lowercase}
+{\message}
+{undefined}
+! Undefined control sequence.
+<to be read again> \message {abc xyz \foo
+                                          }
+l.7 \lowercase{\message{ABC XYZ \foo}}
+
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+abc xyz
+{blank space  }
+{\def}
+{\uppercase}
+{\message}
+
+\x ->abc
+abc
+{blank space  }
+{\lccode}
+{\lowercase}
+{\message}
+aa2
+{blank space  }
+{\uccode}
+{\uppercase}
+{\message}
+ZAB
+{blank space  }
+{\lccode}
+{\lowercase}
+{\message}
+Ab
+{blank space  }
+{\sfcode}
+{\showthe}
+> 1000.
+<to be read again>
+                   \mathcode
+l.13 \mathcode
+              `\a="8000 \showthe\mathcode`\a
+
+{\mathcode}
+{\showthe}
+> 32768.
+<to be read again>
+                   \delcode
+l.14 \delcode
+             `\a=-1 \showthe\delcode`\a
+
+{\delcode}
+{\showthe}
+> -1.
+<to be read again>
+                   \lccode
+l.15 \lccode
+            `\a=256
+
+{\lccode}
+! Invalid code (256), should be in the range 0..255.
+l.15 \lccode`\a=256
+
+I'm going to use 0 instead of that illegal code value.
+
+{\mathcode}
+! Invalid code (32769), should be in the range 0..32768.
+l.16 \mathcode`\a="8001
+
+I'm going to use 0 instead of that illegal code value.
+
+{\sfcode}
+! Invalid code (32768), should be in the range 0..32767.
+l.17 \sfcode`\a=32768
+
+I'm going to use 0 instead of that illegal code value.
+
+{\uppercase}
+! Missing { inserted.
+<to be read again>
+                   }
+l.18 \uppercase \relax}
+
+A left brace was mandatory here, so I've put one in.
+You might want to delete and/or insert some corrections
+so that I will find a matching right brace soon.
+(If you're confused by all this, try typing `I}' now.)
+
+{blank space  }
+{\end}
+ )
+No pages of output.

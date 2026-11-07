@@ -1,0 +1,14 @@
+%! oracle: ini
+\catcode`\{=1 \catcode`\}=2 \catcode`\#=6 \catcode`\^=7
+\tracingcommands=2 \tracingmacros=2 \tracingonline=0
+\message{\jobname}\message{\meaning\jobname}
+\expandafter\show\csname\endcsname
+\expandafter\show\csname\jobname\endcsname
+\catcode`\~=13 \def~{}\message{\string~}\show~
+\message{\string\relax \string\ \string\\ }
+\escapechar=-1 \message{\string\relax \meaning\relax}\show\relax
+\escapechar=`\! \message{\string\relax \meaning\relax}\show\relax
+\escapechar=`\^^M \message{\string\relax}
+\escapechar=256 \message{\string\relax}
+\escapechar=`\\ \message{\string\relax}
+\end

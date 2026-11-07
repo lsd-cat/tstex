@@ -1,0 +1,45 @@
+(m1-input.tex
+{vertical mode: \tracingmacros}
+{\tracingonline}
+{\message}
+before
+{blank space  }
+{\input}
+(m1-input-inner.tex
+{\def}
+{blank space  }
+{\message}
+loading inner
+{blank space  }
+{\endinput}
+{\message}
+rest of the endinput line is still read
+{blank space  }
+)
+{\message}
+{\meaning}
+macro:->from inner
+{blank space  }
+{\showthe}
+> 7.
+l.7 \showthe\inputlineno
+
+
+{\input}
+(m1-input-inner.tex
+{\def}
+{blank space  }
+{\message}
+loading inner
+{blank space  }
+{\endinput}
+{\message}
+rest of the endinput line is still read
+{blank space  }
+)
+{\message}
+done
+{blank space  }
+{\end}
+ )
+No pages of output.

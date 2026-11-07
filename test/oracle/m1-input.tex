@@ -1,0 +1,10 @@
+%! oracle: ini
+\catcode`\{=1 \catcode`\}=2 \catcode`\#=6
+\tracingcommands=2 \tracingmacros=2 \tracingonline=0
+\message{before}
+\input m1-input-inner
+\message{\meaning\inner}
+\showthe\inputlineno
+\input m1-input-inner.tex
+\message{done}
+\end

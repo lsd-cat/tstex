@@ -1,0 +1,105 @@
+(m1-errors-undefined.tex
+{vertical mode: \tracingmacros}
+{\tracingonline}
+{undefined}
+! Undefined control sequence.
+l.4 \foo
+
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+{\def}
+{\def}
+{blank space  }
+
+\b ->\a
+
+\a ->\bar
+{undefined}
+! Undefined control sequence.
+\a ->\bar
+
+l.6 \b
+
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+{\def}
+{blank space  }
+
+\c #1->\baz \relax #1
+#1<-\relax
+{undefined}
+! Undefined control sequence.
+\c #1->\baz
+            \relax #1
+l.8 \c{\relax}
+
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+{\relax}
+{\relax}
+{blank space  }
+{\expandafter}
+{\csname}
+{\show}
+> \undefinedcs=\relax.
+<recently read> \undefinedcs
+
+l.9 \expandafter\show\csname undefinedcs\endcsname
+
+
+{\expandafter}
+{\csname}
+{undefined}
+! Undefined control sequence.
+<recently read> \foo
+
+...
+l.10 \expandafter\foo\csname nothing\endcsname
+
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+{\relax}
+{\message}
+{undefined}
+! Undefined control sequence.
+l.11 \message{[\undefined
+                         ]}
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+[]
+{blank space  }
+{\edef}
+{undefined}
+! Undefined control sequence.
+l.12 \edef\d{\nope
+                  }
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+{blank space  }
+{\end}
+ )
+No pages of output.

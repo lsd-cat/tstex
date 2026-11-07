@@ -1,0 +1,15 @@
+%! oracle: ini
+\catcode`\{=1 \catcode`\}=2 \catcode`\#=6
+\tracingcommands=2 \tracingmacros=2 \tracingonline=0
+\def\x{expanded}\message{a \x b}\message{second}\message{third}
+\newlinechar=`\| \message{line one|line two}
+\message{|}
+\errhelp{This is the help.}
+\errmessage{custom error}
+\errhelp{}\errmessage{no help}
+\newlinechar=`\| \errhelp{Line a|line b}
+\errmessage{multi}
+\message{0123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789 end of long message 0123456789}
+\message{}\message{ }
+\message{\x\x\x\x\x\x\x\x\x\x\x\x\x\x\x\x\x\x\x\x\x\x\x\x\x\x\x\x\x\x\x\x\x\x\x\x\x\x\x\x}
+\end
