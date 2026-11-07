@@ -1,0 +1,4 @@
+%! oracle: ini
+\input plain
+\tracingonline=0 \showboxbreadth=10000 \showboxdepth=10000 \tracingoutput=1
+\count255=0 \setbox0\hbox{\loop\advance\count255 1 \font\x=cmr10 at \count255 sp \x a\ifnum\count255<300 \repeat}\shipout\box0 \end

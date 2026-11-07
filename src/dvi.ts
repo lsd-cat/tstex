@@ -52,7 +52,8 @@ function dvi_pop(e: Engine, l: number): void {
 
 // §602 dvi_font_def
 function dvi_font_def(e: Engine, f: number): void {
-  dvi_out(e, fnt_def1); dvi_out(e, f - 1)
+  if (f <= 256) { dvi_out(e, fnt_def1); dvi_out(e, f - 1) }
+  else { dvi_out(e, fnt_def1 + 1); dvi_out(e, (f - 1) >> 8); dvi_out(e, (f - 1) & 255) } // tex.ch [32.602]
   dvi_four(e, e.font_check[f]!)
   dvi_four(e, e.font_size[f]!); dvi_four(e, e.font_dsize[f]!)
   const a = e.font_area[f]!, n = e.font_name[f]!
@@ -163,7 +164,8 @@ function hlist_out(e: Engine, this_box: BoxNode): void {
         if (f !== e.dvi_f) { // §621 Change font dvi_f to f
           if (!e.font_used[f]) { dvi_font_def(e, f); e.font_used[f] = true }
           if (f <= 64) dvi_out(e, f - 1 + fnt_num_0)
-          else { dvi_out(e, fnt1); dvi_out(e, f - 1) }
+          else if (f <= 256) { dvi_out(e, fnt1); dvi_out(e, f - 1) }
+          else { dvi_out(e, fnt1 + 1); dvi_out(e, (f - 1) >> 8); dvi_out(e, (f - 1) & 255) } // tex.ch [32.621]
           e.dvi_f = f
         }
         if (c >= 128) dvi_out(e, set1)
