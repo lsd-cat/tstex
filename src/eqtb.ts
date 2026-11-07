@@ -1,26 +1,21 @@
 // §220–255 the table of equivalents, §268–288 saving and restoring equivalents
 import type { Engine } from './engine.ts'
 import { Cmd } from './types.ts'
-import { print, print_char, print_esc, print_int, begin_diagnostic, end_diagnostic } from './print.ts'
+import { print, print_char, print_esc, print_int, print_nl, begin_diagnostic, end_diagnostic } from './print.ts'
 import { print_scaled } from './arith.ts'
 import { sprint_cs } from './hash.ts'
 import { print_cmd_chr, show_token_list } from './tokens.ts'
-import { delete_token_ref } from './nodes.ts'
+import { delete_token_ref, delete_glue_ref, print_spec, zero_glue } from './nodes.ts'
 import { back_input } from './input.ts'
-import { overflow, confusion, fatal_error } from './error.ts'
+import { overflow, confusion, print_err, help, int_error } from './error.ts'
 import { level_zero, level_one, active_base, glue_base, local_base, par_shape_loc, output_routine_loc, toks_base, box_base, cur_font_loc,
   cat_code_base, lc_code_base, uc_code_base, sf_code_base, math_code_base, int_base, count_base, del_code_base, dimen_base,
-  scaled_base, eqtb_size, int_pars, dimen_pars, int_par_names, mag_code, tolerance_code, hang_after_code, max_dead_cycles_code,
+  scaled_base, eqtb_size, int_pars, dimen_pars, int_par_names, dimen_par_names, glue_par_names, glue_pars, skip_base, mu_skip_base,
+  thin_mu_skip_code, etex_pen_base, math_font_base, font_id_base, frozen_primitive, mag_code, tolerance_code, hang_after_code, max_dead_cycles_code,
   escape_char_code, end_line_char_code, frozen_control_sequence, frozen_dont_expand, frozen_protection, time_code, day_code,
   month_code, year_code, tracing_restores_code } from './types.ts'
 // the eqtb layout constants live in types.ts so that cyclic imports never see them uninitialised
 export * from './types.ts'
-
-// §247 the names of the dimension parameters, indexed by code
-const dimen_par_names = ['parindent', 'mathsurround', 'lineskiplimit', 'hsize', 'vsize', 'maxdepth',
-  'splitmaxdepth', 'boxmaxdepth', 'hfuzz', 'vfuzz', 'delimitershortfall', 'nulldelimiterspace',
-  'scriptspace', 'predisplaysize', 'displaywidth', 'displayindent', 'overfullrule', 'hangindent',
-  'hoffset', 'voffset', 'emergencystretch']
 
 export const int_par = (e: Engine, code: number): number => e.equiv[int_base + code]!
 
@@ -36,16 +31,31 @@ export function print_length_param(e: Engine, n: number): void {
   else print(e, '[unknown dimen parameter!]')
 }
 
+// §227 print_cmd_chr for assign_glue and assign_mu_glue
+export function print_glue_loc(e: Engine, chr: number): void {
+  if (chr < skip_base) print_skip_param(e, chr - glue_base)
+  else if (chr < mu_skip_base) { print_esc(e, 'skip'); print_int(e, chr - skip_base) }
+  else { print_esc(e, 'muskip'); print_int(e, chr - mu_skip_base) }
+}
+
+// §225 print_skip_param
+export function print_skip_param(e: Engine, n: number): void {
+  if (n >= 0 && n < glue_pars) print_esc(e, glue_par_names[n]!)
+  else print(e, '[unknown glue parameter!]')
+}
+
 // §222, §228, §232, §240, §250, §258 Initialize table entries (done by INITEX only)
 export function init_eqtb(e: Engine): void {
   e.eq_type.fill(Cmd.undefined_cs, active_base, glue_base)
   e.eq_level.fill(level_zero, active_base, glue_base)
   e.equiv.fill(0, active_base, glue_base)
-  // §228 glue parameters and registers point to zero_glue (shortcut: glue specs do not exist yet, equiv 0 stands for zero_glue; M2)
+  // §228 glue parameters and registers point to zero_glue
   e.eq_type.fill(Cmd.glue_ref, glue_base, local_base); e.eq_level.fill(level_one, glue_base, local_base)
+  e.equiv.fill(zero_glue, glue_base, local_base); e.spec[zero_glue]!.glue_ref_count += local_base - glue_base
   // §232
   e.eq_type[par_shape_loc] = Cmd.shape_ref; e.eq_level[par_shape_loc] = level_one
-  e.eq_type.fill(Cmd.undefined_cs, output_routine_loc, box_base)
+  e.eq_type.fill(Cmd.shape_ref, etex_pen_base, box_base); e.eq_level.fill(level_one, etex_pen_base, box_base)
+  e.eq_type.fill(Cmd.undefined_cs, output_routine_loc, etex_pen_base)
   e.eq_type.fill(Cmd.box_ref, box_base, box_base + 256); e.eq_level.fill(level_one, box_base, box_base + 256)
   e.eq_type.fill(Cmd.data, cur_font_loc, int_base); e.eq_level.fill(level_one, cur_font_loc, int_base)
   for (let k = 0; k <= 255; k++) {
@@ -74,6 +84,8 @@ export function init_eqtb(e: Engine): void {
   // §258, §1216
   e.hash_used = frozen_control_sequence; e.cs_count = 0
   e.eq_type[frozen_dont_expand] = Cmd.dont_expand; e.text.set(frozen_dont_expand, 'notexpanded:')
+  e.eq_type[frozen_primitive] = Cmd.ignore_spaces; e.equiv[frozen_primitive] = 1 // pdftex.web
+  e.eq_level[frozen_primitive] = level_one; e.text.set(frozen_primitive, 'pdfprimitive')
   e.text.set(frozen_protection, 'inaccessible')
 }
 
@@ -92,9 +104,17 @@ export function show_eqtb(e: Engine, n: number): void {
   else if (n < glue_base) { // §223
     sprint_cs(e, n); print_char(e, 61); print_cmd_chr(e, e.eq_type[n]!, e.equiv[n]!)
     if (e.eq_type[n]! >= Cmd.call) { print_char(e, 58); show_token_list(e, e.link[e.equiv[n]!]!, 0, 32) }
-  } else if (n < local_base) fatal_error(e, 'unsupported: showing glue') // §229
+  } else if (n < local_base) { // §229
+    if (n < skip_base) {
+      print_skip_param(e, n - glue_base); print_char(e, 61)
+      print_spec(e, e.equiv[n]!, n < glue_base + thin_mu_skip_code ? 'pt' : 'mu')
+    } else if (n < mu_skip_base) { print_esc(e, 'skip'); print_int(e, n - skip_base); print_char(e, 61); print_spec(e, e.equiv[n]!, 'pt') }
+    else { print_esc(e, 'muskip'); print_int(e, n - mu_skip_base); print_char(e, 61); print_spec(e, e.equiv[n]!, 'mu') }
+  }
   else if (n < int_base) { // §233
-    if (n === par_shape_loc) { print_esc(e, 'parshape'); print_char(e, 61); print_char(e, 48) }
+    if (n === par_shape_loc || (n >= etex_pen_base && n < box_base)) { // shape_ref equivalents are always null so far
+      print_cmd_chr(e, Cmd.set_shape, n); print_char(e, 61); print_char(e, 48)
+    }
     else if (n < toks_base) {
       print_cmd_chr(e, Cmd.assign_toks, n); print_char(e, 61)
       if (e.equiv[n] !== 0) show_token_list(e, e.link[e.equiv[n]!]!, 0, 32)
@@ -102,7 +122,13 @@ export function show_eqtb(e: Engine, n: number): void {
       print_esc(e, 'toks'); print_int(e, n - toks_base); print_char(e, 61)
       if (e.equiv[n] !== 0) show_token_list(e, e.link[e.equiv[n]!]!, 0, 32)
     } else if (n < cur_font_loc) { print_esc(e, 'box'); print_int(e, n - box_base); print_char(e, 61); print(e, 'void') }
-    else if (n < cat_code_base) fatal_error(e, 'unsupported: showing fonts') // §234
+    else if (n < cat_code_base) { // §234
+      if (n === cur_font_loc) print(e, 'current font')
+      else if (n < math_font_base + 16) { print_esc(e, 'textfont'); print_int(e, n - math_font_base) }
+      else if (n < math_font_base + 32) { print_esc(e, 'scriptfont'); print_int(e, n - math_font_base - 16) }
+      else { print_esc(e, 'scriptscriptfont'); print_int(e, n - math_font_base - 32) }
+      print_char(e, 61); print_esc(e, e.text.get(font_id_base + e.equiv[n]!) ?? 0)
+    }
     else if (n < math_code_base) { // §235
       if (n < lc_code_base) { print_esc(e, 'catcode'); print_int(e, n - cat_code_base) }
       else if (n < uc_code_base) { print_esc(e, 'lccode'); print_int(e, n - lc_code_base) }
@@ -142,9 +168,10 @@ export function new_save_level(e: Engine, c: number): void {
   e.cur_boundary = e.save_ptr; e.cur_level++; e.save_ptr++; e.cur_group = c
 }
 
-// §275 eq_destroy; only token lists exist so far (glue, shape and box equivalents are always null)
+// §275 eq_destroy; shape and box equivalents are always null so far
 function eq_destroy(e: Engine, type: number, equiv: number): void {
   if (type >= Cmd.call && type <= Cmd.long_outer_call) delete_token_ref(e, equiv)
+  else if (type === Cmd.glue_ref) delete_glue_ref(e, equiv)
 }
 
 // §276 eq_save
@@ -224,6 +251,23 @@ export function unsave(e: Engine): void {
     } else if (int_par(e, tracing_restores_code) > 0) restore_trace(e, p, 'retaining')
   }
   e.cur_group = e.save_b1[e.save_ptr]!; e.cur_boundary = e.save_rh[e.save_ptr]!
+}
+
+// §288 prepare_mag
+export function prepare_mag(e: Engine): void {
+  if (e.mag_set > 0 && int_par(e, mag_code) !== e.mag_set) {
+    print_err(e, 'Incompatible magnification ('); print_int(e, int_par(e, mag_code))
+    print(e, ');'); print_nl(e, ' the previous value will be retained')
+    help(e, "I can handle only one magnification ratio per job. So I've", 'reverted to the magnification you used earlier on this run.')
+    int_error(e, e.mag_set)
+    geq_word_define(e, int_base + mag_code, e.mag_set)
+  }
+  if (int_par(e, mag_code) <= 0 || int_par(e, mag_code) > 32768) {
+    print_err(e, 'Illegal magnification has been changed to 1000')
+    help(e, 'The magnification ratio must be between 1 and 32768.')
+    int_error(e, int_par(e, mag_code)); geq_word_define(e, int_base + mag_code, 1000)
+  }
+  e.mag_set = int_par(e, mag_code)
 }
 
 // §284 restore_trace

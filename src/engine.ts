@@ -8,6 +8,9 @@ import { init_eqtb, fix_date_and_time, eqtb_size, int_base, new_line_char_code, 
 import { init_prim } from './primitives/index.ts'
 import { new_line, end_token_list, end_file_reading, normal } from './input.ts'
 import type { InputFile } from './input.ts'
+import { init_specs } from './nodes.ts'
+import type { GlueSpec } from './nodes.ts'
+import type { CondNode } from './conditional.ts'
 import { open_log_file, start_input } from './files.ts'
 import { main_control } from './main.ts'
 
@@ -25,7 +28,7 @@ export class Engine {
   // §104 arithmetic
   arith_error = false; remainder = 0
   // §116 one-word token memory
-  info: number[] = [0, 0, 0, 0, 0]; link: number[] = [0, 0, 0, 0, 0]; avail = 0; mem_end = 4
+  info: number[] = [0, 0, 0, 0, 0, 0]; link: number[] = [0, 0, 0, 0, 0, 0]; avail = 0; mem_end = 5
   // §253 eqtb, §256 hash
   eq_level = new Uint8Array(eqtb_size + 1); eq_type = new Uint8Array(eqtb_size + 1)
   equiv = new Int32Array(eqtb_size + 1); xeq_level = new Uint8Array(eqtb_size + 1)
@@ -52,6 +55,10 @@ export class Engine {
   long_state: number = Cmd.call; pstack: number[] = []
   // §1266
   after_token = 0
+  // §150 glue specifications, §287 magnification
+  spec: (GlueSpec | undefined)[] = []; spec_avail: number[] = []; mag_set = 0
+  // §489 the condition stack, §493
+  cond_ptr: CondNode | null = null; if_limit = 0; cur_if = 0; if_line = 0; skip_line = 0
   // §246
   sys_time = 0; sys_day = 0; sys_month = 0; sys_year = 0
 
@@ -61,9 +68,9 @@ export class Engine {
   async run(opts: { jobname: string, mode: 'ini' | 'etex' | 'latex' }): Promise<void> {
     if (opts.mode !== 'ini') throw new Error(`unsupported mode: ${opts.mode}`)
     const name = opts.jobname + '.tex'
-    const data = await this.fs.find(name, 'tex')
+    const data = this.fs.find(name, 'tex')
     if (data === null) throw new Error(`file not found: ${name}`) // shortcut: TeX would prompt_file_name and stop with a fatal error
-    init_eqtb(this); init_prim(this); fix_date_and_time(this)
+    init_specs(this); init_eqtb(this); init_prim(this); fix_date_and_time(this)
     // §1337 Get the first line of input and prepare to start; init_terminal reads the command line
     this.first = 1
     for (let k = 0; k < name.length; k++) this.buffer[this.first + k] = name.charCodeAt(k)

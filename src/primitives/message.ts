@@ -1,16 +1,18 @@
-// §1277–1280 \message (\errmessage needs \errhelp: next M1 slice)
+// §1277–1280 \message (\errmessage needs \errhelp: pass 2b)
 import type { Engine } from '../engine.ts'
 import { Cmd, new_string, max_print_line } from '../types.ts'
 import { print_esc, print_ln, print_char, slow_print } from '../print.ts'
 import { token_show } from '../tokens.ts'
 import { flush_list } from '../nodes.ts'
 import { scan_toks } from '../scan.ts'
+import { unsupported } from '../main.ts'
 
 export const cmd = Cmd.message
-export const primitives: [string, number][] = [['message', 0]]
+export const primitives: [string, number][] = [['message', 0], ['errmessage', 1]]
 export function print(e: Engine, chr: number): void { print_esc(e, chr === 0 ? 'message' : 'errmessage') }
 // §1279 issue_message
-export function run(e: Engine, _chr: number): void {
+export function run(e: Engine, chr: number): void {
+  if (chr !== 0) unsupported(e)
   scan_toks(e, false, true)
   const old_setting = e.selector; e.selector = new_string
   const b = e.cur_str.length

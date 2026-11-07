@@ -1,19 +1,25 @@
 // §402–440 basic scanning subroutines, §464–473 building token lists
 import type { Engine } from './engine.ts'
-import { Cmd, int_val, dimen_val, glue_val, ident_val, tok_val, new_string } from './types.ts'
+import { Cmd, int_val, dimen_val, glue_val, mu_val, ident_val, tok_val, new_string } from './types.ts'
 import { print, print_int, print_esc } from './print.ts'
-import { print_scaled } from './arith.ts'
-import { error, print_err, help, int_error, fatal_error } from './error.ts'
-import { math_code_base, count_base, active_base, single_base } from './eqtb.ts'
+import { print_scaled, round_decimals, xn_over_d, nx_plus_y, unity } from './arith.ts'
+import { error, print_err, help, int_error } from './error.ts'
+import { count_base, scaled_base, skip_base, mu_skip_base, toks_base, active_base, single_base, dimen_base, int_par, mag_code, prepare_mag } from './eqtb.ts'
 import { sprint_cs } from './hash.ts'
-import { get_avail, flush_list, temp_head, backup_head } from './nodes.ts'
+import { get_avail, free_avail, flush_list, temp_head, backup_head, new_spec, add_glue_ref, delete_glue_ref, print_spec, zero_glue, fil, filll } from './nodes.ts'
+import { unsupported } from './main.ts'
 import { cs_token_flag, left_brace_token, left_brace_limit, right_brace_limit, other_token, letter_token, space_token, end_match_token, match_token, out_param_token, print_cmd_chr } from './tokens.ts'
 import { get_token, get_next, back_input, back_error, back_list, defining, absorbing, normal } from './input.ts'
 import { get_x_token, x_token, expand } from './expand.ts'
 
 const zero_token = other_token + 48, alpha_token = other_token + 96, octal_token = other_token + 39,
   hex_token = other_token + 34, A_token = letter_token + 65, other_A_token = other_token + 65
-export const infinity = 0o17777777777
+export const infinity = 0o17777777777, max_dimen = 0o7777777777
+const point_token = other_token + 46, continental_point_token = other_token + 44, normal_order = 0
+const pdf_px_dimen_code = 33
+// §416 last_item codes (pdftex.web numbering)
+const last_node_type_code = glue_val + 1, input_line_no_code = glue_val + 2, badness_code = input_line_no_code + 1,
+  pdftex_version_code = badness_code + 1
 
 // §403 scan_left_brace
 export function scan_left_brace(e: Engine): void {
@@ -37,6 +43,7 @@ export function scan_optional_equals(e: Engine): void {
 export function scan_keyword(e: Engine, s: string): boolean {
   let p = backup_head, k = 0
   e.link[p] = 0
+  const save_cur_cs = e.cur_cs // pdftex.web
   while (k < s.length) {
     get_x_token(e)
     const c = s.charCodeAt(k)
@@ -45,11 +52,19 @@ export function scan_keyword(e: Engine, s: string): boolean {
     } else if (e.cur_cmd !== Cmd.spacer || p !== backup_head) {
       back_input(e)
       if (p !== backup_head) back_list(e, e.link[backup_head]!)
+      e.cur_cs = save_cur_cs
       return false
     }
   }
   flush_list(e, e.link[backup_head]!)
   return true
+}
+
+// §408 mu_error
+export function mu_error(e: Engine): void {
+  print_err(e, 'Incompatible glue units')
+  help(e, "I'm going to assume that 1mu=1pt when they're mixed.")
+  error(e)
 }
 
 // §413 scan_something_internal
@@ -58,26 +73,65 @@ export function scan_something_internal(e: Engine, level: number, negative: bool
   switch (e.cur_cmd) {
     case Cmd.def_code: // §414 Fetch a character code from some table
       scan_char_num(e)
-      if (m === math_code_base) { e.cur_val = e.equiv[math_code_base + e.cur_val]!; e.cur_val_level = int_val }
-      else { e.cur_val = e.equiv[m + e.cur_val]!; e.cur_val_level = int_val }
+      e.cur_val = e.equiv[m + e.cur_val]!; e.cur_val_level = int_val
+      break
+    case Cmd.toks_register: case Cmd.assign_toks: case Cmd.def_family: case Cmd.set_font: case Cmd.def_font:
+    case Cmd.letterspace_font: case Cmd.pdf_copy_font: // §415 Fetch a token list or font identifier, provided that level=tok_val
+      if (level !== tok_val) {
+        print_err(e, 'Missing number, treated as zero')
+        help(e, "A number should have been here; I inserted `0'.", "(If you can't figure out why I needed to see a number,",
+          "look up `weird error' in the index to The TeXbook.)")
+        back_error(e); e.cur_val = 0; e.cur_val_level = dimen_val
+      } else if (e.cur_cmd <= Cmd.assign_toks) {
+        if (e.cur_cmd < Cmd.assign_toks) { scan_eight_bit_int(e); e.cur_val = e.equiv[toks_base + e.cur_val]! }
+        else e.cur_val = e.equiv[m]!
+        e.cur_val_level = tok_val
+      } else unsupported(e) // scan_font_ident: fonts are M2
       break
     case Cmd.assign_int: e.cur_val = e.equiv[m]!; e.cur_val_level = int_val; break
-    case Cmd.register: // §420 Fetch a register (only \count exists so far)
-      scan_eight_bit_int(e)
-      e.cur_val = e.equiv[count_base + e.cur_val]!; e.cur_val_level = m
+    case Cmd.assign_dimen: e.cur_val = e.equiv[m]!; e.cur_val_level = dimen_val; break
+    case Cmd.assign_glue: e.cur_val = e.equiv[m]!; e.cur_val_level = glue_val; break
+    case Cmd.assign_mu_glue: e.cur_val = e.equiv[m]!; e.cur_val_level = mu_val; break
+    case Cmd.char_given: case Cmd.math_given: e.cur_val = e.cur_chr; e.cur_val_level = int_val; break
+    case Cmd.register: // §420 Fetch a register (scan_register_num is scan_eight_bit_int outside e-TeX mode)
+      scan_eight_bit_int(e); e.cur_val_level = m
+      e.cur_val = e.equiv[(m === int_val ? count_base : m === dimen_val ? scaled_base : m === glue_val ? skip_base : mu_skip_base) + e.cur_val]!
       break
-    default: // §428 Complain that \the can't do this; give zero result
-      if (e.cur_cmd >= Cmd.min_internal && e.cur_cmd <= Cmd.max_internal) fatal_error(e, 'unsupported: internal quantity')
+    case Cmd.last_item: // §424 Fetch an item in the current node, if appropriate
+      if (m >= input_line_no_code) {
+        if (m === input_line_no_code) e.cur_val = e.line
+        else if (m === badness_code) e.cur_val = 0 // shortcut: last_badness stays 0 until hpack/vpack exist (M2)
+        else if (m === pdftex_version_code) e.cur_val = 140
+        else unsupported(e)
+        e.cur_val_level = int_val
+      } else {
+        // shortcut: the only list is the empty main vlist until M2, so tail=head, last_penalty=last_kern=0, last_glue=max_halfword
+        if (m === last_node_type_code) unsupported(e)
+        e.cur_val = m === glue_val ? zero_glue : 0; e.cur_val_level = m
+      }
+      break
+    default:
+      if (e.cur_cmd >= Cmd.min_internal && e.cur_cmd <= Cmd.max_internal) unsupported(e)
+      if (e.cur_cmd === Cmd.ignore_spaces && e.cur_chr === 1) unsupported(e) // \pdfprimitive
+      // §428 Complain that \the can't do this; give zero result
       print_err(e, "You can't use `"); print_cmd_chr(e, e.cur_cmd, e.cur_chr)
       print(e, "' after "); print_esc(e, 'the')
       help(e, "I'm forgetting what you said and using zero instead.")
       error(e)
       e.cur_val = 0; e.cur_val_level = level !== tok_val ? dimen_val : int_val
   }
-  // §429 Convert cur_val to a lower level (only dimen_val→int_val can arise so far)
-  while (e.cur_val_level > level) e.cur_val_level--
+  while (e.cur_val_level > level) { // §429 Convert cur_val to a lower level
+    if (e.cur_val_level === glue_val) e.cur_val = e.spec[e.cur_val]!.width
+    else if (e.cur_val_level === mu_val) mu_error(e)
+    e.cur_val_level--
+  }
   // §430 Fix the reference count, if any, and negate cur_val if negative
-  if (negative) e.cur_val = -e.cur_val | 0
+  if (negative) {
+    if (e.cur_val_level >= glue_val) {
+      e.cur_val = new_spec(e, e.cur_val); const g = e.spec[e.cur_val]!
+      g.width = -g.width | 0; g.stretch = -g.stretch | 0; g.shrink = -g.shrink | 0
+    } else e.cur_val = -e.cur_val | 0
+  } else if (e.cur_val_level >= glue_val && e.cur_val_level <= mu_val) add_glue_ref(e, e.cur_val)
 }
 
 // §433 scan_eight_bit_int
@@ -98,16 +152,30 @@ export function scan_char_num(e: Engine): void {
   }
 }
 
-// §440 scan_int
-export function scan_int(e: Engine): void {
-  e.radix = 0
-  let OK_so_far = true
-  // §441 Get the next non-blank non-sign token; set negative appropriately
+// §436 scan_fifteen_bit_int
+export function scan_fifteen_bit_int(e: Engine): void {
+  scan_int(e)
+  if (e.cur_val < 0 || e.cur_val > 0o77777) {
+    print_err(e, 'Bad mathchar')
+    help(e, 'A mathchar number must be between 0 and 32767.', 'I changed this one to zero.'); int_error(e, e.cur_val); e.cur_val = 0
+  }
+}
+
+// §441 Get the next non-blank non-sign token; set negative appropriately
+function get_sign(e: Engine): boolean {
   let negative = false
   do {
     do get_x_token(e); while (e.cur_cmd === Cmd.spacer)
     if (e.cur_tok === other_token + 45) { negative = !negative; e.cur_tok = other_token + 43 }
   } while (e.cur_tok === other_token + 43)
+  return negative
+}
+
+// §440 scan_int
+export function scan_int(e: Engine): void {
+  e.radix = 0
+  let OK_so_far = true
+  const negative = get_sign(e)
   if (e.cur_tok === alpha_token) {
     // §442 Scan an alphabetic character code into cur_val
     get_token(e)
@@ -160,6 +228,175 @@ export function scan_int(e: Engine): void {
   if (negative) e.cur_val = -e.cur_val | 0
 }
 
+// §443 Scan an optional space
+function scan_optional_space(e: Engine): void {
+  get_x_token(e); if (e.cur_cmd !== Cmd.spacer) back_input(e)
+}
+
+// §448 scan_dimen
+export function scan_dimen(e: Engine, mu: boolean, inf: boolean, shortcut: boolean): void {
+  let f = 0, negative = false
+  e.arith_error = false; e.cur_order = normal_order
+  attach_sign: {
+    if (!shortcut) {
+      negative = get_sign(e)
+      if (e.cur_cmd >= Cmd.min_internal && e.cur_cmd <= Cmd.max_internal) { // §449 Fetch an internal dimension and goto attach_sign, or fetch an internal integer
+        if (mu) {
+          scan_something_internal(e, mu_val, false); coerce_glue(e)
+          if (e.cur_val_level === mu_val) break attach_sign
+          if (e.cur_val_level !== int_val) mu_error(e)
+        } else {
+          scan_something_internal(e, dimen_val, false)
+          if (e.cur_val_level === dimen_val) break attach_sign
+        }
+      } else {
+        back_input(e)
+        if (e.cur_tok === continental_point_token) e.cur_tok = point_token
+        if (e.cur_tok !== point_token) scan_int(e)
+        else { e.radix = 10; e.cur_val = 0 }
+        if (e.cur_tok === continental_point_token) e.cur_tok = point_token
+        if (e.radix === 10 && e.cur_tok === point_token) { // §452 Scan decimal fraction
+          let k = 0, p = 0
+          get_token(e)
+          for (;;) {
+            get_x_token(e)
+            if (e.cur_tok > zero_token + 9 || e.cur_tok < zero_token) break
+            if (k < 17) { const q = get_avail(e); e.link[q] = p; e.info[q] = e.cur_tok - zero_token; p = q; k++ }
+          }
+          for (let kk = k; kk >= 1; kk--) { e.dig[kk - 1] = e.info[p]!; const q = p; p = e.link[p]!; free_avail(e, q) }
+          f = round_decimals(e, k)
+          if (e.cur_cmd !== Cmd.spacer) back_input(e)
+        }
+      }
+    }
+    if (e.cur_val < 0) { negative = !negative; e.cur_val = -e.cur_val | 0 }
+    // §453 Scan units and set cur_val to x*(cur_val+f/2^16), where there are x sp per unit; goto attach_sign if the units are internal
+    done: {
+      attach_fraction: {
+        if (inf && scan_keyword(e, 'fil')) { // §454 Scan for fil units; goto attach_fraction if found
+          e.cur_order = fil
+          while (scan_keyword(e, 'l')) {
+            if (e.cur_order === filll) {
+              print_err(e, 'Illegal unit of measure ('); print(e, 'replaced by filll)')
+              help(e, "I dddon't go any higher than filll."); error(e)
+            } else e.cur_order++
+          }
+          break attach_fraction
+        }
+        // §455 Scan for units that are internal dimensions; goto attach_sign with cur_val set if found
+        const save_cur_val = e.cur_val
+        let v: number
+        found: {
+          do get_x_token(e); while (e.cur_cmd === Cmd.spacer) // §406
+          if (e.cur_cmd < Cmd.min_internal || e.cur_cmd > Cmd.max_internal) back_input(e)
+          else {
+            if (mu) { scan_something_internal(e, mu_val, false); coerce_glue(e); if (e.cur_val_level !== mu_val) mu_error(e) }
+            else scan_something_internal(e, dimen_val, false)
+            v = e.cur_val; break found
+          }
+          not_found: {
+            if (mu) break not_found
+            // shortcut: cur_font is always \nullfont, whose quad and x_height are 0; fonts are M2
+            if (scan_keyword(e, 'em')) v = 0
+            else if (scan_keyword(e, 'ex')) v = 0
+            else if (scan_keyword(e, 'px')) v = e.equiv[dimen_base + pdf_px_dimen_code]!
+            else break not_found
+            scan_optional_space(e)
+            break found
+          }
+          if (mu) { // §456 Scan for mu units and goto attach_fraction
+            if (!scan_keyword(e, 'mu')) {
+              print_err(e, 'Illegal unit of measure ('); print(e, 'mu inserted)')
+              help(e, 'The unit of measurement in math glue must be mu.', "To recover gracefully from this error, it's best to",
+                "delete the erroneous units; e.g., type `2' to delete", 'two letters. (See Chapter 27 of The TeXbook.)')
+              error(e)
+            }
+            break attach_fraction
+          }
+          if (scan_keyword(e, 'true')) { // §457 Adjust for the magnification ratio
+            prepare_mag(e)
+            const mag = int_par(e, mag_code)
+            if (mag !== 1000) {
+              e.cur_val = xn_over_d(e, e.cur_val, 1000, mag)
+              f = Math.trunc(((Math.imul(1000, f) + Math.imul(0o200000, e.remainder)) | 0) / mag)
+              e.cur_val = (e.cur_val + Math.trunc(f / 0o200000)) | 0; f = f % 0o200000
+            }
+          }
+          if (scan_keyword(e, 'pt')) break attach_fraction
+          // §458 Scan for all other units and adjust cur_val and f accordingly; goto done in the case of scaled points
+          let num: number, denom: number
+          if (scan_keyword(e, 'in')) { num = 7227; denom = 100 }
+          else if (scan_keyword(e, 'pc')) { num = 12; denom = 1 }
+          else if (scan_keyword(e, 'cm')) { num = 7227; denom = 254 }
+          else if (scan_keyword(e, 'mm')) { num = 7227; denom = 2540 }
+          else if (scan_keyword(e, 'bp')) { num = 7227; denom = 7200 }
+          else if (scan_keyword(e, 'dd')) { num = 1238; denom = 1157 }
+          else if (scan_keyword(e, 'cc')) { num = 14856; denom = 1157 }
+          else if (scan_keyword(e, 'nd')) { num = 685; denom = 642 }
+          else if (scan_keyword(e, 'nc')) { num = 1370; denom = 107 }
+          else if (scan_keyword(e, 'sp')) break done
+          else { // §459 Complain about unknown unit and goto done2
+            print_err(e, 'Illegal unit of measure ('); print(e, 'pt inserted)')
+            help(e, 'Dimensions can be in units of em, ex, in, pt, pc,', 'cm, mm, dd, cc, nd, nc, bp, or sp; but yours is a new one!',
+              "I'll assume that you meant to say pt, for printer's points.", "To recover gracefully from this error, it's best to",
+              "delete the erroneous units; e.g., type `2' to delete", 'two letters. (See Chapter 27 of The TeXbook.)')
+            error(e); break attach_fraction
+          }
+          e.cur_val = xn_over_d(e, e.cur_val, num, denom)
+          f = Math.trunc(((Math.imul(num, f) + Math.imul(0o200000, e.remainder)) | 0) / denom)
+          e.cur_val = (e.cur_val + Math.trunc(f / 0o200000)) | 0; f = f % 0o200000
+          break attach_fraction
+        }
+        // found:
+        e.cur_val = nx_plus_y(e, save_cur_val, v!, xn_over_d(e, v!, f, 0o200000))
+        break attach_sign
+      }
+      // attach_fraction:
+      if (e.cur_val >= 0o40000) e.arith_error = true
+      else e.cur_val = (e.cur_val * unity + f) | 0
+    }
+    // done:
+    scan_optional_space(e)
+  }
+  // attach_sign:
+  if (e.arith_error || Math.abs(e.cur_val) >= 0o10000000000) { // §460 Report that this dimension is out of range
+    print_err(e, 'Dimension too large')
+    help(e, "I can't work with sizes bigger than about 19 feet.", "Continue and I'll use the largest value I can.")
+    error(e); e.cur_val = max_dimen; e.arith_error = false
+  }
+  if (negative) e.cur_val = -e.cur_val | 0
+}
+export const scan_normal_dimen = (e: Engine) => scan_dimen(e, false, false, false)
+
+// §451 Coerce glue to a dimension
+function coerce_glue(e: Engine): void {
+  if (e.cur_val_level >= glue_val) { const v = e.spec[e.cur_val]!.width; delete_glue_ref(e, e.cur_val); e.cur_val = v }
+}
+
+// §461 scan_glue
+export function scan_glue(e: Engine, level: number): void {
+  const mu = level === mu_val
+  const negative = get_sign(e)
+  if (e.cur_cmd >= Cmd.min_internal && e.cur_cmd <= Cmd.max_internal) {
+    scan_something_internal(e, level, negative)
+    if (e.cur_val_level >= glue_val) {
+      if (e.cur_val_level !== level) mu_error(e)
+      return
+    }
+    if (e.cur_val_level === int_val) scan_dimen(e, mu, false, true)
+    else if (level === mu_val) mu_error(e)
+  } else {
+    back_input(e); scan_dimen(e, mu, false, false)
+    if (negative) e.cur_val = -e.cur_val | 0
+  }
+  // §462 Create a new glue specification whose width is cur_val; scan for its stretch and shrink components
+  const q = new_spec(e, zero_glue), g = e.spec[q]!
+  g.width = e.cur_val
+  if (scan_keyword(e, 'plus')) { scan_dimen(e, mu, true, false); g.stretch = e.cur_val; g.stretch_order = e.cur_order }
+  if (scan_keyword(e, 'minus')) { scan_dimen(e, mu, true, false); g.shrink = e.cur_val; g.shrink_order = e.cur_order }
+  e.cur_val = q
+}
+
 // §464 str_toks: converts the current string from position b to a token list at link(temp_head)
 export function str_toks(e: Engine, b: number): number {
   let p = temp_head
@@ -174,13 +411,24 @@ export function str_toks(e: Engine, b: number): number {
 
 // §465 the_toks
 export function the_toks(e: Engine): number {
+  if ((e.cur_chr & 1) === 1) unsupported(e) // e-TeX's \unexpanded and \detokenize
   get_x_token(e); scan_something_internal(e, tok_val, false)
-  if (e.cur_val_level >= ident_val) fatal_error(e, 'unsupported: \\the of a token list or font') // §466
+  if (e.cur_val_level >= ident_val) { // §466 Copy the token list
+    let p = temp_head
+    e.link[p] = 0
+    const store_new_token = (x: number) => { const q = get_avail(e); e.link[p] = q; e.info[q] = x; p = q }
+    if (e.cur_val_level === ident_val) store_new_token(cs_token_flag + e.cur_val)
+    else if (e.cur_val !== 0) for (let r = e.link[e.cur_val]!; r !== 0; r = e.link[r]!) store_new_token(e.info[r]!)
+    return p
+  }
   const old_setting = e.selector; e.selector = new_string
   const b = e.cur_str.length
-  if (e.cur_val_level === int_val) print_int(e, e.cur_val)
-  else if (e.cur_val_level === dimen_val) { print_scaled(e, e.cur_val); print(e, 'pt') }
-  else if (e.cur_val_level >= glue_val) fatal_error(e, 'unsupported: \\the of glue')
+  switch (e.cur_val_level) {
+    case int_val: print_int(e, e.cur_val); break
+    case dimen_val: print_scaled(e, e.cur_val); print(e, 'pt'); break
+    case glue_val: print_spec(e, e.cur_val, 'pt'); delete_glue_ref(e, e.cur_val); break
+    case mu_val: print_spec(e, e.cur_val, 'mu'); delete_glue_ref(e, e.cur_val); break
+  }
   e.selector = old_setting
   return str_toks(e, b)
 }

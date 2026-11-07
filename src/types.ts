@@ -1,6 +1,7 @@
 // §207–210 command codes, §211 modes, §300 input state record
 
 // §207 catcode commands, §208 ordinary commands, §209 assignment commands, §210 expandable commands
+// (pdftex.web numbering: letterspace_font and pdf_copy_font raise max_command to 102)
 export const Cmd = {
   relax: 0, escape: 0, left_brace: 1, right_brace: 2, math_shift: 3, tab_mark: 4,
   car_ret: 5, out_param: 5, mac_param: 6, sup_mark: 7, sub_mark: 8, ignore: 9, endv: 9,
@@ -21,11 +22,12 @@ export const Cmd = {
   set_prev_graf: 80, set_page_dimen: 81, set_page_int: 82, set_box_dimen: 83, set_shape: 84,
   def_code: 85, def_family: 86, set_font: 87, def_font: 88, register: 89, max_internal: 89,
   advance: 90, multiply: 91, divide: 92, prefix: 93, let: 94, shorthand_def: 95,
-  read_to_cs: 96, def: 97, set_box: 98, hyph_data: 99, set_interaction: 100, max_command: 100,
-  undefined_cs: 101, expand_after: 102, no_expand: 103, input: 104, if_test: 105,
-  fi_or_else: 106, cs_name: 107, convert: 108, the: 109, top_bot_mark: 110, call: 111,
-  long_call: 112, outer_call: 113, long_outer_call: 114, end_template: 115, dont_expand: 116,
-  glue_ref: 117, shape_ref: 118, box_ref: 119, data: 120,
+  read_to_cs: 96, def: 97, set_box: 98, hyph_data: 99, set_interaction: 100, letterspace_font: 101,
+  pdf_copy_font: 102, max_command: 102,
+  undefined_cs: 103, expand_after: 104, no_expand: 105, input: 106, if_test: 107,
+  fi_or_else: 108, cs_name: 109, convert: 110, the: 111, top_bot_mark: 112, call: 113,
+  long_call: 114, outer_call: 115, long_outer_call: 116, end_template: 117, dont_expand: 118,
+  glue_ref: 119, shape_ref: 120, box_ref: 121, data: 122,
 } as const
 
 // §211
@@ -78,6 +80,7 @@ export const frozen_relax = frozen_control_sequence + 7
 export const end_write = frozen_control_sequence + 8
 export const frozen_dont_expand = frozen_control_sequence + 9
 export const frozen_null_font = frozen_control_sequence + 10
+export const frozen_primitive = frozen_control_sequence + 11 // pdftex.web: permanent \pdfprimitive
 export const font_id_base = frozen_null_font
 export const undefined_control_sequence = frozen_null_font + 257
 // §224 region 3
@@ -92,8 +95,11 @@ export const output_routine_loc = local_base + 1
 export const every_par_loc = local_base + 2
 export const every_job_loc = local_base + 7
 export const err_help_loc = local_base + 9
-export const toks_base = local_base + 10
-export const box_base = toks_base + 256
+export const tex_toks = local_base + 10 // pdftex: \pdfpagesattr \pdfpageattr \pdfpageresources \pdfpkmode
+export const every_eof_loc = tex_toks + 4 // e-TeX
+export const toks_base = every_eof_loc + 1
+export const etex_pen_base = toks_base + 256 // e-TeX \interlinepenalties etc.
+export const box_base = etex_pen_base + 4
 export const cur_font_loc = box_base + 256
 export const math_font_base = cur_font_loc + 1
 export const cat_code_base = math_font_base + 48
@@ -102,13 +108,13 @@ export const uc_code_base = lc_code_base + 256
 export const sf_code_base = uc_code_base + 256
 export const math_code_base = sf_code_base + 256
 export const int_base = math_code_base + 256
-// §236 region 5
-export const int_pars = 55
+// §236 region 5: TeX's 55, pdfTeX's 37, e-TeX's 10 and one e-TeX state
+export const int_pars = 103
 export const count_base = int_base + int_pars
 export const del_code_base = count_base + 256
 export const dimen_base = del_code_base + 256
-// §247 region 6
-export const dimen_pars = 21
+// §247 region 6: TeX's 21 and pdfTeX's 13
+export const dimen_pars = 34
 export const scaled_base = dimen_base + dimen_pars
 export const eqtb_size = scaled_base + 255
 
@@ -121,15 +127,16 @@ export const mag_code = 17, time_code = 20, day_code = 21, month_code = 22, year
 // §247
 export const hang_indent_code = 17
 
-// §236–237 the names of the integer parameters, indexed by code (print_param's case list)
-export const int_par_names = ['pretolerance', 'tolerance', 'linepenalty', 'hyphenpenalty',
-  'exhyphenpenalty', 'clubpenalty', 'widowpenalty', 'displaywidowpenalty', 'brokenpenalty',
-  'binoppenalty', 'relpenalty', 'predisplaypenalty', 'postdisplaypenalty', 'interlinepenalty',
-  'doublehyphendemerits', 'finalhyphendemerits', 'adjdemerits', 'mag', 'delimiterfactor',
-  'looseness', 'time', 'day', 'month', 'year', 'showboxbreadth', 'showboxdepth', 'hbadness',
-  'vbadness', 'pausing', 'tracingonline', 'tracingmacros', 'tracingstats', 'tracingparagraphs',
-  'tracingpages', 'tracingoutput', 'tracinglostchars', 'tracingcommands', 'tracingrestores',
-  'uchyph', 'outputpenalty', 'maxdeadcycles', 'hangafter', 'floatingpenalty', 'globaldefs', 'fam',
-  'escapechar', 'defaulthyphenchar', 'defaultskewchar', 'endlinechar', 'newlinechar', 'language',
-  'lefthyphenmin', 'righthyphenmin', 'holdinginserts', 'errorcontextlines']
+// §237 print_param's case list (pdftex.web and etex.ch included), indexed by code
+export const int_par_names = ['pretolerance', 'tolerance', 'linepenalty', 'hyphenpenalty', 'exhyphenpenalty', 'clubpenalty', 'widowpenalty', 'displaywidowpenalty', 'brokenpenalty', 'binoppenalty', 'relpenalty', 'predisplaypenalty', 'postdisplaypenalty', 'interlinepenalty', 'doublehyphendemerits', 'finalhyphendemerits', 'adjdemerits', 'mag', 'delimiterfactor', 'looseness', 'time', 'day', 'month', 'year', 'showboxbreadth', 'showboxdepth', 'hbadness', 'vbadness', 'pausing', 'tracingonline', 'tracingmacros', 'tracingstats', 'tracingparagraphs', 'tracingpages', 'tracingoutput', 'tracinglostchars', 'tracingcommands', 'tracingrestores', 'uchyph', 'outputpenalty', 'maxdeadcycles', 'hangafter', 'floatingpenalty', 'globaldefs', 'fam', 'escapechar', 'defaulthyphenchar', 'defaultskewchar', 'endlinechar', 'newlinechar', 'language', 'lefthyphenmin', 'righthyphenmin', 'holdinginserts', 'errorcontextlines',
+  'pdfoutput', 'pdfcompresslevel', 'pdfdecimaldigits', 'pdfmovechars', 'pdfimageresolution', 'pdfpkresolution', 'pdfuniqueresname', 'pdfoptionalwaysusepdfpagebox', 'pdfoptionpdfinclusionerrorlevel', 'pdfmajorversion', 'pdfminorversion', 'pdfforcepagebox', 'pdfpagebox', 'pdfinclusionerrorlevel', 'pdfgamma', 'pdfimagegamma', 'pdfimagehicolor', 'pdfimageapplygamma', 'pdfadjustspacing', 'pdfprotrudechars', 'pdftracingfonts', 'pdfobjcompresslevel', 'pdfadjustinterwordglue', 'pdfprependkern', 'pdfappendkern', 'pdfgentounicode', 'pdfdraftmode', 'pdfinclusioncopyfonts', 'pdfsuppresswarningdupdest', 'pdfsuppresswarningdupmap', 'pdfsuppresswarningpagegroup', 'pdfinfoomitdate', 'pdfsuppressptexinfo', 'pdfomitcharset', 'pdfomitinfodict', 'pdfomitprocset', 'pdfptexuseunderscore',
+  'tracingassigns', 'tracinggroups', 'tracingifs', 'tracingscantokens', 'tracingnesting', 'predisplaydirection', 'lastlinefit', 'savingvdiscards', 'savinghyphcodes', 'ignoreprimitiveerror', 'TeXXeTstate']
+// §247 print_length_param's case list, indexed by code
+export const dimen_par_names = ['parindent', 'mathsurround', 'lineskiplimit', 'hsize', 'vsize', 'maxdepth', 'splitmaxdepth', 'boxmaxdepth', 'hfuzz', 'vfuzz', 'delimitershortfall', 'nulldelimiterspace', 'scriptspace', 'predisplaysize', 'displaywidth', 'displayindent', 'overfullrule', 'hangindent', 'hoffset', 'voffset', 'emergencystretch',
+  'pdfhorigin', 'pdfvorigin', 'pdfpagewidth', 'pdfpageheight', 'pdflinkmargin', 'pdfdestmargin', 'pdfthreadmargin', 'pdffirstlineheight', 'pdflastlinedepth', 'pdfeachlineheight', 'pdfeachlinedepth', 'pdfignoreddimen', 'pdfpxdimen']
+// §225 print_skip_param's case list, indexed by code
+export const glue_par_names = ['lineskip', 'baselineskip', 'parskip', 'abovedisplayskip', 'belowdisplayskip', 'abovedisplayshortskip', 'belowdisplayshortskip', 'leftskip', 'rightskip', 'topskip', 'splittopskip', 'tabskip', 'spaceskip', 'xspaceskip', 'parfillskip', 'thinmuskip', 'medmuskip', 'thickmuskip']
+export const thin_mu_skip_code = 15
+// §231 the token list parameters, indexed by location-local_base
+export const toks_par_names = ['', 'output', 'everypar', 'everymath', 'everydisplay', 'everyhbox', 'everyvbox', 'everyjob', 'everycr', 'errhelp', 'pdfpagesattr', 'pdfpageattr', 'pdfpageresources', 'pdfpkmode', 'everyeof']
 

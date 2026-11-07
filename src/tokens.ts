@@ -1,7 +1,7 @@
 // §289–299 token lists: representation, show_token_list, print_meaning, print_cmd_chr
 import type { Engine } from './engine.ts'
 import { Cmd, error_line, half_error_line } from './types.ts'
-import { print, print_char, print_esc, print_nl, print_ln, print_mode, begin_diagnostic, end_diagnostic } from './print.ts'
+import { print, print_char, print_esc, print_nl, print_ln, print_hex, print_mode, begin_diagnostic, end_diagnostic } from './print.ts'
 import { print_cs } from './hash.ts'
 import { registry } from './primitives/index.ts'
 
@@ -59,7 +59,7 @@ export function token_show(e: Engine, p: number): void {
 export function print_meaning(e: Engine): void {
   print_cmd_chr(e, e.cur_cmd, e.cur_chr)
   if (e.cur_cmd >= Cmd.call) { print_char(e, 58); print_ln(e); token_show(e, e.cur_chr) }
-  // shortcut: no top_bot_mark case, marks do not exist until M2
+  else if (e.cur_cmd === Cmd.top_bot_mark && e.cur_chr < 5) { print_char(e, 58); print_ln(e) } // cur_mark[] is null until marks exist (M2)
 }
 
 // §298 print_cmd_chr; primitive commands print through their primitives/* file
@@ -69,6 +69,8 @@ export function print_cmd_chr(e: Engine, cmd: number, chr_code: number): void {
     case Cmd.left_brace: chr_cmd('begin-group character '); return
     case Cmd.right_brace: chr_cmd('end-group character '); return
     case Cmd.math_shift: chr_cmd('math shift character '); return
+    case Cmd.tab_mark: if (chr_code === 256) print_esc(e, 'span'); else chr_cmd('alignment tab character '); return // §781 span_code
+    case Cmd.car_ret: print_esc(e, chr_code === 257 ? 'cr' : 'crcr'); return // §781 cr_code
     case Cmd.mac_param: chr_cmd('macro parameter character '); return
     case Cmd.sup_mark: chr_cmd('superscript character '); return
     case Cmd.sub_mark: chr_cmd('subscript character '); return
@@ -76,6 +78,9 @@ export function print_cmd_chr(e: Engine, cmd: number, chr_code: number): void {
     case Cmd.spacer: chr_cmd('blank space '); return
     case Cmd.letter: chr_cmd('the letter '); return
     case Cmd.other_char: chr_cmd('the character '); return
+    // §1224
+    case Cmd.char_given: print_esc(e, 'char'); print_hex(e, chr_code); return
+    case Cmd.math_given: print_esc(e, 'mathchar'); print_hex(e, chr_code); return
     // §1295
     case Cmd.undefined_cs: print(e, 'undefined'); return
     case Cmd.call: print(e, 'macro'); return

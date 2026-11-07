@@ -9,6 +9,7 @@ import { get_avail, free_avail, flush_list, temp_head, backup_head } from './nod
 import { cs_token_flag, left_brace_limit, right_brace_limit, match_token, end_match_token, space_token, show_token_list, token_show, show_cur_cmd_chr } from './tokens.ts'
 import { get_next, get_token, back_input, back_error, ins_error, end_token_list, begin_token_list, runaway, matching } from './input.ts'
 import { registry } from './primitives/index.ts'
+import { unsupported } from './main.ts'
 
 const expand_depth = 10000, param_size = 10000 // TeX Live defaults
 
@@ -22,6 +23,7 @@ export function expand(e: Engine): void {
     if (int_par(e, tracing_commands_code) > 1) show_cur_cmd_chr(e)
     const prim = registry.get(e.cur_cmd)
     if (prim?.run) prim.run(e, e.cur_chr)
+    else if (prim) unsupported(e)
     else { // §370 Complain about an undefined macro
       print_err(e, 'Undefined control sequence')
       help(e, 'The control sequence at the end of the top line', "of your error message was never \\def'ed. If you have",

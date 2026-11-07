@@ -1,9 +1,9 @@
 // §31 input_ln, §300–365 input stacks and get_next
 import type { Engine } from './engine.ts'
 import { Cmd, log_only, nonstop_mode, error_line } from './types.ts'
-import { print, print_char, print_nl, print_ln, print_esc, begin_diagnostic, end_diagnostic } from './print.ts'
+import { print, print_char, print_nl, print_ln, print_esc, print_int, begin_diagnostic, end_diagnostic } from './print.ts'
 import { error, print_err, help, fatal_error, overflow, token_list, parameter, u_template, v_template, backed_up, inserted, macro, output_text, mark_text, write_text } from './error.ts'
-import { int_par, tracing_macros_code, end_line_char_code, cat_code_base, null_cs, single_base, active_base, output_routine_loc } from './eqtb.ts'
+import { int_par, tracing_macros_code, end_line_char_code, cat_code_base, null_cs, single_base, active_base, output_routine_loc, frozen_fi } from './eqtb.ts'
 import { id_lookup, sprint_cs } from './hash.ts'
 import { get_avail, flush_list, add_token_ref, delete_token_ref, temp_head } from './nodes.ts'
 import { cs_token_flag, right_brace_token, right_brace_limit, left_brace_limit, show_token_list, token_show, print_cmd_chr } from './tokens.ts'
@@ -170,7 +170,15 @@ export function check_outer_validity(e: Engine): void {
     help(e, "I suspect you have forgotten a `}', causing me", 'to read past where you wanted me to stop.',
       "I'll try to recover; but if the error is serious,", "you'd better type `E' or `X' now and fix your file.")
     error(e)
-  } else fatal_error(e, 'unsupported: \\if...') // shortcut: skipping needs conditionals; next M1 slice
+  } else {
+    print_err(e, 'Incomplete '); print_cmd_chr(e, Cmd.if_test, e.cur_if)
+    print(e, '; all text was ignored after line '); print_int(e, e.skip_line)
+    help(e, 'A forbidden control sequence occurred in skipped text.', "This kind of error happens when you say `\\if...' and forget",
+      "the matching `\\fi'. I've inserted a `\\fi'; this might work.")
+    if (e.cur_cs !== 0) e.cur_cs = 0
+    else e.help_line[2] = 'The file ended while I was skipping conditional text.'
+    e.cur_tok = cs_token_flag + frozen_fi; ins_error(e)
+  }
   e.deletions_allowed = true
 }
 

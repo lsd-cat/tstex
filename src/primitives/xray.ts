@@ -9,15 +9,19 @@ import { flush_list, temp_head } from '../nodes.ts'
 import { get_token } from '../input.ts'
 import { the_toks } from '../scan.ts'
 import { int_par, tracing_online_code } from '../eqtb.ts'
+import { unsupported } from '../main.ts'
 
 const show_code = 0, show_box_code = 1, show_the_code = 2, show_lists_code = 3
 export const cmd = Cmd.xray
-export const primitives: [string, number][] = [['show', show_code], ['showthe', show_the_code]]
+export const primitives: [string, number][] = [['show', show_code], ['showbox', show_box_code], ['showthe', show_the_code],
+  ['showlists', show_lists_code]]
+export const etex_primitives: [string, number][] = [['showgroups', 4], ['showtokens', 5], ['showifs', 6]]
 export function print(e: Engine, chr: number): void {
-  print_esc(e, chr === show_box_code ? 'showbox' : chr === show_the_code ? 'showthe' : chr === show_lists_code ? 'showlists' : 'show')
+  print_esc(e, ['show', 'showbox', 'showthe', 'showlists', 'showgroups', 'showtokens', 'showifs'][chr] ?? 'show')
 }
 // §1293 show_whatever
 export function run(e: Engine, chr: number): void {
+  if (chr !== show_code && chr !== show_the_code) unsupported(e) // \showbox, \showlists: pass 2b and M2
   if (chr === show_code) { // §1294 Show the current meaning of a token
     get_token(e)
     print_nl(e, '> ')

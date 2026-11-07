@@ -8,7 +8,8 @@ import { ins_list } from '../input.ts'
 
 export const cmd = Cmd.the
 export const primitives: [string, number][] = [['the', 0]]
-export function print(e: Engine, _chr: number): void { print_esc(e, 'the') }
+export const etex_primitives: [string, number][] = [['unexpanded', 1], ['detokenize', 5]]
+export function print(e: Engine, chr: number): void { print_esc(e, chr === 0 ? 'the' : chr === 1 ? 'unexpanded' : 'detokenize') }
 export function run(e: Engine, _chr: number): void {
   e.link[garbage] = the_toks(e); ins_list(e, e.link[temp_head]!)
 }
