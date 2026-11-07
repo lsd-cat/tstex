@@ -1,0 +1,13 @@
+%! oracle: ini
+\input plain
+\tracingonline=0 \showboxbreadth=10000 \showboxdepth=10000 \tracingoutput=1
+\setbox9\hbox to 10pt{x\hss}
+\setbox0\hbox to 100pt{a\leaders\hrule\hfil b}
+\setbox1\hbox to 100pt{a\leaders\hbox{x}\hskip 50pt plus 1fil b}
+\setbox2\hbox to 100pt{a\cleaders\hbox to 7pt{x\hss}\hfil b}
+\setbox3\hbox to 100pt{a\xleaders\hbox to 7pt{x\hss}\hfil b}
+\setbox4\vbox to 60pt{\hrule\leaders\vrule\vfil\hrule}
+\setbox5\vbox to 60pt{\leaders\vbox to 8pt{\hrule\vss}\vskip 40pt\xleaders\copy9\vskip 20pt}
+\showbox0 \showbox1 \showbox2 \showbox3 \showbox4 \showbox5
+\shipout\vbox{\box0\box1\box2\box3\hbox{\box4}\box5}
+\end

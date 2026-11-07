@@ -1,0 +1,483 @@
+(m2-discretionary.tex (plain.tex Preloading the pla
+in format: codes, registers,
+\maxdimen=\dimen10
+\hideskip=\skip10
+\centering=\skip11
+\p@=\dimen11
+\z@=\dimen12
+\z@skip=\skip12
+\voidb@x=\box10
+parameters,
+\smallskipamount=\skip13
+\medskipamount=\skip14
+\bigskipamount=\skip15
+\normalbaselineskip=\skip16
+\normallineskip=\skip17
+\normallineskiplimit=\dimen13
+\jot=\dimen14
+\interdisplaylinepenalty=\count23
+\interfootnotelinepenalty=\count24
+fonts, more fonts,
+\itfam=\fam4
+\slfam=\fam5
+\bffam=\fam6
+\ttfam=\fam7
+macros,
+\strutbox=\box11
+\mscount=\count25
+\tabs=\box12
+\tabsyet=\box13
+\tabsdone=\box14
+math definitions,
+\rootbox=\box15
+\p@renwd=\dimen15
+output routines,
+\headline=\toks10
+\footline=\toks11
+\footins=\insert254
+\topins=\insert253
+hyphenation (hyphen.tex))
+> \box0=
+\hbox(6.94444+0.0)x40.55565
+.\tenrm a
+.\tenrm a
+.\discretionary replacing 2
+..\tenrm a
+..\tenrm -
+.|\tenrm b
+.\tenrm a
+.\tenrm b
+.\tenrm c
+.\tenrm c
+.\discretionary
+..\tenrm -
+.\tenrm d
+.\tenrm d
+.\discretionary
+
+! OK.
+l.6 \showbox0
+
+
+! Improper discretionary list.
+<recently read> }
+
+l.7 ...iscretionary{\vrule}{x\kern1pt}{\hskip 2pt}
+                                                  }
+Discretionary lists must contain only boxes and kerns.
+
+The following discretionary sublist has been deleted:
+\glue 2.0
+
+! Improper discretionary list.
+<recently read> }
+
+l.8 ...0\hbox{\discretionary{a\hbox{b}}{\penalty5}
+                                                  {}}
+Discretionary lists must contain only boxes and kerns.
+
+The following discretionary sublist has been deleted:
+\penalty 5
+
+> \box0=
+\hbox(0.0+0.0)x0.0
+.\discretionary
+..\tenrm a
+..\hbox(6.94444+0.0)x5.55557
+...\tenrm b
+
+! OK.
+l.9 \showbox0
+
+
+@firstpass
+@secondpass
+[]\tenrm aaaaaaa-b
+@\discretionary via @@0 b=10000 p=50 d=100012500
+@@1: line 1.0- t=100012500 -> @@0
+bbbbbbbb
+@ via @@1 b=* p=0 d=*
+@@2: line 2.3 t=100012500 -> @@1
+bbba-b
+@\discretionary via @@2 b=10000 p=50 d=100012500
+@@3: line 3.0- t=200025000 -> @@2
+cccc
+@\par via @@3 b=0 p=-10000 d=*
+@@4: line 4.2- t=200025000 -> @@3
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 11--11
+[]\tenrm aaaaaaa-
+
+\hbox(4.30554+0.0)x40.0
+.\hbox(0.0+0.0)x0.0
+.\tenrm a
+.\tenrm a
+.\tenrm a
+.\tenrm a
+.\tenrm a
+.\tenrm a
+.\discretionary
+.\tenrm a
+.\tenrm -
+.\glue(\rightskip) 0.0
+
+
+Overfull \hbox (10.00015pt too wide) in paragraph at lines 11--11
+\tenrm bbbbbbbbb|
+
+\hbox(6.94444+0.0)x40.0
+.\tenrm b
+.\tenrm b
+.\tenrm b
+.\tenrm b
+.\tenrm b
+.\tenrm b
+.\tenrm b
+.\tenrm b
+.\tenrm b
+.\glue(\rightskip) 0.0
+.\rule(*+*)x5.0
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 11--11
+\tenrm bbba-
+
+\hbox(6.94444+0.0)x40.0
+.\tenrm b
+.\tenrm b
+.\tenrm b
+.\discretionary
+.\tenrm a
+.\tenrm -
+.\glue(\rightskip) 0.0
+
+@firstpass
+@secondpass
+[]\tenrm word
+@\penalty via @@0 b=10000 p=-10000 d=*
+@@1: line 1.0 t=0 -> @@0
+next
+@ via @@1 b=10000 p=0 d=100000000
+@@2: line 2.0 t=100000000 -> @@1
+wordstuck
+@ via @@2 b=* p=0 d=*
+@@3: line 3.3 t=100000000 -> @@2
+to-
+@\discretionary via @@3 b=10000 p=50 d=100012500
+@@4: line 4.0- t=200012500 -> @@3
+gether
+@ via @@3 b=10000 p=0 d=100010000
+@ via @@4 b=10000 p=0 d=100000000
+@@5: line 4.0 t=200010000 -> @@3
+and
+@ via @@5 b=10000 p=0 d=100000000
+@@6: line 5.0 t=300010000 -> @@5
+more
+@ via @@6 b=10000 p=0 d=100000000
+@@7: line 6.0 t=400010000 -> @@6
+words
+@ via @@7 b=10000 p=0 d=100000000
+@@8: line 7.0 t=500010000 -> @@7
+to
+@ via @@7 b=303 p=0 d=97969
+@ via @@8 b=10000 p=0 d=100000000
+@@9: line 7.0 t=400107969 -> @@7
+fill
+@\par via @@8 b=0 p=-10000 d=10100
+@\par via @@9 b=0 p=-10000 d=10100
+@@10: line 8.2- t=400118069 -> @@9
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 12--12
+[]\tenrm word
+
+\hbox(6.94444+0.0)x40.0
+.\hbox(0.0+0.0)x0.0
+.\tenrm w
+.\kern-0.27779
+.\tenrm o
+.\tenrm r
+.\tenrm d
+.\penalty -10000
+.\glue(\rightskip) 0.0
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 12--12
+\tenrm next
+
+\hbox(6.15079+0.0)x40.0
+.\tenrm n
+.\tenrm e
+.\tenrm x
+.\tenrm t
+.\glue(\rightskip) 0.0
+
+
+Overfull \hbox (4.25008pt too wide) in paragraph at lines 12--12
+\tenrm wordstuck|
+
+\hbox(6.94444+0.0)x40.0
+.\tenrm w
+.\kern-0.27779
+.\tenrm o
+.\tenrm r
+.\tenrm d
+.\penalty 10000
+.\tenrm s
+.\tenrm t
+.\tenrm u
+.\tenrm c
+.\kern-0.27779
+.\tenrm k
+.\glue(\rightskip) 0.0
+.\rule(*+*)x5.0
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 12--12
+\tenrm to-gether
+
+\hbox(6.94444+1.94444)x40.0
+.\tenrm t
+.\tenrm o
+.\discretionary
+..\tenrm -
+.\tenrm g
+.\tenrm e
+.\tenrm t
+.\tenrm h
+.\tenrm e
+.\tenrm r
+.\glue(\rightskip) 0.0
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 12--12
+\tenrm and
+
+\hbox(6.94444+0.0)x40.0
+.\tenrm a
+.\tenrm n
+.\tenrm d
+.\glue(\rightskip) 0.0
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 12--12
+\tenrm more
+
+\hbox(4.30554+0.0)x40.0
+.\tenrm m
+.\tenrm o
+.\tenrm r
+.\tenrm e
+.\glue(\rightskip) 0.0
+
+@firstpass
+@secondpass
+[]\tenrm one
+@\penalty via @@0 b=10000 p=-10000 d=*
+@@1: line 1.0 t=0 -> @@0
+two
+@\penalty via @@1 b=10000 p=100 d=100010000
+@@2: line 2.0 t=100010000 -> @@1
+three
+@\penalty via @@1 b=10000 p=-100 d=99990000
+@\penalty via @@2 b=10000 p=-100 d=99990000
+@@3: line 2.0 t=99990000 -> @@1
+four
+@\par via @@1 b=0 p=-10000 d=10100
+@\par via @@2 b=0 p=-10000 d=10100
+@\par via @@3 b=0 p=-10000 d=10100
+@@4: line 2.2- t=10100 -> @@1
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 14--14
+[]\tenrm one
+
+\hbox(4.30554+0.0)x100.0
+.\hbox(0.0+0.0)x0.0
+.\tenrm o
+.\tenrm n
+.\tenrm e
+.\penalty -10000
+.\glue(\rightskip) 0.0
+
+
+Completed box being shipped out [1]
+\vbox(667.20255+0.0)x100.0
+.\vbox(0.0+0.0)x100.0, glue set 14.0fil
+..\glue -22.5
+..\hbox(8.5+0.0)x100.0, glue set 100.0fil
+...\vbox(8.5+0.0)x0.0
+...\glue 0.0 plus 1.0fil
+..\glue 0.0 plus 1.0fil minus 1.0fil
+.\vbox(643.20255+0.0)x100.0, glue set 477.20255fill
+..\glue(\topskip) 5.69446
+..\hbox(4.30554+0.0)x40.0
+...\hbox(0.0+0.0)x0.0
+...\tenrm a
+...\tenrm a
+...\tenrm a
+...\tenrm a
+...\tenrm a
+...\tenrm a
+...\discretionary
+...\tenrm a
+...\tenrm -
+...\glue(\rightskip) 0.0
+..\penalty 250
+..\glue(\baselineskip) 5.05556
+..\hbox(6.94444+0.0)x40.0
+...\tenrm b
+...\tenrm b
+...\tenrm b
+...\tenrm b
+...\tenrm b
+...\tenrm b
+...\tenrm b
+...\tenrm b
+...\tenrm b
+...\glue(\rightskip) 0.0
+...\rule(*+*)x5.0
+..\glue(\baselineskip) 5.05556
+..\hbox(6.94444+0.0)x40.0
+...\tenrm b
+...\tenrm b
+...\tenrm b
+...\discretionary
+...\tenrm a
+...\tenrm -
+...\glue(\rightskip) 0.0
+..\penalty 250
+..\glue(\baselineskip) 5.05556
+..\hbox(6.94444+0.0)x40.0, glue set 16.66666fil
+...\tenrm b
+...\tenrm c
+...\tenrm c
+...\tenrm c
+...\tenrm c
+...\penalty 10000
+...\glue(\parfillskip) 0.0 plus 1.0fil
+...\glue(\rightskip) 0.0
+..\glue(\parskip) 0.0 plus 1.0
+..\glue(\baselineskip) 5.05556
+..\hbox(6.94444+0.0)x40.0
+...\hbox(0.0+0.0)x0.0
+...\tenrm w
+...\kern-0.27779
+...\tenrm o
+...\tenrm r
+...\tenrm d
+...\penalty -10000
+...\glue(\rightskip) 0.0
+..\penalty 150
+..\glue(\baselineskip) 5.84921
+..\hbox(6.15079+0.0)x40.0
+...\tenrm n
+...\tenrm e
+...\tenrm x
+...\tenrm t
+...\glue(\rightskip) 0.0
+..\glue(\baselineskip) 5.05556
+..\hbox(6.94444+0.0)x40.0
+...\tenrm w
+...\kern-0.27779
+...\tenrm o
+...\tenrm r
+...\tenrm d
+...\penalty 10000
+...\tenrm s
+...\tenrm t
+...\tenrm u
+...\tenrm c
+...\kern-0.27779
+...\tenrm k
+...\glue(\rightskip) 0.0
+...\rule(*+*)x5.0
+..\glue(\baselineskip) 5.05556
+..\hbox(6.94444+1.94444)x40.0
+...\tenrm t
+...\tenrm o
+...\discretionary
+....\tenrm -
+...\tenrm g
+...\tenrm e
+...\tenrm t
+...\tenrm h
+...\tenrm e
+...\tenrm r
+...\glue(\rightskip) 0.0
+..\glue(\baselineskip) 3.11111
+..\hbox(6.94444+0.0)x40.0
+...\tenrm a
+...\tenrm n
+...\tenrm d
+...\glue(\rightskip) 0.0
+..\glue(\baselineskip) 7.69446
+..\hbox(4.30554+0.0)x40.0
+...\tenrm m
+...\tenrm o
+...\tenrm r
+...\tenrm e
+...\glue(\rightskip) 0.0
+..\glue(\baselineskip) 5.05556
+..\hbox(6.94444+0.0)x40.0, glue set 1.44998
+...\tenrm w
+...\kern-0.27779
+...\tenrm o
+...\tenrm r
+...\tenrm d
+...\tenrm s
+...\glue 3.33333 plus 1.66666 minus 1.11111
+...\tenrm t
+...\tenrm o
+...\glue(\rightskip) 0.0
+..\penalty 150
+..\glue(\baselineskip) 5.05556
+..\hbox(6.94444+0.0)x40.0, glue set 28.88885fil
+...\tenrm ^^L (ligature fi)
+...\tenrm l
+...\tenrm l
+...\penalty 10000
+...\glue(\parfillskip) 0.0 plus 1.0fil
+...\glue(\rightskip) 0.0
+..\glue(\parskip) 0.0 plus 1.0
+..\glue(\baselineskip) 7.69446
+..\hbox(4.30554+0.0)x100.0
+...\hbox(0.0+0.0)x0.0
+...\tenrm o
+...\tenrm n
+...\tenrm e
+...\penalty -10000
+...\glue(\rightskip) 0.0
+..\penalty 300
+..\glue(\baselineskip) 5.05556
+..\hbox(6.94444+0.0)x100.0, glue set 44.66656fil
+...\tenrm t
+...\kern-0.27779
+...\tenrm w
+...\kern-0.27779
+...\tenrm o
+...\penalty 100
+...\tenrm t
+...\tenrm h
+...\tenrm r
+...\tenrm e
+...\tenrm e
+...\penalty -100
+...\tenrm f
+...\tenrm o
+...\tenrm u
+...\tenrm r
+...\penalty 10000
+...\glue(\parfillskip) 0.0 plus 1.0fil
+...\glue(\rightskip) 0.0
+..\hbox(0.0+0.0)x100.0
+..\glue 0.0 plus 1.0fill
+.\glue(\baselineskip) 17.55556
+.\hbox(6.44444+0.0)x100.0, glue set 47.5fil
+..\glue 0.0 plus 1.0fil minus 1.0fil
+..\tenrm 1
+..\glue 0.0 plus 1.0fil minus 1.0fil
+
+ )
+Output written on m2-discretionary.dvi (1 page, 364 bytes).

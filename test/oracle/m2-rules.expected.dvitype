@@ -1,0 +1,62 @@
+Options selected:
+  Starting page = * 
+  Maximum number of pages = 1000000
+  Output level = 4 (the works)
+  Resolution = 300.00000000 pixels per inch
+numerator/denominator=25400000/473628672
+magnification=1000;       0.00006334 pixels per DVI unit
+'<comment>'
+Postamble starts at byte 236.
+maxv=2018508, maxh=1622382, maxstackdepth=2, totalpages=1
+Font 0: cmr10---loaded at size 655360 DVI units 
+ 
+42: beginning of page 1 
+87: down3 445644 v:=0+445644=445644, vv:=28 
+91: push 
+level 0:(h=0,v=445644,w=0,x=0,y=0,z=0,hh=0,vv=28) 
+92: down3 -419430 v:=445644-419430=26214, vv:=2 
+96: putrule height 26214, width 1310720 (2x84 pixels) 
+105: down3 196608 v:=26214+196608=222822, vv:=14 
+109: putrule height 196608, width 1310720 (13x84 pixels) 
+118: down3 157286 v:=222822+157286=380108, vv:=24 
+122: putrule height 157286, width 1310720 (10x84 pixels) 
+131: down3 131072 v:=380108+131072=511180, vv:=32 
+135: putrule height 131072, width 327680 (9x21 pixels) 
+144: pop 
+level 0:(h=0,v=445644,w=0,x=0,y=0,z=0,hh=0,vv=28) 
+145: y3 786432 v:=445644+786432=1232076, vv:=78 
+149: push 
+level 0:(h=0,v=1232076,w=0,x=0,y=786432,z=0,hh=0,vv=78) 
+150: push 
+level 1:(h=0,v=1232076,w=0,x=0,y=786432,z=0,hh=0,vv=78) 
+151: fntdef1 0: cmr10 
+172: fntnum0 current font is cmr10 
+173: setchar97 h:=0+327681=327681, hh:=21 
+[a]
+174: y3 131072 v:=1232076+131072=1363148, vv:=86 
+178: setrule height 586183, width 26214 (38x2 pixels) 
+ h:=327681+26214=353895, hh:=23 
+187: z3 -131072 v:=1363148-131072=1232076, vv:=78 
+191: setchar98 h:=353895+364090=717985, hh:=46 
+[b]
+192: down3 65536 v:=1232076+65536=1297612, vv:=82 
+196: setrule height 327680, width 196608 (21x13 pixels) 
+ h:=717985+196608=914593, hh:=59 
+205: down3 -65536 v:=1297612-65536=1232076, vv:=78 
+209: setchar99 h:=914593+291271=1205864, hh:=77 
+[c]
+210: y0 131072 v:=1232076+131072=1363148, vv:=86 
+211: setrule height 262144, width 26214 (17x2 pixels) 
+ h:=1205864+26214=1232078, hh:=79 
+220: z0 -131072 v:=1363148-131072=1232076, vv:=78 
+221: setchar100 h:=1232078+364090=1596168, hh:=102 
+[d]
+222: y0 131072 v:=1232076+131072=1363148, vv:=86 
+223: setrule height 586183, width 26214 (38x2 pixels) 
+ h:=1596168+26214=1622382, hh:=104 
+232: pop 
+level 1:(h=0,v=1232076,w=0,x=0,y=786432,z=0,hh=0,vv=78) 
+233: pop 
+level 0:(h=0,v=1232076,w=0,x=0,y=786432,z=0,hh=0,vv=78) 
+234: y0 786432 v:=1232076+786432=2018508, vv:=128 
+235: eop 

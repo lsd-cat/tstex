@@ -1,0 +1,13 @@
+%! oracle: ini
+\input plain
+\tracingonline=0 \showboxbreadth=10000 \showboxdepth=10000 \tracingoutput=1
+\tracingpages=1 \vsize=50pt \hsize=100pt \parindent=0pt \baselineskip=14pt \topskip=12pt
+\output={\message{[top:\topmark|first:\firstmark|bot:\botmark]}\shipout\vbox{\unvbox255}}
+\mark{m0}\hbox{a}\mark{m1}\hbox{b}\hbox{c}\mark{m2}\hbox{d}\hbox{e}\hbox{f}\hbox{g}\mark{m3}\hbox{h}\hbox{i}\hbox{j}\hbox{k}\hbox{l}
+\setbox1\vbox{\hbox{a}\mark{s1}\hbox{b}\mark{s2}\hbox{c}\mark{s3}\hbox{d}}
+\setbox2\vsplit1 to 30pt
+\message{[sf:\splitfirstmark|sb:\splitbotmark]}
+\showbox2 \showbox1
+\setbox2\vsplit1 to 100pt
+\message{[sf:\splitfirstmark|sb:\splitbotmark]}
+\end

@@ -1,0 +1,555 @@
+(m2-hyphenation.tex (plain.tex Preloading the plain
+ format: codes, registers,
+\maxdimen=\dimen10
+\hideskip=\skip10
+\centering=\skip11
+\p@=\dimen11
+\z@=\dimen12
+\z@skip=\skip12
+\voidb@x=\box10
+parameters,
+\smallskipamount=\skip13
+\medskipamount=\skip14
+\bigskipamount=\skip15
+\normalbaselineskip=\skip16
+\normallineskip=\skip17
+\normallineskiplimit=\dimen13
+\jot=\dimen14
+\interdisplaylinepenalty=\count23
+\interfootnotelinepenalty=\count24
+fonts, more fonts,
+\itfam=\fam4
+\slfam=\fam5
+\bffam=\fam6
+\ttfam=\fam7
+macros,
+\strutbox=\box11
+\mscount=\count25
+\tabs=\box12
+\tabsyet=\box13
+\tabsdone=\box14
+math definitions,
+\rootbox=\box15
+\p@renwd=\dimen15
+output routines,
+\headline=\toks10
+\footline=\toks11
+\footins=\insert254
+\topins=\insert253
+hyphenation (hyphen.tex))
+[] \tenrm ex-cep-tion hy-phen-ation com-puter type-set-ting ta-ble Tabling
+@\par via @@0 b=10000 p=-10000 d=*
+@@1: line 1.0- t=0 -> @@0
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 6--6
+[] \tenrm ex-cep-tion hy-phen-ation com-puter type-set-ting ta-ble Tabling
+
+\hbox(6.94444+1.94444)x16383.99998, glue set 1612.42923 []
+
+[] \tenrm ex-traor-di-nar-ily Ex-traor-di-nar-ily
+@\par via @@0 b=10000 p=-10000 d=*
+@@1: line 1.0- t=0 -> @@0
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 7--7
+[] \tenrm ex-traor-di-nar-ily Ex-traor-di-nar-ily
+
+\hbox(6.94444+1.94444)x16383.99998, glue set 4873.4713 []
+
+[] \tenrm type-set-ting
+@\par via @@0 b=10000 p=-10000 d=*
+@@1: line 1.0- t=0 -> @@0
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 9--9
+[] \tenrm type-set-ting
+
+\hbox(6.67859+1.94444)x16383.99998, glue set 9799.25974 []
+
+[] \tenrm Typesetting type-set-ting
+@\par via @@0 b=10000 p=-10000 d=*
+@@1: line 1.0- t=0 -> @@0
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 11--11
+[] \tenrm Typesetting type-set-ting
+
+\hbox(6.83331+1.94444)x16383.99998, glue set 4883.02974 []
+
+@firstpass
+@secondpass
+[]\tenrm Extraordinarily
+@ via @@0 b=* p=0 d=*
+@@1: line 1.3 t=0 -> @@0
+ex-
+@\discretionary via @@1 b=10000 p=50 d=100012500
+@@2: line 2.0- t=100012500 -> @@1
+cep-
+@\discretionary via @@1 b=10000 p=50 d=100012500
+@\discretionary via @@2 b=10000 p=50 d=100012500
+@@3: line 2.0- t=100012500 -> @@1
+tional
+@ via @@1 b=10000 p=0 d=100010000
+@ via @@2 b=10000 p=0 d=100000000
+@ via @@3 b=10000 p=0 d=100000000
+@@4: line 2.0 t=100010000 -> @@1
+discretionary-
+@\discretionary via @@4 b=10000 p=50 d=100002500
+@@5: line 3.0- t=200012500 -> @@4
+hyphenation
+@ via @@5 b=10000 p=0 d=100000000
+@@6: line 4.0 t=300012500 -> @@5
+a-b
+@\discretionary via @@6 b=10000 p=50 d=100002500
+@@7: line 5.0- t=400015000 -> @@6
+
+@ via @@6 b=10000 p=0 d=100000000
+@ via @@7 b=10000 p=0 d=100000000
+@@8: line 5.0 t=400012500 -> @@6
+type-
+@\discretionary via @@6 b=10000 p=50 d=100002500
+@\discretionary via @@7 b=10000 p=50 d=100012500
+@\discretionary via @@8 b=10000 p=50 d=100002500
+@@9: line 5.0- t=400015000 -> @@6
+set-
+@\discretionary via @@6 b=10000 p=50 d=100002500
+@\discretionary via @@7 b=10000 p=50 d=100012500
+@\discretionary via @@8 b=10000 p=50 d=100002500
+@\discretionary via @@9 b=10000 p=50 d=100012500
+@@10: line 5.0- t=400015000 -> @@6
+ting
+@ via @@7 b=314 p=0 d=104976
+@ via @@8 b=10000 p=0 d=100000000
+@ via @@9 b=10000 p=0 d=100000000
+@ via @@10 b=10000 p=0 d=100000000
+@@11: line 6.0 t=400119976 -> @@7
+ex-
+@\discretionary via @@9 b=10000 p=50 d=100012500
+@\discretionary via @@10 b=10000 p=50 d=100012500
+@\discretionary via @@11 b=10000 p=50 d=100002500
+@@12: line 6.0- t=500027500 -> @@10
+cep-
+@\discretionary via @@9 b=3 p=50 d=22669
+@\discretionary via @@10 b=10000 p=50 d=100012500
+@\discretionary via @@11 b=10000 p=50 d=100002500
+@\discretionary via @@12 b=10000 p=50 d=100012500
+@@13: line 6.2- t=400037669 -> @@9
+tion.
+@\par via @@11 b=0 p=-10000 d=10100
+@\par via @@12 b=0 p=-10000 d=15100
+@\par via @@13 b=0 p=-10000 d=5100
+@@14: line 7.2- t=400042769 -> @@13
+
+
+Overfull \hbox (7.44464pt too wide) in paragraph at lines 13--13
+[]\tenrm Extraordinarily|
+
+\hbox(6.94444+1.94444)x60.0
+.\hbox(0.0+0.0)x0.0
+.\tenrm E
+.\tenrm x
+.\tenrm t
+.\tenrm r
+.\tenrm a
+.\tenrm o
+.\tenrm r
+.\tenrm d
+.\tenrm i
+.\tenrm n
+.\tenrm a
+.\tenrm r
+.\tenrm i
+.\tenrm l
+.\tenrm y
+.\glue(\rightskip) 0.0
+.\rule(*+*)x5.0
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 13--13
+\tenrm ex-cep-tional
+
+\hbox(6.94444+1.94444)x60.0
+.\tenrm e
+.\tenrm x
+.\discretionary
+..\tenrm -
+.\tenrm c
+.\tenrm e
+.\tenrm p
+.\discretionary
+..\tenrm -
+.\tenrm t
+.\tenrm i
+.\tenrm o
+.\tenrm n
+.\tenrm a
+.\tenrm l
+.\glue(\rightskip) 0.0
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 13--13
+\tenrm discretionary-
+
+\hbox(6.94444+1.94444)x60.0
+.\tenrm d
+.\tenrm i
+.\tenrm s
+.\tenrm c
+.\tenrm r
+.\tenrm e
+.\tenrm t
+.\tenrm i
+.\tenrm o
+.\tenrm n
+.\tenrm a
+.\tenrm r
+.\tenrm y
+.\discretionary
+.\tenrm -
+.\glue(\rightskip) 0.0
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 13--13
+\tenrm hyphenation
+
+\hbox(6.94444+1.94444)x60.0
+.\tenrm h
+.\kern-0.27779
+.\tenrm y
+.\tenrm p
+.\tenrm h
+.\tenrm e
+.\tenrm n
+.\tenrm a
+.\tenrm t
+.\tenrm i
+.\tenrm o
+.\tenrm n
+.\glue(\rightskip) 0.0
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 13--13
+\tenrm a-b type-
+
+\hbox(6.94444+1.94444)x60.0, glue set 14.1667
+.\discretionary replacing 2
+..\tenrm a
+..\tenrm -
+.|\tenrm b
+.\tenrm a
+.\tenrm b
+.\glue 3.33333 plus 1.66666 minus 1.11111
+.\tenrm t
+.\kern-0.27779
+.\tenrm y
+.\tenrm p
+.\kern0.27779
+.\tenrm e
+.\discretionary
+.\tenrm -
+.\glue(\rightskip) 0.0
+
+@firstpass
+@secondpass
+[]\tenrm Extraordinarily
+@ via @@0 b=* p=0 d=*
+@@1: line 1.3 t=0 -> @@0
+exceptional
+@ via @@1 b=10000 p=0 d=100010000
+@@2: line 2.0 t=100010000 -> @@1
+typesetting
+@ via @@2 b=10000 p=0 d=100000000
+@@3: line 3.0 t=200010000 -> @@2
+hyphenation.
+@\par via @@3 b=0 p=-10000 d=*
+@@4: line 4.2- t=200010000 -> @@3
+
+
+Overfull \hbox (7.44464pt too wide) in paragraph at lines 15--15
+[]\tenrm Extraordinarily|
+
+\hbox(6.94444+1.94444)x60.0
+.\hbox(0.0+0.0)x0.0
+.\tenrm E
+.\tenrm x
+.\tenrm t
+.\tenrm r
+.\tenrm a
+.\tenrm o
+.\tenrm r
+.\tenrm d
+.\tenrm i
+.\tenrm n
+.\tenrm a
+.\tenrm r
+.\tenrm i
+.\tenrm l
+.\tenrm y
+.\glue(\rightskip) 0.0
+.\rule(*+*)x5.0
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 15--15
+\tenrm exceptional
+
+\hbox(6.94444+1.94444)x60.0
+.\tenrm e
+.\tenrm x
+.\tenrm c
+.\tenrm e
+.\tenrm p
+.\tenrm t
+.\tenrm i
+.\tenrm o
+.\tenrm n
+.\tenrm a
+.\tenrm l
+.\glue(\rightskip) 0.0
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 15--15
+\tenrm typesetting
+
+\hbox(6.67859+1.94444)x60.0
+.\tenrm t
+.\kern-0.27779
+.\tenrm y
+.\tenrm p
+.\kern0.27779
+.\tenrm e
+.\tenrm s
+.\tenrm e
+.\tenrm t
+.\tenrm t
+.\tenrm i
+.\tenrm n
+.\tenrm g
+.\glue(\rightskip) 0.0
+
+[] \tenrm typesetting
+@\par via @@0 b=10000 p=-10000 d=*
+@@1: line 1.0- t=0 -> @@0
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 16--16
+[] \tenrm typesetting
+
+\hbox(6.67859+1.94444)x16383.99998, glue set 9799.25974 []
+
+
+Completed box being shipped out [1]
+\vbox(424.0+0.0)x60.0
+.\vbox(0.0+0.0)x60.0, glue set 14.0fil
+..\glue -22.5
+..\hbox(8.5+0.0)x60.0, glue set 60.0fil
+...\vbox(8.5+0.0)x0.0
+...\glue 0.0 plus 1.0fil
+..\glue 0.0 plus 1.0fil minus 1.0fil
+.\vbox(400.0+0.0)x60.0, glue set 268.05556fill
+..\glue(\topskip) 3.05556
+..\hbox(6.94444+1.94444)x60.0
+...\hbox(0.0+0.0)x0.0
+...\tenrm E
+...\tenrm x
+...\tenrm t
+...\tenrm r
+...\tenrm a
+...\tenrm o
+...\tenrm r
+...\tenrm d
+...\tenrm i
+...\tenrm n
+...\tenrm a
+...\tenrm r
+...\tenrm i
+...\tenrm l
+...\tenrm y
+...\glue(\rightskip) 0.0
+...\rule(*+*)x5.0
+..\penalty 150
+..\glue(\baselineskip) 3.11111
+..\hbox(6.94444+1.94444)x60.0
+...\tenrm e
+...\tenrm x
+...\discretionary
+....\tenrm -
+...\tenrm c
+...\tenrm e
+...\tenrm p
+...\discretionary
+....\tenrm -
+...\tenrm t
+...\tenrm i
+...\tenrm o
+...\tenrm n
+...\tenrm a
+...\tenrm l
+...\glue(\rightskip) 0.0
+..\glue(\baselineskip) 3.11111
+..\hbox(6.94444+1.94444)x60.0
+...\tenrm d
+...\tenrm i
+...\tenrm s
+...\tenrm c
+...\tenrm r
+...\tenrm e
+...\tenrm t
+...\tenrm i
+...\tenrm o
+...\tenrm n
+...\tenrm a
+...\tenrm r
+...\tenrm y
+...\discretionary
+...\tenrm -
+...\glue(\rightskip) 0.0
+..\penalty 100
+..\glue(\baselineskip) 3.11111
+..\hbox(6.94444+1.94444)x60.0
+...\tenrm h
+...\kern-0.27779
+...\tenrm y
+...\tenrm p
+...\tenrm h
+...\tenrm e
+...\tenrm n
+...\tenrm a
+...\tenrm t
+...\tenrm i
+...\tenrm o
+...\tenrm n
+...\glue(\rightskip) 0.0
+..\glue(\baselineskip) 3.11111
+..\hbox(6.94444+1.94444)x60.0, glue set 14.1667
+...\discretionary replacing 2
+....\tenrm a
+....\tenrm -
+...|\tenrm b
+...\tenrm a
+...\tenrm b
+...\glue 3.33333 plus 1.66666 minus 1.11111
+...\tenrm t
+...\kern-0.27779
+...\tenrm y
+...\tenrm p
+...\kern0.27779
+...\tenrm e
+...\discretionary
+...\tenrm -
+...\glue(\rightskip) 0.0
+..\penalty 100
+..\glue(\baselineskip) 3.37697
+..\hbox(6.67859+1.94444)x60.0, glue set - 0.30008
+...\tenrm s
+...\tenrm e
+...\tenrm t
+...\discretionary
+....\tenrm -
+...\tenrm t
+...\tenrm i
+...\tenrm n
+...\tenrm g
+...\glue 3.33333 plus 1.66666 minus 1.11111
+...\tenrm e
+...\tenrm x
+...\discretionary
+....\tenrm -
+...\tenrm c
+...\tenrm e
+...\tenrm p
+...\discretionary
+...\tenrm -
+...\glue(\rightskip) 0.0
+..\penalty 250
+..\glue(\baselineskip) 3.37697
+..\hbox(6.67859+0.0)x60.0, glue set 39.99994fil
+...\tenrm t
+...\tenrm i
+...\tenrm o
+...\tenrm n
+...\tenrm .
+...\penalty 10000
+...\glue(\parfillskip) 0.0 plus 1.0fil
+...\glue(\rightskip) 0.0
+..\glue(\parskip) 0.0 plus 1.0
+..\glue(\baselineskip) 5.05556
+..\hbox(6.94444+1.94444)x60.0
+...\hbox(0.0+0.0)x0.0
+...\tenrm E
+...\tenrm x
+...\tenrm t
+...\tenrm r
+...\tenrm a
+...\tenrm o
+...\tenrm r
+...\tenrm d
+...\tenrm i
+...\tenrm n
+...\tenrm a
+...\tenrm r
+...\tenrm i
+...\tenrm l
+...\tenrm y
+...\glue(\rightskip) 0.0
+...\rule(*+*)x5.0
+..\penalty 150
+..\glue(\baselineskip) 3.11111
+..\hbox(6.94444+1.94444)x60.0
+...\tenrm e
+...\tenrm x
+...\tenrm c
+...\tenrm e
+...\tenrm p
+...\tenrm t
+...\tenrm i
+...\tenrm o
+...\tenrm n
+...\tenrm a
+...\tenrm l
+...\glue(\rightskip) 0.0
+..\glue(\baselineskip) 3.37697
+..\hbox(6.67859+1.94444)x60.0
+...\tenrm t
+...\kern-0.27779
+...\tenrm y
+...\tenrm p
+...\kern0.27779
+...\tenrm e
+...\tenrm s
+...\tenrm e
+...\tenrm t
+...\tenrm t
+...\tenrm i
+...\tenrm n
+...\tenrm g
+...\glue(\rightskip) 0.0
+..\penalty 150
+..\glue(\baselineskip) 3.11111
+..\hbox(6.94444+1.94444)x60.0, glue set 3.33318fil
+...\tenrm h
+...\kern-0.27779
+...\tenrm y
+...\tenrm p
+...\tenrm h
+...\tenrm e
+...\tenrm n
+...\tenrm a
+...\tenrm t
+...\tenrm i
+...\tenrm o
+...\tenrm n
+...\tenrm .
+...\penalty 10000
+...\glue(\parfillskip) 0.0 plus 1.0fil
+...\glue(\rightskip) 0.0
+..\hbox(0.0+0.0)x60.0
+..\glue 0.0 plus 1.0fill
+.\glue(\baselineskip) 17.55556
+.\hbox(6.44444+0.0)x60.0, glue set 27.5fil
+..\glue 0.0 plus 1.0fil minus 1.0fil
+..\tenrm 1
+..\glue 0.0 plus 1.0fil minus 1.0fil
+
+ )
+Output written on m2-hyphenation.dvi (1 page, 412 bytes).

@@ -1,0 +1,20 @@
+%! oracle: ini
+\input plain
+\tracingonline=0 \showboxbreadth=10000 \showboxdepth=10000 \tracingoutput=1
+\tracinglostchars=1
+\setbox0\hbox{A.\ B. C, d; e: f? g! h)\ i}
+\showbox0
+\setbox0\hbox{\frenchspacing A. B. C, d; \nonfrenchspacing e. f?}
+\showbox0
+\setbox0\hbox{a\spacefactor=3000 \showthe\spacefactor{} b\ c}
+\showbox0
+\setbox0\hbox{\sfcode`b=2000 ab \showthe\spacefactor \char98 \showthe\spacefactor\spaceskip=2pt plus 1pt a b\xspaceskip=9pt c. d}
+\showbox0
+\setbox0\hbox{{\obeyspaces a  b   c}}
+\showbox0
+\setbox0\hbox{\uppercase{text, \lowercase{ABC}} \char200 x \char0}
+\showbox0
+\setbox0\hbox{A.\spaceskip=3pt \xspaceskip=7pt B. c}
+\showbox0
+\shipout\box0
+\end

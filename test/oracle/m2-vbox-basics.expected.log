@@ -1,0 +1,192 @@
+(m2-vbox-basics.tex (plain.tex Preloading the plain
+ format: codes, registers,
+\maxdimen=\dimen10
+\hideskip=\skip10
+\centering=\skip11
+\p@=\dimen11
+\z@=\dimen12
+\z@skip=\skip12
+\voidb@x=\box10
+parameters,
+\smallskipamount=\skip13
+\medskipamount=\skip14
+\bigskipamount=\skip15
+\normalbaselineskip=\skip16
+\normallineskip=\skip17
+\normallineskiplimit=\dimen13
+\jot=\dimen14
+\interdisplaylinepenalty=\count23
+\interfootnotelinepenalty=\count24
+fonts, more fonts,
+\itfam=\fam4
+\slfam=\fam5
+\bffam=\fam6
+\ttfam=\fam7
+macros,
+\strutbox=\box11
+\mscount=\count25
+\tabs=\box12
+\tabsyet=\box13
+\tabsdone=\box14
+math definitions,
+\rootbox=\box15
+\p@renwd=\dimen15
+output routines,
+\headline=\toks10
+\footline=\toks11
+\footins=\insert254
+\topins=\insert253
+hyphenation (hyphen.tex))
+> 5.0pt.
+l.5 ...le height 20pt depth 5pt}\showthe\prevdepth
+
+
+> \box0=
+\vbox(68.61107+0.0)x7.50002
+.\hbox(6.83331+0.0)x7.50002
+..\tenrm A
+.\glue(\baselineskip) 8.69446
+.\hbox(4.30554+1.94444)x5.00002
+..\tenrm g
+.\glue(\lineskip) 2.0
+.\hbox(20.0+5.0)x0.4
+..\rule(20.0+5.0)x0.4
+.\hbox(6.83331+0.0)x7.08336
+..\tenrm B
+.\glue(\baselineskip) 6.16669
+.\hbox(6.83331+0.0)x7.22223
+..\tenrm C
+
+! OK.
+l.7 \showbox0
+
+
+
+Underfull \vbox (badness 1558) detected at line 10
+
+\vbox(24.83331+0.0)x7.50002, glue set 2.5
+.\hbox(6.83331+0.0)x7.50002
+..\tenrm A
+.\glue 0.0 plus 2.0
+.\glue(\baselineskip) 6.16669
+.\hbox(6.83331+0.0)x7.08336
+..\tenrm B
+
+> \box1=
+\vbox(6.83331+13.0)x7.50002
+.\hbox(6.83331+0.0)x7.50002
+..\tenrm A
+.\glue(\baselineskip) 6.16669
+.\hbox(6.83331+0.0)x7.08336
+..\tenrm B
+
+! OK.
+l.11 \showbox1
+               \showbox2 \showbox3
+
+> \box2=
+\vbox(50.0+0.0)x7.50002, glue set 43.16669fil
+.\hbox(6.83331+0.0)x7.50002
+..\tenrm A
+.\glue 0.0 plus 1.0fil minus 1.0fil
+
+! OK.
+l.11 \showbox1 \showbox2
+                         \showbox3
+
+> \box3=
+\vbox(24.83331+0.0)x7.50002, glue set 2.5
+.\hbox(6.83331+0.0)x7.50002
+..\tenrm A
+.\glue 0.0 plus 2.0
+.\glue(\baselineskip) 6.16669
+.\hbox(6.83331+0.0)x7.08336
+..\tenrm B
+
+! OK.
+l.11 \showbox1 \showbox2 \showbox3
+
+
+> \box4=
+\vbox(33.49994+0.0)x7.50002
+.\hbox(6.83331+0.0)x7.50002
+..\tenrm A
+.\glue 0.0 plus 1.0fil minus 1.0fil
+.\hbox(6.83331+0.0)x7.50002
+..\tenrm A
+.\glue 0.0 plus 2.0
+.\glue(\baselineskip) 6.16669
+.\hbox(6.83331+0.0)x7.08336
+..\tenrm B
+.\hbox(6.83331+0.0)x6.11111
+..\tenrm Z
+
+! OK.
+l.13 \showbox4
+
+
+
+Underfull \vbox (badness 10000) detected at line 15
+
+\vbox(15.0+0.0)x15.00003
+.\hbox(4.30554+0.0)x15.00003
+..\tenrm o
+..\tenrm n
+..\tenrm e
+
+> \box5=
+\vbox(23.0+0.0)x22.25003
+.\glue(\splittopskip) 3.84921
+.\hbox(6.15079+0.0)x15.55557
+..\tenrm t
+..\kern-0.27779
+..\tenrm w
+..\kern-0.27779
+..\tenrm o
+.\glue(\baselineskip) 6.05556
+.\hbox(6.94444+0.0)x22.25003
+..\tenrm t
+..\tenrm h
+..\tenrm r
+..\tenrm e
+..\tenrm e
+
+! OK.
+l.16 \showbox5
+               \showbox6
+
+> \box6=
+\vbox(15.0+0.0)x15.00003
+.\hbox(4.30554+0.0)x15.00003
+..\tenrm o
+..\tenrm n
+..\tenrm e
+
+! OK.
+l.16 \showbox5 \showbox6
+
+
+
+Completed box being shipped out [1]
+\vbox(50.49994+0.0)x15.00003
+.\vbox(33.49994+0.0)x7.50002
+..\hbox(6.83331+0.0)x7.50002
+...\tenrm A
+..\glue 0.0 plus 1.0fil minus 1.0fil
+..\hbox(6.83331+0.0)x7.50002
+...\tenrm A
+..\glue 0.0 plus 2.0
+..\glue(\baselineskip) 6.16669
+..\hbox(6.83331+0.0)x7.08336
+...\tenrm B
+..\hbox(6.83331+0.0)x6.11111
+...\tenrm Z
+.\glue(\lineskip) 2.0
+.\vbox(15.0+0.0)x15.00003
+..\hbox(4.30554+0.0)x15.00003
+...\tenrm o
+...\tenrm n
+...\tenrm e
+
+ )
+Output written on m2-vbox-basics.dvi (1 page, 216 bytes).

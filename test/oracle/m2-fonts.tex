@@ -1,0 +1,18 @@
+%! oracle: ini
+\input plain
+\tracingonline=0 \showboxbreadth=10000 \showboxdepth=10000 \tracingoutput=1
+\font\x=cmr10 at 12pt \font\y=cmr10 scaled 2000
+\message{\fontname\x, \fontname\y, \fontname\tenrm, \fontname\nullfont, \the\font}
+\showthe\fontdimen6\tenrm
+\showthe\fontdimen2\x
+\showthe\fontdimen1\y
+\showthe\hyphenchar\tenrm \showthe\skewchar\teni
+\hyphenchar\x=`- \skewchar\x=`A
+\showthe\hyphenchar\x \showthe\skewchar\x
+\fontdimen3\x=5pt \showthe\fontdimen3\x
+\font\z=nosuchfont
+\show\z
+\setbox0\hbox{\x ab\char65\char`B \y c \nullfont d \tenrm e}
+\showbox0
+\showthe\font
+\x Hello \char`W \end

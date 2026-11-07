@@ -1,0 +1,15 @@
+%! oracle: ini
+\input plain
+\tracingonline=0 \showboxbreadth=10000 \showboxdepth=10000 \tracingoutput=1
+\tracingparagraphs=1 \parindent=0pt \tolerance=10000 \hsize=60pt
+\setbox0\hbox{aa\discretionary{a-}{b}{ab}cc\-dd\discretionary{}{}{}}
+\showbox0
+\setbox0\hbox{\discretionary{\vrule}{x\kern1pt}{\hskip 2pt}}
+\setbox0\hbox{\discretionary{a\hbox{b}}{\penalty5}{}}
+\showbox0
+\hsize=40pt
+aaaaaa\discretionary{a-}{b}{ab}bbbbbbbb bbb\discretionary{a-}{b}{ab}cccc\par
+word\penalty-10000 next word\penalty10000 stuck together and more words to fill\par
+\hsize=100pt
+one\penalty-10000 two\penalty 100 three\penalty-100 four\par
+\end

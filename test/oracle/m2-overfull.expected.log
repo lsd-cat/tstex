@@ -1,0 +1,195 @@
+(m2-overfull.tex (plain.tex Preloading the plain fo
+rmat: codes, registers,
+\maxdimen=\dimen10
+\hideskip=\skip10
+\centering=\skip11
+\p@=\dimen11
+\z@=\dimen12
+\z@skip=\skip12
+\voidb@x=\box10
+parameters,
+\smallskipamount=\skip13
+\medskipamount=\skip14
+\bigskipamount=\skip15
+\normalbaselineskip=\skip16
+\normallineskip=\skip17
+\normallineskiplimit=\dimen13
+\jot=\dimen14
+\interdisplaylinepenalty=\count23
+\interfootnotelinepenalty=\count24
+fonts, more fonts,
+\itfam=\fam4
+\slfam=\fam5
+\bffam=\fam6
+\ttfam=\fam7
+macros,
+\strutbox=\box11
+\mscount=\count25
+\tabs=\box12
+\tabsyet=\box13
+\tabsdone=\box14
+math definitions,
+\rootbox=\box15
+\p@renwd=\dimen15
+output routines,
+\headline=\toks10
+\footline=\toks11
+\footins=\insert254
+\topins=\insert253
+hyphenation (hyphen.tex))
+Overfull \hbox (28.91675pt too wide) detected at line 5
+\tenrm Hello world|
+
+\hbox(6.94444+0.0)x20.0, glue set - 1.0
+.\tenrm H
+.\tenrm e
+.\tenrm l
+.\tenrm l
+.\tenrm o
+.\glue 3.33333 plus 1.66666 minus 1.11111
+.\tenrm w
+.\kern-0.27779
+.\tenrm o
+.\tenrm r
+.\tenrm l
+.\tenrm d
+.\rule(*+*)x5.0
+
+
+Underfull \hbox (badness 10000) detected at line 6
+\tenrm Hello
+
+\hbox(6.94444+0.0)x100.0
+.\tenrm H
+.\tenrm e
+.\tenrm l
+.\tenrm l
+.\tenrm o
+
+
+Underfull \hbox (badness 533) detected at line 7
+\tenrm Hello
+
+\hbox(6.94444+0.0)x40.0, glue set 1.75
+.\tenrm H
+.\tenrm e
+.\tenrm l
+.\tenrm l
+.\tenrm o
+.\glue 0.0 plus 10.0 minus 5.0
+
+
+Underfull \hbox (badness 371) detected at line 8
+\tenrm Hello
+
+\hbox(6.94444+0.0)x38.0, glue set 1.55
+.\tenrm H
+.\tenrm e
+.\tenrm l
+.\tenrm l
+.\tenrm o
+.\glue 0.0 plus 10.0 minus 5.0
+
+
+Underfull \hbox (badness 3118) detected at line 9
+\tenrm Hello
+
+\hbox(6.94444+0.0)x54.0, glue set 3.15
+.\tenrm H
+.\tenrm e
+.\tenrm l
+.\tenrm l
+.\tenrm o
+.\glue 0.0 plus 10.0 minus 5.0
+
+
+Underfull \hbox (badness 2073) detected at line 10
+\tenrm Hello
+
+\hbox(6.94444+0.0)x50.0, glue set 2.75
+.\tenrm H
+.\tenrm e
+.\tenrm l
+.\tenrm l
+.\tenrm o
+.\glue 0.0 plus 10.0 minus 5.0
+
+
+Overfull \vbox (25.83331pt too high) detected at line 13
+
+\vbox(5.0+0.0)x7.50002
+.\hbox(6.83331+0.0)x7.50002
+..\tenrm A
+.\glue(\baselineskip) 5.16669
+.\hbox(6.83331+0.0)x7.08336
+..\tenrm B
+.\glue(\baselineskip) 5.16669
+.\hbox(6.83331+0.0)x7.22223
+..\tenrm C
+
+
+Underfull \vbox (badness 10000) detected at line 14
+
+\vbox(100.0+0.0)x7.50002
+.\hbox(6.83331+0.0)x7.50002
+..\tenrm A
+
+
+Overfull \hbox (28.91675pt too wide) detected at line 17
+\tenrm Hello world
+
+\hbox(6.94444+0.0)x20.0, glue set - 1.0
+.\tenrm H
+.\tenrm e
+.\tenrm l
+.\tenrm l
+.\tenrm o
+.\glue 3.33333 plus 1.66666 minus 1.11111
+.\tenrm w
+.\kern-0.27779
+.\tenrm o
+.\tenrm r
+.\tenrm l
+.\tenrm d
+
+> \box0=
+\hbox(6.94444+0.0)x20.0, glue set - 1.0
+.\tenrm H
+.\tenrm e
+.\tenrm l
+.\tenrm l
+.\tenrm o
+.\glue 3.33333 plus 1.66666 minus 1.11111
+.\tenrm w
+.\kern-0.27779
+.\tenrm o
+.\tenrm r
+.\tenrm l
+.\tenrm d
+
+! OK.
+l.18 \showbox0
+
+
+
+Overfull \hbox (12.50005pt too wide) detected at line 19
+\tenrm Hello
+
+\hbox(6.94444+0.0)x10.0
+.\tenrm H
+.\tenrm e
+.\tenrm l
+.\tenrm l
+.\tenrm o
+
+
+Completed box being shipped out [1]
+\hbox(6.94444+0.0)x10.0
+.\tenrm H
+.\tenrm e
+.\tenrm l
+.\tenrm l
+.\tenrm o
+
+ )
+Output written on m2-overfull.dvi (1 page, 180 bytes).

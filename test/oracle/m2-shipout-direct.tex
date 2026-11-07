@@ -1,0 +1,17 @@
+%! oracle: ini
+\input plain
+\tracingonline=0 \showboxbreadth=10000 \showboxdepth=10000 \tracingoutput=1
+\shipout\hbox{A}
+\shipout\vbox{\hbox{B}\hbox{C}\kern 3pt}
+\deadcycles=5 \showthe\deadcycles
+\shipout\hbox{D}
+\showthe\deadcycles
+\count1=5 \count3=7
+\shipout\hbox{E}
+\count0=-2 \count1=0 \count2=0 \count3=0 \count9=4
+\shipout\vbox{}
+\count0=1 \count1=0 \count9=0 \count3=7
+\shipout\hbox{}
+\shipout\hbox to 20pt{\hss F\kern -5pt}
+\shipout\vtop to 5pt{\hrule height 3pt width 10pt}
+\end

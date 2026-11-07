@@ -1,0 +1,150 @@
+(m2-fonts.tex (plain.tex Preloading the plain forma
+t: codes, registers,
+\maxdimen=\dimen10
+\hideskip=\skip10
+\centering=\skip11
+\p@=\dimen11
+\z@=\dimen12
+\z@skip=\skip12
+\voidb@x=\box10
+parameters,
+\smallskipamount=\skip13
+\medskipamount=\skip14
+\bigskipamount=\skip15
+\normalbaselineskip=\skip16
+\normallineskip=\skip17
+\normallineskiplimit=\dimen13
+\jot=\dimen14
+\interdisplaylinepenalty=\count23
+\interfootnotelinepenalty=\count24
+fonts, more fonts,
+\itfam=\fam4
+\slfam=\fam5
+\bffam=\fam6
+\ttfam=\fam7
+macros,
+\strutbox=\box11
+\mscount=\count25
+\tabs=\box12
+\tabsyet=\box13
+\tabsdone=\box14
+math definitions,
+\rootbox=\box15
+\p@renwd=\dimen15
+output routines,
+\headline=\toks10
+\footline=\toks11
+\footins=\insert254
+\topins=\insert253
+hyphenation (hyphen.tex)) cmr10 at 12.0pt, cmr10 at 2
+0.0pt, cmr10, nullfont, \tenrm
+> 10.00002pt.
+<recently read> \tenrm
+
+l.6 \showthe\fontdimen6\tenrm
+
+
+> 4.0pt.
+<recently read> \x
+
+l.7 \showthe\fontdimen2\x
+
+
+> 0.0pt.
+<recently read> \y
+
+l.8 \showthe\fontdimen1\y
+
+
+> 45.
+l.9 \showthe\hyphenchar\tenrm
+                              \showthe\skewchar\teni
+
+> 127.
+l.9 ...the\hyphenchar\tenrm \showthe\skewchar\teni
+
+
+> 45.
+l.11 \showthe\hyphenchar\x
+                           \showthe\skewchar\x
+
+> 65.
+l.11 \showthe\hyphenchar\x \showthe\skewchar\x
+
+
+> 5.0pt.
+<recently read> \x
+
+l.12 \fontdimen3\x=5pt \showthe\fontdimen3\x
+
+
+! Font \z=nosuchfont not loadable: Metric (TFM) file not found.
+<to be read again>
+                   \show
+l.14 \show
+          \z
+I wasn't able to read the size data for this font,
+so I will ignore the font specification.
+[Wizards can fix TFM files using TFtoPL/PLtoTF.]
+You might try inserting a different font spec;
+e.g., type `I\font<same font id>=<substitute font name>'.
+
+> \z=select font nullfont.
+l.14 \show\z
+
+
+Missing character: There is no d in font nullfont!
+> \box0=
+\hbox(8.6111+0.0)x50.16676
+.\x a
+.\x b
+.\x A
+.\x B
+.\y c
+.\glue 6.66667 plus 3.33333 minus 2.22223
+.\glue 0.0
+.\tenrm e
+
+! OK.
+l.16 \showbox0
+
+
+> \tenrm .
+<recently read> \font
+
+l.17 \showthe\font
+
+
+
+Completed box being shipped out [1]
+\vbox(667.20255+0.0)x469.75499
+.\vbox(0.0+0.0)x469.75499, glue set 14.0fil
+..\glue -22.5
+..\hbox(8.5+0.0)x469.75499, glue set 469.75499fil
+...\vbox(8.5+0.0)x0.0
+...\glue 0.0 plus 1.0fil
+..\glue 0.0 plus 1.0fil minus 1.0fil
+.\vbox(643.20255+0.0)x469.75499, glue set 633.20255fill
+..\glue(\topskip) 1.66667
+..\hbox(8.33333+0.0)x469.75499, glue set 406.42157fil
+...\hbox(0.0+0.0)x20.0
+...\x H
+...\x e
+...\x l
+...\x l
+...\x o
+...\glue 4.0 plus 5.0 minus 1.33333
+...\x W
+...\penalty 10000
+...\glue(\parfillskip) 0.0 plus 1.0fil
+...\glue(\rightskip) 0.0
+..\hbox(0.0+0.0)x469.75499
+..\glue 0.0 plus 1.0fill
+.\glue(\baselineskip) 17.55556
+.\hbox(6.44444+0.0)x469.75499, glue set 232.37749fil
+..\glue 0.0 plus 1.0fil minus 1.0fil
+..\tenrm 1
+..\glue 0.0 plus 1.0fil minus 1.0fil
+
+ )
+Output written on m2-fonts.dvi (1 page, 260 bytes).

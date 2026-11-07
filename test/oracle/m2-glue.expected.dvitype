@@ -1,0 +1,28 @@
+Options selected:
+  Starting page = * 
+  Maximum number of pages = 1000000
+  Output level = 4 (the works)
+  Resolution = 300.00000000 pixels per inch
+numerator/denominator=25400000/473628672
+magnification=1000;       0.00006334 pixels per DVI unit
+'<comment>'
+Postamble starts at byte 131.
+maxv=3797447, maxh=6553600, maxstackdepth=1, totalpages=1
+Font 0: cmr10---loaded at size 655360 DVI units 
+ 
+42: beginning of page 1 
+87: down3 455111 v:=0+455111=455111, vv:=29 
+91: push 
+level 0:(h=0,v=455111,w=0,x=0,y=0,z=0,hh=0,vv=29) 
+92: fntdef1 0: cmr10 
+113: fntnum0 current font is cmr10 
+114: setchar97 h:=0+327681=327681, hh:=21 
+115: right3 196608 h:=327681+196608=524289, hh:=33 
+119: setchar98 h:=524289+364090=888379, hh:=56 
+120: right3 5373950 h:=888379+5373950=6262329, hh:=397 
+124: setchar99 h:=6262329+291271=6553600, hh:=415 
+[a b c]
+125: pop 
+level 0:(h=0,v=455111,w=0,x=0,y=0,z=0,hh=0,vv=29) 
+126: down3 3342336 v:=455111+3342336=3797447, vv:=241 
+130: eop 

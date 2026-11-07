@@ -1,0 +1,33 @@
+Options selected:
+  Starting page = * 
+  Maximum number of pages = 1000000
+  Output level = 4 (the works)
+  Resolution = 300.00000000 pixels per inch
+numerator/denominator=25400000/473628672
+magnification=1000;       0.00006334 pixels per DVI unit
+'<comment>'
+Postamble starts at byte 138.
+maxv=455111, maxh=4068698, maxstackdepth=0, totalpages=1
+Font 0: cmr10---loaded at size 655360 DVI units 
+ 
+42: beginning of page 1 
+87: down3 455111 v:=0+455111=455111, vv:=29 
+91: fntdef1 0: cmr10 
+112: fntnum0 current font is cmr10 
+113: setchar65 h:=0+491521=491521, hh:=31 
+114: w3 -72819 h:=491521-72819=418702, hh:=26 
+118: setchar86 h:=418702+491521=910223, hh:=57 
+119: w0 -72819 h:=910223-72819=837404, hh:=52 
+120: setchar65 h:=837404+491521=1328925, hh:=83 
+121: setchar86 h:=1328925+491521=1820446, hh:=114 
+122: right3 227554 h:=1820446+227554=2048000, hh:=130 
+126: setchar84 h:=2048000+473316=2521316, hh:=160 
+127: setchar111 h:=2521316+327681=2848997, hh:=181 
+128: w3 218453 h:=2848997+218453=3067450, hh:=194 
+132: setchar102 h:=3067450+200250=3267700, hh:=207 
+133: setchar102 h:=3267700+200250=3467950, hh:=220 
+134: w0 218453 h:=3467950+218453=3686403, hh:=233 
+135: setchar102 h:=3686403+200250=3886653, hh:=246 
+136: setchar105 h:=3886653+182045=4068698, hh:=258 
+[AVAV To ff fi]
+137: eop 

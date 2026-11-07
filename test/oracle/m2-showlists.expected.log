@@ -1,0 +1,279 @@
+(m2-showlists.tex (plain.tex Preloading the plain f
+ormat: codes, registers,
+\maxdimen=\dimen10
+\hideskip=\skip10
+\centering=\skip11
+\p@=\dimen11
+\z@=\dimen12
+\z@skip=\skip12
+\voidb@x=\box10
+parameters,
+\smallskipamount=\skip13
+\medskipamount=\skip14
+\bigskipamount=\skip15
+\normalbaselineskip=\skip16
+\normallineskip=\skip17
+\normallineskiplimit=\dimen13
+\jot=\dimen14
+\interdisplaylinepenalty=\count23
+\interfootnotelinepenalty=\count24
+fonts, more fonts,
+\itfam=\fam4
+\slfam=\fam5
+\bffam=\fam6
+\ttfam=\fam7
+macros,
+\strutbox=\box11
+\mscount=\count25
+\tabs=\box12
+\tabsyet=\box13
+\tabsdone=\box14
+math definitions,
+\rootbox=\box15
+\p@renwd=\dimen15
+output routines,
+\headline=\toks10
+\footline=\toks11
+\footins=\insert254
+\topins=\insert253
+hyphenation (hyphen.tex))
+
+### internal vertical mode entered at line 6
+\hbox(6.94444+0.0)x15.00003
+.\tenrm a
+.\hbox(6.94444+0.0)x10.00002
+..\tenrm b
+..\hbox(4.30554+0.0)x4.44444
+...\tenrm c
+prevdepth 0.0
+### vertical mode entered at line 0
+prevdepth ignored
+
+! OK.
+l.6 \vbox{\hbox{a\hbox{b\hbox{c}}}\showlists
+                                             \hrule\kern3pt
+
+
+### horizontal mode entered at line 7
+\tenrm q
+\hbox(4.30554+0.0)x7.86111
+.\tenrm r
+.\vbox(4.30554+0.0)x3.94444
+..\hbox(4.30554+0.0)x3.94444
+...\tenrm s
+\discretionary replacing 1
+.\tenrm a
+|\tenrm b
+\tenrm c
+\glue 3.33333 plus 1.66666 minus 1.11111
+\penalty 3
+\mark{m}
+\rule(*+*)x0.4
+spacefactor 1000
+### internal vertical mode entered at line 6
+\hbox(6.94444+0.0)x15.00003
+.\tenrm a
+.\hbox(6.94444+0.0)x10.00002
+..\tenrm b
+..\hbox(4.30554+0.0)x4.44444
+...\tenrm c
+\rule(0.4+0.0)x*
+\kern 3.0
+\glue(\parskip) 0.0 plus 1.0
+prevdepth ignored
+### vertical mode entered at line 0
+prevdepth ignored
+
+! OK.
+<recently read> \showlists
+
+l.7 ...a}{b}{c} \penalty3 \mark{m}\vrule\showlists
+
+
+
+### internal vertical mode entered at line 6
+\hbox(6.94444+0.0)x15.00003
+.\tenrm a
+.\hbox(6.94444+0.0)x10.00002
+..\tenrm b
+..\hbox(4.30554+0.0)x4.44444
+...\tenrm c
+\rule(0.4+0.0)x*
+\kern 3.0
+\glue(\parskip) 0.0 plus 1.0
+\hbox(4.30554+1.94444)x100.0, glue set 78.68333fil
+.\tenrm q
+.\hbox(4.30554+0.0)x7.86111
+..\tenrm r
+..\vbox(4.30554+0.0)x3.94444
+...\hbox(4.30554+0.0)x3.94444
+....\tenrm s
+.\discretionary replacing 1
+..\tenrm a
+.|\tenrm b
+.\tenrm c
+.\glue 3.33333 plus 1.66666 minus 1.11111
+.\penalty 3
+.\rule(*+*)x0.4
+.\penalty 10000
+.\glue(\parfillskip) 0.0 plus 1.0fil
+.\glue(\rightskip) 0.0
+\mark{m}
+prevdepth 1.94444, prevgraf 1 line
+### vertical mode entered at line 0
+prevdepth ignored
+
+! OK.
+l.8  \par\showlists
+                   }
+
+> \box2=
+\hbox(6.94444+1.94444)x48.33342
+.\tenrm a
+.\hbox(6.94444+0.0)x10.00002 []
+.\tenrm d
+.etc.
+
+! OK.
+l.11 \showbox2
+
+
+> \box2=
+\hbox(6.94444+1.94444)x48.33342 []
+
+! OK.
+l.12 \showboxdepth=0 \showbox2
+
+
+> \box2=
+\hbox(6.94444+1.94444)x48.33342
+.\tenrm a
+.\hbox(6.94444+0.0)x10.00002
+..\tenrm b
+..\hbox(4.30554+0.0)x4.44444
+...\tenrm c
+.\tenrm d
+.\glue 3.33333 plus 1.66666 minus 1.11111
+.\tenrm e
+.etc.
+
+! OK.
+l.13 \showboxdepth=10 \showboxbreadth=0 \showbox2
+
+
+> \box2=
+\vbox(40.30554+0.0)x5.55557
+.\hbox(4.30554+0.0)x5.00002
+..\tenrm a
+.\glue(\baselineskip) 5.05556
+.etc.
+
+! OK.
+l.16 \showboxbreadth=2 \showbox2
+
+
+
+### restricted horizontal mode entered at line 18
+\tenrm L
+\tenrm a
+\tenrm s
+\tenrm t
+\tenrm :
+\glue 4.44444 plus 3.33331 minus 0.55556
+spacefactor 2000
+### vertical mode entered at line 0
+### current page:
+\glue(\topskip) 0.0
+\vbox(14.64998+1.94444)x100.0
+.\hbox(6.94444+0.0)x15.00003
+..\tenrm a
+..\hbox(6.94444+0.0)x10.00002
+...\tenrm b
+...\hbox(4.30554+0.0)x4.44444
+....\tenrm c
+.\rule(0.4+0.0)x*
+.\kern 3.0
+.\glue(\parskip) 0.0 plus 1.0
+.\hbox(4.30554+1.94444)x100.0, glue set 78.68333fil
+..\tenrm q
+..\hbox(4.30554+0.0)x7.86111
+...\tenrm r
+...\vbox(4.30554+0.0)x3.94444
+....\hbox(4.30554+0.0)x3.94444
+.....\tenrm s
+..\discretionary replacing 1
+...\tenrm a
+..|\tenrm b
+..\tenrm c
+..\glue 3.33333 plus 1.66666 minus 1.11111
+..\penalty 3
+..\rule(*+*)x0.4
+..\penalty 10000
+..\glue(\parfillskip) 0.0 plus 1.0fil
+..\glue(\rightskip) 0.0
+.\mark{m}
+total height 14.64998
+ goal height 643.20255
+prevdepth 1.94444
+
+! OK.
+l.18 \hbox{Last: \showlists
+                           }
+
+
+Completed box being shipped out [1]
+\vbox(667.20255+0.0)x100.0
+.\vbox(0.0+0.0)x100.0, glue set 14.0fil
+..\glue -22.5
+..\hbox(8.5+0.0)x100.0, glue set 100.0fil
+...\vbox(8.5+0.0)x0.0
+...\glue 0.0 plus 1.0fil
+..\glue 0.0 plus 1.0fil minus 1.0fil
+.\vbox(643.20255+0.0)x100.0, glue set 616.55257fill
+..\glue(\topskip) 0.0
+..\vbox(14.64998+1.94444)x100.0
+...\hbox(6.94444+0.0)x15.00003
+....\tenrm a
+....\hbox(6.94444+0.0)x10.00002
+.....\tenrm b
+.....\hbox(4.30554+0.0)x4.44444
+......\tenrm c
+...\rule(0.4+0.0)x*
+...\kern 3.0
+...\glue(\parskip) 0.0 plus 1.0
+...\hbox(4.30554+1.94444)x100.0, glue set 78.68333fil
+....\tenrm q
+....\hbox(4.30554+0.0)x7.86111
+.....\tenrm r
+.....\vbox(4.30554+0.0)x3.94444
+......\hbox(4.30554+0.0)x3.94444
+.......\tenrm s
+....\discretionary replacing 1
+.....\tenrm a
+....|\tenrm b
+....\tenrm c
+....\glue 3.33333 plus 1.66666 minus 1.11111
+....\penalty 3
+....\rule(*+*)x0.4
+....\penalty 10000
+....\glue(\parfillskip) 0.0 plus 1.0fil
+....\glue(\rightskip) 0.0
+...\mark{m}
+..\glue(\baselineskip) 3.22224
+..\hbox(6.83331+0.0)x26.3056
+...\tenrm L
+...\tenrm a
+...\tenrm s
+...\tenrm t
+...\tenrm :
+...\glue 4.44444 plus 3.33331 minus 0.55556
+..\hbox(0.0+0.0)x100.0
+..\glue 0.0 plus 1.0fill
+.\glue(\baselineskip) 17.55556
+.\hbox(6.44444+0.0)x100.0, glue set 47.5fil
+..\glue 0.0 plus 1.0fil minus 1.0fil
+..\tenrm 1
+..\glue 0.0 plus 1.0fil minus 1.0fil
+
+ )
+Output written on m2-showlists.dvi (1 page, 276 bytes).

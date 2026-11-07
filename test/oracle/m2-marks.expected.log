@@ -1,0 +1,178 @@
+(m2-marks.tex (plain.tex Preloading the plain forma
+t: codes, registers,
+\maxdimen=\dimen10
+\hideskip=\skip10
+\centering=\skip11
+\p@=\dimen11
+\z@=\dimen12
+\z@skip=\skip12
+\voidb@x=\box10
+parameters,
+\smallskipamount=\skip13
+\medskipamount=\skip14
+\bigskipamount=\skip15
+\normalbaselineskip=\skip16
+\normallineskip=\skip17
+\normallineskiplimit=\dimen13
+\jot=\dimen14
+\interdisplaylinepenalty=\count23
+\interfootnotelinepenalty=\count24
+fonts, more fonts,
+\itfam=\fam4
+\slfam=\fam5
+\bffam=\fam6
+\ttfam=\fam7
+macros,
+\strutbox=\box11
+\mscount=\count25
+\tabs=\box12
+\tabsyet=\box13
+\tabsdone=\box14
+math definitions,
+\rootbox=\box15
+\p@renwd=\dimen15
+output routines,
+\headline=\toks10
+\footline=\toks11
+\footins=\insert254
+\topins=\insert253
+hyphenation (hyphen.tex))
+%% goal height=50.0, max depth=4.0
+% t=0.0 g=50.0 b=10000 p=0 c=100000#
+% t=12.0 g=50.0 b=10000 p=0 c=100000#
+% t=26.0 g=50.0 b=10000 p=0 c=100000#
+% t=40.0 g=50.0 b=10000 p=0 c=100000#
+% t=54.0 g=50.0 b=* p=0 c=*
+[top:|first:m0|bot:m2]
+
+Completed box being shipped out [1]
+\vbox(40.0+0.0)x5.55557
+.\mark{m0}
+.\glue(\topskip) 7.69446
+.\hbox(4.30554+0.0)x5.00002
+..\tenrm a
+.\mark{m1}
+.\glue(\baselineskip) 7.05556
+.\hbox(6.94444+0.0)x5.55557
+..\tenrm b
+.\glue(\baselineskip) 9.69446
+.\hbox(4.30554+0.0)x4.44444
+..\tenrm c
+.\mark{m2}
+
+%% goal height=50.0, max depth=4.0
+% t=12.0 g=50.0 b=10000 p=0 c=100000#
+% t=26.0 g=50.0 b=10000 p=0 c=100000#
+% t=40.0 g=50.0 b=10000 p=0 c=100000#
+% t=54.0 g=50.0 b=* p=0 c=*
+[top:m2|first:m2|bot:m2]
+
+Completed box being shipped out [1]
+\vbox(40.0+0.0)x5.55557
+.\glue(\topskip) 5.05556
+.\hbox(6.94444+0.0)x5.55557
+..\tenrm d
+.\glue(\baselineskip) 9.69446
+.\hbox(4.30554+0.0)x4.44444
+..\tenrm e
+.\glue(\baselineskip) 7.05556
+.\hbox(6.94444+0.0)x3.05557
+..\tenrm f
+
+%% goal height=50.0, max depth=4.0
+% t=12.0 g=50.0 b=10000 p=0 c=100000#
+% t=26.0 g=50.0 b=10000 p=0 c=100000#
+% t=40.0 g=50.0 b=10000 p=0 c=100000#
+% t=54.0 g=50.0 b=* p=0 c=*
+[top:m2|first:m3|bot:m3]
+
+Completed box being shipped out [1]
+\vbox(40.0+0.0)x5.55557
+.\glue(\topskip) 7.69446
+.\hbox(4.30554+1.94444)x5.00002
+..\tenrm g
+.\mark{m3}
+.\glue(\baselineskip) 5.11111
+.\hbox(6.94444+0.0)x5.55557
+..\tenrm h
+.\glue(\baselineskip) 7.32141
+.\hbox(6.67859+0.0)x2.77779
+..\tenrm i
+
+%% goal height=50.0, max depth=4.0
+% t=12.0 g=50.0 b=10000 p=0 c=100000#
+% t=26.0 g=50.0 b=10000 p=0 c=100000#
+
+Underfull \vbox (badness 10000) detected at line 8
+
+\vbox(30.0+0.0)x5.55557
+.\hbox(4.30554+0.0)x5.00002
+..\tenrm a
+.\mark{s1}
+.\glue(\baselineskip) 7.05556
+.\hbox(6.94444+0.0)x5.55557
+..\tenrm b
+.\mark{s2}
+
+[sf:s1|sb:s2]
+> \box2=
+\vbox(30.0+0.0)x5.55557
+.\hbox(4.30554+0.0)x5.00002
+..\tenrm a
+.\mark{s1}
+.\glue(\baselineskip) 7.05556
+.\hbox(6.94444+0.0)x5.55557
+..\tenrm b
+.\mark{s2}
+
+! OK.
+l.10 \showbox2
+               \showbox1
+
+> \box1=
+\vbox(24.0+0.0)x5.55557
+.\glue(\splittopskip) 5.69446
+.\hbox(4.30554+0.0)x4.44444
+..\tenrm c
+.\mark{s3}
+.\glue(\baselineskip) 7.05556
+.\hbox(6.94444+0.0)x5.55557
+..\tenrm d
+
+! OK.
+l.10 \showbox2 \showbox1
+
+
+
+Underfull \vbox (badness 10000) detected at line 11
+
+\vbox(100.0+0.0)x5.55557
+.\glue(\splittopskip) 5.69446
+.\hbox(4.30554+0.0)x4.44444
+..\tenrm c
+.\mark{s3}
+.\glue(\baselineskip) 7.05556
+.\hbox(6.94444+0.0)x5.55557
+..\tenrm d
+
+[sf:s3|sb:s3]
+% t=40.0 g=50.0 b=10000 p=0 c=100000#
+% t=40.0 plus 1.0fill g=50.0 b=0 p=-1073741824 c=-1073741824#
+[top:m3|first:m3|bot:m3]
+
+Completed box being shipped out [1]
+\vbox(40.0+0.0)x100.0
+.\glue(\topskip) 5.32141
+.\hbox(6.67859+1.94444)x3.05557
+..\tenrm j
+.\glue(\baselineskip) 5.11111
+.\hbox(6.94444+0.0)x5.2778
+..\tenrm k
+.\glue(\baselineskip) 7.05556
+.\hbox(6.94444+0.0)x2.77779
+..\tenrm l
+.\hbox(0.0+0.0)x100.0
+.\glue 0.0 plus 1.0fill
+
+ )
+Output written on m2-marks.dvi (4 pages, 384 bytes).

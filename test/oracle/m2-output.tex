@@ -1,0 +1,15 @@
+%! oracle: ini
+\input plain
+\tracingonline=0 \showboxbreadth=10000 \showboxdepth=10000 \tracingoutput=1
+\tracingpages=1 \vsize=60pt \hsize=100pt \parindent=0pt \baselineskip=14pt \topskip=12pt
+\output={\message{[op=\the\outputpenalty]}\global\setbox1=\vbox{\unvbox255}\shipout\box1}
+\hbox{a}\hbox{b}\hbox{c}\hbox{d}\hbox{e}\penalty-5 \hbox{f}\hbox{g}\hbox{h}\hbox{i}\hbox{j}
+\output={\shipout\hbox{OUT \the\count0}\unvbox255 \penalty\outputpenalty}
+\holdinginserts=1 \hbox{k}\hbox{l}\hbox{m}\hbox{n}\hbox{o}\hbox{p}\hbox{q}
+\output={\setbox0\box255 \deadcycles=0 \shipout\copy0}
+\hbox{r}\hbox{s}\hbox{t}\hbox{u}\hbox{v}
+\maxdeadcycles=3
+\output={\global\setbox3\box255 }
+\hbox{w}\hbox{x}\hbox{y}\hbox{z}\hbox{A}\hbox{B}\hbox{C}\hbox{D}\hbox{E}\hbox{F}
+\output={\shipout\box255}
+\end

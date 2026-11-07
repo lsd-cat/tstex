@@ -1,0 +1,14 @@
+%! oracle: ini
+\input plain
+\tracingonline=0 \showboxbreadth=10000 \showboxdepth=10000 \tracingoutput=1
+\parindent=20pt
+\setbox0\hbox{a\raise3pt\hbox{b}c\lower2pt\hbox{d}e\raise-1pt\hbox{f}}
+\showbox0
+\setbox1\vbox{\moveleft 5pt\hbox{a}\moveright 7pt\hbox{b}\moveleft-3pt\hbox{c}}
+\showbox1
+\setbox2\vbox{\noindent A line.\par \indent Indented.\par \parindent=5pt Next.\par \noindent\indent\indent x\par}
+\showbox2
+\hsize=100pt \parindent=15pt
+Paragraph with indent.\par
+\noindent No indent.\par
+\end

@@ -1,0 +1,204 @@
+(m2-chars-spaces.tex (plain.tex Preloading the plai
+n format: codes, registers,
+\maxdimen=\dimen10
+\hideskip=\skip10
+\centering=\skip11
+\p@=\dimen11
+\z@=\dimen12
+\z@skip=\skip12
+\voidb@x=\box10
+parameters,
+\smallskipamount=\skip13
+\medskipamount=\skip14
+\bigskipamount=\skip15
+\normalbaselineskip=\skip16
+\normallineskip=\skip17
+\normallineskiplimit=\dimen13
+\jot=\dimen14
+\interdisplaylinepenalty=\count23
+\interfootnotelinepenalty=\count24
+fonts, more fonts,
+\itfam=\fam4
+\slfam=\fam5
+\bffam=\fam6
+\ttfam=\fam7
+macros,
+\strutbox=\box11
+\mscount=\count25
+\tabs=\box12
+\tabsyet=\box13
+\tabsdone=\box14
+math definitions,
+\rootbox=\box15
+\p@renwd=\dimen15
+output routines,
+\headline=\toks10
+\footline=\toks11
+\footins=\insert254
+\topins=\insert253
+hyphenation (hyphen.tex))
+> \box0=
+\hbox(7.5+2.5)x104.25017
+.\tenrm A
+.\tenrm .
+.\glue 3.33333 plus 1.66666 minus 1.11111
+.\tenrm B
+.\tenrm .
+.\glue 3.33333 plus 1.66666 minus 1.11111
+.\tenrm C
+.\tenrm ,
+.\glue 3.33333 plus 1.66666 minus 1.11111
+.\tenrm d
+.\tenrm ;
+.\glue 3.33333 plus 2.49998 minus 0.74074
+.\tenrm e
+.\tenrm :
+.\glue 4.44444 plus 3.33331 minus 0.55556
+.\tenrm f
+.\kern0.77779
+.\tenrm ?
+.\glue 4.44444 plus 4.99997 minus 0.37036
+.\tenrm g
+.\tenrm !
+.\glue 4.44444 plus 4.99997 minus 0.37036
+.\tenrm h
+.\tenrm )
+.\glue 3.33333 plus 1.66666 minus 1.11111
+.\tenrm i
+
+! OK.
+l.6 \showbox0
+
+
+> \box0=
+\hbox(6.94444+1.94444)x72.0279
+.\tenrm A
+.\tenrm .
+.\glue 3.33333 plus 1.66666 minus 1.11111
+.\tenrm B
+.\tenrm .
+.\glue 3.33333 plus 1.66666 minus 1.11111
+.\tenrm C
+.\tenrm ,
+.\glue 3.33333 plus 1.66666 minus 1.11111
+.\tenrm d
+.\tenrm ;
+.\glue 3.33333 plus 1.66666 minus 1.11111
+.\tenrm e
+.\tenrm .
+.\glue 4.44444 plus 4.99997 minus 0.37036
+.\tenrm f
+.\kern0.77779
+.\tenrm ?
+
+! OK.
+l.8 \showbox0
+
+
+> 3000.
+l.9 ...box{a\spacefactor=3000 \showthe\spacefactor
+                                                  {} b\ c}
+
+> \box0=
+\hbox(6.94444+0.0)x22.7778
+.\tenrm a
+.\glue 4.44444 plus 4.99997 minus 0.37036
+.\tenrm b
+.\glue 3.33333 plus 1.66666 minus 1.11111
+.\tenrm c
+
+! OK.
+l.10 \showbox0
+
+
+> 2000.
+l.11 ...box{\sfcode`b=2000 ab \showthe\spacefactor
+                                                   \char98 \showthe\spacefac...
+
+
+> 2000.
+l.11 ...e\spacefactor \char98 \showthe\spacefactor
+                                                  \spaceskip=2pt plus 1pt a ...
+
+
+> \box0=
+\hbox(6.94444+0.0)x54.88899
+.\tenrm a
+.\tenrm b
+.\glue 4.44444 plus 3.33331 minus 0.55556
+.\tenrm b
+.\tenrm a
+.\glue(\spaceskip) 2.0 plus 1.0
+.\tenrm b
+.\tenrm c
+.\tenrm .
+.\glue(\xspaceskip) 9.0
+.\tenrm d
+
+! OK.
+l.12 \showbox0
+
+
+> \box0=
+\hbox(6.94444+0.0)x35.0
+.\glue 3.33333 plus 1.66666 minus 1.11111
+.\tenrm a
+.\glue 3.33333 plus 1.66666 minus 1.11111
+.\glue 3.33333 plus 1.66666 minus 1.11111
+.\tenrm b
+.\glue 3.33333 plus 1.66666 minus 1.11111
+.\glue 3.33333 plus 1.66666 minus 1.11111
+.\glue 3.33333 plus 1.66666 minus 1.11111
+.\tenrm c
+
+! OK.
+l.14 \showbox0
+
+
+Missing character: There is no ^^c8 in font cmr10!
+> \box0=
+\hbox(6.94444+1.94444)x68.33345
+.\tenrm T
+.\tenrm E
+.\tenrm X
+.\tenrm T
+.\tenrm ,
+.\glue 3.33333 plus 1.66666 minus 1.11111
+.\tenrm a
+.\tenrm b
+.\kern0.27779
+.\tenrm c
+.\glue 3.33333 plus 1.66666 minus 1.11111
+.\tenrm x
+.\glue 3.33333 plus 1.66666 minus 1.11111
+.\tenrm ^^@
+
+! OK.
+l.16 \showbox0
+
+
+> \box0=
+\hbox(6.83331+0.0)x27.58339
+.\tenrm A
+.\tenrm .
+.\tenrm B
+.\tenrm .
+.\glue(\spaceskip) 3.0
+.\tenrm c
+
+! OK.
+l.18 \showbox0
+
+
+
+Completed box being shipped out [1]
+\hbox(6.83331+0.0)x27.58339
+.\tenrm A
+.\tenrm .
+.\tenrm B
+.\tenrm .
+.\glue(\spaceskip) 3.0
+.\tenrm c
+
+ )
+Output written on m2-chars-spaces.dvi (1 page, 184 bytes).

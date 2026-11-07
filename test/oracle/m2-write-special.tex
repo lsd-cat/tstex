@@ -1,0 +1,21 @@
+%! oracle: ini
+\input plain
+\tracingonline=0 \showboxbreadth=10000 \showboxdepth=10000 \tracingoutput=1
+\newlinechar=`| \tracingonline=0
+\immediate\write16{to terminal and log}
+\immediate\write-1{log only}
+\immediate\write16{line one|line two}
+\immediate\openout1=m2-out.txt
+\immediate\write1{file text}
+\write1{deferred \the\count0}
+\closeout1
+\message{msg}
+\setbox0\hbox{A\write16{whatsit \the\count1}\special{hello}\openout3=m2-out3.txt \closeout3 B}
+\showbox0
+\count0=3
+Some paragraph \message{inside}\special{inpar} with \write-1{deferred} text.\par
+\shipout\copy0
+\count1=9
+\shipout\vbox{\box0 \hbox{C}\special{vbox special}}
+\immediate\closeout1
+\end

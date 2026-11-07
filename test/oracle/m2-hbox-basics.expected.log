@@ -1,0 +1,199 @@
+(m2-hbox-basics.tex (plain.tex Preloading the plain
+ format: codes, registers,
+\maxdimen=\dimen10
+\hideskip=\skip10
+\centering=\skip11
+\p@=\dimen11
+\z@=\dimen12
+\z@skip=\skip12
+\voidb@x=\box10
+parameters,
+\smallskipamount=\skip13
+\medskipamount=\skip14
+\bigskipamount=\skip15
+\normalbaselineskip=\skip16
+\normallineskip=\skip17
+\normallineskiplimit=\dimen13
+\jot=\dimen14
+\interdisplaylinepenalty=\count23
+\interfootnotelinepenalty=\count24
+fonts, more fonts,
+\itfam=\fam4
+\slfam=\fam5
+\bffam=\fam6
+\ttfam=\fam7
+macros,
+\strutbox=\box11
+\mscount=\count25
+\tabs=\box12
+\tabsyet=\box13
+\tabsdone=\box14
+math definitions,
+\rootbox=\box15
+\p@renwd=\dimen15
+output routines,
+\headline=\toks10
+\footline=\toks11
+\footins=\insert254
+\topins=\insert253
+hyphenation (hyphen.tex))
+> 50.8612pt.
+l.5 \showthe\wd0
+                 \showthe\ht0 \showthe\dp0
+
+> 6.94444pt.
+l.5 \showthe\wd0 \showthe\ht0
+                              \showthe\dp0
+
+> 1.94444pt.
+l.5 \showthe\wd0 \showthe\ht0 \showthe\dp0
+
+
+> \box0=
+\hbox(6.94444+1.94444)x50.8612
+.\tenrm H
+.\tenrm e
+.\tenrm l
+.\tenrm l
+.\tenrm o
+.\tenrm ,
+.\glue 3.33333 plus 2.08331 minus 0.88889
+.\hbox(6.67859+0.0)x8.33336
+..\tenrm i
+..\tenrm n
+.\tenrm n
+.\tenrm e
+.\tenrm r
+
+! OK.
+l.6 \showbox0
+
+
+> \box1=
+\hbox(6.83331+0.0)x216.81, glue set 202.22662fil
+.\tenrm A
+.\glue 0.0 plus 1.0fil
+.\tenrm B
+
+! OK.
+l.9 \showbox1
+              \showbox2
+
+> \box2=
+\hbox(6.83331+0.0)x17.58337, glue set 0.33333
+.\tenrm A
+.\glue 2.0 plus 3.0
+.\tenrm B
+
+! OK.
+l.9 \showbox1 \showbox2
+
+
+> \box3=
+\hbox(6.94444+1.94444)x50.8612
+.\tenrm H
+.\tenrm e
+.\tenrm l
+.\tenrm l
+.\tenrm o
+.\tenrm ,
+.\glue 3.33333 plus 2.08331 minus 0.88889
+.\hbox(6.67859+0.0)x8.33336
+..\tenrm i
+..\tenrm n
+.\tenrm n
+.\tenrm e
+.\tenrm r
+
+! OK.
+l.10 \setbox3=\copy0 \showbox3
+
+
+nonvoid0 void0 hbox4
+> \box5=
+\hbox(6.94444+1.94444)x107.00021
+.\tenrm H
+.\tenrm e
+.\tenrm l
+.\tenrm l
+.\tenrm o
+.\tenrm ,
+.\glue 3.33333 plus 2.08331 minus 0.88889
+.\hbox(6.67859+0.0)x8.33336
+..\tenrm i
+..\tenrm n
+.\tenrm n
+.\tenrm e
+.\tenrm r
+.\tenrm H
+.\tenrm e
+.\tenrm l
+.\tenrm l
+.\tenrm o
+.\tenrm ,
+.\glue 3.33333 plus 2.08331 minus 0.88889
+.\hbox(6.67859+0.0)x8.33336
+..\tenrm i
+..\tenrm n
+.\tenrm n
+.\tenrm e
+.\tenrm r
+.\tenrm x
+
+! OK.
+l.16 \showbox5
+
+
+> \box7=void
+
+! OK.
+l.17 \setbox6=\hbox{ab\setbox7=\lastbox \showbox7
+                                                  \unskip}
+
+> \box6=
+\hbox(6.94444+0.0)x10.55559
+.\tenrm a
+.\tenrm b
+
+! OK.
+l.18 \showbox6
+
+
+
+Completed box being shipped out [1]
+\hbox(6.94444+1.94444)x323.81021
+.\hbox(6.94444+1.94444)x107.00021
+..\tenrm H
+..\tenrm e
+..\tenrm l
+..\tenrm l
+..\tenrm o
+..\tenrm ,
+..\glue 3.33333 plus 2.08331 minus 0.88889
+..\hbox(6.67859+0.0)x8.33336
+...\tenrm i
+...\tenrm n
+..\tenrm n
+..\tenrm e
+..\tenrm r
+..\tenrm H
+..\tenrm e
+..\tenrm l
+..\tenrm l
+..\tenrm o
+..\tenrm ,
+..\glue 3.33333 plus 2.08331 minus 0.88889
+..\hbox(6.67859+0.0)x8.33336
+...\tenrm i
+...\tenrm n
+..\tenrm n
+..\tenrm e
+..\tenrm r
+..\tenrm x
+.\hbox(6.83331+0.0)x216.81, glue set 202.22662fil
+..\tenrm A
+..\glue 0.0 plus 1.0fil
+..\tenrm B
+
+ )
+Output written on m2-hbox-basics.dvi (1 page, 236 bytes).

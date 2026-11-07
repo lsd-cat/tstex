@@ -1,0 +1,19 @@
+%! oracle: ini
+\input plain
+\tracingonline=0 \showboxbreadth=10000 \showboxdepth=10000 \tracingoutput=1
+\parindent=5pt \hsize=100pt
+\setbox1\hbox{x}
+\vbox{\hbox{a\hbox{b\hbox{c}}}\showlists \hrule\kern3pt
+ \noindent q\hbox{r\vbox{\hbox{s}}}\discretionary{a}{b}{c} \penalty3 \mark{m}\vrule\showlists
+ \par\showlists}
+\showboxdepth=1 \showboxbreadth=3
+\setbox2\hbox{a\hbox{b\hbox{c}}d e f g\vbox{\hbox{x}}}
+\showbox2
+\showboxdepth=0 \showbox2
+\showboxdepth=10 \showboxbreadth=0 \showbox2
+\showboxbreadth=100
+\setbox2\vbox{\hbox{a}\hbox{b}\hbox{c}\hbox{d}}
+\showboxbreadth=2 \showbox2
+\showboxdepth=100 \showboxbreadth=100
+\hbox{Last: \showlists}
+\end

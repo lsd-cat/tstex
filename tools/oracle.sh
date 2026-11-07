@@ -1,5 +1,5 @@
 #!/bin/sh
-# usage: tools/oracle.sh path/to/NAME.tex  -> NAME.expected.log (+ NAME.expected.dvitype)
+# usage: tools/oracle.sh path/to/NAME.tex  -> NAME.expected.log (+ .expected.dvitype, .expected.dvi)
 set -u
 root=$(cd "$(dirname "$0")/.." && pwd)
 tex=$(cd "$(dirname "$1")" && pwd)/$(basename "$1")
@@ -16,9 +16,10 @@ case "${mode:-ini}" in
 esac
 tmp=$(mktemp -d); trap 'rm -rf "$tmp"' EXIT
 cp "$tex" "$tmp/"
-(cd "$tmp" && TEXINPUTS=".:$dir:$root/test/lvt:" "$pdftex" $args -interaction=batchmode -output-format=dvi -jobname="$name" "$name.tex" >/dev/null 2>&1)
+(cd "$tmp" && TEXINPUTS=".:$dir:$root/test/texmf:$root/test/lvt:" TFMFONTS="$root/test/texmf:" "$pdftex" $args -interaction=batchmode -output-format=dvi -jobname="$name" "$name.tex" >/dev/null 2>&1)
 [ -f "$tmp/$name.log" ] || { echo "oracle.sh: pdftex produced no log" >&2; exit 1; }
 node "$root/tools/normalize-log.ts" "$tmp/$name.log" > "$dir/$name.expected.log"
+[ -f "$tmp/$name.dvi" ] && cp "$tmp/$name.dvi" "$dir/$name.expected.dvi"
 if [ -f "$tmp/$name.dvi" ] && [ -n "$dvitype" ]; then
   (cd "$tmp" && "$dvitype" -output-level=4 "$name.dvi") | awk '
     /This is DVItype/ && NR==1 { next }

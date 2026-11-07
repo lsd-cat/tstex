@@ -1,0 +1,12 @@
+%! oracle: ini
+\input plain
+\tracingonline=0 \showboxbreadth=10000 \showboxdepth=10000 \tracingoutput=1
+\tracingpages=1 \vsize=150pt \hsize=200pt \parindent=10pt \tolerance=10000
+\showthe\dimen\footins \showthe\count\footins \showthe\skip\footins
+Some text with a footnote.\footnote{*}{The footnote text, rather long so that it needs more than one line when set at this width of two hundred points.}
+More text follows here to fill the page and some more and more and more.\par
+\showthe\insertpenalties
+\topinsert\vbox{\hrule height 30pt \hbox{Figure}}\endinsert
+Further text. Further text. Further text. Further text. Further text.\par
+\footnote{+}{Second note.}
+\end

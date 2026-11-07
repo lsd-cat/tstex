@@ -1,0 +1,20 @@
+%! oracle: ini
+\input plain
+\tracingonline=0 \showboxbreadth=10000 \showboxdepth=10000 \tracingoutput=1
+\setbox0\hbox{a\hskip 3pt plus 1fil minus 2pt b\hfil c\hfill d\hss e\hfilneg f\kern 2pt g}
+\showbox0
+\setbox1\hbox to 100pt{a\hskip 3pt plus 1fil b\hfill c}
+\showbox1
+\setbox2\hbox to 0pt{\hskip 10pt plus 1fil minus 1fill}
+\showbox2
+\setbox3\hbox to 20pt{\hskip 10pt minus 4pt}
+\showbox3
+\setbox4\vbox to 50pt{\hrule height 1pt \vfil \hrule height 1pt \vfill \vss \kern3pt \vskip 2pt plus 1pt}
+\showbox4
+\setbox5\hbox{a\hskip 3pt\showthe\lastskip \unskip b\kern4pt\showthe\lastkern \unkern
+ \penalty5 \showthe\lastpenalty \unpenalty \showthe\lastpenalty}
+\showbox5
+\setbox6\vbox{\hrule\vskip 4pt plus 1fil\showthe\lastskip \unskip\kern2pt\unkern\penalty7\unpenalty}
+\showbox6
+\shipout\vbox{\box1\box4}
+\end

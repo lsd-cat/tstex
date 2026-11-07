@@ -1,0 +1,358 @@
+(m2-story.tex (plain.tex Preloading the plain forma
+t: codes, registers,
+\maxdimen=\dimen10
+\hideskip=\skip10
+\centering=\skip11
+\p@=\dimen11
+\z@=\dimen12
+\z@skip=\skip12
+\voidb@x=\box10
+parameters,
+\smallskipamount=\skip13
+\medskipamount=\skip14
+\bigskipamount=\skip15
+\normalbaselineskip=\skip16
+\normallineskip=\skip17
+\normallineskiplimit=\dimen13
+\jot=\dimen14
+\interdisplaylinepenalty=\count23
+\interfootnotelinepenalty=\count24
+fonts, more fonts,
+\itfam=\fam4
+\slfam=\fam5
+\bffam=\fam6
+\ttfam=\fam7
+macros,
+\strutbox=\box11
+\mscount=\count25
+\tabs=\box12
+\tabsyet=\box13
+\tabsdone=\box14
+math definitions,
+\rootbox=\box15
+\p@renwd=\dimen15
+output routines,
+\headline=\toks10
+\footline=\toks11
+\footins=\insert254
+\topins=\insert253
+hyphenation (hyphen.tex)) (
+story.tex
+
+Completed box being shipped out [1]
+\vbox(667.20255+0.0)x469.75499
+.\vbox(0.0+0.0)x469.75499, glue set 14.0fil
+..\glue -22.5
+..\hbox(8.5+0.0)x469.75499, glue set 469.75499fil
+...\vbox(8.5+0.0)x0.0
+...\glue 0.0 plus 1.0fil
+..\glue 0.0 plus 1.0fil minus 1.0fil
+.\vbox(643.20255+0.0)x469.75499, glue set 413.1751fill
+..\glue(\topskip) 9.6
+..\rule(0.4+0.0)x*
+..\glue 72.26999
+..\hbox(6.86111+0.0)x469.75499, glue set 187.15553fil
+...\glue 0.0 plus 1.0fil minus 1.0fil
+...\tenbf A
+...\glue 3.83331 plus 1.91473 minus 1.27904
+...\tenbf S
+...\tenbf H
+...\tenbf O
+...\tenbf R
+...\kern-0.95833
+...\tenbf T
+...\glue 3.83331 plus 1.91473 minus 1.27904
+...\tenbf S
+...\tenbf T
+...\tenbf O
+...\tenbf R
+...\kern-0.95833
+...\tenbf Y
+...\glue 0.0 plus 1.0fil minus 1.0fil
+..\glue 6.0
+..\glue(\baselineskip) 5.05556
+..\hbox(6.94444+1.94444)x469.75499, glue set 203.47467fil
+...\glue 0.0 plus 1.0fil minus 1.0fil
+...\tensl b
+...\kern-0.27779
+...\tensl y
+...\glue 3.33333 plus 1.66666 minus 1.11111
+...\tensl A
+...\tensl .
+...\glue 3.33333 plus 1.66666 minus 1.11111
+...\tensl U
+...\tensl .
+...\glue 3.33333 plus 1.66666 minus 1.11111
+...\tensl T
+...\tensl h
+...\tensl o
+...\tensl r
+...\glue 0.0 plus 1.0fil minus 1.0fil
+..\glue 14.22636
+..\glue(\parskip) 0.0 plus 1.0
+..\glue(\baselineskip) 0.8492
+..\hbox(9.20636+1.94444)x469.75499, glue set 28.03198fil
+...\hbox(0.0+0.0)x20.0
+...\tenrm O
+...\tenrm n
+...\tenrm c
+...\tenrm e
+...\glue 3.33333 plus 1.66666 minus 1.11111
+...\tenrm u
+...\tenrm p
+...\kern0.27779
+...\tenrm o
+...\tenrm n
+...\glue 3.33333 plus 1.66666 minus 1.11111
+...\tenrm a
+...\glue 3.33333 plus 1.66666 minus 1.11111
+...\tenrm t
+...\tenrm i
+...\tenrm m
+...\tenrm e
+...\tenrm ,
+...\glue 3.33333 plus 2.08331 minus 0.88889
+...\tenrm i
+...\tenrm n
+...\glue 3.33333 plus 1.66666 minus 1.11111
+...\tenrm a
+...\glue 3.33333 plus 1.66666 minus 1.11111
+...\tenrm d
+...\tenrm i
+...\tenrm s
+...\tenrm t
+...\tenrm a
+...\tenrm n
+...\kern-0.27779
+...\tenrm t
+...\glue 3.33333 plus 1.66666 minus 1.11111
+...\tenrm g
+...\tenrm a
+...\tenrm l
+...\tenrm a
+...\tenrm x
+...\tenrm y
+...\glue 3.33333 plus 1.66666 minus 1.11111
+...\tenrm c
+...\tenrm a
+...\tenrm l
+...\tenrm l
+...\tenrm e
+...\tenrm d
+...\glue 3.33333 plus 1.66666 minus 1.11111
+...\kern 1.3889 (for accent)
+...\hbox(6.67859+0.0)x5.00002, shifted -2.52777
+....\tenrm ^^?
+...\kern -6.38892 (for accent)
+...\tenrm O
+...\kern 0.0 (for accent)
+...\tenrm ^^?
+...\kern -5.00002 (for accent)
+...\tenrm o
+...\kern 0.0 (for accent)
+...\tenrm ^^X
+...\kern -4.44444 (for accent)
+...\tenrm c
+...\tenrm ,
+...\glue 3.33333 plus 2.08331 minus 0.88889
+...\tenrm t
+...\tenrm h
+...\tenrm e
+...\tenrm r
+...\tenrm e
+...\glue 3.33333 plus 1.66666 minus 1.11111
+...\tenrm l
+...\tenrm i
+...\tenrm v
+...\kern-0.27779
+...\tenrm e
+...\tenrm d
+...\glue 3.33333 plus 1.66666 minus 1.11111
+...\tenrm a
+...\glue 3.33333 plus 1.66666 minus 1.11111
+...\tenrm c
+...\tenrm o
+...\tenrm m
+...\tenrm p
+...\tenrm u
+...\tenrm t
+...\tenrm e
+...\tenrm r
+...\glue 3.33333 plus 1.66666 minus 1.11111
+...\tenrm n
+...\tenrm a
+...\tenrm m
+...\tenrm e
+...\tenrm d
+...\glue 3.33333 plus 1.66666 minus 1.11111
+...\tenrm R
+...\tenrm .
+...\penalty 10000
+...\glue 3.33333 plus 1.66666 minus 1.11111
+...\tenrm J
+...\tenrm .
+...\glue 3.33333 plus 1.66666 minus 1.11111
+...\tenrm D
+...\tenrm r
+...\tenrm o
+...\tenrm f
+...\tenrm n
+...\tenrm a
+...\tenrm t
+...\tenrm s
+...\tenrm .
+...\penalty 10000
+...\glue(\parfillskip) 0.0 plus 1.0fil
+...\glue(\rightskip) 0.0
+..\glue(\parskip) 0.0 plus 1.0
+..\glue(\baselineskip) 3.11111
+..\hbox(6.94444+1.94444)x469.75499, glue set 0.0176
+...\hbox(0.0+0.0)x20.0
+...\tenrm M
+...\tenrm r
+...\tenrm .
+...\penalty 10000
+...\glue 3.33333 plus 1.66666 minus 1.11111
+...\tenrm D
+...\tenrm r
+...\tenrm o
+...\tenrm f
+...\tenrm n
+...\tenrm a
+...\tenrm t
+...\tenrm s
+...\tenrm | (ligature ---)
+...\discretionary
+...\tenrm o
+...\tenrm r
+...\glue 3.33333 plus 1.66666 minus 1.11111
+...\tenrm \ (ligature ``)
+...\tenrm R
+...\tenrm .
+...\glue 3.33333 plus 1.66666 minus 1.11111
+...\tenrm J
+...\tenrm .
+...\tenrm ,
+...\tenrm " (ligature '')
+...\glue 3.33333 plus 2.08331 minus 0.88889
+...\tenrm a
+...\tenrm s
+...\glue 3.33333 plus 1.66666 minus 1.11111
+...\tenrm h
+...\tenrm e
+...\glue 3.33333 plus 1.66666 minus 1.11111
+...\tenrm p
+...\tenrm r
+...\tenrm e
+...\tenrm f
+...\tenrm e
+...\tenrm r
+...\tenrm r
+...\tenrm e
+...\tenrm d
+...\glue 3.33333 plus 1.66666 minus 1.11111
+...\tenrm t
+...\tenrm o
+...\glue 3.33333 plus 1.66666 minus 1.11111
+...\tenrm b
+...\kern0.27779
+...\tenrm e
+...\glue 3.33333 plus 1.66666 minus 1.11111
+...\tenrm c
+...\tenrm a
+...\tenrm l
+...\tenrm l
+...\tenrm e
+...\tenrm d
+...\tenrm | (ligature ---)
+...\discretionary
+...\tenrm w
+...\kern-0.27779
+...\tenrm a
+...\tenrm s
+...\glue 3.33333 plus 1.66666 minus 1.11111
+...\tenrm h
+...\tenrm a
+...\tenrm p
+...\tenrm p
+...\tenrm i
+...\tenrm e
+...\tenrm s
+...\tenrm t
+...\glue 3.33333 plus 1.66666 minus 1.11111
+...\tenrm w
+...\tenrm h
+...\tenrm e
+...\tenrm n
+...\glue 3.33333 plus 1.66666 minus 1.11111
+...\tenrm h
+...\tenrm e
+...\glue 3.33333 plus 1.66666 minus 1.11111
+...\tenrm w
+...\kern-0.27779
+...\tenrm a
+...\tenrm s
+...\glue 3.33333 plus 1.66666 minus 1.11111
+...\tenrm a
+...\tenrm t
+...\glue 3.33333 plus 1.66666 minus 1.11111
+...\tenrm w
+...\kern-0.27779
+...\tenrm o
+...\tenrm r
+...\tenrm k
+...\glue 3.33333 plus 1.66666 minus 1.11111
+...\tenrm t
+...\kern-0.27779
+...\tenrm y
+...\tenrm p
+...\kern0.27779
+...\tenrm e
+...\tenrm s
+...\tenrm e
+...\tenrm t
+...\tenrm t
+...\tenrm i
+...\tenrm n
+...\tenrm g
+...\glue(\rightskip) 0.0
+..\penalty 300
+..\glue(\baselineskip) 3.11111
+..\hbox(6.94444+0.0)x469.75499, glue set 378.03255fil
+...\tenrm b
+...\kern0.27779
+...\tenrm e
+...\tenrm a
+...\tenrm u
+...\tenrm t
+...\tenrm i
+...\tenrm f
+...\tenrm u
+...\tenrm l
+...\glue 3.33333 plus 1.66666 minus 1.11111
+...\tenrm d
+...\tenrm o
+...\kern0.27779
+...\tenrm c
+...\tenrm u
+...\tenrm m
+...\tenrm e
+...\tenrm n
+...\kern-0.27779
+...\tenrm t
+...\tenrm s
+...\tenrm .
+...\penalty 10000
+...\glue(\parfillskip) 0.0 plus 1.0fil
+...\glue(\rightskip) 0.0
+..\glue 72.26999
+..\rule(0.4+0.0)x*
+..\glue 0.0 plus 1.0fill
+.\glue(\baselineskip) 17.55556
+.\hbox(6.44444+0.0)x469.75499, glue set 232.37749fil
+..\glue 0.0 plus 1.0fil minus 1.0fil
+..\tenrm 1
+..\glue 0.0 plus 1.0fil minus 1.0fil
+
+) )
+Output written on m2-story.dvi (1 page, 680 bytes).

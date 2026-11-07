@@ -1,0 +1,18 @@
+%! oracle: ini
+\input plain
+\tracingonline=0 \showboxbreadth=10000 \showboxdepth=10000 \tracingoutput=1
+\baselineskip=13pt \lineskip=2pt \lineskiplimit=1pt
+\setbox0\vbox{\hbox{A}\hbox{g}\hbox{\vrule height 20pt depth 5pt}\showthe\prevdepth
+ \nointerlineskip\hbox{B}\hbox{C}}
+\showbox0
+\setbox1\vtop{\hbox{A}\hbox{B}}
+\setbox2\vbox to 50pt{\hbox{A}\vss}
+\setbox3\vbox spread 5pt{\hbox{A}\vskip 0pt plus 2pt\hbox{B}}
+\showbox1 \showbox2 \showbox3
+\setbox4\vbox{\unvbox2 \unvcopy3 \prevdepth=-1000pt \hbox{Z}}
+\showbox4
+\setbox5\vbox{\hbox{one}\penalty0\hbox{two}\hbox{three}}
+\setbox6\vsplit5 to 15pt
+\showbox5 \showbox6
+\shipout\vbox{\box4\box6}
+\end

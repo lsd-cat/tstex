@@ -1,0 +1,324 @@
+(m2-page-breaks.tex (plain.tex Preloading the plain
+ format: codes, registers,
+\maxdimen=\dimen10
+\hideskip=\skip10
+\centering=\skip11
+\p@=\dimen11
+\z@=\dimen12
+\z@skip=\skip12
+\voidb@x=\box10
+parameters,
+\smallskipamount=\skip13
+\medskipamount=\skip14
+\bigskipamount=\skip15
+\normalbaselineskip=\skip16
+\normallineskip=\skip17
+\normallineskiplimit=\dimen13
+\jot=\dimen14
+\interdisplaylinepenalty=\count23
+\interfootnotelinepenalty=\count24
+fonts, more fonts,
+\itfam=\fam4
+\slfam=\fam5
+\bffam=\fam6
+\ttfam=\fam7
+macros,
+\strutbox=\box11
+\mscount=\count25
+\tabs=\box12
+\tabsyet=\box13
+\tabsdone=\box14
+math definitions,
+\rootbox=\box15
+\p@renwd=\dimen15
+output routines,
+\headline=\toks10
+\footline=\toks11
+\footins=\insert254
+\topins=\insert253
+hyphenation (hyphen.tex))
+%% goal height=100.0, max depth=4.0
+% t=12.0 g=100.0 b=10000 p=0 c=100000#
+% t=12.0 plus 1.0fill g=100.0 b=0 p=-10000 c=-10000#
+
+Completed box being shipped out [1]
+\vbox(124.0+0.0)x100.0
+.\vbox(0.0+0.0)x100.0, glue set 14.0fil
+..\glue -22.5
+..\hbox(8.5+0.0)x100.0, glue set 100.0fil
+...\vbox(8.5+0.0)x0.0
+...\glue 0.0 plus 1.0fil
+..\glue 0.0 plus 1.0fil minus 1.0fil
+.\vbox(100.0+0.0)x15.00003, glue set 88.0fill
+..\glue(\topskip) 7.69446
+..\hbox(4.30554+0.0)x15.00003
+...\tenrm o
+...\tenrm n
+...\tenrm e
+..\glue 0.0 plus 1.0fill
+.\glue(\baselineskip) 17.55556
+.\hbox(6.44444+0.0)x100.0, glue set 47.5fil
+..\glue 0.0 plus 1.0fil minus 1.0fil
+..\tenrm 1
+..\glue 0.0 plus 1.0fil minus 1.0fil
+
+%% goal height=100.0, max depth=4.0
+% t=12.0 g=100.0 b=10000 p=0 c=100000#
+% t=26.0 g=100.0 b=10000 p=-10000 c=-10000#
+
+Underfull \vbox (badness 10000) has occurred while \output is active
+\vbox(100.0+0.0)x22.25003
+.\glue(\topskip) 5.84921
+.\hbox(6.15079+0.0)x15.55557
+..\tenrm t
+..\kern-0.27779
+..\tenrm w
+..\kern-0.27779
+..\tenrm o
+.\glue(\baselineskip) 7.05556
+.\hbox(6.94444+0.0)x22.25003
+..\tenrm t
+..\tenrm h
+..\tenrm r
+..\tenrm e
+..\tenrm e
+
+
+Completed box being shipped out [2]
+\vbox(124.0+0.0)x100.0
+.\vbox(0.0+0.0)x100.0, glue set 14.0fil
+..\glue -22.5
+..\hbox(8.5+0.0)x100.0, glue set 100.0fil
+...\vbox(8.5+0.0)x0.0
+...\glue 0.0 plus 1.0fil
+..\glue 0.0 plus 1.0fil minus 1.0fil
+.\vbox(100.0+0.0)x22.25003
+..\glue(\topskip) 5.84921
+..\hbox(6.15079+0.0)x15.55557
+...\tenrm t
+...\kern-0.27779
+...\tenrm w
+...\kern-0.27779
+...\tenrm o
+..\glue(\baselineskip) 7.05556
+..\hbox(6.94444+0.0)x22.25003
+...\tenrm t
+...\tenrm h
+...\tenrm r
+...\tenrm e
+...\tenrm e
+.\glue(\baselineskip) 17.55556
+.\hbox(6.44444+0.0)x100.0, glue set 47.5fil
+..\glue 0.0 plus 1.0fil minus 1.0fil
+..\tenrm 2
+..\glue 0.0 plus 1.0fil minus 1.0fil
+
+%% goal height=100.0, max depth=4.0
+% t=12.0 g=100.0 b=10000 p=0 c=100000#
+% t=26.0 g=100.0 b=10000 p=-10000 c=-10000#
+
+Underfull \vbox (badness 10000) has occurred while \output is active
+\vbox(100.0+0.0)x17.52783
+.\glue(\topskip) 5.05556
+.\hbox(6.94444+0.0)x17.52783
+..\tenrm f
+..\tenrm o
+..\tenrm u
+..\tenrm r
+.\glue(\baselineskip) 7.05556
+.\hbox(6.94444+0.0)x15.00003
+..\tenrm ^^L (ligature fi)
+..\tenrm v
+..\kern-0.27779
+..\tenrm e
+
+
+Completed box being shipped out [3]
+\vbox(124.0+0.0)x100.0
+.\vbox(0.0+0.0)x100.0, glue set 14.0fil
+..\glue -22.5
+..\hbox(8.5+0.0)x100.0, glue set 100.0fil
+...\vbox(8.5+0.0)x0.0
+...\glue 0.0 plus 1.0fil
+..\glue 0.0 plus 1.0fil minus 1.0fil
+.\vbox(100.0+0.0)x17.52783
+..\glue(\topskip) 5.05556
+..\hbox(6.94444+0.0)x17.52783
+...\tenrm f
+...\tenrm o
+...\tenrm u
+...\tenrm r
+..\glue(\baselineskip) 7.05556
+..\hbox(6.94444+0.0)x15.00003
+...\tenrm ^^L (ligature fi)
+...\tenrm v
+...\kern-0.27779
+...\tenrm e
+.\glue(\baselineskip) 17.55556
+.\hbox(6.44444+0.0)x100.0, glue set 47.5fil
+..\glue 0.0 plus 1.0fil minus 1.0fil
+..\tenrm 3
+..\glue 0.0 plus 1.0fil minus 1.0fil
+
+%% goal height=100.0, max depth=4.0
+% t=26.0 g=100.0 b=10000 p=-500 c=100000#
+% t=40.0 g=100.0 b=10000 p=0 c=100000#
+% t=81.94444 plus 1.0fil g=100.0 b=0 p=-200 c=-200#
+% t=94.0 g=100.0 b=10000 p=0 c=100000
+% t=124.0 plus 1.0fil g=100.0 b=* p=-200 c=*
+
+Completed box being shipped out [4]
+\vbox(124.0+0.0)x100.0
+.\vbox(0.0+0.0)x100.0, glue set 14.0fil
+..\glue -22.5
+..\hbox(8.5+0.0)x100.0, glue set 100.0fil
+...\vbox(8.5+0.0)x0.0
+...\glue 0.0 plus 1.0fil
+..\glue 0.0 plus 1.0fil minus 1.0fil
+.\vbox(100.0+0.0)x23.38892, glue set 18.05556fil
+..\glue(\topskip) 5.32141
+..\hbox(6.67859+0.0)x12.00003
+...\tenrm s
+...\tenrm i
+...\tenrm x
+..\penalty 10000
+..\glue(\baselineskip) 9.69446
+..\hbox(4.30554+0.0)x23.38892
+...\tenrm s
+...\tenrm e
+...\tenrm v
+...\kern-0.27779
+...\tenrm e
+...\tenrm n
+..\penalty -500
+..\glue(\baselineskip) 7.05556
+..\hbox(6.94444+1.94444)x21.38893
+...\tenrm e
+...\tenrm i
+...\tenrm g
+...\tenrm h
+...\kern-0.27779
+...\tenrm t
+..\glue 40.0
+..\glue 0.0 plus 1.0fil
+.\glue(\baselineskip) 17.55556
+.\hbox(6.44444+0.0)x100.0, glue set 47.5fil
+..\glue 0.0 plus 1.0fil minus 1.0fil
+..\tenrm 4
+..\glue 0.0 plus 1.0fil minus 1.0fil
+
+%% goal height=100.0, max depth=4.0
+% t=12.0 g=100.0 b=10000 p=0 c=100000#
+% t=42.0 plus 1.0fil g=100.0 b=0 p=-200 c=-200#
+> 0.
+l.9 \showthe\deadcycles
+
+
+% t=56.0 g=100.0 b=10000 p=0 c=100000
+% t=70.0 g=100.0 b=10000 p=-20000 c=-20000#
+
+Underfull \vbox (badness 10000) has occurred while \output is active
+\vbox(100.0+0.0)x26.6667
+.\glue(\topskip) 5.32141
+.\hbox(6.67859+0.0)x18.33337
+..\tenrm n
+..\tenrm i
+..\tenrm n
+..\tenrm e
+.\glue 30.0
+.\glue 0.0 plus 1.0fil
+.\penalty -200
+.\glue 0.0 plus -1.0fil
+.\glue(\baselineskip) 7.84921
+.\hbox(6.15079+0.0)x13.88892
+..\tenrm t
+..\tenrm e
+..\tenrm n
+.\glue(\baselineskip) 7.05556
+.\hbox(6.94444+0.0)x26.6667
+..\tenrm e
+..\tenrm l
+..\tenrm e
+..\tenrm v
+..\kern-0.27779
+..\tenrm e
+..\tenrm n
+
+
+Completed box being shipped out [5]
+\vbox(124.0+0.0)x100.0
+.\vbox(0.0+0.0)x100.0, glue set 14.0fil
+..\glue -22.5
+..\hbox(8.5+0.0)x100.0, glue set 100.0fil
+...\vbox(8.5+0.0)x0.0
+...\glue 0.0 plus 1.0fil
+..\glue 0.0 plus 1.0fil minus 1.0fil
+.\vbox(100.0+0.0)x26.6667
+..\glue(\topskip) 5.32141
+..\hbox(6.67859+0.0)x18.33337
+...\tenrm n
+...\tenrm i
+...\tenrm n
+...\tenrm e
+..\glue 30.0
+..\glue 0.0 plus 1.0fil
+..\penalty -200
+..\glue 0.0 plus -1.0fil
+..\glue(\baselineskip) 7.84921
+..\hbox(6.15079+0.0)x13.88892
+...\tenrm t
+...\tenrm e
+...\tenrm n
+..\glue(\baselineskip) 7.05556
+..\hbox(6.94444+0.0)x26.6667
+...\tenrm e
+...\tenrm l
+...\tenrm e
+...\tenrm v
+...\kern-0.27779
+...\tenrm e
+...\tenrm n
+.\glue(\baselineskip) 17.55556
+.\hbox(6.44444+0.0)x100.0, glue set 47.5fil
+..\glue 0.0 plus 1.0fil minus 1.0fil
+..\tenrm 5
+..\glue 0.0 plus 1.0fil minus 1.0fil
+
+> 0.
+l.11 \showthe\deadcycles
+
+
+%% goal height=100.0, max depth=4.0
+% t=12.0 g=100.0 b=10000 p=0 c=100000#
+% t=12.0 plus 1.0fill g=100.0 b=0 p=-1073741824 c=-1073741824#
+
+Completed box being shipped out [6]
+\vbox(124.0+0.0)x100.0
+.\vbox(0.0+0.0)x100.0, glue set 14.0fil
+..\glue -22.5
+..\hbox(8.5+0.0)x100.0, glue set 100.0fil
+...\vbox(8.5+0.0)x0.0
+...\glue 0.0 plus 1.0fil
+..\glue 0.0 plus 1.0fil minus 1.0fil
+.\vbox(100.0+0.0)x100.0, glue set 88.0fill
+..\glue(\topskip) 5.05556
+..\hbox(6.94444+0.0)x27.22224
+...\tenrm t
+...\kern-0.27779
+...\tenrm w
+...\kern-0.27779
+...\tenrm e
+...\tenrm l
+...\tenrm v
+...\kern-0.27779
+...\tenrm e
+..\hbox(0.0+0.0)x100.0
+..\glue 0.0 plus 1.0fill
+.\glue(\baselineskip) 17.55556
+.\hbox(6.44444+0.0)x100.0, glue set 47.5fil
+..\glue 0.0 plus 1.0fil minus 1.0fil
+..\tenrm 6
+..\glue 0.0 plus 1.0fil minus 1.0fil
+
+ )
+Output written on m2-page-breaks.dvi (6 pages, 684 bytes).

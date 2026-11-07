@@ -1,0 +1,13 @@
+%! oracle: ini
+\input plain
+\tracingonline=0 \showboxbreadth=10000 \showboxdepth=10000 \tracingoutput=1
+\tracingparagraphs=1 \vsize=400pt \hsize=180pt \parindent=0pt
+\def\lorem{The quick brown fox jumps over the lazy dog while seven wizards quietly box with jugs.}
+\pretolerance=-1 \tolerance=200 \lorem\par
+\tolerance=10000 \lorem\par
+\pretolerance=100 \tolerance=100 \emergencystretch=20pt \lorem\par
+\emergencystretch=0pt \looseness=1 \tolerance=10000 \lorem\par
+\looseness=-1 \lorem\par
+\looseness=0 \adjdemerits=100000 \linepenalty=50 \hyphenpenalty=5000 \exhyphenpenalty=0 \lorem\par
+\hsize=60pt \tolerance=200 \lorem\par
+\end

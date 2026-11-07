@@ -1,0 +1,274 @@
+(m2-output.tex (plain.tex Preloading the plain form
+at: codes, registers,
+\maxdimen=\dimen10
+\hideskip=\skip10
+\centering=\skip11
+\p@=\dimen11
+\z@=\dimen12
+\z@skip=\skip12
+\voidb@x=\box10
+parameters,
+\smallskipamount=\skip13
+\medskipamount=\skip14
+\bigskipamount=\skip15
+\normalbaselineskip=\skip16
+\normallineskip=\skip17
+\normallineskiplimit=\dimen13
+\jot=\dimen14
+\interdisplaylinepenalty=\count23
+\interfootnotelinepenalty=\count24
+fonts, more fonts,
+\itfam=\fam4
+\slfam=\fam5
+\bffam=\fam6
+\ttfam=\fam7
+macros,
+\strutbox=\box11
+\mscount=\count25
+\tabs=\box12
+\tabsyet=\box13
+\tabsdone=\box14
+math definitions,
+\rootbox=\box15
+\p@renwd=\dimen15
+output routines,
+\headline=\toks10
+\footline=\toks11
+\footins=\insert254
+\topins=\insert253
+hyphenation (hyphen.tex))
+%% goal height=60.0, max depth=4.0
+% t=12.0 g=60.0 b=10000 p=0 c=100000#
+% t=26.0 g=60.0 b=10000 p=0 c=100000#
+% t=40.0 g=60.0 b=10000 p=0 c=100000#
+% t=54.0 g=60.0 b=10000 p=0 c=100000#
+% t=68.0 g=60.0 b=* p=-5 c=*
+[op=10000]
+
+Completed box being shipped out [1]
+\vbox(54.0+0.0)x5.55557
+.\glue(\topskip) 7.69446
+.\hbox(4.30554+0.0)x5.00002
+..\tenrm a
+.\glue(\baselineskip) 7.05556
+.\hbox(6.94444+0.0)x5.55557
+..\tenrm b
+.\glue(\baselineskip) 9.69446
+.\hbox(4.30554+0.0)x4.44444
+..\tenrm c
+.\glue(\baselineskip) 7.05556
+.\hbox(6.94444+0.0)x5.55557
+..\tenrm d
+
+%% goal height=60.0, max depth=4.0
+% t=12.0 g=60.0 b=10000 p=-5 c=100000#
+% t=26.0 g=60.0 b=10000 p=0 c=100000#
+% t=40.0 g=60.0 b=10000 p=0 c=100000#
+% t=54.0 g=60.0 b=10000 p=0 c=100000#
+% t=68.0 g=60.0 b=* p=0 c=*
+[op=10000]
+
+Completed box being shipped out [1]
+\vbox(54.0+0.0)x5.55557
+.\glue(\topskip) 7.69446
+.\hbox(4.30554+0.0)x4.44444
+..\tenrm e
+.\penalty -5
+.\glue(\baselineskip) 7.05556
+.\hbox(6.94444+0.0)x3.05557
+..\tenrm f
+.\glue(\baselineskip) 9.69446
+.\hbox(4.30554+1.94444)x5.00002
+..\tenrm g
+.\glue(\baselineskip) 5.11111
+.\hbox(6.94444+0.0)x5.55557
+..\tenrm h
+
+%% goal height=60.0, max depth=4.0
+% t=12.0 g=60.0 b=10000 p=0 c=100000#
+% t=26.0 g=60.0 b=10000 p=0 c=100000#
+% t=40.0 g=60.0 b=10000 p=0 c=100000#
+% t=54.0 g=60.0 b=10000 p=0 c=100000#
+% t=68.0 g=60.0 b=* p=0 c=*
+
+Completed box being shipped out [1]
+\hbox(6.83331+0.0)x30.83339
+.\tenrm O
+.\tenrm U
+.\tenrm T
+.\glue 3.33333 plus 1.66498 minus 1.11221
+.\tenrm 1
+
+%% goal height=60.0, max depth=4.0
+% t=12.0 g=60.0 b=10000 p=0 c=100000#
+% t=26.0 g=60.0 b=10000 p=0 c=100000#
+% t=40.0 g=60.0 b=10000 p=0 c=100000#
+% t=68.0 g=60.0 b=* p=0 c=*
+
+Completed box being shipped out [1]
+\hbox(6.83331+0.0)x30.83339
+.\tenrm O
+.\tenrm U
+.\tenrm T
+.\glue 3.33333 plus 1.66498 minus 1.11221
+.\tenrm 1
+
+%% goal height=60.0, max depth=4.0
+% t=12.0 g=60.0 b=10000 p=0 c=100000#
+% t=26.0 g=60.0 b=10000 p=0 c=100000#
+% t=68.0 g=60.0 b=* p=0 c=*
+
+Completed box being shipped out [1]
+\hbox(6.83331+0.0)x30.83339
+.\tenrm O
+.\tenrm U
+.\tenrm T
+.\glue 3.33333 plus 1.66498 minus 1.11221
+.\tenrm 1
+
+%% goal height=60.0, max depth=4.0
+% t=12.0 g=60.0 b=10000 p=0 c=100000#
+% t=68.0 g=60.0 b=* p=0 c=*
+
+Completed box being shipped out [1]
+\hbox(6.83331+0.0)x30.83339
+.\tenrm O
+.\tenrm U
+.\tenrm T
+.\glue 3.33333 plus 1.66498 minus 1.11221
+.\tenrm 1
+
+%% goal height=60.0, max depth=4.0
+% t=68.0 g=60.0 b=* p=0 c=*#
+
+Completed box being shipped out [1]
+\hbox(6.83331+0.0)x30.83339
+.\tenrm O
+.\tenrm U
+.\tenrm T
+.\glue 3.33333 plus 1.66498 minus 1.11221
+.\tenrm 1
+
+%% goal height=60.0, max depth=4.0
+% t=82.0 g=60.0 b=* p=0 c=*#
+
+Completed box being shipped out [1]
+\hbox(6.83331+0.0)x30.83339
+.\tenrm O
+.\tenrm U
+.\tenrm T
+.\glue 3.33333 plus 1.66498 minus 1.11221
+.\tenrm 1
+
+%% goal height=60.0, max depth=4.0
+% t=96.0 g=60.0 b=* p=0 c=*#
+
+Completed box being shipped out [1]
+\hbox(6.83331+0.0)x30.83339
+.\tenrm O
+.\tenrm U
+.\tenrm T
+.\glue 3.33333 plus 1.66498 minus 1.11221
+.\tenrm 1
+
+%% goal height=60.0, max depth=4.0
+% t=110.0 g=60.0 b=* p=0 c=*#
+
+Completed box being shipped out [1]
+\hbox(6.83331+0.0)x30.83339
+.\tenrm O
+.\tenrm U
+.\tenrm T
+.\glue 3.33333 plus 1.66498 minus 1.11221
+.\tenrm 1
+
+%% goal height=60.0, max depth=4.0
+% t=124.0 g=60.0 b=* p=0 c=*#
+
+Completed box being shipped out [1]
+\vbox(60.0+1.94444)x8.33336
+.\glue(\topskip) 5.32141
+.\hbox(6.67859+0.0)x2.77779
+..\tenrm i
+.\penalty 10000
+.\glue(\baselineskip) 7.32141
+.\hbox(6.67859+1.94444)x3.05557
+..\tenrm j
+.\penalty 10000
+.\glue(\baselineskip) 5.11111
+.\hbox(6.94444+0.0)x5.2778
+..\tenrm k
+.\penalty 10000
+.\glue(\baselineskip) 7.05556
+.\hbox(6.94444+0.0)x2.77779
+..\tenrm l
+.\penalty 10000
+.\glue(\baselineskip) 9.69446
+.\hbox(4.30554+0.0)x8.33336
+..\tenrm m
+.\penalty 10000
+.\glue(\baselineskip) 9.69446
+.\hbox(4.30554+0.0)x5.55557
+..\tenrm n
+.\penalty 10000
+.\glue(\baselineskip) 9.69446
+.\hbox(4.30554+0.0)x5.00002
+..\tenrm o
+.\penalty 10000
+.\glue(\baselineskip) 9.69446
+.\hbox(4.30554+1.94444)x5.55557
+..\tenrm p
+.\penalty 10000
+.\glue(\baselineskip) 7.75002
+.\hbox(4.30554+1.94444)x5.27779
+..\tenrm q
+
+%% goal height=60.0, max depth=4.0
+% t=12.0 g=60.0 b=10000 p=0 c=100000#
+% t=26.0 g=60.0 b=10000 p=0 c=100000#
+% t=40.0 g=60.0 b=10000 p=0 c=100000#
+% t=54.0 g=60.0 b=10000 p=0 c=100000#
+% t=68.0 g=60.0 b=* p=0 c=*
+%% goal height=60.0, max depth=4.0
+% t=12.0 g=60.0 b=10000 p=0 c=100000#
+% t=26.0 g=60.0 b=10000 p=0 c=100000#
+% t=40.0 g=60.0 b=10000 p=0 c=100000#
+% t=54.0 g=60.0 b=10000 p=0 c=100000#
+% t=68.0 g=60.0 b=* p=0 c=*
+%% goal height=60.0, max depth=4.0
+% t=12.0 g=60.0 b=10000 p=0 c=100000#
+% t=26.0 g=60.0 b=10000 p=0 c=100000#
+% t=40.0 g=60.0 b=10000 p=0 c=100000#
+% t=54.0 g=60.0 b=10000 p=0 c=100000#
+% t=68.0 g=60.0 b=* p=0 c=*
+%% goal height=60.0, max depth=4.0
+% t=12.0 g=60.0 b=10000 p=0 c=100000#
+% t=26.0 g=60.0 b=10000 p=0 c=100000#
+% t=40.0 g=60.0 b=10000 p=0 c=100000#
+% t=40.0 plus 1.0fill g=60.0 b=0 p=-1073741824 c=-1073741824#
+! Output loop---3 consecutive dead cycles.
+<to be read again>
+                   \end
+l.15 \end
+
+I've concluded that your \output is awry; it never does a
+\shipout, so I'm shipping \box255 out myself. Next time
+increase \maxdeadcycles if you want me to be more patient!
+
+
+Completed box being shipped out [1]
+\vbox(60.0+0.0)x100.0, glue set 20.0fill
+.\glue(\topskip) 5.16669
+.\hbox(6.83331+0.0)x7.6389
+..\tenrm D
+.\glue(\baselineskip) 7.16669
+.\hbox(6.83331+0.0)x6.80557
+..\tenrm E
+.\glue(\baselineskip) 7.16669
+.\hbox(6.83331+0.0)x6.5278
+..\tenrm F
+.\hbox(0.0+0.0)x100.0
+.\glue 0.0 plus 1.0fill
+
+ )
+Output written on m2-output.dvi (12 pages, 888 bytes).

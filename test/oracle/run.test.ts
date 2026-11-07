@@ -5,6 +5,7 @@
 //     constructor(opts: { fs: TexFS })
 //     run(opts: { jobname: string, mode: 'ini' | 'etex' | 'latex' }): Promise<void>
 //     log: string                             // full .log contents, unnormalised
+//     dvi: Uint8Array | null                  // DVI bytes if any page shipped
 //   }
 import { test } from 'node:test'
 import assert from 'node:assert'
@@ -13,6 +14,14 @@ import { normalizeLog } from '../../tools/normalize-log.ts'
 
 const dir = new URL('.', import.meta.url).pathname
 const lvt = new URL('../lvt/', import.meta.url).pathname
+const texmf = new URL('../texmf/', import.meta.url).pathname
+
+// zero the k preamble comment bytes (§617: 247 id num den mag k comment)
+const maskDvi = (b: Uint8Array) => {
+  const m = Uint8Array.from(b)
+  m.fill(0, 15, 15 + (m[14] ?? 0))
+  return m
+}
 
 for (const file of readdirSync(dir).filter(f => f.endsWith('.tex')).sort()) {
   const name = file.slice(0, -4)
@@ -25,8 +34,13 @@ for (const file of readdirSync(dir).filter(f => f.endsWith('.tex')).sort()) {
       import('../../src/engine' + '.ts').catch(() => assert.fail('src/engine.ts missing')),
       import('../../src/platform/node' + '.ts').catch(() => assert.fail('src/platform/node.ts missing')),
     ])
-    const engine = new Engine({ fs: nodeFS([dir, lvt]) })
+    const engine = new Engine({ fs: nodeFS([dir, texmf, lvt]) })
     await engine.run({ jobname: name, mode })
     assert.strictEqual(normalizeLog(engine.log), expected)
+    if (!existsSync(`${dir}${name}.expected.dvi`)) return
+    const want = maskDvi(readFileSync(`${dir}${name}.expected.dvi`))
+    const got = engine.dvi ? maskDvi(engine.dvi) : new Uint8Array()
+    const at = want.findIndex((v, i) => v !== got[i])
+    assert.deepStrictEqual(got, want, `DVI differs; first differing byte ${at < 0 ? want.length : at}`)
   })
 }

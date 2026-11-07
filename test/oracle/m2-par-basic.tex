@@ -1,0 +1,14 @@
+%! oracle: ini
+\input plain
+\tracingonline=0 \showboxbreadth=10000 \showboxdepth=10000 \tracingoutput=1
+\tracingparagraphs=1 \vsize=200pt
+\def\lorem{The quick brown fox jumps over the lazy dog while seven wizards quietly box with jugs of liquid. Pack my box with five dozen liquor jugs, and how vexingly quick daft zebras jump over it.}
+\hsize=200pt \parindent=12pt \parskip=3pt plus 1pt \tolerance=10000
+\lorem\par
+\showthe\prevgraf
+\leftskip=10pt \rightskip=0pt plus 30pt \hsize=150pt
+\lorem\par
+\leftskip=0pt \rightskip=0pt plus 2em \parindent=0pt \hsize=250pt
+\noindent\lorem\par
+\showthe\prevgraf
+\end

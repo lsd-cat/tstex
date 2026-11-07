@@ -1,0 +1,199 @@
+(m2-raise-move.tex (plain.tex Preloading the plain
+format: codes, registers,
+\maxdimen=\dimen10
+\hideskip=\skip10
+\centering=\skip11
+\p@=\dimen11
+\z@=\dimen12
+\z@skip=\skip12
+\voidb@x=\box10
+parameters,
+\smallskipamount=\skip13
+\medskipamount=\skip14
+\bigskipamount=\skip15
+\normalbaselineskip=\skip16
+\normallineskip=\skip17
+\normallineskiplimit=\dimen13
+\jot=\dimen14
+\interdisplaylinepenalty=\count23
+\interfootnotelinepenalty=\count24
+fonts, more fonts,
+\itfam=\fam4
+\slfam=\fam5
+\bffam=\fam6
+\ttfam=\fam7
+macros,
+\strutbox=\box11
+\mscount=\count25
+\tabs=\box12
+\tabsyet=\box13
+\tabsdone=\box14
+math definitions,
+\rootbox=\box15
+\p@renwd=\dimen15
+output routines,
+\headline=\toks10
+\footline=\toks11
+\footins=\insert254
+\topins=\insert253
+hyphenation (hyphen.tex))
+> \box0=
+\hbox(9.94444+2.0)x28.05562
+.\tenrm a
+.\hbox(6.94444+0.0)x5.55557, shifted -3.0
+..\tenrm b
+.\tenrm c
+.\hbox(6.94444+0.0)x5.55557, shifted 2.0
+..\tenrm d
+.\tenrm e
+.\hbox(6.94444+0.0)x3.05557, shifted 1.0
+..\tenrm f
+
+! OK.
+l.6 \showbox0
+
+
+> \box1=
+\vbox(28.30554+0.0)x12.55557
+.\hbox(4.30554+0.0)x5.00002, shifted -5.0
+..\tenrm a
+.\glue(\baselineskip) 5.05556
+.\hbox(6.94444+0.0)x5.55557, shifted 7.0
+..\tenrm b
+.\glue(\baselineskip) 7.69446
+.\hbox(4.30554+0.0)x4.44444, shifted 3.0
+..\tenrm c
+
+! OK.
+l.8 \showbox1
+
+
+> \box2=
+\vbox(42.94444+0.0)x469.75499
+.\hbox(6.94444+0.0)x469.75499, glue set 440.58827fil
+..\tenrm A
+..\glue 3.33333 plus 1.66498 minus 1.11221
+..\tenrm l
+..\tenrm i
+..\tenrm n
+..\tenrm e
+..\tenrm .
+..\penalty 10000
+..\glue(\parfillskip) 0.0 plus 1.0fil
+..\glue(\rightskip) 0.0
+.\glue(\parskip) 0.0 plus 1.0
+.\glue(\baselineskip) 5.05556
+.\hbox(6.94444+0.0)x469.75499, glue set 408.6438fil
+..\hbox(0.0+0.0)x20.0
+..\tenrm I
+..\tenrm n
+..\tenrm d
+..\tenrm e
+..\tenrm n
+..\kern-0.27779
+..\tenrm t
+..\tenrm e
+..\tenrm d
+..\tenrm .
+..\penalty 10000
+..\glue(\parfillskip) 0.0 plus 1.0fil
+..\glue(\rightskip) 0.0
+.\glue(\parskip) 0.0 plus 1.0
+.\glue(\baselineskip) 5.16669
+.\hbox(6.83331+0.0)x469.75499, glue set 440.86604fil
+..\hbox(0.0+0.0)x5.0
+..\tenrm N
+..\tenrm e
+..\tenrm x
+..\tenrm t
+..\tenrm .
+..\penalty 10000
+..\glue(\parfillskip) 0.0 plus 1.0fil
+..\glue(\rightskip) 0.0
+.\glue(\parskip) 0.0 plus 1.0
+.\glue(\baselineskip) 7.69446
+.\hbox(4.30554+0.0)x469.75499, glue set 454.47719fil
+..\hbox(0.0+0.0)x5.0
+..\hbox(0.0+0.0)x5.0
+..\tenrm x
+..\penalty 10000
+..\glue(\parfillskip) 0.0 plus 1.0fil
+..\glue(\rightskip) 0.0
+
+! OK.
+l.10 \showbox2
+
+
+
+Completed box being shipped out [1]
+\vbox(667.20255+0.0)x100.0
+.\vbox(0.0+0.0)x100.0, glue set 14.0fil
+..\glue -22.5
+..\hbox(8.5+0.0)x100.0, glue set 100.0fil
+...\vbox(8.5+0.0)x0.0
+...\glue 0.0 plus 1.0fil
+..\glue 0.0 plus 1.0fil minus 1.0fil
+.\vbox(643.20255+0.0)x100.0, glue set 609.20255fill
+..\glue(\topskip) 3.05556
+..\hbox(6.94444+1.94444)x100.0, glue set 0.52495
+...\hbox(0.0+0.0)x15.0
+...\tenrm P
+...\kern-0.27779
+...\tenrm a
+...\tenrm r
+...\tenrm a
+...\tenrm g
+...\tenrm r
+...\tenrm a
+...\tenrm p
+...\tenrm h
+...\glue 3.33333 plus 1.66666 minus 1.11111
+...\tenrm w
+...\tenrm i
+...\tenrm t
+...\tenrm h
+...\glue 3.33333 plus 1.66666 minus 1.11111
+...\tenrm i
+...\tenrm n
+...\discretionary
+...\tenrm -
+...\glue(\rightskip) 0.0
+..\penalty 400
+..\glue(\baselineskip) 3.11111
+..\hbox(6.94444+0.0)x100.0, glue set 78.05551fil
+...\tenrm d
+...\tenrm e
+...\tenrm n
+...\kern-0.27779
+...\tenrm t
+...\tenrm .
+...\penalty 10000
+...\glue(\parfillskip) 0.0 plus 1.0fil
+...\glue(\rightskip) 0.0
+..\glue(\parskip) 0.0 plus 1.0
+..\glue(\baselineskip) 5.05556
+..\hbox(6.94444+0.0)x100.0, glue set 53.8888fil
+...\tenrm N
+...\tenrm o
+...\glue 3.33333 plus 1.66666 minus 1.11111
+...\tenrm i
+...\tenrm n
+...\tenrm d
+...\tenrm e
+...\tenrm n
+...\kern-0.27779
+...\tenrm t
+...\tenrm .
+...\penalty 10000
+...\glue(\parfillskip) 0.0 plus 1.0fil
+...\glue(\rightskip) 0.0
+..\hbox(0.0+0.0)x100.0
+..\glue 0.0 plus 1.0fill
+.\glue(\baselineskip) 17.55556
+.\hbox(6.44444+0.0)x100.0, glue set 47.5fil
+..\glue 0.0 plus 1.0fil minus 1.0fil
+..\tenrm 1
+..\glue 0.0 plus 1.0fil minus 1.0fil
+
+ )
+Output written on m2-raise-move.dvi (1 page, 268 bytes).

@@ -1,0 +1,15 @@
+%! oracle: ini
+\input plain
+\tracingonline=0 \showboxbreadth=10000 \showboxdepth=10000 \tracingoutput=1
+\setbox0\hbox{a\vrule b\vrule width 3pt height 4pt depth 1pt c\vrule height 2pt d\vrule depth 2pt}
+\showbox0
+\setbox1\vbox{\hrule \hrule height 3pt \hrule width 20pt depth 2pt \hrule width 5pt height 1pt depth 1pt}
+\showbox1
+\setbox2\hbox to 50pt{\vrule\hfil\vrule width 0pt}
+\showbox2
+\setbox3\vbox{\hbox{x\hrule y}}
+\showbox3
+\setbox4\hbox{\vrule width 1pt \vrule width -2pt height -3pt}
+\showbox4
+\shipout\vbox{\box1\hbox{\box0}\box4}
+\end

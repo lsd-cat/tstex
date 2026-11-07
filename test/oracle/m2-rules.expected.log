@@ -1,0 +1,126 @@
+(m2-rules.tex (plain.tex Preloading the plain forma
+t: codes, registers,
+\maxdimen=\dimen10
+\hideskip=\skip10
+\centering=\skip11
+\p@=\dimen11
+\z@=\dimen12
+\z@skip=\skip12
+\voidb@x=\box10
+parameters,
+\smallskipamount=\skip13
+\medskipamount=\skip14
+\bigskipamount=\skip15
+\normalbaselineskip=\skip16
+\normallineskip=\skip17
+\normallineskiplimit=\dimen13
+\jot=\dimen14
+\interdisplaylinepenalty=\count23
+\interfootnotelinepenalty=\count24
+fonts, more fonts,
+\itfam=\fam4
+\slfam=\fam5
+\bffam=\fam6
+\ttfam=\fam7
+macros,
+\strutbox=\box11
+\mscount=\count25
+\tabs=\box12
+\tabsyet=\box13
+\tabsdone=\box14
+math definitions,
+\rootbox=\box15
+\p@renwd=\dimen15
+output routines,
+\headline=\toks10
+\footline=\toks11
+\footins=\insert254
+\topins=\insert253
+hyphenation (hyphen.tex))
+> \box0=
+\hbox(6.94444+2.0)x24.75558
+.\tenrm a
+.\rule(*+*)x0.4
+.\tenrm b
+.\rule(4.0+1.0)x3.0
+.\tenrm c
+.\rule(2.0+*)x0.4
+.\tenrm d
+.\rule(*+2.0)x0.4
+
+! OK.
+l.5 \showbox0
+
+
+> \box1=
+\vbox(6.79999+1.0)x20.0
+.\rule(0.4+0.0)x*
+.\rule(3.0+0.0)x*
+.\rule(0.4+2.0)x20.0
+.\rule(1.0+1.0)x5.0
+
+! OK.
+l.7 \showbox1
+
+
+> \box2=
+\hbox(0.0+0.0)x50.0, glue set 49.6fil
+.\rule(*+*)x0.4
+.\glue 0.0 plus 1.0fil
+.\rule(*+*)x0.0
+
+! OK.
+l.9 \showbox2
+
+
+! You can't use `\hrule' here except with leaders.
+l.10 \setbox3\vbox{\hbox{x\hrule
+                                 y}}
+To put a horizontal rule in an hbox or an alignment,
+you should use \leaders or \hrulefill (see The TeXbook).
+
+> \box3=
+\vbox(4.30554+1.94444)x10.5556
+.\hbox(4.30554+1.94444)x10.5556
+..\tenrm x
+..\tenrm y
+
+! OK.
+l.11 \showbox3
+
+
+> \box4=
+\hbox(0.0+0.0)x-1.0
+.\rule(*+*)x1.0
+.\rule(-3.0+*)x-2.0
+
+! OK.
+l.13 \showbox4
+
+
+
+Completed box being shipped out [1]
+\vbox(30.79999+0.0)x24.75558
+.\vbox(6.79999+1.0)x20.0
+..\rule(0.4+0.0)x*
+..\rule(3.0+0.0)x*
+..\rule(0.4+2.0)x20.0
+..\rule(1.0+1.0)x5.0
+.\glue(\baselineskip) 4.05556
+.\hbox(6.94444+2.0)x24.75558
+..\hbox(6.94444+2.0)x24.75558
+...\tenrm a
+...\rule(*+*)x0.4
+...\tenrm b
+...\rule(4.0+1.0)x3.0
+...\tenrm c
+...\rule(2.0+*)x0.4
+...\tenrm d
+...\rule(*+2.0)x0.4
+.\glue(\baselineskip) 10.0
+.\hbox(0.0+0.0)x-1.0
+..\rule(*+*)x1.0
+..\rule(-3.0+*)x-2.0
+
+ )
+Output written on m2-rules.dvi (1 page, 296 bytes).

@@ -1,0 +1,13 @@
+%! oracle: ini
+\input plain
+\tracingonline=0 \showboxbreadth=10000 \showboxdepth=10000 \tracingoutput=1
+\tracingpages=1 \vsize=100pt \hsize=150pt \maxdepth=2pt \topskip=12pt \baselineskip=14pt \parindent=0pt \tolerance=10000
+\def\lorem{The quick brown fox jumps over the lazy dog while seven wizards quietly box with jugs of liquid.\par}
+\lorem
+\message{[goal \the\pagegoal, total \the\pagetotal]}
+\showthe\pagegoal \showthe\pagetotal \showthe\pagedepth
+\lorem \lorem
+\showthe\pagegoal \showthe\pagetotal \showthe\pagedepth \showthe\pageshrink
+\lorem \lorem \lorem
+\showthe\pagetotal \showthe\insertpenalties
+\end

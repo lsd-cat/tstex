@@ -1,0 +1,13 @@
+%! oracle: ini
+\input plain
+\tracingonline=0 \showboxbreadth=10000 \showboxdepth=10000 \tracingoutput=1
+\tracingpages=1 \vsize=100pt \hsize=100pt \parindent=0pt \baselineskip=14pt \topskip=12pt
+\hbox{one}\vfill\eject
+\hbox{two}\hbox{three}\penalty-10000 \hbox{four}
+\hbox{five}\break \hbox{six}\nobreak\hbox{seven}\goodbreak\hbox{eight}
+\vskip 40pt \filbreak \hbox{nine}\vskip 30pt \filbreak\hbox{ten}
+\showthe\deadcycles
+\hbox{eleven}\supereject
+\showthe\deadcycles
+\hbox{twelve}
+\end

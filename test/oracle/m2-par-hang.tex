@@ -1,0 +1,15 @@
+%! oracle: ini
+\input plain
+\tracingonline=0 \showboxbreadth=10000 \showboxdepth=10000 \tracingoutput=1
+\tracingparagraphs=1 \vsize=300pt \tolerance=10000 \parindent=10pt
+\def\lorem{The quick brown fox jumps over the lazy dog while seven wizards quietly box with jugs of liquid. Pack my box with five dozen liquor jugs, and how vexingly quick daft zebras jump over it.}
+\hsize=200pt
+\hangindent=30pt \hangafter=-2 \lorem\par
+\hangindent=30pt \hangafter=2 \lorem\par
+\hangindent=-30pt \hangafter=-3 \lorem\par
+\hangindent=-30pt \hangafter=1 \lorem\par
+\parshape 3 10pt 150pt 20pt 140pt 0pt 180pt \lorem\par
+\showthe\parshape
+\everypar{\hbox{EP}\noindent}
+\lorem\par
+\end

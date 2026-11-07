@@ -1,0 +1,11 @@
+%! oracle: ini
+\input plain
+\tracingonline=0 \showboxbreadth=10000 \showboxdepth=10000 \tracingoutput=1
+\setbox0\hbox{office fluff affluent baffle waffle muffle -- --- `` '' ``quoted'' AV To Ta Wa}
+\showbox0
+\setbox0\hbox{\it fine fluff\/ f\/ A\/ \rm text\/ \bf ff fi}
+\showbox0
+\setbox0\hbox{AVA\kern0pt V\/ T\/o f{}f f{}i}
+\showbox0
+\shipout\box0
+\end

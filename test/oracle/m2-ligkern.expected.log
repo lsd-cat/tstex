@@ -1,0 +1,192 @@
+(m2-ligkern.tex (plain.tex Preloading the plain for
+mat: codes, registers,
+\maxdimen=\dimen10
+\hideskip=\skip10
+\centering=\skip11
+\p@=\dimen11
+\z@=\dimen12
+\z@skip=\skip12
+\voidb@x=\box10
+parameters,
+\smallskipamount=\skip13
+\medskipamount=\skip14
+\bigskipamount=\skip15
+\normalbaselineskip=\skip16
+\normallineskip=\skip17
+\normallineskiplimit=\dimen13
+\jot=\dimen14
+\interdisplaylinepenalty=\count23
+\interfootnotelinepenalty=\count24
+fonts, more fonts,
+\itfam=\fam4
+\slfam=\fam5
+\bffam=\fam6
+\ttfam=\fam7
+macros,
+\strutbox=\box11
+\mscount=\count25
+\tabs=\box12
+\tabsyet=\box13
+\tabsdone=\box14
+math definitions,
+\rootbox=\box15
+\p@renwd=\dimen15
+output routines,
+\headline=\toks10
+\footline=\toks11
+\footins=\insert254
+\topins=\insert253
+hyphenation (hyphen.tex))
+> \box0=
+\hbox(6.94444+1.94444)x308.61159
+.\tenrm o
+.\tenrm ^^N (ligature ffi)
+.\tenrm c
+.\tenrm e
+.\glue 3.33333 plus 1.66666 minus 1.11111
+.\tenrm ^^M (ligature fl)
+.\tenrm u
+.\tenrm ^^K (ligature ff)
+.\glue 3.33333 plus 1.66666 minus 1.11111
+.\tenrm a
+.\tenrm ^^O (ligature ffl)
+.\tenrm u
+.\tenrm e
+.\tenrm n
+.\kern-0.27779
+.\tenrm t
+.\glue 3.33333 plus 1.66666 minus 1.11111
+.\tenrm b
+.\tenrm a
+.\tenrm ^^O (ligature ffl)
+.\tenrm e
+.\glue 3.33333 plus 1.66666 minus 1.11111
+.\tenrm w
+.\kern-0.27779
+.\tenrm a
+.\tenrm ^^O (ligature ffl)
+.\tenrm e
+.\glue 3.33333 plus 1.66666 minus 1.11111
+.\tenrm m
+.\kern-0.27779
+.\tenrm u
+.\tenrm ^^O (ligature ffl)
+.\tenrm e
+.\glue 3.33333 plus 1.66666 minus 1.11111
+.\tenrm { (ligature --)
+.\glue 3.33333 plus 1.66666 minus 1.11111
+.\tenrm | (ligature ---)
+.\glue 3.33333 plus 1.66666 minus 1.11111
+.\tenrm \ (ligature ``)
+.\glue 3.33333 plus 1.66666 minus 1.11111
+.\tenrm " (ligature '')
+.\glue 3.33333 plus 1.66666 minus 1.11111
+.\tenrm \ (ligature ``)
+.\tenrm q
+.\tenrm u
+.\tenrm o
+.\tenrm t
+.\tenrm e
+.\tenrm d
+.\tenrm " (ligature '')
+.\glue 3.33333 plus 1.66666 minus 1.11111
+.\tenrm A
+.\kern-1.11113
+.\tenrm V
+.\glue 3.33333 plus 1.66498 minus 1.11221
+.\tenrm T
+.\kern-0.83334
+.\tenrm o
+.\glue 3.33333 plus 1.66666 minus 1.11111
+.\tenrm T
+.\kern-0.83334
+.\tenrm a
+.\glue 3.33333 plus 1.66666 minus 1.11111
+.\tenrm W
+.\kern-0.83334
+.\tenrm a
+
+! OK.
+l.5 \showbox0
+
+
+> \box0=
+\hbox(6.94444+1.94444)x100.03564
+.\tenit ^^L (ligature fi)
+.\tenit n
+.\tenit e
+.\glue 3.57774 plus 1.53333 minus 1.0222
+.\tenit ^^M (ligature fl)
+.\tenit u
+.\tenit ^^K (ligature ff)
+.\kern 2.11945
+.\glue 3.57774 plus 1.53333 minus 1.0222
+.\tenit f
+.\kern 2.11945
+.\glue 3.57774 plus 1.53333 minus 1.0222
+.\tenit A
+.\kern 0.0
+.\glue 3.57774 plus 1.53178 minus 1.02322
+.\tenrm t
+.\tenrm e
+.\tenrm x
+.\tenrm t
+.\kern 0.0
+.\glue 3.33333 plus 1.66666 minus 1.11111
+.\tenbf ^^K (ligature ff)
+.\glue 3.83331 plus 1.91666 minus 1.27777
+.\tenbf ^^L (ligature fi)
+
+! OK.
+l.7 \showbox0
+
+
+> \box0=
+\hbox(6.94444+0.0)x62.0834
+.\tenrm A
+.\kern-1.11113
+.\tenrm V
+.\kern-1.11113
+.\tenrm A
+.\kern 0.0
+.\tenrm V
+.\kern 0.13887
+.\glue 3.33333 plus 1.66498 minus 1.11221
+.\tenrm T
+.\kern 0.0
+.\tenrm o
+.\glue 3.33333 plus 1.66666 minus 1.11111
+.\tenrm f
+.\tenrm f
+.\glue 3.33333 plus 1.66666 minus 1.11111
+.\tenrm f
+.\tenrm i
+
+! OK.
+l.9 \showbox0
+
+
+
+Completed box being shipped out [1]
+\hbox(6.94444+0.0)x62.0834
+.\tenrm A
+.\kern-1.11113
+.\tenrm V
+.\kern-1.11113
+.\tenrm A
+.\kern 0.0
+.\tenrm V
+.\kern 0.13887
+.\glue 3.33333 plus 1.66498 minus 1.11221
+.\tenrm T
+.\kern 0.0
+.\tenrm o
+.\glue 3.33333 plus 1.66666 minus 1.11111
+.\tenrm f
+.\tenrm f
+.\glue 3.33333 plus 1.66666 minus 1.11111
+.\tenrm f
+.\tenrm i
+
+ )
+Output written on m2-ligkern.dvi (1 page, 200 bytes).

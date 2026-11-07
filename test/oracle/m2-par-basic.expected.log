@@ -1,0 +1,887 @@
+(m2-par-basic.tex (plain.tex Preloading the plain f
+ormat: codes, registers,
+\maxdimen=\dimen10
+\hideskip=\skip10
+\centering=\skip11
+\p@=\dimen11
+\z@=\dimen12
+\z@skip=\skip12
+\voidb@x=\box10
+parameters,
+\smallskipamount=\skip13
+\medskipamount=\skip14
+\bigskipamount=\skip15
+\normalbaselineskip=\skip16
+\normallineskip=\skip17
+\normallineskiplimit=\dimen13
+\jot=\dimen14
+\interdisplaylinepenalty=\count23
+\interfootnotelinepenalty=\count24
+fonts, more fonts,
+\itfam=\fam4
+\slfam=\fam5
+\bffam=\fam6
+\ttfam=\fam7
+macros,
+\strutbox=\box11
+\mscount=\count25
+\tabs=\box12
+\tabsyet=\box13
+\tabsdone=\box14
+math definitions,
+\rootbox=\box15
+\p@renwd=\dimen15
+output routines,
+\headline=\toks10
+\footline=\toks11
+\footins=\insert254
+\topins=\insert253
+hyphenation (hyphen.tex))
+@firstpass
+[]\tenrm The quick brown fox jumps over the lazy
+@ via @@0 b=37 p=0 d=2209
+@@1: line 1.1 t=2209 -> @@0
+dog while seven wizards quietly box with jugs
+@ via @@1 b=0 p=0 d=100
+@@2: line 2.2 t=2309 -> @@1
+of liquid. Pack my box with five dozen liquor
+@ via @@2 b=0 p=0 d=100
+@@3: line 3.2 t=2409 -> @@2
+jugs, and how vexingly quick daft zebras jump
+@ via @@3 b=12 p=0 d=484
+@@4: line 4.2 t=2893 -> @@3
+over it.
+@\par via @@4 b=0 p=-10000 d=100
+@@5: line 5.2- t=2993 -> @@4
+
+> 5.
+l.8 \showthe\prevgraf
+
+
+@firstpass
+[]\tenrm The quick brown fox jumps
+@ via @@0 b=1 p=0 d=121
+@@1: line 1.2 t=121 -> @@0
+over the lazy dog while seven
+@ via @@1 b=3 p=0 d=169
+@@2: line 2.2 t=290 -> @@1
+wizards quietly box with
+@ via @@2 b=75 p=0 d=7225
+@@3: line 3.1 t=7515 -> @@2
+jugs
+@ via @@2 b=3 p=0 d=169
+@@4: line 3.2 t=459 -> @@2
+of
+@ via @@2 b=0 p=0 d=100
+@@5: line 3.2 t=390 -> @@2
+liquid. Pack my
+@ via @@3 b=86 p=0 d=9216
+@@6: line 4.1 t=16731 -> @@3
+box
+@ via @@3 b=9 p=0 d=361
+@ via @@4 b=98 p=0 d=11664
+@@7: line 4.1 t=12123 -> @@4
+@@8: line 4.2 t=7876 -> @@3
+with
+@ via @@3 b=26 p=0 d=11296
+@ via @@4 b=7 p=0 d=289
+@ via @@5 b=36 p=0 d=2116
+@@9: line 4.1 t=2506 -> @@5
+@@10: line 4.2 t=748 -> @@4
+five
+@ via @@4 b=1 p=0 d=121
+@ via @@5 b=1 p=0 d=121
+@@11: line 4.2 t=511 -> @@5
+dozen liquor
+@ via @@6 b=36 p=0 d=2116
+@@12: line 5.1 t=18847 -> @@6
+jugs,
+@ via @@6 b=0 p=0 d=100
+@ via @@7 b=20 p=0 d=900
+@ via @@8 b=20 p=0 d=900
+@@13: line 5.1 t=8776 -> @@8
+@@14: line 5.2 t=16831 -> @@6
+and
+@ via @@7 b=0 p=0 d=100
+@ via @@8 b=0 p=0 d=100
+@ via @@9 b=30 p=0 d=1600
+@ via @@10 b=30 p=0 d=1600
+@@15: line 5.1 t=2348 -> @@10
+@@16: line 5.2 t=7976 -> @@8
+how
+@ via @@9 b=0 p=0 d=100
+@ via @@10 b=0 p=0 d=100
+@ via @@11 b=22 p=0 d=1024
+@@17: line 5.1 t=1535 -> @@11
+@@18: line 5.2 t=848 -> @@10
+vexingly quick
+@ via @@12 b=5 p=0 d=225
+@@19: line 6.2 t=19072 -> @@12
+daft
+@ via @@13 b=9 p=0 d=361
+@ via @@14 b=9 p=0 d=361
+@@20: line 6.2 t=9137 -> @@13
+zebras
+@ via @@15 b=0 p=0 d=100
+@ via @@16 b=0 p=0 d=100
+@ via @@17 b=41 p=0 d=2601
+@ via @@18 b=41 p=0 d=2601
+@@21: line 6.1 t=3449 -> @@18
+@@22: line 6.2 t=2448 -> @@15
+jump
+@ via @@17 b=0 p=0 d=100
+@ via @@18 b=0 p=0 d=100
+@@23: line 6.2 t=948 -> @@18
+over it.
+@\par via @@19 b=0 p=-10000 d=100
+@\par via @@20 b=0 p=-10000 d=100
+@\par via @@21 b=0 p=-10000 d=100
+@\par via @@22 b=0 p=-10000 d=100
+@\par via @@23 b=0 p=-10000 d=100
+@@24: line 7.2- t=1048 -> @@23
+
+@firstpass
+\tenrm The quick brown fox jumps over the lazy dog while
+@ via @@0 b=38 p=0 d=2304
+@@1: line 1.1 t=2304 -> @@0
+seven
+@ via @@0 b=0 p=0 d=100
+@@2: line 1.2 t=100 -> @@0
+wizards quietly box with jugs of liquid. Pack
+@ via @@1 b=38 p=0 d=2304
+@@3: line 2.1 t=4608 -> @@1
+my
+@ via @@1 b=2 p=0 d=144
+@ via @@2 b=99 p=0 d=11881
+@@4: line 2.1 t=11981 -> @@2
+@@5: line 2.2 t=2448 -> @@1
+box
+@ via @@1 b=70 p=0 d=16400
+@ via @@2 b=9 p=0 d=361
+@@6: line 2.2 t=461 -> @@2
+with
+@ via @@2 b=13 p=0 d=529
+@@7: line 2.3 t=629 -> @@2
+five dozen liquor jugs, and how vexingly
+@ via @@3 b=9 p=0 d=361
+@ via @@4 b=90 p=0 d=10000
+@ via @@5 b=90 p=0 d=10000
+@@8: line 3.1 t=12448 -> @@5
+@@9: line 3.2 t=4969 -> @@3
+quick
+@ via @@3 b=86 p=0 d=19216
+@ via @@4 b=1 p=0 d=121
+@ via @@5 b=1 p=0 d=121
+@ via @@6 b=43 p=0 d=2809
+@@10: line 3.1 t=3270 -> @@6
+@@11: line 3.2 t=2569 -> @@5
+daft
+@ via @@6 b=0 p=0 d=100
+@ via @@7 b=53 p=0 d=13969
+@@12: line 3.2 t=561 -> @@6
+zebras
+@ via @@7 b=3 p=0 d=169
+@@13: line 3.2 t=798 -> @@7
+jump over it.
+@\par via @@8 b=0 p=-10000 d=100
+@\par via @@9 b=0 p=-10000 d=100
+@\par via @@10 b=0 p=-10000 d=100
+@\par via @@11 b=0 p=-10000 d=100
+@\par via @@12 b=0 p=-10000 d=100
+@\par via @@13 b=0 p=-10000 d=100
+@@14: line 4.2- t=661 -> @@12
+
+> 4.
+l.13 \showthe\prevgraf
+
+
+
+Completed box being shipped out [1]
+\vbox(224.0+0.0)x250.0
+.\vbox(0.0+0.0)x250.0, glue set 14.0fil
+..\glue -22.5
+..\hbox(8.5+0.0)x250.0, glue set 250.0fil
+...\vbox(8.5+0.0)x0.0
+...\glue 0.0 plus 1.0fil
+..\glue 0.0 plus 1.0fil minus 1.0fil
+.\vbox(200.0+0.0)x250.0, glue set 2.05556fill
+..\glue(\topskip) 3.05556
+..\hbox(6.94444+1.94444)x200.0, glue set 0.72379
+...\hbox(0.0+0.0)x12.0
+...\tenrm T
+...\tenrm h
+...\tenrm e
+...\glue 3.33333 plus 1.66666 minus 1.11111
+...\tenrm q
+...\tenrm u
+...\tenrm i
+...\tenrm c
+...\kern-0.27779
+...\tenrm k
+...\glue 3.33333 plus 1.66666 minus 1.11111
+...\tenrm b
+...\tenrm r
+...\tenrm o
+...\kern-0.27779
+...\tenrm w
+...\tenrm n
+...\glue 3.33333 plus 1.66666 minus 1.11111
+...\tenrm f
+...\tenrm o
+...\kern-0.27779
+...\tenrm x
+...\glue 3.33333 plus 1.66666 minus 1.11111
+...\tenrm j
+...\tenrm u
+...\tenrm m
+...\tenrm p
+...\tenrm s
+...\glue 3.33333 plus 1.66666 minus 1.11111
+...\tenrm o
+...\kern-0.27779
+...\tenrm v
+...\kern-0.27779
+...\tenrm e
+...\tenrm r
+...\glue 3.33333 plus 1.66666 minus 1.11111
+...\tenrm t
+...\tenrm h
+...\tenrm e
+...\glue 3.33333 plus 1.66666 minus 1.11111
+...\tenrm l
+...\tenrm a
+...\tenrm z
+...\tenrm y
+...\glue(\rightskip) 0.0
+..\penalty 150
+..\glue(\baselineskip) 3.11111
+..\hbox(6.94444+1.94444)x200.0, glue set - 0.09647
+...\tenrm d
+...\tenrm o
+...\tenrm g
+...\glue 3.33333 plus 1.66666 minus 1.11111
+...\tenrm w
+...\tenrm h
+...\tenrm i
+...\tenrm l
+...\tenrm e
+...\glue 3.33333 plus 1.66666 minus 1.11111
+...\tenrm s
+...\tenrm e
+...\tenrm v
+...\kern-0.27779
+...\tenrm e
+...\tenrm n
+...\glue 3.33333 plus 1.66666 minus 1.11111
+...\tenrm w
+...\tenrm i
+...\tenrm z
+...\tenrm a
+...\tenrm r
+...\tenrm d
+...\tenrm s
+...\glue 3.33333 plus 1.66666 minus 1.11111
+...\tenrm q
+...\tenrm u
+...\tenrm i
+...\tenrm e
+...\tenrm t
+...\tenrm l
+...\tenrm y
+...\glue 3.33333 plus 1.66666 minus 1.11111
+...\tenrm b
+...\kern0.27779
+...\tenrm o
+...\kern-0.27779
+...\tenrm x
+...\glue 3.33333 plus 1.66666 minus 1.11111
+...\tenrm w
+...\tenrm i
+...\tenrm t
+...\tenrm h
+...\glue 3.33333 plus 1.66666 minus 1.11111
+...\tenrm j
+...\tenrm u
+...\tenrm g
+...\tenrm s
+...\glue(\rightskip) 0.0
+..\glue(\baselineskip) 3.11111
+..\hbox(6.94444+1.94444)x200.0, glue set 0.10664
+...\tenrm o
+...\tenrm f
+...\glue 3.33333 plus 1.66666 minus 1.11111
+...\tenrm l
+...\tenrm i
+...\tenrm q
+...\tenrm u
+...\tenrm i
+...\tenrm d
+...\tenrm .
+...\glue 4.44444 plus 4.99997 minus 0.37036
+...\tenrm P
+...\kern-0.27779
+...\tenrm a
+...\tenrm c
+...\kern-0.27779
+...\tenrm k
+...\glue 3.33333 plus 1.66666 minus 1.11111
+...\tenrm m
+...\kern-0.27779
+...\tenrm y
+...\glue 3.33333 plus 1.66666 minus 1.11111
+...\tenrm b
+...\kern0.27779
+...\tenrm o
+...\kern-0.27779
+...\tenrm x
+...\glue 3.33333 plus 1.66666 minus 1.11111
+...\tenrm w
+...\tenrm i
+...\tenrm t
+...\tenrm h
+...\glue 3.33333 plus 1.66666 minus 1.11111
+...\tenrm ^^L (ligature fi)
+...\tenrm v
+...\kern-0.27779
+...\tenrm e
+...\glue 3.33333 plus 1.66666 minus 1.11111
+...\tenrm d
+...\tenrm o
+...\tenrm z
+...\tenrm e
+...\tenrm n
+...\glue 3.33333 plus 1.66666 minus 1.11111
+...\tenrm l
+...\tenrm i
+...\tenrm q
+...\tenrm u
+...\tenrm o
+...\tenrm r
+...\glue(\rightskip) 0.0
+..\glue(\baselineskip) 3.11111
+..\hbox(6.94444+1.94444)x200.0, glue set - 0.49638
+...\tenrm j
+...\tenrm u
+...\tenrm g
+...\tenrm s
+...\tenrm ,
+...\glue 3.33333 plus 2.08331 minus 0.88889
+...\tenrm a
+...\tenrm n
+...\tenrm d
+...\glue 3.33333 plus 1.66666 minus 1.11111
+...\tenrm h
+...\tenrm o
+...\kern-0.27779
+...\tenrm w
+...\glue 3.33333 plus 1.66666 minus 1.11111
+...\tenrm v
+...\kern-0.27779
+...\tenrm e
+...\tenrm x
+...\tenrm i
+...\tenrm n
+...\tenrm g
+...\tenrm l
+...\tenrm y
+...\glue 3.33333 plus 1.66666 minus 1.11111
+...\tenrm q
+...\tenrm u
+...\tenrm i
+...\tenrm c
+...\kern-0.27779
+...\tenrm k
+...\glue 3.33333 plus 1.66666 minus 1.11111
+...\tenrm d
+...\tenrm a
+...\tenrm f
+...\tenrm t
+...\glue 3.33333 plus 1.66666 minus 1.11111
+...\tenrm z
+...\tenrm e
+...\tenrm b
+...\tenrm r
+...\tenrm a
+...\tenrm s
+...\glue 3.33333 plus 1.66666 minus 1.11111
+...\tenrm j
+...\tenrm u
+...\tenrm m
+...\tenrm p
+...\glue(\rightskip) 0.0
+..\penalty 150
+..\glue(\baselineskip) 3.37697
+..\hbox(6.67859+0.0)x200.0, glue set 169.13884fil
+...\tenrm o
+...\kern-0.27779
+...\tenrm v
+...\kern-0.27779
+...\tenrm e
+...\tenrm r
+...\glue 3.33333 plus 1.66666 minus 1.11111
+...\tenrm i
+...\tenrm t
+...\tenrm .
+...\penalty 10000
+...\glue(\parfillskip) 0.0 plus 1.0fil
+...\glue(\rightskip) 0.0
+..\glue(\parskip) 3.0 plus 1.0
+..\glue(\baselineskip) 5.05556
+..\hbox(6.94444+1.94444)x150.0, glue set 0.2159
+...\glue(\leftskip) 10.0
+...\hbox(0.0+0.0)x12.0
+...\tenrm T
+...\tenrm h
+...\tenrm e
+...\glue 3.33333 plus 1.66666 minus 1.11111
+...\tenrm q
+...\tenrm u
+...\tenrm i
+...\tenrm c
+...\kern-0.27779
+...\tenrm k
+...\glue 3.33333 plus 1.66666 minus 1.11111
+...\tenrm b
+...\tenrm r
+...\tenrm o
+...\kern-0.27779
+...\tenrm w
+...\tenrm n
+...\glue 3.33333 plus 1.66666 minus 1.11111
+...\tenrm f
+...\tenrm o
+...\kern-0.27779
+...\tenrm x
+...\glue 3.33333 plus 1.66666 minus 1.11111
+...\tenrm j
+...\tenrm u
+...\tenrm m
+...\tenrm p
+...\tenrm s
+...\glue(\rightskip) 0.0 plus 30.0
+..\penalty 150
+..\glue(\baselineskip) 3.11111
+..\hbox(6.94444+1.94444)x150.0, glue set 0.31667
+...\glue(\leftskip) 10.0
+...\tenrm o
+...\kern-0.27779
+...\tenrm v
+...\kern-0.27779
+...\tenrm e
+...\tenrm r
+...\glue 3.33333 plus 1.66666 minus 1.11111
+...\tenrm t
+...\tenrm h
+...\tenrm e
+...\glue 3.33333 plus 1.66666 minus 1.11111
+...\tenrm l
+...\tenrm a
+...\tenrm z
+...\tenrm y
+...\glue 3.33333 plus 1.66666 minus 1.11111
+...\tenrm d
+...\tenrm o
+...\tenrm g
+...\glue 3.33333 plus 1.66666 minus 1.11111
+...\tenrm w
+...\tenrm h
+...\tenrm i
+...\tenrm l
+...\tenrm e
+...\glue 3.33333 plus 1.66666 minus 1.11111
+...\tenrm s
+...\tenrm e
+...\tenrm v
+...\kern-0.27779
+...\tenrm e
+...\tenrm n
+...\glue(\rightskip) 0.0 plus 30.0
+..\glue(\baselineskip) 3.11111
+..\hbox(6.94444+1.94444)x150.0, glue set 0.29924
+...\glue(\leftskip) 10.0
+...\tenrm w
+...\tenrm i
+...\tenrm z
+...\tenrm a
+...\tenrm r
+...\tenrm d
+...\tenrm s
+...\glue 3.33333 plus 1.66666 minus 1.11111
+...\tenrm q
+...\tenrm u
+...\tenrm i
+...\tenrm e
+...\tenrm t
+...\tenrm l
+...\tenrm y
+...\glue 3.33333 plus 1.66666 minus 1.11111
+...\tenrm b
+...\kern0.27779
+...\tenrm o
+...\kern-0.27779
+...\tenrm x
+...\glue 3.33333 plus 1.66666 minus 1.11111
+...\tenrm w
+...\tenrm i
+...\tenrm t
+...\tenrm h
+...\glue 3.33333 plus 1.66666 minus 1.11111
+...\tenrm j
+...\tenrm u
+...\tenrm g
+...\tenrm s
+...\glue(\rightskip) 0.0 plus 30.0
+..\glue(\baselineskip) 3.11111
+..\hbox(6.94444+1.94444)x150.0, glue set 0.40999
+...\glue(\leftskip) 10.0
+...\tenrm o
+...\tenrm f
+...\glue 3.33333 plus 1.66666 minus 1.11111
+...\tenrm l
+...\tenrm i
+...\tenrm q
+...\tenrm u
+...\tenrm i
+...\tenrm d
+...\tenrm .
+...\glue 4.44444 plus 4.99997 minus 0.37036
+...\tenrm P
+...\kern-0.27779
+...\tenrm a
+...\tenrm c
+...\kern-0.27779
+...\tenrm k
+...\glue 3.33333 plus 1.66666 minus 1.11111
+...\tenrm m
+...\kern-0.27779
+...\tenrm y
+...\glue 3.33333 plus 1.66666 minus 1.11111
+...\tenrm b
+...\kern0.27779
+...\tenrm o
+...\kern-0.27779
+...\tenrm x
+...\glue 3.33333 plus 1.66666 minus 1.11111
+...\tenrm w
+...\tenrm i
+...\tenrm t
+...\tenrm h
+...\glue(\rightskip) 0.0 plus 30.0
+..\glue(\baselineskip) 3.11111
+..\hbox(6.94444+1.94444)x150.0, glue set 0.10538
+...\glue(\leftskip) 10.0
+...\tenrm ^^L (ligature fi)
+...\tenrm v
+...\kern-0.27779
+...\tenrm e
+...\glue 3.33333 plus 1.66666 minus 1.11111
+...\tenrm d
+...\tenrm o
+...\tenrm z
+...\tenrm e
+...\tenrm n
+...\glue 3.33333 plus 1.66666 minus 1.11111
+...\tenrm l
+...\tenrm i
+...\tenrm q
+...\tenrm u
+...\tenrm o
+...\tenrm r
+...\glue 3.33333 plus 1.66666 minus 1.11111
+...\tenrm j
+...\tenrm u
+...\tenrm g
+...\tenrm s
+...\tenrm ,
+...\glue 3.33333 plus 2.08331 minus 0.88889
+...\tenrm a
+...\tenrm n
+...\tenrm d
+...\glue 3.33333 plus 1.66666 minus 1.11111
+...\tenrm h
+...\tenrm o
+...\kern-0.27779
+...\tenrm w
+...\glue(\rightskip) 0.0 plus 30.0
+..\glue(\baselineskip) 3.11111
+..\hbox(6.94444+1.94444)x150.0, glue set 0.0053
+...\glue(\leftskip) 10.0
+...\tenrm v
+...\kern-0.27779
+...\tenrm e
+...\tenrm x
+...\tenrm i
+...\tenrm n
+...\tenrm g
+...\tenrm l
+...\tenrm y
+...\glue 3.33333 plus 1.66666 minus 1.11111
+...\tenrm q
+...\tenrm u
+...\tenrm i
+...\tenrm c
+...\kern-0.27779
+...\tenrm k
+...\glue 3.33333 plus 1.66666 minus 1.11111
+...\tenrm d
+...\tenrm a
+...\tenrm f
+...\tenrm t
+...\glue 3.33333 plus 1.66666 minus 1.11111
+...\tenrm z
+...\tenrm e
+...\tenrm b
+...\tenrm r
+...\tenrm a
+...\tenrm s
+...\glue 3.33333 plus 1.66666 minus 1.11111
+...\tenrm j
+...\tenrm u
+...\tenrm m
+...\tenrm p
+...\glue(\rightskip) 0.0 plus 30.0
+..\penalty 150
+..\glue(\baselineskip) 3.37697
+..\hbox(6.67859+0.0)x150.0, glue set 109.13884fil
+...\glue(\leftskip) 10.0
+...\tenrm o
+...\kern-0.27779
+...\tenrm v
+...\kern-0.27779
+...\tenrm e
+...\tenrm r
+...\glue 3.33333 plus 1.66666 minus 1.11111
+...\tenrm i
+...\tenrm t
+...\tenrm .
+...\penalty 10000
+...\glue(\parfillskip) 0.0 plus 1.0fil
+...\glue(\rightskip) 0.0 plus 30.0
+..\glue(\parskip) 3.0 plus 1.0
+..\glue(\baselineskip) 5.05556
+..\hbox(6.94444+1.94444)x250.0, glue set - 0.11504
+...\tenrm T
+...\tenrm h
+...\tenrm e
+...\glue 3.33333 plus 1.66666 minus 1.11111
+...\tenrm q
+...\tenrm u
+...\tenrm i
+...\tenrm c
+...\kern-0.27779
+...\tenrm k
+...\glue 3.33333 plus 1.66666 minus 1.11111
+...\tenrm b
+...\tenrm r
+...\tenrm o
+...\kern-0.27779
+...\tenrm w
+...\tenrm n
+...\glue 3.33333 plus 1.66666 minus 1.11111
+...\tenrm f
+...\tenrm o
+...\kern-0.27779
+...\tenrm x
+...\glue 3.33333 plus 1.66666 minus 1.11111
+...\tenrm j
+...\tenrm u
+...\tenrm m
+...\tenrm p
+...\tenrm s
+...\glue 3.33333 plus 1.66666 minus 1.11111
+...\tenrm o
+...\kern-0.27779
+...\tenrm v
+...\kern-0.27779
+...\tenrm e
+...\tenrm r
+...\glue 3.33333 plus 1.66666 minus 1.11111
+...\tenrm t
+...\tenrm h
+...\tenrm e
+...\glue 3.33333 plus 1.66666 minus 1.11111
+...\tenrm l
+...\tenrm a
+...\tenrm z
+...\tenrm y
+...\glue 3.33333 plus 1.66666 minus 1.11111
+...\tenrm d
+...\tenrm o
+...\tenrm g
+...\glue 3.33333 plus 1.66666 minus 1.11111
+...\tenrm w
+...\tenrm h
+...\tenrm i
+...\tenrm l
+...\tenrm e
+...\glue 3.33333 plus 1.66666 minus 1.11111
+...\tenrm s
+...\tenrm e
+...\tenrm v
+...\kern-0.27779
+...\tenrm e
+...\tenrm n
+...\glue(\rightskip) 0.0 plus 20.00003
+..\penalty 150
+..\glue(\baselineskip) 3.11111
+..\hbox(6.94444+1.94444)x250.0, glue set 0.45651
+...\tenrm w
+...\tenrm i
+...\tenrm z
+...\tenrm a
+...\tenrm r
+...\tenrm d
+...\tenrm s
+...\glue 3.33333 plus 1.66666 minus 1.11111
+...\tenrm q
+...\tenrm u
+...\tenrm i
+...\tenrm e
+...\tenrm t
+...\tenrm l
+...\tenrm y
+...\glue 3.33333 plus 1.66666 minus 1.11111
+...\tenrm b
+...\kern0.27779
+...\tenrm o
+...\kern-0.27779
+...\tenrm x
+...\glue 3.33333 plus 1.66666 minus 1.11111
+...\tenrm w
+...\tenrm i
+...\tenrm t
+...\tenrm h
+...\glue 3.33333 plus 1.66666 minus 1.11111
+...\tenrm j
+...\tenrm u
+...\tenrm g
+...\tenrm s
+...\glue 3.33333 plus 1.66666 minus 1.11111
+...\tenrm o
+...\tenrm f
+...\glue 3.33333 plus 1.66666 minus 1.11111
+...\tenrm l
+...\tenrm i
+...\tenrm q
+...\tenrm u
+...\tenrm i
+...\tenrm d
+...\tenrm .
+...\glue 4.44444 plus 4.99997 minus 0.37036
+...\tenrm P
+...\kern-0.27779
+...\tenrm a
+...\tenrm c
+...\kern-0.27779
+...\tenrm k
+...\glue 3.33333 plus 1.66666 minus 1.11111
+...\tenrm m
+...\kern-0.27779
+...\tenrm y
+...\glue 3.33333 plus 1.66666 minus 1.11111
+...\tenrm b
+...\kern0.27779
+...\tenrm o
+...\kern-0.27779
+...\tenrm x
+...\glue(\rightskip) 0.0 plus 20.00003
+..\glue(\baselineskip) 3.11111
+..\hbox(6.94444+1.94444)x250.0, glue set 0.13097
+...\tenrm w
+...\tenrm i
+...\tenrm t
+...\tenrm h
+...\glue 3.33333 plus 1.66666 minus 1.11111
+...\tenrm ^^L (ligature fi)
+...\tenrm v
+...\kern-0.27779
+...\tenrm e
+...\glue 3.33333 plus 1.66666 minus 1.11111
+...\tenrm d
+...\tenrm o
+...\tenrm z
+...\tenrm e
+...\tenrm n
+...\glue 3.33333 plus 1.66666 minus 1.11111
+...\tenrm l
+...\tenrm i
+...\tenrm q
+...\tenrm u
+...\tenrm o
+...\tenrm r
+...\glue 3.33333 plus 1.66666 minus 1.11111
+...\tenrm j
+...\tenrm u
+...\tenrm g
+...\tenrm s
+...\tenrm ,
+...\glue 3.33333 plus 2.08331 minus 0.88889
+...\tenrm a
+...\tenrm n
+...\tenrm d
+...\glue 3.33333 plus 1.66666 minus 1.11111
+...\tenrm h
+...\tenrm o
+...\kern-0.27779
+...\tenrm w
+...\glue 3.33333 plus 1.66666 minus 1.11111
+...\tenrm v
+...\kern-0.27779
+...\tenrm e
+...\tenrm x
+...\tenrm i
+...\tenrm n
+...\tenrm g
+...\tenrm l
+...\tenrm y
+...\glue 3.33333 plus 1.66666 minus 1.11111
+...\tenrm q
+...\tenrm u
+...\tenrm i
+...\tenrm c
+...\kern-0.27779
+...\tenrm k
+...\glue 3.33333 plus 1.66666 minus 1.11111
+...\tenrm d
+...\tenrm a
+...\tenrm f
+...\tenrm t
+...\glue(\rightskip) 0.0 plus 20.00003
+..\penalty 150
+..\glue(\baselineskip) 3.11111
+..\hbox(6.94444+1.94444)x250.0, glue set 162.66652fil
+...\tenrm z
+...\tenrm e
+...\tenrm b
+...\tenrm r
+...\tenrm a
+...\tenrm s
+...\glue 3.33333 plus 1.66666 minus 1.11111
+...\tenrm j
+...\tenrm u
+...\tenrm m
+...\tenrm p
+...\glue 3.33333 plus 1.66666 minus 1.11111
+...\tenrm o
+...\kern-0.27779
+...\tenrm v
+...\kern-0.27779
+...\tenrm e
+...\tenrm r
+...\glue 3.33333 plus 1.66666 minus 1.11111
+...\tenrm i
+...\tenrm t
+...\tenrm .
+...\penalty 10000
+...\glue(\parfillskip) 0.0 plus 1.0fil
+...\glue(\rightskip) 0.0 plus 20.00003
+..\hbox(0.0+0.0)x250.0
+..\glue 0.0 plus 1.0fill
+.\glue(\baselineskip) 17.55556
+.\hbox(6.44444+0.0)x250.0, glue set 122.5fil
+..\glue 0.0 plus 1.0fil minus 1.0fil
+..\tenrm 1
+..\glue 0.0 plus 1.0fil minus 1.0fil
+
+ )
+Output written on m2-par-basic.dvi (1 page, 1044 bytes).

@@ -1,0 +1,21 @@
+%! oracle: ini
+\input plain
+\tracingonline=0 \showboxbreadth=10000 \showboxdepth=10000 \tracingoutput=1
+\setbox0=\hbox{Hello, \hbox{in}ner}
+\showthe\wd0 \showthe\ht0 \showthe\dp0
+\showbox0
+\setbox1=\hbox to 3in{A\hfil B}
+\setbox2=\hbox spread 1pt{A\hskip 2pt plus 3pt B}
+\showbox1 \showbox2
+\setbox3=\copy0 \showbox3
+\ifvoid0 \message{void0}\else\message{nonvoid0}\fi
+\setbox4=\box0
+\ifvoid0 \message{void0}\else\message{nonvoid0}\fi
+\ifhbox4 \message{hbox4}\fi \ifvbox4 \message{vbox4}\fi
+\setbox5=\hbox{\unhbox4 \unhcopy3 x}
+\showbox5
+\setbox6=\hbox{ab\setbox7=\lastbox \showbox7 \unskip}
+\showbox6
+\ifhbox1\else\message{no}\fi
+\shipout\hbox{\box5\box1}
+\end
