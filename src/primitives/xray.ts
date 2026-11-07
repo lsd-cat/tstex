@@ -1,7 +1,7 @@
 // §1291–1298 \show \showbox \showthe \showlists
 import type { Engine } from '../engine.ts'
 import { Cmd, error_stop_mode, term_and_log, term_only } from '../types.ts'
-import { print as print_str, print_esc, print_nl, print_char, print_ln, print_int, print_mode, begin_diagnostic, end_diagnostic } from '../print.ts'
+import { print as print_str, print_esc, print_nl, print_char, print_int, begin_diagnostic, end_diagnostic } from '../print.ts'
 import { error, help, print_err } from '../error.ts'
 import { sprint_cs } from '../hash.ts'
 import { token_show, print_meaning } from '../tokens.ts'

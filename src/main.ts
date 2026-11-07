@@ -5,11 +5,11 @@ import { Cmd, vmode, hmode, mmode, int_val, dimen_val, glue_val, new_string } fr
 import { print, print_char, print_esc, print_mode, print_nl, print_ln, print_int, begin_diagnostic, end_diagnostic } from './print.ts'
 import { print_scaled, xn_over_d } from './arith.ts'
 import { error, print_err, help, confusion, fatal_error, overflow, every_job_text, every_par_text, inserted } from './error.ts'
-import { add_glue_ref, delete_glue_ref, new_spec, zero_glue, get_avail, free_avail, add_token_ref, temp_head, normal, flush_list,
+import { add_glue_ref, delete_glue_ref, new_spec, zero_glue, get_avail, free_avail, add_token_ref, temp_head, normal,
   new_char, new_null_box, new_rule, new_glue, new_param_glue, new_kern, new_penalty, new_disc, new_ligature, new_lig_item,
   new_whatsit_node, flush_node_list, copy_node_list, show_box, box, change_box, node_ref, is_char_node, char_node, hlist_node,
   vlist_node, rule_node, ins_node, mark_node, adjust_node, ligature_node, disc_node, math_node, glue_node, kern_node,
-  penalty_node, a_leaders, mu_glue, explicit, acc_kern, language_node, fill_glue } from './nodes.ts'
+  a_leaders, mu_glue, explicit, acc_kern, language_node, fill_glue } from './nodes.ts'
 import type { Node, CharNode, LigNode, BoxNode, InsNode, AdjustNode, MarkNode, GlueNode } from './nodes.ts'
 import { int_par, tracing_commands_code, global_defs_code, every_job_loc, every_par_loc, eq_define, geq_define, eq_word_define,
   geq_word_define, frozen_control_sequence, frozen_protection, count_base, int_base, looseness_code, hang_after_code, dimen_base,
@@ -38,7 +38,7 @@ import { registry } from './primitives/index.ts'
 export const box_flag = 0o10000000000, global_box_flag = 0o10000100000, ship_out_flag = 0o10000200000,
   leader_flag = 0o10000200001, box_code = 0, copy_code = 1, last_box_code = 2, vsplit_code = 3, vtop_code = 4
 export const fil_code = 0, fill_code = 1, ss_code = 2, fil_neg_code = 3, skip_code = 4, mskip_code = 5
-const ignore_depth = -65536000, default_rule = 26214
+const default_rule = 26214
 const space_skip_code = 12, xspace_skip_code = 13, par_skip_code = 2, split_top_skip_code = 10
 const language_code = 50, left_hyphen_min_code = 51, right_hyphen_min_code = 52, floating_penalty_code = 42
 const pdf_adjust_interword_glue_code = 77, par_indent_code = 0, split_max_depth_code = 6, box_max_depth_code = 7

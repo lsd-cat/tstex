@@ -2,10 +2,9 @@
 // print gives print_cmd_chr's text (the escaped name); main_control, expand and prefixed_command call
 // unsupported() for a command without run/assign, which stops with "unsupported: \name".
 import type { Engine } from '../engine.ts'
-import { Cmd, vmode, hmode, par_shape_loc, math_font_base, etex_pen_base } from '../types.ts'
+import { Cmd, par_shape_loc, math_font_base, etex_pen_base } from '../types.ts'
 import { print_esc } from '../print.ts'
 import type { Prim } from './index.ts'
-const vtop_code = 4
 // [name, cmd, chr, 1 if e-TeX mode only, 2 if print-only]
 const table: [string, number, number, number?][] = [
   ['delimiter', Cmd.delim_num, 0], 

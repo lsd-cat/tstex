@@ -2,7 +2,7 @@
 // The DVI bytes live in one growable buffer; dvi_ptr/dvi_limit/dvi_offset/dvi_gone are simulated exactly as with
 // TeX Live's 16384-byte half-buffered dvi_buf, since movement() and dvi_pop() depend on them.
 import type { Engine } from './engine.ts'
-import { Cmd, term_and_log, log_only, new_string, max_print_line } from './types.ts'
+import { term_and_log, log_only, new_string, max_print_line } from './types.ts'
 import { print, print_char, print_nl, print_ln, print_int, print_two, slow_print, begin_diagnostic, end_diagnostic } from './print.ts'
 import { error, print_err, help, confusion, fatal_error, write_text } from './error.ts'
 import { int_par, prepare_mag, count_base, dimen_base, end_write, mag_code } from './eqtb.ts'
@@ -10,7 +10,7 @@ import { show_token_list, token_show, cs_token_flag, right_brace_token, left_bra
 import { get_avail, flush_list, flush_node_list, show_box, zround, is_char_node, hlist_node, vlist_node, rule_node, whatsit_node,
   glue_node, kern_node, math_node, ligature_node, normal, stretching, a_leaders, c_leaders, null_flag, open_node, write_node,
   close_node, special_node, latespecial_node, language_node } from './nodes.ts'
-import type { Node, BoxNode, WhatsitNode } from './nodes.ts'
+import type { BoxNode, WhatsitNode } from './nodes.ts'
 import { char_info, char_width, null_font } from './tfm.ts'
 import { get_token, ins_list, begin_token_list, end_token_list } from './input.ts'
 import { scan_toks } from './scan.ts'
@@ -19,8 +19,8 @@ import { open_log_file, print_file_name, prompt_file_name } from './files.ts'
 export const dvi_buf_size = 16384 // TeX Live texmf.cnf
 const half_buf = dvi_buf_size / 2
 // §586 DVI opcodes
-const set1 = 128, set_rule = 132, put_rule = 137, bop = 139, eop = 140, push = 141, pop = 142, right1 = 143, w0 = 147,
-  x0 = 152, down1 = 157, y0 = 161, y1 = 162, z0 = 166, z1 = 167, fnt_num_0 = 171, fnt1 = 235, xxx1 = 239, xxx4 = 242,
+const set1 = 128, set_rule = 132, put_rule = 137, bop = 139, eop = 140, push = 141, pop = 142, right1 = 143,
+  down1 = 157, y0 = 161, y1 = 162, z0 = 166, z1 = 167, fnt_num_0 = 171, fnt1 = 235, xxx1 = 239, xxx4 = 242,
   fnt_def1 = 243, pre = 247, post = 248, post_post = 249, id_byte = 2
 const tracing_output_code = 34, tracing_online_code = 29, tracing_stats_code = 31, h_offset_code = 18, v_offset_code = 19
 const max_dimen = 0o7777777777
@@ -525,4 +525,3 @@ export function out_what(e: Engine, p: WhatsitNode): void {
     default: confusion(e, 'ext4')
   }
 }
-void Cmd
