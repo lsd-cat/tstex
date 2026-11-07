@@ -1,0 +1,206 @@
+%
+% Copyright (C) The LaTeX Project
+%
+\input{regression-test}
+
+\ExplSyntaxOn
+\debug_on:n { check-declarations , deprecation , log-functions }
+\ExplSyntaxOff
+
+\documentclass{minimal}
+
+\START
+\AUTHOR{Joseph Wright}
+
+\ExplSyntaxOn
+
+\sys_if_engine_ptex:T { \END }
+
+\OMIT
+    % The aim here is to use the comprehensive test list from the Unicode
+    % Consortium rather than our own tests
+    %
+    % Each non-comment line in the test list has series of codepoints with
+    % markers for where a break is forbidden and where one is expected - there
+    % are no optional breaks
+    %
+    % We map through this list and turn each codepoint into a character/series
+    % of bytes. We store each character in two token lists: one of just the
+    % characters, one with them divided up into parenthetic groups based on the
+    % expected breaks. We then apply the grapheme mapping to the first version,
+    % introducing parenthesis to divide it up. The two results should be the
+    % same, other than where noted. (We do not worry about token lists which start
+    % with LF or CR, and do not currently have extended emoji data so skip those
+    % cases.)
+    %
+    \use:e
+      {
+        \cs_set_protected:Npn \exp_not:N \test_auxi:Nw #1
+          \tl_to_str:n { ÷ } #2 \char_generate:nn { `\^^I } { 12 }
+          \c_hash_str #3 \exp_not:N \q_stop
+      }
+      { \test_auxii:NnNNNNw #1 {#3} #2 \q_stop }
+    \cs_set_protected:Npe \test_auxii:NnNNNNw #1#2#3#4#5#6#7 \q_stop
+      {
+        % We skip tests where the first token is LF or CR
+        \exp_not:N \bool_lazy_or:nnF
+          { \exp_not:N \str_if_eq_p:nn {#3#4#5#6} { 000A } }
+          { \exp_not:N \str_if_eq_p:nn {#3#4#5#6} { 000D } }
+          {
+            \exp_not:N \test_auxiii:Nnnnw #1 {#2} { } { } #3#4#5#6#7
+              \exp_not:N \q_recursion_tail
+              \tl_to_str:n { ÷ } \exp_not:N \q_recursion_stop
+          }
+      }
+    \use:e
+      {
+        \cs_set_protected:Npn \exp_not:N \test_auxiii:Nnnnw
+          #1#2#3#4#5 \tl_to_str:n { ÷ }
+      }
+      {
+        \quark_if_recursion_tail_stop_do:nn {#5}
+          { \test_auxvi:Nnnn #1 {#2} {#3} {#4} }
+        \test_auxiv:Nnnnn #1 {#2} {#3} {#4} {#5}
+      }
+    \cs_set_protected:Npe \test_auxiv:Nnnnn #1#2#3#4#5
+      {
+        \exp_not:N \test_auxv:Nnnnnw #1 {#2} {#3} {#4} { } #5
+          \tl_to_str:n { × } \exp_not:N \q_recursion_tail
+          \tl_to_str:n { × } \exp_not:N \q_recursion_stop
+      }
+    \use:e
+      {
+        \cs_set_protected:Npn \exp_not:N \test_auxv:Nnnnnw
+          #1#2#3#4#5#6 \tl_to_str:n { × }
+      }
+      {
+        \quark_if_recursion_tail_stop_do:nn {#6}
+          { \test_auxiii:Nnnnw #1 {#2} {#3#5} { #4 (#5) } }
+        \use:e
+          {
+            \test_auxv:Nnnnnw \exp_not:N #1 {#2} {#3} {#4}
+              { #5 \test_generate:n {#6} }
+          }
+      }
+    \cs_set_protected:Npn \test_auxvi:Nnnn #1#2#3#4
+      {
+        \str_if_eq:eeTF
+          { #1 {#3} \test_auxvii:n }
+          {#4}
+          { \TRUE }
+          {
+            % At present we do not have extended pictogram data:
+            % this area is therefore currently not supported
+            \str_if_in:nnTF {#2} { ExtPict }
+              {
+                \str_if_in:nnTF {#2} { ZWJ }
+                  { \FALSE }
+                  { \LONGTYPEOUT {#2} }
+              }
+              {
+                \str_if_in:nnTF {#2} { UPPER~BLADE~SCISSORS } % Also a pictogram!
+                  {
+                    \str_if_in:nnTF {#2} { ZWJ }
+                      { \FALSE }
+                      { \LONGTYPEOUT {#2} }
+                  }
+                  {
+                    \str_if_in:nnTF {#2} { ConjunctLinkingScripts }
+                      { \FALSE }
+                      {
+                        \str_if_in:nnTF {#2}
+                          { SPACE~(WSegSpace)~× } % We always break at spaces
+                          { \FALSE }
+                          { \LONGTYPEOUT {#2} }
+                      }
+                  }
+              }
+          }
+      }
+    \cs_set:Npn \test_auxvii:n #1 { (#1) }
+    \sys_if_engine_unicode:TF
+      {
+        \cs_set:Npn \test_generate:n #1
+          {
+            \exp_args:Ne \char_generate:nn
+              { " \tl_trim_spaces:n {#1} } { 12 }
+          }
+      }
+      {
+        \cs_set:Npn \test_generate:n #1
+          {
+            \exp_args:Ne \test_generate_aux:n
+              {
+                \exp_args:Ne \__kernel_codepoint_to_bytes:n
+                  { " \tl_trim_spaces:n {#1} }
+              }
+          }
+        \cs_set:Npn \test_generate_aux:n #1
+          { \test_generate:nnnn #1 }
+        \cs_set:Npn \test_generate:nnnn #1#2#3#4
+          {
+            \char_generate:nn {#1} { 12 }
+            \tl_if_blank:nF {#2}
+              { \char_generate:nn {#2} { 12 } }
+            \tl_if_blank:nF {#3}
+              { \char_generate:nn {#3} { 12 } }
+            \tl_if_blank:nF {#4}
+              { \char_generate:nn {#4} { 12 } }
+          }
+      }
+\TIMO
+
+\TEST { Grapheme~mapping }
+  {
+    \OMIT
+      \ior_open:Nn \g_tmpa_ior { GraphemeBreakTest.txt }
+    \TIMO
+    \ior_str_map_inline:Nn \g_tmpa_ior
+      {
+        \str_if_eq:eeF { \tl_head:w #1 \c_hash_str \q_stop } { \c_hash_str }
+          {
+            \tl_if_blank:nF {#1}
+              { \test_auxi:Nw \text_map_tokens:nn #1 \q_stop }
+          }
+      }
+  }
+
+\TEST { Word~boundary~mapping }
+  {
+    \OMIT
+      \ior_open:Nn \g_tmpa_ior { WordBreakTest.txt }
+    \TIMO
+    \ior_str_map_inline:Nn \g_tmpa_ior
+      {
+        \str_if_eq:eeF { \tl_head:w #1 \c_hash_str \q_stop } { \c_hash_str }
+          {
+            \tl_if_blank:nF {#1}
+              { \test_auxi:Nw \text_words_map_tokens:nn #1 \q_stop }
+          }
+      }
+  }
+
+\OMIT
+  \cs_set:Npn \test:n #1
+    {
+      \text_map_inline:nn {#1} { \TYPE {##1} }
+      \text_words_map_inline:nn {#1} { \TYPE {##1} }
+    }
+\TIMO
+
+\TEST { Math-mode~escape }
+  {
+    \test:n { Some~text~$y~=~mx~+~c$ }
+    \test:n { $y~=~mx~+~c$~text }
+    \test:n { Oops~not~close~token~in~$y~=~mx~+~c }
+  }
+
+\BEGINTEST { Active~chars }
+  \cs_gset:Npn \cs_tmp:w { XXX }
+  \char_set_active_eq:NN * \cs_tmp:w
+  \char_set_catcode_active:N *
+
+  \test:n { Some~text~*A~bbb }
+\ENDTEST
+
+\END

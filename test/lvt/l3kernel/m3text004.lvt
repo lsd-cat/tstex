@@ -1,0 +1,110 @@
+%
+% Copyright (C) 2020,2022,2023 LaTeX Project
+%
+\input{regression-test}
+
+\ExplSyntaxOn
+\debug_on:n { check-declarations , deprecation , log-functions }
+\ExplSyntaxOff
+
+\START
+\AUTHOR{Joseph Wright}
+\ExplSyntaxOn
+
+\OMIT
+  \tl_set:Nn \l_tmpa_tl { Hello }
+  \tl_set:Nn \l_tmpb_tl { \l_tmpa_tl }
+  \cs_set_protected:Npn \cs_tmp:w { \l_tmpa_tl }
+\TIMO
+
+\TESTEXP { Purify~content }
+  {
+    \text_purify:n { Some~\emph{text}~\l_tmpa_tl }
+    \NEWLINE
+    \text_purify:n { \l_tmpa_tl \c_space_tl some { \bfseries text } }
+  }
+
+\TESTEXP { Purify~in~braces }
+  {
+    \text_purify:n { { \emph { \l_tmpa_tl } }~world~\par with~\ERROR & # }
+  }
+
+\TESTEXP { Purification~exclusions }
+  {
+    \text_purify:n { FOO~\cite { \l_tmpa_tl } ~ { BAZ } }
+    \NEWLINE
+    \text_purify:n { \label { BAR } ~ { BAZ } }
+  }
+
+\TESTEXP { Math-mode~escape }
+  {
+    \text_purify:n { Some~text~$y~=~\sin \theta$ }
+    \NEWLINE
+    \text_purify:n { Oops~not~close~token~in~$y~=~\sin \theta }
+    \NEWLINE
+    \text_purify:n { \ensuremath { y = mx + c }~is~an~equation }
+  }
+
+\OMIT
+  \tex_chardef:D \tokenzero = `\\ % 0
+  \tex_chardef:D \tokeni    = `\{ % 1
+  \tex_chardef:D \tokenii   = `\} % 2
+  \tex_chardef:D \tokeniii  = `\$% 3
+  \tex_chardef:D \tokeniv   = `\& % 4
+  \tex_chardef:D \tokenv    = `\^^M % 5
+  \tex_chardef:D \tokenvi   = `\# % 6
+  \tex_chardef:D \tokenvii  = `\^ % 7
+  \tex_chardef:D \tokenviii = `\_ % 8
+  \tex_chardef:D \tokenix   = `\^^@ % 9
+  \tex_chardef:D \tokenx    = `\  % 10
+  \tex_chardef:D \tokenxi   = `\a % 11
+  \tex_chardef:D \tokenxii  = `\* % 12
+  \tex_chardef:D \tokenxiii = `\~ % 13
+  \tex_chardef:D \tokenxiv  = `\% % 14
+\TIMO
+
+\TESTEXP { Implicit~tokens }
+  {
+    \text_purify:n
+      {
+        \tokeni
+        \tokenii
+        \tokeniii
+        \tokeniv
+        \tokenv
+        \tokenvi
+        \tokenvii
+        \tokenviii
+        \tokenix
+        \tokenx
+        \tokenxi
+        \tokenxii
+        \tokenxiii
+        \tokenxiv
+      }
+  }
+
+\OMIT
+  \text_declare_purify_equivalent:Nn \numberline { \use_none:n }
+\TIMO
+
+\TESTEXP { Removing~commands~after~\protect }
+  {
+    \text_purify:n { \protect \emph { a } b } \NEWLINE
+    \text_purify:n { \protect \numberline { c } d } % Handled by the above
+  }
+
+\sys_if_engine_ptex:T { \END }
+
+\TESTEXP { Letter-like~commands }
+  {
+    \text_purify:n { \AA \aa \ae \dh \ss \l \O }
+  }
+
+\TESTEXP { Accents }
+  {
+    \text_purify:n { \"{a} \u{e} \H{i} \v{o} \.{u} } \NEWLINE
+    \text_purify:n { \~{n} \k{r} }
+  }
+
+\END

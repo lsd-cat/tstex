@@ -1,0 +1,262 @@
+%
+% Copyright (C) The LaTeX Project
+%
+
+\documentclass{minimal}
+\input{regression-test}
+
+\ExplSyntaxOn
+\debug_on:n { check-declarations , deprecation , log-functions }
+\ExplSyntaxOff
+
+
+\begin{document}
+\START
+\AUTHOR{Joseph Wright}
+\ExplSyntaxOn
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\TEST { .choice: }
+  {
+    \keys_define:nn { module }
+      {
+        key-one .choice: ,
+        key-one / a .code:n = { \TYPE { "a" } } ,
+        key-one / b .code:n = { \TYPE { "b" } } ,
+        key-one / c .code:n = { \TYPE { "#1" } } ,
+      }
+    \keys_set:nn { module }
+      {
+        key-one = a ,
+        key-one = c ,
+        key-one = d ,
+        key-one     ,
+      }
+    \keys_define:nn { module }
+      {
+        key-one .choice: ,
+        key-one / a .code:n       = { \TYPE { "a" } } ,
+        key-one / b .code:n       = { \TYPE { "b" } } ,
+        key-one / c .code:n       = { \TYPE { "#1" } } ,
+        key-one / unknown .code:n = { \TYPE { "#1" } }
+      }
+    \keys_set:nn { module }
+      {
+        key-one = a ,
+        key-one = c ,
+        key-one = d ,
+        key-one     ,
+      }
+    \keys_define:nn { module }
+      {
+        key-one .choice: ,
+        key-one .default:n = { a },
+        key-one / a .code:n = { \TRUE } ,
+        key-one / b .code:n = { \FALSE } ,
+      }
+    \keys_set:nn { module }
+      {
+        key-one = a ,
+        key-one = b ,
+        key-one     ,
+        key-one = d ,
+      }
+  }
+
+\TEST { .choices:nn }
+  {
+    \keys_define:nn { module }
+      {
+        key-one .choices:nn =
+          { a , b , c }
+          {
+            \TYPE
+              { \l_keys_choice_str \c_space_tl  \int_use:N \l_keys_choice_int }
+          }
+      }
+    \keys_set:nn { module }
+      {
+        key-one = a ,
+        key-one = c ,
+        key-one = d ,
+        key-one     ,
+      }
+  }
+
+\TEST { .multichoice: }
+  {
+    \keys_define:nn { module }
+      {
+        key-one .multichoice: ,
+        key-one / a .code:n = { \TYPE { "a" } } ,
+        key-one / b .code:n = { \TYPE { "b" } } ,
+        key-one / c .code:n = { \TYPE { "#1" } } ,
+      }
+    \keys_set:nn { module }
+      {
+        key-one = { a , c } ,
+        key-one = c ,
+        key-one = d ,
+        key-one     ,
+      }
+    \keys_define:nn { module }
+      {
+        key-one .multichoice: ,
+        key-one / a .code:n       = { \TYPE { "a" } } ,
+        key-one / b .code:n       = { \TYPE { "b" } } ,
+        key-one / c .code:n       = { \TYPE { "#1" } } ,
+        key-one / unknown .code:n = { \TYPE { "#1" } }
+      }
+    \keys_set:nn { module }
+      {
+        key-one = a ,
+        key-one = { c , d } ,
+        key-one     ,
+      }
+  }
+
+\TEST { .multichoices:nn }
+  {
+    \keys_define:nn { module }
+      {
+        key-one .multichoices:nn =
+          { a , b , c }
+          {
+            \TYPE
+              { \l_keys_choice_str \c_space_tl  \int_use:N \l_keys_choice_int }
+          }
+      }
+    \keys_set:nn { module }
+      {
+        key-one = { a , c } ,
+      }
+  }
+
+\TEST { .choice:~and~.multichoice:~errors }
+  {
+    \keys_define:nn { module }
+      {
+        key-one .choice: ,
+        key-one / a .choice:
+      }
+    \keys_set:nn { module }
+      {
+        key-one = a
+      }
+    \keys_define:nn { module }
+      {
+        key-one .multichoice: ,
+        key-one / a .multichoice:
+      }
+    \keys_set:nn { module }
+      {
+        key-one = a
+      }
+  }
+
+\TEST { .inherit:n }
+  {
+    \keys_define:nn { module }
+      {
+        key-one .code:n = \tl_show:n {#1} , 
+        key-one .default:n = foo ,
+        key-two .choices:nn = { a , b } { \tl_show:n {#1} }
+      }
+    \keys_define:nn { module-two }
+      {
+        path  .inherit:n = module ,
+        pathb .inherit:n = { ~ module , module ~ }
+      }
+    \keys_define:nn { module-two / path }
+      {
+        key-one .initial:n   = I ,
+        key-three .code:n    = \tl_show:n {#1} ,
+        key-three .initial:n = c
+      }
+    \keys_define:nn { module-three }
+      {
+        path  .inherit:n = { module-two / path }
+      }
+    \keys_set:nn { module-two / path }
+      {
+        key-one = a ,
+        key-two = b ,
+        key-one ,
+        key-three = d
+      }
+    \keys_set:nn { module-two / path }
+      {
+        key-not-defined = a ,
+        key-two = e
+      }
+    \keys_set:nn { module-two / pathb }
+      {
+        key-one = inherited
+      }
+    \keys_set:nn { module-three / path }
+      {
+        key-one = f ,
+        key-three = g
+      }
+  }
+
+\OMIT
+\keys_define:nn { moduleA }
+  {
+    test .code:n = \TYPE { used~ moduleA/test }
+  }
+\keys_define:nn { moduleB }
+  {
+     multi .multichoice:,
+    ,multi / A .code:n = \TYPE { used~ moduleB/multi/A }
+    ,multi / B .code:n =
+      \TYPE { used~ moduleB/multi/B }
+      \keys_set:nn { moduleA } { test }
+    ,multi / C .code:n =
+      \TYPE { used~ moduleB/multi/C }
+      \keys_define:nn  { moduleA } { sub-path .inherit:n = { moduleC } }
+    ,multi / D .code:n =
+      \TYPE { used~ moduleB/multi/D }
+      \keys_set:nn { moduleA/sub-path } { key-a }
+  }
+\keys_define:nn { moduleC }
+  {
+    key-a .code:n = \TYPE { used~ moduleC/key-a }
+  }
+\TIMO
+
+\TEST { .multichoice:~with~nested~keys_set:nn }
+  {
+    \keys_set:nn { moduleB } { multi = { B, A } }
+  }
+
+\TEST { .multichoice:~with~nested~inherit~define }
+  {
+    \keys_set:nn { moduleB } { multi = { C, A } }
+  }
+
+\OMIT
+\keys_define:nn  { moduleA } { sub-path .inherit:n = { moduleC } }
+\TIMO
+
+\TEST { .multichoice:~with~nested~keys_set:nn~and~inherit }
+  {
+    \keys_set:nn { moduleB } { multi = { D, A } }
+  }
+
+\TEST { Nested~inheritance~of~default~values }
+  {
+    \keys_define:nn { grand }
+      {
+        foo .code:n = { \TYPE {#1} },
+        foo .default:n = { GRANDDEFAULT }
+      }
+    \keys_define:nn { } { parent .inherit:n = { grand } }
+    \keys_define:nn { } { child .inherit:n = { parent } }
+    \keys_set:nn { grand } { foo }
+    \keys_set:nn { parent } { foo }
+    \keys_set:nn { child } { foo }
+  }
+
+\END

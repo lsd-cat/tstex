@@ -1,0 +1,176 @@
+%
+% Copyright (C) The LaTeX Project
+%
+
+\documentclass{minimal}
+\input{regression-test}
+
+\ExplSyntaxOn
+\debug_on:n { check-declarations , deprecation , log-functions }
+\ExplSyntaxOff
+
+\begin{document}
+\START
+\AUTHOR{Joseph Wright}
+\ExplSyntaxOn
+
+\OMIT
+\iow_new:N \testwrite
+\iow_open:Nn \testwrite { testwrite.log }
+\tl_new:N  \l_test_tl
+\tl_set:Nn \l_test_tl {abcd}
+\tl_new:N  \l_long_tl
+\tl_set:Nn \l_long_tl {
+  A~A~A~A~A~A~A~A~A~A~A~A~A~A~A~A~A~A~A~A~A~A~
+  A~A~A~A~A~A~A~A~A~A~A~A~A~A~A~A~A~A~A~A~A~A~
+  A~A~A~A~A~A~A~A~A~A~A~A~A~A~A~A~A~A~A~A~A~A~
+  A~A~A~A~A~A~A~A~A~A~A~A~A~A~A~A~A~A~A~A~A~A~
+  A~A~A~A~A~A~A~A~A~A~A~A~A~A~A~A~A~A~A~A~A~A~
+}
+\TIMO
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\TEST{Name~a~stream}{
+  \iow_show:c { testa }
+  \iow_new:N \testa
+  \iow_log:c { testa }
+  \iow_new:c {testb}
+  \iow_new:N \testa
+  \iow_new:c {testb}
+}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\OMIT
+\iow_new:N \test
+\TIMO
+\TEST{Open~a~write}{
+  \iow_open:Nn \test { rubbish.log }
+  \iow_show:N \test
+  \iow_open:cn {test} { rubbish.log }
+}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\TEST{Close~a~write}{
+  \OMIT
+  \iow_open:Nn \test { rubbish.log }
+  \TIMO
+  \iow_close:N \test
+}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\TEST{Write~now}{
+  \iow_now:Ne \testwrite { \l_test_tl }
+  \iow_now:Nn \testwrite { \l_test_tl }
+}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\TEST{Write~to~log}{
+  \iow_log:e { \l_test_tl }
+  \iow_log:n { \l_test_tl }
+}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\TEST{Write~to~terminal}{
+  \iow_term:e { \l_test_tl }
+  \iow_term:n { \l_test_tl }
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\TEST{Write~at~shipout}{
+  \iow_shipout:Ne \testwrite { \l_test_tl }
+  \iow_shipout:Nn \testwrite { \l_test_tl }
+  \OMIT
+  Text \newpage
+  \TIMO
+}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\TEST{Write~at~shipout}{
+  \iow_shipout_e:Ne \testwrite { \l_test_tl }
+  \iow_shipout_e:Nn \testwrite \l_test_tl % no braces: this is not just \write
+  \OMIT
+  Text \newpage
+  \TIMO
+}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\TEST { Close~iow }
+  {
+    \iow_open:Nn \testwrite { testwrite.log }
+    \file_input:n { testwrite.log }
+    \iow_now:Nn \testwrite { \TYPE { test } }
+    \iow_close:N \testwrite
+    \file_input:n { testwrite.log }
+  }
+
+\TEST { Wrapping~text }
+  {
+    \int_set:Nn \l_iow_line_count_int { 78 }
+    \iow_wrap:nnnN
+      {
+        abcdefghijklmnopqrstuvwxyzABCDE~
+        FGHJIKLMNOPQRZTUVWXYZaabbccddeeffgghhii
+      }
+      { AABBCCDDEEFFGGHHIIJJKKL }
+      { }
+      \iow_term:n
+    \iow_wrap:nnnN
+      {
+        abcdefghijklmnopqrstuvwxyzABCDE~
+        FGHJIKLMNOPQRZTUVWXYZaabbccddeeffgghhiij
+      }
+      { AABBCCDDEEFFGGHHIIJJKKL }
+      { }
+      \iow_term:n
+    \iow_wrap:nnnN
+      {
+        abcdefghijklmnopqrstuvwxyzABCDE~
+        FGHJIKLMNOPQRZTUVWXYZaabbccddeeffgghhiijj
+      }
+      { AABBCCDDEEFFGGHHIIJJKKL }
+      { }
+      \iow_term:n
+    \iow_wrap:nnnN
+      {
+        abcdefghijklmnopqrstuvwxyzABCDE~
+        FGHJIKLMNOPQRZTUVWXYZaabbccddeeffgghhiijjk
+      }
+      { AABBCCDDEEFFGGHHIIJJKKL }
+      { }
+      \iow_term:n
+    \iow_wrap:nnnN
+      {
+        abcdefghijklmnopqrstuvwxyzABCDE~
+        FGHJIKLMNOPQRZTUVWXYZaabbccddeeffgghhiijjkk
+      }
+      { AABBCCDDEEFFGGHHIIJJKKL }
+      { }
+      \iow_term:n
+    \iow_wrap:nnnN
+      {
+        abcdefghijklmnopqrstuvwxyzABCDE~
+        FGHJIKLMNOPQRZTUVWXYZaabbccddeeffgghhiijjkkl
+      }
+      { AABBCCDDEEFFGGHHIIJJKKL }
+      { }
+      \iow_term:n
+    \iow_wrap:nnnN
+      {
+        abcdefghijklmnopqrstuvwxyzABCDE~
+        FGHJIKLMNOPQRZTUVWXYZaabbccddeeffgghhiijjkkll
+      }
+      { AABBCCDDEEFFGGHHIIJJKKL }
+      { }
+      \iow_term:n
+    \iow_wrap:nnnN
+      {
+        abcdefghijklmnopqrstuvwxyzABCDE~
+        FGHJIKLMNOPQRZTUVWXYZaabbccddeeffgghhiijjkkllm
+      }
+      { AABBCCDDEEFFGGHHIIJJKKL }
+      { }
+      \iow_term:n
+    \iow_wrap:nnnN
+      {
+        abcdefghijklmnopqrstuvwxyzABCDE~
+        FGHJIKLMNOPQRZTUVWXYZaabbccddeeffgghhiijjkkllmm
+      }
+      { AABBCCDDEEFFGGHHIIJJKKL }
+      { }
+      \iow_term:n
+  }
+
+\END

@@ -1,0 +1,435 @@
+%
+% Copyright (C) The LaTeX Project
+%
+
+\documentclass{minimal}
+\input{regression-test}
+
+\ExplSyntaxOn
+\debug_on:n { check-declarations , deprecation , log-functions }
+\ExplSyntaxOff
+\makeatletter
+
+\begin{document}
+\START
+\AUTHOR{Will Robertson}
+\ExplSyntaxOn
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\TEST{catcodes~generic~functions}{
+  \char_set_catcode:nn {`\!} {14}
+  \TYPE { \char_value_catcode:n {`\!} }
+  \char_show_value_catcode:n {`\!}
+  \char_set_catcode:nn { `\!+1-1 } { (14+3-1)/2 }
+  \TYPE { \char_value_catcode:n {`\!} }
+}
+
+\TEST{catcodes~explicit~functions}{
+  \char_set_catcode_escape:n {`\!} \char_set_catcode_escape:N   \?
+  \TYPE { \char_value_catcode:n {`\!} / \char_value_catcode:n {`\?} }
+  \char_set_catcode_group_begin:n {`\!} \char_set_catcode_group_begin:N   \?
+  \TYPE { \char_value_catcode:n {`\!} / \char_value_catcode:n {`\?} }
+  \char_set_catcode_group_end:n {`\!} \char_set_catcode_group_end:N   \?
+  \TYPE { \char_value_catcode:n {`\!} / \char_value_catcode:n {`\?} }
+  \char_set_catcode_math_toggle:n {`\!} \char_set_catcode_math_toggle:N   \?
+  \TYPE { \char_value_catcode:n {`\!} / \char_value_catcode:n {`\?} }
+  \char_set_catcode_alignment:n {`\!} \char_set_catcode_alignment:N   \?
+  \TYPE { \char_value_catcode:n {`\!} / \char_value_catcode:n {`\?} }
+  \char_set_catcode_end_line:n {`\!} \char_set_catcode_end_line:N   \?
+  \TYPE { \char_value_catcode:n {`\!} / \char_value_catcode:n {`\?} }
+  \char_set_catcode_parameter:n {`\!} \char_set_catcode_parameter:N   \?
+  \TYPE { \char_value_catcode:n {`\!} / \char_value_catcode:n {`\?} }
+  \char_set_catcode_math_superscript:n {`\!} \char_set_catcode_math_superscript:N   \?
+  \TYPE { \char_value_catcode:n {`\!} / \char_value_catcode:n {`\?} }
+  \char_set_catcode_math_subscript:n {`\!} \char_set_catcode_math_subscript:N   \?
+  \TYPE { \char_value_catcode:n {`\!} / \char_value_catcode:n {`\?} }
+  \char_set_catcode_ignore:n {`\!} \char_set_catcode_ignore:N   \?
+  \TYPE { \char_value_catcode:n {`\!} / \char_value_catcode:n {`\?} }
+  \char_set_catcode_space:n {`\!} \char_set_catcode_space:N   \?
+  \TYPE { \char_value_catcode:n {`\!} / \char_value_catcode:n {`\?} }
+  \char_set_catcode_letter:n {`\!} \char_set_catcode_letter:N   \?
+  \TYPE { \char_value_catcode:n {`\!} / \char_value_catcode:n {`\?} }
+  \char_set_catcode_other:n {`\!} \char_set_catcode_other:N   \?
+  \TYPE { \char_value_catcode:n {`\!} / \char_value_catcode:n {`\?} }
+  \char_set_catcode_active:n {`\!} \char_set_catcode_active:N   \?
+  \TYPE { \char_value_catcode:n {`\!} / \char_value_catcode:n {`\?} }
+  \char_set_catcode_comment:n {`\!} \char_set_catcode_comment:N   \?
+  \TYPE { \char_value_catcode:n {`\!} / \char_value_catcode:n {`\?} }
+  \char_set_catcode_invalid:n {`\!} \char_set_catcode_invalid:N   \?
+  \TYPE { \char_value_catcode:n {`\!} / \char_value_catcode:n {`\?} }
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\TEST{lccode~generic~functions}{
+  \TYPE { orig:~\char_value_lccode:n {`\!} }
+  \char_set_lccode:nn {`\!} {14}
+  \TYPE { new:~\char_value_lccode:n {`\!} }
+  \char_show_value_lccode:n {`\!}
+  \char_set_lccode:nn { `\!+1-1 } { (14+3-1)/2 }
+  \TYPE { new:~\char_value_lccode:n {`\!} }
+}
+
+\TEST{uccode~generic~functions}{
+  \TYPE { orig:~\char_value_uccode:n {`\!} }
+  \char_set_uccode:nn {`\!} {14}
+  \TYPE { new:~\char_value_uccode:n {`\!} }
+  \char_show_value_uccode:n {`\!}
+  \char_set_uccode:nn { `\!+1-1 } { (14+3-1)/2 }
+  \TYPE { new:~\char_value_uccode:n {`\!} }
+}
+
+\TEST{sfcode~generic~functions}{
+  \TYPE { orig:~\char_value_sfcode:n {`\!} }
+  \char_set_sfcode:nn {`\!} {14}
+  \TYPE { new:~\char_value_sfcode:n {`\!} }
+  \char_show_value_sfcode:n {`\!}
+  \char_set_sfcode:nn { `\!+1-1 } { (14+3-1)/2 }
+  \TYPE { new:~\char_value_sfcode:n {`\!} }
+}
+
+\TEST{mathcode~generic~functions}{
+  \TYPE { orig:~\char_value_mathcode:n {`\!} }
+  \char_set_mathcode:nn {`\!} {14}
+  \TYPE { new:~\char_value_mathcode:n {`\!} }
+  \char_show_value_mathcode:n {`\!}
+  \char_set_mathcode:nn { `\!+1-1 } { (14+3-1)/2 }
+  \TYPE { new:~\char_value_mathcode:n {`\!} }
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\TESTEXP{token~constants}{
+  \meaning \c_group_begin_token      \NEWLINE
+  \meaning \c_group_end_token        \NEWLINE
+  \meaning \c_math_toggle_token      \NEWLINE
+  \meaning \c_alignment_token        \NEWLINE
+  \meaning \c_parameter_token        \NEWLINE
+  \meaning \c_math_superscript_token \NEWLINE
+  \meaning \c_math_subscript_token   \NEWLINE
+  \meaning \c_space_token            \NEWLINE
+  \meaning \c_catcode_letter_token   \NEWLINE
+  \meaning \c_catcode_other_token
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\TEST{token~if~group~begin}{
+  \TYPE { \token_if_group_begin:NTF \bgroup {TRUE}{FALSE} }
+  \exp_after:w \token_if_group_begin:NTF \bgroup {\TRUE}{\FALSE}
+  \token_if_group_begin:NTF \begingroup {\TRUE}{\FALSE}
+  \token_if_group_begin:NTF ? {\TRUE}{\FALSE}
+  \token_if_group_begin:NTF # {\TRUE}{\FALSE}
+  \token_if_group_begin:NTF \par {\TRUE}{\FALSE}
+}
+
+\TEST{token~if~group~end}{
+  \TYPE { \token_if_group_end:NTF \egroup {TRUE}{FALSE} }
+  \exp_after:w \token_if_group_end:NTF \egroup {\TRUE}{\FALSE}
+  \token_if_group_end:NTF \endgroup {\TRUE}{\FALSE}
+  \token_if_group_end:NTF ? {\TRUE}{\FALSE}
+  \token_if_group_end:NTF # {\TRUE}{\FALSE}
+  \token_if_group_end:NTF \par {\TRUE}{\FALSE}
+}
+
+\cs_set_nopar:Npn \tmp {$}
+\TEST{token~if~math~shift}{
+  \TYPE {\token_if_math_toggle:NTF $ {TRUE}{FALSE} }
+  \exp_after:w \token_if_math_toggle:NTF \tmp {\TRUE}{\FALSE}
+  \token_if_math_toggle:NTF \tmp {\TRUE}{\FALSE}
+  \token_if_math_toggle:NTF ! {\TRUE}{\FALSE}
+  \token_if_math_toggle:NTF # {\TRUE}{\FALSE}
+  \token_if_math_toggle:NTF \par {\TRUE}{\FALSE}
+}
+
+\cs_set_nopar:Npn \tmp {&}
+\TEST{token~if~alignment}{
+  \TYPE { \token_if_alignment:NTF & {TRUE}{FALSE} }
+  \exp_after:w \token_if_alignment:NTF \tmp {\TRUE}{\FALSE}
+  \token_if_alignment:NTF \tmp {\TRUE}{\FALSE}
+  \token_if_alignment:NTF ! {\TRUE}{\FALSE}
+  \token_if_alignment:NTF # {\TRUE}{\FALSE}
+  \token_if_alignment:NTF \par {\TRUE}{\FALSE}
+}
+
+\cs_set_nopar:Npn \tmp {##}
+\TEST{token~if~parameter}{
+  \TYPE { \token_if_parameter:NTF # {TRUE}{FALSE} }
+  \exp_after:w \token_if_parameter:NTF \tmp {\TRUE}{\FALSE}
+  \token_if_parameter:NTF \tmp {\TRUE}{\FALSE}
+  \token_if_parameter:NTF ! {\TRUE}{\FALSE}
+  \token_if_parameter:NTF \par {\TRUE}{\FALSE}
+}
+
+\cs_set_nopar:Npn \tmp {^}
+\TEST{token~if~math~superscript}{
+  \TYPE { \token_if_math_superscript:NTF ^ {TRUE}{FALSE} }
+  \exp_after:w \token_if_math_superscript:NTF \tmp {\TRUE}{\FALSE}
+  \token_if_math_superscript:NTF \tmp {\TRUE}{\FALSE}
+  \token_if_math_superscript:NTF ! {\TRUE}{\FALSE}
+  \token_if_math_superscript:NTF # {\TRUE}{\FALSE}
+  \token_if_math_superscript:NTF \par {\TRUE}{\FALSE}
+}
+
+\char_set_catcode_math_subscript:N \-
+\cs_set_nopar:Npn \tmp {-}
+\TEST{token~if~math~subscript}{
+  \TYPE { \token_if_math_subscript:NTF - {TRUE}{FALSE} }
+  \exp_after:w \token_if_math_subscript:NTF \tmp {\TRUE}{\FALSE}
+  \token_if_math_subscript:NTF \tmp {\TRUE}{\FALSE}
+  \token_if_math_subscript:NTF ! {\TRUE}{\FALSE}
+  \token_if_math_subscript:NTF # {\TRUE}{\FALSE}
+  \token_if_math_subscript:NTF \par {\TRUE}{\FALSE}
+}
+\char_set_catcode_other:N \-
+
+\cs_set_nopar:Npn \tmp {~}
+\TEST{token~if~space}{
+  \TYPE { \token_if_space:NTF ~ {TRUE}{FALSE} }
+  \TYPE { \exp_after:w \token_if_space:NTF \tmp {TRUE}{FALSE} }
+  \token_if_space:NTF \tmp {\TRUE}{\FALSE}
+  \token_if_space:NTF \  {\TRUE}{\FALSE}
+  \token_if_space:NTF \space {\TRUE}{\FALSE}
+  \token_if_space:NTF # {\TRUE}{\FALSE}
+  \token_if_space:NTF \par {\TRUE}{\FALSE}
+  \token_if_space:NTF \c_space_token {\TRUE}{\FALSE}
+}
+
+\cs_set_nopar:Npn \tmp {x}
+\TEST{token~if~letter}{
+  \TYPE { \token_if_letter:NTF y {TRUE}{FALSE} }
+  \exp_after:w \token_if_letter:NTF \tmp {\TRUE}{\FALSE}
+  \token_if_letter:NTF \tmp {\TRUE}{\FALSE}
+  \token_if_letter:NTF ! {\TRUE}{\FALSE}
+  \token_if_letter:NTF # {\TRUE}{\FALSE}
+  \token_if_letter:NTF \par {\TRUE}{\FALSE}
+}
+
+\cs_set_nopar:Npn \tmp {-}
+\TEST{token~if~other}{
+  \TYPE { \token_if_other:NTF ! {TRUE}{FALSE} }
+  \exp_after:w \token_if_other:NTF \tmp {\TRUE}{\FALSE}
+  \token_if_other:NTF \tmp {\TRUE}{\FALSE}
+  \token_if_other:NTF x {\TRUE}{\FALSE}
+  \token_if_other:NTF # {\TRUE}{\FALSE}
+  \token_if_other:NTF \par {\TRUE}{\FALSE}
+}
+
+\char_set_catcode_active:N \!
+\def ! {hello}
+\TEST{token~if~active~char}{
+  \TYPE { \token_if_active:NTF ! {TRUE}{FALSE} }
+  \token_if_active:NTF # {\TRUE}{\FALSE}
+  \token_if_active:NTF \par {\TRUE}{\FALSE}
+}
+\char_set_catcode_other:N \!
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\def\A{A}
+\def\B{\A}
+\TESTEXP{if_eq_meaning~(also~see~\cs_if_eq)}{
+  \token_if_eq_meaning:NNTF \undefined \@undefined {\TRUE}{\FALSE} \NEWLINE
+  \token_if_eq_meaning:NNTF A B   {\TRUE}{\FALSE} \NEWLINE
+  \token_if_eq_meaning:NNTF \A \B {\TRUE}{\FALSE}
+}
+
+\TESTEXP{if_eq_catcode}{
+  \token_if_eq_catcode:NNTF  A B  {\TRUE} {\FALSE} \NEWLINE
+  \token_if_eq_catcode:NNTF  : _  {\TRUE} {\FALSE} \NEWLINE
+  \token_if_eq_catcode:NNTF  ! _  {\TRUE} {\FALSE} \NEWLINE
+  \token_if_eq_catcode:NNTF  # _  {\TRUE} {\FALSE}
+}
+
+\TESTEXP{if_eq_charcode}{
+  \token_if_eq_charcode:NNTF  A B  {\TRUE} {\FALSE} \NEWLINE
+  \token_if_eq_charcode:NNTF  A a  {\TRUE} {\FALSE} \NEWLINE
+  \token_if_eq_charcode:NNTF  a a  {\TRUE} {\FALSE}
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\def \macr {}
+\catcode`\!=13
+\def ! {}
+\TESTEXP{cs~vs~macro~(T/F/T~T/T/F)}{
+  \token_if_cs:NTF    \macr {\TRUE}{\FALSE} \NEWLINE
+  \token_if_cs:NTF    ! {\TRUE}{\FALSE} \NEWLINE
+  \token_if_cs:NTF    \the {\TRUE}{\FALSE} \NEWLINE\NEWLINE
+  \token_if_macro:NTF \macr {\TRUE}{\FALSE} \NEWLINE
+  \token_if_macro:NTF ! {\TRUE}{\FALSE} \NEWLINE
+  \token_if_macro:NTF \the {\TRUE}{\FALSE}
+}
+\catcode`\!=12
+
+\char_set_catcode_active:N *
+\char_set_active_eq:NN * \iffalse
+
+\TESTEXP { if_control_symbol }
+  {
+    \token_if_control_symbol:NTF \foo     \ERROR \FALSE \NEWLINE
+    \token_if_control_symbol:NTF A        \ERROR \FALSE \NEWLINE
+    \token_if_control_symbol:NTF \bgroup  \ERROR \FALSE \NEWLINE
+    \token_if_control_symbol:NTF \&       \TRUE  \ERROR \NEWLINE
+    \token_if_control_symbol:NTF \        \TRUE  \ERROR \NEWLINE
+    \token_if_control_symbol:NTF \:       \ERROR \FALSE \NEWLINE
+    \token_if_control_symbol:NTF \iffalse \ERROR \FALSE \NEWLINE
+    \token_if_control_symbol:NTF \iftrue  \ERROR \FALSE \NEWLINE
+    \token_if_control_symbol:NTF \else    \ERROR \FALSE \NEWLINE
+    \token_if_control_symbol:NTF \fi      \ERROR \FALSE \NEWLINE
+    \token_if_control_symbol:NTF *        \ERROR \FALSE \NEWLINE
+  }
+
+\TESTEXP { if_control_word }
+  {
+    \token_if_control_word:NTF \foo     \TRUE  \ERROR \NEWLINE
+    \token_if_control_word:NTF A        \ERROR \FALSE \NEWLINE
+    \token_if_control_word:NTF \bgroup  \TRUE  \ERROR \NEWLINE
+    \token_if_control_word:NTF \&       \ERROR \FALSE \NEWLINE
+    \token_if_control_word:NTF \        \ERROR \FALSE \NEWLINE
+    \token_if_control_word:NTF \:       \TRUE  \ERROR \NEWLINE
+    \token_if_control_word:NTF \iffalse \TRUE  \ERROR \NEWLINE
+    \token_if_control_word:NTF \iftrue  \TRUE  \ERROR \NEWLINE
+    \token_if_control_word:NTF \else    \TRUE  \ERROR \NEWLINE
+    \token_if_control_word:NTF \fi      \TRUE  \ERROR \NEWLINE
+    \token_if_control_word:NTF *        \ERROR \FALSE \NEWLINE
+  }
+
+\char_set_catcode_other:N *
+
+\cs_set_nopar:Npn \A {}
+\cs_set:Npn \B {}
+\cs_set_protected_nopar:Npn \C {}
+\cs_set_protected:Npn \D {}
+
+\TESTEXP{if~macro}{
+  \token_if_macro:NTF \undefined {\TRUE}{\FALSE} \NEWLINE
+  \token_if_macro:NTF \write {\TRUE}{\FALSE} \NEWLINE
+  \token_if_macro:NTF \A {\TRUE}{\FALSE} \NEWLINE
+  \token_if_macro:NTF \B {\TRUE}{\FALSE} \NEWLINE
+  \token_if_macro:NTF \C {\TRUE}{\FALSE} \NEWLINE
+  \token_if_macro:NTF \D {\TRUE}{\FALSE}
+}
+
+\TESTEXP{if~long_macro}{
+  \token_if_long_macro:NTF \undefined {\TRUE}{\FALSE} \NEWLINE
+  \token_if_long_macro:NTF \write {\TRUE}{\FALSE} \NEWLINE
+  \token_if_long_macro:NTF \A {\TRUE}{\FALSE} \NEWLINE
+  \token_if_long_macro:NTF \B {\TRUE}{\FALSE} \NEWLINE
+  \token_if_long_macro:NTF \C {\TRUE}{\FALSE} \NEWLINE
+  \token_if_long_macro:NTF \D {\TRUE}{\FALSE}
+}
+
+\TESTEXP{if~protected_macro}{
+  \token_if_protected_macro:NTF \undefined {\TRUE}{\FALSE} \NEWLINE
+  \token_if_protected_macro:NTF \write {\TRUE}{\FALSE} \NEWLINE
+  \token_if_protected_macro:NTF \A {\TRUE}{\FALSE} \NEWLINE
+  \token_if_protected_macro:NTF \B {\TRUE}{\FALSE} \NEWLINE
+  \token_if_protected_macro:NTF \C {\TRUE}{\FALSE} \NEWLINE
+  \token_if_protected_macro:NTF \D {\TRUE}{\FALSE}
+}
+
+\TESTEXP{if~protected_long_macro}{
+  \token_if_protected_long_macro:NTF \undefined {\TRUE}{\FALSE} \NEWLINE
+  \token_if_protected_long_macro:NTF \write {\TRUE}{\FALSE} \NEWLINE
+  \token_if_protected_long_macro:NTF \A {\TRUE}{\FALSE} \NEWLINE
+  \token_if_protected_long_macro:NTF \B {\TRUE}{\FALSE} \NEWLINE
+  \token_if_protected_long_macro:NTF \C {\TRUE}{\FALSE} \NEWLINE
+  \token_if_protected_long_macro:NTF \D {\TRUE}{\FALSE}
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\TESTEXP{token_if_expandable}{
+  \token_if_expandable:NTF \A {\TRUE}{\FALSE}         \NEWLINE
+  \token_if_expandable:NTF \B {\TRUE}{\FALSE}         \NEWLINE
+  \token_if_expandable:NTF \C {\TRUE}{\FALSE}         \NEWLINE
+  \token_if_expandable:NTF \D {\TRUE}{\FALSE}         \NEWLINE
+  \token_if_expandable:NTF \the {\TRUE}{\FALSE}       \NEWLINE
+  \token_if_expandable:NTF \if:w  {\TRUE}{\FALSE}     \NEWLINE
+  \token_if_expandable:NTF A {\TRUE}{\FALSE}          \NEWLINE
+  \token_if_expandable:NTF \undefined {\TRUE}{\FALSE} \NEWLINE
+  \token_if_expandable:NTF \write {\TRUE}{\FALSE}     \NEWLINE
+  \token_if_expandable:NTF \relax {\TRUE}{\FALSE}
+}
+
+\let\primitivegdef\gdef
+\def\gdef{\global\def}
+\newcount\mydimen
+\TESTEXP{token_if_primitive}{
+  \token_if_primitive:NTF A          {\TRUE}{\FALSE} \NEWLINE
+  \token_if_primitive:NTF \A         {\TRUE}{\FALSE} \NEWLINE
+  \token_if_primitive:NTF \the       {\TRUE}{\FALSE} \NEWLINE
+  \token_if_primitive:NTF \undefined {\TRUE}{\FALSE} \NEWLINE
+  \token_if_primitive:NTF \write     {\TRUE}{\FALSE} \NEWLINE
+  \token_if_primitive:NTF \def       {\TRUE}{\FALSE} \NEWLINE
+  \token_if_primitive:NTF \relax     {\TRUE}{\FALSE} \NEWLINE
+  \token_if_primitive:NTF \span      {\TRUE}{\FALSE} \NEWLINE
+  \token_if_primitive:NTF &          {\TRUE}{\FALSE} \NEWLINE
+  \token_if_primitive:NTF \mydimen   {\TRUE}{\FALSE} \NEWLINE
+  \token_if_primitive:NTF \parindent {\TRUE}{\FALSE}
+}
+\let\gdef\primitivegdef
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\cs_set_nopar:Npn \tmpA #1 <-> #2 { #1 ## #2 }
+\cs_set_protected:Npn \tmpB #1 / #2 { #1 ## #2 }
+\TESTEXP{cs_~_spec}{
+  \cs_prefix_spec:N      \tmpA \NEWLINE
+  \cs_parameter_spec:N         \tmpA \NEWLINE
+  \cs_replacement_spec:N \tmpA \NEWLINE \NEWLINE
+  \cs_prefix_spec:N      \tmpB \NEWLINE
+  \cs_parameter_spec:N         \tmpB \NEWLINE
+  \cs_replacement_spec:N \tmpB \NEWLINE
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\OMIT
+\cs_undefine:c { foobar }
+\TIMO
+\TESTEXP{token_to_meaning}{
+  \token_to_meaning:c { foobar },~
+  \token_to_meaning:c { foobar },~
+  \token_to_meaning:N \foobar,~
+  \exp_args:Nc \token_to_meaning:N { foobar },~
+  \token_to_meaning:c { foobar },~
+  \token_to_meaning:N \token_to_meaning:N
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\OMIT
+\group_begin:
+\char_set_catcode_active:N \~
+\cs_undefine:N \undefined_control_sequence:
+\cs_generate_variant:Nn \token_to_catcode:N { c }
+\TIMO
+\TESTEXP{token_to_catcode}{
+  \token_to_catcode:N \bgroup,
+  \token_to_catcode:N \egroup,
+  \token_to_catcode:N $,
+  \token_to_catcode:N &,
+  5, % can't be checked
+  \token_to_catcode:N #,
+  \token_to_catcode:N ^,
+  \token_to_catcode:N \sb,
+  9, % can't be checked
+  \token_to_catcode:c { @sptoken },
+  \token_to_catcode:N a,
+  \token_to_catcode:N +,
+  \token_to_catcode:N ~,
+  \token_to_catcode:N \prg_do_nothing:,
+  \token_to_catcode:N \relax,
+  \token_to_catcode:N \if:w,
+  \token_to_catcode:N \fi:,
+  \token_to_catcode:N \else:,
+  \token_to_catcode:N \undefined_control_sequence:
+}
+\OMIT
+\group_end:
+\TIMO
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\END

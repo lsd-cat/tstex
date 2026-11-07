@@ -1,0 +1,117 @@
+%
+% Copyright (C) The LaTeX Project
+%
+
+\documentclass{minimal}
+\input{regression-test}
+\ExplSyntaxOn
+\debug_on:n { check-declarations , deprecation , log-functions }
+\ExplSyntaxOff
+
+\begin{document}
+
+\START
+\AUTHOR{Will Robertson}
+\ExplSyntaxOn
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\TEST{New~bool}{
+  \bool_new:N \mybool  \bool_new:c {mybool2}
+  \cs_log:N \mybool   \cs_log:c {mybool2}
+}
+
+\bool_new:N \myboola
+\bool_new:N \myboolb
+\TEST{Not~new~bool}{
+  \TYPE{NOT~OKAY:}
+  \bool_new:N \myboola
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% It doesn't seem like these would ever break
+
+\TEST{Set~true/false}{
+  \bool_set_true:N \myboola
+  \bool_gset_true:N \myboolb
+  \bool_if:NTF \myboola {\TRUE}{\FALSE}
+  \group_begin:
+    \bool_set_false:N \myboola
+    \bool_if:NTF \myboola {\TRUE}{\FALSE}
+    \bool_gset_false:N \myboolb
+  \group_end:
+  \TYPE{A:}\bool_if:NTF \myboola {\TRUE}{\FALSE}
+  \TYPE{B:}\bool_if:NTF \myboolb {\TRUE}{\FALSE}
+  \SEPARATOR
+  \bool_set_eq:NN \myboola \myboolb
+  \TYPE{A:}\bool_if:NTF \myboola {\TRUE}{\FALSE}
+  \TYPE{B:}\bool_if:NTF \myboolb {\TRUE}{\FALSE}
+  \SEPARATOR
+  \bool_set_true:N \myboola
+  \group_begin:
+    \bool_gset_eq:NN \myboolb \myboola
+  \group_end:
+  \TYPE{A:}\bool_if:NTF \myboola {\TRUE}{\FALSE}
+  \TYPE{B:}\bool_if:NTF \myboolb {\TRUE}{\FALSE}
+  \bool_set_inverse:N \myboola
+  \group_begin:
+    \bool_set_inverse:N \myboola
+    \bool_gset_inverse:N \myboolb
+    \bool_log:N \myboola
+  \group_end:
+  \bool_log:N \myboola
+  \bool_log:N \myboolb
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% What can possibly go wrong here?
+
+\bool_set_true:N  \myboola
+\bool_gset_false:N \myboolb
+
+\TESTEXP{Boolean~conditionals}{
+  \bool_if:NTF \c_true_bool  {\TRUE}{\FALSE}
+  \NEWLINE
+  \bool_if:NTF \c_false_bool {\TRUE}{\FALSE}
+  \NEWLINE
+  \bool_if:NTF \myboola {\TRUE}{\FALSE}
+  \NEWLINE
+  \bool_if:NTF \myboolb {\TRUE}{\FALSE}
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\OMIT
+\int_new:N \myint
+\TIMO
+
+\TEST{More~while~loops}{
+
+  \int_zero:N \myint
+  \bool_set_true:N \myboola
+  \bool_while_do:Nn \myboola
+  {
+    \TYPE{ \int_use:N \myint }
+    \int_incr:N \myint
+    \int_compare:nNnT \myint >  5 { \bool_set_false:N \myboola }
+  }
+  \SEPARATOR
+
+  \int_zero:N \myint
+  \bool_set_true:N \myboola
+  \bool_do_while:Nn  \myboola
+  {
+    \TYPE{ \int_use:N \myint }
+    \int_incr:N \myint
+    \int_compare:nNnT \myint > 5 { \bool_set_false:N \myboola }
+  }
+  \SEPARATOR
+
+  \NO
+  \bool_set_false:N \myboola
+  \bool_while_do:Nn \myboola{ \TYPE{ \int_use:N \myint } }
+  \SEPARATOR
+  \bool_do_while:Nn \myboola{ \TYPE{ \int_use:N \myint } }
+}
+
+\END

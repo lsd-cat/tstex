@@ -1,0 +1,28 @@
+%
+% Copyright (C) The LaTeX Project
+%
+
+\documentclass{minimal}
+\input{regression-test}
+\ExplSyntaxOn
+\debug_on:n { check-declarations , deprecation , log-functions }
+\ExplSyntaxOff
+
+\begin{document}
+\START
+\AUTHOR{Bruno Le Floch}
+\ExplSyntaxOn
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\TESTEXP { str~if~contains~char }
+  {
+    \__str_if_contains_char:nnTF
+      { a~b \par # } { \c_backslash_str } { \ERROR } { \FALSE } ~
+    \__str_if_contains_char:nnTF { a~b \par # } { b } { \TRUE } { \ERROR } ~
+    \__str_if_contains_char:nnTF
+      { a~b \par # } { \c_tilde_str } { \ERROR } { \FALSE } ~
+    \__str_if_contains_char:nnTF { } { * } { \ERROR } { \FALSE } ~
+    \__str_if_contains_char:nnTF { * } { * } { \TRUE } { \ERROR }
+  }
+
+\END

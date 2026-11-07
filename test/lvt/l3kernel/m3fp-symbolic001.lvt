@@ -1,0 +1,119 @@
+%
+% Copyright (C) The LaTeX Project
+%
+
+\documentclass{minimal}
+\input{regression-test}
+
+\ExplSyntaxOn
+\debug_on:n { check-declarations , deprecation , log-functions }
+\ExplSyntaxOff
+
+\begin{document}
+\START
+\AUTHOR{Bruno Le Floch}
+\ExplSyntaxOn
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\TEST { Assign~a~symbolic~expression }
+  {
+    \fp_new_variable:n { A }
+    \fp_new_variable:n { B }
+    \fp_new_variable:n { C }
+    \fp_set:Nn \l_tmpa_fp { A + csc(B) + C * sin(B) }
+    \fp_show:N \l_tmpa_fp
+    \fp_set_variable:nn { B } { pi/6 }
+    \fp_show:N \l_tmpa_fp
+    \TYPE { \fp_to_tl:n { \l_tmpa_fp } }
+    \fp_set_variable:nn { C } { 1.2 }
+    \TYPE { \fp_to_tl:n { \l_tmpa_fp } }
+    \fp_set_variable:nn { A } { 1 }
+    \TYPE { \fp_to_tl:n { \l_tmpa_fp } }
+  }
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\TESTEXP { Conversions }
+  {
+    \fp_to_decimal:n { A + B**2 } \NEWLINE
+    \fp_to_dim:n { A + B**2 } \NEWLINE
+    \fp_to_int:n { A + B**2 } \NEWLINE
+    \fp_to_scientific:n { A + B**2 } \NEWLINE
+    \fp_to_tl:n { A + B**2 } \NEWLINE
+  }
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\TESTEXP { Unary~minus~and~not }
+  {
+    \fp_to_tl:n { - (A + B**2) } \NEWLINE
+    \fp_to_tl:n { ! (A + B**2) } \NEWLINE
+  }
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\TEST { Various~variable~names }
+  {
+    \fp_new_variable:n { }
+    \fp_new_variable:n { a ~ b }
+    \fp_new_variable:n { a12 }
+    \fp_new_variable:n { \\ }
+    \fp_new_variable:n { a_b }
+    \fp_new_variable:n { chk }
+    \fp_new_variable:n { aux }
+    \fp_new_variable:n { tmpa }
+    \fp_new_variable:n { pi }
+    \fp_new_variable:n { inf }
+    \TYPE { \fp_to_tl:n { 1 / inf + pi + tmpa + aux + chk } }
+  }
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\TEST { Loops }
+  {
+    \fp_new_variable:n { X }
+    \fp_new_variable:n { Y }
+    \fp_set_variable:nn { X } { sin(X) }
+    \fp_show:n { X }
+    \fp_set_variable:nn { X } { 1 }
+    \fp_set_variable:nn { X } { Y**X }
+    \fp_show:n { X }
+    \fp_set_variable:nn { Y } { X + 1 }
+    \fp_show:n { Y }
+  }
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\TEST { Set~and~clear~both~acts~locally }
+  {
+    \OMIT
+    \cs_set_protected:Npn \test_temp:
+      { \TYPE { \fp_to_tl:n { P*P + 1 } } }
+    \TIMO
+    \fp_new_variable:n { P }
+    \test_temp: % symbolic
+
+    \group_begin:
+      \fp_set_variable:nn { P } { 20 }
+      \test_temp: % numeric
+    \group_end:
+    \test_temp: % symbolic
+    \fp_set_variable:nn { P } { 20 }
+    \test_temp: % numeric
+
+    \group_begin:
+      \fp_clear_variable:n { P }
+      \test_temp: % symbolic
+    \group_end:
+    \test_temp: % numeric
+    \fp_clear_variable:n { P }
+    \test_temp: % symbolic
+  }
+
+\TEST { Set~needs~declaration~first }
+  {
+    \fp_set_variable:nn { undefined } { 1 }
+  }
+
+\END

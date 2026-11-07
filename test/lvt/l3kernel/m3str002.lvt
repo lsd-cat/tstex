@@ -1,0 +1,80 @@
+%
+% Copyright (C) The LaTeX Project
+%
+\input{regression-test}
+\ExplSyntaxOn
+\debug_on:n { check-declarations , deprecation , log-functions }
+\ExplSyntaxOff
+
+\START
+\AUTHOR{Joseph Wright}
+\ExplSyntaxOn
+
+\TESTEXP { Simple~Latin~case~folding }
+  {
+    " \str_casefold:n { ABC ~ 123 ~ abc ~ !@ } "
+    \NEWLINE
+    " \str_casefold:n { ~ ABC ~ 123 ~ abc ~ !@ ~ } "
+    \NEWLINE
+    " \str_casefold:n { Some~$&#~odd~text~{~}~ } "
+  }
+
+\TEST { Checking~category~codes }
+  {
+    \OMIT
+      \tl_set:Nn \l_tmpa_tl { abc~123 }
+    \TIMO
+    \tl_set:Ne \l_tmpb_tl{ \str_casefold:n { ABC~123 } }
+    \tl_if_eq:NNTF \l_tmpa_tl \l_tmpb_tl \ERROR \FALSE
+    \OMIT
+      \tl_set:Ne \l_tmpa_tl { \tl_to_str:n { abc~123 } }
+    \TIMO
+    \tl_set:Ne \l_tmpb_tl{ \str_casefold:n { ABC~123 } }
+    \tl_if_eq:NNTF \l_tmpa_tl \l_tmpb_tl \TRUE \ERROR
+  }
+
+\TESTEXP { Accented~characters,~etc. }
+  {
+    " \str_uppercase:n { Café } "
+    \NEWLINE
+    " \str_casefold:n { ĆėƊṐṑ } "
+    \NEWLINE
+    " \str_casefold:n { ᾪωΝ } "
+    \NEWLINE
+    " \str_casefold:n { ΰῢﬆ } "
+    \NEWLINE
+    " \str_casefold:n { Ꚉ ꚇ} "
+    \NEWLINE
+    " \str_casefold:n { ＺꝎⓍ } "
+  }
+
+\TEST { Characters~with~context-sensitive~Unicode~behavior }
+  {
+    \tl_set:Ne \l_tmpa_tl { \str_casefold:n { όσος } }
+    \tl_set:Ne \l_tmpb_tl { \str_casefold:n { ΌΣΟΣ } }
+    \tl_if_eq:NNTF \l_tmpa_tl \l_tmpb_tl \TRUE \FALSE
+  }
+
+\OMIT
+\tl_set:Nn \l_tmpa_tl { a }
+\tl_set:Nn \l_tmpb_tl { a }
+\TIMO
+
+\TESTEXP { MD5~hash }
+  {
+    \str_mdfive_hash:n { foo }
+    \NEWLINE
+    \str_mdfive_hash:n { & \par ! ## }
+    \NEWLINE
+    \str_mdfive_hash:n { \l_tmpa_tl }
+    \NEWLINE
+    \str_mdfive_hash:n { \l_tmpb_tl }
+    \NEWLINE
+    \str_mdfive_hash:e { \l_tmpa_tl }
+    \NEWLINE
+    \str_mdfive_hash:e { \l_tmpb_tl }
+  }
+
+
+\END
+

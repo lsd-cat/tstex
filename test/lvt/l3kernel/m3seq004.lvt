@@ -1,0 +1,99 @@
+%
+% Copyright (C) The LaTeX Project
+%
+\documentclass{minimal}
+\input{regression-test}
+
+\ExplSyntaxOn
+\debug_on:n { check-declarations , deprecation , log-functions }
+\ExplSyntaxOff
+
+
+\begin{document}
+\START
+\AUTHOR{Bruno Le Floch}
+\ExplSyntaxOn
+
+\tl_clear:N \l_tmpa_tl
+\seq_new:N \l_a_seq
+\seq_new:N \g_b_seq
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\TEST{reverse}{
+  \seq_clear:N     \l_tmpa_seq
+  \seq_put_left:Nn \l_tmpa_seq {d\ef}
+  \seq_put_left:Nn \l_tmpa_seq {ab\c}
+  \seq_put_right:Nn \l_tmpa_seq    {x\yz}
+  \seq_put_right:Nn \l_tmpa_seq    {uv\w}
+  \seq_log:N \l_tmpa_seq
+  {
+    \seq_reverse:N \l_tmpa_seq
+    \seq_log:N \l_tmpa_seq
+  }
+  \seq_log:N \l_tmpa_seq
+  \seq_gset_eq:NN \g_tmpa_seq \l_tmpa_seq
+  {
+    \seq_greverse:N \g_tmpa_seq
+  }
+  \seq_log:N \g_tmpa_seq
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\OMIT
+\seq_new:N \l_my_seq
+\TIMO
+
+\TEST{seq_set_split:Nnn}{
+  \seq_set_split:Nnn \l_my_seq { | } { }
+  \seq_log:N \l_my_seq
+  \seq_set_split:Nnn \l_my_seq { , } { a, }
+  \seq_log:N \l_my_seq
+  \seq_set_split:Nnn \l_my_seq { , } { a~,~b }
+  \seq_log:N \l_my_seq
+  \seq_set_split:Nnn \l_my_seq { | }
+    { ~ a | b | ~c~ | {|} | ~{~|{}~} | d ~ }
+  \seq_log:N \l_my_seq
+  \seq_set_split:Nnn \l_my_seq { ~ }
+    { Hello,~world,~my~name~is~LaTeX! }
+  \seq_log:N \l_my_seq
+  \seq_set_split:Nnn \l_my_seq { } { abcdefghijklm }
+  \seq_log:N \l_my_seq
+}
+
+\TEST{seq_set_split_keep_spaces:Nnn}{
+  \seq_set_split_keep_spaces:Nnn \l_my_seq { | } { }
+  \seq_log:N \l_my_seq
+  \seq_set_split_keep_spaces:Nnn \l_my_seq { , } { a, }
+  \seq_log:N \l_my_seq
+  \seq_set_split_keep_spaces:Nnn \l_my_seq { , } { a~,~b }
+  \seq_log:N \l_my_seq
+  \seq_set_split_keep_spaces:Nnn \l_my_seq { | }
+    { ~ a | b | ~c~ | {|} | ~{~|{}~} | d ~ }
+  \seq_log:N \l_my_seq
+  \seq_set_split_keep_spaces:Nnn \l_my_seq { ~ }
+    { Hello,~world,~my~name~is~LaTeX! }
+  \seq_log:N \l_my_seq
+  \seq_set_split_keep_spaces:Nnn \l_my_seq { } { abcdefghijklm }
+  \seq_log:N \l_my_seq
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\TEST{seq_set_(filter|map):NNn}{
+  \seq_set_from_clist:Nn \l_my_seq { 1,2,34,4,abcd,5 }
+  \seq_set_filter:NNn \l_my_seq \l_my_seq
+    {
+      ! \bool_lazy_or_p:nn
+          { \tl_if_head_eq_meaning_p:nN {#1} a }
+          { \int_compare_p:n { #1 < 2 } }
+    }
+  \seq_set_map_e:NNn \l_my_seq \l_my_seq { \int_eval:n { #1 * #1 } }
+  \seq_log:N \l_my_seq
+  \seq_set_map:NNn \l_my_seq \l_my_seq { \exp_not:c {#1} }
+  \seq_log:N \l_my_seq
+}
+
+\END
+

@@ -1,0 +1,117 @@
+%
+% Copyright (C) The LaTeX Project
+%
+
+\documentclass{minimal}
+\input{regression-test}
+\ExplSyntaxOn
+\debug_on:n { check-declarations , deprecation , log-functions }
+\ExplSyntaxOff
+
+\begin{document}
+\START
+\AUTHOR{Bruno Le Floch}
+\ExplSyntaxOn
+
+\OMIT
+% Hack to run \int_new:N until the appropriate count is 300.
+% This makes the following tests give the same result for all engines.
+\int_do_while:nn
+  { \exp_after:w \use_none:nnnnnn \token_to_meaning:N \l_test_int < 300 }
+  {
+    \cs_undefine:N \l_test_int
+    \int_new:N \l_test_int
+  }
+\TIMO
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\TEST { tl_analysis_show~basic }
+  {
+    \tl_analysis_show:N \c_empty_tl
+    \tl_analysis_log:N \c_catcode_other_space_tl
+    \tl_analysis_show:n { }
+    \tl_analysis_log:n { }
+    \tl_analysis_show:n { ~ }
+    \tl_analysis_log:n { \ }
+    \tl_analysis_show:n { & }
+    \tl_analysis_show:n { { } }
+    \tl_analysis_show:n { abc }
+    \char_set_lccode:nn { 32 } { 33 }
+    \tex_lowercase:D { \tl_analysis_show:n { a{\b c~}\ ~ } }
+  }
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\TEST { tl_analysis_show~in~alignment }
+  {
+    \tex_halign:D
+      {
+        # \tex_cr:D
+        \tl_analysis_show:n { } \tex_cr:D
+        \tl_analysis_show:n { & } \tex_cr:D
+        \tl_analysis_show:n { & { & } & \tex_cr:D } \tex_cr:D
+      }
+  }
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\OMIT
+\char_set_active_eq:NN [ { % } ] { [
+\char_set_active_eq:NN ] }
+\char_set_catcode_active:N \[
+\char_set_catcode_active:N \]
+\TIMO
+
+\TEST { tl_analysis_show~weird~tokens }
+  {
+    \char_set_lccode:nn { `\  } { `\- }
+    \char_set_lccode:nn { `\{ } { `\  }
+    \char_set_lccode:nn { `\} } { `\  }
+    \char_set_lccode:nn { `\[ } { `\{ }
+    \char_set_lccode:nn { `\] } { `\} }
+    \tex_lowercase:D
+      {
+        \exp_args:Ne \tl_analysis_show:n
+          {
+            \bgroup \c_group_begin_token \exp_not:N [ { ~
+              \exp_not:c { abc{{def}g} }
+              \exp_not:c { abc }
+            } \exp_not:N ]
+          }
+      }
+    \tl_analysis_show:n { \c_group_end_token \egroup }
+  }
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\OMIT
+\tex_countdef:D \l_foo_int 1234 \scan_stop:
+\int_set:Nn \l_foo_int { 12 }
+\tex_toksdef:D \l_foo_toks 1234 \scan_stop:
+\l_foo_toks { abc }
+\int_const:Nn \c_test_int { -1 }
+\TIMO
+
+\TEST { Showing~the~values~of~registers }
+  {
+    \tl_analysis_show:n
+      {
+        \l_foo_int \l_foo_toks
+        \c_test_int \c_zero_skip \c_zero_muskip
+        \tex_count:D \tex_dimendef:D
+      }
+  }
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\OMIT
+\char_set_active_eq:NN ( \if:w
+\char_set_active_eq:NN ) \fi:
+\char_set_catcode_active:N \(
+\char_set_catcode_active:N \)
+\TIMO
+
+\TEST { Active~primitive~conditionals }
+  {
+    \tl_analysis_show:n { ( ) }
+  }
+
+
+\END

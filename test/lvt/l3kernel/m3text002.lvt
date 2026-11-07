@@ -1,0 +1,456 @@
+%
+% Copyright (C) The LaTeX Project
+%
+\input{regression-test}
+
+\ExplSyntaxOn
+\debug_on:n { check-declarations , deprecation , log-functions }
+\ExplSyntaxOff
+
+\START
+\AUTHOR{Joseph Wright}
+\ExplSyntaxOn
+
+\OMIT
+  \cs_set:Npn \test:n #1
+    {
+      \text_lowercase:n {#1}
+      \NEWLINE
+      \text_uppercase:n {#1}
+      \NEWLINE
+      \text_titlecase_all:n {#1}
+      \NEWLINE
+      \text_titlecase_first:n {#1}
+    }
+  \cs_set:Npn \test:nn #1#2
+    {
+      \text_lowercase:nn {#1} {#2}
+      \NEWLINE
+      \text_uppercase:nn {#1} {#2}
+      \NEWLINE
+      \text_titlecase_all:nn {#1} {#2}
+      \NEWLINE
+      \text_titlecase_first:nn {#1} {#2}
+    }
+\TIMO
+
+\TESTEXP { Basic~case~changing }
+  {
+    \test:n { Hello~world~\par with~\& }
+  }
+
+\TESTEXP { Case~changes~in~braces }
+  {
+    \test:n { {Hello}~world~\par with~\& }
+  }
+
+\TESTEXP { Case~change~exclusions }
+  {
+    \test:n { Some~text~\cite { WithFun } }
+  }
+
+\OMIT
+  \cs_set:Npn \testii:n #1
+    {
+      \text_titlecase_all:n {#1}
+      \NEWLINE
+      \text_titlecase_first:n {#1}
+    }
+\TIMO
+
+\TESTEXP { Titlecase~basics }
+  {
+    \testii:n { hello~world }
+    \NEWLINE
+    \testii:n { HELLO~WORLD }
+    \NEWLINE
+    "\text_titlecase_all:n { ~hello~world }"
+    \NEWLINE
+    "\text_titlecase_first:n { ~hello~world }"
+    \NEWLINE
+    "\text_titlecase_all:n { ~HELLO~WORLD }"
+    \NEWLINE
+    "\text_titlecase_first:n { ~HELLO~WORLD }"
+    \NEWLINE
+    \testii:n { {h}ello~world }
+    \NEWLINE
+    \testii:n { {H}ELLO~WORLD }
+    \NEWLINE
+    \testii:n { { } hello~world }
+    \NEWLINE
+    \testii:n { { \prg_do_nothing: } hello~world }
+  }
+
+\TESTEXP { Titlecase~skipping~chars }
+  {
+    \testii:n { `hic~sunt~leones' }
+    \NEWLINE
+    \testii:n { ``hic~sunt~leones'' }
+    \NEWLINE
+    \testii:n { ([hic~sunt~leones]) }
+  }
+
+\TESTEXP { Titlecase~first }
+  {
+    \testii:n { `hic~SUNT~leones' }
+    \NEWLINE
+    \testii:n { `HIC~SUNT~leones' }
+    \NEWLINE
+    \testii:n { E~PLURIBUS~UNUM }
+  }
+
+\bool_set_false:N \l_text_titlecase_check_letter_bool
+
+\TESTEXP { Titlecase~control }
+  {
+    \testii:n { `hic~SUNT~leones' }
+    \NEWLINE
+    \testii:n { `HIC~SUNT~leones' }
+    \NEWLINE
+    \testii:n { E~PLURIBUS~UNUM }
+  }
+
+\bool_set_true:N \l_text_titlecase_check_letter_bool
+
+\TESTEXP { Language~based~case~changing~but~nothing }
+  {
+    \test:nn { lt } { No~problems }
+    \NEWLINE
+    \test:nn { tr } { No~problems }
+  }
+
+\TESTEXP { (u)pTeX-based~tests }
+  {
+    \test:n { ABCÈ日本語 }
+    \NEWLINE
+    \test:n { 一级标题 }
+  }
+
+\TESTEXP { Unicode~case~changing }
+  {
+    \test:n { åéîøὭдαƐ }
+  }
+
+\TESTEXP { Unicode~case~changing~exceptions }
+  {
+    \test:n { Fußball }
+  }
+
+\TESTEXP { The~final~sigma~rule }
+  {
+    \test:n { ὈΔΥΣΣΕΎΣ~(ὈΔΥΣΣΕΎΣ)~ὈΔΥΣΣΕΎΣ,~ὈΔΥΣΣΕΎΣ{}~ὈΔΥΣΣΕΎΣ\noop }
+    \NEWLINE
+    \test:n { ὈΔΥΣΣΕΎΣ }
+  }
+
+\TESTEXP { Cyrillic }
+  {
+    \test:n { Доклады~Академии~наук }
+  }
+
+\TESTEXP { BCP47~parts }
+  {
+    \text_uppercase:nn { el-monoton } { άδικος,~κείμενο,~ίριδα }
+  }
+
+\TESTEXP { Armenian }
+  {
+    \text_uppercase:n                    { Երևան } \NEWLINE
+    \text_uppercase:nn { hy }            { Երևան } \NEWLINE
+    \text_uppercase:nn { hy-x-yiwn }     { Երևան } \NEWLINE
+    \text_titlecase_all:n                { Երևան } \NEWLINE
+    \text_titlecase_all:nn { hy }        { ևան } \NEWLINE
+    \text_titlecase_all:nn { hy-x-yiwn } { ևան }
+  }
+
+\TESTEXP { German-alternative }
+  {
+    \text_uppercase:n                  { Fußball } \NEWLINE
+    \text_uppercase:nn { de-x-eszett } { Fußball }
+  }
+
+\OMIT
+  \cs_set:Npn \greektest:n #1
+    {
+      \text_uppercase:n         {#1} \NEWLINE
+      \text_uppercase:nn { el } {#1}
+    }
+  \cs_set:Npn \greektestiota:n #1
+    {
+      \text_uppercase:nn { el }        {#1} \NEWLINE
+      \text_uppercase:nn { el-x-iota } {#1}
+    }
+\TIMO
+
+\TESTEXP { Greek }
+  {
+    % Taken from https://icu.unicode.org/design/case/greek-upper
+    \greektest:n { άδικος,~κείμενο,~ίριδα }               \NEWLINE
+    \greektest:n { Πατάτα }                               \NEWLINE
+    \greektest:n { Αέρας,~Μυστήριο,~Ωραίο }               \NEWLINE
+    \greektest:n { Μαΐου,~Πόρος,~Ρύθμιση }                \NEWLINE
+    \greektest:n { ΰ,~Τηρώ,~Μάιος }                       \NEWLINE
+    \greektest:n { άυλος }                                \NEWLINE
+    \greektest:n { ΑΫΛΟΣ }                                \NEWLINE
+    \greektest:n { Άκλιτα~ρήματα~ή~άκλιτες~μετοχές }      \NEWLINE
+    \greektest:n { Επειδή~η~αναγνώριση~της~αξιοπρέπειας } \NEWLINE
+    \greektest:n { νομικού~ή~διεθνούς }                   \NEWLINE
+    \greektest:n { Ἐπειδὴ~ἡ~ἀναγνώριση }                  \NEWLINE
+    \greektest:n { νομικοῦ~ἢ~διεθνοῦς }                   \NEWLINE
+    \greektest:n { Νέο,~Δημιουργία }                      \NEWLINE
+    \greektest:n { Ελάτε~να~φάτε~τα~καλύτερα~παϊδάκια! }  \NEWLINE
+    \greektest:n { Μαΐου,~τρόλεϊ }                        \NEWLINE
+    \greektest:n { Το~ένα~ή~το~άλλο. }                    \NEWLINE
+    \greektest:n { ρωμέικα }                              \NEWLINE
+    \text_titlecase_all:n         { ὈΔΥΣΣΕΎΣ } \NEWLINE
+    \text_titlecase_all:nn { el } { ὈΔΥΣΣΕΎΣ } \NEWLINE
+    % Taken from luaotfload tests
+    \greektest:n { ῄ }                                    \NEWLINE
+    \text_uppercase:nn { el-x-iota } { ῄ }                \NEWLINE
+    \greektest:n { ῄ }                                   \NEWLINE
+    \text_uppercase:nn { el-x-iota } { ῄ }               \NEWLINE
+    % Taken from https://github.com/latex3/latex2e/issues/987
+    \greektest:n { ἀἁἂἃἄἅἆἇ }                             \NEWLINE
+    \greektest:n { ἐἑἒἓἔἕ }                               \NEWLINE
+    \greektest:n { ἠἡἢἣἤἥἦἧ }                             \NEWLINE
+    \greektest:n { ἰἱἲἳἴἵἶἷ }                             \NEWLINE
+    \greektest:n { ὀὁὂὃὄὅ }                               \NEWLINE
+    \greektest:n { ὐὑὒὓὔὕὖὗ }                             \NEWLINE
+    \greektest:n { ὠὡὢὣὤὥὦὧ }                             \NEWLINE
+    \greektestiota:n { ᾀᾁᾂᾃᾄᾅᾆᾇ }                         \NEWLINE
+    \greektestiota:n { ᾐᾑᾒᾓᾔᾕᾖᾗ }                         \NEWLINE
+    \greektestiota:n { ᾠᾡᾢᾣᾤᾦᾧᾥ }                         \NEWLINE
+    \greektest:n { ʹ }                                    \NEWLINE
+    \greektest:n { Το~ένα~Ή~το~άλλο }                     \NEWLINE
+    \greektest:n { ͺ ῀ ` ´ ῾ ᾽ ᾿ ῍ ῎ ῝ ῞ ῟ ῏ ῭ ΅ ῁ }      \NEWLINE
+    \greektest:n { ; }                                    \NEWLINE
+    \greektest:n { ἀυπνία }                               \NEWLINE
+    \greektest:n { ᾰᾱ ῐῑ ῠῡ }                             \NEWLINE
+    \greektest:n { ᾂ }                                    \NEWLINE
+    \greektest:n { ἀ }                                    \NEWLINE
+  }
+
+\TESTEXP { Turkish/Azeri }
+  {
+    \text_lowercase:nn { tr } { RAGIP~HULÛSİ~ÖZDEM } \NEWLINE
+    \text_lowercase:n         { RAGIP~HULÛSİ~ÖZDEM }
+    \NEWLINE
+    \text_uppercase:nn { tr } { Ragıp~Hulûsi~Özdem } \NEWLINE
+    \text_uppercase:n         { Ragıp~Hulûsi~Özdem }
+    \NEWLINE
+    \text_titlecase_all:nn { tr } { Ragıp~Hulûsi~Özdem } \NEWLINE
+    \text_titlecase_all:n         { Ragıp~Hulûsi~Özdem }
+    \NEWLINE
+    \text_titlecase_all:nn { tr } { ıp~Hulûsi~Özdem } \NEWLINE
+    \text_titlecase_all:n         { ıp~Hulûsi~Özdem }
+  }
+
+\TESTEXP { Lithuanian }
+  {
+    \text_lowercase:nn { lt } { ÌÍĨÌÍĨJ̀J́J̃Į̀Į́Į̃ } \NEWLINE
+    \text_lowercase:n         { ÌÍĨÌÍĨJ̀J́J̃Į̀Į́Į̃ }
+    \NEWLINE
+    \text_uppercase:nn { lt } { i̇̀i̇̀i̇̃i̇̀i̇́i̇̃j̇̀j̇́j̇̃į̇̀į̇́į̇̃ } \NEWLINE
+    \text_uppercase:n         { i̇̀i̇̀i̇̃i̇̀i̇́i̇̃j̇̀j̇́j̇̃į̇̀į̇́į̇̃ }
+    \NEWLINE
+    \text_titlecase_all:nn { lt } { ÌÍĨÌÍĨJ̀J́J̃Į̀Į́Į̃ } \NEWLINE
+    \text_titlecase_all:nn { lt } { i̇̀i̇̀i̇̃i̇̀i̇́i̇̃j̇̀j̇́j̇̃į̇̀į̇́į̇̃ } \NEWLINE
+    \text_titlecase_all:n         { ÌÍĨÌÍĨJ̀J́J̃Į̀Į́Į̃ } \NEWLINE
+    \text_titlecase_all:n         { i̇̀i̇̀i̇̃i̇̀i̇́i̇̃j̇̀j̇́j̇̃į̇̀į̇́į̇̃ }
+  }
+
+\TESTEXP { Medieval~Latin }
+  {
+    \text_lowercase:nn { la-x-medieval } { LVPVS } \NEWLINE
+    \text_lowercase:n                    { LVPVS }
+    \NEWLINE
+    \text_uppercase:nn { la-x-medieval } { lupus } \NEWLINE
+    \text_uppercase:n                    { lupus }
+  }
+
+\TESTEXP { Dutch }
+  {
+    \text_lowercase:nn { nl } { IJSSELMEER } \NEWLINE
+    \text_lowercase:n         { IJSSELMEER }
+    \NEWLINE
+    \text_uppercase:nn { nl } { ijsselmeer } \NEWLINE
+    \text_uppercase:n         { ijsselmeer }
+    \NEWLINE
+    \text_titlecase_all:nn { nl } { ijsselmeer } \NEWLINE
+    \text_titlecase_all:n         { ijsselmeer }
+    \NEWLINE
+    \text_titlecase_all:nn { nl } { Ijsselmeer } \NEWLINE
+    \text_titlecase_all:n         { Ijsselmeer }
+    \NEWLINE
+    \text_titlecase_all:nn { nl } { IJsselmeer } \NEWLINE
+    \text_titlecase_all:n         { IJsselmeer }
+    \NEWLINE
+    \text_titlecase_all:nn { nl } { im } \NEWLINE
+    \text_titlecase_all:n         { im }
+  }
+
+\TESTEXP { Titlecase~exceptions }
+  {
+    \text_titlecase_all:n { ßoo }
+    \NEWLINE
+    \text_titlecase_all:n { ǅ! }
+    \NEWLINE
+  }
+
+\OMIT
+  \tl_put_right:Nn \l_text_case_exclude_arg_tl { \emph }
+\TIMO
+
+\TESTEXP { Case~changing~braced~arguments }
+  {
+    \test:n { FOO~\emph { BAR } ~ { BAZ } }
+    \NEWLINE
+    \test:n { \emph { BAR } ~ { BAZ } }
+  }
+
+\OMIT
+  \tl_set:Nn \l_tmpa_tl { Hello }
+  \tl_set:Nn \l_tmpb_tl { \l_tmpa_tl }
+  \cs_set_protected:Npn \cs_tmp:w { \l_tmpa_tl }
+\TIMO
+
+\TESTEXP { Expanding~content }
+  {
+    \test:n { Some~text~\l_tmpa_tl }
+    \NEWLINE
+    \test:n { \l_tmpa_tl \c_space_tl some text }
+    \NEWLINE
+    \test:n { Some~text~\l_tmpb_tl }
+    \NEWLINE
+    \test:n { \l_tmpb_tl \c_space_tl some text }
+    \NEWLINE
+    \test:n { Some~text~\cs_tmp:w }
+    \NEWLINE
+    \test:n { \cs_tmp:w \c_space_tl some text }
+  }
+
+\TESTEXP { Math-mode~escape }
+  {
+    \test:n { Some~text~$y~=~mx~+~c$ }
+    \NEWLINE
+    \test:n { $y~=~mx~+~c$~text }
+    \NEWLINE
+    \test:n { Oops~not~close~token~in~$y~=~mx~+~c }
+  }
+
+\TESTEXP { Nesting }
+  {
+    \text_uppercase:n { \text_lowercase:n { Hello } }
+    \NEWLINE
+    \text_lowercase:n { \text_uppercase:n { Hello } }
+    \NEWLINE
+    \text_uppercase:n { \text_lowercase:n { Fußball } }
+    \NEWLINE
+    \text_uppercase:n { \text_lowercase:n {  ὈΔΥΣΣΕΎΣ } }
+  }
+
+\TESTEXP { Letter-like~commands }
+  {
+    \test:n { \AA \aa \ae \dh \ss \l \O }
+  }
+
+\TESTEXP { Accents }
+  {
+    \test:n { \"{a} \u{e} \H{i} \v{o} \.{u} }
+  }
+
+\group_begin:
+
+\char_set_catcode_active:N "
+\cs_gset_eq:NN " \scan_stop:
+
+\TESTEXP { Active~chars }
+  {
+    \test:n { "`Lo"=rem"' }
+  }
+
+\group_end:
+
+
+\TEST { Case~changing~exclusions }
+  {
+    \tl_put_right:Nn \l_text_expand_exclude_tl { \NoCaseChange }
+    \tl_put_right:Nn \l_text_case_exclude_arg_tl { \NoCaseChange }
+    \cs_set_eq:NN \NoCaseChange \use:n
+    \tl_show:e
+      { \text_lowercase:n { \use:n { FOO } \NoCaseChange { BAR } } }
+    \tl_put_right:Nn \l_text_expand_exclude_tl { \use:n }
+    \tl_show:e
+      { \text_lowercase:n { \use:n { FOO } \NoCaseChange { BAR } } }
+  }
+
+\cs_set:Npn \test:n #1
+  {
+    \text_uppercase:n {#1} \NEWLINE
+    \text_lowercase:n {#1} \NEWLINE
+    \text_titlecase_all:n {#1} \NEWLINE
+    \text_titlecase_first:n {#1} \NEWLINE
+  }
+
+\TESTEXP { Case~change~switching }
+  {
+    \test:n { \text_case_switch:nnnn { normal } { lower } { UPPER } { Title } }
+    \test:n
+      {
+        words ~
+        \text_case_switch:nnnn { normal } { lower } { UPPER } { Title }
+      }
+  }
+
+\TEST { Case~change~replacements }
+  {
+    \text_declare_case_equivalent:Nn \foo { REPLACED }
+    \tl_show:e
+      { \text_lowercase:n { \use:n { FOO } \foo } }
+  }
+
+\TEST { Case~change~customisation }
+  {
+    \text_declare_uppercase_mapping:nn { "01F0 }  { \v J }
+    \text_declare_uppercase_mapping:nnn { xx } { "01F0 } { \v I }
+    \text_declare_uppercase_mapping:nnn { la-x-new } { "01F0 } { \v I }
+    \tl_show:e
+      {
+        \text_lowercase:n { ǰ }
+        \text_uppercase:n { ǰ }
+        \text_titlecase_all:n { ǰ }
+        \text_titlecase_all:n { xǰ }
+        \text_lowercase:nn { xx } { ǰ }
+        \text_uppercase:nn { xx } { ǰ }
+        \text_uppercase:nn { la-x-new } { ǰ }
+        \text_titlecase_all:nn { xx } { ǰ }
+        \text_titlecase_all:nn { xx } { xǰ }
+        \text_titlecase_all:nn { la-x-new } { xǰ }
+      }
+  }
+
+\TEST { Titlecase~catcode~handling }
+  {
+    \str_set:Nn \l_tmpa_str { abc }
+    \tl_show:e 
+      { \text_titlecase_all:n { \l_tmpa_str } }
+  }
+
+\OMIT
+  \text_declare_titlecase_exclusion:n { a }
+  \text_declare_lowercase_exclusion:n { Fe }
+  \text_declare_titlecase_exclusion:n { Fe }
+  \text_declare_uppercase_exclusion:n { Fe }
+  \text_declare_titlecase_exclusion:n { iPhone }
+\TIMO
+
+\TESTEXP { Excluded~words }
+  {
+    \test:n { A~demo~of~a~complex~setup~$~a~=~4~$ }
+    \test:n { Fe }
+    \test:n { [Fe] }
+    \test:n { [Fe]-hydrogenase }
+    \test:n { Lots~of~iPhone~parts,~for~example }
+  }
+
+\END

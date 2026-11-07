@@ -1,0 +1,313 @@
+%
+% Copyright (C) The LaTeX Project
+%
+\documentclass{minimal}
+\input{regression-test}
+\ExplSyntaxOn
+\debug_on:n { check-declarations , deprecation , log-functions }
+\ExplSyntaxOff
+
+\begin{document}
+
+\START
+\AUTHOR{Bruno Le Floch}
+\ExplSyntaxOn
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+{\escapechar=-1\relax
+  \TESTEXP{tl_if_single}{
+    \tl_if_single:nTF {}               ?F
+    \tl_if_single:nTF {~}              ?F
+    \exp_args:Nf \tl_if_single:nTF
+      { \prg_replicate:nn {5} {~} }    ?F
+    \tl_if_single:nTF {\foo}           T?
+    \tl_if_single:nTF {^^65}           T?
+    \tl_if_single:nTF {~\foo}          T?
+    \tl_if_single:nTF { * ~ }          T?
+    \tl_if_single:nTF { ~*~ }          T?
+    \tl_if_single:nTF { A B }          ?F
+    \tl_if_single:nTF { { } }          T?
+    \tl_if_single:nTF { { }~}          T?
+    \tl_if_single:nTF {~{ } }          T?
+    \tl_if_single:nTF {~{ }~}          T?
+    \tl_if_single:nTF { {A} }          T?
+    \tl_if_single:nTF { {A}~}          T?
+    \tl_if_single:nTF {~{A} }          T?
+    \tl_if_single:nTF {~{A}~}          T?
+    \tl_if_single:nTF {A{B} }          ?F
+    \tl_if_single:nTF { {B}A}          ?F
+    \tl_if_single:nTF {{} {}}          ?F
+    \tl_if_single:nTF { A \ }          ?F
+    \exp_args:Ne \tl_if_single:nTF
+      { A \char_generate:nn { 32 } { 11 } } ?F
+  }
+}
+\OMIT
+\TIMO
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\TESTEXP{tl_if_single_token}{
+  \tl_if_single_token:nTF {}               ?F
+  \tl_if_single_token:nTF {~}              T?
+  \exp_args:Nf \tl_if_single_token:nTF
+    { \prg_replicate:nn {5} {~} }          ?F
+  \tl_if_single_token:nTF {\foo}           T?
+  \tl_if_single_token:nTF {^^65}           T?
+  \tl_if_single_token:nTF {~\foo}          ?F
+  \tl_if_single_token:nTF { * ~ }          ?F
+  \tl_if_single_token:nTF { ~*~ }          ?F
+  \tl_if_single_token:nTF { A B }          ?F
+  \tl_if_single_token:nTF { { } }          ?F
+  \tl_if_single_token:nTF { { }~}          ?F
+  \tl_if_single_token:nTF {~{ } }          ?F
+  \tl_if_single_token:nTF {~{ }~}          ?F
+  \tl_if_single_token:nTF { {A} }          ?F
+  \tl_if_single_token:nTF { {A}~}          ?F
+  \tl_if_single_token:nTF {~{A} }          ?F
+  \tl_if_single_token:nTF {~{A}~}          ?F
+  \tl_if_single_token:nTF {A{B} }          ?F
+  \tl_if_single_token:nTF { {B}A}          ?F
+  \tl_if_single_token:nTF {{} {}}          ?F
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\OMIT
+\cs_set:Npn \test:n #1
+  {
+    \tl_if_head_is_N_type:nT {#1} {N}
+    \tl_if_head_is_group:nT  {#1} {G}
+    \tl_if_head_is_space:nT  {#1} {S}
+    \tl_if_empty:nT       {#1} {E}
+    /
+  }
+\TIMO
+
+\TESTEXP{tl_if_head_is_group/N_type/space}{
+  \test:n {}
+  \test:n {~}
+  \exp_args:Nf \test:n { \prg_replicate:nn {5} {~} }
+  \test:n {\foo}
+  \test:n {^^65}
+  \test:n {~\foo}
+  \test:n { \fi: ~ }
+  \test:n { ~*~ }
+  \test:n { \if: \fi: }
+  \test:n { { } }
+  \test:n { { }~}
+  \test:n {~{ } }
+  \test:n {~{ }~}
+  \test:n { {A} }
+  \test:n { {A}~}
+  \test:n {~{A} }
+  \test:n {~{A}~}
+  \test:n {\if_false: { \fi: } }
+  \test:n { {B}A}
+  \test:n {{} {}}
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\TESTEXP{tl_if_head_eq_meaning}{
+  \tl_if_head_eq_meaning:nNTF {}      ?              ?F
+  \tl_if_head_eq_meaning:nNTF {}      \else:         ?F
+  \tl_if_head_eq_meaning:nNTF {}      \ERROR         ?F
+  \tl_if_head_eq_meaning:nNTF {}      \fi:           ?F
+  \tl_if_head_eq_meaning:nNTF {~}     ?              ?F
+  \exp_args:Nf \tl_if_head_eq_meaning:nNTF
+    { \prg_replicate:nn {5} {~} }     \c_space_token T?
+  \tl_if_head_eq_meaning:nNTF {\foo}  \scan_stop:    ?F
+  \tl_if_head_eq_meaning:nNTF {^^65}  X              ?F
+  \tl_if_head_eq_meaning:nNTF {~\foo} \c_space_token T?
+  \tl_if_head_eq_meaning:nNTF { * ~ } ?              ?F
+  \tl_if_head_eq_meaning:nNTF { ~*~ } ?              ?F
+  \tl_if_head_eq_meaning:nNTF { A B } A              T?
+  \tl_if_head_eq_meaning:nNTF { { } } ?              ?F
+  \tl_if_head_eq_meaning:nNTF { { }~} \c_group_begin_token  T?
+  \tl_if_head_eq_meaning:nNTF {~{ } } \c_group_begin_token  ?F
+  \tl_if_head_eq_meaning:nNTF {~{ }~} \c_group_begin_token  ?F
+  \tl_if_head_eq_meaning:nNTF { {A} } \c_group_begin_token  T?
+  \tl_if_head_eq_meaning:nNTF { {A}~} A              ?F
+  \bool_if:nTF { \tl_if_head_eq_meaning_p:nN {}      ?              } ?F
+  \bool_if:nTF { \tl_if_head_eq_meaning_p:nN {}      \else:         } ?F
+  \bool_if:nTF { \tl_if_head_eq_meaning_p:nN {}      \ERROR         } ?F
+  \bool_if:nTF { \tl_if_head_eq_meaning_p:nN {}      \fi:           } ?F
+  \bool_if:nTF { \tl_if_head_eq_meaning_p:nN {~}     ?              } ?F
+  \bool_if:nTF { \exp_args:Nf \tl_if_head_eq_meaning_p:nN
+    { \prg_replicate:nn {5} {~} }                    \c_space_token } T?
+  \bool_if:nTF { \tl_if_head_eq_meaning_p:nN {\foo}  \scan_stop:    } ?F
+  \bool_if:nTF { \tl_if_head_eq_meaning_p:nN {^^65}  X              } ?F
+  \bool_if:nTF { \tl_if_head_eq_meaning_p:nN {~\foo} \c_space_token } T?
+  \bool_if:nTF { \tl_if_head_eq_meaning_p:nN { * ~ } ?              } ?F
+  \bool_if:nTF { \tl_if_head_eq_meaning_p:nN { ~*~ } ?              } ?F
+  \bool_if:nTF { \tl_if_head_eq_meaning_p:nN { A B } A              } T?
+  \bool_if:nTF { \tl_if_head_eq_meaning_p:nN { { } } ?              } ?F
+  \bool_if:nTF { \tl_if_head_eq_meaning_p:nN { { }~} \c_group_begin_token } T?
+  \bool_if:nTF { \tl_if_head_eq_meaning_p:nN {~{ } } \c_group_begin_token } ?F
+  \bool_if:nTF { \tl_if_head_eq_meaning_p:nN {~{ }~} \c_group_begin_token } ?F
+  \bool_if:nTF { \tl_if_head_eq_meaning_p:nN { {A} } \c_group_begin_token } T?
+  \bool_if:nTF { \tl_if_head_eq_meaning_p:nN { {A}~} A              } ?F
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\TESTEXP{tl_if_head_eq_catcode}{
+  \tl_if_head_eq_catcode:nNTF {}      ?              ?F
+  \tl_if_head_eq_catcode:nNTF {}      \ERROR         ?F
+  \tl_if_head_eq_catcode:nNTF {}      \else:         ?F
+  \tl_if_head_eq_catcode:nNTF {}      \fi:           ?F
+  \tl_if_head_eq_catcode:nNTF {~}     ?              ?F
+  \exp_args:Nf \tl_if_head_eq_catcode:nNTF
+    { \prg_replicate:nn {5} {~} }     \c_space_token T?
+  \tl_if_head_eq_catcode:nNTF {\foo}  \scan_stop:    T?
+  \tl_if_head_eq_catcode:nNTF {^^65}  X              T?
+  \tl_if_head_eq_catcode:nNTF {~\foo} \c_space_token T?
+  \tl_if_head_eq_catcode:nNTF { * ~ } ?              T?
+  \tl_if_head_eq_catcode:nNTF { ~*~ } ?              ?F
+  \tl_if_head_eq_catcode:nNTF { A B } A              T?
+  \tl_if_head_eq_catcode:nNTF { { } } ?              ?F
+  \tl_if_head_eq_catcode:nNTF { { }~} \c_group_begin_token  T?
+  \tl_if_head_eq_catcode:nNTF {~{ } } \c_group_begin_token  ?F
+  \tl_if_head_eq_catcode:nNTF {~{ }~} \c_group_begin_token  ?F
+  \tl_if_head_eq_catcode:nNTF { {A} } \c_group_begin_token  T?
+  \tl_if_head_eq_catcode:nNTF { {A}~} A              ?F
+  \bool_if:nTF { \tl_if_head_eq_catcode_p:nN {}      ?              } ?F
+  \bool_if:nTF { \tl_if_head_eq_catcode_p:nN {}      \ERROR         } ?F
+  \bool_if:nTF { \tl_if_head_eq_catcode_p:nN {}      \else:         } ?F
+  \bool_if:nTF { \tl_if_head_eq_catcode_p:nN {}      \fi:           } ?F
+  \bool_if:nTF { \tl_if_head_eq_catcode_p:nN {~}     ?              } ?F
+  \bool_if:nTF { \exp_args:Nf \tl_if_head_eq_catcode_p:nN
+    { \prg_replicate:nn {5} {~} }                    \c_space_token } T?
+  \bool_if:nTF { \tl_if_head_eq_catcode_p:nN {\foo}  \scan_stop:    } T?
+  \bool_if:nTF { \tl_if_head_eq_catcode_p:nN {^^65}  X              } T?
+  \bool_if:nTF { \tl_if_head_eq_catcode_p:nN {~\foo} \c_space_token } T?
+  \bool_if:nTF { \tl_if_head_eq_catcode_p:nN { * ~ } ?              } T?
+  \bool_if:nTF { \tl_if_head_eq_catcode_p:nN { ~*~ } ?              } ?F
+  \bool_if:nTF { \tl_if_head_eq_catcode_p:nN { A B } A              } T?
+  \bool_if:nTF { \tl_if_head_eq_catcode_p:nN { { } } ?              } ?F
+  \bool_if:nTF { \tl_if_head_eq_catcode_p:nN { { }~} \c_group_begin_token } T?
+  \bool_if:nTF { \tl_if_head_eq_catcode_p:nN {~{ } } \c_group_begin_token } ?F
+  \bool_if:nTF { \tl_if_head_eq_catcode_p:nN {~{ }~} \c_group_begin_token } ?F
+  \bool_if:nTF { \tl_if_head_eq_catcode_p:nN { {A} } \c_group_begin_token } T?
+  \bool_if:nTF { \tl_if_head_eq_catcode_p:nN { {A}~} A              } ?F
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\TESTEXP{tl_if_head_eq_charcode}{
+  \tl_if_head_eq_charcode:nNTF {}      ?              ?F
+  \tl_if_head_eq_charcode:nNTF {}      \ERROR         ?F
+  \tl_if_head_eq_charcode:nNTF {}      \else:         ?F
+  \tl_if_head_eq_charcode:nNTF {}      \fi:           ?F
+  \tl_if_head_eq_charcode:nNTF {~}     ?              ?F
+  \exp_args:Nf \tl_if_head_eq_charcode:nNTF
+    { \prg_replicate:nn {5} {~} }      \c_space_token T?
+  \tl_if_head_eq_charcode:nNTF {\foo}  \scan_stop:    T?
+  \tl_if_head_eq_charcode:nNTF {^^65}  X              ?F
+  \tl_if_head_eq_charcode:nNTF {~\foo} \c_space_token T?
+  \tl_if_head_eq_charcode:nNTF { * ~ } ?              ?F
+  \tl_if_head_eq_charcode:nNTF { ~*~ } ?              ?F
+  \tl_if_head_eq_charcode:nNTF { A B } A              T?
+  \tl_if_head_eq_charcode:nNTF { { } } ?              ?F
+  \tl_if_head_eq_charcode:nNTF { { }~} \c_group_begin_token  T?
+  \tl_if_head_eq_charcode:nNTF {~{ } } \c_group_begin_token  ?F
+  \tl_if_head_eq_charcode:nNTF {~{ }~} \c_group_begin_token  ?F
+  \tl_if_head_eq_charcode:nNTF { {A} } \c_group_begin_token  T?
+  \tl_if_head_eq_charcode:nNTF { {A}~} A              ?F
+  \bool_if:nTF { \tl_if_head_eq_charcode_p:nN {}      ?              } ?F
+  \bool_if:nTF { \tl_if_head_eq_charcode_p:nN {}      \ERROR         } ?F
+  \bool_if:nTF { \tl_if_head_eq_charcode_p:nN {}      \else:         } ?F
+  \bool_if:nTF { \tl_if_head_eq_charcode_p:nN {}      \fi:           } ?F
+  \bool_if:nTF { \tl_if_head_eq_charcode_p:nN {~}     ?              } ?F
+  \bool_if:nTF { \exp_args:Nf \tl_if_head_eq_charcode_p:nN
+    { \prg_replicate:nn {5} {~} }                     \c_space_token } T?
+  \bool_if:nTF { \tl_if_head_eq_charcode_p:nN {\foo}  \scan_stop:    } T?
+  \bool_if:nTF { \tl_if_head_eq_charcode_p:nN {^^65}  X              } ?F
+  \bool_if:nTF { \tl_if_head_eq_charcode_p:nN {~\foo} \c_space_token } T?
+  \bool_if:nTF { \tl_if_head_eq_charcode_p:nN { * ~ } ?              } ?F
+  \bool_if:nTF { \tl_if_head_eq_charcode_p:nN { ~*~ } ?              } ?F
+  \bool_if:nTF { \tl_if_head_eq_charcode_p:nN { A B } A              } T?
+  \bool_if:nTF { \tl_if_head_eq_charcode_p:nN { { } } ?              } ?F
+  \bool_if:nTF { \tl_if_head_eq_charcode_p:nN { { }~} \c_group_begin_token  } T?
+  \bool_if:nTF { \tl_if_head_eq_charcode_p:nN {~{ } } \c_group_begin_token  } ?F
+  \bool_if:nTF { \tl_if_head_eq_charcode_p:nN {~{ }~} \c_group_begin_token  } ?F
+  \bool_if:nTF { \tl_if_head_eq_charcode_p:nN { {A} } \c_group_begin_token  } T?
+  \bool_if:nTF { \tl_if_head_eq_charcode_p:nN { {A}~} A              } ?F
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\char_set_catcode_active:N &       \cs_set:Npn & { }
+\TESTEXP{tl_if_head_eq_charcode}{
+  \tl_if_head_eq_charcode:fNTF {&}      ?              ?F
+  \tl_if_head_eq_charcode:fNTF {&}      \ERROR         ?F
+  \tl_if_head_eq_charcode:fNTF {&}      \else:         ?F
+  \tl_if_head_eq_charcode:fNTF {&}      \fi:           ?F
+  \tl_if_head_eq_charcode:fNTF {&~}     \c_space_token ?F
+  \tl_if_head_eq_charcode:fNTF
+    {& \prg_replicate:nn {5} {~} }      \c_space_token T?
+  \tl_if_head_eq_charcode:fNTF {&^^65}  X              ?F
+  \tl_if_head_eq_charcode:fNTF {&~\foo} \scan_stop:    T?
+  \tl_if_head_eq_charcode:fNTF {& * ~ } ?              ?F
+  \tl_if_head_eq_charcode:fNTF {& ~*~ } *              T?
+  \tl_if_head_eq_charcode:fNTF {& A B } A              T?
+  \tl_if_head_eq_charcode:fNTF {& { } } ?              ?F
+  \tl_if_head_eq_charcode:fNTF {& { }~} \c_group_begin_token  T?
+  \tl_if_head_eq_charcode:fNTF {&~{ } } \c_group_begin_token  T?
+  \tl_if_head_eq_charcode:fNTF {&~{ }~} \c_group_begin_token  T?
+  \tl_if_head_eq_charcode:fNTF {& {A} } \c_group_begin_token  T?
+  \tl_if_head_eq_charcode:fNTF {& {A}~} A              ?F
+  \bool_if:nTF { \tl_if_head_eq_charcode_p:fN {&}      ?              } ?F
+  \bool_if:nTF { \tl_if_head_eq_charcode_p:fN {&}      \ERROR         } ?F
+  \bool_if:nTF { \tl_if_head_eq_charcode_p:fN {&}      \else:         } ?F
+  \bool_if:nTF { \tl_if_head_eq_charcode_p:fN {&}      \fi:           } ?F
+  \bool_if:nTF { \tl_if_head_eq_charcode_p:fN {&}      \c_space_token } ?F
+  \bool_if:nTF { \tl_if_head_eq_charcode_p:fN
+    {& \prg_replicate:nn {5} {~} }                     \c_space_token } T?
+  \bool_if:nTF { \tl_if_head_eq_charcode_p:fN {&^^65}  X              } ?F
+  \bool_if:nTF { \tl_if_head_eq_charcode_p:fN {&~\foo} \scan_stop:    } T?
+  \bool_if:nTF { \tl_if_head_eq_charcode_p:fN {& * ~ } ?              } ?F
+  \bool_if:nTF { \tl_if_head_eq_charcode_p:fN {& ~*~ } *              } T?
+  \bool_if:nTF { \tl_if_head_eq_charcode_p:fN {& A B } A              } T?
+  \bool_if:nTF { \tl_if_head_eq_charcode_p:fN {& { } } ?              } ?F
+  \bool_if:nTF { \tl_if_head_eq_charcode_p:fN {& { }~} \c_group_begin_token } T?
+  \bool_if:nTF { \tl_if_head_eq_charcode_p:fN {&~{ } } \c_group_begin_token } T?
+  \bool_if:nTF { \tl_if_head_eq_charcode_p:fN {&~{ }~} \c_group_begin_token } T?
+  \bool_if:nTF { \tl_if_head_eq_charcode_p:fN {& {A} } \c_group_begin_token } T?
+  \bool_if:nTF { \tl_if_head_eq_charcode_p:fN {& {A}~} A              } ?F
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\TESTEXP{str_head}{
+  \str_if_eq:eeF { \str_head:n {} }    { } ?
+  \str_if_eq:eeF { \str_head:n {~} }   { ~ } ?
+  \str_if_eq:eeF
+    { \exp_args:Nf \str_head:n { \prg_replicate:nn {5} {~} } }
+    { ~ } ?
+  \str_if_eq:eeF { \str_head:n {^^65}   } { e }              ?
+  \str_if_eq:eeF { \str_head:n {~\foo}  } { ~ }              ?
+  \str_if_eq:eeF { \str_head:n { \* ~ } } { \iow_char:N \\ } ?
+  \str_if_eq:eeF { \str_head:n { ~*~ }  } { ~ }              ?
+  \str_if_eq:eeF { \str_head:n { A B }  } { A }              ?
+  \str_if_eq:eeF { \str_head:n { { } }  } { \iow_char:N \{ } ?
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\TESTEXP{str_tail}{
+  \str_if_eq:eeF { \str_tail:n {} }    { } ?
+  \str_if_eq:eeF { \str_tail:n {~} }   { } ?
+  \str_if_eq:eeF
+    { \exp_args:Nf \str_tail:n { \prg_replicate:nn {5} {~} } }
+    { \prg_replicate:nn {3} {~} } ?
+  \str_if_eq:eeF { \str_tail:n {^^65}   } {   }               ?
+  \str_if_eq:eeF { \str_tail:n {~\foo}  } { \exp_not:N \foo } ?
+  \str_if_eq:eeF { \str_tail:n { \* ~ } } { * ~  }            ?
+  \str_if_eq:eeF { \str_tail:n { ~*~ }  } { *~ }              ?
+  \str_if_eq:eeF { \str_tail:n { A B }  } { B }               ?
+  \str_if_eq:eeF { \str_tail:n { { } }  } { \iow_char:N \} }  ?
+}
+
+\END

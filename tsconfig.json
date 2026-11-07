@@ -1,0 +1,11 @@
+{
+  "compilerOptions": {
+    "strict": true,
+    "erasableSyntaxOnly": true,
+    "module": "nodenext",
+    "target": "es2022",
+    "noEmit": true,
+    "allowImportingTsExtensions": true
+  },
+  "include": ["src", "test", "tools", "bin"]
+}

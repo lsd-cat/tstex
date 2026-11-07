@@ -1,0 +1,140 @@
+%
+% Copyright (C) The LaTeX Project
+%
+\documentclass{minimal}
+\input{regression-test}
+\ExplSyntaxOn
+\debug_on:n { check-declarations , deprecation , log-functions }
+\ExplSyntaxOff
+
+\begin{document}
+
+\START
+\AUTHOR{Bruno Le Floch}
+\ExplSyntaxOn
+
+\OMIT
+\cs_set_protected:Npn \test:f #1
+  { \TYPE { | \exp_not:f {#1} | } }
+\TIMO
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\TEST{tl_count}{
+  \tl_clear_new:N \l_foo_tl
+  \test:f { \tl_count:N \l_foo_tl }
+  \tl_set:Nn \l_foo_tl {abc}
+  \test:f { \tl_count:N \l_foo_tl }
+  \tl_set:Nn \l_foo_tl {a~{b{cd}~}~e~\fg}
+  \test:f { \tl_count:N \l_foo_tl }
+  \test:f { \tl_count:n { } }
+  \test:f { \tl_count:n { { } } }
+  \test:f { \tl_count:n { ~ } }
+  \test:f { \tl_count:n { # } }
+  \test:f { \tl_count:n { a{b{cd}}e\fg } }
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\TEST{tl_item:Nn}{
+  \tl_clear_new:N \l_foo_tl
+  \test:f { \tl_item:Nn \l_foo_tl {0} }
+  \test:f { \tl_item:Nn \l_foo_tl {1} }
+  \test:f { \tl_item:Nn \l_foo_tl {-1} }
+  \tl_set:Nn \l_foo_tl {a~{b{cd}~}~\scan_stop:}
+  \test:f { \tl_item:Nn \l_foo_tl {0} }
+  \test:f { \tl_item:Nn \l_foo_tl {1} }
+  \test:f { \tl_item:Nn \l_foo_tl {2} }
+  \test:f { \tl_item:Nn \l_foo_tl {3} }
+  \test:f { \tl_item:Nn \l_foo_tl {-1} }
+  \test:f { \tl_item:Nn \l_foo_tl {-2} }
+  \test:f { \tl_item:Nn \l_foo_tl {-3} }
+  \test:f { \tl_item:Nn \l_foo_tl {-4} }
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\TEST{tl_item:nn}{
+  \test:f { \tl_item:nn { } {0} }
+  \test:f { \tl_item:nn { } {1} }
+  \test:f { \tl_item:nn { } {-1} }
+  \test:f { \tl_item:nn {a~{b{cd}~}~\scan_stop:} {0} }
+  \test:f { \tl_item:nn {a~{b{cd}~}~\scan_stop:} {1} }
+  \test:f { \tl_item:nn {a~{b{cd}~}~\scan_stop:} {2} }
+  \test:f { \tl_item:nn {a~{b{cd}~}~\scan_stop:} {3} }
+  \test:f { \tl_item:nn {a~{b{cd}~}~\scan_stop:} {-1} }
+  \test:f { \tl_item:nn {a~{b{cd}~}~\scan_stop:} {-2} }
+  \test:f { \tl_item:nn {a~{b{cd}~}~\scan_stop:} {-3} }
+  \test:f { \tl_item:nn {a~{b{cd}~}~\scan_stop:} {-4} }
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\tl_new:N \l_bar_tl
+
+\TEST{rescan}{
+  \tl_set_rescan:Nnn \l_bar_tl
+    {
+      \char_set_catcode_space:N b
+      \char_set_catcode_ignore:N d
+    }
+    { abcde }
+  \TYPE{\meaning\l_bar_tl}
+  \tl_rescan:nn
+    { \char_set_catcode_math_toggle:N X }
+    { \cs_log:N X \cs_log:N } X
+  \char_set_catcode_space:N \ % we want to test normal spaces
+  \group_begin:
+    \tl_set_rescan:Nnn \l_tmpa_tl { } { a }
+    \tl_gset_rescan:Nne \g_tmpa_tl { }
+      { ~ \c_space_tl a ~ }
+    \tl_gset_rescan:Nnn \g_tmpb_tl
+      { \char_set_catcode_space:N x }
+      { x ~ a x b x }
+  \group_end:
+  \tl_log:N \l_tmpa_tl
+  \tl_log:N \g_tmpa_tl
+  \tl_log:N \g_tmpb_tl
+  \tl_set_rescan:Nnn \l_tmpa_tl { \char_set_catcode_active:N \' } { abc }
+  \tl_log:N \l_tmpa_tl
+  \tl_set_rescan:Nnn \l_tmpa_tl { \char_set_catcode_comment:N \' } { abd }
+  \tl_log:N \l_tmpa_tl
+  \tl_set_rescan:Nnn \l_tmpa_tl { \char_set_catcode_comment:N \' } { }
+  \tl_log:N \l_tmpa_tl
+  \tl_set_rescan:Nnn \l_tmpa_tl { \char_set_catcode_comment:N \' } { ~ }
+  \tl_log:N \l_tmpa_tl
+  \tl_set_rescan:Nne \l_tmpa_tl { \char_set_catcode_comment:N \' } { ~ ab ~ \c_space_tl }
+  \tl_log:N \l_tmpa_tl
+  \tl_set_rescan:Nnn \l_tmpa_tl { \char_set_catcode_comment:N \' } { \space ab'cd }
+  \tl_log:N \l_tmpa_tl
+  \tl_set_rescan:Nnn \l_tmpa_tl { \char_set_catcode_comment:N \' } { ~ '''' }
+  \tl_log:N \l_tmpa_tl
+  \tl_set_rescan:Nnn \l_tmpa_tl {  } { \q_mark \q_stop }
+  \tl_log:N \l_tmpa_tl
+  \tl_set_rescan:Nne \l_tmpa_tl {  } { \c__tl_rescan_marker_tl }
+  \tl_log:N \l_tmpa_tl
+}
+
+\group_begin:
+\char_set_catcode_other:N \%
+\char_set_catcode_other:N \^^I
+\char_set_catcode_other:N \^^M
+\use:n
+  {
+    \char_set_catcode_comment:N \%
+    \char_set_catcode_end_line:N \^^M
+    \ExplSyntaxOff
+    \TEST{rescan~multiple~lines}{
+      \tl_set_rescan:Nnn \l_tmpa_tl { } { a ^^M }
+      \tl_log:N \l_tmpa_tl
+      \tl_set_rescan:Nnn \l_tmpa_tl { } { ^^M a }
+      \tl_log:N \l_tmpa_tl
+      \tl_set_rescan:Nnn \l_tmpa_tl { }
+        { ~ a^^Jb%c ~ ^^M ~ def ~ ^^I ^^M ~ gh~%i ~ }
+      \tl_log:N \l_tmpa_tl
+    }
+    \group_end:
+  }
+
+\END

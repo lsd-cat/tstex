@@ -1,0 +1,127 @@
+%
+% Copyright (C) The LaTeX Project
+%
+\documentclass{minimal}
+\input{regression-test}
+\ExplSyntaxOn
+\debug_on:n { check-declarations , deprecation , log-functions }
+\ExplSyntaxOff
+
+\begin{document}
+
+\START
+\AUTHOR{Bruno Le Floch}
+\ExplSyntaxOn
+
+\TEST { TL }
+  {
+    \tl_set:Nf \l_tmpa_tl { \prg_replicate:nn { 40 } { abcde\\g ~ } }
+    \tl_show:N \l_tmpa_tl
+    \exp_args:No \tl_show:n { \l_tmpa_tl }
+  }
+
+\OMIT
+\cs_generate_variant:Nn \seq_push:Nn { Nf }
+\TIMO
+
+\TEST { SEQ }
+  {
+    \seq_push:Nf \l_tmpa_seq { \prg_replicate:nn { 40 } { ABCD ~ efghi ~ } }
+    \seq_push:Nf \l_tmpa_seq { \prg_replicate:nn { 40 } { xy\\~ } }
+    \seq_show:N  \l_tmpa_seq
+  }
+
+\TEST { CLIST }
+  {
+    \clist_new:N \l_my_very_very_very_very_very_very_long_clist
+    \clist_set:Ne \l_my_very_very_very_very_very_very_long_clist
+      { \prg_replicate:nn { 20 } { abcdefghij ~ } , 2 }
+    \clist_show:N \l_my_very_very_very_very_very_very_long_clist
+  }
+
+\OMIT
+\cs_generate_variant:Nn \prop_put:Nnn { Nx }
+\cs_generate_variant:Nn \prop_put:Nnn { Nnx }
+\TIMO
+
+\TEST { PROP }
+  {
+    \prop_put:Nen \l_tmpa_prop
+      { \prg_replicate:nn { 40 } { the ~ key1 ~ } } { val1 }
+    \prop_put:Nne \l_tmpa_prop
+      { key2 } { \prg_replicate:nn { 40 } { the ~ val2 ~ } }
+    \prop_show:N  \l_tmpa_prop
+  }
+
+\OMIT
+\cs_set:Npn \tmp:w
+  #1 ~ abcdefghi ~ jklmnopqr ~ stuvwxyz ~
+  abcdef ~ ghi ~ jklmn ~ opqrstuvwxyz ~ #2
+  {
+    Abc~def,~ghijkl~m!~No,~pqrst-uv-wxyzab.~Cdefghi~jkl.~Mnopqrst~uvw~xyz.~
+    Abc~def,~ghijkl~m!~No,~pqrst-uv-wxyzab.~Cdefghi~jkl.~Mnopqrst~uvw~xyz.~
+    Abc~def,~ghijkl~m!~No,~pqrst-uv-wxyzab.~Cdefghi~jkl.~Mnopqrst~uvw~xyz.~
+  }
+\cs_set_eq:cN { \prg_replicate:nn { 60 } { a } } &
+\cs_set_eq:cN { \prg_replicate:nn { 65 } { a } } &
+\cs_set_eq:cN { \prg_replicate:nn { 70 } { a } } &
+\cs_set_eq:cN { \prg_replicate:nn { 75 } { a } } &
+\TIMO
+
+\TEST { CS }
+  {
+    \cs_show:N \tmp:w
+    \cs_show:c { \prg_replicate:nn { 60 } { a } }
+    \cs_show:c { \prg_replicate:nn { 65 } { a } }
+    \cs_show:c { \prg_replicate:nn { 70 } { a } }
+    \cs_show:c { \prg_replicate:nn { 75 } { a } }
+    \cs_show:N &
+    \cs_show:N :
+    \int_set:Nn \tex_escapechar:D { `\X }
+    \cs_set:Npn \\ { \test }
+    \cs_show:N \\
+  }
+
+\TEST { COFFIN }
+  {
+    \hcoffin_set:Nn \l_tmpa_coffin
+      { \hbox:n { \vbox_to_ht:nn { 12 pt } { } } ~ \hbox:n { } }
+    \coffin_show_structure:N \l_tmpa_coffin
+    \vcoffin_set:Nnn \l_tmpb_coffin { 20pt }
+      { \hbox:n { ~ \vbox:n { } ~ } \hbox_to_wd:nn { 15pt } { } }
+    \coffin_show_structure:N \l_tmpb_coffin
+    \coffin_join:NnnNnnnn
+      \l_tmpa_coffin { hc } { vc }
+      \l_tmpb_coffin { l  } { t  }
+      { 3pt } { -5pt }
+    \coffin_show_structure:c { l_tmpa_coffin }
+  }
+
+\OMIT
+\keys_define:nn { test }
+  {
+    text     .tl_set:c    = { l_tmpa_tl } ,
+    expanded .tl_gset_e:N = \l_tmpb_tl    ,
+  }
+\TIMO
+
+\TEST { KEYS }
+  {
+    \keys_log:nn { test } { text }
+    \keys_log:nn { test } { expanded }
+  }
+
+
+\TEST { CHAR }
+  {
+    \tl_map_inline:nn { \A \a \# }
+      {
+        \char_show_value_catcode:n  { `#1 }
+        \char_show_value_lccode:n   { `#1 }
+        \char_show_value_uccode:n   { `#1 }
+        \char_show_value_mathcode:n { `#1 }
+        \char_show_value_sfcode:n   { `#1 }
+      }
+  }
+
+\END

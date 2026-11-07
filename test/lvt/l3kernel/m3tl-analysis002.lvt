@@ -1,0 +1,90 @@
+%
+% Copyright (C) The LaTeX Project
+%
+
+\documentclass{minimal}
+\input{regression-test}
+\ExplSyntaxOn
+\debug_on:n { check-declarations , deprecation , log-functions }
+\ExplSyntaxOff
+
+\begin{document}
+\START
+\AUTHOR{Bruno Le Floch}
+\ExplSyntaxOn
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\TEST { tl_analysis_map_inline~basic }
+  {
+    \tl_set:Nn \l_tmpa_tl { { \use:n } & # }
+    \tl_analysis_map_inline:Nn \l_tmpa_tl
+      {
+        \int_compare:nNnTF {#3} = 4
+          { \tl_map_break: }
+          { \TYPE { \tl_to_str:n { | #1 | #2 | #3 | } } }
+      }
+    \tl_analysis_map_inline:nn { a + # & }
+      {
+        \TYPE { \tl_to_str:n { | #1 | #2 | #3 | } }
+      }
+  }
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\TEST { tl_analysis_map_inline~nesting }
+  {
+    \tl_analysis_map_inline:nn { a b }
+      { \tl_analysis_map_inline:nn { c d } { \TYPE { | #1 ~ ##1 | } } }
+    \tl_analysis_map_inline:nn { a b }
+      {
+        \clist_map_inline:nn { z , c }
+          {
+            \tl_analysis_map_inline:nn { c d }
+              {
+                \TYPE { | #1 ~ ##1 ~ ####1 | }
+                \int_compare:nNnT {####2} = { `##1 } { \clist_map_break: }
+              }
+          }
+      }
+  }
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\TEST { peek_analysis_map_inline~in~alignments }
+  {
+    \cs_set:Npn \test:w
+      {
+        \peek_analysis_map_inline:n
+          {
+            \int_compare:nNnTF {##2} = { `Z }
+              { \peek_analysis_map_break: }
+              { \iow_term:e {##1} }
+          }
+      }
+    \hbox_set:Nn \l_tmpa_box { \test:w XYZ }
+    \hbox_set:Nn \l_tmpa_box
+      { \tex_valign:D { # \cr \test:w XYZ \cr } }
+  }
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\OMIT
+\cs_set_eq:NN \ \scan_stop:
+\char_set_active_eq:NN \ \scan_stop:
+\cs_set_protected:Npe \test:
+  {
+    \tl_analysis_show:n { \ }
+    \peek_analysis_map_inline:n { \tl_log:n { {##1} {##2} ##3 } \exp_not:N \peek_analysis_map_break: }
+    \ %
+    \tl_analysis_show:n { \char_generate:nn {32} {13} }
+    \peek_analysis_map_inline:n { \tl_log:n { {##1} {##2} ##3 } \exp_not:N \peek_analysis_map_break: }
+    \char_generate:nn {32} {13}
+  }
+\TIMO
+
+\TEST { Control~sequence~space~and~active~space }
+  {
+    \test:
+    \cs_set_eq:NN \ \fi:
+    \char_set_active_eq:NN \ \fi:
+    \test:
+  }
+
+\END

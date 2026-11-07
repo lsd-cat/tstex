@@ -1,0 +1,18 @@
+%
+% Check that latexrelease removes \TextOrMath
+
+% Input the test macros for LaTeX2e
+\input{test2e}
+\RequirePackage[2014/05/01]{latexrelease}
+
+
+\START
+
+\show\TextOrMath
+
+\OMIT
+\documentclass{article}
+\TIMO
+\begin{document}
+\end{document}
+

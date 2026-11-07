@@ -1,0 +1,70 @@
+%
+% Copyright (C) The LaTeX Project
+%
+\documentclass{minimal}
+\input{regression-test}
+
+\ExplSyntaxOn
+\debug_on:n { check-declarations , deprecation , log-functions }
+\ExplSyntaxOff
+
+
+\begin{document}
+\START
+\AUTHOR{Bruno Le Floch}
+\ExplSyntaxOn
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\TEST{count}{
+  \int_log:n { \clist_count:n { a , b , c } }
+  \int_log:n { \clist_count:n { } }
+  \int_log:n { \exp_args:Nf \clist_count:n { \prg_replicate:nn {9} {~} } }
+  \int_log:n { \exp_args:Nf \clist_count:n { \prg_replicate:nn {9} {{},} } }
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\TEST{const}{
+  { \clist_const:Nn \c_a_clist { a , b , c } }
+  \clist_log:N \c_a_clist
+  \clist_const:cn { c_b_clist } { }
+  \clist_log:N \c_b_clist
+  \clist_const:Ne \c_c_clist { \prg_replicate:nn {9} {~} }
+  \clist_log:N \c_c_clist
+  \clist_const:ce { c_d_clist } { \prg_replicate:nn { 9 } { { } , } }
+  \clist_log:N \c_d_clist
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\TEST{const}{
+  \clist_map_inline:nn { a , b , c , d }
+    {
+      \TYPE {#1}
+      \str_if_eq:nnT {c} {#1}
+        {
+          \TYPE {Bingo!}
+          \clist_map_break:n { \TYPE }
+        }
+    }
+    { This~is~what~follows. }
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\TEST{clist_if_empty:n}{
+  \clist_if_empty:nTF { } { \TRUE } { \ERROR }
+  \clist_if_empty:nTF { a } { \ERROR } { \FALSE }
+  \clist_if_empty:nTF { { } } { \ERROR } { \FALSE }
+  \clist_if_empty:nTF { { } , } { \ERROR } { \FALSE }
+  \clist_if_empty:nTF { , } { \TRUE } { \ERROR }
+  \clist_if_empty:nTF { ,~, } { \TRUE } { \ERROR }
+  \exp_args:Ne \clist_if_empty:nF { \prg_replicate:nn {3} {~,~} } { \ERROR }
+  \clist_if_empty:nT { a , b , c } { \ERROR }
+  \clist_if_empty:nTF { ~ } { \TRUE }
+  \exp_args:Ne \clist_if_empty:nTF { \c_catcode_other_space_tl }
+    { \ERROR } { \FALSE }
+}
+
+\END

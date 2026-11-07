@@ -1,0 +1,6 @@
+node_modules
+*.dvi
+*.log
+!*.expected.log
+*.fmt
+test/lvt/_src/

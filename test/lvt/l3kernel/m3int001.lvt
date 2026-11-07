@@ -1,0 +1,257 @@
+%
+% Copyright (C) The LaTeX Project
+%
+
+\documentclass{minimal}
+
+\input{regression-test}
+
+\ExplSyntaxOn
+\debug_on:n { check-declarations , deprecation , log-functions }
+\ExplSyntaxOff
+
+
+
+% Everything before this is ignored by the test system.
+\START
+
+\AUTHOR{Frank Mittelbach}
+
+
+% don't display stuff from executing \begin{document}
+\OMIT
+\begin{document}
+\TIMO
+
+\ExplSyntaxOn
+
+\OMIT
+% Hack to run \int_new:N until the appropriate count is 300.
+% This makes the following tests give the same result for all engines.
+\int_do_while:nn
+  { \exp_after:w \use_none:nnnnnn \token_to_meaning:N \l_test_int < 300 }
+  {
+    \cs_undefine:N \l_test_int
+    \int_new:N \l_test_int
+  }
+\TIMO
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% allocating new registers:
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\TEST { allocating~new~registers;~no~worries }
+  {
+    \int_new:N \l_testa_int
+    \int_new:N \g_testa_int
+    \int_new:N \g_testb_int
+  }
+
+\TEST { allocating~same~name:~errors~expected }
+  {
+    \int_new:N \l_testa_int        % define second time
+    \int_new:N \g_testa_int        % gives error
+  }
+
+\TEST { allocate~or~clear }
+  {
+    \OMIT
+      \int_set:Nn \l_testa_int { 10 }
+      \int_gset:Nn \g_testa_int { 10 }
+    \TIMO
+    \group_begin:
+      \int_zero_new:N \l_testa_int
+      \int_zero_new:N \l_testb_int
+      \int_gzero_new:N \g_testa_int
+      \int_gzero_new:N \g_testb_int
+      \TYPE { \int_use:N \l_testa_int }
+      \TYPE { \int_use:N \l_testb_int }
+      \TYPE { \int_use:N \g_testa_int }
+      \TYPE { \int_use:N \g_testb_int }
+    \group_end:
+    \TYPE { \int_use:N \l_testa_int }
+    \TYPE { \int_use:N \l_testb_int }
+    \TYPE { \int_use:N \g_testa_int }
+    \TYPE { \int_use:N \g_testb_int }
+  }
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% incrementing + decrementing
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\TEST{incrementing~and~decrementing:~expect~3,~-1}
+  {
+    \int_gincr:N \g_testa_int
+    \int_gincr:N \g_testa_int
+    \int_gincr:N \g_testa_int
+    \TYPE { \int_use:N  \g_testa_int }
+    \int_gzero:N \g_testa_int
+    \int_gdecr:N \g_testa_int
+    \TYPE { \int_use:N  \g_testa_int }
+  }
+
+\TEST { generating~overflow:~expect~2147483647,~-2147483648,~2147483647 }
+  {
+    \int_set:Nn \l_testa_int \c_max_int
+    \TYPE { \int_use:N \l_testa_int }
+    \int_incr:N \l_testa_int          % overflow ...
+    \TYPE { \int_use:N \l_testa_int } % what is max + 1?
+    \int_decr:N \l_testa_int          % and overflow back ...
+    \TYPE { \int_use:N \l_testa_int } % and now?
+  }
+
+\TEST { incrementing~and~decrementing:~expect~-2 }
+  {
+    \int_zero:N \l_testa_int
+    \int_decr:N \l_testa_int
+    \int_decr:N \l_testa_int
+    \TYPE { \int_use:N \l_testa_int }
+  }
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% using invalid variables
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\TEST { trying~invalid~variables:~expect~errors }
+  {
+    \int_decr:N \l_testb_int          % ok
+    \cs_set_nopar:Npn \l_testb_int {} % causes bad error below
+    \int_decr:N \l_testb_int
+  }
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% using num expr ...
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\TEST { using~num~expr }
+  {
+    \int_set:Nn \l_testa_int { 200 - 15  }
+    \TYPE { \int_use:N \l_testa_int } % we hope for a value of 185
+    \int_set:Nn \l_testa_int { 30 / \g_testa_int  }
+    \TYPE { \int_use:N \l_testa_int } % we hope for a value of -30
+    \int_set:Nn \l_testa_int { 27 + 3 / \g_testa_int  }
+    \TYPE { \int_use:N \l_testa_int } % we hope for a value of 24
+    \int_set:Nn \l_testa_int { (27 + 3 ) / \g_testa_int  }
+    \TYPE { \int_use:N \l_testa_int } % we hope for a value of -30
+    \int_gzero:N \g_testa_int
+    \int_set:Nn \l_testa_int { 5 / \g_testa_int  } % that's division by zero
+    \TYPE { \int_use:N \l_testa_int } % no idea what TeX does here ...
+  }
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% adding and subtracting
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\TEST { adding~and~subtracting }
+  {
+    \int_zero:N \l_testa_int
+    \int_add:Nn \l_testa_int { 5 * 7 }
+    \int_add:Nn \l_testa_int { 15 }
+    \TYPE { \int_use:N \l_testa_int } % we hope for a value of 50
+    \int_sub:Nn \l_testa_int { 3 * 5 }
+    \TYPE { \int_use:N \l_testa_int } % we hope for a value of 35
+    \int_gzero:N \g_testa_int
+    {
+      \int_gadd:Nn \g_testa_int { (2 + 13) / (2 * 3) }
+      \int_gadd:Nn \g_testa_int { 3 }
+      \TYPE { \int_use:N \g_testa_int } % we hope for a value of 6
+      \int_gsub:Nn \g_testa_int { 5 * 5 }
+    }
+    \TYPE { \int_use:N \g_testa_int } % we hope for a value of -19
+  }
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% converting numbers to ...
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\TESTEXP { converting~numbers:~3~i~L~ix~XXI }
+  {
+    \int_to_arabic:n { ( 2+7 ) / 3 } ~
+    \int_to_alph:n { 2+7 } ~
+    \int_to_Alph:n { 6 * 2 } ~
+    \int_to_roman:n { 9 } ~
+    \int_to_Roman:n { 21 } ~
+  }
+
+\TESTEXP { converting~numbers:~expect~!!~!!~!!~!a! }
+  {
+    ! \int_to_alph:n { -2 } ! ~
+    ! \int_to_alph:n { -1 } ! ~
+    ! \int_to_alph:n { 0 } !  ~
+    ! \int_to_alph:n { 1 } !  ~
+  }
+
+\TESTEXP { converting~numbers:~expect~!!~!!~!!~!i! }
+  {
+    ! \int_to_roman:n { -2 } ! ~
+    ! \int_to_roman:n { -1 } ! ~
+    ! \int_to_roman:n { 0 } ! ~
+    ! \int_to_roman:n { 1 } ! ~
+  }
+
+\TESTEXP{converting~numbers~ (huge~ values)}
+  { \int_to_alph:n { \c_max_int } }
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% evaluating integer expressions
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\TESTEXP { evaluating~integer~expressions:~10~NO~NO~YES~YES~YES }
+  {
+    \int_eval:n { 50 / 5 } \space
+    \int_compare:nNnTF { 17 } < { 20 - 5 } \YES \NO         \space
+    \int_compare:nNnF  { 17 } < { 20 - 5 } \NO              \space
+    \int_compare:nNnTF { \g_testa_int } = { -19 } \YES \NO  \space
+    \int_compare:nNnT  { \g_testa_int } = { -19 } \YES      \space
+    \int_compare:nNnTF
+      { \int_max:nn { 1 } { 7 } } = { \int_min:nn { 5 } { 8 } + 2 }
+      \YES \NO
+  }
+
+\OMIT
+
+\tl_set:Nn \l_tmpa_tl { 17 }
+\int_set:Nn \l_tmpa_int { -19 }
+
+\TIMO
+
+\TESTEXP { Comparing~integer~expressions~with~variables:~NO~YES~YES~YES }
+  {
+    \int_compare:vNnF { l_tmpa_tl } < { 20 - 5 } \NO \space
+    \int_compare:vNnT  { l_tmpa_tl } > { 20 - 5 } \YES \space
+    \int_compare:nNvTF { \g_testa_int } = { l_tmpa_int } \YES \ERROR  \space
+    \int_compare:vNnT  { l_tmpa_int } = { \g_testa_int } \YES      \space
+  }
+
+\TESTEXP { converting~from~and~to~base:~expect~21~17 }
+  {
+    \int_to_base:nn { 17 } { 8 }  ~
+    \int_from_base:nn { 21 } { 8 }
+  }
+
+\TESTEXP{ Case~statements }
+  {
+    \int_case:nnF
+      { -1 + 1 }
+      {
+        {    -1 } {  \NO }
+        { 3 - 3 } { \YES }
+      }
+    { \NO }
+  \NEWLINE
+  \int_case:nnF
+    { 0 }
+    {
+      {      0 }   { \YES }
+      { \ERROR } { \ERROR }
+    }
+    { \NO }
+  \NEWLINE
+  \int_case:nnF
+    { 7 - 2 }
+    { { -1 + 3 } { \NO } }
+    { \YES }
+  }
+
+\END

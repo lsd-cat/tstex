@@ -1,0 +1,12 @@
+{
+  "name": "tstex",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "test": "node --test test/",
+    "typecheck": "tsc --noEmit"
+  },
+  "devDependencies": {
+    "typescript": "latest"
+  }
+}

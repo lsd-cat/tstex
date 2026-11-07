@@ -1,0 +1,8 @@
+%! oracle: ini
+\catcode`\{=1 \catcode`\}=2 \catcode`\#=6
+\tracingmacros=2 \tracingcommands=2 \tracingonline=0
+\def\greet#1{\message{hello #1}}
+\greet{world}
+\count0=42
+\showthe\count0
+\end

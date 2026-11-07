@@ -1,0 +1,299 @@
+%
+% Copyright (C) The LaTeX Project
+%
+\documentclass{minimal}
+\input{regression-test}
+
+\ExplSyntaxOn
+\debug_on:n { check-declarations , deprecation , log-functions }
+\ExplSyntaxOff
+
+\begin{document}
+\START
+\AUTHOR{Will Robertson}
+\ExplSyntaxOn
+
+\tl_new:N \l_ii_tl
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\TESTEXP{to_str}{
+  \tl_to_str:n { abc } \NEWLINE
+  \tl_to_str:n { \ERROR } \NEWLINE
+  \tl_to_str:n { # }
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\TEST{str_if_eq}{
+  \str_if_eq:nnTF {}{}               {\TRUE}{\FALSE}
+  \str_if_eq:nnTF {~}{~~}            {\TRUE}{\FALSE}
+  \str_if_eq:nnTF {abc}{abc}         {\TRUE}{\FALSE}
+  \str_if_eq:nnTF {abc}{abc~}        {\TRUE}{\FALSE}
+  \str_if_eq:nnTF {abc#}{abc#}       {\TRUE}{\FALSE}
+  \str_if_eq:nnTF {abc\par}{abc\par} {\TRUE}{\FALSE}
+  \SEPARATOR
+  \str_if_eq:nnTF {}{}               {\TRUE}
+  \str_if_eq:nnTF {~}{~~}            {\TRUE}
+  \str_if_eq:nnT  {abc}{abc}         {\TRUE}
+  \str_if_eq:nnT  {abc#}{abc#}       {\TRUE}
+  \str_if_eq:nnT  {abc\par}{abc\par} {\TRUE}
+  \SEPARATOR
+  \str_if_eq:nnF  {abc}{abc~}               {\FALSE}
+  \SEPARATOR
+  \str_if_eq:nnTF {}{}               {\FALSE}{\TRUE}
+  \str_if_eq:nnTF {~}{~~}            {\FALSE}{\TRUE}
+  \str_if_eq:nnTF {abc}{abc}         {\FALSE}{\TRUE}
+  \str_if_eq:nnTF {abc}{abc~}        {\FALSE}{\TRUE}
+  \str_if_eq:nnTF {abc#}{abc#}       {\FALSE}{\TRUE}
+  \str_if_eq:nnTF {abc\par}{abc\par} {\FALSE}{\TRUE}
+}
+
+\OMIT
+\tl_set:Nn \l_tmpa_tl {a}
+\tl_set:Nn \l_tmpb_tl {\l_tmpa_tl}
+\tl_set:Nn \l_tmpc_tl {\l_tmpb_tl}
+\tl_set:Nn \l_tmpd_tl {\l_tmpc_tl}
+\tl_set:Nn \l_tmpe_tl {a}
+\TIMO
+
+\TEST{str_if_eq~variants}{
+  \str_if_eq:eeTF {\l_tmpd_tl}{\l_tmpc_tl}   {\TRUE}{\FALSE}
+  \str_if_eq:eeT  {\l_tmpd_tl}{\l_tmpc_tl}   {\TRUE}
+  \str_if_eq:eeF  {\l_tmpd_tl}{\l_tmpc_tl Z} {\FALSE}
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\cs_set:Npn \test:n #1 { \bool_if:nTF {#1} \c_true_bool \c_false_bool }
+\tl_set:Nn \l_tmpa_tl {}
+\tl_set:Nn \l_tmpb_tl {~}
+\tl_set:Nn \l_tmpc_tl {X}
+\TESTEXP{if_empty~(expect~T/F/F~repeated)}{
+  \test:n { \tl_if_empty_p:n { } } ~
+  \test:n { \tl_if_empty_p:n {~} } ~
+  \test:n { \tl_if_empty_p:n {X} } \NEWLINE
+  \tl_if_empty:nTF { } {\TRUE}{\FALSE} \NEWLINE
+  \tl_if_empty:nTF {~} {\TRUE}{\FALSE} \NEWLINE
+  \tl_if_empty:nTF {X} {\TRUE}{\FALSE} \NEWLINE
+  \NEWLINE
+  \test:n { \tl_if_empty_p:o { \l_tmpa_tl } } ~
+  \test:n { \tl_if_empty_p:o { \l_tmpb_tl } } ~
+  \test:n { \tl_if_empty_p:o { \l_tmpc_tl } } \NEWLINE
+  \tl_if_empty:oTF { \l_tmpa_tl } {\TRUE}{\FALSE} \NEWLINE
+  \tl_if_empty:oTF { \l_tmpb_tl } {\TRUE}{\FALSE} \NEWLINE
+  \tl_if_empty:oTF { \l_tmpc_tl } {\TRUE}{\FALSE} \NEWLINE
+  \NEWLINE
+  \test:n { \tl_if_empty_p:N \l_tmpa_tl } ~
+  \test:n { \tl_if_empty_p:N \l_tmpb_tl } ~
+  \test:n { \tl_if_empty_p:N \l_tmpc_tl } \NEWLINE
+  \tl_if_empty:NTF \l_tmpa_tl {\TRUE}{\FALSE} \NEWLINE
+  \tl_if_empty:NTF \l_tmpb_tl {\TRUE}{\FALSE} \NEWLINE
+  \tl_if_empty:NTF \l_tmpc_tl {\TRUE}{\FALSE} \NEWLINE
+}
+
+% the last line has a blank \tl_to_str:n but is not blank
+%
+\int_set:Nn \tex_escapechar:D { `\  }
+\TESTEXP{if_blank~(expect~T/T/F~repeated)}{
+  \test:n { \tl_if_blank_p:n { } } ~
+  \test:n { \tl_if_blank_p:n {~} } ~
+  \test:n { \tl_if_blank_p:n {X} } \NEWLINE
+  \tl_if_blank:nTF { } {\TRUE}{\FALSE} \NEWLINE
+  \tl_if_blank:nTF {~} {\TRUE}{\FALSE} \NEWLINE
+  \tl_if_blank:nTF {X} {\TRUE}{\FALSE} \NEWLINE
+  \NEWLINE
+  \test:n { \tl_if_blank_p:o { \l_tmpa_tl } } ~
+  \test:n { \tl_if_blank_p:o { \l_tmpb_tl } } ~
+  \test:n { \tl_if_blank_p:o { \l_tmpc_tl } } \NEWLINE
+  \tl_if_blank:oTF { \l_tmpa_tl } {\TRUE}{\FALSE} \NEWLINE
+  \tl_if_blank:oTF { \l_tmpb_tl } {\TRUE}{\FALSE} \NEWLINE
+  \tl_if_blank:oTF { \l_tmpc_tl } {\TRUE}{\FALSE} \NEWLINE
+  \tl_if_blank:nTF { \  } { \TRUE } { \FALSE } \NEWLINE
+}
+\int_set:Nn \tex_escapechar:D { `\\ }
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\TEST{if_in}{
+  \tl_if_in:nnTF {123abc\par}  {abc\par} {\TRUE}{\FALSE}
+  \tl_if_in:nnTF {123ab~cdef} {ab~c}     {\TRUE}{\FALSE}
+  \SEPARATOR
+  \tl_set:Nn \l_tmpa_tl { abc~{abc}~abc }
+  \tl_if_in:onTF {\l_tmpa_tl}  {abc~} {\TRUE}{\FALSE}
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\tl_set:Nn \l_tmpa_tl { abc~{abc}~abc }
+\TESTEXP{Reversing~(TLIST)}{
+  \tl_reverse:n { abc~{abc}~abc } \NEWLINE
+  \tl_reverse:o { \l_tmpa_tl }
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\tl_set:Nn \l_tmpa_tl { 123456789 }
+\tl_set:Nn \l_tmpb_tl { 1234~6789 }
+\tl_set:Nn \l_tmpc_tl { 1234{abcdef}6789 }
+\TESTEXP{count}{
+  \tl_count:n { 123456789 } \NEWLINE
+  \tl_count:n { 1234~6789 } \NEWLINE
+  \tl_count:n { 1234{abcdef}6789 } \NEWLINE
+  \tl_count:o { \l_tmpa_tl } \NEWLINE
+  \tl_count:o { \l_tmpb_tl } \NEWLINE
+  \tl_count:o { \l_tmpc_tl }
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\tl_set:Nn \l_tmpa_tl { \l_tmpb_tl }
+\tl_set:Nn \l_tmpb_tl { \l_tmpc_tl }
+\tl_set:Nn \l_tmpc_tl { a b c x y z }
+
+
+\TESTEXP { Token~list~heads~and~tails }
+  {
+    % No tests for :w versions as these must work if the tests here do!
+    \tl_head:n { abc }   \NEWLINE
+    \tl_head:n { ~ abc } \NEWLINE
+    \tl_head:n { ~a~bc } \NEWLINE
+    \tl_head:n { # abc \ERROR } \NEWLINE
+    \tl_head:n { {abc} abc \ERROR } \NEWLINE
+    \tl_head:n { ~{abc} abc \ERROR } \NEWLINE
+    \tl_head:n { a&bc \ERROR } \NEWLINE
+    \tl_head:n { } \NEWLINE
+    \tl_head:N \l_tmpc_tl \NEWLINE
+    \tl_head:f { \l_tmpc_tl } \NEWLINE
+    \tl_tail:n { abc }   \NEWLINE
+    [ \tl_tail:n { ~ abc } ] \NEWLINE
+    [ \tl_tail:n { ~a~bc } ] \NEWLINE
+    \tl_tail:n { \ERROR # abc } \NEWLINE
+    \tl_tail:n { } \NEWLINE
+    \tl_tail:N \l_tmpc_tl \NEWLINE
+    \tl_tail:f { \l_tmpc_tl } \NEWLINE
+  }
+
+\TEST { Token~list~heads~and~tails~with~par~tokens }
+  {
+    \tl_set:Ne \l_tmpa_tl { \tl_head:n { ab \par } }
+    \iow_term:e { \token_to_meaning:N \l_tmpa_tl }
+    \tl_set:Ne \l_tmpa_tl { \tl_tail:n { \par ab } }
+    \iow_term:e { \token_to_meaning:N \l_tmpa_tl }
+  }
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\cs_set:Npn \tl_tmp:w #1 {[#1]~}
+\TESTEXP{map_function}{
+  \tl_map_function:nN {abc{{A}B}C} \tl_tmp:w
+  \tl_map_function:nN {abc{{A}B}C} {\tl_tmp:w}
+}
+
+\TEST{map_inline}{
+  \tl_map_inline:nn {abc{{A}B}C} {\TYPE{[#1]}}
+}
+
+\TEST{map_variable}{
+  \tl_map_variable:nNn {ab{c{A}B}C} \l_ii_tl {
+    \TYPE{[\l_ii_tl]~}
+  }
+  \tl_map_variable:nNn { } \l_ii_tl { }
+  \TYPE{Final:~[\l_ii_tl]}
+}
+
+\TEST{map_break~inline/variable}{
+  \tl_map_inline:nn {abc\ERROR} {
+    \str_if_eq:nnTF {#1} {c} {
+      \tl_map_break:
+    }{
+      \TYPE{[#1]}
+    }
+  }
+  \SEPARATOR
+  \tl_map_variable:nNn {abc\ERROR} \l_ii_tl {
+    \str_if_eq:nVTF {c} {\l_ii_tl} {
+      \tl_map_break:
+    }{
+      \TYPE{[\l_ii_tl]}
+    }
+  }
+  \TYPE{Final:~[\l_ii_tl]}
+}
+
+\cs_set:Npn \tl_tmp:w #1 {
+  \str_if_eq:nnTF {#1} {c} {
+    \tl_map_break:
+  }{
+    \TYPE{[#1]}
+  }
+}
+\TESTEXP{map_break~function}{
+  \tl_map_function:nN {a{b}c\ERROR} {\tl_tmp:w}
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begingroup
+\catcode`\a=12
+\gdef\Aother{a}
+\endgroup
+
+\TESTEXP{head_eq_meaning}{
+  \test:n { \tl_if_head_eq_meaning_p:nN {abc} a } \NEWLINE
+  \tl_if_head_eq_meaning:nNTF {abc} a  {\TRUE}{\FALSE} \NEWLINE
+  \exp_args:Nno \tl_if_head_eq_meaning:nNF {abc} \Aother  {\FALSE} \NEWLINE
+  \tl_if_head_eq_meaning:nNT  {~abc} \c_space_token {\TRUE} \NEWLINE
+  \tl_if_head_eq_meaning:nNTF {\ERROR\ERROR} \ERROR {\TRUE}{\FALSE} \NEWLINE
+  \tl_if_head_eq_meaning:nNTF {###} # {\TRUE}{\FALSE} \NEWLINE
+}
+
+\TESTEXP{head_eq_charcode:nN}{
+  \test:n { \tl_if_head_eq_charcode_p:nN {abc} a } \NEWLINE
+  \tl_if_head_eq_charcode:nNTF {abc} a  {\TRUE}{\FALSE} \NEWLINE
+  \exp_args:Nno \tl_if_head_eq_charcode:nNT {abc} \Aother  {\TRUE} \NEWLINE
+  \tl_if_head_eq_charcode:nNF {abc} B  {\FALSE} \NEWLINE
+  \tl_if_head_eq_charcode:nNT  {~abc} \c_space_token {\TRUE} \NEWLINE
+  \tl_if_head_eq_charcode:nNTF {\ERROR\ERROR} \ERROR {\TRUE}{\FALSE} \NEWLINE
+  \tl_if_head_eq_charcode:nNTF {###} # {\TRUE}{\FALSE} \NEWLINE
+}
+
+\OMIT
+\tl_set:Nn \l_tmpa_tl {abc}
+\tl_set:Nn \l_tmpb_tl {\l_tmpa_tl}
+\tl_set:Nn \l_tmpc_tl {~howdy}
+\tl_set:Nn \l_tmpd_tl {\exp_stop_f: \ERROR\ERROR}
+\tl_set:Nn \l_tmpe_tl {##}
+\TIMO
+
+\TESTEXP{head_eq_charcode:fN}{
+  \test:n { \tl_if_head_eq_charcode_p:fN {\l_tmpa_tl} a } \NEWLINE
+  \tl_if_head_eq_charcode:fNTF {\l_tmpb_tl} a {\TRUE}{\FALSE} \NEWLINE
+  \tl_if_head_eq_charcode:fNT  {\l_tmpd_tl} \ERROR {\TRUE} \NEWLINE
+  \tl_if_head_eq_charcode:fNF  {\l_tmpe_tl} $ {\FALSE} \NEWLINE
+}
+%$
+\TESTEXP{head_eq_catcode}{
+  \test:n { \tl_if_head_eq_catcode_p:nN {abc} a } \NEWLINE
+  \tl_if_head_eq_catcode:nNTF {abc} a  {\TRUE}{\FALSE} \NEWLINE
+  \exp_args:Nno \tl_if_head_eq_catcode:nNF {abc} \Aother  {\FALSE} \NEWLINE
+  \tl_if_head_eq_catcode:nNT  {~abc} \c_space_token {\TRUE} \NEWLINE
+  \tl_if_head_eq_catcode:nNTF {\ERROR\ERROR} \ERROR {\TRUE}{\FALSE} \NEWLINE
+  \tl_if_head_eq_catcode:nNTF {###} # {\TRUE}{\FALSE} \NEWLINE
+}
+
+% LuaTeX might change the outcome of turning \csname\endcsname to a string
+\TEST{tl_if_empty}{
+  \TYPE { \exp_args:No \tl_to_str:n { \cs:w \cs_end: } }
+  \int_set:Nn \tex_escapechar:D { -1 }
+  \TYPE { \exp_args:No \tl_to_str:n { \cs:w \cs_end: } }
+  \exp_args:Nc \tl_if_empty:nTF { } {\TRUE}{\FALSE}
+}
+
+\TEST{tl_tail~and~tl_head~return~unexpanded}
+  {
+    \tl_set:Ne \l_tmpa_tl { \tl_head:n { \undefined_cs bc } }
+    \tl_set:Ne \l_tmpa_tl { \tl_tail:n { a \undefined_cs c } }
+  }
+
+\END
+

@@ -1,0 +1,270 @@
+%
+% Copyright (C) The LaTeX Project
+%
+
+\documentclass{minimal}
+\input{regression-test}
+
+\ExplSyntaxOn
+\debug_on:n { check-declarations , deprecation , log-functions }
+\ExplSyntaxOff
+
+
+\begin{document}
+
+\START
+\AUTHOR{Will Robertson}
+\ExplSyntaxOn
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\TEST{Infinite~glue~test}{
+  \skip_if_finite:nTF {0pt plus 10mm}{\TRUE}{\FALSE}
+  \skip_if_finite:nTF {0pt plus 1fil}{\TRUE}{\FALSE}
+  \skip_if_finite:nTF {0pt minus 1fil}{\TRUE}{\FALSE}
+  \skip_set:Nn \l_tmpa_skip {0pt plus 10mm minus 5mm}
+  \skip_if_finite:nTF {\l_tmpa_skip}{\TRUE}{\FALSE}
+  \skip_set:Nn \l_tmpa_skip {0pt plus 1fil}
+  \skip_if_finite:nTF {\l_tmpa_skip}{\TRUE}{\FALSE}
+  \skip_set:Nn \l_tmpa_skip {0pt plus 1 fil minus 2fill}
+  \skip_if_finite:nTF {\l_tmpa_skip}{\TRUE}{\FALSE}
+  \SEPARATOR
+  \skip_if_finite:nT {0pt plus 1fil}{\ERROR}
+  \skip_if_finite:nT {0pt minus 1fil}{\ERROR}
+  \skip_set:Nn \l_tmpa_skip {0pt plus 1fil}
+  \skip_if_finite:nT {\l_tmpa_skip}{\ERROR}
+  \skip_set:Nn \l_tmpa_skip {0pt plus 1 fil minus 2fill}
+  \skip_if_finite:nT {\l_tmpa_skip}{\ERROR}
+  \SEPARATOR
+  \skip_if_finite:nF {0pt plus 10mm}{\ERROR}
+  \skip_set:Nn \l_tmpa_skip {0pt plus 10mm minus 5mm}
+  \skip_if_finite:nF {\l_tmpa_skip}{\ERROR}
+  \SEPARATOR
+  \skip_if_finite:nTF
+    { (0pt plus 2fil + 1pt plus -1fil * 2) * 3 - 1mm } \TRUE \FALSE
+  \skip_if_finite:nTF
+    { (0pt plus 2fill + 1pt plus -1fil * 2) + 1mm plus -2fill } \TRUE \FALSE
+  \skip_if_finite:nTF
+    { (0pt plus 2fill + 1pt minus -1fil * 2) + 1mm plus -2fill } \TRUE \FALSE
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\TEST{while_do/do_while}{
+  \dim_zero:N \l_tmpa_dim
+  \dim_while_do:nNnn {\l_tmpa_dim} < {10pt} {
+    \message {[\dim_use:N \l_tmpa_dim]}
+    \dim_add:Nn \l_tmpa_dim {2pt}
+  }
+  \SEPARATOR
+  \dim_zero:N \l_tmpa_dim
+  \dim_until_do:nNnn {\l_tmpa_dim} > {10pt} {
+    \message {[\dim_use:N \l_tmpa_dim]}
+    \dim_add:Nn \l_tmpa_dim {2pt}
+  }
+  \SEPARATOR
+  \dim_zero:N \l_tmpa_dim
+  \dim_do_while:nNnn {\l_tmpa_dim} < {10pt} {
+    \message {[\dim_use:N \l_tmpa_dim]}
+    \dim_add:Nn \l_tmpa_dim {2pt}
+  }
+  \SEPARATOR
+  \dim_zero:N \l_tmpa_dim
+  \dim_do_until:nNnn {\l_tmpa_dim} > {10pt} {
+    \message {[\dim_use:N \l_tmpa_dim]}
+    \dim_add:Nn \l_tmpa_dim {2pt}
+  }
+}
+
+\TEST{while_do/do_while~differences}{
+  \message{while:nT:~}
+  \dim_zero:N \l_tmpa_dim
+  \dim_while_do:nNnn {\l_tmpa_dim} > {10pt} {
+    \message {[\dim_use:N \l_tmpa_dim]}
+    \dim_add:Nn \l_tmpa_dim {2pt}
+  }
+  \SEPARATOR
+  \message{while:nF:~}
+  \dim_zero:N \l_tmpa_dim
+  \dim_until_do:nNnn {\l_tmpa_dim} < {10pt} {
+    \message {[\dim_use:N \l_tmpa_dim]}
+    \dim_add:Nn \l_tmpa_dim {2pt}
+  }
+  \SEPARATOR
+  \message{do_while:nT:~}
+  \dim_zero:N \l_tmpa_dim
+  \dim_do_while:nNnn {\l_tmpa_dim} > {10pt} {
+    \message {[\dim_use:N \l_tmpa_dim]}
+    \dim_add:Nn \l_tmpa_dim {2pt}
+  }
+  \SEPARATOR
+  \message{do_while:nF:~}
+  \dim_zero:N \l_tmpa_dim
+  \dim_do_until:nNnn {\l_tmpa_dim} < {10pt} {
+    \message {[\dim_use:N \l_tmpa_dim]}
+    \dim_add:Nn \l_tmpa_dim {2pt}
+  }
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\cs_set:Npn \test:n #1 { \bool_if:nTF {#1} \c_true_bool \c_false_bool }
+\TESTEXP{compare}{
+  \test:n { \dim_compare_p:nNn {1pt} = {1pt} } \space
+  \test:n { \dim_compare_p:nNn {1pt} > {0pt} } \space
+  \test:n { \dim_compare_p:nNn {0pt} < {1pt} } \space
+  \NEWLINE
+  \test:n { \dim_compare_p:nNn {1pt} = {2pt} } \space
+  \test:n { \dim_compare_p:nNn {1pt} > {3pt} } \space
+  \test:n { \dim_compare_p:nNn {3pt} < {1pt} } \space
+  \NEWLINE
+  \dim_compare:nNnTF {1pt} = {1pt} {T}{F} \space
+  \dim_compare:nNnTF {1pt} > {0pt} {T}{F} \space
+  \dim_compare:nNnTF {0pt} < {1pt} {T}{F} \space
+  \dim_compare:nNnTF {1pt} = {2pt} {T}{F} \space
+  \dim_compare:nNnTF {1pt} > {3pt} {T}{F} \space
+  \dim_compare:nNnTF {3pt} < {1pt} {T}{F} \space
+  \NEWLINE
+  \dim_compare:nNnT  {1pt} = {1pt} {T}    \space
+  \dim_compare:nNnT  {1pt} > {0pt} {T}    \space
+  \dim_compare:nNnT  {0pt} < {1pt} {T}    \space
+  \dim_compare:nNnT  {1pt} = {2pt} {T}    \space
+  \dim_compare:nNnT  {1pt} > {3pt} {T}    \space
+  \dim_compare:nNnT  {3pt} < {1pt} {T}    \space
+  \NEWLINE
+  \dim_compare:nNnF  {1pt} = {1pt}    {F} \space
+  \dim_compare:nNnF  {1pt} > {0pt}    {F} \space
+  \dim_compare:nNnF  {0pt} < {1pt}    {F} \space
+  \dim_compare:nNnF  {1pt} = {2pt}    {F} \space
+  \dim_compare:nNnF  {1pt} > {3pt}    {F} \space
+  \dim_compare:nNnF  {3pt} < {1pt}    {F} \space
+}
+
+\TESTEXP { Dimension~ratio } {
+  \dim_eval:n { 5 pt * \dim_ratio:nn { 5   pt } { 10 pt }  } \NEWLINE
+  \dim_eval:n { 5 pt * \dim_ratio:nn { 10  pt } { 5 pt }   } \NEWLINE
+  \dim_eval:n { 5 pt * \dim_ratio:nn { 0.5 pt } { 10 pt }  } \NEWLINE
+  \dim_eval:n { 5 pt * \dim_ratio:nn { 0.3 pt } { 0.4 pt } } \NEWLINE
+}
+
+\TESTEXP { Absolute~dimension~and~sign } {
+  \dim_abs:n { 10 pt }  \NEWLINE
+  \dim_abs:n { -10 pt } \NEWLINE
+  \dim_sign:n { 10pt }  \NEWLINE
+  \dim_sign:n { 1sp }  \NEWLINE
+  \dim_sign:n { 0pt }  \NEWLINE
+  \dim_sign:n { -1sp }  \NEWLINE
+  \dim_sign:n { -10pt } \NEWLINE
+}
+
+\TESTEXP { Max~and~min~dimension } {
+  \dim_max:nn { 10 pt } { 11 pt }
+  + 0pt \NEWLINE % Catch possible un-terminated \__dim_eval:w
+  \dim_max:nn { 10 pt } {  9 pt } \NEWLINE
+  \dim_max:nn { -10 pt } { -11 pt } \NEWLINE
+  \dim_max:nn { -10 pt } {  -9 pt } \NEWLINE
+  \dim_min:nn { 10 pt } { 11 pt } + 0pt \NEWLINE
+  \dim_min:nn { 10 pt } {  9 pt } \NEWLINE
+  \dim_min:nn { -10 pt } { -11 pt } \NEWLINE
+  \dim_min:nn { -10 pt } {  -9 pt } \NEWLINE
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\TEST{while_do/do_while}{
+  \dim_zero:N \l_tmpa_dim
+  \dim_while_do:nn {\l_tmpa_dim < 10pt} {
+    \message {[\dim_use:N \l_tmpa_dim]}
+    \dim_add:Nn \l_tmpa_dim {2pt}
+  }
+  \SEPARATOR
+  \dim_zero:N \l_tmpa_dim
+  \dim_until_do:nn {\l_tmpa_dim > 10pt} {
+    \message {[\dim_use:N \l_tmpa_dim]}
+    \dim_add:Nn \l_tmpa_dim {2pt}
+  }
+  \SEPARATOR
+  \dim_zero:N \l_tmpa_dim
+  \dim_do_while:nn {\l_tmpa_dim < 10pt} {
+    \message {[\dim_use:N \l_tmpa_dim]}
+    \dim_add:Nn \l_tmpa_dim {2pt}
+  }
+  \SEPARATOR
+  \dim_zero:N \l_tmpa_dim
+  \dim_do_until:nn {\l_tmpa_dim > 10pt} {
+    \message {[\dim_use:N \l_tmpa_dim]}
+    \dim_add:Nn \l_tmpa_dim {2pt}
+  }
+}
+
+\TEST{while_do/do_while~differences}{
+  \message{while:nT:~}
+  \dim_zero:N \l_tmpa_dim
+  \dim_while_do:nn {\l_tmpa_dim > 10pt} {
+    \message {[\dim_use:N \l_tmpa_dim]}
+    \dim_add:Nn \l_tmpa_dim {2pt}
+  }
+  \SEPARATOR
+  \message{while:nF:~}
+  \dim_zero:N \l_tmpa_dim
+  \dim_until_do:nn {\l_tmpa_dim < 10pt} {
+    \message {[\dim_use:N \l_tmpa_dim]}
+    \dim_add:Nn \l_tmpa_dim {2pt}
+  }
+  \SEPARATOR
+  \message{do_while:nT:~}
+  \dim_zero:N \l_tmpa_dim
+  \dim_do_while:nn {\l_tmpa_dim > 10pt} {
+    \message {[\dim_use:N \l_tmpa_dim]}
+    \dim_add:Nn \l_tmpa_dim {2pt}
+  }
+  \SEPARATOR
+  \message{do_while:nF:~}
+  \dim_zero:N \l_tmpa_dim
+  \dim_do_until:nn {\l_tmpa_dim < 10pt} {
+    \message {[\dim_use:N \l_tmpa_dim]}
+    \dim_add:Nn \l_tmpa_dim {2pt}
+  }
+}
+
+\TESTEXP { Dimension~in~points } {
+  \dim_to_decimal:n { 5   cm }  \NEWLINE
+  \dim_to_decimal:n { -10 mm }  \NEWLINE
+  \dim_to_decimal:n { 0.5 bp }  \NEWLINE
+  \dim_to_decimal:n { 0.3 in }  \NEWLINE
+  \dim_to_decimal:n { 1 bp pt } \NEWLINE
+}
+
+\TESTEXP { Dimension~in~a~unit } {
+  \dim_to_decimal_in_unit:nn { 5   pt } { 10   pt }  \NEWLINE
+  \dim_to_decimal_in_unit:nn { -10 pt } { -5   pt }  \NEWLINE
+  \dim_to_decimal_in_unit:nn { 0.5 pt } { 10   pt }  \NEWLINE
+  \dim_to_decimal_in_unit:nn { 0.3 pt } { -0.4 pt }  \NEWLINE
+  \dim_to_decimal_in_unit:nn { 1 bp pt } { 1 mm } \NEWLINE
+}
+
+\TESTEXP { \c_max_dim conversion }
+  {
+    \dim_to_decimal_in_bp:n { 16322.78954bp } \NEWLINE
+    \dim_to_decimal_in_cc:n {  1276.00215cc } \NEWLINE
+    \dim_to_decimal_in_cm:n {   575.83174cm } \NEWLINE
+    \dim_to_decimal_in_dd:n { 15312.02584dd } \NEWLINE
+    \dim_to_decimal_in_in:n {   226.70540in } \NEWLINE
+    \dim_to_decimal_in_mm:n {  5758.31742mm } \NEWLINE
+    \dim_to_decimal_in_pc:n {  1365.33333pc }
+  }
+
+\TESTEXP { \c_max_dim conversion~errors }
+  {
+    \dim_to_decimal_in_bp:n { 16322.78955bp } \NEWLINE
+    \dim_to_decimal_in_cc:n {  1276.00216cc } \NEWLINE
+    \dim_to_decimal_in_cm:n {   575.83175cm } \NEWLINE
+    \dim_to_decimal_in_dd:n { 15312.02585dd } \NEWLINE
+    \dim_to_decimal_in_in:n {   226.70541in } \NEWLINE
+    \dim_to_decimal_in_mm:n {  5758.31743mm } \NEWLINE
+    \dim_to_decimal_in_pc:n {  1365.33334pc }
+  }
+
+\END

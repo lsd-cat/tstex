@@ -1,0 +1,162 @@
+%
+% Copyright (C) The LaTeX Project
+%
+
+\documentclass{minimal}
+\input{regression-test}
+
+\ExplSyntaxOn
+\debug_on:n { check-declarations , deprecation , log-functions }
+\ExplSyntaxOff
+
+\begin{document}
+\START
+\AUTHOR{Bruno Le Floch}
+\ExplSyntaxOn
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\TEST{cs~if~exist~use}{
+  \cs_if_exist_use:N   \TRUE
+  \cs_if_exist_use:NF  \TRUE { \ERROR }
+  \cs_if_exist_use:NT  \TYPE { {TRUE} }
+  \cs_if_exist_use:NTF \TYPE { {TRUE} } { \ERROR }
+  \cs_if_exist_use:N   \UNDEFINED
+  \cs_if_exist_use:NF  \UNDEFINED { \FALSE }
+  \cs_if_exist_use:NT  \UNDEFINED { \ERROR }
+  \cs_if_exist_use:NTF \UNDEFINED { \ERROR } { \FALSE }
+  \cs_if_exist_use:N   \scan_stop:
+  \cs_if_exist_use:NF  \scan_stop: { \FALSE }
+  \cs_if_exist_use:NT  \scan_stop: { \ERROR }
+  \cs_if_exist_use:NTF \scan_stop: { \ERROR } { \FALSE }
+  \cs_if_exist_use:c   { TRUE }
+  \cs_if_exist_use:cF  { TRUE } { \ERROR }
+  \cs_if_exist_use:cT  { TYPE } { {TRUE} }
+  \cs_if_exist_use:cTF { TYPE } { {TRUE} } { \ERROR }
+  \cs_if_exist_use:c   { UNDEFINED }
+  \cs_if_exist_use:cF  { UNDEFINED } { \FALSE }
+  \cs_if_exist_use:cT  { UNDEFINED } { \ERROR }
+  \cs_if_exist_use:cTF { UNDEFINED } { \ERROR } { \FALSE }
+  \cs_if_exist_use:c   { scan_stop: }
+  \cs_if_exist_use:cF  { scan_stop: } { \FALSE }
+  \cs_if_exist_use:cT  { scan_stop: } { \ERROR }
+  \cs_if_exist_use:cTF { scan_stop: } { \ERROR } { \FALSE }
+  \str_if_eq:eeTF { \token_to_meaning:N \UNDEFINED } { undefined }
+    { \TRUE } { \ERROR }
+}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\OMIT
+\cs_set:Npn \test:N #1 { \exp_args:No \exp_not:o { \cs_to_str:N #1 } }
+\cs_generate_variant:Nn \test:N { c }
+\cs_set:Npn \test_esc:n #1 {
+  \int_set:Nn \tex_escapechar:D {#1}
+  \TYPE {
+    | \test:c { abc }
+    | \test:c { ~abc }
+    | \test:c { \iow_char:N \\abc }
+    | \test:c { ~ }
+    | \test:c { - }
+    | \test:c { 02~ a } |
+  }
+}
+\TIMO
+\TEST{cs_to_str:N}{
+  \test_esc:n {92}
+  \test_esc:n {32}
+  \test_esc:n {-1}
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\OMIT
+\cs_undefine:c { foobar }
+\TIMO
+\TESTEXP{cs_meaning}{
+  \cs_meaning:c { foobar },~
+  \cs_meaning:c { foobar },~
+  \cs_meaning:N \foobar,~
+  \exp_args:Nc \cs_meaning:N { foobar },~
+  \cs_meaning:c { foobar },~
+  \cs_meaning:N \cs_meaning:N
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\OMIT
+\cs_undefine:c { foobar }
+\TIMO
+\TEST{cs_show}{
+  \cs_show:c { foobar },~
+  \cs_show:c { foobar },~
+  \cs_show:N \foobar,~
+  \exp_args:Nc \cs_show:N { foobar },~
+  \cs_show:c { foobar },~
+  \cs_show:N \cs_show:N
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\cs_set_nopar:Npn \tmp { yz }
+\TESTEXP { String~case~statements }
+  {
+    \str_case:nnF { \tmp }
+      {
+        { x }      { \NO }
+        { y }      { \NO }
+        { yz }     { \NO }
+        { \ERROR } { \ERROR }
+      }
+      { \YES }
+    \NEWLINE
+    \str_case:nnF { yz }
+      {
+        { x }      { \NO }
+        { y }      { \NO }
+        { yz }     { \YES }
+        { \ERROR } { \ERROR }
+      }
+      { \NO }
+    \NEWLINE
+    \str_case:nnF { x\tmp }
+      {
+        { x }      { \NO }
+        { y }      { \NO }
+        { yz }     { \NO }
+        { \ERROR } { \ERROR }
+      }
+      { \YES }
+    \NEWLINE
+    \str_case:nnF { abc }
+      { { x } { \NO } }
+      { \YES }
+    \NEWLINE
+    \str_case_e:nnF { \tmp }
+      {
+        { x }      { \NO }
+        { y }      { \NO }
+        { yz }     { \YES }
+        { \ERROR } { \ERROR }
+      }
+      { \NO }
+    \NEWLINE
+    \str_case_e:nnF { yz }
+      {
+        { x }      { \NO }
+        { y }      { \NO }
+        { yz }     { \YES }
+        { \ERROR } { \ERROR }
+      }
+      { \NO }
+    \NEWLINE
+    \str_case_e:nnF { x\tmp }
+      {
+        { x }      { \NO }
+        { y }      { \NO }
+        { xyz }     { \YES }
+        { \ERROR } { \ERROR }
+      }
+      { \NO }
+    \NEWLINE
+    \str_case:nnF { abc }
+      { { x } { \NO } }
+      { \YES }
+  }
+
+\END

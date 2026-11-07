@@ -1,0 +1,19 @@
+(hello.tex
+{vertical mode: \tracingonline}
+{\def}
+{blank space  }
+
+\greet #1->\message {hello #1}
+#1<-world
+{\message}
+hello world
+{blank space  }
+{\count}
+{\showthe}
+> 42.
+l.7 \showthe\count0
+
+
+{\end}
+ )
+No pages of output.

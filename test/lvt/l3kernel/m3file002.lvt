@@ -1,0 +1,72 @@
+%
+% Copyright (C) The LaTeX Project
+%
+
+\documentclass{minimal}
+\input{regression-test}
+
+\ExplSyntaxOn
+\debug_on:n { check-declarations , deprecation , log-functions }
+\ExplSyntaxOff
+
+\START
+\AUTHOR{Bruno Le Floch, Joseph Wright}
+\ExplSyntaxOn
+
+\OMIT
+\tl_new:N  \filea
+\tl_new:N  \fileb
+\tl_set:Nn \filea { filetest.txt }
+\tl_set:Nn \fileb { NotAFile.xxx.yyy.zzz }
+\tl_new:N \l_A_tl
+\tl_new:N \l_B_tl
+\tl_new:N \l_C_tl
+\cs_new_nopar:Npn \test_wrapping:
+  { \int_set:Nn \tex_newlinechar:D { `, } }
+\cs_new:Npn \test_newline: { , }
+% Ugly, makes sure lines are not too long
+% to avoid LuaTeX line-wrapping differences.
+\TIMO
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\TEST { Get~a~file }
+  {
+    \test_wrapping:
+    \file_get:nnN { \filea } { } \l_A_tl
+    \file_get:nnN { \filea } { \ExplSyntaxOff } \l_B_tl
+    \file_get:nnN { \filea }
+      {
+        \ExplSyntaxOff
+        \int_set:Nn \tex_endlinechar:D { -1 }
+      }
+      \l_C_tl
+    \TYPE
+      {
+        | \tl_to_str:N \l_A_tl | \test_newline:
+        | \tl_to_str:N \l_B_tl | \test_newline:
+        | \tl_to_str:N \l_C_tl | \test_newline:
+      }
+  }
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\TEST { Get~a~non-existent~file  }
+  {
+    \tl_set:Nn \l_A_tl { A }
+    \file_get:nnN { \fileb } { \ERROR } \l_A_tl
+    \TYPE { | \tl_to_str:N \l_A_tl | }
+  }
+
+\TEST { Use~a~scratch~file~handle  }
+  {
+    \iow_open:Nn \g_tmpa_iow { \jobname.tmp }
+    \int_show:N \g_tmpa_iow
+    \iow_now:Nn  \g_tmpa_iow { baz }
+    \int_compare:nTF { \c_log_iow < \g_tmpa_iow < \c_term_iow }
+      { \TRUE } { \ERROR }
+    \iow_close:N \g_tmpa_iow
+    \int_compare:nTF { \c_log_iow < \g_tmpa_iow < \c_term_iow }
+      { \ERROR } { \FALSE }
+  }
+
+\END

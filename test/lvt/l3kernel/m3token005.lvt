@@ -1,0 +1,138 @@
+%
+% Copyright (C) The LaTeX Project
+%
+
+\documentclass{minimal}
+\input{regression-test}
+
+\ExplSyntaxOn
+\debug_on:n { check-declarations , deprecation , log-functions }
+\ExplSyntaxOff
+
+\begin{document}
+\START
+\AUTHOR{LaTeX Project}
+\ExplSyntaxOn
+
+\TEST { Char~set~active~(setting) }
+  {
+    \cs_set:Npn \test { Works }
+    \char_set_active_eq:NN A  \test
+    \char_gset_active_eq:NN B \test
+    \group_begin:
+      \char_set_active_eq:NN  C \test
+      \char_gset_active_eq:NN D \test
+    \group_end:
+    \cs_log:N A
+    \cs_log:N B
+    \cs_log:N C
+    \cs_log:N D
+  }
+
+\TEST { Char~set~active~(simple~rescan) }
+  {
+    \cs_set:Npn \test { Works }
+    \char_set_active_eq:NN A  \test
+    \char_gset_active_eq:NN B \test
+    \group_begin:
+      \char_set_active_eq:NN  C \test
+      \char_gset_active_eq:NN D \test
+    \group_end:
+    \tl_rescan:nn { } { \cs_log:N A }
+    \tl_rescan:nn { } { \cs_log:N B }
+    \tl_rescan:nn { } { \cs_log:N C }
+    \tl_rescan:nn { } { \cs_log:N D }
+  }
+
+\TEST { Char~set~active~(make~active~rescan) }
+  {
+    \cs_set:Npn \test { Works }
+    \char_set_active_eq:NN A  \test
+    \char_gset_active_eq:NN B \test
+    \group_begin:
+      \char_set_active_eq:NN  C \test
+      \char_gset_active_eq:NN D \test
+    \group_end:
+    \tl_rescan:nn { \char_set_catcode_active:N \A } { \cs_log:N A }
+    \tl_rescan:nn { \char_set_catcode_active:N \B } { \cs_log:N B }
+    \tl_rescan:nn { \char_set_catcode_active:N \C } { \cs_log:N C }
+    \tl_rescan:nn { \char_set_catcode_active:N \D } { \cs_log:N D }
+  }
+
+\TEST { Token~case }
+  {
+    \token_case_catcode:Nn \c_empty_tl
+      {
+        a { \ERROR }
+        + { \ERROR }
+        & { \ERROR }
+      }
+    \token_case_catcode:NnT \c_empty_tl
+      {
+        a { \ERROR }
+        + { \ERROR }
+        & { \ERROR }
+      } { \ERROR }
+    \token_case_catcode:NnF \c_empty_tl
+      {
+        a { \ERROR }
+        + { \ERROR }
+        & { \ERROR }
+      } { \FALSE }
+    \token_case_catcode:NnTF \c_empty_tl
+      {
+        a { \ERROR }
+        + { \ERROR }
+        & { \ERROR }
+      } { \ERROR } { \FALSE }
+    \token_case_charcode:Nn \c_empty_tl
+      {
+        a { \ERROR }
+        + { \ERROR }
+        \scan_stop: { \TRUE }
+      }
+    \token_case_charcode:NnT \c_empty_tl
+      {
+        a { \ERROR }
+        + { \ERROR }
+        \scan_stop: { \TRUE }
+      } { \TRUE }
+    \token_case_charcode:NnF \c_empty_tl
+      {
+        a { \ERROR }
+        + { \ERROR }
+        \scan_stop: { \TRUE }
+      } { \ERROR }
+    \token_case_charcode:NnTF \c_empty_tl
+      {
+        a { \ERROR }
+        + { \ERROR }
+        \scan_stop: { \TRUE }
+      } { \TRUE } { \ERROR }
+    \token_case_meaning:Nn \c_empty_tl
+      {
+        a { \ERROR }
+        + { \ERROR }
+        \scan_stop: { \ERROR }
+      }
+    \token_case_meaning:NnT \c_empty_tl
+      {
+        a { \ERROR }
+        + { \ERROR }
+        \scan_stop: { \ERROR }
+      } { \ERROR }
+    \token_case_meaning:NnF \c_empty_tl
+      {
+        a { \ERROR }
+        + { \ERROR }
+        \scan_stop: { \ERROR }
+      } { \FALSE }
+    \token_case_meaning:NnTF \c_empty_tl
+      {
+        a { \ERROR }
+        + { \ERROR }
+        \scan_stop: { \ERROR }
+      } { \ERROR } { \FALSE }
+  }
+
+\END

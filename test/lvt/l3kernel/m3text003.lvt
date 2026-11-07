@@ -1,0 +1,24 @@
+%
+% Copyright (C) The LaTeX Project
+%
+\input{regression-test}
+
+\ExplSyntaxOn
+\sys_ensure_backend:
+\debug_on:n { check-declarations , deprecation , log-functions }
+\ExplSyntaxOff
+
+\makeatletter
+\g@addto@macro\@uclclist{\reserved@b{\reserved@b\test@danger}}
+\makeatother
+
+\documentclass{minimal}
+
+\START
+\AUTHOR{Joseph Wright}
+
+\begin{document}
+
+\wlog{Document started}
+
+\END

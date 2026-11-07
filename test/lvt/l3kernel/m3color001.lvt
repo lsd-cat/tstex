@@ -1,0 +1,136 @@
+%
+% Copyright (C) The LaTeX Project
+%
+
+\documentclass{minimal}
+
+\input{regression-test}
+
+\ExplSyntaxOn
+\sys_ensure_backend:
+\debug_on:n { check-declarations , deprecation , log-functions }
+\ExplSyntaxOff
+
+\begin{document}
+
+\START
+
+\AUTHOR{Joseph Wright}
+
+\ExplSyntaxOn
+
+\TEST { Naming~colors~by~model }
+  {
+    \color_set:nnn { foo1 } { gray } { 0.1 }
+    \color_show:n { foo1 }
+    \color_set:nnn { foo2 } { rgb } { 0.1 , 0.2 , 0.3 }
+    \color_show:n { foo2 }
+    \color_set:nnn { foo3 } { cmyk } { 0.1 , 0.2 , 0.3 , 0.4 }
+    \color_show:n { foo3 }
+  }
+
+\TEST { Renaming~colors~by~model }
+  {
+    \color_set:nnn { foo1 } { gray } { 0.1 }
+    \color_show:n { foo1 }
+    \color_set:nnn { foo1 } { rgb } { 0.1 , 0.2 , 0.3 }
+    \color_show:n { foo1 }
+    \color_set:nnn { foo1 } { cmyk } { 0.1 , 0.2 , 0.3 , 0.4 }
+    \color_show:n { foo1 }
+  }
+
+\TEST { Naming~colors~by~expression }
+  {
+    \color_set:nn { foo1 } { black }
+    \color_show:n { foo1 }
+    \color_set:nn { foo2 } { black!50!white }
+    \color_show:n { foo2 }
+    \color_set:nn { foo3 } { red!50 }
+    \color_show:n { foo3 }
+    \color_set:nn { foo4 } { red!50!green!25!blue }
+    \color_show:n { foo4 }
+    \color_set:nn { foo5 } { cyan!10!magenta!20!yellow }
+    \color_show:n { foo5 }
+    \color_set:nn { foo6 } { cyan!12.5!magenta!22.5!yellow }
+    \color_show:n { foo6 }
+  }
+
+\TEST { Naming~colors~by~expression~with~model~conversion }
+  {
+    \color_set:nn { foo1 } { red!50!cyan }
+    \color_show:n { foo1 }
+    \color_set:nn { foo2 } { cyan!50!red }
+    \color_show:n { foo2 }
+    \color_set:nn { foo3 } { cyan!50!red!10!black }
+    \color_show:n { foo3 }
+    \color_set:nn { foo4 } { red!10!black }
+    \color_show:n { foo4 }
+  }
+
+\TEST { Mixing~with~the~gray~model }
+  {
+    \color_set:nn { mywhitemixA } { white!40!red }
+    \color_show:n { mywhitemixA }
+    \color_set:nn { mywhitemixB } { red!60!white }
+    \color_show:n { mywhitemixB }
+  }
+
+\TEST { Copying~named~colors }
+  {
+    \color_set:nn { foo1 } { cyan!25!magenta }
+    \color_set_eq:nn { foo2 } { foo1 }
+    \color_show:n { foo2 }
+  }
+
+\TEST { Copying~the~current~color }
+  {
+    \color_set_eq:nn { foo } { . }
+    \color_show:n { foo }
+    \color_select:n { cyan!25!magenta }
+    \color_set_eq:nn { foo } { . }
+    \color_show:n { foo }
+  }
+
+\TEST { Showing~colors }
+  {
+    \color_show:n { . }
+    \color_show:n { unknown }
+    \color_show:n { black }
+    \color_show:n { red }
+    \color_show:n { cyan }
+  }
+
+\TEST { Managing~the~current~color }
+  {
+    \OMIT
+    \color_set:nnn { myc } { cmyk } { 0 , 1 , 0.5 , 0 }
+    \color_select:n { myc }
+    \TIMO
+    \color_show:n { . }
+    \color_select:n { . }
+    \OMIT
+    \color_set:nnn { myrc } { rgb / cmyk }
+      { 1 , 0 , 0 / 0 , 1 , 0 , 0 }
+    \color_select:n { myrc }
+    \TIMO
+    \color_show:n { . }
+    \color_select:n { . }
+  }
+
+\TEST { Color~expression~special~cases }
+  {
+    \color_set:nn { foo1 } { red!0!cyan }
+    \color_show:n { foo1 }
+    \color_set:nn { foo2 } { cyan!100!red }
+    \color_show:n { foo2 }
+  }
+
+\TEST { Color~expression~errors }
+  {
+    \color_set:nn { foo1 } { red!-50!cyan }
+    \color_show:n { foo1 }
+    \color_set:nn { foo2 } { cyan!150!red }
+    \color_show:n { foo2 }
+  }
+
+\END

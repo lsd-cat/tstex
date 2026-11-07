@@ -1,0 +1,121 @@
+%
+% Copyright (C) The LaTeX Project
+%
+
+\documentclass{minimal}
+\input{regression-test}
+
+
+\ExplSyntaxOn
+\debug_on:n { check-declarations , deprecation , log-functions }
+\ExplSyntaxOff
+
+
+\begin{document}
+\START
+\AUTHOR{Bruno Le Floch}
+\ExplSyntaxOn
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\TEST { prop~from_keyval }
+  {
+    \prop_set_from_keyval:Nn \l_tmpa_prop
+      { \a = b , ~ \c ~ = ~ { ~ \d = e ~ } , , = , { = } = , ~ { } ~ = { , } , }
+    \prop_log:N \l_tmpa_prop
+    \prop_gset_from_keyval:Nn \g_tmpa_prop
+      { \a = b , ~ \c ~ = ~ { ~ \d = e ~ } , , = , { = } = , ~ { } ~ = { , } , }
+    \prop_log:N \g_tmpa_prop
+    \prop_const_from_keyval:Nn \c_A_prop
+      { \a = b , ~ \c ~ = ~ { ~ \d = e ~ } , , = , { = } = , ~ { } ~ = { , } , ~ {\a} = Z }
+    \prop_log:N \c_A_prop
+  }
+
+\TEST { prop~from_keyval~invalid }
+  {
+    \prop_set_from_keyval:Nn \l_tmpa_prop
+      { { = } , a = = b , { } , = = }
+    \prop_log:N \l_tmpa_prop
+    \prop_gset_from_keyval:Nn \g_tmpa_prop
+      { { = } , a = = b , { } , = = }
+    \prop_log:N \g_tmpa_prop
+    \prop_const_from_keyval:Nn \c_B_prop
+      { { = } , a = = b , { } , = = }
+    \prop_log:N \c_B_prop
+  }
+
+\OMIT
+\cs_generate_variant:Nn \tl_if_eq:nnTF { ff }
+\TIMO
+
+\TEST { prop_concat }
+  {
+    \prop_set_from_keyval:Nn \l_tmpa_prop
+      { \a = b , ~ \c ~ = ~ { ~ \d = e ~ } , , = , { = } = , ~ { } ~ = { , } , }
+    \prop_set_eq:NN \l_tmpb_prop \l_tmpa_prop
+    \prop_concat:NNN \l_tmpa_prop \l_tmpa_prop \l_tmpa_prop
+    \tl_if_eq:ffTF \l_tmpa_prop \l_tmpb_prop { \TRUE } { \ERROR }
+    %
+    \prop_gset_from_keyval:Nn \g_tmpa_prop
+      { x = y , , \a = c , ~ \c ~ = ~ { ~ \D = E ~ } , , = ? , }
+    \prop_gconcat:ccc { g_tmpa_prop } { l_tmpa_prop } { g_tmpa_prop }
+    \prop_log:N \g_tmpa_prop
+  }
+
+\TEST { prop_put_from_keyval }
+  {
+    \group_begin:
+      \prop_gset_from_keyval:Nn \g_tmpa_prop
+        { = , \a = b , ~ {\a} ~ = c , ~ \c ~ = ~ { ~ \d = e ~ } }
+      \prop_gput_from_keyval:cn { g_tmpa_prop }
+        { {~\a} = ~ c ~ , \c = ~ { }~ , ~ {\c} = {=} }
+      \prop_set_from_keyval:Nn \l_tmpa_prop
+        { = , \a = b , ~ {\a} ~ = c , ~ \c ~ = ~ { ~ \d = e ~ } }
+      \prop_put_from_keyval:cn { l_tmpa_prop }
+        { {~\a} = ~ c ~ , \c = ~ { }~ , ~ {\c} = {=} }
+      \tl_if_eq:ffTF \l_tmpa_prop \g_tmpa_prop { \TRUE } { \ERROR }
+    \group_end:
+    \prop_log:N \g_tmpa_prop
+    \prop_log:N \l_tmpa_prop
+  }
+
+% copied from m3prop007.lvt, with s/prop_new_linked/prop_new/g
+\OMIT
+\prop_new:N \l_test_prop
+\prop_set_from_keyval:Nn \l_test_prop
+  {
+    a = b,
+    b = {{abc}},
+    c = {#1},
+    d = {a,b,c},
+    e = {a=b},
+    f = \tex_cr:D,
+    g = \ERROR,
+    &=&,
+  }
+\cs_generate_variant:Nn \tl_analysis_show:n { e }
+\cs_generate_variant:Nn \tl_analysis_show:n { o }
+\box_new:N \l_test_box
+\TIMO
+
+\TEST { prop~to~keyval~expansion }
+  {
+    \tl_analysis_show:e { \prop_to_keyval:N \l_test_prop }
+    \exp_args:No \tl_analysis_show:o { \prop_to_keyval:N \l_test_prop }
+  }
+
+\TEST { prop~to~keyval~in~halign }
+  {
+    \vbox_set:Nn \l_test_box
+      {
+        \tex_halign:D { \TYPE{0} # \TYPE{1} & \ERROR # \tex_cr:D
+          \exp_after:w \exp_after:w \exp_after:w
+          \use_none_delimit_by_q_stop:w
+            \prop_to_keyval:N \l_test_prop
+          \q_stop
+          \tex_cr:D }
+      }
+  }
+
+\END
+

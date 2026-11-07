@@ -1,0 +1,72 @@
+%
+% Copyright (C) The LaTeX Project
+%
+
+\documentclass{minimal}
+\input{regression-test}
+
+\ExplSyntaxOn
+\debug_on:n { check-declarations , deprecation , log-functions }
+\ExplSyntaxOff
+
+\begin{document}
+\START
+\AUTHOR{Joseph Wright, Bruno Le Floch}
+\ExplSyntaxOn
+
+\OMIT
+% to avoid very-long output of \fp_to_decimal:n { -inf }
+\cs_new:Npn \test_type:n #1
+  { \TYPE { \str_range:nnn {#1} { 1 } { 30 } ... } }
+\TIMO
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\TESTEXP { fp_step_function }
+  {
+    \fp_step_function:nnnN { 0 } { 0.1 }  { 1 } \TYPE
+    \NEWLINE
+    \fp_step_function:nnnN { 0 } { -0.1 } { 1 } \TYPE
+    \NEWLINE
+    \fp_step_function:nnnN { 1 } { -0.1 } { 0 } \TYPE
+    \NEWLINE
+    \fp_step_function:nnnN { 1 } { 0.1 }  { 0 } \TYPE
+    \NEWLINE
+    \fp_step_function:nnnN { 1 } { 0 }  { 0 } \TYPE
+    \NEWLINE
+    \fp_step_function:nnnN { 1 } { inf }  { 0 } \TYPE
+    \NEWLINE
+    \fp_step_function:nnnN { -inf } { 1 }  { 0 } \test_type:n
+    \NEWLINE
+    \fp_step_function:nnnN { 1e16-2 } { 1 }  { 1e16+10 } \TYPE
+    \NEWLINE
+    \fp_step_function:nnnN { (0,) } { (1,) } { (3,) } \TYPE
+    \fp_step_function:nnnN { (0,) } { 1 } { 2 } \TYPE
+    \fp_step_function:nnnN { 0 } { (1,) } { 2 } \TYPE
+    \fp_step_function:nnnN { 0 } { 1 } { (2,) } \TYPE
+  }
+
+\TEST { fp_step_inline }
+  {
+    \fp_step_inline:nnnn { 0 } { 0.1 }  { 1 } { \TYPE {#1} }
+    \fp_step_inline:nnnn { 0 } { -0.1 } { 1 } { \TYPE {#1} }
+    \fp_step_inline:nnnn { 1 } { -0.1 } { 0 } { \TYPE {#1} }
+    \fp_step_inline:nnnn { 1 } { 0.1 }  { 0 } { \TYPE {#1} }
+    \fp_step_inline:nnnn { 1 } { 0 }    { 0 } { \TYPE {#1} }
+    \fp_step_inline:nnnn { 1 } { inf }  { 0 } { \TYPE {#1} }
+    \fp_step_inline:nnnn { -inf } { 1 } { 0 } { \test_type:n {#1} }
+    \fp_step_inline:nnnn { 1e16-2 } { 1 }  { 1e16+10 } { \TYPE {#1} }
+  }
+
+\TEST { fp_step_variable }
+  {
+    \fp_step_variable:nnnNn { 0 } { 0.1 }  { 1 } \l_tmpa_tl { \TYPE { \tl_to_str:N \l_tmpa_tl # } }
+    \fp_step_variable:nnnNn { 0 } { -0.1 } { 1 } \l_tmpa_tl { \TYPE { \l_tmpa_tl } }
+    \fp_step_variable:nnnNn { 1 } { -0.1 } { 0 } \l_tmpa_tl { \TYPE { \l_tmpa_tl } }
+    \fp_step_variable:nnnNn { 1 } { 0.1 }  { 0 } \l_tmpa_tl { \TYPE { \l_tmpa_tl } }
+    \fp_step_variable:nnnNn { 1 } { 0 }    { 0 } \l_tmpa_tl { \TYPE { \l_tmpa_tl } }
+    \fp_step_variable:nnnNn { 1 } { inf }  { 0 } \l_tmpa_tl { \TYPE { \l_tmpa_tl } }
+    \fp_step_variable:nnnNn { -inf } { 1 } { 0 } \l_tmpa_tl { \exp_args:NV \test_type:n { \l_tmpa_tl } }
+    \fp_step_variable:nnnNn { 1e16-2 } { 1 }  { 1e16+10 } \l_tmpa_tl { \TYPE { \l_tmpa_tl } }
+  }
+
+\END

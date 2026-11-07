@@ -1,0 +1,143 @@
+%
+% Copyright (C) 2008-2012,2017-2019 Frank Mittelbach
+%               2009-2012,2017,2018,2021,2023 The LaTeX Project
+%
+
+% Input the regression test macros for LaTeX
+\input{regression-test}
+
+\ExplSyntaxOn
+\debug_on:n { check-declarations , deprecation , log-functions }
+\ExplSyntaxOff
+
+% Everything before this is ignored by the test system.
+\START
+
+\AUTHOR{Frank Mittelbach, Bruno Le Floch}
+
+\ExplSyntaxOn
+
+\tl_const:Nn \c_a_tl { A }
+\tl_const:Nn \c_b_tl { B }
+\tl_const:Nn \c_aa_tl { \c_a_tl }
+\tl_const:Nn \c_bb_tl { \c_b_tl }
+\tl_const:Nn \c_aaa_tl { \c_a_tl \c_a_tl }
+\tl_const:Nn \c_bbb_tl { \c_b_tl \c_b_tl }
+
+\cs_new_nopar:Npn \foo:nn #1#2 { \iow_term:n { (#1) (#2) } }
+\cs_generate_variant:Nn \foo:nn
+  { oo , VV , xx , cc , nx , fx , xf }
+
+\cs_new_nopar:Npn \bar:nnnnnn #1#2#3#4#5#6
+  { \iow_term:n { (#1) (#2) (#3) (#4) (#5) (#6) } }
+\cs_generate_variant:Nn \bar:nnnnnn { fvVonx }
+
+\TEST { protection }
+  {
+    \iow_term:e { \cs_meaning:N \foo:oo }
+    \iow_term:e { \cs_meaning:N \foo:VV }
+    \iow_term:e { \cs_meaning:N \foo:xx }
+    \iow_term:e { \cs_meaning:N \foo:cc }
+    \iow_term:e { \cs_meaning:N \foo:nx }
+    \iow_term:e { \cs_meaning:N \foo:fx }
+    \iow_term:e { \cs_meaning:N \foo:xf }
+    \iow_term:e { \cs_meaning:N \bar:fvVonx }
+    \iow_term:e { \cs_meaning:N \exp_args:NfvVonx }
+  }
+
+\TEST { expansion }
+  {
+    \foo:nn { a } { b }
+    \foo:nn { \c_a_tl } { \c_b_tl }
+    \foo:oo { \c_aa_tl } { \c_bb_tl }
+    \foo:VV \c_aa_tl \c_bb_tl
+    \foo:xx { \c_aa_tl } { \c_bb_tl }
+    \foo:nx { a } { \c_b_tl }
+    \foo:fx { \c_aaa_tl } { \c_bbb_tl }
+    \foo:xf { \c_aaa_tl } { \c_bbb_tl }
+    \bar:fvVonx
+      { \c_aaa_tl } { c_bbb_tl } \c_aa_tl
+      { \c_bb_tl } { \c_a_tl } { \c_b_tl }
+  }
+
+\cs_set:Npn \aa { }
+\TEST { generate~bad~variants }
+  {
+    \cs_generate_variant:Nn \undefined:nn { o , ooo }
+    \cs_generate_variant:Nn \undefined:on { x }
+    \cs_generate_variant:Nn \aa { x }
+    \iow_term:e { \cs_meaning:N \undefined:on }
+    \iow_term:e { \cs_meaning:N \undefined:ooo }
+    \iow_term:e { \cs_meaning:N \undefined:xn }
+    \iow_term:e { \cs_meaning:N \aa:x }
+  }
+
+\TEST { Issue~101:~protected~variants~for~non-expandable~primitives }
+  {
+    \cs_new_eq:NN \my_def:Npn \tex_def:D
+    \cs_generate_variant:Nn \my_def:Npn { c }
+    \iow_term:e { \cs_meaning:N \my_def:cpn }
+  }
+
+\TEST { Issue~102:~macros~expanding~to~\protected }
+  {
+    \cs_new:Npn \foo:n #1 { \cs_show:N \protected }
+    \cs_generate_variant:Nn \foo:n { o }
+    \iow_term:e { \cs_meaning:N \foo:o }
+  }
+
+\TEST { Detect~\protected~with~unusual~\escapechar }
+  {
+    \int_set:Nn \tex_escapechar:D { `/ }
+    \cs_new_protected:Npn \bar:n #1 { }
+    \cs_generate_variant:Nn \bar:n { o }
+    \iow_term:e { \cs_meaning:N \bar:o }
+  }
+
+\TEST { Issue~103:~is~the~variant~list~a~clist? }
+  {
+    \cs_generate_variant:Nn \bar:n { f , , x }
+    \iow_term:e { \cs_meaning:N \bar:x }
+  }
+
+\TEST { What~if~the~base~function~has~no~colon? }
+  {
+    \cs_new:Npn \foo { }
+    \cs_generate_variant:Nn \foo { }
+    \iow_term:e { \cs_meaning:N \foo: }
+  }
+
+\cs_new:Npn \foobar:Nn { }
+\TEST { Incorrect~letters }
+  {
+    \cs_generate_variant:Nn \foobar:Nn { pn , :Nn }
+    \TYPE
+      {
+        \cs_meaning:N \foobar:pn ,
+        \cs_meaning:N \foobar::Nn ,
+      }
+  }
+
+\TEST { Issue~418:~changing~N/n~to~incompatible~variants }
+  {
+    \cs_generate_variant:Nn \foobar:Nn { on , Nc , n }
+    \TYPE
+      {
+        \cs_meaning:N \foobar:on ,
+        \cs_meaning:N \foobar:Nc ,
+        \cs_meaning:N \foobar:nn ,
+      }
+  }
+
+\TEST { Issue~418~again }
+  {
+    \cs_generate_variant:Nn \foobar:Nn { on , Nc , n }
+    \TYPE
+      {
+        \cs_meaning:N \foobar:on ,
+        \cs_meaning:N \foobar:Nc ,
+        \cs_meaning:N \foobar:nn ,
+      }
+  }
+
+\END

@@ -1,0 +1,100 @@
+%
+% Copyright (C) The LaTeX Project
+%
+
+\documentclass{minimal}
+\input{regression-test}
+
+
+\ExplSyntaxOn
+\debug_on:n { check-declarations , deprecation , log-functions }
+\ExplSyntaxOff
+
+
+\begin{document}
+\START
+\AUTHOR{Will Robertson \& Joseph Wright}
+\ExplSyntaxOn
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\TEST { new }
+  {
+    {
+      \prop_new:N \l_a_prop
+      \prop_new:c {g_b_prop}
+    }
+    \prop_log:N \l_a_prop
+    \prop_log:c {g_b_prop}
+  }
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\TEST { clear }
+  {
+    \prop_put:Nnn \l_a_prop {tmp} { test~l \par }
+    \prop_gput:Nnn \g_b_prop {tmp} { test~g \par }
+    \prop_log:N \l_a_prop
+    \prop_log:N \g_b_prop
+    {
+      \prop_clear:N  \l_a_prop
+      \prop_gclear:N \g_b_prop
+      \prop_log:N \l_a_prop
+      \prop_log:N \g_b_prop
+    }
+    \prop_log:N \l_a_prop
+    \prop_log:N \g_b_prop
+  }
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\TEST { clear_new }
+  {
+    \prop_put:Nnn \l_a_prop {tmp} { test~l \par }
+    \prop_gput:Nnn \g_b_prop {tmp} { test~g \par }
+    \prop_log:N \l_a_prop
+    \prop_log:N \g_b_prop
+    {
+      \prop_clear_new:N  \l_a_prop
+      \prop_gclear_new:N \g_b_prop
+      \prop_clear_new:N \l_cc_prop
+      \prop_gclear_new:N \g_dd_prop
+      \prop_log:N \l_a_prop
+      \prop_log:N \g_b_prop
+      \prop_log:N \l_cc_prop
+      \prop_log:N \g_dd_prop
+      \prop_put:Nnn \l_cc_prop { } { cc }
+      \prop_gput:Nnn \g_dd_prop { } { dd }
+    }
+    \prop_log:N \l_a_prop
+    \prop_log:N \g_b_prop
+    \prop_log:N \l_cc_prop
+    \prop_log:N \g_dd_prop
+  }
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\OMIT
+\prop_gclear:N \g_b_prop
+\prop_gput:Nnn \g_b_prop { test } { test~b \par }
+\prop_new:N \g_d_prop
+\TIMO
+
+\TEST { set_eq }
+  {
+    \prop_log:N \l_a_prop
+    \prop_log:N \g_b_prop
+    {
+      \prop_set_eq:NN  \l_a_prop \g_b_prop
+      \prop_log:N \l_a_prop
+      \prop_gset_eq:cc { g_d_prop } { g_b_prop }
+      \prop_log:N \g_d_prop
+    }
+    \prop_log:N \l_a_prop
+    \prop_log:N \g_d_prop
+  }
+
+
+\END
+

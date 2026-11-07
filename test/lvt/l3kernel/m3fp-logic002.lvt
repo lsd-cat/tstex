@@ -1,0 +1,235 @@
+%
+% Copyright (C) The LaTeX Project
+%
+
+\documentclass{minimal}
+\input{regression-test}
+
+\ExplSyntaxOn
+\debug_on:n { check-declarations , deprecation , log-functions }
+\ExplSyntaxOff
+
+\begin{document}
+\START
+\AUTHOR{Bruno Le Floch}
+\ExplSyntaxOn
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\TESTEXP { And,~Or }
+  {
+    \fp_to_tl:n { 12 & 2 || 34 & 5 } \NEWLINE
+    \fp_to_tl:n {  0 & 2 || 34 & 5 } \NEWLINE
+    \fp_to_tl:n {  0 & 2 || nan & 5 } \NEWLINE
+    \fp_to_tl:n { 12 = 2 || pi > 3 && 7 } \NEWLINE
+    \fp_to_tl:n { nan <? ( 3 && 2 ) & (0|1.2pt) } \NEWLINE
+  }
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\TESTEXP { Logic~two~comparisons }
+  {
+    \fp_to_tl:n { 0 < 1 < 2 } \NEWLINE
+    \fp_to_tl:n { 3 < 4 < 2 } \NEWLINE
+    \fp_to_tl:n { nan <? 3 != 1 } \NEWLINE
+    \fp_to_tl:n { -1 > -2 =? -2 } \NEWLINE
+  }
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\TESTEXP { Unary~not,~minus~plus }
+  {
+    \fp_to_tl:n { ! -+0 } \NEWLINE
+    \fp_to_tl:n { ! !nan } \NEWLINE
+    \fp_to_tl:n { -!-inf } \NEWLINE
+    \fp_to_tl:n { -!-1**0 } \NEWLINE
+    \fp_to_tl:n { -!-1**0.1 } \NEWLINE
+    \fp_to_tl:n { -!!-(1,2) } \NEWLINE
+  }
+\TESTEXP { With~an~error }
+  { \fp_to_tl:n { -!(-1)**0.1 } \NEWLINE }
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\TESTEXP { Ternary~operator }
+  {
+    \fp_to_tl:n { 1=1 ? 2 : 3>2 ? 4 : 5 } \NEWLINE
+    \fp_to_tl:n { 0=1 ? 2 : 3>2 ? 4 : 5 } \NEWLINE
+    \fp_to_tl:n {-0=1 ? 2 : 3>2 ? 4 : 5 } \NEWLINE
+    \fp_to_tl:n { 0=1 ? 2 : 0>2 ? 4 : 5 } \NEWLINE
+    \fp_to_tl:n { (0,1) ? 2 : 4 } \NEWLINE
+    \fp_to_tl:n { (0,1) ? (2,3) : (4,5) } \NEWLINE
+    \fp_to_tl:n { -0 ? () : (4,5) ? 9 : 4 , 9 } \NEWLINE
+    \fp_to_tl:n { 1 ? (2,) : () } \NEWLINE
+  }
+\TESTEXP { Ternary~operator~invalid~syntax }
+  {
+    \fp_to_tl:n { 1 : 2 } \NEWLINE
+    \fp_to_tl:n { 1 ? 2 : 3 : 4 } \NEWLINE
+    \fp_to_tl:n { ( 1 ? 2 ) : 3 } \NEWLINE
+    \fp_to_tl:n { 1 ? 2 , 3 : 4 } \NEWLINE
+  }
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\TESTEXP { Booleans~true~and~false }
+  {
+    \fp_to_tl:n { true ? false - true : 1 } \NEWLINE
+    \fp_to_tl:n { false & true | true } \NEWLINE
+    \fp_to_tl:n { true | true & false ? 2 : 3 } \NEWLINE
+    \fp_to_tl:n { (1,2) & 7     } \NEWLINE
+    \fp_to_tl:n {     0 & (7,8) } \NEWLINE
+    \fp_to_tl:n {     1 & (7,8) } \NEWLINE
+    \fp_to_tl:n { (1,2) & (7,8) } \NEWLINE
+    \fp_to_tl:n { (1,2) | 7     } \NEWLINE
+    \fp_to_tl:n {     0 | (7,8) } \NEWLINE
+    \fp_to_tl:n {     1 | (7,8) } \NEWLINE
+    \fp_to_tl:n { (1,2) | (7,8) } \NEWLINE
+  }
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\TESTEXP { Maximum~and~minimum }
+  {
+    \fp_to_tl:n { max(nan,3.4,inf) } \NEWLINE
+    \fp_to_tl:n { max(1) } \NEWLINE
+    \fp_to_tl:n { max( 4, 2, 6, 3, 7 ) } \NEWLINE
+    \fp_to_tl:n { max( -4 + 2**.5 , -3 , -6^5e-1 ) } \NEWLINE
+    \fp_to_tl:n { max(-inf,1/-0) } \NEWLINE
+    \fp_to_tl:n { max(-0,0) } \NEWLINE
+    \fp_to_tl:n { max(0,-0) } \NEWLINE
+    \fp_to_tl:n { min(nan,3.4,inf) } \NEWLINE
+    \fp_to_tl:n { min(1) } \NEWLINE
+    \fp_to_tl:n { min( 4, 2, 6, 3, 7 ) } \NEWLINE
+    \fp_to_tl:n { min( -4 + 2**.5 , -2 , -6^5e-1 ) } \NEWLINE
+    \fp_to_tl:n { min(inf,1/0) } \NEWLINE
+    \fp_to_tl:n { min(-0,0) } \NEWLINE
+    \fp_to_tl:n { min(0,-0) } \NEWLINE
+  }
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\OMIT
+\cs_set:Npn \test:nn #1 #2 { \fp_to_tl:n {#1 || #2} }
+\TIMO
+
+\TESTEXP { Or~special~cases }
+  {
+    \TYPE {Expect~ nan,~nan,~nan,~nan,~nan,~nan.} \NEWLINE
+    \test:nn {nan} {nan}  \NEWLINE
+    \test:nn {nan} {inf}  \NEWLINE
+    \test:nn {nan} {-inf} \NEWLINE
+    \test:nn {nan} {1}    \NEWLINE
+    \test:nn {nan} {0}    \NEWLINE
+    \test:nn {nan} {-0}   \NEWLINE
+    \TYPE {Expect~ inf,~inf,~inf,~inf,~inf,~inf.} \NEWLINE
+    \test:nn {inf} {nan}  \NEWLINE
+    \test:nn {inf} {inf}  \NEWLINE
+    \test:nn {inf} {-inf} \NEWLINE
+    \test:nn {inf} {1}    \NEWLINE
+    \test:nn {inf} {0}    \NEWLINE
+    \test:nn {inf} {-0}   \NEWLINE
+    \TYPE {Expect~ -inf,~-inf,~-inf,~-inf,~-inf,~-inf.} \NEWLINE
+    \test:nn {-inf} {nan} \NEWLINE
+    \test:nn {-inf} {inf} \NEWLINE
+    \test:nn {-inf} {-inf}\NEWLINE
+    \test:nn {-inf} {1}   \NEWLINE
+    \test:nn {-inf} {0}   \NEWLINE
+    \test:nn {-inf} {-0}  \NEWLINE
+    \TYPE {Expect~ 1,~1,~1,~1,~1,~1.} \NEWLINE
+    \test:nn {1} {nan}    \NEWLINE
+    \test:nn {1} {inf}    \NEWLINE
+    \test:nn {1} {-inf}   \NEWLINE
+    \test:nn {1} {0}      \NEWLINE
+    \test:nn {1} {-0}     \NEWLINE
+    \TYPE {Expect~ nan,~ inf,~ -inf,~ 1,~ +0,~ -0.} \NEWLINE
+    \test:nn {0} {nan}    \NEWLINE
+    \test:nn {0} {inf}    \NEWLINE
+    \test:nn {0} {-inf}   \NEWLINE
+    \test:nn {0} {1}      \NEWLINE
+    \test:nn {0} {0}      \NEWLINE
+    \test:nn {0} {-0}     \NEWLINE
+    \TYPE {Expect~ nan,~ inf,~ -inf,~ 1,~ +0,~ -0.} \NEWLINE
+    \test:nn {-0} {nan}   \NEWLINE
+    \test:nn {-0} {inf}   \NEWLINE
+    \test:nn {-0} {-inf}  \NEWLINE
+    \test:nn {-0} {1}     \NEWLINE
+    \test:nn {-0} {0}     \NEWLINE
+    \test:nn {-0} {-0}    \NEWLINE
+  }
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\OMIT
+\cs_set:Npn \test:nn #1 #2 { \fp_to_tl:n {#1 && #2} }
+\TIMO
+
+\TESTEXP { And~special~cases }
+  {
+    \TYPE {Expect~ nan,~inf,~-inf,~1,~0,~-0.} \NEWLINE
+    \test:nn {nan} {nan}  \NEWLINE
+    \test:nn {nan} {inf}  \NEWLINE
+    \test:nn {nan} {-inf} \NEWLINE
+    \test:nn {nan} {1}    \NEWLINE
+    \test:nn {nan} {0}    \NEWLINE
+    \test:nn {nan} {-0}   \NEWLINE
+    \TYPE {Expect~ nan,~inf,~-inf,~1,~0,~-0.} \NEWLINE
+    \test:nn {inf} {nan}  \NEWLINE
+    \test:nn {inf} {inf}  \NEWLINE
+    \test:nn {inf} {-inf} \NEWLINE
+    \test:nn {inf} {1}    \NEWLINE
+    \test:nn {inf} {0}    \NEWLINE
+    \test:nn {inf} {-0}   \NEWLINE
+    \TYPE {Expect~ nan,~inf,~-inf,~1,~0,~-0.} \NEWLINE
+    \test:nn {-inf} {nan} \NEWLINE
+    \test:nn {-inf} {inf} \NEWLINE
+    \test:nn {-inf} {-inf}\NEWLINE
+    \test:nn {-inf} {1}   \NEWLINE
+    \test:nn {-inf} {0}   \NEWLINE
+    \test:nn {-inf} {-0}  \NEWLINE
+    \TYPE {Expect~ nan,~inf,~-inf,~1,~0,~-0.} \NEWLINE
+    \test:nn {1} {nan}    \NEWLINE
+    \test:nn {1} {inf}    \NEWLINE
+    \test:nn {1} {-inf}   \NEWLINE
+    \test:nn {1} {0}      \NEWLINE
+    \test:nn {1} {-0}     \NEWLINE
+    \TYPE {Expect~ 0,~0,~0,~0,~0,~0.} \NEWLINE
+    \test:nn {0} {nan}    \NEWLINE
+    \test:nn {0} {inf}    \NEWLINE
+    \test:nn {0} {-inf}   \NEWLINE
+    \test:nn {0} {1}      \NEWLINE
+    \test:nn {0} {0}      \NEWLINE
+    \test:nn {0} {-0}     \NEWLINE
+    \TYPE {Expect~ -0,~-0,~-0,~-0,~-0,~-0.} \NEWLINE
+    \test:nn {-0} {nan}   \NEWLINE
+    \test:nn {-0} {inf}   \NEWLINE
+    \test:nn {-0} {-inf}  \NEWLINE
+    \test:nn {-0} {1}     \NEWLINE
+    \test:nn {-0} {0}     \NEWLINE
+    \test:nn {-0} {-0}    \NEWLINE
+  }
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\TESTEXP { Some~more~invalid~syntax }
+  {
+    \fp_to_tl:n { 1 |& 2 } \NEWLINE
+    \fp_to_tl:n { 1 &| 2 : 3 } \NEWLINE
+    \fp_to_tl:n { 1 ?? 2 :: 3 } \NEWLINE
+  }
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\TESTEXP { Logic~multiple~comparisons }
+  {
+    \fp_to_tl:n { 0 > 10 > -10 } \NEWLINE
+    \fp_to_tl:n { 1 < 2 < 3 < 4 < 5 } \NEWLINE
+    \fp_to_tl:n { 1 > 0 < 3 > 4 < 5 } \NEWLINE
+    \fp_to_tl:n { 1 > 0 < 3 > 2 < 5 } \NEWLINE
+  }
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\TESTEXP { Sign }
+  {
+    \fp_to_tl:n { sign(0) } \NEWLINE
+    \fp_to_tl:n { sign(-0) } \NEWLINE
+    \fp_to_tl:n { sign(1.2) } \NEWLINE
+    \fp_to_tl:n { sign(-987e-3) } \NEWLINE
+    \fp_to_tl:n { sign(-inf) } \NEWLINE
+    \fp_to_tl:n { sign(+inf) } \NEWLINE
+    \fp_to_tl:n { sign(nan) } \NEWLINE
+  }
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\END

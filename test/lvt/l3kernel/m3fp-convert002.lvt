@@ -1,0 +1,71 @@
+%
+% Copyright (C) The LaTeX Project
+%
+
+\documentclass{minimal}
+\input{regression-test}
+
+\ExplSyntaxOn
+\debug_on:n { check-declarations , deprecation , log-functions }
+\ExplSyntaxOff
+
+\begin{document}
+\START
+\AUTHOR{Bruno Le Floch}
+\ExplSyntaxOn
+
+\OMIT
+\cs_set:Npn \test:n #1 { \fp_to_scientific:n { \dim_to_fp:n {#1} } }
+\TIMO
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\TESTEXP { From~dimensions }
+  {
+    \test:n { 1pt + 1pt*2 - 20pt/3 } \NEWLINE
+    \test:n { -1pt } \NEWLINE
+    \test:n { 0pt } \NEWLINE
+    \test:n { 1pt } \NEWLINE
+    \test:n { 12pt } \NEWLINE
+    \test:n { 123pt } \NEWLINE
+    \test:n { 1234pt } \NEWLINE
+    \test:n { 12345pt } \NEWLINE
+    \test:n { 12345.6pt } \NEWLINE
+    \test:n { 12345.67pt } \NEWLINE
+    \test:n { 12345.678pt } \NEWLINE
+    \test:n { 12345.6789pt } \NEWLINE
+    \test:n { 12345.67891pt } \NEWLINE
+    \test:n { 1pt plus 1fil * 2 } \NEWLINE
+    \test:n { 0pt } \NEWLINE
+    \test:n { -1mm } \NEWLINE
+    \test:n { 10sp } \NEWLINE
+  }
+
+\OMIT
+\cs_set:Npn \test:n #1 { \fp_to_scientific:n {#1} }
+\TIMO
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\TESTEXP { From~dimensions~auto~convert }
+  {
+    \test:n { 1pt + 1pt*2 - 20pt/3 } \NEWLINE
+    \test:n { -1pt } \NEWLINE
+    \test:n { 0pt } \NEWLINE
+    \test:n { 1pt } \NEWLINE
+    \test:n { 12pt } \NEWLINE
+    \test:n { 123pt } \NEWLINE
+    \test:n { 1234pt } \NEWLINE
+    \test:n { 12345pt } \NEWLINE
+    \test:n { 12345.6pt } \NEWLINE
+    \test:n { 12345.67pt } \NEWLINE
+    \test:n { 12345.678pt } \NEWLINE
+    \test:n { 12345.6789pt } \NEWLINE
+    \test:n { 12345.67891pt } \NEWLINE
+    % \test:n { 1pt plus 1fil * 2 } \NEWLINE
+    \test:n { 0pt } \NEWLINE
+    \test:n { -1mm } \NEWLINE
+    \test:n { 10sp } \NEWLINE
+    \test:n { (2^16)sp } \NEWLINE
+  }
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\END

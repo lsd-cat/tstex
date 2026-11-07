@@ -1,0 +1,173 @@
+%
+% Copyright (C) The LaTeX Project
+%
+\documentclass{minimal}
+\input{regression-test}
+\ExplSyntaxOn
+\debug_on:n { check-declarations , deprecation , log-functions }
+\ExplSyntaxOff
+\begin{document}
+\START
+\AUTHOR{Joseph Wright}
+\ExplSyntaxOn
+
+\OMIT
+\tl_new:N  \l_test_tl
+\tl_set:Nn \l_test_tl {text}
+\msg_new:nnnn {module} {name} {text~#1} {more~text~#1~#2~#3~#4}
+\msg_new:nnnn {module} {othername} {text~#1} {more~text~#1~#2~#3~#4}
+\__kernel_msg_new:nnnn   {division} {name} {text~#1} {more~text~#1~#2~#3~#4}
+\__kernel_msg_new:nnnn   {division} {othername} {text~#1} {more~text~#1~#2~#3~#4}
+\TIMO
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\TEST{Making~some~new~messages}{
+  \msg_new:nnnn {module} {name2} {text} {more~text}
+  \msg_new:nnn  {module} {name3} {text}
+}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\TEST{Making~some~messages~using~set}{
+  \msg_set:nnnn  {module} {name} {text} {more~text}
+  \msg_set:nnn   {module} {name} {text}
+}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\TEST{Trying~to~make~new~messages~which~already~exist}{
+  \msg_new:nnnn {module} {othername} {text} {more~text}
+  \msg_new:nnn  {module} {othername} {text}
+}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\TEST{Issuing~fatal~messages~(without~stopping!)}{
+  \OMIT
+  \cs_set_eq:NN \__msg_fatal_exit: \scan_stop:
+  \TIMO
+  \msg_fatal:nneeee {module} {name} {\l_test_tl} {\l_test_tl}
+    {\l_test_tl} {\l_test_tl}
+  \msg_fatal:nneee  {module} {name} {\l_test_tl} {\l_test_tl}
+    {\l_test_tl}
+  \msg_fatal:nnee   {module} {name} {\l_test_tl} {\l_test_tl}
+  \msg_fatal:nne    {module} {name} {\l_test_tl}
+  \msg_fatal:nn     {module} {name}
+}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\TEST{Issuing~error~messages}{
+  \msg_error:nneeee {module} {name} {\l_test_tl} {\l_test_tl}
+    {\l_test_tl} {\l_test_tl}
+  \msg_error:nneee  {module} {name} {\l_test_tl} {\l_test_tl}
+    {\l_test_tl}
+  \msg_error:nnee   {module} {name} {\l_test_tl} {\l_test_tl}
+  \msg_error:nne    {module} {name} {\l_test_tl}
+  \msg_error:nn     {module} {name}
+}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\TEST{Issuing~warning~messages}{
+  \msg_warning:nneeee {module} {name} {\l_test_tl} {\l_test_tl}
+    {\l_test_tl} {\l_test_tl}
+  \msg_warning:nneee  {module} {name} {\l_test_tl} {\l_test_tl}
+    {\l_test_tl}
+  \msg_warning:nnee   {module} {name} {\l_test_tl} {\l_test_tl}
+  \msg_warning:nne    {module} {name} {\l_test_tl}
+  \msg_warning:nn     {module} {name}
+}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\TEST{Issuing~info~messages}{
+  \msg_info:nneeee {module} {name} {\l_test_tl} {\l_test_tl}
+    {\l_test_tl} {\l_test_tl}
+  \msg_info:nneee  {module} {name} {\l_test_tl} {\l_test_tl}
+    {\l_test_tl}
+  \msg_info:nnee   {module} {name} {\l_test_tl} {\l_test_tl}
+  \msg_info:nne    {module} {name} {\l_test_tl}
+  \msg_info:nn     {module} {name}
+  \SEPARATOR
+  \msg_note:nneeee {module} {name} {\l_test_tl} {\l_test_tl}
+    {\l_test_tl} {\l_test_tl}
+  \msg_note:nnnnn  {module} {name} {\l_test_tl} {\l_test_tl}
+    {\l_test_tl}
+  \msg_note:nnee   {module} {name} {\l_test_tl} {\l_test_tl}
+  \msg_note:nnn    {module} {name} {\l_test_tl}
+  \msg_info:nn     {module} {name}
+}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\TEST{Issuing~log~messages}{
+  \msg_log:nneeee {module} {name} {\l_test_tl} {\l_test_tl}
+    {\l_test_tl} {\l_test_tl}
+  \msg_log:nneee  {module} {name} {\l_test_tl} {\l_test_tl}
+    {\l_test_tl}
+  \msg_log:nnee   {module} {name} {\l_test_tl} {\l_test_tl}
+  \msg_log:nne    {module} {name} {\l_test_tl}
+  \msg_log:nn     {module} {name}
+}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\TEST{Issuing~term~messages}{
+  \msg_term:nneeee {module} {name} {\l_test_tl} {\l_test_tl}
+    {\l_test_tl} {\l_test_tl}
+  \msg_term:nneee  {module} {name} {\l_test_tl} {\l_test_tl}
+    {\l_test_tl}
+  \msg_term:nnee   {module} {name} {\l_test_tl} {\l_test_tl}
+  \msg_term:nne    {module} {name} {\l_test_tl}
+  \msg_term:nn     {module} {name}
+}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\TEST{"Issuing"~none~messages}{
+  \msg_none:nneeee {module} {name} {\l_test_tl} {\l_test_tl}
+    {\l_test_tl} {\l_test_tl}
+  \msg_none:nneee  {module} {name} {\l_test_tl} {\l_test_tl}
+    {\l_test_tl}
+  \msg_none:nnee   {module} {name} {\l_test_tl} {\l_test_tl}
+  \msg_none:nne    {module} {name} {\l_test_tl}
+  \msg_none:nn     {module} {name}
+}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\TEST{Redirection~of~messages:~by~class}{
+  \msg_redirect_class:nn {error} {warning}
+  \msg_error:nn {module} {name}
+}
+\TEST{Redirection~of~messages:~by~module}{
+  \OMIT
+  \msg_redirect_module:nnn {module} {error} {warning}
+  \TIMO
+  \msg_error:nn {module} {name}
+}
+\TEST{Redirection~of~messages:~by~name}{
+  \msg_redirect_name:nnn {module} {name} {warning}
+  \msg_error:nn {module} {name}
+}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\TEST{Simple~text~commands}{
+  \OMIT
+  \msg_set:nnn {module} {name} {
+    TEXT~
+    \msg_line_context:
+    TEXT
+    \msg_line_number:
+    TEXT
+    \\
+    TEXT
+    \\ \\
+    TEXT
+  }
+  \TIMO
+  \msg_error:nn {module} {name}
+}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\END
+

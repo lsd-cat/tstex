@@ -1,0 +1,25 @@
+\documentclass{article}
+\input{regression-test}
+
+\def\blub{xxx}
+\usepackage[pdfauthor={(author1,\blub, grüße)},pdfkeywords=keywords,pdfsubject=subject]{hyperref}
+\hypersetup{pdftitle={title äüß \blub yyy}}
+
+\begin{document}
+
+\START
+
+\ExplSyntaxOn
+\ShowDocumentProperties
+%\str
+\edef\test{\GetDocumentProperty{hyperref/pdfauthor}}
+\show\test
+\edef\test{\GetDocumentProperty{hyperref/pdftitle}}
+\show\test
+\edef\test{\GetDocumentProperty{hyperref/pdfkeywords}}
+\show\test
+\edef\test{\GetDocumentProperty{hyperref/pdfsubject}}
+\show\test
+
+\ExplSyntaxOff
+\end{document} 

@@ -1,0 +1,407 @@
+%
+% Copyright (C) The LaTeX Project
+%
+
+\documentclass{minimal}
+\input{regression-test}
+
+\ExplSyntaxOn
+\debug_on:n { check-declarations , deprecation , log-functions }
+\ExplSyntaxOff
+
+\begin{document}
+\START
+\AUTHOR{Bruno Le Floch}
+\ExplSyntaxOn
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\TESTEXP { Sine }
+  {
+    \fp_to_tl:n { sin(nan) } \NEWLINE
+    \fp_to_tl:n { sin(inf) } \NEWLINE
+    \fp_to_tl:n { sin(-inf) } \NEWLINE
+    \fp_to_tl:n { sin(0) } \NEWLINE
+    \fp_to_tl:n { sin(-0) } \NEWLINE
+    \fp_to_tl:n { sin(1) } \NEWLINE
+    \fp_to_tl:n { sin(-1) } \NEWLINE
+    \fp_to_tl:n { sin(1e-1) } \NEWLINE
+    \fp_to_tl:n { sin(1e-2) } \NEWLINE
+    \fp_to_tl:n { sin(1e-3) } \NEWLINE
+    \fp_to_tl:n { sin(1e-4) } \NEWLINE
+    \fp_to_tl:n { sin(1e-5) } \NEWLINE
+    \fp_to_tl:n { sin(1e-6) } \NEWLINE
+    \fp_to_tl:n { sin(1e-7) } \NEWLINE
+    \fp_to_tl:n { sin(1e-8) } \NEWLINE
+    \fp_to_tl:n { sin(1e-9) } \NEWLINE
+    \fp_to_tl:n { sin(1e-16) } \NEWLINE
+    \fp_to_tl:n { sin(1e-30) } \NEWLINE
+    \fp_to_tl:n { sin(1e-100) } \NEWLINE
+    \fp_to_tl:n { sin(.1234567891234567) } \NEWLINE
+    \fp_to_tl:n { sin(.1111111111111111) } \NEWLINE
+    \fp_to_tl:n { sin(.2222222222222222) } \NEWLINE
+    \fp_to_tl:n { sin(.3333333333333333) } \NEWLINE
+    \fp_to_tl:n { sin(.4444444444444444) } \NEWLINE
+    \fp_to_tl:n { sin(.5555555555555555) } \NEWLINE
+    \fp_to_tl:n { sin(.6666666666666666) } \NEWLINE
+    \fp_to_tl:n { sin(.7777777777777777) } \NEWLINE
+    \fp_to_tl:n { sin(.8888888888888888) } \NEWLINE
+    \fp_to_tl:n { sin(.9999999999999999) } \NEWLINE
+    \fp_to_tl:n { sin(.1234567833274652) } \NEWLINE
+    \fp_to_tl:n { sin(.2376458734876423e-1) } \NEWLINE
+    % \fp_to_tl:n { sin(9.924e9999) } \NEWLINE
+    \fp_to_tl:n { sin(9.924e-9999) } \NEWLINE
+  }
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\TESTEXP { Cosine }
+  {
+    \fp_to_tl:n { cos(nan) } \NEWLINE
+    \fp_to_tl:n { cos(inf) } \NEWLINE
+    \fp_to_tl:n { cos(-inf) } \NEWLINE
+    \fp_to_tl:n { cos(0) } \NEWLINE
+    \fp_to_tl:n { cos(-0) } \NEWLINE
+    \fp_to_tl:n { cos(1) } \NEWLINE
+    \fp_to_tl:n { cos(-1) } \NEWLINE
+    \fp_to_tl:n { cos(1e-1) } \NEWLINE
+    \fp_to_tl:n { cos(1e-2) } \NEWLINE
+    \fp_to_tl:n { cos(1e-3) } \NEWLINE
+    \fp_to_tl:n { cos(1e-4) } \NEWLINE
+    \fp_to_tl:n { cos(1e-5) } \NEWLINE
+    \fp_to_tl:n { cos(1e-6) } \NEWLINE
+    \fp_to_tl:n { cos(1e-7) } \NEWLINE
+    \fp_to_tl:n { cos(1e-8) } \NEWLINE
+    \fp_to_tl:n { cos(1e-9) } \NEWLINE
+    \fp_to_tl:n { cos(1e-16) } \NEWLINE
+    \fp_to_tl:n { cos(1e-30) } \NEWLINE
+    \fp_to_tl:n { cos(1e-100) } \NEWLINE
+    \fp_to_tl:n { cos(.1234567891234567) } \NEWLINE
+    \fp_to_tl:n { cos(.1111111111111111) } \NEWLINE
+    \fp_to_tl:n { cos(.2222222222222222) } \NEWLINE
+    \fp_to_tl:n { cos(.3333333333333333) } \NEWLINE
+    \fp_to_tl:n { cos(.4444444444444444) } \NEWLINE
+    \fp_to_tl:n { cos(.5555555555555555) } \NEWLINE
+    \fp_to_tl:n { cos(.6666666666666666) } \NEWLINE
+    \fp_to_tl:n { cos(.7777777777777777) } \NEWLINE
+    \fp_to_tl:n { cos(.8888888888888888) } \NEWLINE
+    \fp_to_tl:n { cos(.9999999999999999) } \NEWLINE
+    \fp_to_tl:n { cos(.1234567833274652) } \NEWLINE
+    \fp_to_tl:n { cos(.2376458734876423e-1) } \NEWLINE
+    % \fp_to_tl:n { cos(9.924e9999) } \NEWLINE
+    \fp_to_tl:n { cos(9.924e-9999) } \NEWLINE
+  }
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\TESTEXP { Tangent }
+  {
+    \fp_to_tl:n { tan(nan) } \NEWLINE
+    \fp_to_tl:n { tan(inf) } \NEWLINE
+    \fp_to_tl:n { tan(-inf) } \NEWLINE
+    \fp_to_tl:n { tan(0) } \NEWLINE
+    \fp_to_tl:n { tan(-0) } \NEWLINE
+    \fp_to_tl:n { tan(1) } \NEWLINE
+    \fp_to_tl:n { tan(-1) } \NEWLINE
+    \fp_to_tl:n { tan(1e-1) } \NEWLINE
+    \fp_to_tl:n { tan(1e-2) } \NEWLINE
+    \fp_to_tl:n { tan(1e-3) } \NEWLINE
+    \fp_to_tl:n { tan(1e-4) } \NEWLINE
+    \fp_to_tl:n { tan(1e-5) } \NEWLINE
+    \fp_to_tl:n { tan(1e-6) } \NEWLINE
+    \fp_to_tl:n { tan(1e-7) } \NEWLINE
+    \fp_to_tl:n { tan(1e-8) } \NEWLINE
+    \fp_to_tl:n { tan(1e-9) } \NEWLINE
+    \fp_to_tl:n { tan(1e-16) } \NEWLINE
+    \fp_to_tl:n { tan(1e-30) } \NEWLINE
+    \fp_to_tl:n { tan(1e-100) } \NEWLINE
+    \fp_to_tl:n { tan(.1234567891234567) } \NEWLINE
+    \fp_to_tl:n { tan(.1111111111111111) } \NEWLINE
+    \fp_to_tl:n { tan(.2222222222222222) } \NEWLINE
+    \fp_to_tl:n { tan(.3333333333333333) } \NEWLINE
+    \fp_to_tl:n { tan(.4444444444444444) } \NEWLINE
+    \fp_to_tl:n { tan(.5555555555555555) } \NEWLINE
+    \fp_to_tl:n { tan(.6666666666666666) } \NEWLINE
+    \fp_to_tl:n { tan(.7777777777777777) } \NEWLINE
+    \fp_to_tl:n { tan(.8888888888888888) } \NEWLINE
+    \fp_to_tl:n { tan(.9999999999999999) } \NEWLINE
+    \fp_to_tl:n { tan(.1234567833274652) } \NEWLINE
+    \fp_to_tl:n { tan(.2376458734876423e-1) } \NEWLINE
+    % \fp_to_tl:n { tan(9.924e9999) } \NEWLINE
+    \fp_to_tl:n { tan(9.924e-9999) } \NEWLINE
+  }
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\TESTEXP { Cotangent }
+  {
+    \fp_to_tl:n { cot(nan) } \NEWLINE
+    \fp_to_tl:n { cot(inf) } \NEWLINE
+    \fp_to_tl:n { cot(-inf) } \NEWLINE
+    \fp_to_tl:n { cot(0) } \NEWLINE
+    \fp_to_tl:n { cot(-0) } \NEWLINE
+    \fp_to_tl:n { cot(1) } \NEWLINE
+    \fp_to_tl:n { cot(-1) } \NEWLINE
+    \fp_to_tl:n { cot(1e-1) } \NEWLINE
+    \fp_to_tl:n { cot(1e-2) } \NEWLINE
+    \fp_to_tl:n { cot(1e-3) } \NEWLINE
+    \fp_to_tl:n { cot(1e-4) } \NEWLINE
+    \fp_to_tl:n { cot(1e-5) } \NEWLINE
+    \fp_to_tl:n { cot(1e-6) } \NEWLINE
+    \fp_to_tl:n { cot(1e-7) } \NEWLINE
+    \fp_to_tl:n { cot(1e-8) } \NEWLINE
+    \fp_to_tl:n { cot(1e-9) } \NEWLINE
+    \fp_to_tl:n { cot(1e-16) } \NEWLINE
+    \fp_to_tl:n { cot(1e-30) } \NEWLINE
+    \fp_to_tl:n { cot(1e-100) } \NEWLINE
+    \fp_to_tl:n { cot(.1234567891234567) } \NEWLINE
+    \fp_to_tl:n { cot(.1111111111111111) } \NEWLINE
+    \fp_to_tl:n { cot(.2222222222222222) } \NEWLINE
+    \fp_to_tl:n { cot(.3333333333333333) } \NEWLINE
+    \fp_to_tl:n { cot(.4444444444444444) } \NEWLINE
+    \fp_to_tl:n { cot(.5555555555555555) } \NEWLINE
+    \fp_to_tl:n { cot(.6666666666666666) } \NEWLINE
+    \fp_to_tl:n { cot(.7777777777777777) } \NEWLINE
+    \fp_to_tl:n { cot(.8888888888888888) } \NEWLINE
+    \fp_to_tl:n { cot(.9999999999999999) } \NEWLINE
+    \fp_to_tl:n { cot(.1234567833274652) } \NEWLINE
+    \fp_to_tl:n { cot(.2376458734876423e-1) } \NEWLINE
+    % \fp_to_tl:n { cot(9.924e9999) } \NEWLINE
+    \fp_to_tl:n { cot(9.924e-9999) } \NEWLINE
+  }
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\TESTEXP { Secant }
+  {
+    \fp_to_tl:n { sec(nan) } \NEWLINE
+    \fp_to_tl:n { sec(inf) } \NEWLINE
+    \fp_to_tl:n { sec(-inf) } \NEWLINE
+    \fp_to_tl:n { sec(0) } \NEWLINE
+    \fp_to_tl:n { sec(-0) } \NEWLINE
+    \fp_to_tl:n { sec(1) } \NEWLINE
+    \fp_to_tl:n { sec(-1) } \NEWLINE
+    \fp_to_tl:n { sec(1e-1) } \NEWLINE
+    \fp_to_tl:n { sec(1e-2) } \NEWLINE
+    \fp_to_tl:n { sec(1e-3) } \NEWLINE
+    \fp_to_tl:n { sec(1e-4) } \NEWLINE
+    \fp_to_tl:n { sec(1e-5) } \NEWLINE
+    \fp_to_tl:n { sec(1e-6) } \NEWLINE
+    \fp_to_tl:n { sec(1e-7) } \NEWLINE
+    \fp_to_tl:n { sec(1e-8) } \NEWLINE
+    \fp_to_tl:n { sec(1e-9) } \NEWLINE
+    \fp_to_tl:n { sec(1e-16) } \NEWLINE
+    \fp_to_tl:n { sec(1e-30) } \NEWLINE
+    \fp_to_tl:n { sec(1e-100) } \NEWLINE
+    \fp_to_tl:n { sec(.1234567891234567) } \NEWLINE
+    \fp_to_tl:n { sec(.1111111111111111) } \NEWLINE
+    \fp_to_tl:n { sec(.2222222222222222) } \NEWLINE
+    \fp_to_tl:n { sec(.3333333333333333) } \NEWLINE
+    \fp_to_tl:n { sec(.4444444444444444) } \NEWLINE
+    \fp_to_tl:n { sec(.5555555555555555) } \NEWLINE
+    \fp_to_tl:n { sec(.6666666666666666) } \NEWLINE
+    \fp_to_tl:n { sec(.7777777777777777) } \NEWLINE
+    \fp_to_tl:n { sec(.8888888888888888) } \NEWLINE
+    \fp_to_tl:n { sec(.9999999999999999) } \NEWLINE
+    \fp_to_tl:n { sec(.1234567833274652) } \NEWLINE
+    \fp_to_tl:n { sec(.2376458734876423e-1) } \NEWLINE
+    % \fp_to_tl:n { sec(9.924e9999) } \NEWLINE
+    \fp_to_tl:n { sec(9.924e-9999) } \NEWLINE
+  }
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\TESTEXP { Cosecant }
+  {
+    \fp_to_tl:n { csc(nan) } \NEWLINE
+    \fp_to_tl:n { csc(inf) } \NEWLINE
+    \fp_to_tl:n { csc(-inf) } \NEWLINE
+    \fp_to_tl:n { csc(0) } \NEWLINE
+    \fp_to_tl:n { csc(-0) } \NEWLINE
+    \fp_to_tl:n { csc(1) } \NEWLINE
+    \fp_to_tl:n { csc(-1) } \NEWLINE
+    \fp_to_tl:n { csc(1e-1) } \NEWLINE
+    \fp_to_tl:n { csc(1e-2) } \NEWLINE
+    \fp_to_tl:n { csc(1e-3) } \NEWLINE
+    \fp_to_tl:n { csc(1e-4) } \NEWLINE
+    \fp_to_tl:n { csc(1e-5) } \NEWLINE
+    \fp_to_tl:n { csc(1e-6) } \NEWLINE
+    \fp_to_tl:n { csc(1e-7) } \NEWLINE
+    \fp_to_tl:n { csc(1e-8) } \NEWLINE
+    \fp_to_tl:n { csc(1e-9) } \NEWLINE
+    \fp_to_tl:n { csc(1e-16) } \NEWLINE
+    \fp_to_tl:n { csc(1e-30) } \NEWLINE
+    \fp_to_tl:n { csc(1e-100) } \NEWLINE
+    \fp_to_tl:n { csc(.1234567891234567) } \NEWLINE
+    \fp_to_tl:n { csc(.1111111111111111) } \NEWLINE
+    \fp_to_tl:n { csc(.2222222222222222) } \NEWLINE
+    \fp_to_tl:n { csc(.3333333333333333) } \NEWLINE
+    \fp_to_tl:n { csc(.4444444444444444) } \NEWLINE
+    \fp_to_tl:n { csc(.5555555555555555) } \NEWLINE
+    \fp_to_tl:n { csc(.6666666666666666) } \NEWLINE
+    \fp_to_tl:n { csc(.7777777777777777) } \NEWLINE
+    \fp_to_tl:n { csc(.8888888888888888) } \NEWLINE
+    \fp_to_tl:n { csc(.9999999999999999) } \NEWLINE
+    \fp_to_tl:n { csc(.1234567833274652) } \NEWLINE
+    \fp_to_tl:n { csc(.2376458734876423e-1) } \NEWLINE
+    % \fp_to_tl:n { csc(9.924e9999) } \NEWLINE
+    \fp_to_tl:n { csc(9.924e-9999) } \NEWLINE
+  }
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\OMIT
+\cs_set:Npn \test:n #1 { \fp_to_tl:n { sin(#1e-2) } \NEWLINE }
+\TIMO
+\TESTEXP { Sine~[0,pi] }
+  {
+    \int_step_function:nnN { 0 } {303} \test:n
+    \int_step_function:nnN {304} {314} \test:n
+  }
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\OMIT
+\cs_set:Npn \test:n #1 { \fp_to_tl:n { sin(#1e-1) } \NEWLINE }
+\TIMO
+\TESTEXP { Sine~[-10,10] }
+  {
+    \int_step_function:nnN {-100} {100} \test:n
+  }
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\OMIT
+\cs_set:Npn \test:n #1 { \fp_to_tl:n { sin(#1deg) } \NEWLINE }
+\TIMO
+\TESTEXP { Sine~in~degrees }
+  {
+    \test:n { 0 }
+    \test:n { 15 }
+    \test:n { 30 }
+    \test:n { 45 }
+    \test:n { 60 }
+    \test:n { 75 }
+    \test:n { 90 }
+    \test:n { 120 }
+    \test:n { 150 }
+    \test:n { 180 }
+    \test:n { 240 }
+    \test:n { 300 }
+    \test:n { 360 }
+  }
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\OMIT
+\cs_set:Npn \test:n #1 { \fp_to_tl:n { cos(#1) } \NEWLINE }
+\TIMO
+\TESTEXP { Cos~check~quadrants~[-10,10] }
+  {
+    \int_step_function:nnN {-10} {10} \test:n
+  }
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\OMIT
+\cs_set:Npn \test:n #1 { \fp_to_tl:n { tan(#1) } \NEWLINE }
+\TIMO
+\TESTEXP { Tan~check~quadrants~[-10,10] }
+  {
+    \int_step_function:nnN {-10} {10} \test:n
+  }
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\OMIT
+\cs_set:Npn \test:n #1 { \fp_to_tl:n { cot(#1) } \NEWLINE }
+\TIMO
+\TESTEXP { Cot~check~quadrants~[-10,10] }
+  {
+    \int_step_function:nnN {-10} {10} \test:n
+  }
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\OMIT
+\cs_set:Npn \test:n #1 { \fp_to_tl:n { sec(#1) } \NEWLINE }
+\TIMO
+\TESTEXP { Sec~check~quadrants~[-10,10] }
+  {
+    \int_step_function:nnN {-10} {10} \test:n
+  }
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\OMIT
+\cs_set:Npn \test:n #1 { \fp_to_tl:n { csc(#1) } \NEWLINE }
+\TIMO
+\TESTEXP { Csc~check~quadrants~[-10,10] }
+  {
+    \int_step_function:nnN {-10} {10} \test:n
+  }
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\TESTEXP { cos~close~to~pi/2 }
+  {
+    \fp_to_tl:n { cos(1.5 6 0796326794897) } \NEWLINE
+    \fp_to_tl:n { cos(1.56 9 796326794897) } \NEWLINE
+    \fp_to_tl:n { cos(1.570 6 96326794897) } \NEWLINE
+    \fp_to_tl:n { cos(1.5707 8 6326794897) } \NEWLINE
+    \fp_to_tl:n { cos(1.57079 5 326794897) } \NEWLINE
+    \fp_to_tl:n { cos(1.570796 2 26794897) } \NEWLINE
+    \fp_to_tl:n { cos(1.5707963 1 6794897) } \NEWLINE
+    \fp_to_tl:n { cos(1.57079632 5 794897) } \NEWLINE
+    \fp_to_tl:n { cos(1.570796326 6 94897) } \NEWLINE
+    \fp_to_tl:n { cos(1.5707963267 8 4897) } \NEWLINE
+    \fp_to_tl:n { cos(1.57079632679 3 897) } \NEWLINE
+    \fp_to_tl:n { cos(1.570796326794 7 97) } \NEWLINE
+    \fp_to_tl:n { cos(1.5707963267948 8 7) } \NEWLINE
+    \fp_to_tl:n { cos(1.57079632679489 5 ) } \NEWLINE
+    \fp_to_tl:n { cos(1.57079632679489 6 ) } \NEWLINE
+    \fp_to_tl:n { cos(1.57079632679489 7 ) } \NEWLINE % pi/2
+    \fp_to_tl:n { cos(1.57079632679489 8 ) } \NEWLINE
+    \fp_to_tl:n { cos(1.57079632679489 9 ) } \NEWLINE
+    \fp_to_tl:n { cos(1.5707963267949 0 7) } \NEWLINE
+    \fp_to_tl:n { cos(1.570796326794 9 97) } \NEWLINE
+    \fp_to_tl:n { cos(1.57079632679 5 897) } \NEWLINE
+    \fp_to_tl:n { cos(1.5707963268 0 4897) } \NEWLINE
+    \fp_to_tl:n { cos(1.570796326 8 94897) } \NEWLINE
+    \fp_to_tl:n { cos(1.57079632 7 794897) } \NEWLINE
+    \fp_to_tl:n { cos(1.5707963 3 6794897) } \NEWLINE
+    \fp_to_tl:n { cos(1.570796 4 26794897) } \NEWLINE
+    \fp_to_tl:n { cos(1.57079 7 326794897) } \NEWLINE
+    \fp_to_tl:n { cos(1.5708 0 6326794897) } \NEWLINE
+    \fp_to_tl:n { cos(1.570 8 96326794897) } \NEWLINE
+    \fp_to_tl:n { cos(1.57 1 796326794897) } \NEWLINE
+  }
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\TESTEXP { sin~and~cos~2kpi-epsilon }
+  {
+    \fp_to_tl:n { sin(2pi - 0.876e-4) } \NEWLINE
+    \fp_to_tl:n { cos(2pi - 0.876e-5) } \NEWLINE
+    \fp_to_tl:n { tan(2pi - 0.123e-4) } \NEWLINE
+    \fp_to_tl:n { cot(2pi - 0.123e-5) } \NEWLINE
+    \fp_to_tl:n { sec(4pi - 0.876e-5) } \NEWLINE
+    \fp_to_tl:n { csc(4pi - 0.876e-6) } \NEWLINE
+    \fp_to_tl:n { sin(12pi - 0.234e-5) } \NEWLINE
+    \fp_to_tl:n { cos(12pi - 0.234e-6) } \NEWLINE
+    \fp_to_tl:n { sin(36pi - 0.987e-7) } \NEWLINE
+  }
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\TESTEXP { Monotonicity~near~1 }
+  {
+    \fp_to_tl:n { sin(1 - 3e-16) } \NEWLINE
+    \fp_to_tl:n { sin(1 - 2e-16) } \NEWLINE
+    \fp_to_tl:n { sin(1 - 1e-16) } \NEWLINE
+    \fp_to_tl:n { sin(1) } \NEWLINE
+    \fp_to_tl:n { sin(1 + 1e-15) } \NEWLINE
+    \fp_to_tl:n { sin(1 + 2e-15) } \NEWLINE
+    \fp_to_tl:n { sin(1 + 3e-15) } \NEWLINE
+    \fp_to_tl:n { cos(1 - 3e-16) } \NEWLINE
+    \fp_to_tl:n { cos(1 - 2e-16) } \NEWLINE
+    \fp_to_tl:n { cos(1 - 1e-16) } \NEWLINE
+    \fp_to_tl:n { cos(1) } \NEWLINE
+    \fp_to_tl:n { cos(1 + 1e-15) } \NEWLINE
+    \fp_to_tl:n { cos(1 + 2e-15) } \NEWLINE
+    \fp_to_tl:n { cos(1 + 3e-15) } \NEWLINE
+  }
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\TESTEXP { Large~numbers~close~to~multiples~of~pi/2 }
+  {
+    \fp_to_tl:n { sin(6862647391314815e81) } \NEWLINE
+    \fp_to_tl:n { cos(8919302781369317e296) } \NEWLINE
+    \fp_to_tl:n { cot(8919302781369317e296) } \NEWLINE
+  }
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\END

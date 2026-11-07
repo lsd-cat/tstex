@@ -1,0 +1,175 @@
+%
+% Copyright (C) The LaTeX Project
+%
+\documentclass{minimal}
+\input{regression-test}
+
+\ExplSyntaxOn
+\debug_on:n { check-declarations , deprecation , log-functions }
+\ExplSyntaxOff
+
+
+\begin{document}
+\START
+\AUTHOR{Will Robertson}
+\ExplSyntaxOn
+
+\tl_new:N \l_tmpc_tl
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\TEST{reverse}{
+  \tl_set:Nn       \l_tmpa_tl { abc \par xyz ~ \ERROR {1{~}23} 123 }
+  \tl_log:N       \l_tmpa_tl
+  {
+    \tl_reverse:N  \l_tmpa_tl
+    \tl_log:N     \l_tmpa_tl
+  }
+  \tl_log:N       \l_tmpa_tl
+  {
+    \tl_gset_eq:NN \g_tmpa_tl \l_tmpa_tl
+    \tl_greverse:N \g_tmpa_tl
+  }
+  \tl_log:N       \g_tmpa_tl
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\tl_set:Nn      \l_tmpa_tl { 123 }
+\tl_set:Nn      \l_tmpb_tl { 123 {xyz} 567 }
+\tl_set:Nn      \l_tmpc_tl { 123 {xyz} 567 \par ## 0 }
+\TESTEXP{count~(3/7/11)}{
+  \tl_count:N \l_tmpa_tl \space
+  \tl_count:N \l_tmpb_tl \space
+  \tl_count:N \l_tmpc_tl
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\TESTEXP{jobname}{\c_sys_jobname_str}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\tl_set:Nn \l_tmpa_tl {abc{{A}B}C}
+\cs_set:Npn \tl_tmp:n #1 {[#1]~}
+
+\TESTEXP{map_function,~map_tokens}{
+  \tl_map_function:NN \l_tmpa_tl \tl_tmp:n
+  \NEWLINE
+  \tl_map_tokens:Nn \l_tmpa_tl {\tl_tmp:n}
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\TEST{map_inline}{
+  \tl_map_inline:Nn \l_tmpa_tl {\TYPE{[#1]}}
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\tl_new:N \l_ii_tl
+
+\TEST{map_variable}{
+  \tl_map_variable:NNn \l_tmpa_tl \l_ii_tl {
+    \TYPE{[\l_ii_tl]~}
+  }
+  \tl_map_variable:NNn \c_space_tl \l_ii_tl { }
+  \TYPE{Final:~[\l_ii_tl]}
+}
+
+\tl_set:Nn \l_tmpa_tl {a{bb}cdzyx\ERROR}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\TEST{map_break~inline/variable}{
+  \tl_map_inline:Nn \l_tmpa_tl {
+    \str_if_eq:nnTF {#1} {z} {
+      \tl_map_break:
+    }{
+      \TYPE{[#1]}
+    }
+  }
+  \SEPARATOR
+  \tl_map_variable:NNn \l_tmpa_tl \l_ii_tl {
+    \str_if_eq:nVTF {z} \l_ii_tl {
+      \tl_map_break:
+    }{
+      \TYPE{[\l_ii_tl]}
+    }
+  }
+  \TYPE{Final:~[\l_ii_tl]}
+}
+
+\cs_set:Npn \tl_tmp:n #1 {
+  \str_if_eq:nnTF {#1} {z} {
+    \tl_map_break:
+  }{
+    \TYPE{[#1]}
+  }
+}
+
+\TESTEXP{map_break~function}{
+  \tl_map_function:NN \l_tmpa_tl \tl_tmp:n
+  \NEWLINE
+  \tl_map_tokens:Nn \l_tmpa_tl
+    { \TRUE \tl_tmp:n }
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\TEST{remove_once}{
+  \TYPE { \tl_to_str:N \l_tmpa_tl }
+  \tl_remove_once:Nn \l_tmpa_tl {=/err=}
+  \TYPE { \tl_to_str:N \l_tmpa_tl }
+  \tl_remove_once:cn {l_tmpa_tl} {cc~dd}
+  \TYPE { \tl_to_str:N \l_tmpa_tl }
+  \tl_remove_once:cn {l_tmpa_tl} {Z}
+  \TYPE { \tl_to_str:N \l_tmpa_tl }
+}
+\tl_gset_eq:NN \g_tmpb_tl \l_tmpa_tl
+\TEST{gremove_once}{
+  {
+    \TYPE { \tl_to_str:N \g_tmpb_tl }
+    \tl_gremove_once:Nn \g_tmpb_tl {=/err=}
+    \TYPE { \tl_to_str:N \g_tmpb_tl }
+    \tl_gremove_once:cn {g_tmpb_tl} {cc~dd}
+    \TYPE { \tl_to_str:N \g_tmpb_tl }
+    \tl_gremove_once:cn {g_tmpb_tl} {Z}
+  }
+  \TYPE { \tl_to_str:N \g_tmpb_tl }
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\tl_set:Nn \l_tmpa_tl {aabbccaabbcc}
+
+\TEST{remove_all}{
+  \TYPE { \tl_to_str:N \l_tmpa_tl }
+  \tl_remove_all:Nn \l_tmpa_tl {zz}
+  \TYPE { \tl_to_str:N \l_tmpa_tl }
+  \tl_remove_all:cn {l_tmpa_tl} {aa}
+  \TYPE { \tl_to_str:N \l_tmpa_tl }
+  \tl_remove_all:cn {l_tmpa_tl} {bbcc}
+  \TYPE { >\tl_to_str:N \l_tmpa_tl< }
+  \tl_remove_all:cn {l_tmpa_tl} {bbcc}
+  \TYPE { >\tl_to_str:N \l_tmpa_tl< }
+}
+\tl_gset_eq:NN \g_tmpb_tl \l_tmpa_tl
+\TEST{gremove_all}{
+  \TYPE { \tl_to_str:N \g_tmpb_tl }
+  \tl_gremove_all:Nn \g_tmpb_tl {zz}
+  \TYPE { \tl_to_str:N \g_tmpb_tl }
+  \tl_gremove_all:cn {g_tmpb_tl} {aa}
+  \TYPE { \tl_to_str:N \g_tmpb_tl }
+  \tl_gremove_all:cn {g_tmpb_tl} {bbcc}
+  \TYPE { >\tl_to_str:N \g_tmpb_tl< }
+  \tl_gremove_all:cn {g_tmpb_tl} {bbcc}
+}
+
+\typeout { Check~global:~>\tl_to_str:N \g_tmpb_tl< }
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\END
+

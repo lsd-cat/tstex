@@ -1,0 +1,100 @@
+%
+% Copyright (C) The LaTeX Project
+%
+
+\documentclass{minimal}
+\input{regression-test}
+\ExplSyntaxOn
+\debug_on:n { check-declarations , deprecation , log-functions }
+\ExplSyntaxOff
+
+\begin{document}
+
+\START
+\AUTHOR{Bruno Le Floch}
+\ExplSyntaxOn
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\TEST { Safe~array~operations }
+  {
+    \intarray_new:Nn \g_testa_intarray { 123 }
+    \group_begin:
+    \intarray_gset:Nnn \g_testa_intarray { 1 } { 100 }
+    \intarray_gset:Nnn \g_testa_intarray { 2 } { -200 }
+    \intarray_gset:Nnn \g_testa_intarray { 1 } { -10 }
+    \intarray_gset:Nnn \g_testa_intarray { 123 } { 12345 }
+    \group_end:
+    \TYPE { \intarray_count:N \g_testa_intarray }
+    \TYPE { \intarray_item:Nn \g_testa_intarray { 1 } }
+    \TYPE { \intarray_item:Nn \g_testa_intarray { 2 } }
+    \TYPE { \intarray_item:Nn \g_testa_intarray { 53 } }
+    \TYPE { \intarray_item:Nn \g_testa_intarray { 123 } }
+  }
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\TEST { Safe~array~operations~with~errors }
+  {
+    \intarray_new:Nn \g_testa_intarray { 12 }
+    \group_begin:
+    \intarray_gset:Nnn \g_testa_intarray { 0 } { 2000000000 }
+    \intarray_gset:Nnn \g_testa_intarray { 1 } { -2000000000 }
+    \intarray_gset:Nnn \g_testa_intarray { 13 } { -2000000000 }
+    \group_end:
+    \TYPE { \intarray_item:Nn \g_testa_intarray { 0 } }
+    \TYPE { \intarray_item:Nn \g_testa_intarray { 1 } }
+    \TYPE { \intarray_item:Nn \g_testa_intarray { 12 } }
+    \TYPE { \intarray_item:Nn \g_testa_intarray { 13 } }
+  }
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\TEST { Unsafe~array~operations~with~errors }
+  {
+    \intarray_new:Nn \g_testb_intarray { 15 }
+    \group_begin:
+    \__kernel_intarray_gset:Nnn \g_testb_intarray { 0 } { 2000000000 }
+    \__kernel_intarray_gset:Nnn \g_testb_intarray { 1 } { -2000000000 }
+    \__kernel_intarray_gset:Nnn \g_testb_intarray { 16 } { 123456 }
+    \group_end:
+    \TYPE { \__kernel_intarray_item:Nn \g_testb_intarray { 0 } }
+    \TYPE { \__kernel_intarray_item:Nn \g_testb_intarray { 1 } }
+    \TYPE { \__kernel_intarray_item:Nn \g_testb_intarray { 15 } }
+    \TYPE { \__kernel_intarray_item:Nn \g_testb_intarray { 16 } }
+    \TYPE { \__kernel_intarray_item:Nn \g_testb_intarray { 17 } }
+    \__kernel_intarray_gset:Nnn \g_testb_intarray { 17 } { 1234567 }
+    \TYPE { \__kernel_intarray_item:Nn \g_testb_intarray { 17 } }
+    \intarray_new:Nn \g_testc_intarray { -1 }
+    \__kernel_intarray_gset:Nnn \g_testb_intarray { 18 } { 12345678 }
+    \TYPE { \__kernel_intarray_item:Nn \g_testb_intarray { 18 } }
+  }
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\cs_if_exist:NT \g__intarray_font_int {
+  \int_gadd:Nn \g__intarray_font_int { 100000 } % to make sure nothing is suppressed accidentally by scaling the font.
+}
+\TEST { Any~stray~non-zero? }
+  {
+    \intarray_new:Nn \g_testd_intarray { 10 }
+    \int_step_inline:nn { \intarray_count:N \g_testd_intarray }
+      { \int_compare:nNnF { \intarray_item:Nn \g_testd_intarray {#1} } = 0 { \TYPE {#1} } }
+  }
+
+\TEST { Zeroing }
+  {
+    \intarray_gset:Nnn \g_testd_intarray { 3 } { 24 }
+    \intarray_gset:Nnn \g_testd_intarray { 8 } { 28 }
+    \intarray_log:N \g_testd_intarray
+    \TYPE { \intarray_item:Nn \g_testd_intarray { 3 } }
+    \intarray_gzero:N \g_testd_intarray
+    \intarray_gset:Nnn \g_testd_intarray { 8 } { 20 }
+    \intarray_show:N \g_testd_intarray
+    \TYPE { \intarray_item:Nn \g_testd_intarray { 3 } }
+  }
+
+\TEST { Const }
+  {
+    \intarray_const_from_clist:Nn \c_teste_intarray
+      { 3 + 4 , ~ { -1+`, } , , - \c_max_int / 2 , \c_max_int / 2 }
+    \intarray_log:N \c_teste_intarray
+  }
+
+\END

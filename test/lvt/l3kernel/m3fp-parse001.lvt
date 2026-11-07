@@ -1,0 +1,149 @@
+%
+% Copyright (C) The LaTeX Project
+%
+
+\documentclass{minimal}
+\input{regression-test}
+
+\ExplSyntaxOn
+\debug_on:n { check-declarations , deprecation , log-functions }
+\ExplSyntaxOff
+
+\begin{document}
+\START
+\AUTHOR{Bruno Le Floch}
+\ExplSyntaxOn
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\TESTEXP { Arithmetic }
+  {
+    \fp_to_tl:n { 2 + 3 * 4 }\NEWLINE
+    \fp_to_tl:n { ( 2 + 3 ) * 4 } \NEWLINE
+    \fp_to_tl:n { 1.1e-2 + 2e3*(3 - 2e1 + 5.023e3/.2)/2. - ((9)*2+3/5) }
+  }
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\TESTEXP { Unary~ minus }
+  {
+    \fp_to_tl:n { - + - - 2 + 3 * 4 }\NEWLINE
+    \fp_to_tl:n { - ( - ( ( ( - 2 ) + - 3 ) ) * 4 ) } \NEWLINE
+    \fp_to_tl:n { 1.1e-2 + 2e3 * -(3-2e1 + 5.023e3/-.2)/2. - ((-9)*2+3/5) }
+  }
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\TESTEXP { Special~ values }
+  {
+    \fp_to_tl:n {inf} \NEWLINE
+    \fp_to_tl:n {inf*1+inf} \NEWLINE
+    \fp_to_tl:n {nan-3*nan} \NEWLINE
+  }
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\TESTEXP { Functions }
+  {
+    \fp_to_tl:n {ln 3 + 4 } \NEWLINE
+    \fp_to_tl:n {-ln(3)+ 4 } \NEWLINE
+    \fp_to_tl:n {ln(ln(3))} \NEWLINE
+  }
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\TESTEXP { Various~errors }
+  {
+    \fp_to_tl:n { skjdhf (2) } \NEWLINE
+    \fp_to_tl:n { 1 ( } \NEWLINE
+    \fp_to_tl:n { } \NEWLINE
+    \fp_to_tl:n { ) } \NEWLINE
+    \fp_to_tl:n { 1.2.3 } \NEWLINE
+    \fp_to_tl:n { (2+3)(4+5) } \NEWLINE
+  }
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\TESTEXP { More~errors }
+  {
+    \fp_to_tl:n { * } \NEWLINE
+    \fp_to_tl:n { / 1 } \NEWLINE
+    \fp_to_tl:n { 1 *=? 2} \NEWLINE
+    \fp_to_tl:n { e. } \NEWLINE
+    \fp_to_tl:n { 1 + \relax - \use:c { l_undefined_int } * 2 } \NEWLINE
+  }
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\TESTEXP { Ignoring~unknown~symbols }
+  {
+    \fp_to_tl:n { 1@2 } \NEWLINE
+    \fp_to_tl:n { 1#@$';.3 } \NEWLINE %$
+    \fp_to_tl:n { 1 " 2} \NEWLINE
+    \fp_to_tl:n { 1 [] 3 } \NEWLINE
+  }
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\TESTEXP { More~special~values }
+  {
+    \fp_to_tl:n { pi } \NEWLINE
+    \fp_to_tl:n { 1/deg } \NEWLINE
+    \fp_to_tl:n { deg } \NEWLINE
+    \fp_to_tl:n { true } \NEWLINE
+    \fp_to_tl:n { false } \NEWLINE
+    \fp_to_tl:n { em } \NEWLINE
+    \fp_to_tl:n { ex } \NEWLINE
+    \fp_to_tl:n { in } \NEWLINE
+    \fp_to_tl:n { pt } \NEWLINE
+    \fp_to_tl:n { pc } \NEWLINE
+    \fp_to_tl:n { cm } \NEWLINE
+    \fp_to_tl:n { mm } \NEWLINE
+    \fp_to_tl:n { dd } \NEWLINE
+    \fp_to_tl:n { cc } \NEWLINE
+    \fp_to_tl:n { nd } \NEWLINE
+    \fp_to_tl:n { nc } \NEWLINE
+    \fp_to_tl:n { bp } \NEWLINE
+    \fp_to_tl:n { sp } \NEWLINE
+  }
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\TESTEXP { Exponent~and~minus }
+  {
+    \fp_to_tl:n { -2^3 } \NEWLINE
+    \fp_to_tl:n { -2**3 } \NEWLINE
+    \fp_to_tl:n { -2**-3*4 } \NEWLINE
+    \fp_to_tl:n { -2**-(3*4)*5 } \NEWLINE
+    \fp_to_tl:n { (-2**-(3*4))*5 } \NEWLINE
+    \fp_to_tl:n { (-2)**-(3*4)*5 } \NEWLINE
+    \fp_to_tl:n { 2^2^4 } \NEWLINE
+    \fp_to_tl:n { 3^-2^4 } \NEWLINE
+    \fp_to_tl:n { 3^(-2)^4 } \NEWLINE
+    \fp_to_tl:n { 4^-2^3 } \NEWLINE
+    \fp_to_tl:n { -3^-2^-4 } \NEWLINE
+  }
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\dim_set:Nn \l_tmpa_dim { 1in }
+\TESTEXP { Juxtaposition~and~precedence }
+  {
+    \fp_to_tl:n { in , mm } \NEWLINE
+    \fp_to_tl:n { sin 2 pi } \NEWLINE
+    \fp_to_tl:n { sin 2 \c_pi_fp } \NEWLINE
+    \fp_to_tl:n { round 2.2 \l_tmpa_dim (pi) } \NEWLINE
+    \fp_to_tl:n { 2 ^ 2 max(3, 4) } \NEWLINE
+    \fp_to_tl:n { 2 / 4 (5 - 1) } \NEWLINE
+    \fp_to_tl:n { 1 / 2 pi } \NEWLINE
+    \fp_to_tl:n { 1 / 2 (pi) } \NEWLINE
+    \fp_to_tl:n { 1 / (2) pi } \NEWLINE
+    \fp_to_tl:n { 1 / (2) (pi) } \NEWLINE
+    \fp_to_tl:n { 1 / 2 in } \NEWLINE
+    \fp_to_tl:n { 1 / 2 (in) } \NEWLINE
+    \fp_to_tl:n { 1 / (2) in } \NEWLINE
+    \fp_to_tl:n { 1 / (2) (in) } \NEWLINE
+    \fp_to_tl:n { 1 / 2 pi (pi + pi) } \NEWLINE
+    \fp_to_tl:n { 1 / () pi^(2,) } \NEWLINE
+  }
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\int_set:Nn \l_tmpa_int { 3 }
+\TESTEXP { Exponent~e/E }
+  {
+    \fp_to_tl:n { 1E-3 + 3.4e-1 } \NEWLINE
+    \fp_to_tl:n { \l_tmpa_int E \l_tmpa_int + 1 e -\l_tmpa_int }
+  }
+
+\END

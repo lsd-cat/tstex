@@ -1,0 +1,141 @@
+%
+% Copyright (C) The LaTeX Project
+%
+
+\documentclass{minimal}
+\input{regression-test}
+\ExplSyntaxOn
+\debug_on:n { check-declarations , deprecation , log-functions }
+\ExplSyntaxOff
+
+\begin{document}
+
+\START
+\AUTHOR{Will Robertson}
+\ExplSyntaxOn
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\TEST{Vertical~and~horizontal~mode~(expect~YES~NO~NO~YES)}{
+  \par
+  \mode_if_vertical:TF   { \YES   }{ \ERROR }
+  \mode_if_horizontal:TF { \ERROR }{ \NO    }
+  \par
+  hello
+  \mode_if_vertical:TF   { \ERROR }{ \NO    }
+  \mode_if_horizontal:TF { \YES   }{ \ERROR }
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\TEST{Inner~mode~(expect~YES~YES~YES~YES)}{
+  \hbox:n{
+    \mode_if_horizontal:TF { \YES }{ \ERROR }
+    \mode_if_inner:TF      { \YES }{ \ERROR }
+  }
+  \vbox:n{
+    \mode_if_vertical:TF { \YES }{ \ERROR }
+    \mode_if_inner:TF    { \YES }{ \ERROR }
+  }
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\TESTEXP{Replicate}{
+  \exp_args:No \exp_not:o { \prg_replicate:nn{1}{YES} }        \NEWLINE
+  [ \exp_args:No \exp_not:o { \prg_replicate:nn{0}{\ERROR} } ] \NEWLINE
+  \exp_args:No \exp_not:o { \prg_replicate:nn{7}{YES} }        \NEWLINE
+  \str_if_eq:eeTF
+    { \exp_args:No \exp_not:o { \prg_replicate:nn {1234} {x} } }
+    {
+      \exp_args:No \exp_not:o { \prg_replicate:nn { 526} {x} }
+      \exp_args:No \exp_not:o { \prg_replicate:nn { 708} {x} }
+    }
+    { \TRUE } { \ERROR }
+}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\TESTEXP{Replication~negative~FAIL}{
+  \prg_replicate:nn{-1}{\ERROR}
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\OMIT
+\int_new:N \cntr
+\TIMO
+
+\TEST{While~loops}{
+  \int_set:Nn \cntr {0}
+  \bool_while_do:nn {
+    \int_compare_p:nNn \cntr < 5
+  } {
+    \int_incr:N \cntr
+    \TYPE{ \int_use:N \cntr }
+  }
+  \SEPARATOR
+  \int_set:Nn \cntr {0}
+  \bool_do_while:nn {
+    \int_compare_p:nNn \cntr < 5
+  } {
+    \int_incr:N \cntr
+    \TYPE{ \int_use:N \cntr }
+  }
+}
+
+\TEST{While~loops~false~to~begin}{
+  \int_set:Nn \cntr {5}
+  \TYPE{~}
+  \bool_while_do:nn {
+    \int_compare_p:nNn \cntr < 5
+  } {
+    \int_incr:N \cntr
+    \TYPE{ \int_use:N \cntr }
+  }
+  \SEPARATOR
+  \int_set:Nn \cntr {5}
+  \bool_do_while:nn {
+    \int_compare_p:nNn \cntr < 5
+  } {
+    \int_incr:N \cntr
+    \TYPE{ \int_use:N \cntr }
+  }
+}
+
+\TEST{Until~loops}{
+  \int_set:Nn \cntr {0}
+  \bool_until_do:nn {
+    \int_compare_p:nNn \cntr > 5
+  } {
+    \int_incr:N \cntr
+    \TYPE{ \int_use:N \cntr }
+  }
+  \SEPARATOR
+  \int_set:Nn \cntr {0}
+  \bool_do_until:nn {
+    \int_compare_p:nNn \cntr > 5
+  } {
+    \int_incr:N \cntr
+    \TYPE{ \int_use:N \cntr }
+  }
+}
+
+\TEST{Until~loops~false~to~begin}{
+  \int_set:Nn \cntr {6}
+  \TYPE{~}
+  \bool_until_do:nn {
+    \int_compare_p:nNn \cntr > 5
+  } {
+    \int_incr:N \cntr
+    \TYPE{ \int_use:N \cntr }
+  }
+  \SEPARATOR
+  \int_set:Nn \cntr {6}
+  \bool_do_until:nn {
+    \int_compare_p:nNn \cntr > 5
+  } {
+    \int_incr:N \cntr
+    \TYPE{ \int_use:N \cntr }
+  }
+}
+
+\END

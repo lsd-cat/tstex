@@ -1,0 +1,93 @@
+%
+% Copyright (C) The LaTeX Project
+%
+\documentclass{minimal}
+\input{regression-test}
+\ExplSyntaxOn
+\debug_on:n { check-declarations , deprecation , log-functions }
+\ExplSyntaxOff
+
+\begin{document}
+
+\START
+\AUTHOR{Bruno Le Floch}
+\ExplSyntaxOn
+
+\OMIT
+\cs_set_protected:Npn \test:f #1
+  { \TYPE { | \exp_not:f {#1} | } }
+\TIMO
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\TEST{seq_count}{
+  \seq_clear_new:N \l_foo_seq
+  \test:f { \seq_count:N \l_foo_seq }
+  \tl_map_inline:nn {a{b{cd}~}e\fg} { \seq_push:Nn \l_foo_seq {#1} }
+  \test:f { \seq_count:N \l_foo_seq }
+  \cs_set_protected:Npn \test_aux:n #1
+    {
+      \seq_clear:N \l_foo_seq
+      \int_step_inline:nn {#1}
+        { \seq_put_right:Nn \l_foo_seq {##1} }
+      \int_compare:nNnF { \seq_count:N \l_foo_seq } = {#1} { \ERROR }
+    }
+  \int_step_function:nnN { 0 } { 17 } \test_aux:n
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\TEST{seq_item:Nn}{
+  \seq_clear_new:N \l_foo_seq
+  \test:f { \seq_item:Nn \l_foo_seq {0} }
+  \test:f { \seq_item:Nn \l_foo_seq {1} }
+  \test:f { \seq_item:Nn \l_foo_seq {-1} }
+  \tl_map_inline:nn {a{b{cd}~}\scan_stop:} { \seq_push:Nn \l_foo_seq {#1} }
+  \test:f { \seq_item:Nn \l_foo_seq {0} }
+  \test:f { \seq_item:Nn \l_foo_seq {1} }
+  \test:f { \seq_item:Nn \l_foo_seq {2} }
+  \test:f { \seq_item:Nn \l_foo_seq {3} }
+  \test:f { \seq_item:Nn \l_foo_seq {-1} }
+  \test:f { \seq_item:Nn \l_foo_seq {-2} }
+  \test:f { \seq_item:Nn \l_foo_seq {-3} }
+  \test:f { \seq_item:Nn \l_foo_seq {-4} }
+}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\TEST { seq_set_item:Nnn }
+  {
+    \seq_clear:N \l_tmpa_seq
+    \seq_set_item:Nnn \l_tmpa_seq { 0 } { a }
+    \seq_set_item:cnn { l_tmpa_seq } { 1 } { a }
+    \seq_set_item:Nnn \l_tmpa_seq { 1+2-4 } { a }
+    \seq_set_item:cnnTF { l_tmpa_seq } { 0 } { a } { \TRUE } { \FALSE }
+    \seq_set_item:NnnTF \l_tmpa_seq { 12+3-4 } { a } { \TRUE } { \FALSE }
+    \seq_set_item:cnnTF { l_tmpa_seq } { -11 } { a } { \TRUE } { \FALSE }
+    %
+    \SEPARATOR
+    \seq_put_right:Nn \l_tmpa_seq { \AAA }
+    \seq_set_item:cnn { l_tmpa_seq } { 0 } { a } \seq_show:N \l_tmpa_seq
+    \group_begin:
+      \seq_set_item:Nnn \l_tmpa_seq { 1 } { a } \seq_show:N \l_tmpa_seq
+      \seq_set_item:cnn { l_tmpa_seq } { 2 } { a } \seq_show:N \l_tmpa_seq
+      \seq_set_item:Nnn \l_tmpa_seq { 1+2-4 } { \xy } \seq_show:N \l_tmpa_seq
+    \group_end:
+    \seq_set_item:cnnTF { l_tmpa_seq } { 0 } { # } { \TRUE } { \FALSE } \seq_show:N \l_tmpa_seq
+    \seq_set_item:NnnTF \l_tmpa_seq { 2+3-4 } { { \aa } } { \TRUE } { \FALSE } \seq_show:N \l_tmpa_seq
+    \seq_set_item:cnnTF { l_tmpa_seq } { -1 } { } { \TRUE } { \FALSE } \seq_show:N \l_tmpa_seq
+    %
+    \SEPARATOR
+    \seq_gset_split:Nnn \g_tmpa_seq { } { { \AAA } { \B\B } { { } } { # } }
+    \seq_gset_item:cnn { g_tmpa_seq } { 0 } { a } \seq_show:N \g_tmpa_seq
+    \seq_gset_item:Nnn \g_tmpa_seq { 1 } { \aaa } \seq_show:N \g_tmpa_seq
+    \group_begin:
+      \seq_gset_item:cnn { g_tmpa_seq } { 1+2-5 } { \ccc } \seq_show:N \g_tmpa_seq
+      \seq_gset_item:NnnTF \g_tmpa_seq { 0 } { a } { \TRUE } { \FALSE } \seq_show:N \g_tmpa_seq
+      \seq_gset_item:cnnTF { g_tmpa_seq } { -1 } { #\par } { \TRUE } { \FALSE } \seq_show:N \g_tmpa_seq
+    \group_end:
+    \seq_gset_item:NnnTF \g_tmpa_seq { 5 } { #\par } { \TRUE } { \FALSE } \seq_show:N \g_tmpa_seq
+  }
+
+\END

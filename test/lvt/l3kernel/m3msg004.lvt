@@ -1,0 +1,59 @@
+%
+% Copyright (C) The LaTeX Project
+%
+
+\documentclass{minimal}
+\input{regression-test}
+
+\ExplSyntaxOn
+\debug_on:n { check-declarations , deprecation , log-functions }
+\ExplSyntaxOff
+
+\begin{document}
+\START
+\AUTHOR{Bruno Le Floch}
+\ExplSyntaxOn
+
+\OMIT
+\msg_new:nnnn { foo } { use-args }
+  { (#1)~(#2)~(#3)~(#4) }
+  { [#1]~[#2]~[#3]~[#4] }
+\TIMO
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\TEST { Various~classes }
+  {
+    % Redefine \__msg_fatal_exit: and \tex_endinput:D to prevent
+    % 'fatal' and 'critical' errors from doing their thing.
+    \cs_set_protected:Npn \__msg_fatal_exit: { \TYPE { tex_end:D } }
+    \cs_set_protected:Npn \tex_endinput:D { \TYPE { tex_endinput:D } }
+    \tl_map_inline:nn
+      { {fatal} {critical} {error} {warning} {info} {log} {none} }
+      {
+        \TYPE {|msg_#1:nnnnnn~and~msg_#1:nneeee|}
+        \use:c { msg_#1:nnnnnn } { foo } { use-args }
+          { \exp_not:n { \exp_not:N \c_empty_tl } }
+          { \exp_not:N \c_empty_tl }
+          { \c_empty_tl }
+          { }
+        \use:c { msg_#1:nneeee } { foo } { use-args }
+          { \exp_not:n { \exp_not:N \c_empty_tl } }
+          { \exp_not:N \c_empty_tl }
+          { \c_empty_tl }
+          { }
+      }
+    \msg_expandable_error:nnnnnn { foo } { use-args }
+      { \exp_not:n { \exp_not:N \c_empty_tl } }
+      { \exp_not:N \c_empty_tl }
+      { \c_empty_tl }
+      { }
+    \msg_expandable_error:nnffff { foo } { use-args }
+      { \exp_not:n { \exp_not:N \c_empty_tl } }
+      { \exp_not:N \c_empty_tl }
+      { \c_empty_tl }
+      { }
+  }
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\END
+

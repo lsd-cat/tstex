@@ -1,0 +1,79 @@
+\documentclass{article}
+
+\input{regression-test}
+
+
+\START
+
+\DebugSocketsOn
+
+{ \NewSocket{foo}{0}  } % fail
+
+\NewSocket{foo}{0}      % success
+
+\NewSocket{foo}{0}      % fail
+
+\AssignSocketPlug{foo}{undefined} %fail
+
+\NewSocketPlug{foo}{default}{\typeout{A socket plug}}
+
+\NewSocketPlug{foo}{default}{\typeout{A socket plug redefined}} % fail
+
+\ExplSyntaxOn
+\socket_set_plug:nnn{foo}{noop}{\typeout{modified~ noop}} %success
+\ExplSyntaxOff
+
+\typeout{----------------------}
+\ShowSocket {foo}
+
+\AssignSocketPlug{foo}{default} %success
+
+\typeout{----------------------}
+\UseSocket{foo}
+
+\ExplSyntaxOn
+\typeout{----------------------}
+\socket_get_plug:nN{foo}\l_tmpa_tl
+\typeout{assigned~plug:~\l_tmpa_tl}
+\typeout{----------------------}
+
+\socket_get_plug:nN{unknown}\l_tmpa_tl
+\typeout{assigned~plug~of~unknown~socket:~\l_tmpa_tl}
+\typeout{----------------------}
+\ExplSyntaxOff
+
+\begingroup
+\AssignSocketPlug{foo}{noop}  %success
+\typeout{----------------------}
+\UseSocket{foo}
+\endgroup
+
+\typeout{----------------------}
+\UseSocket{foo}
+
+
+\DebugSocketsOff
+
+\typeout{----------------------}
+\UseSocket{foo}
+
+
+\typeout{----------------------}
+\IfSocketExistsTF{foo}{\typeout{should be true}}{\typeout{false}}
+\IfSocketExistsTF{bar}{\typeout{true}}{\typeout{should be false}}
+\IfSocketExistsT{foo}{\typeout{true}}
+\IfSocketExistsF{foo}{\typeout{false}}
+
+\typeout{----------------------}
+\IfSocketPlugExistsTF{foo}{default}{\typeout{should be true}}{\typeout{false}}
+\IfSocketPlugExistsTF{foo}{undefined}{\typeout{true}}{\typeout{should be false}}
+\IfSocketPlugExistsT{foo}{default}{\typeout{true}}
+\IfSocketPlugExistsF{foo}{default}{\typeout{false}}
+
+\typeout{----------------------}
+\IfSocketPlugAssignedTF{foo}{default}{\typeout{should be true}}{\typeout{false}}
+\IfSocketPlugAssignedTF{foo}{noop}{\typeout{true}}{\typeout{should be false}}
+\IfSocketPlugAssignedT{foo}{default}{\typeout{true}}
+\IfSocketPlugAssignedF{foo}{default}{\typeout{false}}
+
+\END

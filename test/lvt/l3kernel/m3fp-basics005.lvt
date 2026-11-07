@@ -1,0 +1,59 @@
+%
+% Copyright (C) The LaTeX Project
+%
+
+\documentclass{minimal}
+\input{regression-test}
+
+\ExplSyntaxOn
+\debug_on:n { check-declarations , deprecation , log-functions }
+\ExplSyntaxOff
+
+\begin{document}
+\START
+\AUTHOR{Bruno Le Floch}
+\ExplSyntaxOn
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\TEST { sqrt() }
+  {
+    \TYPE { \fp_to_tl:n { sqrt(-0) } }
+    \TYPE { \fp_to_tl:n { sqrt(+0) } }
+    \TYPE { \fp_to_tl:n { sqrt(-1) } }
+    \TYPE { \fp_to_tl:n { sqrt(+1) } }
+    \TYPE { \fp_to_tl:n { sqrt(-.999999999999e10000) } }
+    \TYPE { \fp_to_tl:n { sqrt(+.9999999999999999e10000) } }
+    \TYPE { \fp_to_tl:n { sqrt(-.1e-10000) } }
+    \TYPE { \fp_to_tl:n { sqrt(+.1e-10000) } }
+    \TYPE { \fp_to_tl:n { sqrt(inf) } }
+    \TYPE { \fp_to_tl:n { sqrt(-inf) } }
+    \TYPE { \fp_to_tl:n { sqrt(nan) } }
+    \TYPE { \fp_to_tl:n { sqrt(8.3746251^2) } }
+    \TYPE { \fp_to_tl:n { sqrt( 1.765432987654 ) } }
+    \int_step_inline:nnnn { 10 } { 2 } { 100 }
+      { \TYPE { \fp_to_tl:n { sqrt( #1.765432987654 ) } } }
+    \int_step_inline:nnnn { 10 } { 2 } { 100 }
+      { \TYPE { \fp_to_tl:n { sqrt( #1 7.65432987654 ) } } }
+  }
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\TEST { logb() }
+  {
+    \TYPE { \fp_to_tl:n { logb(-0) } }
+    \TYPE { \fp_to_tl:n { logb(+0) } }
+    \TYPE { \fp_to_tl:n { logb(-1) } }
+    \TYPE { \fp_to_tl:n { logb(+1) } }
+    \TYPE { \fp_to_tl:n { logb(-.9999999999999999e10000) } }
+    \TYPE { \fp_to_tl:n { logb(+.9999999999999999e10000) } }
+    \TYPE { \fp_to_tl:n { logb(-.1e-10000) } }
+    \TYPE { \fp_to_tl:n { logb(+.1e-10000) } }
+    \TYPE { \fp_to_tl:n { logb(inf) } }
+    \TYPE { \fp_to_tl:n { logb(-inf) } }
+    \TYPE { \fp_to_tl:n { logb(nan) } }
+    \TYPE { \fp_to_tl:n { logb(8.3746251^2) } }
+    \TYPE { \fp_to_tl:n { logb( 1.765432987654 ) } }
+    \TYPE { \fp_to_tl:n { round(1234.567, 2 - logb(1234.567)) } }
+  }
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\END

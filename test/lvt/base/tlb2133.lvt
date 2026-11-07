@@ -1,0 +1,68 @@
+% Test file for LaTeX2e PR/2133
+
+\documentclass{article}
+
+% Input the test macros for latex 2e
+\input{test2e}
+
+\AUTHOR{Chris}
+
+% Declare the format used on the original run, as printed by
+% LaTeX.
+%
+\FORMAT{LaTeX2e<1998/06/01>}
+
+ % Removed as it meeses up all accents!
+ % \usepackage[debugshow]{tracefnt}
+
+% Everything before this is ignored by the test system.
+\START
+
+
+ 
+\begin{document}
+ 
+\fontencoding{T1}\selectfont
+ 
+\def\encodingdefault{T1}
+ 
+ % This simulates setting stuff in an hbox for each accent.
+ % 
+ \setbox0 \hbox {\normalfont h \bf l \sl l }
+ \setbox0 \hbox {\large l }
+ 
+ % OK:
+ X sel \"{\selectfont l} (ok)
+ 
+ % BAD (ignorespaces):
+ X ig \"{\ignorespaces i} (now ok)
+ 
+  % OK:  (ignorespaces in usefont in normalfont):
+ X new \"{\normalfont n} (ok) (now ok)
+ 
+ % BAD (Why ???):
+ X large \"{\large l}  (still bad)
+ 
+ % OK:
+ X sl \"{\sl l} (ok)
+ 
+ % BAD (group, maybe fixable?):
+ X tsl \"{\textsl{l}}
+ 
+ % OK:
+ X nsl \"{\normalfont\fontshape{sl}\selectfont l} (ok)
+ 
+ % OK:
+ X bx \"{\fontseries{bx}\selectfont l} (ok)
+ 
+ % OK:
+ X bf \"{\bf l} (ok)
+ 
+ % BAD (group, maybe fixable?):
+ X tbf \"{\textbf{l}}
+ 
+ \showoutput
+ 
+ 
+ \end{document}
+

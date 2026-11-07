@@ -1,0 +1,291 @@
+%
+% Copyright (C) The LaTeX Project
+%
+
+\documentclass{minimal}
+\input{regression-test}
+
+\ExplSyntaxOn
+\debug_on:n { check-declarations , deprecation , log-functions }
+\ExplSyntaxOff
+
+\begin{document}
+\START
+\AUTHOR{Joseph Wright}
+\ExplSyntaxOn
+
+\OMIT
+\tl_new:N  \filea
+\tl_new:N  \fileb
+\tl_set:Nn \filea { filetest.txt }
+\tl_set:Nn \fileb { NotAFile.xxx.yyy.zzz }
+\tl_new:N \l_A_tl
+\tl_new:N \l_B_tl
+\tl_new:N \l_C_tl
+\TIMO
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\TEST { If~file~exists~(expect~F/F/T/T/T/T/F/F/T/T) }
+  {
+    \file_if_exist:nF {filetest.txt}{\FALSE}
+    \file_if_exist:nF {\filea}{\FALSE}
+    \file_if_exist:nF {NotAFile.xxx.yyy.zzz}{\FALSE}
+    \file_if_exist:nF {\fileb}{\FALSE}
+    \file_if_exist:nT {filetest.txt}{\TRUE}
+    \file_if_exist:nT {\filea}{\TRUE}
+    \file_if_exist:nT {NotAFile.xxx.yyy.zzz}{\TRUE}
+    \file_if_exist:nT {\fileb}{\TRUE}
+    \file_if_exist:nTF {filetest.txt}{\TRUE}{\FALSE}
+    \file_if_exist:nTF {\filea}{\TRUE}{\FALSE}
+    \file_if_exist:nTF {NotAFile.xxx.yyy.zzz}{\TRUE}{\FALSE}
+    \file_if_exist:nTF {\fileb}{\TRUE}{\FALSE}
+    \file_if_exist:nTF {file~test.txt}{\TRUE}{\FALSE}
+    \file_if_exist:nTF {"file~test.txt"}{\TRUE}{\FALSE}
+  }
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\TESTEXP { The~full~name~of~files~by~expansion }
+  {
+    \file_full_name:n { filetest.txt } \NEWLINE
+    \file_full_name:n { \filea } \NEWLINE
+    \file_full_name:n { NotAFile.xxx.yyy.zzz } \NEWLINE
+  }
+
+\TEST { Find~files~in~the~search~path }
+  {
+    \group_begin:
+      \seq_put_right:Nn \l_file_search_path_seq { ./testpath }
+      \TYPE { l3:~\file_full_name:n { infolder.txt } }
+    \group_end:
+    \group_begin:
+      \cs_set:cpn { input@path } { { ./testpath/ } }
+      \TYPE { 2e:~\file_full_name:n { infolder.txt } }
+    \group_end:
+    \group_begin:
+      \cs_set:cpn { input@path } { { ./testpath } }
+      \TYPE { Slashes:~\file_full_name:n { infolder.txt } }
+    \group_end:
+    \group_begin:
+      \tl_set:Nn \l_tmpa_tl { ./testpath }
+      \seq_put_right:Nn \l_file_search_path_seq { \l_tmpa_tl }
+      \TYPE { l3~expansion:~\file_full_name:n { infolder.txt } }
+    \group_end:
+    \group_begin:
+      \tl_set:Nn \l_tmpa_tl { ./testpath/ }
+      \cs_set:cpn { input@path } { { \l_tmpa_tl } }
+      \TYPE { 2e~expansion:~\file_full_name:n { infolder.txt } }
+    \group_end:
+  }
+
+\TEST { Getting~the~full~name~of~files }
+  {
+    \file_get_full_name:nN { filetest.txt } \l_A_tl
+    \tl_log:N \l_A_tl
+    \file_get_full_name:nN { \filea } \l_A_tl
+    \tl_log:N \l_A_tl
+    \file_get_full_name:nN { NotAFile.xxx.yyy.zzz } \l_A_tl
+    \tl_log:N \l_A_tl
+    \file_get_full_name:nN { filetest } \l_A_tl
+    \tl_log:N \l_A_tl
+    \file_get_full_name:nN { filetest-noname } \l_A_tl
+    \tl_log:N \l_A_tl
+    \file_get_full_name:nN { filetest-tex } \l_A_tl
+    \tl_log:N \l_A_tl
+    \file_get_full_name:nN { filetest-tex-2.tex } \l_A_tl
+    \tl_log:N \l_A_tl
+    \file_get_full_name:nN { filetest-tex-2 } \l_A_tl
+    \tl_log:N \l_A_tl
+  }
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\TEST { Loading~a~file }
+  {
+    \file_input:n { filetest.txt }
+    \file_input:n { \filea }
+    \file_input:n { NotAFile.xxx.yyy.zzz }
+    \file_input:n { \fileb }
+  }
+
+\TEST { Loading~a~file~raw }
+  {
+    \file_input_raw:n { filetest.txt }
+    \file_input_raw:n { \filea }
+    \file_input_raw:n { NotAFile.xxx.yyy.zzz }
+    \file_input_raw:n { \fileb }
+  }
+
+\TEST { Loading~a~file~conditionally }
+  {
+    \file_if_exist_input:n   { filetest.txt }
+    \file_if_exist_input:n   { NotAFile.xxx.yyy.zzz }
+    \file_if_exist_input:nF  { filetest.txt }         \ERROR
+    \file_if_exist_input:nF  { NotAFile.xxx.yyy.zzz } \FALSE
+  }
+
+\TEST { Ending~file_input }
+  {
+    \vbox_set:Nn \l_tmpa_box
+      { \file_input:n { filetest-endinput.txt } }
+    \box_show:N \l_tmpa_box
+  }
+
+\TEST { File~name~parsing }
+  {
+    \OMIT
+      \str_new:N \l_tmpc_str
+      \cs_set_protected:Npn \test:n #1
+        {
+          \file_parse_full_name:nNNN {#1} \l_tmpa_str \l_tmpb_str \l_tmpc_str
+          \TYPE
+            {
+              Path:~" \l_tmpa_str ",~
+              Name:~" \l_tmpb_str ",~
+              Ext:~ " \l_tmpc_str "
+            }
+        }
+    \TIMO
+    \test:n { }
+    \test:n { ~ }
+    \test:n { . }
+    \test:n { / }
+    \test:n { test }
+    \test:n { test.tex }
+    \test:n { "test.tex" }
+    \test:n { test.file.tex }
+    \test:n { test~file.tex }
+    \test:n { ~test~file.tex }
+    \test:n { "~test~file.tex" }
+    \test:n { bar/test.tex }
+    \test:n { bar/baz/test.tex }
+    \test:n { bar/baz~bob/test.tex }
+    \test:n { /test.tex }
+    \test:n { /baz/ }
+    \test:n { /bar/baz~bob/test.tex }
+    \test:n { "bar/baz~bob/test.tex" }
+    \test:n { //baz/...a.b. }
+    \test:n { "//." }
+    \test:n { "//~" }
+  }
+
+\TEST { Expandable~file~name~parsing }
+  {
+    \OMIT
+      \str_new:N \l_tmpc_str
+      \cs_set_protected:Npn \test:n #1
+        {
+          \use:e 
+            {
+              \exp_not:N \test:nnn
+                \file_parse_full_name:n {#1}
+            }
+        }
+      \cs_set_protected:Npn \test:nnn #1 #2 #3
+        { \TYPE { Path:~"#1",~ Name:~"#2",~ Ext:~ "#3" } }
+    \TIMO
+    \test:n { }
+    \test:n { ~ }
+    \test:n { . }
+    \test:n { / }
+    \test:n { test }
+    \test:n { test.tex }
+    \test:n { "test.tex" }
+    \test:n { test.file.tex }
+    \test:n { test~file.tex }
+    \test:n { ~test~file.tex }
+    \test:n { "~test~file.tex" }
+    \test:n { bar/test.tex }
+    \test:n { bar/baz/test.tex }
+    \test:n { bar/baz~bob/test.tex }
+    \test:n { /test.tex }
+    \test:n { /baz/ }
+    \test:n { /bar/baz~bob/test.tex }
+    \test:n { "bar/baz~bob/test.tex" }
+    \test:n { //baz/...a.b. }
+    \test:n { "//." }
+    \test:n { "//~" }
+  }
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Filter out lebackend-<driver>.def to avoid multiple test logs
+\cs_set:Npn \test_backend:w #1 - #2 . #3 \s_stop
+  {
+    #1 \str_if_eq:nnTF {#1} { l3backend }
+         { - <...> . \test_clean:w #3 \s_stop }
+         { \tl_if_empty:nF {#2} { - \test_clean:w #2 . #3 . \s_stop } }
+  }
+\cs_set:Npn \test_clean:w #1 -. #2 \s_stop {#1}
+\seq_gset_map:NNn \g__file_record_seq \g__file_record_seq
+  { \test_backend:w #1 - . \s_stop }
+\TEST { File~listing }
+  { \file_log_list: }
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\TEST { File~name~sanitizing }
+  {
+    \tl_set:Ne \l_tmpa_tl { \__kernel_file_name_sanitize:n { foo.bar }     } \tl_show:N \l_tmpa_tl
+    \tl_set:Ne \l_tmpa_tl { \__kernel_file_name_sanitize:n { "foo.bar" }   } \tl_show:N \l_tmpa_tl
+    \tl_set:Ne \l_tmpa_tl { \__kernel_file_name_sanitize:n { "foo."bar"" } } \tl_show:N \l_tmpa_tl
+    \tl_set:Ne \l_tmpa_tl { \__kernel_file_name_sanitize:n { "foo."bar" }  } \tl_show:N \l_tmpa_tl
+    \tl_set:Ne \l_tmpa_tl { \__kernel_file_name_sanitize:n { foo~.bar }    } \tl_show:N \l_tmpa_tl
+    \tl_set:Ne \l_tmpa_tl { \__kernel_file_name_sanitize:n { "foo~.bar" }  } \tl_show:N \l_tmpa_tl
+  }
+
+\TEST { File~name~with~invalid~tokens }
+  {
+    \tl_set:Ne \l_tmpa_tl { \__kernel_file_name_sanitize:n { foo \relax bar } } \tl_show:N \l_tmpa_tl
+    \tl_set:Ne \l_tmpa_tl { \__kernel_file_name_sanitize:n { foo \csname baz } } \tl_show:N \l_tmpa_tl
+    \tl_set:Ne \l_tmpa_tl { \__kernel_file_name_sanitize:n { foo \csname bar } } \tl_show:N \l_tmpa_tl
+    \def\bar{bar}
+    \tl_set:Ne \l_tmpa_tl { \__kernel_file_name_sanitize:n { foo \csname bar } } \tl_show:N \l_tmpa_tl
+    \def\bar{\csname baz}
+    \def\baz{baz}
+    \tl_set:Ne \l_tmpa_tl { \__kernel_file_name_sanitize:n { foo \csname bar } } \tl_show:N \l_tmpa_tl
+    % Not really good error here:
+    \tl_set:Ne \l_tmpa_tl { \__kernel_file_name_sanitize:n { foo \endcsname bar } } \tl_show:N \l_tmpa_tl
+  }
+
+\TEST { Getting~file~information }
+  {
+    \file_get_mdfive_hash:nN { filetest-utf8.txt } \l_tmpa_tl
+    \file_get_size:nN { filetest.txt } \l_tmpb_tl
+    % Unix line endings
+    \str_if_eq:VnTF \l_tmpa_tl { 4F918CB10404DD50E3C1B9990FF54D4A }
+      {
+        \int_compare:nNnTF \l_tmpb_tl = { 120 }
+          \TRUE
+          \ERROR
+      }
+      {
+        % Windows line endings
+        \str_if_eq:VnTF \l_tmpa_tl { FA408C34EC7616533C50F8643B7949B6 }
+          {
+            \int_compare:nNnTF \l_tmpb_tl = { 123 }
+              \TRUE
+              \ERROR
+          }
+          { \ERROR }
+      }
+    \str_if_eq:eeTF
+      { \file_hex_dump:nnn { filetest.txt } { 1 } { 10 } }
+      { 5C4578706C53796E7461 }
+      \TRUE
+      \ERROR
+    \str_if_eq:eeTF
+      { \file_hex_dump:nnn { filetest.txt } { -2 } { -1 } }
+      { 784F }
+      \TRUE
+      \ERROR
+    \file_get_mdfive_hash:nN { NotAFile.txt } \l_tmpa_tl
+    \tl_show:N \l_tmpa_tl
+    \file_get_size:nN { NotAFile.txt } \l_tmpa_tl
+    \tl_show:N \l_tmpa_tl
+    \file_get_timestamp:nN { filetest.txt } \l_tmpa_tl
+    \regex_if_match:nVTF
+      { ^D\:\d{14} } \l_tmpa_tl \TRUE \ERROR
+    \file_get_timestamp:nN { NotAFile.txt } \l_tmpa_tl
+    \tl_show:N \l_tmpa_tl
+  }
+
+\END

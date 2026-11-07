@@ -1,0 +1,159 @@
+%
+% Copyright (C) The LaTeX Project
+%
+
+\documentclass{minimal}
+\input{regression-test}
+
+\ExplSyntaxOn
+\debug_on:n { check-declarations , deprecation , log-functions }
+\ExplSyntaxOff
+
+\begin{document}
+\START
+\AUTHOR{Bruno Le Floch}
+\ExplSyntaxOn
+
+\OMIT
+\sys_gset_rand_seed:n { 0 }
+\cs_new:Npn \test:n #1 { \prg_replicate:nn { 5 } { \fp_to_tl:n {#1} \NEWLINE } }
+\cs_new:Npn \test_ii:n #1 { | \prg_replicate:nn { 15 } { #1 | } \NEWLINE }
+\TIMO
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\TESTEXP { Random~floating~point~number }
+  {
+    \test:n { rand() }
+  }
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\TESTEXP { Random~integer }
+  {
+    \test:n { randint(2) }
+    \test:n { randint(-9999 9999 9999 9999, -9999 9999 9999 9998) }
+    \test:n { randint(-10 0000 0000, 10 0000 0000) }
+    \test:n { randint(9.9e15) }
+    \test:n { randint(-9999 9999 9999 9999, 9999 9999 9999 9999) }
+  }
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\TESTEXP { Random~bad~arguments }
+  {
+    \fp_to_tl:n { rand(,) } \NEWLINE
+    \fp_to_tl:n { rand(1,2,3) } \NEWLINE
+    \fp_to_tl:n { rand(nan) } \NEWLINE
+    \fp_to_tl:n { randint() } \NEWLINE
+    \fp_to_tl:n { randint(1) } \NEWLINE
+    \fp_to_tl:n { randint(1,0) } \NEWLINE
+    \fp_to_tl:n { randint(1e16) } \NEWLINE
+    \fp_to_tl:n { randint(9.9e15, 1e16) } \NEWLINE
+    \fp_to_tl:n { randint(-1e16, -1e15) } \NEWLINE
+    \fp_to_tl:n { randint(1,2,3) } \NEWLINE
+    \fp_to_tl:n { randint(nan) } \NEWLINE
+    \fp_to_tl:n { randint(inf) } \NEWLINE
+    \fp_to_tl:n { randint(nan,0) } \NEWLINE
+    \fp_to_tl:n { randint(inf,0) } \NEWLINE
+    \int_rand:nn { 1 } { 0 } \NEWLINE
+    \fp_to_tl:n { rand((1,)) } \NEWLINE
+    \fp_to_tl:n { randint((1,2)) } \NEWLINE
+    \fp_to_tl:n { randint((),()) } \NEWLINE
+  }
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\TESTEXP { Random~integer~in~a~range }
+  {
+    \test_ii:n { \int_rand:nn { -1 } { 1 } }
+    \test_ii:n { \int_rand:nn { -\c_max_int } { -\c_max_int } }
+    \test_ii:n { \int_rand:nn { -\c_max_int } { -\c_max_int + 10 } }
+    \test_ii:n { \int_rand:nn { -\c_max_int } { \c_max_int } }
+  }
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\OMIT
+\tl_set:Nn \l_tmpa_tl { { ~ } ~ { } }
+\tl_set:Nn \l_tmpb_tl { \A # & {~} }
+\TIMO
+\TESTEXP { Random~tl~item }
+  {
+    | \tl_rand_item:n { ~ } | \NEWLINE
+    \test_ii:n { \tl_rand_item:n { \A } }
+    \test_ii:n { \tl_rand_item:n { \A { ~\B } } }
+    \test_ii:n { \tl_rand_item:n { \A { { \B } } ~ \C } }
+    \test_ii:n { \tl_rand_item:N \c_empty_tl }
+    \test_ii:n { \tl_rand_item:N \c_space_tl }
+    \test_ii:n { \tl_rand_item:N \l_tmpa_tl }
+    \test_ii:n { \tl_rand_item:N \l_tmpb_tl }
+  }
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\OMIT
+\clist_set:Nn \l_tmpa_clist { { ~ , } ~ , { } , ~ , }
+\clist_set:Nn \l_tmpb_clist { \A , # , & , \\ , {,} }
+\TIMO
+\TESTEXP { Random~clist~item }
+  {
+    | \clist_rand_item:n { ~ } | \NEWLINE
+    \test_ii:n { \clist_rand_item:n { \A , , ~ , \B } }
+    \test_ii:n { \clist_rand_item:n { { ~ , } ~ , ~ \A , { ~ \B } , { { } } } }
+    \test_ii:n { \clist_rand_item:N \c_empty_clist }
+    \test_ii:n { \clist_rand_item:N \l_tmpa_clist }
+    \test_ii:n { \clist_rand_item:N \l_tmpb_clist }
+  }
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\OMIT
+\seq_set_from_clist:Nn \l_tmpa_seq { { ~ , } ~ , { } }
+\seq_set_from_clist:Nn \l_tmpb_seq { \A , # , & , { { \\ } } , {,} }
+\TIMO
+\TESTEXP { Random~seq~item }
+  {
+    \test_ii:n { \seq_rand_item:N \c_empty_seq }
+    \test_ii:n { \seq_rand_item:N \l_tmpa_seq }
+    \test_ii:n { \seq_rand_item:N \l_tmpb_seq }
+  }
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\TEST { sys~rand~commands }
+  {
+    \cs_set_protected:Npn \test:
+      { \TYPE { \sys_rand_seed: , \int_rand:nn { 1 } { 100 } } }
+    \sys_gset_rand_seed:n { 1 }
+    \test:
+    \group_begin:
+      \sys_gset_rand_seed:n { 0 }
+      \test:
+    \group_end:
+    \test:
+    \sys_gset_rand_seed:n { 1 }
+    \test:
+    \test:
+  }
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\TESTEXP { Random~integer~in~a~range }
+  {
+    \int_rand:n { -1 } \NEWLINE
+    \test_ii:n { \int_rand:n { \c_max_int } }
+    \test_ii:n { \int_rand:n { 1 } }
+    \test_ii:n { \int_rand:n { 11 } }
+  }
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\OMIT
+\intarray_const_from_clist:Nn \c_empty_intarray { }
+\intarray_const_from_clist:Nn \c_test_intarray { 3 , 3 , 3 , 1 }
+\TIMO
+\TESTEXP { Random~intarray~item }
+  {
+    \intarray_rand_item:N \c_empty_intarray \NEWLINE
+    \test_ii:n { \intarray_rand_item:N \c_test_intarray }
+  }
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\TESTEXP { Random~integer~(issue~507) }
+  {
+    \test:n { randint(0,2) }
+  }
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\END

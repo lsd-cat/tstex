@@ -1,0 +1,119 @@
+%
+% Copyright (C) The LaTeX Project
+%
+\documentclass{minimal}
+\input{regression-test}
+\ExplSyntaxOn
+\debug_on:n { check-declarations , deprecation , log-functions }
+\ExplSyntaxOff
+
+\begin{document}
+
+\START
+\AUTHOR{Will Robertson, Bruno Le Floch}
+\ExplSyntaxOn
+
+
+\OMIT % Declarations put register numbers, and those can
+      % change if modules declare more or less variables.
+\prop_clear_new:N \l_tmpa_prop
+\muskip_zero_new:N \l_tmpa_muskip
+\TIMO
+
+
+\TEST { INTEGER }
+  {
+    \int_incr:N \l_tmpa_int
+    \int_show:N \l_tmpa_int
+    \int_show:n { 2 + 3 }
+    \int_show:n { \l_tmpa_int * \l_tmpa_int }
+  }
+
+\TEST { DIMENSION }
+  {
+    \dim_set:Nn \l_tmpa_dim { 1pt }
+    \dim_show:N \l_tmpa_dim
+    \dim_show:n { 2pt + 3pt }
+    \dim_show:n { 2.3 \l_tmpa_dim }
+  }
+
+\TEST { SKIP }
+  {
+    \skip_set:Nn \l_tmpa_skip { 1pt plus 2pt minus 3pt }
+    \skip_show:N \l_tmpa_skip
+    \skip_show:n { 2pt plus 3pt - -2pt minus 4pt }
+    \skip_show:n { 3.4 \l_tmpa_skip }
+  }
+
+\TEST { MUSKIP }
+  {
+    \muskip_set:Nn \l_tmpa_muskip { 1mu plus 2mu minus 3mu }
+    \muskip_show:N \l_tmpa_muskip
+    \muskip_show:n { 2mu plus 3mu - -2mu minus 4mu }
+    \muskip_show:n { 3.4 \l_tmpa_muskip }
+  }
+
+\TEST { TL }
+  {
+    \tl_set:Nn \l_tmpa_tl { tokens }
+    \tl_show:N \l_tmpa_tl
+    \tl_show:n { tokens }
+  }
+
+\TEST { SEQ }
+  {
+    \seq_push:Nn \l_tmpa_seq { item1 }
+    \seq_push:Nn \l_tmpa_seq { item2 }
+    \seq_show:N  \l_tmpa_seq
+    \seq_show:c { l_tmpa_seq }
+  }
+
+\TEST { CLIST }
+  {
+    \clist_new:N \l_my_very_very_very_very_very_very_long_clist
+    \clist_set:Nn \l_my_very_very_very_very_very_very_long_clist
+      { item2 , item1 }
+    \clist_show:N \l_my_very_very_very_very_very_very_long_clist
+    \clist_show:c { l_my_very_very_very_very_very_very_long_clist }
+    \clist_show:n { 1 , 2 , ~ , { } , 3 }
+  }
+
+\TEST { PROP }
+  {
+    \prop_put:Nnn \l_tmpa_prop {key1} {val1}
+    \prop_put:Nnn \l_tmpa_prop {key2} {val2}
+    \prop_show:N  \l_tmpa_prop
+    \prop_show:c { l_tmpa_prop }
+  }
+
+\TEST { IO }
+  {
+    \ior_show_list:
+    \iow_show_list:
+  }
+
+\TEST { BOOL }
+  {
+    \bool_new:N \l_testa_bool
+    \bool_show:N \l_testb_bool
+    \bool_new:N  \l_testb_bool
+    \bool_show:N \l_testb_bool
+    \bool_set_true:N \l_testa_bool
+    \bool_show:N \l_testa_bool
+    \bool_show:N \c_true_bool
+    \bool_show:N \c_false_bool
+    \bool_show:n
+      { \c_true_bool && !( \int_compare_p:n { 1=2 } || \c_false_bool ) }
+    \bool_show:n
+      { \c_true_bool && !( \int_compare_p:n { 1=2 } || \c_true_bool ) }
+  }
+
+\fp_set:Nn \l_tmpa_fp { 1 }
+\TEST { FP }
+  {
+    \fp_show:N \l_tmpa_fp
+    \fp_show:n { 1 + 2 }
+    \fp_show:n { \l_tmpa_fp }
+  }
+
+\END

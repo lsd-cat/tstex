@@ -1,0 +1,78 @@
+%
+% Copyright (C) The LaTeX Project
+%
+
+\documentclass{minimal}
+\input{regression-test}
+
+\ExplSyntaxOn
+\debug_on:n { check-declarations , deprecation , log-functions }
+\ExplSyntaxOff
+
+\begin{document}
+\START
+\AUTHOR{Bruno Le Floch}
+\ExplSyntaxOn
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\TESTEXP { Rounding~with~errors }
+  {
+    \fp_to_tl:n { round() } \NEWLINE
+    \fp_to_tl:n { round(0.1) } \NEWLINE
+    \fp_to_tl:n { round(0.1, 1.2) } \NEWLINE
+    \fp_to_tl:n { round(1.2, 2.3, 3.4, 4.5) } \NEWLINE
+    \fp_to_tl:n { round(1, 2, 3, 4) } \NEWLINE
+    \fp_to_tl:n { round(1, nan) } \NEWLINE
+    \fp_to_tl:n { round(1, inf) } \NEWLINE
+    \fp_to_tl:n { round(1, -inf) } \NEWLINE
+    \fp_to_tl:n { round(1, 1e999) } \NEWLINE
+    \fp_to_tl:n { round(1, -1e999) } \NEWLINE
+    \fp_to_tl:n { round(,4) } \NEWLINE
+    \fp_to_tl:n { trunc() } \NEWLINE
+    \fp_to_tl:n { trunc(0.1) } \NEWLINE
+    \fp_to_tl:n { trunc(0.1, 1.2) } \NEWLINE
+    \fp_to_tl:n { trunc(1, 2, 3) } \NEWLINE
+    \fp_to_tl:n { trunc(,4) } \NEWLINE
+    \fp_to_tl:n { ceil() } \NEWLINE
+    \fp_to_tl:n { ceil(0.1) } \NEWLINE
+    \fp_to_tl:n { ceil(0.1, 1.2) } \NEWLINE
+    \fp_to_tl:n { ceil(1, 2, 3) } \NEWLINE
+    \fp_to_tl:n { ceil(,4) } \NEWLINE
+    \fp_to_tl:n { floor() } \NEWLINE
+    \fp_to_tl:n { floor(0.1) } \NEWLINE
+    \fp_to_tl:n { floor(0.1, 1.2) } \NEWLINE
+    \fp_to_tl:n { floor(1, 2, 3) } \NEWLINE
+    \fp_to_tl:n { floor(,4) } \NEWLINE
+  }
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\TESTEXP { Rounding~with~third~argument }
+  {
+    \fp_to_tl:n { round(0.115, 2, nan) } \NEWLINE
+    \fp_to_tl:n { round(0.115, 2, -0) } \NEWLINE
+    \fp_to_tl:n { round(0.115, 2, inf) } \NEWLINE
+    \fp_to_tl:n { round(0.115, 2, -3.4) } \NEWLINE
+    \fp_to_tl:n { round(0.123, 2, nan) } \NEWLINE
+    \fp_to_tl:n { round(0.123, 2, -0) } \NEWLINE
+    \fp_to_tl:n { round(0.123, 2, inf) } \NEWLINE
+    \fp_to_tl:n { round(0.123, 2, -3.4) } \NEWLINE
+    \fp_to_tl:n { round(0.125, 2, nan) } \NEWLINE
+    \fp_to_tl:n { round(0.125, 2, -0) } \NEWLINE
+    \fp_to_tl:n { round(0.125, 2, inf) } \NEWLINE
+    \fp_to_tl:n { round(0.125, 2, -3.4) } \NEWLINE
+    \fp_to_tl:n { round(-0.115, 2, nan) } \NEWLINE
+    \fp_to_tl:n { round(-0.115, 2, -0) } \NEWLINE
+    \fp_to_tl:n { round(-0.115, 2, inf) } \NEWLINE
+    \fp_to_tl:n { round(-0.115, 2, -3.4) } \NEWLINE
+    \fp_to_tl:n { round(-0.123, 2, nan) } \NEWLINE
+    \fp_to_tl:n { round(-0.123, 2, -0) } \NEWLINE
+    \fp_to_tl:n { round(-0.123, 2, inf) } \NEWLINE
+    \fp_to_tl:n { round(-0.123, 2, -3.4) } \NEWLINE
+    \fp_to_tl:n { round(-0.125, 2, nan) } \NEWLINE
+    \fp_to_tl:n { round(-0.125, 2, -0) } \NEWLINE
+    \fp_to_tl:n { round(-0.125, 2, inf) } \NEWLINE
+    \fp_to_tl:n { round(-0.125, 2, -3.4) } \NEWLINE
+  }
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\END
