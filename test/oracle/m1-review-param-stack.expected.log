@@ -1,0 +1,11 @@
+(m1-review-param-stack.tex
+! TeX capacity exceeded, sorry [parameter stack size=20000].
+\a #1#2#3#4#5#6#7#8#9->
+                       \a 123456789x
+...
+l.3 ...#1#2#3#4#5#6#7#8#9{\a123456789x}\a123456789
+
+If you really absolutely need more capacity,
+you can ask a wizard to enlarge me.
+
+No pages of output.

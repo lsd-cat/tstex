@@ -1,0 +1,11 @@
+(m1-review-input-stack.tex
+! TeX capacity exceeded, sorry [input stack size=10000].
+\a ->\a
+        x
+...
+l.3 \def\a{\a x}\a
+
+If you really absolutely need more capacity,
+you can ask a wizard to enlarge me.
+
+No pages of output.

@@ -11,7 +11,7 @@ import { get_next, get_token, back_input, back_error, ins_error, end_token_list,
 import { registry } from './primitives/index.ts'
 import { unsupported } from './main.ts'
 
-export const expand_depth = 10000, param_size = 10000 // TeX Live defaults
+export const expand_depth = 10000, param_size = 20000 // TeX Live texmf.cnf
 
 // §366 expand (with tex.ch's expansion depth check)
 export function expand(e: Engine): void {

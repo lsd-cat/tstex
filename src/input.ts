@@ -13,7 +13,7 @@ import { open_log_file } from './files.ts'
 export const mid_line = 1, skip_blanks = 2 + Cmd.max_char_code, new_line = 3 + 2 * Cmd.max_char_code
 // §305
 export const normal = 0, skipping = 1, defining = 2, matching = 3, aligning = 4, absorbing = 5
-const stack_size = 5000, max_in_open = 15, buf_size = 200000 // TeX Live defaults
+const stack_size = 10000, max_in_open = 15, buf_size = 200000 // TeX Live texmf.cnf
 
 // §31 input_ln: web2c ends a line at LF, CR or CR LF and drops trailing spaces
 export type InputFile = { data: Uint8Array, pos: number }
