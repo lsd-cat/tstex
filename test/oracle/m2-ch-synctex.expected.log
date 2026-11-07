@@ -1,0 +1,15 @@
+(m2-ch-synctex.tex
+> 0.
+l.3 \showthe\synctex
+                     \show\synctex
+
+> \synctex=\synctex.
+l.3 \showthe\synctex \show\synctex
+
+
+> -5.
+l.4 \synctex=-5 \showthe\synctex
+                                 \synctex=0
+
+[0] )
+Output written on m2-ch-synctex.dvi (1 page, 128 bytes).

@@ -44,6 +44,7 @@ export const primitives: [string, number][] = [
   ['pdfsuppresswarningpagegroup', int_base + 95], ['pdfinfoomitdate', int_base + 96],
   ['pdfsuppressptexinfo', int_base + 97], ['pdfomitcharset', int_base + 98], ['pdfomitinfodict', int_base + 99],
   ['pdfomitprocset', int_base + 100], ['pdfptexuseunderscore', int_base + 101],
+  ['synctex', int_base + 113], // synctex-mem.ch0, slot from synctex-e-mem.ch1
 ]
 export const etex_primitives: [string, number][] = [
   ['tracingassigns', int_base + 102], ['tracinggroups', int_base + 103], ['tracingifs', int_base + 104],

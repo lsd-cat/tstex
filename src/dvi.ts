@@ -5,7 +5,7 @@ import type { Engine } from './engine.ts'
 import { term_and_log, log_only, new_string, max_print_line } from './types.ts'
 import { print, print_char, print_nl, print_ln, print_int, print_two, slow_print, begin_diagnostic, end_diagnostic } from './print.ts'
 import { error, print_err, help, confusion, fatal_error, write_text } from './error.ts'
-import { int_par, prepare_mag, count_base, dimen_base, end_write, mag_code } from './eqtb.ts'
+import { int_par, prepare_mag, count_base, dimen_base, end_write, mag_code, synctex_code } from './eqtb.ts'
 import { show_token_list, token_show, cs_token_flag, right_brace_token, left_brace_token } from './tokens.ts'
 import { get_avail, flush_list, flush_node_list, show_box, zround, is_char_node, hlist_node, vlist_node, rule_node, whatsit_node,
   glue_node, kern_node, math_node, ligature_node, normal, stretching, a_leaders, c_leaders, null_flag, open_node, write_node,
@@ -352,6 +352,7 @@ export function fix_pdfoutput(e: Engine): void {
 export function ship_out(e: Engine, p: BoxNode): void {
   fix_pdfoutput(e)
   if (e.fixed_pdfoutput! > 0) fatal_error(e, 'unsupported: PDF output')
+  if (int_par(e, synctex_code) !== 0) fatal_error(e, 'unsupported: synctex') // synctex-rec.ch0 synctex_sheet would start recording
   if (int_par(e, tracing_output_code) > 0) { print_nl(e, ''); print_ln(e); print(e, 'Completed box being shipped out') }
   if (e.term_offset > max_print_line - 9) print_ln(e)
   else if (e.term_offset > 0 || e.file_offset > 0) print_char(e, 32)
