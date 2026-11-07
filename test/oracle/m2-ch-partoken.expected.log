@@ -1,0 +1,199 @@
+(m2-ch-partoken.tex
+> \partokenname=\partokenname.
+l.4 \show\partokenname
+                       \show\partokencontext \showthe\partokencontext
+
+> \partokencontext=\partokencontext.
+l.4 \show\partokenname \show\partokencontext
+                                             \showthe\partokencontext
+
+> 0.
+l.4 ...ow\partokencontext \showthe\partokencontext
+
+
+Runaway argument?
+{x
+! Paragraph ended before \a was complete.
+<to be read again>
+                   \foo
+l.9 \a{x\foo
+             y}
+I suspect you've forgotten a `}', causing me to apply this
+control sequence to too much text. How can we recover?
+My plan is to forget the whole thing and hope for the best.
+
+FOO
+! Too many }'s.
+l.9 \a{x\foo y}
+
+You've closed more groups than you opened.
+Such booboos are generally harmless, so keep going.
+
+FOO FOO still foo: FOO
+Underfull \hbox (badness 10000) in paragraph at lines 15--15
+[]\f text
+
+\hbox(6.15079+0.0)x100.0
+.\hbox(0.0+0.0)x0.0
+.\f t
+.\f e
+.\f x
+.\f t
+.\penalty 10000
+.\glue(\parfillskip) 0.0
+.\glue(\rightskip) 0.0
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 18--18
+[]\f text
+
+\hbox(6.15079+0.0)x100.0
+.\hbox(0.0+0.0)x0.0
+.\f t
+.\f e
+.\f x
+.\f t
+.\penalty 10000
+.\glue(\parfillskip) 0.0
+.\glue(\rightskip) 0.0
+
+FOO
+Underfull \hbox (badness 10000) in paragraph at lines 19--19
+[]\f text
+
+\hbox(6.15079+0.0)x100.0
+.\hbox(0.0+0.0)x0.0
+.\f t
+.\f e
+.\f x
+.\f t
+.\penalty 10000
+.\glue(\parfillskip) 0.0
+.\glue(\rightskip) 0.0
+
+FOO
+> \box0=
+\vbox(6.15079+0.0)x100.0
+.\hbox(6.15079+0.0)x100.0
+..\hbox(0.0+0.0)x0.0
+..\f t
+..\f e
+..\f x
+..\f t
+..\penalty 10000
+..\glue(\parfillskip) 0.0
+..\glue(\rightskip) 0.0
+
+! OK.
+l.20 \showbox0
+
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 21--21
+[]\f text
+
+\hbox(6.15079+0.0)x100.0
+.\hbox(0.0+0.0)x0.0
+.\f t
+.\f e
+.\f x
+.\f t
+.\penalty 10000
+.\glue(\parfillskip) 0.0
+.\glue(\rightskip) 0.0
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 23--23
+[]\f text
+
+\hbox(6.15079+0.0)x100.0
+.\hbox(0.0+0.0)x0.0
+.\f t
+.\f e
+.\f x
+.\f t
+.\penalty 10000
+.\glue(\parfillskip) 0.0
+.\glue(\rightskip) 0.0
+
+FOO
+
+### horizontal mode entered at line 8 (language0:hyphenmin1,1)
+\hbox(0.0+0.0)x0.0
+\glue 0.0
+\glue 0.0
+\glue 0.0
+\glue 0.0
+\glue 0.0
+\glue 3.33333 plus 1.66666 minus 1.11111
+\glue 3.33333 plus 1.66666 minus 1.11111
+\glue 3.33333 plus 1.66666 minus 1.11111
+\glue 3.33333 plus 1.66666 minus 1.11111
+\insert100, natural size 6.15079; split(0.0,0.0); float cost 0
+.\hbox(6.15079+0.0)x100.0
+..\hbox(0.0+0.0)x0.0
+..\f t
+..\f e
+..\f x
+..\f t
+..\penalty 10000
+..\glue(\parfillskip) 0.0
+..\glue(\rightskip) 0.0
+\glue 3.33333 plus 1.66666 minus 1.11111
+\insert100, natural size 6.15079; split(0.0,0.0); float cost 0
+.\hbox(6.15079+0.0)x100.0
+..\hbox(0.0+0.0)x0.0
+..\f t
+..\f e
+..\f x
+..\f t
+..\penalty 10000
+..\glue(\parfillskip) 0.0
+..\glue(\rightskip) 0.0
+\glue 3.33333 plus 1.66666 minus 1.11111
+spacefactor 1000
+### vertical mode entered at line 0
+### current page:
+\glue(\topskip) 0.0
+\hbox(0.0+0.0)x0.0
+.\hbox(0.0+0.0)x0.0
+.\penalty 10000
+.\glue(\parfillskip) 0.0
+.\glue(\rightskip) 0.0
+\glue(\parskip) 0.0
+total height 0.0
+ goal height 0.0
+prevdepth 0.0
+
+! OK.
+l.24 \showlists
+
+
+Runaway argument?
+{x
+! Paragraph ended before \a was complete.
+<to be read again>
+                   \par
+l.27
+
+I suspect you've forgotten a `}', causing me to apply this
+control sequence to too much text. How can we recover?
+My plan is to forget the whole thing and hope for the best.
+
+! Too many }'s.
+l.28 y}
+
+You've closed more groups than you opened.
+Such booboos are generally harmless, so keep going.
+
+> 2.
+l.29 \showthe\partokencontext
+
+
+! I can't go on meeting you like this.
+l.30 \global\partokenname
+                         \foo
+One of your faux pas seems to have wounded me deeply...
+in fact, I'm barely conscious. Please fix it and try again.
+
+No pages of output.

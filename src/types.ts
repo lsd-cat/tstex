@@ -1,7 +1,7 @@
 // §207–210 command codes, §211 modes, §300 input state record
 
 // §207 catcode commands, §208 ordinary commands, §209 assignment commands, §210 expandable commands
-// (pdftex.web numbering: letterspace_font and pdf_copy_font raise max_command to 102)
+// (pdftex.web numbering: letterspace_font and pdf_copy_font raise max_command to 102, partoken-102.ch to 103)
 export const Cmd = {
   relax: 0, escape: 0, left_brace: 1, right_brace: 2, math_shift: 3, tab_mark: 4,
   car_ret: 5, out_param: 5, mac_param: 6, sup_mark: 7, sub_mark: 8, ignore: 9, endv: 9,
@@ -23,11 +23,11 @@ export const Cmd = {
   def_code: 85, def_family: 86, set_font: 87, def_font: 88, register: 89, max_internal: 89,
   advance: 90, multiply: 91, divide: 92, prefix: 93, let: 94, shorthand_def: 95,
   read_to_cs: 96, def: 97, set_box: 98, hyph_data: 99, set_interaction: 100, letterspace_font: 101,
-  pdf_copy_font: 102, max_command: 102,
-  undefined_cs: 103, expand_after: 104, no_expand: 105, input: 106, if_test: 107,
-  fi_or_else: 108, cs_name: 109, convert: 110, the: 111, top_bot_mark: 112, call: 113,
-  long_call: 114, outer_call: 115, long_outer_call: 116, end_template: 117, dont_expand: 118,
-  glue_ref: 119, shape_ref: 120, box_ref: 121, data: 122,
+  pdf_copy_font: 102, partoken_name: 103, max_command: 103, // partoken-102.ch
+  undefined_cs: 104, expand_after: 105, no_expand: 106, input: 107, if_test: 108,
+  fi_or_else: 109, cs_name: 110, convert: 111, the: 112, top_bot_mark: 113, call: 114,
+  long_call: 115, outer_call: 116, long_outer_call: 117, end_template: 118, dont_expand: 119,
+  glue_ref: 120, shape_ref: 121, box_ref: 122, data: 123,
 } as const
 
 // §211

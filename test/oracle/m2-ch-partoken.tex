@@ -1,0 +1,30 @@
+%! oracle: ini
+\catcode`\{=1 \catcode`\}=2 \catcode`\#=6
+\tracingonline=1 \showboxbreadth=100 \showboxdepth=100
+\show\partokenname \show\partokencontext \showthe\partokencontext
+\def\a#1{(#1)}\long\def\b#1{(#1)}
+\partokenname\foo
+\def\foo{\message{FOO}}
+\a{x\par y}
+\a{x\foo y}
+\b{x\foo y}
+
+\partokenname a \message{still foo:}
+
+\font\f=cmr10 \f
+\setbox0\vbox{\hsize=100pt text}
+\def\foo{\par\message{FOO}}
+\partokencontext=1
+\setbox0\vtop{\hsize=100pt text}
+\setbox0\vbox{\hsize=100pt text}
+\showbox0
+\insert100{\hsize=100pt text}
+\partokencontext=2
+\insert100{\hsize=100pt text}
+\showlists
+\partokenname\par
+\a{x
+
+y}
+\showthe\partokencontext
+\global\partokenname\foo

@@ -11,7 +11,7 @@ import { add_glue_ref, delete_glue_ref, new_spec, zero_glue, get_avail, free_ava
   vlist_node, rule_node, ins_node, mark_node, adjust_node, ligature_node, disc_node, math_node, glue_node, kern_node,
   a_leaders, mu_glue, explicit, acc_kern, language_node, fill_glue } from './nodes.ts'
 import type { Node, CharNode, LigNode, BoxNode, InsNode, AdjustNode, MarkNode, GlueNode } from './nodes.ts'
-import { int_par, tracing_commands_code, global_defs_code, every_job_loc, every_par_loc, eq_define, geq_define, eq_word_define,
+import { int_par, partoken_context_code, tracing_commands_code, global_defs_code, every_job_loc, every_par_loc, eq_define, geq_define, eq_word_define,
   geq_word_define, frozen_control_sequence, frozen_protection, count_base, int_base, looseness_code, hang_after_code, dimen_base,
   hang_indent_code, scaled_base, skip_base, mu_skip_base, toks_base, output_routine_loc, frozen_end_group, frozen_right,
   new_save_level, unsave, cur_font_loc, sf_code_base, box_base, glue_base, local_base, par_shape_loc } from './eqtb.ts'
@@ -134,7 +134,7 @@ export function main_control(e: Engine): void {
     // reswitch: §1031 Give diagnostic information, if requested
     if (int_par(e, tracing_commands_code) > 0) show_cur_cmd_chr(e)
     const c = e.cur_cmd, m = Math.abs(e.mode)
-    if (c > Cmd.max_non_prefixed_command) { prefixed_command(e); continue } // §1210
+    if (c > Cmd.max_non_prefixed_command && c !== Cmd.partoken_name) { prefixed_command(e); continue } // §1210
     if (m === vmode && starts_par.has(c)) { back_input(e); new_graf(e, true); continue } // §1090
     if (m !== mmode && math_only.has(c)) { insert_dollar_sign(e); continue }
     switch (c) {
@@ -884,8 +884,8 @@ export function prefixed_command(e: Engine): void {
   }
   const prim = registry.get(e.cur_cmd)
   if (prim?.assign) prim.assign(e, a)
-  else if (prim) unsupported(e)
-  else confusion(e, 'prefix')
+  else if (prim && e.cur_cmd !== Cmd.partoken_name) unsupported(e)
+  else confusion(e, 'prefix') // also \global\partokenname (partoken.ch adds no prefixed case)
   // §1269 Insert a token saved by \afterassignment, if any
   if (e.after_token !== 0) { e.cur_tok = e.after_token; back_input(e); e.after_token = 0 }
 }
@@ -1042,6 +1042,12 @@ export function end_group(e: Engine): void {
 
 // §1068 handle_right_brace
 function handle_right_brace(e: Engine): void {
+  // partoken.ch: with \partokencontext>0 (>1) a vbox-like (insert/output) group ending in horizontal mode first gets a par token
+  const ctx = int_par(e, partoken_context_code)
+  if (e.mode === hmode && (ctx > 0 && (e.cur_group === vbox_group || e.cur_group === vtop_group || e.cur_group === vcenter_group) ||
+    ctx > 1 && (e.cur_group === insert_group || e.cur_group === output_group || e.cur_group === no_align_group))) {
+    back_input(e); e.cur_tok = e.par_token; back_input(e); e.cur_input.index = inserted; return
+  }
   switch (e.cur_group) {
     case simple_group: unsave(e); break
     case bottom_level:
