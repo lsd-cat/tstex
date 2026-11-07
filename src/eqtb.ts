@@ -156,7 +156,7 @@ export function show_eqtb(e: Engine, n: number): void {
 
 // §268 save_type values
 const restore_old_value = 0, restore_zero = 1, insert_token = 2, level_boundary = 3
-const save_size = 200000 // TeX Live texmf.cnf
+export const save_size = 200000 // TeX Live texmf.cnf
 
 // §273 check_full_save_stack
 function check_full_save_stack(e: Engine): void {

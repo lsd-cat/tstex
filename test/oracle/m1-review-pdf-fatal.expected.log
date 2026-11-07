@@ -1,0 +1,12 @@
+(m1-review-pdf-fatal.tex
+! I can't find file `nosuchfile'.
+l.3 \pdfoutput=1 \input nosuchfile
+
+(Press Enter to retry, or Control-D to exit)
+Please type another input file name
+! Emergency stop.
+l.3 \pdfoutput=1 \input nosuchfile
+
+*** (job aborted, file error in nonstop mode)
+
+!  ==> Fatal error occurred, no output PDF file produced!

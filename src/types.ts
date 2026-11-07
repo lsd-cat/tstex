@@ -67,7 +67,7 @@ export const active_base = 1
 export const single_base = active_base + 256
 export const null_cs = single_base + 256
 export const hash_base = null_cs + 1
-export const hash_size = 615000
+export const hash_extra = 600000, hash_size = 15000 + hash_extra
 export const frozen_control_sequence = hash_base + hash_size
 export const frozen_protection = frozen_control_sequence
 export const frozen_cr = frozen_control_sequence + 1
@@ -123,7 +123,7 @@ export const mag_code = 17, time_code = 20, day_code = 21, month_code = 22, year
   pausing_code = 28, tracing_online_code = 29, tracing_macros_code = 30, tracing_commands_code = 36,
   tracing_restores_code = 37, max_dead_cycles_code = 40, hang_after_code = 41, global_defs_code = 43,
   escape_char_code = 45, end_line_char_code = 48, new_line_char_code = 49, error_context_lines_code = 54,
-  tolerance_code = 1, looseness_code = 19
+  tolerance_code = 1, looseness_code = 19, tracing_stats_code = 31, pdf_output_code = 55
 // §247
 export const hang_indent_code = 17
 
