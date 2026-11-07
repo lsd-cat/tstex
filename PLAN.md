@@ -6,7 +6,7 @@ Goal: a `pdflatex` replacement in TypeScript, zero runtime dependencies, running
 
 | Topic | Decision |
 |---|---|
-| Spec | `tex.web` + `etex.ch` + pdfTeX primitives. Knuth's text is the spec; cite its § numbers in code. |
+| Spec | `spec/pdftex.web` (tex.web + etex.ch + pdfTeX) plus TeX Live's change-file chain from `pdftexdir/am/pdftex.am`, applied in order: `tex.ch0`, `tex.ch`, `tracingstacklevels.ch`, `partoken-102.ch`, `partoken.ch`, `locnull-optimize.ch`, `showstream.ch`, `zlib-fmt.ch`, `enctex1.ch`, `enctex-pdftex.ch`, `enctex2.ch`, `unbalanced-braces.ch`, the synctex set, `pdftex.ch`, `char-warning-pdftex.ch`, `tex-binpool.ch` (all in `spec/`). Knuth's text is the spec; cite its § numbers in code, and the change file when a line comes from one. |
 | Oracle | Real `pdftex` log output. A feature is done when `\tracingall` logs and `\showbox` dumps are byte‑identical after normalisation. |
 | Output | DVI first (M2), PDF later (M6). |
 | Fonts | TFM metrics; embed whole Type1 `.pfb`. No subsetting. |
@@ -138,7 +138,7 @@ Four layers; a change is good when all four are green for the §s it touches.
 1. **Differential oracle, three channels.** For every oracle test the harness compares, after normalisation: the `\tracingall` log, `\showbox` dumps, and `dvitype` output of the DVI (M2+). Normaliser strips banner, dates, absolute paths, and the DVI comment.
 2. **The LaTeX team's regression tests.** `tools/fetch-lvt.sh` clones `latex3/latex2e` (`base/testfiles`), `latex3/latex3` (`l3kernel/testfiles`), `amsmath`, `hyperref`, `graphics` testfiles plus `regression-test.tex` from `l3build`, and runs each `.lvt` through local `pdftex` via `tools/oracle.sh` into `test/lvt/<pkg>/<name>.expected.log`. We do not use `.tlg` or `l3build`. Exit for M5 becomes: all `base` and `l3kernel` `.lvt` pass; M6 adds `amsmath`, `hyperref`, `graphics`. Tests that need unsupported features are listed in `test/lvt/skip.txt` with a reason.
 3. **Conformance.** `trip` (TeX82) at M3, `etrip` (e‑TeX) at M4. Diffs against `trip.log`/`etrip.log` recorded in `test/trip-diffs.md`; the goal is an empty file.
-4. **Cold spec review.** When a `src/*.ts` file first passes its oracle tests, a second agent with no access to the first agent's session reads the tex.web § range and the TS and lists divergences. Each divergence is either a bug (fix, add oracle test) or an `AUDIT.md` entry.
+4. **Cold spec review.** When a `src/*.ts` file first passes its oracle tests, a second agent with no access to the first agent's session reads the § range in `pdftex.web` together with the change-file chain (`tex.ch0`, `tex.ch`, `tracingstacklevels.ch`, `partoken-102.ch`, `partoken.ch`, `locnull-optimize.ch`, `showstream.ch`, `zlib-fmt.ch`, `enctex1.ch`, `enctex-pdftex.ch`, `enctex2.ch`, `unbalanced-braces.ch`, synctex set, `pdftex.ch`, `char-warning-pdftex.ch`, `tex-binpool.ch`) and the TS, and lists divergences. Each divergence is either a bug (fix, add oracle test) or an `AUDIT.md` entry.
 
 Mechanical guards: `tools/coverage.ts` greps `// §NNN` in `src/` and `§NNN` in test names and prints uncovered sections; `test/perf.test.ts` compiles the M5 article and fails if it takes more than 3× the number recorded in the file.
 
