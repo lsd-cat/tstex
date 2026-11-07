@@ -1,5 +1,4 @@
-(m2-leaders.tex (plain.tex Preloading the plain for
-mat: codes, registers,
+(m2-leaders.tex (plain.tex Preloading the plain format: codes, registers,
 \maxdimen=\dimen10
 \hideskip=\skip10
 \centering=\skip11

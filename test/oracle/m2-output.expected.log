@@ -1,5 +1,4 @@
-(m2-output.tex (plain.tex Preloading the plain form
-at: codes, registers,
+(m2-output.tex (plain.tex Preloading the plain format: codes, registers,
 \maxdimen=\dimen10
 \hideskip=\skip10
 \centering=\skip11

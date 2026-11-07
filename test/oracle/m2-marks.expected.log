@@ -1,5 +1,4 @@
-(m2-marks.tex (plain.tex Preloading the plain forma
-t: codes, registers,
+(m2-marks.tex (plain.tex Preloading the plain format: codes, registers,
 \maxdimen=\dimen10
 \hideskip=\skip10
 \centering=\skip11

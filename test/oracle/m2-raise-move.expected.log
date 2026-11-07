@@ -1,5 +1,5 @@
-(m2-raise-move.tex (plain.tex Preloading the plain
-format: codes, registers,
+(m2-raise-move.tex (plain.tex Preloading the plain format: codes, registers
+,
 \maxdimen=\dimen10
 \hideskip=\skip10
 \centering=\skip11

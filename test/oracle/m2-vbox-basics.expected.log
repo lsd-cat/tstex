@@ -1,5 +1,5 @@
-(m2-vbox-basics.tex (plain.tex Preloading the plain
- format: codes, registers,
+(m2-vbox-basics.tex (plain.tex Preloading the plain format: codes, register
+s,
 \maxdimen=\dimen10
 \hideskip=\skip10
 \centering=\skip11

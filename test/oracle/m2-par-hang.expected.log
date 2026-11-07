@@ -1,5 +1,4 @@
-(m2-par-hang.tex (plain.tex Preloading the plain fo
-rmat: codes, registers,
+(m2-par-hang.tex (plain.tex Preloading the plain format: codes, registers,
 \maxdimen=\dimen10
 \hideskip=\skip10
 \centering=\skip11

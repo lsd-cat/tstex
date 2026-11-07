@@ -1,5 +1,4 @@
-(m2-story.tex (plain.tex Preloading the plain forma
-t: codes, registers,
+(m2-story.tex (plain.tex Preloading the plain format: codes, registers,
 \maxdimen=\dimen10
 \hideskip=\skip10
 \centering=\skip11
@@ -36,8 +35,7 @@ output routines,
 \footline=\toks11
 \footins=\insert254
 \topins=\insert253
-hyphenation (hyphen.tex)) (
-story.tex
+hyphenation (hyphen.tex)) (story.tex
 
 Completed box being shipped out [1]
 \vbox(667.20255+0.0)x469.75499

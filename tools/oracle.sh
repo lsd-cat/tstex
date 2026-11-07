@@ -15,8 +15,9 @@ case "${mode:-ini}" in
   *) echo "oracle.sh: unknown mode $mode" >&2; exit 1 ;;
 esac
 tmp=$(mktemp -d); trap 'rm -rf "$tmp"' EXIT
-cp "$tex" "$tmp/"
-(cd "$tmp" && TEXINPUTS=".:$dir:$root/test/texmf:$root/test/lvt:" TFMFONTS="$root/test/texmf:" "$pdftex" $args -interaction=batchmode -output-format=dvi -jobname="$name" "$name.tex" >/dev/null 2>&1)
+# every input lives in the temp dir so pdftex prints ./name (path-independent 79-col wrapping)
+cp "$dir"/*.tex "$root"/test/texmf/*.tex "$tmp/"
+(cd "$tmp" && TEXINPUTS=".:$root/test/lvt:" TFMFONTS="$root/test/texmf:" "$pdftex" $args -interaction=batchmode -output-format=dvi -jobname="$name" "$name.tex" >/dev/null 2>&1)
 [ -f "$tmp/$name.log" ] || { echo "oracle.sh: pdftex produced no log" >&2; exit 1; }
 node "$root/tools/normalize-log.ts" "$tmp/$name.log" > "$dir/$name.expected.log"
 [ -f "$tmp/$name.dvi" ] && cp "$tmp/$name.dvi" "$dir/$name.expected.dvi"

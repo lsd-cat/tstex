@@ -1,5 +1,4 @@
-(m2-fonts.tex (plain.tex Preloading the plain forma
-t: codes, registers,
+(m2-fonts.tex (plain.tex Preloading the plain format: codes, registers,
 \maxdimen=\dimen10
 \hideskip=\skip10
 \centering=\skip11
@@ -36,8 +35,8 @@ output routines,
 \footline=\toks11
 \footins=\insert254
 \topins=\insert253
-hyphenation (hyphen.tex)) cmr10 at 12.0pt, cmr10 at 2
-0.0pt, cmr10, nullfont, \tenrm
+hyphenation (hyphen.tex)) cmr10 at 12.0pt, cmr10 at 20.0pt, cmr10, nullfont,
+\tenrm
 > 10.00002pt.
 <recently read> \tenrm
 
