@@ -364,7 +364,8 @@ export function ship_out(e: Engine, p: BoxNode): void {
   const h_offset = e.equiv[dimen_base + h_offset_code]!, v_offset = e.equiv[dimen_base + v_offset_code]!
   done: {
     // §641 Update the values of max_h and max_v; but if the page is too large, goto done
-    if (p.height > max_dimen || p.depth > max_dimen || p.height + p.depth + v_offset > max_dimen || p.width + h_offset > max_dimen) {
+    const hdv = ((p.height + p.depth | 0) + v_offset) | 0, wh = (p.width + h_offset) | 0 // pdftex wraps
+    if (p.height > max_dimen || p.depth > max_dimen || hdv > max_dimen || wh > max_dimen) {
       print_err(e, 'Huge page cannot be shipped out')
       help(e, 'The page just created is more than 18 feet tall or', 'more than 18 feet wide, so I suspect something went wrong.')
       error(e)
@@ -373,8 +374,8 @@ export function ship_out(e: Engine, p: BoxNode): void {
       }
       break done
     }
-    if (p.height + p.depth + v_offset > e.max_v) e.max_v = (p.height + p.depth + v_offset) | 0
-    if (p.width + h_offset > e.max_h) e.max_h = (p.width + h_offset) | 0
+    if (hdv > e.max_v) e.max_v = hdv
+    if (wh > e.max_h) e.max_h = wh
     // §617 Initialize variables as ship_out begins
     e.dvi_h = 0; e.dvi_v = 0; e.cur_h = h_offset; e.dvi_f = null_font
     if (e.output_file_name === '') { // ensure_dvi_open
