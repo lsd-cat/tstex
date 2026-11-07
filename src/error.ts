@@ -2,9 +2,9 @@
 import type { Engine } from './engine.ts'
 import { batch_mode, error_stop_mode, scroll_mode, error_message_issued, fatal_error_stop, term_and_log, term_only, pseudo, error_line, half_error_line } from './types.ts'
 import { print, print_char, print_nl, print_ln, print_int } from './print.ts'
-import { int_par, error_context_lines_code, end_line_char_code } from './eqtb.ts'
+import { int_par, error_context_lines_code, end_line_char_code, err_help_loc } from './eqtb.ts'
 import { print_cs } from './hash.ts'
-import { show_token_list, set_trick_count } from './tokens.ts'
+import { show_token_list, set_trick_count, token_show } from './tokens.ts'
 import { open_log_file } from './files.ts'
 
 // §81 jump_out unwinds to Engine.run, which calls close_files_and_terminate (tex.ch)
@@ -32,8 +32,8 @@ export function error(e: Engine): void {
   }
   // §90 Put help message on the transcript file
   if (e.interaction > batch_mode) e.selector--
-  // shortcut: no use_err_help branch, \errhelp does not exist until \errmessage lands
-  while (e.help_ptr > 0) { e.help_ptr--; print_nl(e, e.help_line[e.help_ptr]!) }
+  if (e.use_err_help) { print_ln(e); token_show(e, e.equiv[err_help_loc]!) } // §1284 give_err_help
+  else while (e.help_ptr > 0) { e.help_ptr--; print_nl(e, e.help_line[e.help_ptr]!) }
   print_ln(e)
   if (e.interaction > batch_mode) e.selector++
   print_ln(e)

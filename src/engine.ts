@@ -24,7 +24,7 @@ export class Engine {
   cur_str: number[] = [] // the string being built while selector=new_string
   // §73–96 errors
   interaction = batch_mode; deletions_allowed = true; history = fatal_error_stop; error_count = 0
-  help_line: string[] = []; help_ptr = 0; OK_to_interrupt = true
+  help_line: string[] = []; help_ptr = 0; OK_to_interrupt = true; use_err_help = false; long_help_seen = false
   log_opened = false; job_name = ''; format_ident = ' (INITEX)'
   // §104 arithmetic
   arith_error = false; remainder = 0
