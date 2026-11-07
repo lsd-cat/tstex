@@ -1,5 +1,5 @@
 // Intended API for M1 (src/engine.ts, src/platform/fs.ts, src/platform/node.ts):
-//   interface TexFS { find(name: string, kind: string): Promise<Uint8Array | null> }
+//   interface TexFS { find(name: string, kind: string): Uint8Array | null }   // synchronous: TeX is
 //   nodeFS(roots: string[]): TexFS            // src/platform/node.ts, searches roots in order
 //   class Engine {
 //     constructor(opts: { fs: TexFS })

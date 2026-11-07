@@ -11,10 +11,10 @@ Goal: a `pdflatex` replacement in TypeScript, zero runtime dependencies, running
 | Output | DVI first (M2), PDF later (M6). |
 | Fonts | TFM metrics; embed whole Type1 `.pfb`. No subsetting. |
 | Arithmetic | 32‑bit ints (`|0`, `Math.imul`) in scaled points. Port §99–109 verbatim. Glue ratio is a JS double, same as pdftex/web2c. |
-| Data model | Node lists stay singly linked (`link`), as in tex.web, so every algorithm ports 1:1. Nodes are TS objects with a `type` discriminant, no `mem` array. |
+| Data model | Lists stay singly linked (`link`), as in tex.web, so every algorithm ports 1:1. Token lists live in numeric `info`/`link` arrays with a free list (pointer‑heavy, hot path, keeps `cur_chr`/`loc` integers). Box/glue/char nodes are TS objects with a `type` discriminant, no `mem` array for them. |
 | State | `eqtb`, save stack, registers as plain data so `\dump` is serialisation and `structuredClone` works. |
 | Unicode | 8‑bit input like pdftex. No XeTeX/LuaTeX. |
-| Runtime split | Only `src/platform/*` differs between Node/Bun/browser: file lookup and reading. Everything else is pure. |
+| Runtime split | Only `src/platform/*` differs between Node/Bun/browser: file lookup and reading. `TexFS.find` is synchronous because TeX is; the browser implementation fetches on a miss and restarts the run (`shortcut:` restart cost grows with document size, switch to a Worker + sync XHR or a prefetch manifest if it hurts). Everything else is pure. |
 | Tooling | Erasable‑syntax TS only (no `enum`, `namespace`, parameter properties) so Node/Bun run `.ts` directly. `typescript` and `@types/node` (types only) are the only devDependencies, used for `tsc --noEmit` and the browser build. Tests use `node:test`. |
 | Limits | Match TeX Live defaults where macros can observe them: `\maxdimen`, 32768 registers (e‑TeX), `max_print_line=79`, `error_line=79`, `half_error_line=50`. Do not replicate `mem` size limits. |
 
@@ -99,10 +99,15 @@ primitives/index.ts      registry: Map<cmd, handler>, built from each file's exp
 Each file exports:
 
 ```ts
-export const names = ['\\def', '\\gdef', '\\edef', '\\xdef'] as const
 export const cmd = Cmd.def
-export function run(e: Engine, chr: number): void   // §1218
+export const primitives: [string, number][] = [['def', 0], ['gdef', 1], ['edef', 2], ['xdef', 3]]
+export function print(e: Engine, chr: number): void   // its case of print_cmd_chr §298
+export function run(e: Engine, chr: number): void     // main_control / expand action; return true to leave main_control
+// or, for assignments, the prefixed_command case (a = prefix bits):
+export function assign(e: Engine, a: number): void    // §1218
 ```
+
+Every TeX82/e‑TeX/pdfTeX primitive name is registered from day one; those not yet ported get a `run` that calls `fatal_error("unsupported: \\name")` so `\show\hbox` prints correctly and nothing degrades into "Undefined control sequence". Each file
 
 and starts with a comment giving the tex.web § range it ports. No file may import from another `primitives/*` file; shared logic goes in the `src/*.ts` module it belongs to.
 
