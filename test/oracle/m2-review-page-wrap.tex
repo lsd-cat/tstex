@@ -1,0 +1,21 @@
+%! oracle: ini
+\input plain
+\tracingonline=0 \showboxbreadth=10000 \showboxdepth=10000 \tracingoutput=1
+\setbox1\vbox{\hrule height 16000pt\hrule height 16000pt\penalty0\hrule height 1pt}
+\setbox2\vsplit1 to -16383pt \showbox2 \showbox1
+\tracingpages1 \vsize-16383pt \output={\showbox255 \setbox0\box255 \deadcycles0 }
+\hrule height 16000pt\hrule height 16000pt\penalty0 \hrule height 1pt \penalty-10000
+\vsize\maxdimen
+\count101=0 \dimen101=-\maxdimen \skip101=0pt
+\setbox101\vbox to\maxdimen{} \dp101=\maxdimen
+\output={\showbox255 \showbox101 \setbox0\box255 \setbox0\box101 \deadcycles0 }
+\hrule height 1pt
+\insert101{\hrule height 10pt}
+\penalty-10000
+\count102=0 \dimen102=-\maxdimen \skip102=0pt
+\setbox102\vbox to\maxdimen{} \dp102=2pt
+\output={\showbox255 \showbox102 \setbox0\box255 \setbox0\box102 \deadcycles0 }
+\hrule height 1pt
+\insert102{\hrule height 10pt}
+\penalty-10000
+\end

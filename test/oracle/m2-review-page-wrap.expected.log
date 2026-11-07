@@ -1,0 +1,130 @@
+(m2-review-page-wrap.tex (plain.tex Preloading the plain format: codes, reg
+isters,
+\maxdimen=\dimen10
+\hideskip=\skip10
+\centering=\skip11
+\p@=\dimen11
+\z@=\dimen12
+\z@skip=\skip12
+\voidb@x=\box10
+parameters,
+\smallskipamount=\skip13
+\medskipamount=\skip14
+\bigskipamount=\skip15
+\normalbaselineskip=\skip16
+\normallineskip=\skip17
+\normallineskiplimit=\dimen13
+\jot=\dimen14
+\interdisplaylinepenalty=\count23
+\interfootnotelinepenalty=\count24
+fonts, more fonts,
+\itfam=\fam4
+\slfam=\fam5
+\bffam=\fam6
+\ttfam=\fam7
+macros,
+\strutbox=\box11
+\mscount=\count25
+\tabs=\box12
+\tabsyet=\box13
+\tabsdone=\box14
+math definitions,
+\rootbox=\box15
+\p@renwd=\dimen15
+output routines,
+\headline=\toks10
+\footline=\toks11
+\footins=\insert254
+\topins=\insert253
+hyphenation (hyphen.tex))
+Underfull \vbox (badness 10000) detected at line 5
+
+\vbox(-16383.0+0.0)x0.0
+.\rule(16000.0+0.0)x*
+.\rule(16000.0+0.0)x*
+.\penalty 0
+.\rule(1.0+0.0)x*
+
+> \box2=
+\vbox(-16383.0+0.0)x0.0
+.\rule(16000.0+0.0)x*
+.\rule(16000.0+0.0)x*
+.\penalty 0
+.\rule(1.0+0.0)x*
+
+! OK.
+l.5 \setbox2\vsplit1 to -16383pt \showbox2
+                                           \showbox1
+
+> \box1=void
+
+! OK.
+l.5 ...ox2\vsplit1 to -16383pt \showbox2 \showbox1
+
+
+%% goal height=-16383.0, max depth=4.0
+% t=32000.0 g=-16383.0 b=10000 p=0 c=100000#
+% t=32001.0 g=-16383.0 b=10000 p=-10000 c=-10000#
+> \box255=
+\vbox(-16383.0+0.0)x0.0
+.\glue(\topskip) 0.0
+.\rule(16000.0+0.0)x*
+.\rule(16000.0+0.0)x*
+.\penalty 0
+.\rule(1.0+0.0)x*
+
+! OK.
+<output> {\showbox 255
+                       \setbox 0\box 255 \deadcycles 0 }
+l.7 ...t\penalty0 \hrule height 1pt \penalty-10000
+
+
+%% goal height=16383.99998, max depth=4.0
+% t=10.0 g=16383.99998 b=10000 p=-10000 c=-10000#
+> \box255=
+\vbox(16383.99998+0.0)x0.0
+.\glue(\topskip) 9.0
+.\rule(1.0+0.0)x*
+
+! OK.
+<output> {\showbox 255
+                       \showbox 101 \setbox 0\box 255 \setbox 0\box 101 \dea...
+l.14 \penalty-10000
+
+
+> \box101=
+\vbox(10.0+0.0)x0.0
+.\rule(10.0+0.0)x*
+
+! OK.
+<output> {\showbox 255 \showbox 101
+                                    \setbox 0\box 255 \setbox 0\box 101 \dea...
+l.14 \penalty-10000
+
+
+%% goal height=16383.99998, max depth=4.0
+% split102 to 16383.99998,10.0 p=-10000
+% t=10.0 g=16383.99998 b=10000 p=-10000 c=-10000#
+> \box255=
+\vbox(16383.99998+0.0)x0.0
+.\glue(\topskip) 9.0
+.\rule(1.0+0.0)x*
+
+! OK.
+<output> {\showbox 255
+                       \showbox 102 \setbox 0\box 255 \setbox 0\box 102 \dea...
+l.20 \penalty-10000
+
+
+> \box102=
+\vbox(10.0+0.0)x0.0
+.\rule(10.0+0.0)x*
+
+! OK.
+<output> {\showbox 255 \showbox 102
+                                    \setbox 0\box 255 \setbox 0\box 102 \dea...
+l.20 \penalty-10000
+
+
+ )
+No pages of output.

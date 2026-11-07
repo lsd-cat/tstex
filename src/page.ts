@@ -98,7 +98,7 @@ export function vert_break(e: Engine, p: Node | null, h: number, d: number): Nod
         if (cur_height < h) {
           if (active_height[3] !== 0 || active_height[4] !== 0 || active_height[5] !== 0) b = 0
           else b = badness((h - cur_height) | 0, active_height[2]!)
-        } else if (cur_height - h > active_height[6]!) b = awful_bad
+        } else if (((cur_height - h) | 0) > active_height[6]!) b = awful_bad
         else b = badness((cur_height - h) | 0, active_height[6]!)
         if (b < awful_bad) {
           if (pi <= eject_penalty) b = pi
@@ -310,7 +310,7 @@ export function build_page(e: Engine): void {
         if (s[1]! < s[0]!) {
           if (s[3] !== 0 || s[4] !== 0 || s[5] !== 0) b = 0
           else b = badness((s[0]! - s[1]!) | 0, s[2]!)
-        } else if (s[1]! - s[0]! > s[6]!) b = awful_bad
+        } else if (((s[1]! - s[0]!) | 0) > s[6]!) b = awful_bad
         else b = badness((s[1]! - s[0]!) | 0, s[6]!)
         if (b < awful_bad) {
           if (pi <= eject_penalty) c = pi
@@ -409,7 +409,7 @@ function append_insertion(e: Engine, p: InsNode): void {
     r.last_ins_ptr = p
     const delta = (s[0]! - s[1]! - s[7]! + s[6]!) | 0
     const h = count(e, n) === 1000 ? p.height : Math.imul(x_over_n(e, p.height, 1000), count(e, n))
-    if ((h <= 0 || h <= delta) && p.height + r.height <= dimen(e, n)) { s[0] = (s[0]! - h) | 0; r.height = (r.height + p.height) | 0 }
+    if ((h <= 0 || h <= delta) && ((p.height + r.height) | 0) <= dimen(e, n)) { s[0] = (s[0]! - h) | 0; r.height = (r.height + p.height) | 0 }
     else {
       // §1010 Find the best way to split the insertion, and change type(r) to split_up
       let w: number
@@ -418,7 +418,7 @@ function append_insertion(e: Engine, p: InsNode): void {
         w = (s[0]! - s[1]! - s[7]!) | 0
         if (count(e, n) !== 1000) w = Math.imul(x_over_n(e, w, count(e, n)), 1000)
       }
-      if (w > dimen(e, n) - r.height) w = (dimen(e, n) - r.height) | 0
+      if (w > ((dimen(e, n) - r.height) | 0)) w = (dimen(e, n) - r.height) | 0
       const q = vert_break(e, p.ins_ptr, w, p.depth)
       r.height = (r.height + e.best_height_plus_depth) | 0
       if (int_par(e, tracing_pages_code) > 0) { // §1011 Display the insertion split cost
