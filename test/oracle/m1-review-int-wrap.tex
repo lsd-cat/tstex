@@ -1,0 +1,12 @@
+%! oracle: ini
+\catcode`\{=1 \catcode`\}=2 \catcode`\#=6
+\count1=2147483647 \dimen0=0.99999\count1 \showthe\dimen0
+\count2=-2147483647 \advance\count2-1 \dimen2=\count2 sp \showthe\dimen2
+\divide\count2 by 2 \showthe\count2
+\count3=-2147483647 \advance\count3-1 \multiply\count3 by -1 \showthe\count3
+\count3=-2147483647 \advance\count3-1 \divide\count3 by -1 \showthe\count3
+\count4=-2147483647 \advance\count4-1 \dimen3=0.5\count4 \showthe\dimen3
+\dimen3=-0.7\count4 \showthe\dimen3
+\count1=2147483647 \dimen3=1.5\count1 \showthe\dimen3 \dimen3=-0.99\count1 \showthe\dimen3
+\dimen3=0.3\count1 \showthe\dimen3 \count5=123456789 \dimen3=0.77\count5 \showthe\dimen3
+\end

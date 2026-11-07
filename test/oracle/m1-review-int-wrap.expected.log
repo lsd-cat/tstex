@@ -1,0 +1,73 @@
+(m1-review-int-wrap.tex
+> -0.5pt.
+l.3 ...3647 \dimen0=0.99999\count1 \showthe\dimen0
+
+
+! Dimension too large.
+l.4 ...83647 \advance\count2-1 \dimen2=\count2 sp
+                                                  \showthe\dimen2
+I can't work with sizes bigger than about 19 feet.
+Continue and I'll use the largest value I can.
+
+> -16383.99998pt.
+l.4 ...count2-1 \dimen2=\count2 sp \showthe\dimen2
+
+
+> 1073741824.
+l.5 \divide\count2 by 2 \showthe\count2
+
+
+! Arithmetic overflow.
+l.6 ...7 \advance\count3-1 \multiply\count3 by -1
+                                                  \showthe\count3
+I can't carry out that multiplication or division,
+since the result is out of range.
+
+> -2147483648.
+l.6 ...t3-1 \multiply\count3 by -1 \showthe\count3
+
+
+> -2147483648.
+l.7 ...unt3-1 \divide\count3 by -1 \showthe\count3
+
+
+! Dimension too large.
+l.8 ...83647 \advance\count4-1 \dimen3=0.5\count4
+                                                  \showthe\dimen3
+I can't work with sizes bigger than about 19 feet.
+Continue and I'll use the largest value I can.
+
+> 16383.99998pt.
+l.8 ...count4-1 \dimen3=0.5\count4 \showthe\dimen3
+
+
+> -9830.5pt.
+l.9 \dimen3=-0.7\count4 \showthe\dimen3
+
+
+! Dimension too large.
+l.10 \count1=2147483647 \dimen3=1.5\count1
+                                           \showthe\dimen3 \dimen3=-0.99\cou...
+I can't work with sizes bigger than about 19 feet.
+Continue and I'll use the largest value I can.
+
+> 16383.99998pt.
+l.10 ...483647 \dimen3=1.5\count1 \showthe\dimen3
+                                                  \dimen3=-0.99\count1 \show...
+
+
+> 327.5pt.
+l.10 ...imen3 \dimen3=-0.99\count1 \showthe\dimen3
+
+
+> 9830.49998pt.
+l.11 \dimen3=0.3\count1 \showthe\dimen3
+                                        \count5=123456789 \dimen3=0.77\count...
+
+
+> 1450.53488pt.
+l.11 ...456789 \dimen3=0.77\count5 \showthe\dimen3
+
+
+ )
+No pages of output.

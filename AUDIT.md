@@ -24,7 +24,7 @@ Findings from porting. The port reproduces TeX's behaviour, bugs included; entri
 
 ## Known bugs in the original
 
-(none recorded yet; see `spec/tex82.bug` and the 2021 tune‑up when relevant sections are ported)
+- Signed 32-bit overflow in §100–108 is undefined behaviour in C; pdftex's binaries wrap, and we reproduce what they print (oracle `m1-review-int-wrap`, unit `arith.test.ts`). `xn_over_d`'s `u:=(x div @'100000)*n+…` wraps (`\count1=2147483647 \dimen0=0.99999\count1` gives `-0.5pt`, no error), and `x_over_n(-2^31, 2)` negates `-2^31` to itself (`\divide` gives `1073741824`). The compiler's UB optimisations are not uniform, so neither are we: in `xn_over_d` the negated `-2^31` behaves as unsigned `2^31`; in `mult_and_add` `-(-2^31)` does not wrap (`\multiply` by `-1` reports "Arithmetic overflow"); and §448's `abs(cur_val)>=@'10000000000` treats `abs(-2^31)` as large ("Dimension too large"). `half`'s `x+1` wraps (not observable yet).
 
 ## pdftex vs tex.web
 

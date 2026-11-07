@@ -61,3 +61,12 @@ test('§103 print_scaled', () => {
   assert.deepStrictEqual([0, 1, 65535, 65536, 32768, 1073741823, -1, -65536].map(p),
     ['0.0', '0.00002', '0.99998', '1.0', '0.5', '16383.99998', '-0.00002', '-1.0'])
 })
+
+test('§106–107 32-bit wrap as in pdftex binaries (oracle m1-review-int-wrap)', () => {
+  const e = engine()
+  e.arith_error = false
+  assert.strictEqual(xn_over_d(e, 2147483647, 65535, 0o200000), -32768) // \dimen0=0.99999\count1 -> -0.5pt
+  assert.strictEqual(xn_over_d(e, -2147483648, 45875, 0o200000), 644251648) // -0.7\count4 -> -9830.5pt after the sign
+  assert.strictEqual(x_over_n(e, -2147483648, 2), 1073741824) // \divide\count2 by 2
+  assert.strictEqual(e.arith_error, false)
+})

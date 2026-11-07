@@ -6,7 +6,7 @@ export const unity = 0o200000, two = 0o400000, inf_bad = 10000
 
 // §100 half
 export function half(x: number): number {
-  return (x & 1) !== 0 ? Math.trunc((x + 1) / 2) : Math.trunc(x / 2)
+  return (x & 1) !== 0 ? Math.trunc(((x + 1) | 0) / 2) : Math.trunc(x / 2)
 }
 
 // §102 round_decimals
@@ -31,9 +31,9 @@ export function print_scaled(e: Engine, s: number): void {
 
 // §105 mult_and_add
 export function mult_and_add(e: Engine, n: number, x: number, y: number, max_answer: number): number {
-  if (n < 0) { x = -x; n = -n }
+  if (n < 0) { x = -x; n = -n } // no |0: pdftex's binary reports overflow for -(-2^31) here (oracle m1-review-int-wrap)
   if (n === 0) return y
-  if (x <= Math.trunc((max_answer - y) / n) && -x <= Math.trunc((max_answer + y) / n)) return (n * x + y) | 0
+  if (x <= Math.trunc((max_answer - y) / n) && -x <= Math.trunc((max_answer + y) / n)) return (Math.imul(n, x) + y) | 0
   e.arith_error = true; return 0
 }
 export const nx_plus_y = (e: Engine, n: number, x: number, y: number) => mult_and_add(e, n, x, y, 0o7777777777)
@@ -46,7 +46,7 @@ export function x_over_n(e: Engine, x: number, n: number): number {
   else {
     if (n < 0) { x = -x; n = -n; negative = true }
     if (x >= 0) { r = Math.trunc(x / n); e.remainder = x % n }
-    else { r = -Math.trunc(-x / n); e.remainder = -(-x % n) }
+    else { r = -Math.trunc((-x | 0) / n) | 0; e.remainder = -((-x | 0) % n) } // C wraps -(-2^31)
   }
   if (negative) e.remainder = -e.remainder
   return r
@@ -55,14 +55,14 @@ export function x_over_n(e: Engine, x: number, n: number): number {
 // §107 xn_over_d
 export function xn_over_d(e: Engine, x: number, n: number, d: number): number {
   const positive = x >= 0
-  if (!positive) x = -x
-  const t = (x % 0o100000) * n
-  let u = Math.trunc(x / 0o100000) * n + Math.trunc(t / 0o100000)
-  const v = (u % d) * 0o100000 + (t % 0o100000)
+  if (!positive) x = -x // no |0: for -2^31 pdftex's binary divides as if -x were 2^31 (unsigned), oracle m1-review-int-wrap
+  const t = Math.imul(x % 0o100000, n) // every other intermediate wraps like pdftex's 32-bit C integer
+  let u = (Math.imul(Math.trunc(x / 0o100000), n) + Math.trunc(t / 0o100000)) | 0
+  const v = (Math.imul(u % d, 0o100000) + (t % 0o100000)) | 0
   if (Math.trunc(u / d) >= 0o100000) e.arith_error = true
-  else u = 0o100000 * Math.trunc(u / d) + Math.trunc(v / d)
+  else u = (Math.imul(0o100000, Math.trunc(u / d)) + Math.trunc(v / d)) | 0
   if (positive) { e.remainder = v % d; return u }
-  e.remainder = -(v % d); return -u
+  e.remainder = -(v % d); return -u | 0
 }
 
 // §108 badness
