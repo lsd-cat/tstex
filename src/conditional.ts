@@ -7,7 +7,7 @@ import { int_par, tracing_commands_code, active_base } from './eqtb.ts'
 import { cs_token_flag, other_token, print_cmd_chr } from './tokens.ts'
 import { get_next, back_error, skipping } from './input.ts'
 import { get_x_token, insert_relax } from './expand.ts'
-import { scan_int, scan_dimen, scan_eight_bit_int, scan_four_bit_int } from './scan.ts'
+import { scan_int, scan_dimen, scan_eight_bit_int, scan_four_bit_int_or_18 } from './scan.ts'
 import { closed } from './files.ts'
 import { unsupported } from './main.ts'
 
@@ -140,7 +140,8 @@ export function conditional(e: Engine): void {
     case if_void_code: case if_hbox_code: case if_vbox_code: // §505 Test box register status
       // shortcut: every box register is void until M2 builds boxes, so p=null
       scan_eight_bit_int(e); b = this_if === if_void_code; break
-    case if_eof_code: scan_four_bit_int(e); b = e.read_open[e.cur_val] === closed; break
+    case if_eof_code: // tex.ch; shellenabledp is reported true, as pdftex's restricted shell escape (AUDIT.md)
+      scan_four_bit_int_or_18(e); b = e.cur_val === 18 ? false : e.read_open[e.cur_val] === closed; break
     default: unsupported(e) // \ifpdfprimitive
   }
   if (is_unless) b = !b

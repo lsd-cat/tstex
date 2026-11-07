@@ -1,0 +1,16 @@
+(m1-review-ifeof18.tex F
+! Bad number (17).
+l.4 \ifeof17
+             \message{T}\else\message{F}\fi
+Since I expected to read a number between 0 and 15,
+I changed this one to zero.
+
+T
+! Bad number (-1).
+l.5 \ifeof-1
+             \message{T}\else\message{F}\fi
+Since I expected to read a number between 0 and 15,
+I changed this one to zero.
+
+T )
+No pages of output.

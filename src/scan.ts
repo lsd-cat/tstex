@@ -153,6 +153,15 @@ export function scan_four_bit_int(e: Engine): void {
   }
 }
 
+// tex.ch scan_four_bit_int_or_18
+export function scan_four_bit_int_or_18(e: Engine): void {
+  scan_int(e)
+  if (e.cur_val < 0 || (e.cur_val > 15 && e.cur_val !== 18)) {
+    print_err(e, 'Bad number')
+    help(e, 'Since I expected to read a number between 0 and 15,', 'I changed this one to zero.'); int_error(e, e.cur_val); e.cur_val = 0
+  }
+}
+
 // §434 scan_char_num
 export function scan_char_num(e: Engine): void {
   scan_int(e)

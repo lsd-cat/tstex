@@ -30,6 +30,7 @@ Findings from porting. The port reproduces TeX's behaviour, bugs included; entri
 - Command codes and the eqtb layout follow pdftex.web: `max_command = 102`, which shifts every expandable command code relative to tex.web. pdftex's integer/dimen/token parameters and e‑TeX's slots have real eqtb places.
 - `undefined_control_sequence = frozen_null_font + 257` in tex.web; pdftex uses `font_max`. We follow pdftex's layout.
 - `hash_size` is tex.ch's 15000 plus TeX Live's `hash_extra = 600000`, kept as one block. No hash function is replicated: names live in two `Map`s.
+- `\ifeof18` (tex.ch) is `not shellenabledp`. pdftex runs with restricted shell escape, so it is false; we report shell escape as enabled for log compatibility although no `\write18` exists.
 - Expansion depth limit of 10000 (`expand_depth`, tex.ch) is enforced.
 
 ## Port deviations (deliberate; each has a `// §NNN` or `shortcut:` comment in code)
