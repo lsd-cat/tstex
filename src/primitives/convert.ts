@@ -9,8 +9,10 @@ import { get_token, ins_list } from '../input.ts'
 import { scan_int, str_toks } from '../scan.ts'
 import { unsupported } from '../main.ts'
 import { open_log_file } from '../files.ts'
+import { scan_font_ident } from '../tfm.ts'
+import { print_scaled } from '../arith.ts'
 
-const number_code = 0, roman_numeral_code = 1, string_code = 2, meaning_code = 3, job_name_code = 33
+const number_code = 0, roman_numeral_code = 1, string_code = 2, meaning_code = 3, font_name_code = 4, job_name_code = 33
 const names: Record<number, string> = { 0: 'number', 1: 'romannumeral', 2: 'string', 3: 'meaning', 4: 'fontname', 5: 'eTeXrevision',
   6: 'expanded', 7: 'pdftexrevision', 8: 'pdftexbanner', 9: 'pdffontname', 10: 'pdffontobjnum', 11: 'pdffontsize', 12: 'pdfpageref',
   13: 'pdfxformname', 14: 'pdfescapestring', 15: 'pdfescapename', 16: 'leftmarginkern', 17: 'rightmarginkern', 18: 'pdfstrcmp',
@@ -29,7 +31,8 @@ export function run(e: Engine, chr: number): void {
   else if (c === string_code || c === meaning_code) {
     const save_scanner_status = e.scanner_status
     e.scanner_status = 0; get_token(e); e.scanner_status = save_scanner_status
-  } else if (c === job_name_code) { if (e.job_name === '') open_log_file(e) }
+  } else if (c === font_name_code) scan_font_ident(e)
+  else if (c === job_name_code) { if (e.job_name === '') open_log_file(e) }
   else unsupported(e)
   const old_setting = e.selector; e.selector = new_string
   const b = e.cur_str.length
@@ -38,6 +41,10 @@ export function run(e: Engine, chr: number): void {
   else if (c === roman_numeral_code) print_roman_int(e, e.cur_val)
   else if (c === string_code) { if (e.cur_cs !== 0) sprint_cs(e, e.cur_cs); else print_char(e, e.cur_chr) }
   else if (c === meaning_code) print_meaning(e)
+  else if (c === font_name_code) {
+    print_str(e, e.font_name[e.cur_val]!)
+    if (e.font_size[e.cur_val] !== e.font_dsize[e.cur_val]) { print_str(e, ' at '); print_scaled(e, e.font_size[e.cur_val]!); print_str(e, 'pt') }
+  }
   else print_str(e, e.job_name)
   e.selector = old_setting; e.link[garbage] = str_toks(e, b); ins_list(e, e.link[temp_head]!)
 }

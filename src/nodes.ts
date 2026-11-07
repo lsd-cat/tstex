@@ -2,8 +2,15 @@
 // Token lists keep TeX's numeric pointers (info/link arrays, null=0) so that equiv, cur_chr,
 // loc and cur_val stay integers as in tex.web; box/glue nodes will be objects (M2).
 import type { Engine } from './engine.ts'
-import { print, print_char } from './print.ts'
+import { print, print_char, print_esc, print_int, print_ln, print_current_string } from './print.ts'
 import { print_scaled } from './arith.ts'
+import { confusion } from './error.ts'
+import { show_token_list } from './tokens.ts'
+import { print_file_name } from './files.ts'
+import { print_skip_param } from './eqtb.ts'
+import { glue_base, box_base, int_base, font_id_base, max_print_line } from './types.ts'
+
+const show_box_breadth_code = 24, show_box_depth_code = 25, pdf_tracing_fonts_code = 75
 
 export const temp_head = 1, hold_head = 2, backup_head = 3, garbage = 4, null_list = 5
 
@@ -102,4 +109,383 @@ export function print_spec(e: Engine, p: number, s: string): void {
   if (s !== '') print(e, s)
   if (g.stretch !== 0) { print(e, ' plus '); print_glue(e, g.stretch, g.stretch_order, s) }
   if (g.shrink !== 0) { print(e, ' minus '); print_glue(e, g.shrink, g.shrink_order, s) }
+}
+
+// §133–161 box nodes are objects with a |type| discriminant; |link| is an object reference (null for TeX's null).
+// Glue specs and token lists stay numeric (indices into Engine.spec and the info/link arrays).
+export const char_node = -1, hlist_node = 0, vlist_node = 1, rule_node = 2, ins_node = 3, mark_node = 4, adjust_node = 5,
+  ligature_node = 6, disc_node = 7, whatsit_node = 8, math_node = 9, glue_node = 10, kern_node = 11, penalty_node = 12,
+  unset_node = 13
+export const stretching = 1, shrinking = 2 // §135
+export const null_flag = -0o10000000000 // §138
+export const before = 0, after = 1, L_code = 4 // §147
+export const cond_math_glue = 98, mu_glue = 99, a_leaders = 100, c_leaders = 101, x_leaders = 102 // §149
+export const explicit = 1, acc_kern = 2, auto_kern = 3 // §155 (pdftex)
+export const inf_penalty = 10000, eject_penalty = -10000 // §157
+// §1341 whatsit subtypes (pdftex numbering)
+export const open_node = 0, write_node = 1, close_node = 2, special_node = 3, latespecial_node = 4, language_node = 5
+
+type Link = { link: Node | null }
+// §134 a char_node; list heads are char nodes too (TeX's get_avail), so is_char_node(head) holds as in tex.web
+export type CharNode = Link & { type: typeof char_node, font: number, character: number }
+// §135 hlist/vlist; an unset node (§159) keeps glue_stretch in glue_set and glue_shrink in shift_amount
+export type BoxNode = Link & { type: typeof hlist_node | typeof vlist_node | typeof unset_node, subtype: number, width: number,
+  depth: number, height: number, shift_amount: number, list_ptr: Node | null, glue_order: number, glue_sign: number, glue_set: number }
+export type RuleNode = Link & { type: typeof rule_node, subtype: number, width: number, depth: number, height: number }
+export type InsNode = Link & { type: typeof ins_node, subtype: number, height: number, depth: number, split_top_ptr: number,
+  float_cost: number, ins_ptr: Node | null }
+export type MarkNode = Link & { type: typeof mark_node, subtype: number, mark_ptr: number, mark_class: number }
+export type AdjustNode = Link & { type: typeof adjust_node, subtype: number, adjust_ptr: Node | null } // subtype = adjust_pre
+// §143 a ligature; new_lig_item (§144) makes the same shape with font=0 for the main loop's lig_stack
+export type LigNode = Link & { type: typeof ligature_node, subtype: number, font: number, character: number, lig_ptr: Node | null }
+export type DiscNode = Link & { type: typeof disc_node, replace_count: number, pre_break: Node | null, post_break: Node | null }
+export type WhatsitNode = Link & { type: typeof whatsit_node, subtype: number, write_stream: number, write_tokens: number,
+  open_name: string, open_area: string, open_ext: string, what_lang: number, what_lhm: number, what_rhm: number }
+export type MathNode = Link & { type: typeof math_node, subtype: number, width: number }
+export type GlueNode = Link & { type: typeof glue_node, subtype: number, glue_ptr: number, leader_ptr: Node | null }
+export type KernNode = Link & { type: typeof kern_node, subtype: number, width: number }
+export type PenaltyNode = Link & { type: typeof penalty_node, subtype: number, penalty: number }
+export type Node = CharNode | BoxNode | RuleNode | InsNode | MarkNode | AdjustNode | LigNode | DiscNode | WhatsitNode | MathNode
+  | GlueNode | KernNode | PenaltyNode
+
+export const is_char_node = (p: Node): p is CharNode => p.type === char_node
+
+// §120 get_avail as a list head or char node
+export const new_char = (f: number, c: number): CharNode => ({ type: char_node, link: null, font: f, character: c })
+
+// §136 new_null_box
+export function new_null_box(): BoxNode {
+  return { type: hlist_node, link: null, subtype: 0, width: 0, depth: 0, height: 0, shift_amount: 0, list_ptr: null,
+    glue_order: normal, glue_sign: normal, glue_set: 0 }
+}
+
+// §139 new_rule
+export function new_rule(): RuleNode {
+  return { type: rule_node, link: null, subtype: 0, width: null_flag, depth: null_flag, height: null_flag }
+}
+
+// §144 new_ligature, new_lig_item
+export function new_ligature(f: number, c: number, q: Node | null): LigNode {
+  return { type: ligature_node, link: null, subtype: 0, font: f, character: c, lig_ptr: q }
+}
+export const new_lig_item = (c: number): LigNode => new_ligature(0, c, null)
+
+// §145 new_disc
+export const new_disc = (): DiscNode => ({ type: disc_node, link: null, replace_count: 0, pre_break: null, post_break: null })
+
+// §147 new_math
+export const new_math = (w: number, s: number): MathNode => ({ type: math_node, link: null, subtype: s, width: w })
+
+// §1341 a whatsit with every field present
+export function new_whatsit_node(s: number): WhatsitNode {
+  return { type: whatsit_node, link: null, subtype: s, write_stream: 0, write_tokens: 0, open_name: '', open_area: '', open_ext: '',
+    what_lang: 0, what_lhm: 0, what_rhm: 0 }
+}
+
+// §152 new_param_glue
+export function new_param_glue(e: Engine, n: number): GlueNode {
+  const q = e.equiv[glue_base + n]!
+  e.spec[q]!.glue_ref_count++
+  return { type: glue_node, link: null, subtype: n + 1, glue_ptr: q, leader_ptr: null }
+}
+
+// §153 new_glue
+export function new_glue(e: Engine, q: number): GlueNode {
+  e.spec[q]!.glue_ref_count++
+  return { type: glue_node, link: null, subtype: normal, glue_ptr: q, leader_ptr: null }
+}
+
+// §154 new_skip_param; e.temp_ptr is the new spec
+export function new_skip_param(e: Engine, n: number): GlueNode {
+  e.temp_ptr = new_spec(e, e.equiv[glue_base + n]!)
+  const p = new_glue(e, e.temp_ptr); e.spec[e.temp_ptr]!.glue_ref_count = 0; p.subtype = n + 1
+  return p
+}
+
+// §156 new_kern
+export const new_kern = (w: number): KernNode => ({ type: kern_node, link: null, subtype: normal, width: w })
+
+// §158 new_penalty
+export const new_penalty = (m: number): PenaltyNode => ({ type: penalty_node, link: null, subtype: 0, penalty: m })
+
+// eqtb holds integers, so a box register (or any node pointer kept in eqtb or the save stack) holds a handle into
+// Engine.nodes; 0 is null. Each define allocates a fresh handle, and eq_destroy or change_box releases it.
+export function node_ref(e: Engine, p: Node | null): number {
+  if (p === null) return 0
+  const h = e.nodes_free.pop() ?? e.nodes.length
+  e.nodes[h] = p
+  return h
+}
+export const node_at = (e: Engine, h: number): Node | null => h === 0 ? null : e.nodes[h]!
+export function node_free(e: Engine, h: number): void {
+  if (h !== 0) { e.nodes[h] = null; e.nodes_free.push(h) }
+}
+// §230 box(n), and change_box (etex.ch) which sets box(n) at the same level without saving
+export const box = (e: Engine, n: number): BoxNode | null => node_at(e, e.equiv[box_base + n]!) as BoxNode | null
+export function change_box(e: Engine, n: number, p: Node | null): void {
+  node_free(e, e.equiv[box_base + n]!); e.equiv[box_base + n] = node_ref(e, p)
+}
+
+// §202 flush_node_list
+export function flush_node_list(e: Engine, p: Node | null): void {
+  while (p !== null) {
+    const q: Node | null = p.link
+    switch (p.type) {
+      case char_node: case rule_node: case kern_node: case math_node: case penalty_node: break
+      case hlist_node: case vlist_node: case unset_node: flush_node_list(e, p.list_ptr); break
+      case ins_node: flush_node_list(e, p.ins_ptr); delete_glue_ref(e, p.split_top_ptr); break
+      case whatsit_node: // §1358
+        if (p.subtype === write_node || p.subtype === special_node || p.subtype === latespecial_node) delete_token_ref(e, p.write_tokens)
+        else if (p.subtype > language_node) confusion(e, 'ext3')
+        break
+      case glue_node: delete_glue_ref(e, p.glue_ptr); flush_node_list(e, p.leader_ptr); break
+      case ligature_node: flush_node_list(e, p.lig_ptr); break
+      case mark_node: delete_token_ref(e, p.mark_ptr); break
+      case disc_node: flush_node_list(e, p.pre_break); flush_node_list(e, p.post_break); break
+      case adjust_node: flush_node_list(e, p.adjust_ptr); break
+      default: confusion(e, 'flushing')
+    }
+    p = q
+  }
+}
+
+// §204 copy_node_list
+export function copy_node_list(e: Engine, p: Node | null): Node | null {
+  const h = new_char(0, 0)
+  let q: Node = h
+  while (p !== null) {
+    // §205 Make a copy of node p in node r
+    let r: Node
+    switch (p.type) {
+      case hlist_node: case vlist_node: case unset_node: r = { ...p, list_ptr: copy_node_list(e, p.list_ptr) }; break
+      case ins_node: add_glue_ref(e, p.split_top_ptr); r = { ...p, ins_ptr: copy_node_list(e, p.ins_ptr) }; break
+      case whatsit_node: // §1357
+        if (p.subtype === write_node || p.subtype === special_node || p.subtype === latespecial_node) add_token_ref(e, p.write_tokens)
+        else if (p.subtype > language_node) confusion(e, 'ext2')
+        r = { ...p }; break
+      case glue_node: add_glue_ref(e, p.glue_ptr); r = { ...p, leader_ptr: copy_node_list(e, p.leader_ptr) }; break
+      case ligature_node: r = { ...p, lig_ptr: copy_node_list(e, p.lig_ptr) }; break
+      case disc_node: r = { ...p, pre_break: copy_node_list(e, p.pre_break), post_break: copy_node_list(e, p.post_break) }; break
+      case mark_node: add_token_ref(e, p.mark_ptr); r = { ...p }; break
+      case adjust_node: r = { ...p, adjust_ptr: copy_node_list(e, p.adjust_ptr) }; break
+      case char_node: case rule_node: case kern_node: case math_node: case penalty_node: r = { ...p }; break
+      default: confusion(e, 'copying')
+    }
+    q.link = r; q = r; p = p.link
+  }
+  q.link = null
+  return h.link
+}
+
+// §174 print_font_identifier (pdftex; pdf_font_blink is always null_font, expansion ratios are 0)
+export function print_font_identifier(e: Engine, f: number): void {
+  print_esc(e, e.text.get(font_id_base + f) ?? 0)
+  if (e.equiv[int_base + pdf_tracing_fonts_code]! > 0) {
+    print(e, ' ('); print(e, e.font_name[f]!)
+    if (e.font_size[f] !== e.font_dsize[f]) { print(e, '@'); print_scaled(e, e.font_size[f]!); print(e, 'pt') }
+    print(e, ')')
+  }
+}
+
+// §174 short_display
+export function short_display(e: Engine, p: Node | null): void {
+  while (p !== null) {
+    if (is_char_node(p)) {
+      if (p.font !== e.font_in_short_display) {
+        if (p.font < 0 || p.font > e.font_ptr) print_char(e, 42)
+        else print_font_identifier(e, p.font)
+        print_char(e, 32); e.font_in_short_display = p.font
+      }
+      print(e, p.character)
+    } else switch (p.type) { // §175 Print a short indication of the contents of node p
+      case hlist_node: case vlist_node: case ins_node: case whatsit_node: case mark_node: case adjust_node: case unset_node:
+        print(e, '[]'); break
+      case rule_node: print_char(e, 124); break
+      case glue_node: if (p.glue_ptr !== zero_glue) print_char(e, 32); break
+      case math_node: if (p.subtype >= L_code) print(e, '[]'); else print_char(e, 36); break
+      case ligature_node: short_display(e, p.lig_ptr); break
+      case disc_node: {
+        short_display(e, p.pre_break); short_display(e, p.post_break)
+        let n = p.replace_count
+        while (n > 0) { if (p.link !== null) p = p.link; n-- }
+        break
+      }
+    }
+    p = p.link
+  }
+}
+
+// §176 print_font_and_char, print_mark, print_rule_dimen
+export function print_font_and_char(e: Engine, f: number, c: number): void {
+  if (f < 0 || f > e.font_ptr) print_char(e, 42)
+  else print_font_identifier(e, f)
+  print_char(e, 32); print(e, c)
+}
+export function print_mark(e: Engine, p: number): void {
+  print_char(e, 123); show_token_list(e, e.link[p]!, 0, max_print_line - 10); print_char(e, 125)
+}
+export function print_rule_dimen(e: Engine, d: number): void {
+  if (d === null_flag) print_char(e, 42); else print_scaled(e, d)
+}
+
+// §1356 print_write_whatsit
+function print_write_whatsit(e: Engine, s: string, p: WhatsitNode): void {
+  print_esc(e, s)
+  if (p.write_stream < 16) print_int(e, p.write_stream)
+  else if (p.write_stream === 16) print_char(e, 42)
+  else print_char(e, 45)
+}
+
+// glue_set's high 32 bits, which tex.web's mem[p+glue_offset].int reads on a little-endian web2c build
+const gr = new Float64Array(1), gr_int = new Int32Array(gr.buffer)
+// web2c zround
+export function zround(r: number): number {
+  if (r > 2147483647) return 2147483647
+  if (r < -2147483647) return -2147483647
+  return r >= 0 ? Math.floor(r + 0.5) : Math.ceil(r - 0.5)
+}
+
+// §182 show_node_list; node_list_display appends '.' to the current string
+function node_list_display(e: Engine, p: Node | null, c = 46): void {
+  e.cur_str.push(c); show_node_list(e, p); e.cur_str.pop()
+}
+export function show_node_list(e: Engine, p: Node | null): void {
+  if (e.cur_str.length > e.depth_threshold) {
+    if (p !== null) print(e, ' []')
+    return
+  }
+  let n = 0
+  while (p !== null) {
+    print_ln(e); print_current_string(e)
+    if (++n > e.breadth_max) { print(e, 'etc.'); return }
+    // §183 Display node p
+    switch (p.type) {
+      case char_node: print_font_and_char(e, p.font, p.character); break
+      case hlist_node: case vlist_node: case unset_node: { // §184 Display box p
+        if (p.type === hlist_node) print_esc(e, 'h')
+        else if (p.type === vlist_node) print_esc(e, 'v')
+        else print_esc(e, 'unset')
+        print(e, 'box('); print_scaled(e, p.height); print_char(e, 43)
+        print_scaled(e, p.depth); print(e, ')x'); print_scaled(e, p.width)
+        if (p.type === unset_node) { // §185
+          if (p.subtype !== 0) { print(e, ' ('); print_int(e, p.subtype + 1); print(e, ' columns)') }
+          if (p.glue_set !== 0) { print(e, ', stretch '); print_glue(e, p.glue_set, p.glue_order, '') }
+          if (p.shift_amount !== 0) { print(e, ', shrink '); print_glue(e, p.shift_amount, p.glue_sign, '') }
+        } else {
+          const g = p.glue_set // §186 Display the value of glue_set(p)
+          if (g !== 0 && p.glue_sign !== normal) {
+            print(e, ', glue set ')
+            if (p.glue_sign === shrinking) print(e, '- ')
+            gr[0] = g
+            if (Math.abs(gr_int[1]!) < 0o4000000) print(e, '?.?')
+            else if (Math.abs(g) > 20000) {
+              if (g > 0) print_char(e, 62); else print(e, '< -')
+              print_glue(e, 20000 * 0o200000, p.glue_order, '')
+            } else print_glue(e, zround(0o200000 * g), p.glue_order, '')
+          }
+          if (p.shift_amount !== 0) { print(e, ', shifted '); print_scaled(e, p.shift_amount) }
+        }
+        node_list_display(e, p.list_ptr)
+        break
+      }
+      case rule_node: // §187
+        print_esc(e, 'rule('); print_rule_dimen(e, p.height); print_char(e, 43)
+        print_rule_dimen(e, p.depth); print(e, ')x'); print_rule_dimen(e, p.width)
+        break
+      case ins_node: // §188
+        print_esc(e, 'insert'); print_int(e, p.subtype); print(e, ', natural size '); print_scaled(e, p.height)
+        print(e, '; split('); print_spec(e, p.split_top_ptr, ''); print_char(e, 44); print_scaled(e, p.depth)
+        print(e, '); float cost '); print_int(e, p.float_cost)
+        node_list_display(e, p.ins_ptr)
+        break
+      case whatsit_node: // §1356 Display the whatsit node p
+        switch (p.subtype) {
+          case open_node: print_write_whatsit(e, 'openout', p); print_char(e, 61); print_file_name(e, p.open_name, p.open_area, p.open_ext); break
+          case write_node: print_write_whatsit(e, 'write', p); print_mark(e, p.write_tokens); break
+          case close_node: print_write_whatsit(e, 'closeout', p); break
+          case special_node: print_esc(e, 'special'); print_mark(e, p.write_tokens); break
+          case latespecial_node: print_esc(e, 'special'); print(e, ' shipout'); print_mark(e, p.write_tokens); break
+          case language_node:
+            print_esc(e, 'setlanguage'); print_int(e, p.what_lang); print(e, ' (hyphenmin ')
+            print_int(e, p.what_lhm); print_char(e, 44); print_int(e, p.what_rhm); print_char(e, 41)
+            break
+          default: print(e, 'whatsit?')
+        }
+        break
+      case glue_node: // §189
+        if (p.subtype >= a_leaders) { // §190 Display leaders p
+          print_esc(e, '')
+          if (p.subtype === c_leaders) print_char(e, 99)
+          else if (p.subtype === x_leaders) print_char(e, 120)
+          print(e, 'leaders '); print_spec(e, p.glue_ptr, '')
+          node_list_display(e, p.leader_ptr)
+        } else {
+          print_esc(e, 'glue')
+          if (p.subtype !== normal) {
+            print_char(e, 40)
+            if (p.subtype < cond_math_glue) print_skip_param(e, p.subtype - 1)
+            else if (p.subtype === cond_math_glue) print_esc(e, 'nonscript')
+            else print_esc(e, 'mskip')
+            print_char(e, 41)
+          }
+          if (p.subtype !== cond_math_glue) {
+            print_char(e, 32)
+            print_spec(e, p.glue_ptr, p.subtype < cond_math_glue ? '' : 'mu')
+          }
+        }
+        break
+      case kern_node: // §191
+        if (p.subtype !== mu_glue) {
+          print_esc(e, 'kern')
+          if (p.subtype !== normal) print_char(e, 32)
+          print_scaled(e, p.width)
+          if (p.subtype === acc_kern) print(e, ' (for accent)')
+          if (p.subtype === auto_kern) print(e, ' (for \\pdfprependkern/\\pdfappendkern)')
+        } else { print_esc(e, 'mkern'); print_scaled(e, p.width); print(e, 'mu') }
+        break
+      case math_node: // §192
+        if (p.subtype > after) {
+          print_esc(e, (p.subtype & 1) !== 0 ? 'end' : 'begin')
+          print_char(e, p.subtype > 2 * L_code ? 82 : p.subtype > L_code ? 76 : 77)
+        } else {
+          print_esc(e, 'math'); print(e, p.subtype === before ? 'on' : 'off')
+          if (p.width !== 0) { print(e, ', surrounded '); print_scaled(e, p.width) }
+        }
+        break
+      case ligature_node: // §193
+        print_font_and_char(e, p.font, p.character); print(e, ' (ligature ')
+        if (p.subtype > 1) print_char(e, 124)
+        e.font_in_short_display = p.font; short_display(e, p.lig_ptr)
+        if ((p.subtype & 1) !== 0) print_char(e, 124)
+        print_char(e, 41)
+        break
+      case penalty_node: print_esc(e, 'penalty '); print_int(e, p.penalty); break // §194
+      case disc_node: // §195
+        print_esc(e, 'discretionary')
+        if (p.replace_count > 0) { print(e, ' replacing '); print_int(e, p.replace_count) }
+        node_list_display(e, p.pre_break)
+        node_list_display(e, p.post_break, 124)
+        break
+      case mark_node: // §196
+        print_esc(e, 'mark')
+        if (p.mark_class !== 0) { print_char(e, 115); print_int(e, p.mark_class) }
+        print_mark(e, p.mark_ptr)
+        break
+      case adjust_node: // §197
+        print_esc(e, 'vadjust'); if (p.subtype !== 0) print(e, ' pre ')
+        node_list_display(e, p.adjust_ptr)
+        break
+      default: print(e, 'Unknown node type!')
+    }
+    p = p.link
+  }
+}
+
+// §198 show_box
+export function show_box(e: Engine, p: Node | null): void {
+  e.depth_threshold = e.equiv[int_base + show_box_depth_code]!
+  e.breadth_max = e.equiv[int_base + show_box_breadth_code]!
+  if (e.breadth_max <= 0) e.breadth_max = 5
+  show_node_list(e, p)
+  print_ln(e)
 }

@@ -5,7 +5,7 @@ import { print, print_char, print_esc, print_int, print_nl, begin_diagnostic, en
 import { print_scaled } from './arith.ts'
 import { sprint_cs } from './hash.ts'
 import { print_cmd_chr, show_token_list } from './tokens.ts'
-import { delete_token_ref, delete_glue_ref, print_spec, zero_glue } from './nodes.ts'
+import { delete_token_ref, delete_glue_ref, print_spec, zero_glue, flush_node_list, node_at, node_free, show_node_list } from './nodes.ts'
 import { back_input } from './input.ts'
 import { overflow, confusion, print_err, help, int_error } from './error.ts'
 import { level_zero, level_one, active_base, glue_base, local_base, par_shape_loc, output_routine_loc, toks_base, box_base, cur_font_loc,
@@ -85,6 +85,7 @@ export function init_eqtb(e: Engine): void {
   e.equiv[int_base + 64] = 1; e.equiv[int_base + 65] = 4 // \pdfmajorversion, \pdfminorversion
   e.equiv[int_base + 69] = 1000; e.equiv[int_base + 70] = 2200; e.equiv[int_base + 71] = 1 // gamma, imagegamma, imagehicolor
   e.equiv[dimen_base + 33] = 65782 // \pdfpxdimen: one_bp
+  for (let k = 28; k <= 32; k++) e.equiv[dimen_base + k] = -65536000 // \pdfignoreddimen and the line heights/depths: ignore_depth
   // §283
   e.xeq_level.fill(level_one, int_base)
   // §258, §1216
@@ -127,7 +128,11 @@ export function show_eqtb(e: Engine, n: number): void {
     } else if (n < box_base) {
       print_esc(e, 'toks'); print_int(e, n - toks_base); print_char(e, 61)
       if (e.equiv[n] !== 0) show_token_list(e, e.link[e.equiv[n]!]!, 0, 32)
-    } else if (n < cur_font_loc) { print_esc(e, 'box'); print_int(e, n - box_base); print_char(e, 61); print(e, 'void') }
+    } else if (n < cur_font_loc) {
+      print_esc(e, 'box'); print_int(e, n - box_base); print_char(e, 61)
+      if (e.equiv[n] === 0) print(e, 'void')
+      else { e.depth_threshold = 0; e.breadth_max = 1; show_node_list(e, node_at(e, e.equiv[n]!)) }
+    }
     else if (n < cat_code_base) { // §234
       if (n === cur_font_loc) print(e, 'current font')
       else if (n < math_font_base + 16) { print_esc(e, 'textfont'); print_int(e, n - math_font_base) }
@@ -174,10 +179,11 @@ export function new_save_level(e: Engine, c: number): void {
   e.cur_boundary = e.save_ptr; e.cur_level++; e.save_ptr++; e.cur_group = c
 }
 
-// §275 eq_destroy; shape and box equivalents are always null so far
+// §275 eq_destroy; shape equivalents are always null so far (\parshape is unsupported)
 function eq_destroy(e: Engine, type: number, equiv: number): void {
   if (type >= Cmd.call && type <= Cmd.long_outer_call) delete_token_ref(e, equiv)
   else if (type === Cmd.glue_ref) delete_glue_ref(e, equiv)
+  else if (type === Cmd.box_ref) { flush_node_list(e, node_at(e, equiv)); node_free(e, equiv) }
 }
 
 // §276 eq_save

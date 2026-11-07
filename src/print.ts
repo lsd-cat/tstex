@@ -17,7 +17,14 @@ export function print_ln(e: Engine): void {
     case term_and_log: e.log += '\n'; e.term_offset = 0; e.file_offset = 0; break
     case log_only: e.log += '\n'; e.file_offset = 0; break
     case term_only: e.term_offset = 0; break
+    default: if (e.selector < 16) write_file_out(e, '\n') // §57 write_ln(write_file[selector])
   }
+}
+
+// §57–58 output to an open \write file, collected in Engine.outputFiles
+function write_file_out(e: Engine, s: string): void {
+  const n = e.write_name[e.selector]!
+  e.outputFiles.set(n, e.outputFiles.get(n)! + s)
 }
 
 // §58 print_char; terminal output is discarded, only |term_offset| is kept
@@ -40,7 +47,7 @@ export function print_char(e: Engine, s: number): void {
     case no_print: break
     case pseudo: if (e.tally < e.trick_count) e.trick_buf[e.tally % error_line] = s; break
     case new_string: e.cur_str.push(s); break
-    default: break // \write streams do not exist yet
+    default: write_file_out(e, String.fromCharCode(s)) // a \write stream 0..15
   }
   e.tally++
 }

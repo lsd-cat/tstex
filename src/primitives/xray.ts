@@ -1,4 +1,4 @@
-// §1291–1298 \show \showthe \showlists (\showbox needs boxes: M2), §218–219 show_activities
+// §1291–1298 \show \showbox \showthe \showlists
 import type { Engine } from '../engine.ts'
 import { Cmd, error_stop_mode, term_and_log, term_only } from '../types.ts'
 import { print as print_str, print_esc, print_nl, print_char, print_ln, print_int, print_mode, begin_diagnostic, end_diagnostic } from '../print.ts'
@@ -9,7 +9,9 @@ import { flush_list, temp_head } from '../nodes.ts'
 import { get_token } from '../input.ts'
 import { the_toks } from '../scan.ts'
 import { int_par, tracing_online_code } from '../eqtb.ts'
-import { unsupported } from '../main.ts'
+import { unsupported, show_activities } from '../main.ts'
+import { box, show_box } from '../nodes.ts'
+import { scan_eight_bit_int } from '../scan.ts'
 
 const show_code = 0, show_box_code = 1, show_the_code = 2, show_lists_code = 3
 export const cmd = Cmd.xray
@@ -21,14 +23,19 @@ export function print(e: Engine, chr: number): void {
 }
 // §1293 show_whatever
 export function run(e: Engine, chr: number): void {
-  if (chr === show_lists_code) {
-    begin_diagnostic(e); show_activities(e)
+  if (chr === show_lists_code || chr === show_box_code) {
+    if (chr === show_lists_code) { begin_diagnostic(e); show_activities(e) }
+    else { // §1296 Show the current contents of a box
+      scan_eight_bit_int(e); const p = box(e, e.cur_val); begin_diagnostic(e)
+      print_nl(e, '> \\box'); print_int(e, e.cur_val); print_char(e, 61)
+      if (p === null) print_str(e, 'void'); else show_box(e, p)
+    }
     // §1298 Complete a potentially long \show command
     end_diagnostic(e, true); print_err(e, 'OK')
     if (e.selector === term_and_log && int_par(e, tracing_online_code) <= 0) {
       e.selector = term_only; print_str(e, ' (see the transcript file)'); e.selector = term_and_log
     }
-  } else if (chr !== show_code && chr !== show_the_code) unsupported(e) // \showbox: M2
+  } else if (chr !== show_code && chr !== show_the_code) unsupported(e)
   else if (chr === show_code) { // §1294 Show the current meaning of a token
     get_token(e)
     print_nl(e, '> ')
@@ -50,12 +57,4 @@ export function run(e: Engine, chr: number): void {
       'lists on your terminal as well as in the transcript file.')
   }
   error(e)
-}
-
-// §218 show_activities
-// shortcut: the semantic nest is only the outer vertical list, empty, with prev_depth=ignore_depth and prev_graf=0, until M2
-function show_activities(e: Engine): void {
-  print_nl(e, ''); print_ln(e)
-  print_nl(e, '### '); print_mode(e, e.mode); print_str(e, ' entered at line '); print_int(e, 0)
-  print_nl(e, 'prevdepth '); print_str(e, 'ignored') // §219
 }

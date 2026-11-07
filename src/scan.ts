@@ -4,7 +4,11 @@ import { Cmd, nonstop_mode, int_val, dimen_val, glue_val, mu_val, ident_val, tok
 import { print, print_int, print_esc } from './print.ts'
 import { print_scaled, round_decimals, xn_over_d, nx_plus_y, unity } from './arith.ts'
 import { error, print_err, help, int_error, fatal_error } from './error.ts'
-import { count_base, scaled_base, skip_base, mu_skip_base, toks_base, active_base, single_base, dimen_base, int_par, mag_code, prepare_mag, end_line_char_code } from './eqtb.ts'
+import { count_base, scaled_base, skip_base, mu_skip_base, toks_base, active_base, single_base, dimen_base, int_par, mag_code, prepare_mag, end_line_char_code, font_id_base, cur_font_loc } from './eqtb.ts'
+import { vmode } from './types.ts'
+import { box, is_char_node, math_node, penalty_node, kern_node, glue_node, mu_glue, unset_node } from './nodes.ts'
+import type { Node } from './nodes.ts'
+import { scan_font_ident, find_font_dimen, param, quad_code, x_height_code } from './tfm.ts'
 import { sprint_cs } from './hash.ts'
 import { get_avail, free_avail, flush_list, temp_head, backup_head, new_spec, add_glue_ref, delete_glue_ref, print_spec, zero_glue, fil, filll } from './nodes.ts'
 import { unsupported } from './main.ts'
@@ -87,7 +91,43 @@ export function scan_something_internal(e: Engine, level: number, negative: bool
         if (e.cur_cmd < Cmd.assign_toks) { scan_eight_bit_int(e); e.cur_val = e.equiv[toks_base + e.cur_val]! }
         else e.cur_val = e.equiv[m]!
         e.cur_val_level = tok_val
-      } else unsupported(e) // scan_font_ident: fonts are M2
+      } else { back_input(e); scan_font_ident(e); e.cur_val = font_id_base + e.cur_val; e.cur_val_level = ident_val }
+      break
+    case Cmd.set_aux: // §418 Fetch the space_factor or the prev_depth
+      if (Math.abs(e.mode) !== m) {
+        print_err(e, 'Improper '); print_cmd_chr(e, Cmd.set_aux, m)
+        help(e, 'You can refer to \\spacefactor only in horizontal mode;', 'you can refer to \\prevdepth only in vertical mode; and',
+          'neither of these is meaningful inside \\write. So', "I'm forgetting what you said and using zero instead.")
+        error(e)
+        e.cur_val = 0; e.cur_val_level = level !== tok_val ? dimen_val : int_val
+      } else if (m === vmode) { e.cur_val = e.prev_depth; e.cur_val_level = dimen_val }
+      else { e.cur_val = e.space_factor; e.cur_val_level = int_val }
+      break
+    case Cmd.set_prev_graf: // §422 Fetch the prev_graf
+      if (e.mode === 0) e.cur_val = 0
+      else {
+        let p = e.nest_ptr
+        e.nest[p] = { ...e.nest[p]!, mode: e.mode, prev_graf: e.prev_graf }
+        while (Math.abs(e.nest[p]!.mode) !== vmode) p--
+        e.cur_val = e.nest[p]!.prev_graf
+      }
+      e.cur_val_level = int_val
+      break
+    case Cmd.set_box_dimen: { // §420 Fetch a box dimension
+      scan_eight_bit_int(e)
+      const q = box(e, e.cur_val)
+      e.cur_val = q === null ? 0 : m === 1 ? q.width : m === 2 ? q.depth : q.height
+      e.cur_val_level = dimen_val
+      break
+    }
+    case Cmd.assign_font_dimen: // §425 Fetch a font dimension
+      find_font_dimen(e, false); e.font_info[e.fmem_ptr] = 0
+      e.cur_val = e.font_info[e.cur_val]!; e.cur_val_level = dimen_val
+      break
+    case Cmd.assign_font_int: // §426 Fetch a font integer
+      if (m > 1) unsupported(e) // pdftex's \lpcode etc.
+      scan_font_ident(e)
+      e.cur_val = m === 0 ? e.hyphen_char[e.cur_val]! : e.skew_char[e.cur_val]!; e.cur_val_level = int_val
       break
     case Cmd.assign_int: e.cur_val = e.equiv[m]!; e.cur_val_level = int_val; break
     case Cmd.assign_dimen: e.cur_val = e.equiv[m]!; e.cur_val_level = dimen_val; break
@@ -101,14 +141,31 @@ export function scan_something_internal(e: Engine, level: number, negative: bool
     case Cmd.last_item: // §424 Fetch an item in the current node, if appropriate
       if (m >= input_line_no_code) {
         if (m === input_line_no_code) e.cur_val = e.line
-        else if (m === badness_code) e.cur_val = 0 // shortcut: last_badness stays 0 until hpack/vpack exist (M2)
+        else if (m === badness_code) e.cur_val = e.last_badness
         else if (m === pdftex_version_code) e.cur_val = 140
         else unsupported(e)
         e.cur_val_level = int_val
       } else {
-        // shortcut: the only list is the empty main vlist until M2, so tail=head, last_penalty=last_kern=0, last_glue=max_halfword
-        if (m === last_node_type_code) unsupported(e)
-        e.cur_val = m === glue_val ? zero_glue : 0; e.cur_val_level = m
+        e.cur_val = m === glue_val ? zero_glue : 0
+        let tx = e.tail // find_effective_tail (etex.ch)
+        if (tx.type === math_node && tx.subtype === 3) { let r = e.head, q: Node; do { q = r; r = q.link! } while (r !== tx); tx = q }
+        if (m === last_node_type_code) { e.cur_val_level = int_val; if (tx === e.head || e.mode === 0) e.cur_val = -1 }
+        else e.cur_val_level = m
+        if (!is_char_node(tx) && e.mode !== 0) {
+          switch (m) {
+            case int_val: if (tx.type === penalty_node) e.cur_val = tx.penalty; break
+            case dimen_val: if (tx.type === kern_node) e.cur_val = tx.width; break
+            case glue_val: if (tx.type === glue_node) { e.cur_val = tx.glue_ptr; if (tx.subtype === mu_glue) e.cur_val_level = mu_val } break
+            case last_node_type_code: e.cur_val = tx.type <= unset_node ? tx.type + 1 : unset_node + 2; break
+          }
+        } else if (e.mode === vmode && tx === e.head) {
+          switch (m) {
+            case int_val: e.cur_val = e.last_penalty; break
+            case dimen_val: e.cur_val = e.last_kern; break
+            case glue_val: if (e.last_glue !== 0o17777777777) e.cur_val = e.last_glue; break
+            case last_node_type_code: unsupported(e) // last_node_type (page builder, pass 2)
+          }
+        }
       }
       break
     case Cmd.ignore_spaces: // pdftex: trap unexpandable primitives; chr=0 (\ignorespaces) leaves cur_val, cur_val_level as they were
@@ -323,9 +380,8 @@ export function scan_dimen(e: Engine, mu: boolean, inf: boolean, shortcut: boole
           }
           not_found: {
             if (mu) break not_found
-            // shortcut: cur_font is always \nullfont, whose quad and x_height are 0; fonts are M2
-            if (scan_keyword(e, 'em')) v = 0
-            else if (scan_keyword(e, 'ex')) v = 0
+            if (scan_keyword(e, 'em')) v = param(e, quad_code, e.equiv[cur_font_loc]!) // §558
+            else if (scan_keyword(e, 'ex')) v = param(e, x_height_code, e.equiv[cur_font_loc]!) // §559
             else if (scan_keyword(e, 'px')) v = e.equiv[dimen_base + pdf_px_dimen_code]!
             else break not_found
             scan_optional_space(e)

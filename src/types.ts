@@ -82,7 +82,7 @@ export const frozen_dont_expand = frozen_control_sequence + 9
 export const frozen_null_font = frozen_control_sequence + 10
 export const frozen_primitive = frozen_control_sequence + 11 // pdftex.web: permanent \pdfprimitive
 export const font_id_base = frozen_null_font
-export const undefined_control_sequence = frozen_null_font + 257
+export const undefined_control_sequence = frozen_null_font + 9000 + 1 // tex.ch: max_font_max+1
 // §224 region 3
 export const glue_base = undefined_control_sequence + 1
 export const glue_pars = 18

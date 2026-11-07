@@ -44,6 +44,38 @@ import * as input from './input.ts'
 import * as in_stream from './in_stream.ts'
 import * as read_to_cs from './read_to_cs.ts'
 import * as unsupported from './unsupported.ts'
+import * as set_box from './set_box.ts'
+import * as set_box_dimen from './set_box_dimen.ts'
+import * as set_aux from './set_aux.ts'
+import * as set_prev_graf from './set_prev_graf.ts'
+import * as def_font from './def_font.ts'
+import * as assign_font_dimen from './assign_font_dimen.ts'
+import * as assign_font_int from './assign_font_int.ts'
+import * as make_box from './make_box.ts'
+import * as hmove from './hmove.ts'
+import * as vmove from './vmove.ts'
+import * as leader_ship from './leader_ship.ts'
+import * as un_hbox from './un_hbox.ts'
+import * as un_vbox from './un_vbox.ts'
+import * as remove_item from './remove_item.ts'
+import * as hskip from './hskip.ts'
+import * as vskip from './vskip.ts'
+import * as kern from './kern.ts'
+import * as hrule from './hrule.ts'
+import * as vrule from './vrule.ts'
+import * as insert from './insert.ts'
+import * as vadjust from './vadjust.ts'
+import * as mark from './mark.ts'
+import * as break_penalty from './break_penalty.ts'
+import * as start_par from './start_par.ts'
+import * as ital_corr from './ital_corr.ts'
+import * as accent from './accent.ts'
+import * as discretionary from './discretionary.ts'
+import * as ex_space from './ex_space.ts'
+import * as char_num from './char_num.ts'
+import * as no_boundary from './no_boundary.ts'
+import * as end_cs_name from './end_cs_name.ts'
+import * as extension from './extension.ts'
 
 export type Prim = {
   cmd: number
@@ -56,7 +88,10 @@ export type Prim = {
 
 const prims: Prim[] = [relax, par_end, stop, def, register, assign_int, assign_dimen, assign_glue, assign_mu_glue, assign_toks,
   toks_register, def_code, advance, multiply, divide, prefix, let_, shorthand_def, after_assignment, after_group, begin_group,
-  end_group, expand_after, if_test, fi_or_else, convert, case_shift, last_item, set_font, message, xray, the, no_expand, cs_name, input, in_stream, read_to_cs, ...unsupported.prims]
+  end_group, expand_after, if_test, fi_or_else, convert, case_shift, last_item, set_font, message, xray, the, no_expand, cs_name, input, in_stream, read_to_cs,
+  set_box, set_box_dimen, set_aux, set_prev_graf, def_font, assign_font_dimen, assign_font_int, make_box, hmove, vmove, leader_ship,
+  un_hbox, un_vbox, remove_item, hskip, vskip, kern, hrule, vrule, insert, vadjust, mark, break_penalty, start_par, ital_corr, accent,
+  discretionary, ex_space, char_num, no_boundary, end_cs_name, extension, ...unsupported.prims]
 export const registry = new Map<number, Prim>() // filled by init_prim, after every module is evaluated
 
 // §1336 init_prim (with the frozen copies of §265, §334, §491, §553, §780, §1188, §1344)
@@ -68,6 +103,7 @@ export function init_prim(e: Engine, etex = false): void {
   for (const p of prims) for (const [name, chr] of etex ? [...p.primitives, ...p.etex_primitives ?? []] : p.primitives) {
     const loc = primitive(e, name, p.cmd, chr)
     if (name === 'par') { e.par_loc = loc; e.par_token = cs_token_flag + loc } // §334
+    if (name === 'write') e.write_loc = loc // §1344
     const f = frozen[name]
     if (f !== undefined) {
       e.text.set(f, name); e.eq_type[f] = e.eq_type[loc]!; e.eq_level[f] = e.eq_level[loc]!; e.equiv[f] = e.equiv[loc]!
