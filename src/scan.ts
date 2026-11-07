@@ -1,15 +1,16 @@
 // §402–440 basic scanning subroutines, §464–473 building token lists
 import type { Engine } from './engine.ts'
-import { Cmd, int_val, dimen_val, glue_val, mu_val, ident_val, tok_val, new_string } from './types.ts'
+import { Cmd, nonstop_mode, int_val, dimen_val, glue_val, mu_val, ident_val, tok_val, new_string } from './types.ts'
 import { print, print_int, print_esc } from './print.ts'
 import { print_scaled, round_decimals, xn_over_d, nx_plus_y, unity } from './arith.ts'
-import { error, print_err, help, int_error } from './error.ts'
-import { count_base, scaled_base, skip_base, mu_skip_base, toks_base, active_base, single_base, dimen_base, int_par, mag_code, prepare_mag } from './eqtb.ts'
+import { error, print_err, help, int_error, fatal_error } from './error.ts'
+import { count_base, scaled_base, skip_base, mu_skip_base, toks_base, active_base, single_base, dimen_base, int_par, mag_code, prepare_mag, end_line_char_code } from './eqtb.ts'
 import { sprint_cs } from './hash.ts'
 import { get_avail, free_avail, flush_list, temp_head, backup_head, new_spec, add_glue_ref, delete_glue_ref, print_spec, zero_glue, fil, filll } from './nodes.ts'
 import { unsupported } from './main.ts'
 import { cs_token_flag, left_brace_token, left_brace_limit, right_brace_limit, other_token, letter_token, space_token, end_match_token, match_token, out_param_token, print_cmd_chr } from './tokens.ts'
-import { get_token, get_next, back_input, back_error, back_list, defining, absorbing, normal } from './input.ts'
+import { get_token, get_next, back_input, back_error, back_list, defining, absorbing, normal, begin_file_reading, end_file_reading, input_ln, runaway, new_line } from './input.ts'
+import { closed, just_open } from './files.ts'
 import { get_x_token, x_token, expand } from './expand.ts'
 
 const zero_token = other_token + 48, alpha_token = other_token + 96, octal_token = other_token + 39,
@@ -524,4 +525,49 @@ export function scan_toks(e: Engine, macro_def: boolean, xpand: boolean): number
   e.scanner_status = normal
   if (hash_brace !== 0) store_new_token(hash_brace)
   return p
+}
+
+// §482 read_toks
+export function read_toks(e: Engine, n: number, r: number): void {
+  e.scanner_status = defining; e.warning_index = r
+  e.def_ref = get_avail(e); e.info[e.def_ref] = 0
+  let p = e.def_ref
+  const store_new_token = (x: number) => { const q = get_avail(e); e.link[p] = q; e.info[q] = x; p = q }
+  store_new_token(end_match_token)
+  const m = n < 0 || n > 15 ? 16 : n
+  const s = e.align_state; e.align_state = 1000000
+  do {
+    // §483 Input and store tokens from the next line of the file
+    begin_file_reading(e); e.cur_input.name = m + 1
+    if (e.read_open[m] === closed) { // §484 Input for \read from the terminal
+      if (e.interaction > nonstop_mode) fatal_error(e, 'unsupported: terminal input')
+      fatal_error(e, '*** (cannot \\read from terminal in nonstop modes)')
+    } else if (e.read_open[m] === just_open) { // §485 Input the first line of read_file[m]
+      if (input_ln(e, e.read_file[m]!)) e.read_open[m] = normal
+      else { delete e.read_file[m]; e.read_open[m] = closed }
+    } else if (!input_ln(e, e.read_file[m]!)) { // §486 Input the next line of read_file[m]
+      delete e.read_file[m]; e.read_open[m] = closed
+      if (e.align_state !== 1000000) {
+        runaway(e); print_err(e, 'File ended within '); print_esc(e, 'read')
+        help(e, 'This \\read has unbalanced braces.')
+        e.align_state = 1000000; e.cur_input.limit = 0; error(e)
+      }
+    }
+    const ci = e.cur_input
+    ci.limit = e.last
+    if (int_par(e, end_line_char_code) < 0 || int_par(e, end_line_char_code) > 255) ci.limit--
+    else e.buffer[ci.limit] = int_par(e, end_line_char_code)
+    e.first = ci.limit + 1; ci.loc = ci.start; ci.state = new_line
+    for (;;) {
+      get_token(e)
+      if (e.cur_tok === 0) break // cur_cmd=cur_chr=0 will occur at the end of the line
+      if (e.align_state < 1000000) { // unmatched `}' aborts the line
+        do get_token(e); while (e.cur_tok !== 0)
+        e.align_state = 1000000; break
+      }
+      store_new_token(e.cur_tok)
+    }
+    end_file_reading(e)
+  } while (e.align_state !== 1000000)
+  e.cur_val = e.def_ref; e.scanner_status = normal; e.align_state = s
 }

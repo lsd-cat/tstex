@@ -41,6 +41,8 @@ import * as the from './the.ts'
 import * as no_expand from './no_expand.ts'
 import * as cs_name from './cs_name.ts'
 import * as input from './input.ts'
+import * as in_stream from './in_stream.ts'
+import * as read_to_cs from './read_to_cs.ts'
 import * as unsupported from './unsupported.ts'
 
 export type Prim = {
@@ -54,7 +56,7 @@ export type Prim = {
 
 const prims: Prim[] = [relax, par_end, stop, def, register, assign_int, assign_dimen, assign_glue, assign_mu_glue, assign_toks,
   toks_register, def_code, advance, multiply, divide, prefix, let_, shorthand_def, after_assignment, after_group, begin_group,
-  end_group, expand_after, if_test, fi_or_else, convert, case_shift, last_item, set_font, message, xray, the, no_expand, cs_name, input, ...unsupported.prims]
+  end_group, expand_after, if_test, fi_or_else, convert, case_shift, last_item, set_font, message, xray, the, no_expand, cs_name, input, in_stream, read_to_cs, ...unsupported.prims]
 export const registry = new Map<number, Prim>() // filled by init_prim, after every module is evaluated
 
 // §1336 init_prim (with the frozen copies of §265, §334, §491, §553, §780, §1188, §1344)
