@@ -111,9 +111,11 @@ export function scan_something_internal(e: Engine, level: number, negative: bool
         e.cur_val = m === glue_val ? zero_glue : 0; e.cur_val_level = m
       }
       break
+    case Cmd.ignore_spaces: // pdftex: trap unexpandable primitives; chr=0 (\ignorespaces) leaves cur_val, cur_val_level as they were
+      if (e.cur_chr === 1) unsupported(e) // \pdfprimitive
+      break
     default:
       if (e.cur_cmd >= Cmd.min_internal && e.cur_cmd <= Cmd.max_internal) unsupported(e)
-      if (e.cur_cmd === Cmd.ignore_spaces && e.cur_chr === 1) unsupported(e) // \pdfprimitive
       // §428 Complain that \the can't do this; give zero result
       print_err(e, "You can't use `"); print_cmd_chr(e, e.cur_cmd, e.cur_chr)
       print(e, "' after "); print_esc(e, 'the')

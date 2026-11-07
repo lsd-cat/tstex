@@ -19,6 +19,7 @@ Findings from porting. The port reproduces TeX's behaviour, bugs included; entri
 - `\read` at end of file with unbalanced braces: "Runaway definition?" (scanner_status is `defining`), then "File ended within \read"; the stream closes, `limit:=0` is immediately overwritten by `limit:=last`. (§486)
 - `\openin16`: "Bad number (16)" then the file opens on stream 0. (§1275)
 - `\errmessage` long help is shown once per job (`long_help_seen`); with a non-empty `\errhelp` the help is the token list, printed after a `print_ln`, and `\newlinechar` applies. (§1283, §90)
+- `\the\ignorespaces` (pdftex's `ignore_spaces:` trap in `scan_something_internal`, §413): with `chr=0` nothing happens, no error, and `cur_val`/`cur_val_level` keep whatever the previous scan left (`\count0=42 \showthe\ignorespaces` shows `42`).
 - `\ifvoid`/`\ifhbox`/`\ifvbox` and `\showlists` only see empty/void state until M2.
 
 ## Known bugs in the original
