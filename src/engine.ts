@@ -12,6 +12,7 @@ import { init_specs } from './nodes.ts'
 import type { GlueSpec } from './nodes.ts'
 import type { CondNode } from './conditional.ts'
 import { open_log_file, start_input } from './files.ts'
+import { print_cmd_chr } from './tokens.ts'
 import { main_control } from './main.ts'
 
 export class Engine {
@@ -108,6 +109,13 @@ function final_cleanup(e: Engine): void {
     print_nl(e, '('); print_esc(e, 'end occurred ')
     print(e, 'inside a group at level ')
     print_int(e, e.cur_level - level_one); print_char(e, 41)
+  }
+  while (e.cond_ptr !== null) {
+    print_nl(e, '('); print_esc(e, 'end occurred ')
+    print(e, 'when '); print_cmd_chr(e, Cmd.if_test, e.cur_if)
+    if (e.if_line !== 0) { print(e, ' on line '); print_int(e, e.if_line) }
+    print(e, ' was incomplete)')
+    e.if_line = e.cond_ptr.if_line; e.cur_if = e.cond_ptr.cur_if; e.cond_ptr = e.cond_ptr.link
   }
   if (e.history !== spotless && (e.history === warning_issued || e.interaction < error_stop_mode) && e.selector === term_and_log) {
     e.selector = term_only
