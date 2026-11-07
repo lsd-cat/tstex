@@ -85,11 +85,19 @@ export function open_tex_file(e: Engine): { name: string, file: InputFile } | nu
   return null
 }
 
+// §518 print_file_name (tex.ch: quoted when a component contains a space; quotes inside are dropped)
+function print_file_name(e: Engine, n: string, a: string, x: string): void {
+  const s = a + n + x, must_quote = s.includes(' ')
+  if (must_quote) print_char(e, 34)
+  for (let j = 0; j < s.length; j++) if (s.charCodeAt(j) !== 34) print(e, s.charCodeAt(j))
+  if (must_quote) print_char(e, 34)
+}
+
 // §530 prompt_file_name (tex.ch wording); no terminal, so every interaction mode ends here
 function prompt_file_name(e: Engine, s: string, ext: string): never {
   if (s === 'input file name') print_err(e, "I can't find file `")
   else print_err(e, "I can't write on file `")
-  slow_print(e, e.cur_area); slow_print(e, e.cur_name); slow_print(e, e.cur_ext); print(e, "'.") // §518 print_file_name
+  print_file_name(e, e.cur_name, e.cur_area, e.cur_ext); print(e, "'.")
   if (ext === '.tex' || ext === '') show_context(e)
   print_ln(e); print(e, '(Press Enter to retry, or Control-D to exit')
   if (ext !== '') { print(e, "; default file extension is `"); print(e, ext); print(e, "'") }

@@ -1,0 +1,12 @@
+(m1-review-quoted-name.tex
+! I can't find file `"no such"'.
+l.3 \input "no such"
+
+(Press Enter to retry, or Control-D to exit)
+Please type another input file name
+! Emergency stop.
+l.3 \input "no such"
+
+*** (job aborted, file error in nonstop mode)
+
+No pages of output.
