@@ -108,8 +108,8 @@ export const uc_code_base = lc_code_base + 256
 export const sf_code_base = uc_code_base + 256
 export const math_code_base = sf_code_base + 256
 export const int_base = math_code_base + 256
-// §236 region 5: TeX's 55, pdfTeX's 37, e-TeX's 10 and one e-TeX state
-export const int_pars = 103
+// §236 region 5: TeX's 55, web2c's 10 (tex.ch, tracingstacklevels.ch, partoken.ch, showstream.ch, enctex-pdftex.ch), pdfTeX's 37, e-TeX's 10, one e-TeX state, synctex's 1 (synctex-e-mem.ch1)
+export const int_pars = 114
 export const count_base = int_base + int_pars
 export const del_code_base = count_base + 256
 export const dimen_base = del_code_base + 256
@@ -123,14 +123,16 @@ export const mag_code = 17, time_code = 20, day_code = 21, month_code = 22, year
   pausing_code = 28, tracing_online_code = 29, tracing_macros_code = 30, tracing_commands_code = 36,
   tracing_restores_code = 37, max_dead_cycles_code = 40, hang_after_code = 41, global_defs_code = 43,
   escape_char_code = 45, end_line_char_code = 48, new_line_char_code = 49, error_context_lines_code = 54,
-  tolerance_code = 1, looseness_code = 19, tracing_stats_code = 31, pdf_output_code = 55
+  tolerance_code = 1, looseness_code = 19, tracing_stats_code = 31, pdf_output_code = 65,
+  tracing_stack_levels_code = 58, partoken_context_code = 59, show_stream_code = 60, synctex_code = 113
 // §247
 export const hang_indent_code = 17
 
 // §237 print_param's case list (pdftex.web and etex.ch included), indexed by code
 export const int_par_names = ['pretolerance', 'tolerance', 'linepenalty', 'hyphenpenalty', 'exhyphenpenalty', 'clubpenalty', 'widowpenalty', 'displaywidowpenalty', 'brokenpenalty', 'binoppenalty', 'relpenalty', 'predisplaypenalty', 'postdisplaypenalty', 'interlinepenalty', 'doublehyphendemerits', 'finalhyphendemerits', 'adjdemerits', 'mag', 'delimiterfactor', 'looseness', 'time', 'day', 'month', 'year', 'showboxbreadth', 'showboxdepth', 'hbadness', 'vbadness', 'pausing', 'tracingonline', 'tracingmacros', 'tracingstats', 'tracingparagraphs', 'tracingpages', 'tracingoutput', 'tracinglostchars', 'tracingcommands', 'tracingrestores', 'uchyph', 'outputpenalty', 'maxdeadcycles', 'hangafter', 'floatingpenalty', 'globaldefs', 'fam', 'escapechar', 'defaulthyphenchar', 'defaultskewchar', 'endlinechar', 'newlinechar', 'language', 'lefthyphenmin', 'righthyphenmin', 'holdinginserts', 'errorcontextlines',
+  'charsubdefmin', 'charsubdefmax', 'tracingcharsubdef', 'tracingstacklevels', 'partokencontext', 'showstream', 'mubytein', 'mubyteout', 'mubytelog', 'specialout',
   'pdfoutput', 'pdfcompresslevel', 'pdfdecimaldigits', 'pdfmovechars', 'pdfimageresolution', 'pdfpkresolution', 'pdfuniqueresname', 'pdfoptionalwaysusepdfpagebox', 'pdfoptionpdfinclusionerrorlevel', 'pdfmajorversion', 'pdfminorversion', 'pdfforcepagebox', 'pdfpagebox', 'pdfinclusionerrorlevel', 'pdfgamma', 'pdfimagegamma', 'pdfimagehicolor', 'pdfimageapplygamma', 'pdfadjustspacing', 'pdfprotrudechars', 'pdftracingfonts', 'pdfobjcompresslevel', 'pdfadjustinterwordglue', 'pdfprependkern', 'pdfappendkern', 'pdfgentounicode', 'pdfdraftmode', 'pdfinclusioncopyfonts', 'pdfsuppresswarningdupdest', 'pdfsuppresswarningdupmap', 'pdfsuppresswarningpagegroup', 'pdfinfoomitdate', 'pdfsuppressptexinfo', 'pdfomitcharset', 'pdfomitinfodict', 'pdfomitprocset', 'pdfptexuseunderscore',
-  'tracingassigns', 'tracinggroups', 'tracingifs', 'tracingscantokens', 'tracingnesting', 'predisplaydirection', 'lastlinefit', 'savingvdiscards', 'savinghyphcodes', 'ignoreprimitiveerror', 'TeXXeTstate']
+  'tracingassigns', 'tracinggroups', 'tracingifs', 'tracingscantokens', 'tracingnesting', 'predisplaydirection', 'lastlinefit', 'savingvdiscards', 'savinghyphcodes', 'ignoreprimitiveerror', 'TeXXeTstate', 'synctex']
 // §247 print_length_param's case list, indexed by code
 export const dimen_par_names = ['parindent', 'mathsurround', 'lineskiplimit', 'hsize', 'vsize', 'maxdepth', 'splitmaxdepth', 'boxmaxdepth', 'hfuzz', 'vfuzz', 'delimitershortfall', 'nulldelimiterspace', 'scriptspace', 'predisplaysize', 'displaywidth', 'displayindent', 'overfullrule', 'hangindent', 'hoffset', 'voffset', 'emergencystretch',
   'pdfhorigin', 'pdfvorigin', 'pdfpagewidth', 'pdfpageheight', 'pdflinkmargin', 'pdfdestmargin', 'pdfthreadmargin', 'pdffirstlineheight', 'pdflastlinedepth', 'pdfeachlineheight', 'pdfeachlinedepth', 'pdfignoreddimen', 'pdfpxdimen']

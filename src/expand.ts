@@ -1,9 +1,9 @@
 // §366–401 expanding the next token
 import type { Engine } from './engine.ts'
 import { Cmd } from './types.ts'
-import { print, print_ln, print_nl, print_int, begin_diagnostic, end_diagnostic } from './print.ts'
+import { print, print_char, print_ln, print_nl, print_int, begin_diagnostic, end_diagnostic } from './print.ts'
 import { error, print_err, help, overflow, token_list, v_template, macro, inserted, output_text } from './error.ts'
-import { int_par, tracing_macros_code, tracing_commands_code, frozen_endv, frozen_relax } from './eqtb.ts'
+import { int_par, tracing_stack_levels_code, tracing_macros_code, tracing_commands_code, frozen_endv, frozen_relax } from './eqtb.ts'
 import { print_cs, sprint_cs } from './hash.ts'
 import { get_avail, free_avail, flush_list, temp_head, backup_head } from './nodes.ts'
 import { cs_token_flag, left_brace_limit, right_brace_limit, match_token, end_match_token, space_token, show_token_list, token_show, show_cur_cmd_chr } from './tokens.ts'
@@ -77,8 +77,16 @@ export function macro_call(e: Engine): void {
   let p = 0, s = 0, m = 0, rbrace_ptr = 0, unbalance = 0, match_chr = 0
   const store_new_token = (x: number) => { const q = get_avail(e); e.link[p] = q; e.info[q] = x; p = q }
   if (int_par(e, tracing_macros_code) > 0) { // §401
-    begin_diagnostic(e); print_ln(e); print_cs(e, e.warning_index)
-    token_show(e, ref_count); end_diagnostic(e, false)
+    begin_diagnostic(e)
+    const tsl = int_par(e, tracing_stack_levels_code) // tracingstacklevels.ch
+    if (tsl > 0) {
+      if (e.input_ptr < tsl) {
+        print_ln(e); print_char(e, 126)
+        for (let v = e.input_ptr; v > 0; v--) print_char(e, 46)
+        print_cs(e, e.warning_index); token_show(e, ref_count)
+      } else { print_char(e, 126); print_char(e, 126); print_cs(e, e.warning_index) }
+    } else { print_ln(e); print_cs(e, e.warning_index); token_show(e, ref_count) }
+    end_diagnostic(e, false)
   }
   exit: {
     if (e.info[r] !== end_match_token) {
@@ -173,7 +181,8 @@ export function macro_call(e: Engine): void {
             p = e.link[temp_head]!; e.pstack[n] = e.link[p]!; free_avail(e, p)
           } else e.pstack[n] = e.link[temp_head]!
           n++
-          if (int_par(e, tracing_macros_code) > 0) {
+          if (int_par(e, tracing_macros_code) > 0 &&
+            (int_par(e, tracing_stack_levels_code) === 0 || e.input_ptr < int_par(e, tracing_stack_levels_code))) { // tracingstacklevels.ch
             begin_diagnostic(e); print_nl(e, match_chr); print_int(e, n)
             print(e, '<-'); show_token_list(e, e.pstack[n - 1]!, 0, 1000)
             end_diagnostic(e, false)

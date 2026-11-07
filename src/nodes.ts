@@ -10,7 +10,7 @@ import { print_file_name } from './files.ts'
 import { print_skip_param } from './eqtb.ts'
 import { glue_base, box_base, int_base, font_id_base, max_print_line } from './types.ts'
 
-const show_box_breadth_code = 24, show_box_depth_code = 25, pdf_tracing_fonts_code = 75
+const show_box_breadth_code = 24, show_box_depth_code = 25, pdf_tracing_fonts_code = 85
 
 export const temp_head = 1, hold_head = 2, backup_head = 3, garbage = 4, null_list = 5
 

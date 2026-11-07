@@ -1,0 +1,83 @@
+(m2-ch-tracingstacklevels.tex
+\c ->\b \b
+
+\b ->\a x
+
+\a #1->[#1]
+#1<-x
+
+\b ->\a x
+
+\a #1->[#1]
+#1<-x
+
+~.\c ->\b \b
+~~\b
+~~\a
+~~\b
+~~\a
+(m2-ch-tracingstacklevels-in.tex
+~.INPUT m2-ch-tracingstacklevels-in.tex
+~~\c
+~~\b
+~~\a
+~~\b
+~~\a
+)
+~.\d ->\input m2-ch-tracingstacklevels-in
+(m2-ch-tracingstacklevels-in.tex
+~~INPUT m2-ch-tracingstacklevels-in.tex
+~~\c
+~~\b
+~~\a
+~~\b
+~~\a
+)
+\d ->\input m2-ch-tracingstacklevels-in
+(m2-ch-tracingstacklevels-in.tex
+\c ->\b \b
+
+\b ->\a x
+
+\a #1->[#1]
+#1<-x
+
+\b ->\a x
+
+\a #1->[#1]
+#1<-x
+)~~\c
+~~\b
+~~\a
+~~\b
+~~\a
+
+~.\c ->\b \b
+
+~..\b ->\a x
+~~\a
+
+~..\b ->\a x
+
+~..\a #1->[#1]
+#1<-x
+
+\c ->\b \b
+
+\b ->\a x
+
+\a #1->[#1]
+
+\b ->\a x
+
+\a #1->[#1]
+> -1.
+l.12 \showthe\tracingstacklevels
+                                 \show\tracingstacklevels
+
+> \tracingstacklevels=\tracingstacklevels.
+l.12 ...racingstacklevels \show\tracingstacklevels
+
+
+[0] )
+Output written on m2-ch-tracingstacklevels.dvi (1 page, 128 bytes).

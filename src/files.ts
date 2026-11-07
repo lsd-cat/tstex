@@ -4,8 +4,8 @@ import { log_only, Cmd, scroll_mode } from './types.ts'
 import type { InputFile } from './input.ts'
 import { fatal_error, print_err, show_context, token_list } from './error.ts'
 import { get_x_token } from './expand.ts'
-import { print, print_char, print_nl, print_ln, print_int, print_two, slow_print } from './print.ts'
-import { int_par, end_line_char_code } from './eqtb.ts'
+import { print, print_char, print_nl, print_ln, print_int, print_two, slow_print, begin_diagnostic, end_diagnostic } from './print.ts'
+import { int_par, end_line_char_code, tracing_stack_levels_code } from './eqtb.ts'
 import { begin_file_reading, end_file_reading, back_input, input_ln, firm_up_the_line, new_line } from './input.ts'
 import { max_print_line } from './types.ts'
 
@@ -119,11 +119,23 @@ export function start_input(e: Engine): void {
     prompt_file_name(e, 'input file name', '')
   }
   e.input_file[e.cur_input.index] = found.file
+  // tex.ch make_name_string: cur_area/cur_name/cur_ext now describe the file found
+  const sl = found.name.lastIndexOf('/') + 1, dot = found.name.lastIndexOf('.')
+  e.cur_area = found.name.slice(0, sl)
+  e.cur_name = found.name.slice(sl, dot >= sl ? dot : undefined); e.cur_ext = dot >= sl ? found.name.slice(dot) : ''
   e.cur_input.name = 20 // any string number >19 marks a file level
   if (e.job_name === '') { e.job_name = e.cur_name; open_log_file(e) }
   if (e.term_offset + found.name.length > max_print_line - 2) print_ln(e)
   else if (e.term_offset > 0 || e.file_offset > 0) print_char(e, 32)
   print_char(e, 40); e.open_parens++; slow_print(e, found.name)
+  if (int_par(e, tracing_stack_levels_code) > 0) { // tracingstacklevels.ch
+    begin_diagnostic(e); print_ln(e); print_char(e, 126)
+    let v = e.input_ptr - 1
+    if (v < int_par(e, tracing_stack_levels_code)) while (v > 0) { print_char(e, 46); v-- }
+    else print_char(e, 126)
+    slow_print(e, 'INPUT '); slow_print(e, e.cur_name); slow_print(e, e.cur_ext); print_ln(e)
+    end_diagnostic(e, false)
+  }
   e.cur_input.state = new_line
   // §538 Read the first line of the new file
   e.line = 1

@@ -43,7 +43,7 @@ export const fil_code = 0, fill_code = 1, ss_code = 2, fil_neg_code = 3, skip_co
 const default_rule = 26214
 const space_skip_code = 12, xspace_skip_code = 13, par_skip_code = 2, split_top_skip_code = 10
 const language_code = 50, left_hyphen_min_code = 51, right_hyphen_min_code = 52, floating_penalty_code = 42
-const pdf_adjust_interword_glue_code = 77, par_indent_code = 0, split_max_depth_code = 6, box_max_depth_code = 7
+const pdf_adjust_interword_glue_code = 87, par_indent_code = 0, split_max_depth_code = 6, box_max_depth_code = 7
 const pdf_ignored_dimen = (e: Engine) => e.equiv[dimen_base + 32]!
 const every_vbox_loc = local_base + 6, every_hbox_loc = local_base + 5, every_hbox_text = 10, every_vbox_text = 11
 

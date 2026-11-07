@@ -343,7 +343,7 @@ function vlist_out(e: Engine, this_box: BoxNode): void {
 
 // pdftex: fix_pdfoutput; \pdfoutput is frozen at the first shipout
 export function fix_pdfoutput(e: Engine): void {
-  const v = int_par(e, 55)
+  const v = int_par(e, 65)
   if (e.fixed_pdfoutput === null) e.fixed_pdfoutput = v
   else if (e.fixed_pdfoutput !== v) fatal_error(e, 'unsupported: \\pdfoutput changed after output began')
 }

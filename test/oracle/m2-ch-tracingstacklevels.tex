@@ -1,0 +1,13 @@
+%! oracle: ini
+\catcode`\{=1 \catcode`\}=2 \catcode`\#=6
+\tracingonline=1 \tracingmacros=2
+\def\a#1{[#1]}\def\b{\a x}\def\c{\b\b}
+\c
+\tracingstacklevels=2
+\c
+\input m2-ch-tracingstacklevels-in \def\d{\input m2-ch-tracingstacklevels-in }\d\tracingstacklevels=0 \d
+\tracingstacklevels=1 \c
+\tracingstacklevels=3 \c
+\tracingstacklevels=-1 \c
+\showthe\tracingstacklevels \show\tracingstacklevels
+\end

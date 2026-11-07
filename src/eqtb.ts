@@ -81,9 +81,9 @@ export function init_eqtb(e: Engine): void {
   e.equiv[del_code_base + 46] = 0
   // pdftex.web §32a Initialize pdfTeX's parameters (codes from §236 and §247 of pdftex.web)
   e.equiv[dimen_base + 21] = e.equiv[dimen_base + 22] = Math.trunc((473628672 + 50) / 100) // \pdfhorigin, \pdfvorigin: 1in
-  e.equiv[int_base + 56] = 9; e.equiv[int_base + 57] = 3; e.equiv[int_base + 59] = 72 // compresslevel, decimaldigits, imageresolution
-  e.equiv[int_base + 64] = 1; e.equiv[int_base + 65] = 4 // \pdfmajorversion, \pdfminorversion
-  e.equiv[int_base + 69] = 1000; e.equiv[int_base + 70] = 2200; e.equiv[int_base + 71] = 1 // gamma, imagegamma, imagehicolor
+  e.equiv[int_base + 66] = 9; e.equiv[int_base + 67] = 3; e.equiv[int_base + 69] = 72 // compresslevel, decimaldigits, imageresolution
+  e.equiv[int_base + 74] = 1; e.equiv[int_base + 75] = 4 // \pdfmajorversion, \pdfminorversion
+  e.equiv[int_base + 79] = 1000; e.equiv[int_base + 80] = 2200; e.equiv[int_base + 81] = 1 // gamma, imagegamma, imagehicolor
   e.equiv[dimen_base + 33] = 65782 // \pdfpxdimen: one_bp
   for (let k = 28; k <= 32; k++) e.equiv[dimen_base + k] = -65536000 // \pdfignoreddimen and the line heights/depths: ignore_depth
   // §283

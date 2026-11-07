@@ -17,7 +17,7 @@ import { init_trie, try_hyphenate } from './hyphenate.ts'
 const pretolerance_code = 0, tolerance_code = 1, line_penalty_code = 2, hyphen_penalty_code = 3, ex_hyphen_penalty_code = 4,
   club_penalty_code = 5, widow_penalty_code = 6, display_widow_penalty_code = 7, broken_penalty_code = 8,
   inter_line_penalty_code = 13, double_hyphen_demerits_code = 14, final_hyphen_demerits_code = 15, adj_demerits_code = 16,
-  looseness_code = 19, tracing_paragraphs_code = 32, hang_after_code = 41, pdf_adjust_spacing_code = 73, pdf_protrude_chars_code = 74
+  looseness_code = 19, tracing_paragraphs_code = 32, hang_after_code = 41, pdf_adjust_spacing_code = 83, pdf_protrude_chars_code = 84
 const hsize_code = 3, hang_indent_code = 17, emergency_stretch_code = 20, pdf_first_line_height_code = 28,
   pdf_last_line_depth_code = 29, pdf_each_line_height_code = 30, pdf_each_line_depth_code = 31, pdf_ignored_dimen_code = 32
 const left_skip_code = 7, right_skip_code = 8, par_fill_skip_code = 14
