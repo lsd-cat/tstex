@@ -1,0 +1,11 @@
+%! oracle: ini
+\input plain
+\tracingonline=0 \showboxbreadth=10000 \showboxdepth=10000 \tracingoutput=1
+\count1=-2147483647 \advance\count1-1
+\hsize 100pt \parindent0pt
+\def\t{Some words here and there and more words to fill a few lines of text in this paragraph.}
+\hangindent 20pt \hangafter=\count1 \t\par \showlists
+\setbox0\vbox{\linepenalty=\count1 \tracingparagraphs1 \t\par}
+\setbox0\vbox{\tracingparagraphs1 Some words\penalty\count1\ here and there\par}
+\setbox0\vbox{\adjdemerits=\count1 \tracingparagraphs1 \t\par}
+\end

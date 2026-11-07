@@ -1,0 +1,457 @@
+(m2-review-abs-wrap.tex (plain.tex Preloading the plain format: codes, regi
+sters,
+\maxdimen=\dimen10
+\hideskip=\skip10
+\centering=\skip11
+\p@=\dimen11
+\z@=\dimen12
+\z@skip=\skip12
+\voidb@x=\box10
+parameters,
+\smallskipamount=\skip13
+\medskipamount=\skip14
+\bigskipamount=\skip15
+\normalbaselineskip=\skip16
+\normallineskip=\skip17
+\normallineskiplimit=\dimen13
+\jot=\dimen14
+\interdisplaylinepenalty=\count23
+\interfootnotelinepenalty=\count24
+fonts, more fonts,
+\itfam=\fam4
+\slfam=\fam5
+\bffam=\fam6
+\ttfam=\fam7
+macros,
+\strutbox=\box11
+\mscount=\count25
+\tabs=\box12
+\tabsyet=\box13
+\tabsdone=\box14
+math definitions,
+\rootbox=\box15
+\p@renwd=\dimen15
+output routines,
+\headline=\toks10
+\footline=\toks11
+\footins=\insert254
+\topins=\insert253
+hyphenation (hyphen.tex))
+Overfull \hbox (14.30571pt too wide) in paragraph at lines 7--7
+[]\tenrm Some words here and there|
+
+\hbox(6.94444+0.0)x100.0, glue set - 1.0
+.\hbox(0.0+0.0)x0.0
+.\tenrm S
+.\tenrm o
+.\tenrm m
+.\tenrm e
+.\glue 3.33333 plus 1.66666 minus 1.11111
+.\tenrm w
+.\kern-0.27779
+.\tenrm o
+.\tenrm r
+.\tenrm d
+.\tenrm s
+.\glue 3.33333 plus 1.66666 minus 1.11111
+.\tenrm h
+.\tenrm e
+.\tenrm r
+.\tenrm e
+.\glue 3.33333 plus 1.66666 minus 1.11111
+.\tenrm a
+.\tenrm n
+.\tenrm d
+.\glue 3.33333 plus 1.66666 minus 1.11111
+.\tenrm t
+.\tenrm h
+.\tenrm e
+.\tenrm r
+.\tenrm e
+.\glue(\rightskip) 0.0
+.\rule(*+*)x5.0
+
+
+### vertical mode entered at line 0
+### current page:
+\glue(\topskip) 3.05556
+\hbox(6.94444+0.0)x100.0, glue set - 1.0
+.\hbox(0.0+0.0)x0.0
+.\tenrm S
+.\tenrm o
+.\tenrm m
+.\tenrm e
+.\glue 3.33333 plus 1.66666 minus 1.11111
+.\tenrm w
+.\kern-0.27779
+.\tenrm o
+.\tenrm r
+.\tenrm d
+.\tenrm s
+.\glue 3.33333 plus 1.66666 minus 1.11111
+.\tenrm h
+.\tenrm e
+.\tenrm r
+.\tenrm e
+.\glue 3.33333 plus 1.66666 minus 1.11111
+.\tenrm a
+.\tenrm n
+.\tenrm d
+.\glue 3.33333 plus 1.66666 minus 1.11111
+.\tenrm t
+.\tenrm h
+.\tenrm e
+.\tenrm r
+.\tenrm e
+.\glue(\rightskip) 0.0
+.\rule(*+*)x5.0
+\penalty 150
+\glue(\baselineskip) 5.05556
+\hbox(6.94444+0.0)x100.0, glue set - 0.87003
+.\tenrm a
+.\tenrm n
+.\tenrm d
+.\glue 3.33333 plus 1.66666 minus 1.11111
+.\tenrm m
+.\tenrm o
+.\tenrm r
+.\tenrm e
+.\glue 3.33333 plus 1.66666 minus 1.11111
+.\tenrm w
+.\kern-0.27779
+.\tenrm o
+.\tenrm r
+.\tenrm d
+.\tenrm s
+.\glue 3.33333 plus 1.66666 minus 1.11111
+.\tenrm t
+.\tenrm o
+.\glue 3.33333 plus 1.66666 minus 1.11111
+.\tenrm ^^L (ligature fi)
+.\tenrm l
+.\tenrm l
+.\glue 3.33333 plus 1.66666 minus 1.11111
+.\tenrm a
+.\glue(\rightskip) 0.0
+\glue(\baselineskip) 5.05556
+\hbox(6.94444+0.0)x100.0, glue set - 0.17003
+.\tenrm f
+.\tenrm e
+.\tenrm w
+.\glue 3.33333 plus 1.66666 minus 1.11111
+.\tenrm l
+.\tenrm i
+.\tenrm n
+.\tenrm e
+.\tenrm s
+.\glue 3.33333 plus 1.66666 minus 1.11111
+.\tenrm o
+.\tenrm f
+.\glue 3.33333 plus 1.66666 minus 1.11111
+.\tenrm t
+.\tenrm e
+.\tenrm x
+.\tenrm t
+.\glue 3.33333 plus 1.66666 minus 1.11111
+.\tenrm i
+.\tenrm n
+.\glue 3.33333 plus 1.66666 minus 1.11111
+.\tenrm t
+.\tenrm h
+.\tenrm i
+.\tenrm s
+.\glue(\rightskip) 0.0
+\penalty 150
+\glue(\baselineskip) 5.05556
+\hbox(6.94444+1.94444)x100.0, glue set 52.72209fil
+.\tenrm p
+.\tenrm a
+.\tenrm r
+.\tenrm a
+.\discretionary
+..\tenrm -
+.\tenrm g
+.\tenrm r
+.\tenrm a
+.\tenrm p
+.\tenrm h
+.\tenrm .
+.\penalty 10000
+.\glue(\parfillskip) 0.0 plus 1.0fil
+.\glue(\rightskip) 0.0
+total height 46.0
+ goal height 643.20255
+prevdepth 1.94444, prevgraf 4 lines
+
+! OK.
+l.7 ...t 20pt \hangafter=\count1 \t\par \showlists
+
+
+@firstpass
+@secondpass
+[]\tenrm Some words here and there
+@ via @@0 b=* p=0 d=*
+@@1: line 1.3 t=0 -> @@0
+and more words to fill
+@ via @@1 b=14 p=0 d=100010000
+@@2: line 2.1 t=100010000 -> @@1
+a
+@ via @@1 b=66 p=0 d=100000000
+@@3: line 2.3 t=100000000 -> @@1
+few lines of text in
+@ via @@2 b=184 p=0 d=100000000
+@@4: line 3.0 t=200010000 -> @@2
+this
+@ via @@3 b=0 p=0 d=100000000
+@@5: line 3.2 t=200000000 -> @@3
+para-graph.
+@\par via @@4 b=0 p=-10000 d=100010000
+@\par via @@5 b=0 p=-10000 d=100000000
+@@6: line 4.2- t=300000000 -> @@5
+
+
+Overfull \hbox (14.30571pt too wide) in paragraph at lines 8--8
+[]\tenrm Some words here and there|
+
+\hbox(6.94444+0.0)x100.0, glue set - 1.0
+.\hbox(0.0+0.0)x0.0
+.\tenrm S
+.\tenrm o
+.\tenrm m
+.\tenrm e
+.\glue 3.33333 plus 1.66666 minus 1.11111
+.\tenrm w
+.\kern-0.27779
+.\tenrm o
+.\tenrm r
+.\tenrm d
+.\tenrm s
+.\glue 3.33333 plus 1.66666 minus 1.11111
+.\tenrm h
+.\tenrm e
+.\tenrm r
+.\tenrm e
+.\glue 3.33333 plus 1.66666 minus 1.11111
+.\tenrm a
+.\tenrm n
+.\tenrm d
+.\glue 3.33333 plus 1.66666 minus 1.11111
+.\tenrm t
+.\tenrm h
+.\tenrm e
+.\tenrm r
+.\tenrm e
+.\glue(\rightskip) 0.0
+.\rule(*+*)x5.0
+
+@firstpass
+@secondpass
+[]\tenrm Some words
+@\penalty via @@0 b=10000 p=-10000 d=*
+@@1: line 1.0 t=0 -> @@0
+ here and there
+@\par via @@1 b=0 p=-10000 d=*
+@@2: line 2.2- t=0 -> @@1
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 9--9
+[]\tenrm Some words
+
+\hbox(6.94444+0.0)x100.0, glue set 28.78346
+.\hbox(0.0+0.0)x0.0
+.\tenrm S
+.\tenrm o
+.\tenrm m
+.\tenrm e
+.\glue 3.33333 plus 1.66666 minus 1.11111
+.\tenrm w
+.\kern-0.27779
+.\tenrm o
+.\tenrm r
+.\tenrm d
+.\tenrm s
+.\penalty -2147483648
+.\glue(\rightskip) 0.0
+
+@firstpass
+@secondpass
+[]\tenrm Some words here and there
+@ via @@0 b=* p=0 d=*
+@@1: line 1.3 t=0 -> @@0
+and more words to fill
+@ via @@1 b=14 p=0 d=-2147483072
+@@2: line 2.1 t=-2147483072 -> @@1
+a
+@ via @@1 b=66 p=0 d=5776
+@@3: line 2.3 t=5776 -> @@1
+few lines of text in
+@ via @@2 b=184 p=0 d=37636
+@@4: line 3.0 t=-2147445436 -> @@2
+this
+@ via @@3 b=0 p=0 d=100
+@@5: line 3.2 t=5876 -> @@3
+para-graph.
+@\par via @@4 b=0 p=-10000 d=-2147483548
+@\par via @@5 b=0 p=-10000 d=100
+@@6: line 4.2- t=5976 -> @@5
+
+
+Overfull \hbox (14.30571pt too wide) in paragraph at lines 10--10
+[]\tenrm Some words here and there|
+
+\hbox(6.94444+0.0)x100.0, glue set - 1.0
+.\hbox(0.0+0.0)x0.0
+.\tenrm S
+.\tenrm o
+.\tenrm m
+.\tenrm e
+.\glue 3.33333 plus 1.66666 minus 1.11111
+.\tenrm w
+.\kern-0.27779
+.\tenrm o
+.\tenrm r
+.\tenrm d
+.\tenrm s
+.\glue 3.33333 plus 1.66666 minus 1.11111
+.\tenrm h
+.\tenrm e
+.\tenrm r
+.\tenrm e
+.\glue 3.33333 plus 1.66666 minus 1.11111
+.\tenrm a
+.\tenrm n
+.\tenrm d
+.\glue 3.33333 plus 1.66666 minus 1.11111
+.\tenrm t
+.\tenrm h
+.\tenrm e
+.\tenrm r
+.\tenrm e
+.\glue(\rightskip) 0.0
+.\rule(*+*)x5.0
+
+
+Completed box being shipped out [1.-2147483648]
+\vbox(667.20255+0.0)x100.0
+.\vbox(0.0+0.0)x100.0, glue set 14.0fil
+..\glue -22.5
+..\hbox(8.5+0.0)x100.0, glue set 100.0fil
+...\vbox(8.5+0.0)x0.0
+...\glue 0.0 plus 1.0fil
+..\glue 0.0 plus 1.0fil minus 1.0fil
+.\vbox(643.20255+0.0)x100.0, glue set 595.2581fill
+..\glue(\topskip) 3.05556
+..\hbox(6.94444+0.0)x100.0, glue set - 1.0
+...\hbox(0.0+0.0)x0.0
+...\tenrm S
+...\tenrm o
+...\tenrm m
+...\tenrm e
+...\glue 3.33333 plus 1.66666 minus 1.11111
+...\tenrm w
+...\kern-0.27779
+...\tenrm o
+...\tenrm r
+...\tenrm d
+...\tenrm s
+...\glue 3.33333 plus 1.66666 minus 1.11111
+...\tenrm h
+...\tenrm e
+...\tenrm r
+...\tenrm e
+...\glue 3.33333 plus 1.66666 minus 1.11111
+...\tenrm a
+...\tenrm n
+...\tenrm d
+...\glue 3.33333 plus 1.66666 minus 1.11111
+...\tenrm t
+...\tenrm h
+...\tenrm e
+...\tenrm r
+...\tenrm e
+...\glue(\rightskip) 0.0
+...\rule(*+*)x5.0
+..\penalty 150
+..\glue(\baselineskip) 5.05556
+..\hbox(6.94444+0.0)x100.0, glue set - 0.87003
+...\tenrm a
+...\tenrm n
+...\tenrm d
+...\glue 3.33333 plus 1.66666 minus 1.11111
+...\tenrm m
+...\tenrm o
+...\tenrm r
+...\tenrm e
+...\glue 3.33333 plus 1.66666 minus 1.11111
+...\tenrm w
+...\kern-0.27779
+...\tenrm o
+...\tenrm r
+...\tenrm d
+...\tenrm s
+...\glue 3.33333 plus 1.66666 minus 1.11111
+...\tenrm t
+...\tenrm o
+...\glue 3.33333 plus 1.66666 minus 1.11111
+...\tenrm ^^L (ligature fi)
+...\tenrm l
+...\tenrm l
+...\glue 3.33333 plus 1.66666 minus 1.11111
+...\tenrm a
+...\glue(\rightskip) 0.0
+..\glue(\baselineskip) 5.05556
+..\hbox(6.94444+0.0)x100.0, glue set - 0.17003
+...\tenrm f
+...\tenrm e
+...\tenrm w
+...\glue 3.33333 plus 1.66666 minus 1.11111
+...\tenrm l
+...\tenrm i
+...\tenrm n
+...\tenrm e
+...\tenrm s
+...\glue 3.33333 plus 1.66666 minus 1.11111
+...\tenrm o
+...\tenrm f
+...\glue 3.33333 plus 1.66666 minus 1.11111
+...\tenrm t
+...\tenrm e
+...\tenrm x
+...\tenrm t
+...\glue 3.33333 plus 1.66666 minus 1.11111
+...\tenrm i
+...\tenrm n
+...\glue 3.33333 plus 1.66666 minus 1.11111
+...\tenrm t
+...\tenrm h
+...\tenrm i
+...\tenrm s
+...\glue(\rightskip) 0.0
+..\penalty 150
+..\glue(\baselineskip) 5.05556
+..\hbox(6.94444+1.94444)x100.0, glue set 52.72209fil
+...\tenrm p
+...\tenrm a
+...\tenrm r
+...\tenrm a
+...\discretionary
+....\tenrm -
+...\tenrm g
+...\tenrm r
+...\tenrm a
+...\tenrm p
+...\tenrm h
+...\tenrm .
+...\penalty 10000
+...\glue(\parfillskip) 0.0 plus 1.0fil
+...\glue(\rightskip) 0.0
+..\hbox(0.0+0.0)x100.0
+..\glue 0.0 plus 1.0fill
+.\glue(\baselineskip) 17.55556
+.\hbox(6.44444+0.0)x100.0, glue set 47.5fil
+..\glue 0.0 plus 1.0fil minus 1.0fil
+..\tenrm 1
+..\glue 0.0 plus 1.0fil minus 1.0fil
+
+ )
+Output written on m2-review-abs-wrap.dvi (1 page, 328 bytes).

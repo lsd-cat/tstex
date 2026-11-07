@@ -107,7 +107,7 @@ export function line_break(e: Engine, d: boolean): void {
     if (dimen(e, hang_indent_code) === 0) { last_special_line = 0; second_width = dimen(e, hsize_code); second_indent = 0 }
     else { // §849
       const hang_after = int_par(e, hang_after_code), hang_indent = dimen(e, hang_indent_code), hsize = dimen(e, hsize_code)
-      last_special_line = Math.abs(hang_after)
+      last_special_line = Math.abs(hang_after) | 0 // pdftex stores abs(-2^31) as -2^31; abs(x)>=c tests elsewhere treat it as large
       if (hang_after < 0) {
         first_width = (hsize - Math.abs(hang_indent)) | 0
         first_indent = hang_indent >= 0 ? hang_indent : 0
