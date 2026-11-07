@@ -1,0 +1,7 @@
+%! oracle: ini
+\input plain
+\tracingonline=0 \showboxbreadth=10000 \showboxdepth=10000 \tracingoutput=1
+\output={\global\setbox1\copy255 \showbox100} \hrule\penalty-10000
+\output={\setbox1\box255 \afterassignment\showbox \count1=100}\hrule\penalty-10000
+\def\l{\hbox{}}\vsize-1pt \output={\setbox1\copy255 \message{\the\insertpenalties}\showbox100}\l\l
+\output={\setbox1\box255 }\deadcycles0 \end

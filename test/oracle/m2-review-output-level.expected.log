@@ -1,0 +1,128 @@
+(m2-review-output-level.tex (plain.tex Preloading the plain format: codes,
+registers,
+\maxdimen=\dimen10
+\hideskip=\skip10
+\centering=\skip11
+\p@=\dimen11
+\z@=\dimen12
+\z@skip=\skip12
+\voidb@x=\box10
+parameters,
+\smallskipamount=\skip13
+\medskipamount=\skip14
+\bigskipamount=\skip15
+\normalbaselineskip=\skip16
+\normallineskip=\skip17
+\normallineskiplimit=\dimen13
+\jot=\dimen14
+\interdisplaylinepenalty=\count23
+\interfootnotelinepenalty=\count24
+fonts, more fonts,
+\itfam=\fam4
+\slfam=\fam5
+\bffam=\fam6
+\ttfam=\fam7
+macros,
+\strutbox=\box11
+\mscount=\count25
+\tabs=\box12
+\tabsyet=\box13
+\tabsdone=\box14
+math definitions,
+\rootbox=\box15
+\p@renwd=\dimen15
+output routines,
+\headline=\toks10
+\footline=\toks11
+\footins=\insert254
+\topins=\insert253
+hyphenation (hyphen.tex))
+> \box100=void
+
+! OK.
+<to be read again>
+                   }
+<output> {\global \setbox 1\copy 255 \showbox 100}
+
+l.4 ...1\copy255 \showbox100} \hrule\penalty-10000
+
+
+! Output routine didn't use all of \box255.
+l.4 ...1\copy255 \showbox100} \hrule\penalty-10000
+
+Your \output commands should empty \box255,
+e.g., by saying `\shipout\box255'.
+Proceed; I'll discard its present contents.
+
+The following box has been deleted:
+\vbox(643.20255+0.0)x0.0
+.\glue(\topskip) 9.6
+.\rule(0.4+0.0)x*
+
+! Missing number, treated as zero.
+<to be read again>
+                   }
+<output> ...afterassignment \showbox \count 1=100}
+
+l.5 ...nt\showbox \count1=100}\hrule\penalty-10000
+
+A number should have been here; I inserted `0'.
+(If you can't figure out why I needed to see a number,
+look up `weird error' in the index to The TeXbook.)
+
+> \box0=
+\hbox(0.0+6.00006)x8.75002
+.\tenex B
+
+! OK.
+<to be read again>
+                   }
+<output> ...afterassignment \showbox \count 1=100}
+
+l.5 ...nt\showbox \count1=100}\hrule\penalty-10000
+
+
+0
+> \box100=void
+
+! OK.
+<to be read again>
+                   }
+<output> ... {\the \insertpenalties }\showbox 100}
+
+\l ->\hbox {}
+
+l.6 ...ssage{\the\insertpenalties}\showbox100}\l\l
+
+
+! Output routine didn't use all of \box255.
+\l ->\hbox {}
+
+l.6 ...ssage{\the\insertpenalties}\showbox100}\l\l
+
+Your \output commands should empty \box255,
+e.g., by saying `\shipout\box255'.
+Proceed; I'll discard its present contents.
+
+The following box has been deleted:
+\vbox(-1.0+0.0)x0.0
+.\glue(\topskip) 10.0
+.\hbox(0.0+0.0)x0.0
+
+! Output loop---25 consecutive dead cycles.
+<to be read again>
+                   \end
+l.7 \output={\setbox1\box255 }\deadcycles0 \end
+
+I've concluded that your \output is awry; it never does a
+\shipout, so I'm shipping \box255 out myself. Next time
+increase \maxdeadcycles if you want me to be more patient!
+
+
+Completed box being shipped out [1]
+\vbox(-1.0+0.0)x469.75499
+.\glue(\topskip) 10.0
+.\hbox(0.0+0.0)x469.75499
+
+ )
+Output written on m2-review-output-level.dvi (1 page, 128 bytes).

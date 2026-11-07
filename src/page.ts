@@ -4,7 +4,7 @@ import type { Engine } from './engine.ts'
 import { vmode } from './types.ts'
 import { print, print_char, print_esc, print_int, print_nl, print_ln, begin_diagnostic, end_diagnostic } from './print.ts'
 import { print_scaled, badness, x_over_n, inf_bad } from './arith.ts'
-import { error, print_err, help, confusion, output_text, backed_up } from './error.ts'
+import { error, print_err, help, confusion, output_text, backed_up, token_list } from './error.ts'
 import { int_par, int_base, dimen_base, glue_base, count_base, scaled_base, skip_base, geq_word_define, output_routine_loc,
   new_save_level, unsave } from './eqtb.ts'
 import { new_skip_param, new_spec, delete_glue_ref, add_glue_ref, add_token_ref, delete_token_ref, flush_node_list, show_box, box,
@@ -570,14 +570,16 @@ function fire_up(e: Engine, c: Node): void {
 
 // §1026 Resume the page builder after an output routine has come to an end
 export function resume_page_builder(e: Engine): void {
-  if (e.cur_input.loc !== 0 || (e.cur_input.index !== output_text && e.cur_input.index !== backed_up)) {
+  // unbalanced-braces.ch: the output-ending brace may have been backed up; the finished output level is still there
+  while (e.cur_input.state === token_list && e.cur_input.loc === 0 && e.cur_input.index === backed_up) end_token_list(e)
+  if (e.cur_input.state !== token_list || e.cur_input.loc !== 0 || e.cur_input.index !== output_text) {
     // §1027 Recover from an unbalanced output routine
     print_err(e, 'Unbalanced output routine')
     help(e, "Your sneaky output routine has problematic {'s and/or }'s.", "I can't handle that very well; good luck.")
     error(e)
     do get_token(e); while (e.cur_input.loc !== 0)
   }
-  end_token_list(e)
+  e.output_can_end = true; end_token_list(e); e.output_can_end = false
   end_graf(e); unsave(e); e.output_active = false; e.insert_penalties = 0
   if (box(e, 255) !== null) { // §1028 Ensure that box 255 is empty after output
     print_err(e, "Output routine didn't use all of "); print_esc(e, 'box'); print_int(e, 255)

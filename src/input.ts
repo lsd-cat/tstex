@@ -79,6 +79,7 @@ export function end_token_list(e: Engine): void {
     else {
       delete_token_ref(e, ci.start)
       if (ci.index === macro) while (e.param_ptr > ci.limit) { e.param_ptr--; flush_list(e, e.param_stack[e.param_ptr]!) }
+      else if (ci.index === output_text && !e.output_can_end) fatal_error(e, 'Unbalanced output routine') // unbalanced-braces.ch
     }
   } else if (ci.index === u_template) {
     if (e.align_state > 500000) e.align_state = 0
@@ -89,7 +90,8 @@ export function end_token_list(e: Engine): void {
 
 // §325 back_input
 export function back_input(e: Engine): void {
-  while (e.cur_input.state === token_list && e.cur_input.loc === 0 && e.cur_input.index !== v_template) end_token_list(e)
+  // unbalanced-braces.ch (TeX Live, pdftex only): an exhausted \output level is kept
+  while (e.cur_input.state === token_list && e.cur_input.loc === 0 && e.cur_input.index !== v_template && e.cur_input.index !== output_text) end_token_list(e)
   const p = get_avail(e); e.info[p] = e.cur_tok
   if (e.cur_tok < right_brace_limit) {
     if (e.cur_tok < left_brace_limit) e.align_state--

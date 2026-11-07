@@ -58,7 +58,7 @@ export class Engine {
   // type(page_head)=glue_node, so an initial glue node on the current page is not a legal breakpoint
   contrib_head: CharNode = contrib_head0; page_head: Node = { type: glue_node, subtype: 0, link: null, glue_ptr: 0, leader_ptr: null }
   page_tail: Node = this.page_head
-  page_contents = 0; output_active = false; dead_cycles = 0; insert_penalties = 0
+  page_contents = 0; output_active = false; output_can_end = false; dead_cycles = 0; insert_penalties = 0
   last_glue = 0o17777777777; last_penalty = 0; last_kern = 0; last_node_type = -1
   page_so_far = [0, 0, 0, 0, 0, 0, 0, 0]; page_max_depth = 0; best_page_break: Node | null = null; least_page_cost = 0; best_size = 0
   page_ins_head = new_page_ins_head(); best_height_plus_depth = 0

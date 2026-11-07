@@ -2,7 +2,7 @@
 import type { Engine } from './engine.ts'
 import { Cmd } from './types.ts'
 import { print, print_ln, print_nl, print_int, begin_diagnostic, end_diagnostic } from './print.ts'
-import { error, print_err, help, overflow, token_list, v_template, macro, inserted } from './error.ts'
+import { error, print_err, help, overflow, token_list, v_template, macro, inserted, output_text } from './error.ts'
 import { int_par, tracing_macros_code, tracing_commands_code, frozen_endv, frozen_relax } from './eqtb.ts'
 import { print_cs, sprint_cs } from './hash.ts'
 import { get_avail, free_avail, flush_list, temp_head, backup_head } from './nodes.ts'
@@ -182,7 +182,7 @@ export function macro_call(e: Engine): void {
       } while (e.info[r] !== end_match_token)
     }
     // §390 Feed the macro body and its parameters to the scanner
-    while (e.cur_input.state === token_list && e.cur_input.loc === 0 && e.cur_input.index !== v_template) end_token_list(e)
+    while (e.cur_input.state === token_list && e.cur_input.loc === 0 && e.cur_input.index !== v_template && e.cur_input.index !== output_text) end_token_list(e) // unbalanced-braces.ch
     begin_token_list(e, ref_count, macro); e.cur_input.name = e.warning_index; e.cur_input.loc = e.link[r]!
     if (n > 0) {
       if (e.param_ptr + n > e.max_param_stack) {
