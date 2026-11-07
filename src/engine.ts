@@ -62,6 +62,9 @@ export class Engine {
   cond_ptr: CondNode | null = null; if_limit = 0; cur_if = 0; if_line = 0; skip_line = 0
   // §480 \read streams 0..15; 16 is the terminal
   read_file: InputFile[] = []; read_open: number[] = new Array(17).fill(2)
+  // §512–520 file names
+  name_in_progress = false; cur_name = ''; cur_area = ''; cur_ext = ''
+  name_chars: number[] = []; area_delimiter = 0; ext_delimiter = 0; quoted_filename = false
   // §246
   sys_time = 0; sys_day = 0; sys_month = 0; sys_year = 0
 
@@ -71,8 +74,6 @@ export class Engine {
   async run(opts: { jobname: string, mode: 'ini' | 'etex' | 'latex' }): Promise<void> {
     if (opts.mode !== 'ini') throw new Error(`unsupported mode: ${opts.mode}`)
     const name = opts.jobname + '.tex'
-    const data = this.fs.find(name, 'tex')
-    if (data === null) throw new Error(`file not found: ${name}`) // shortcut: TeX would prompt_file_name and stop with a fatal error
     init_specs(this); init_eqtb(this); init_prim(this); fix_date_and_time(this)
     // §1337 Get the first line of input and prepare to start; init_terminal reads the command line
     this.first = 1
@@ -83,8 +84,7 @@ export class Engine {
     this.selector = this.interaction === batch_mode ? no_print : term_only
     try {
       if (this.cur_input.loc < this.cur_input.limit && this.equiv[cat_code_base + this.buffer[this.cur_input.loc]!] !== Cmd.escape) {
-        this.cur_input.loc = this.cur_input.limit + 1 // scan_file_name has consumed the line
-        start_input(this, name, data)
+        start_input(this)
       }
       this.history = spotless
       main_control(this)
