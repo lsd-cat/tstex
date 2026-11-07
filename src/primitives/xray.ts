@@ -1,8 +1,8 @@
-// §1291–1298 \show \showthe (\showbox \showlists need boxes: M2)
+// §1291–1298 \show \showthe \showlists (\showbox needs boxes: M2), §218–219 show_activities
 import type { Engine } from '../engine.ts'
-import { Cmd, error_stop_mode } from '../types.ts'
-import { print_esc, print_nl, print_char } from '../print.ts'
-import { error, help } from '../error.ts'
+import { Cmd, error_stop_mode, term_and_log, term_only } from '../types.ts'
+import { print as print_str, print_esc, print_nl, print_char, print_ln, print_int, print_mode, begin_diagnostic, end_diagnostic } from '../print.ts'
+import { error, help, print_err } from '../error.ts'
 import { sprint_cs } from '../hash.ts'
 import { token_show, print_meaning } from '../tokens.ts'
 import { flush_list, temp_head } from '../nodes.ts'
@@ -21,8 +21,15 @@ export function print(e: Engine, chr: number): void {
 }
 // §1293 show_whatever
 export function run(e: Engine, chr: number): void {
-  if (chr !== show_code && chr !== show_the_code) unsupported(e) // \showbox, \showlists: pass 2b and M2
-  if (chr === show_code) { // §1294 Show the current meaning of a token
+  if (chr === show_lists_code) {
+    begin_diagnostic(e); show_activities(e)
+    // §1298 Complete a potentially long \show command
+    end_diagnostic(e, true); print_err(e, 'OK')
+    if (e.selector === term_and_log && int_par(e, tracing_online_code) <= 0) {
+      e.selector = term_only; print_str(e, ' (see the transcript file)'); e.selector = term_and_log
+    }
+  } else if (chr !== show_code && chr !== show_the_code) unsupported(e) // \showbox: M2
+  else if (chr === show_code) { // §1294 Show the current meaning of a token
     get_token(e)
     print_nl(e, '> ')
     if (e.cur_cs !== 0) { sprint_cs(e, e.cur_cs); print_char(e, 61) }
@@ -43,4 +50,12 @@ export function run(e: Engine, chr: number): void {
       'lists on your terminal as well as in the transcript file.')
   }
   error(e)
+}
+
+// §218 show_activities
+// shortcut: the semantic nest is only the outer vertical list, empty, with prev_depth=ignore_depth and prev_graf=0, until M2
+function show_activities(e: Engine): void {
+  print_nl(e, ''); print_ln(e)
+  print_nl(e, '### '); print_mode(e, e.mode); print_str(e, ' entered at line '); print_int(e, 0)
+  print_nl(e, 'prevdepth '); print_str(e, 'ignored') // §219
 }
