@@ -33,7 +33,7 @@ Findings from porting. The port reproduces TeX's behaviour, bugs included; entri
 - `hash_size` is tex.ch's 15000 plus TeX Live's `hash_extra = 600000`, kept as one block. No hash function is replicated: names live in two `Map`s.
 - `\ifeof18` (tex.ch) is `not shellenabledp`. pdftex runs with restricted shell escape, so it is false; we report shell escape as enabled for log compatibility although no `\write18` exists.
 - `print` (§59) of an unprintable character: the pdftex binary does not set `new_line_char:=-1` while printing the `^^` form, so each of its characters can become a line break (`\newlinechar=`Z \message{^^Z}` prints `^^` and a newline), although pdftex.web still shows the `nl` save/restore. We follow the binary.
-- Expansion depth limit of 10000 (`expand_depth`, tex.ch) is enforced.
+- Expansion depth limit of 10000 (`expand_depth`, tex.ch) is enforced. Capacities printed in overflow messages and the stats block follow TeX Live's texmf.cnf: `stack_size=10000`, `param_size=20000`, `save_size=200000`, `buf_size=200000`, `max_in_open=15`, `nest_size=1000`, hash `15000+600000`.
 
 ## Port deviations (deliberate; each has a `// §NNN` or `shortcut:` comment in code)
 
