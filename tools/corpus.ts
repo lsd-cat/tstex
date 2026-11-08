@@ -11,7 +11,8 @@ const root = resolve(dirname(fileURLToPath(import.meta.url)), '..')
 const TL = process.env.TL ?? '/Users/g/texlive/2026'
 const TEXMFDIST = process.env.TEXMFDIST ?? TL + '/texmf-dist', TEXMFVAR = process.env.TEXMFVAR ?? TL + '/texmf-var'
 const bindir = readdirSync(TL + '/bin').map(d => `${TL}/bin/${d}`).find(d => existsSync(d + '/pdftex')) ?? ''
-const env = { ...process.env, PATH: `${bindir}:${process.env.PATH}`, SOURCE_DATE_EPOCH: '0', FORCE_SOURCE_DATE: '1', max_print_line: '9999' }
+// shell_escape_commands empty: pdftex stays in restricted mode (\pdfshellescape=2, as the engine) but runs nothing (makeindex, repstopdf)
+const env = { ...process.env, PATH: `${bindir}:${process.env.PATH}`, SOURCE_DATE_EPOCH: '0', FORCE_SOURCE_DATE: '1', max_print_line: '9999', shell_escape_commands: '' }
 const AUX = /\.(aux|out|toc|lof|lot|nav|snm)$/ // compile.ts's rerun_files
 // \pdfsetrandomseed: pdftex seeds \pdfuniformdeviate from the clock, not SOURCE_DATE_EPOCH (tagpdf's namespace UUID differed per run)
 const JOB = 'main', FIRST = (main: string) => `\\pdfsetrandomseed 1 \\pdfcompresslevel=0\\pdfobjcompresslevel=0\\input{${main}}`
@@ -97,7 +98,7 @@ const runSide = (kind: string, dir: string, main: string, timeout: number) => ne
 
 const { normalizeLog } = await import('./normalize-log.ts'), { normalizePdf } = await import('./pdf-normalize.ts')
 const rd = (p: string) => existsSync(p) ? readFileSync(p) : null
-const firstErr = (log: string | undefined) => log === undefined ? 'no log' : log.match(/^! .*$/m)?.[0] ?? (/^\*\*\* \(job aborted/m.test(log) ? log.match(/^\*\*\* \(.*$/m)![0] : '')
+const firstErr = (log: string | undefined) => log === undefined ? 'no log' : log.match(/^!.*$/m)?.[0] ?? (/^\*\*\* \(job aborted/m.test(log) ? log.match(/^\*\*\* \(.*$/m)![0] : '')
 const unsup = (log: string) => log.match(/unsupported:[^)\n]*/)?.[0]
 const render = (pdf: string, tmp: string, tag: string) => { const r = spawnSync('pdftoppm', ['-gray', '-r', '50', '-f', '1', '-l', '1', pdf, join(tmp, tag)]); const f = readdirSync(tmp).find(f => f.startsWith(tag + '-')); return r.status === 0 && f ? readFileSync(join(tmp, f)) : null }
 
