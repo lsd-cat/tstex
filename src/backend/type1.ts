@@ -1,6 +1,6 @@
-// writet1.c, the parts pdfTeX needs when it embeds a whole Type 1 font: load_enc_file, the PFB segments, t1_scan_param
-// (/FontName, /ItalicAngle, /FontBBox, /StdVW ...) and t1_builtin_enc. We never subset, so the font program is the
-// PFB's cleartext and binary segments as they are (/Length3 0, as pdfTeX's fixedcontent=false).
+// writet1.c, the parts pdfTeX needs when it embeds a whole Type 1 font: load_enc_file, t1_include, the PFB segments, t1_scan_param
+// (/FontName, /ItalicAngle, /FontBBox, /StdVW ...) and t1_builtin_enc. `<<' entries are written as pdfTeX writes them
+// (t1_include); we never subset, so a `<' entry's program is the PFB's cleartext and binary segments as they are (/Length3 0).
 import type { Engine } from '../engine.ts'
 import { print, print_char } from '../print.ts'
 import { pdftex_fail } from '../pdf.ts'
@@ -190,6 +190,81 @@ function t1_builtin_enc(e: Engine, lines: string[], at: { i: number }, file: str
   }
 }
 
+// writet1.c t1_include (the `<<' path, fixedcontent = false): the font goes through t1_getline/t1_putline line by line, so
+// whitespace is normalised (append_char_to_buf/append_eol) in the cleartext and, decrypted, in the eexec part outside the
+// charstrings; the eexec part is re-encrypted with four zero bytes in front and ends at `mark currentfile closefile'
+function t1_include(e: Engine, fd: T1Target, b: Uint8Array, path: string): { data: Uint8Array, length1: number, length2: number } {
+  let pos = 0, at_eof = false, block = 0, in_eexec = 0, cs = false, dr = 55665, er = 55665, encrypt = false
+  let line: number[] = []
+  const out: number[] = []
+  const getchar = () => { if (pos < b.length) return b[pos++]!; at_eof = true; return -1 }
+  const getbyte = (): number => { // t1_getbyte: PFB segments
+    let c = getchar()
+    if (block === 0) {
+      if (c !== 128) pdftex_fail(e, path, 'invalid marker')
+      c = getchar()
+      if (c === 3) { while (!at_eof) getchar(); return -1 }
+      block = getchar() & 255; block |= (getchar() & 255) << 8; block |= (getchar() & 255) << 16; block |= (getchar() & 255) << 24
+      c = getchar()
+    }
+    block--
+    return c
+  }
+  const edecrypt = (c: number) => { c &= 255; const p = c ^ (dr >> 8); dr = ((c + dr) * 52845 + 22719) & 0xffff; return p }
+  const eencrypt = (p: number) => { const c = (p ^ (er >> 8)) & 255; er = ((c + er) * 52845 + 22719) & 0xffff; return c }
+  const text = () => String.fromCharCode(...line)
+  const suffix = (t: string) => { let n = line.length; if (line[n - 1] === 10) n--; return n >= t.length && String.fromCharCode(...line.slice(n - t.length, n)) === t }
+  const eexec_str = 'currentfile eexec'
+  const getline = () => { // t1_getline
+    for (;;) {
+      if (at_eof) pdftex_fail(e, path, 'unexpected end of file')
+      line = []
+      let cslen = 0, eexec_scan = 0, c = getbyte()
+      if (c === -1) return
+      while (!at_eof) {
+        if (in_eexec === 1) c = edecrypt(c)
+        if (c === 9) c = 32 // append_char_to_buf
+        if (c === 13 || c === -1) c = 10
+        if (c !== 32 || (line.length > 0 && line[line.length - 1] !== 32)) line.push(c)
+        if (in_eexec === 0 && eexec_scan >= 0 && eexec_scan < 17) eexec_scan = line[eexec_scan] === eexec_str.charCodeAt(eexec_scan) ? eexec_scan + 1 : -1
+        if (c === 10) break
+        if (cs && cslen === 0 && line.length > 4 && (suffix(' RD ') || suffix(' -| '))) {
+          let p = line.length - 5
+          while (line[p] !== 32) p--
+          let l = cslen = Math.trunc(scan_num(e, String.fromCharCode(...line.slice(p + 1)), path)[0])
+          while (l-- > 0) line.push(edecrypt(getbyte()))
+        }
+        c = getbyte()
+      }
+      if (line.length > 1 && line[line.length - 1] !== 10) line.push(10) // append_eol
+      if (line.length > 2 && line[line.length - 2] === 32) { line[line.length - 2] = 10; line.pop() }
+      if (line.length < 2) continue
+      if (eexec_scan === 17) in_eexec = 1
+      return
+    }
+  }
+  const putline = () => { if (line.length > 1) for (const c of line) out.push(encrypt ? eencrypt(c) : c) }
+  const check_block_len = (decrypt: boolean) => {
+    if (block === 0) return
+    let c = getbyte()
+    if (decrypt) c = edecrypt(c)
+    if (!(block === 0 && (c === 10 || c === 13))) pdftex_fail(e, path, `${block + 1} bytes more than expected`)
+  }
+  do { getline(); t1_scan_param(e, fd, text(), path); putline() } while (in_eexec === 0)
+  const length1 = out.length // t1_start_eexec
+  check_block_len(false)
+  line = []
+  for (let i = 0; i < 4; i++) { edecrypt(getbyte()); line.push(0) }
+  encrypt = true; putline()
+  do { getline(); t1_scan_param(e, fd, text(), path); putline() } while (!(text().includes('/CharStrings') || text().startsWith('/Subrs')))
+  cs = true
+  do { getline(); putline() } while (!suffix('mark currentfile closefile'))
+  const length2 = out.length - length1 // t1_stop_eexec
+  encrypt = false
+  check_block_len(true)
+  return { data: Uint8Array.from(out), length1, length2 }
+}
+
 // writet1.c writet1 for one font descriptor: scans the font as t1_subset_ascii_part/t1_read_subrs do (subsetted map
 // entries) or t1_include (`<<'), logging `<path>' or `<<path>>'; returns the PFB's cleartext and binary segments
 export function writet1(e: Engine, fd: T1Target, ff_name: string, subsetted: boolean): { data: Uint8Array, length1: number, length2: number } {
@@ -198,6 +273,7 @@ export function writet1(e: Engine, fd: T1Target, ff_name: string, subsetted: boo
   const path = e.fs.path?.(ff_name, 'type1') ?? ff_name
   print(e, subsetted ? '<' : '<<'); print(e, path)
   if (b[0] !== 128) pdftex_fail(e, path, 'unsupported: PFA font files') // shortcut: PFB only; port t1_getbyte's PFA branch if a map names a .pfa
+  if (!subsetted) { const r = t1_include(e, fd, b, path); print(e, '>>'); return r }
   // PFB segments: 128, type (1 text, 2 binary, 3 end), 4-byte little-endian length; text after the binary part is the trailer
   const parts: [Uint8Array[], Uint8Array[]] = [[], []]
   for (let i = 0; i < b.length;) {
