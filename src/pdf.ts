@@ -10,7 +10,8 @@ import { tokens_to_string } from './tokens.ts'
 import { flush_node_list, show_box, zround, is_char_node, hlist_node, vlist_node, rule_node, whatsit_node, glue_node, kern_node,
   math_node, ligature_node, normal, stretching, a_leaders, c_leaders, null_flag, special_node, latespecial_node, pdf_save_pos_node,
   flush_list, delete_token_ref } from './nodes.ts'
-import type { BoxNode, Node, WhatsitNode } from './nodes.ts'
+import type { BoxNode, Node, WhatsitNode, PdfAction } from './nodes.ts'
+import { pdf_action_user, pdf_action_page, pdf_action_goto, pdf_action_thread } from './nodes.ts'
 import { char_info, char_width, char_exists, null_font, param, space_code, space_shrink_code } from './tfm.ts'
 import { char_warning } from './tfm.ts'
 import { open_log_file, print_file_name } from './files.ts'
@@ -62,15 +63,19 @@ export function pdf_state() {
     obj_info: [0], obj_link: [0], obj_offset: [0], obj_os_idx: [0], obj_aux: [0], head_tab: new Array<number>(11).fill(0),
     obj_ptr: 0, sys_obj_ptr: 0, obj_tab_size: inf_obj_tab_size, objs: new Map<string, number>(), // avl_put_obj/find_obj
     pages_tail: 0, last_pages: 0, last_page: 0, last_stream: 0,
-    dest_names_size: inf_dest_names_size, dest_names_ptr: 0, mem: [0], mem_ptr: 1, mem_size: inf_pdf_mem_size,
+    dest_names_size: inf_dest_names_size, dest_names_ptr: 0, dest_names: [] as { objname: number, objnum: number }[], mem: [0], mem_ptr: 1, mem_size: inf_pdf_mem_size,
     font_list: [] as number[], obj_list: [] as number[], xform_list: [] as number[], ximage_list: [] as number[],
     text_procset: false, image_procset: 0,
     char_used: [] as (Uint8Array | undefined)[], font_size: [] as number[], font_num: [] as number[], font_has_space_char: [] as boolean[],
     font_nobuiltin_tounicode: [] as boolean[], vf_checked: [] as boolean[],
     obj_count: 0, last_obj: 0, retval: 0, // \pdfobj's counters, \pdflastobj, \pdfretval
+    xform_count: 0, ximage_count: 0, last_xform: 0, last_ximage: 0, last_ximage_pages: 0, last_ximage_colordepth: 0, last_annot: 0, last_link: 0,
     cur_page_width: 0, cur_h_offset: 0, cur_v_offset: 0, is_shipping_page: false, fixed_gen_tounicode: 0,
     // utils.c: the \pdfsetmatrix stack ([a, b, c, d, e, f] each), the \pdfsave positions, page_mode
     matrix_stack: [] as number[][], pos_stack: [] as { h: number, v: number, m: number }[], page_mode: false,
+    // [53] token lists of \pdfinfo, \pdfcatalog, \pdfnames, \pdftrailer, \pdftrailerid; the openaction object
+    info_toks: 0, catalog_toks: 0, names_toks: 0, trailer_toks: 0, trailer_id_toks: 0, catalog_openaction: 0,
+    strs: [''] as string[], // the string pool for named objects: obj_info = -k names strs[k]
   }
 }
 export type PdfState = ReturnType<typeof pdf_state>
@@ -259,6 +264,17 @@ export function pdf_end_stream(e: Engine): void {
   pdf_out(e, 10); pdf_print_ln(e, 'endstream'); pdf_end_obj(e)
 }
 
+// [32d] append_dest_name (dest_names holds string numbers)
+function append_dest_name(e: Engine, k: number, n: number): void {
+  const s = e.ps
+  if (s.dest_names_ptr === sup_dest_names_size) overflow(e, 'number of destination names (dest_names_size)', s.dest_names_size)
+  if (s.dest_names_ptr === s.dest_names_size) {
+    const a = Math.trunc(0.2 * s.dest_names_size)
+    s.dest_names_size = s.dest_names_size < sup_dest_names_size - a ? s.dest_names_size + a : sup_dest_names_size
+  }
+  s.dest_names[s.dest_names_ptr++] = { objname: k, objnum: n }
+}
+
 // [32d] pdf_create_obj, pdf_new_objnum
 export function pdf_create_obj(e: Engine, t: number, i: number): void {
   const s = e.ps
@@ -269,7 +285,7 @@ export function pdf_create_obj(e: Engine, t: number, i: number): void {
   }
   const p0 = ++s.sys_obj_ptr; s.obj_ptr = p0
   s.obj_info[p0] = i; s.obj_offset[p0] = -2; s.obj_aux[p0] = 0; s.obj_link[p0] = 0; s.obj_os_idx[p0] = 0
-  const key = t + ':' + i
+  const key = obj_key(e, t, i)
   if (!s.objs.has(key)) s.objs.set(key, p0) // avl_put_obj keeps the first object with a type and identifier
   if (t === obj_type_page) {
     let p = s.head_tab[t]!, q = 0
@@ -280,18 +296,34 @@ export function pdf_create_obj(e: Engine, t: number, i: number): void {
     }
   } else if (t !== obj_type_others) {
     s.obj_link[p0] = s.head_tab[t]!; s.head_tab[t] = p0
-    if (t === obj_type_dest && i < 0) confusion(e, 'named destinations') // pass B: append_dest_name
+    if (t === obj_type_dest && i < 0) append_dest_name(e, -i, p0)
   }
 }
 export function pdf_new_objnum(e: Engine): number { pdf_create_obj(e, obj_type_others, 0); return e.ps.obj_ptr }
 const is_obj_written = (e: Engine, k: number) => e.ps.obj_offset[k]! > -1
 
-// [53] get_obj by number (find_obj; named objects are pass B)
-export function get_obj(e: Engine, t: number, i: number): number {
-  const r = e.ps.objs.get(t + ':' + i)
-  if (r !== undefined) return r
-  pdf_create_obj(e, t, i)
-  return e.ps.obj_ptr
+// [53] pdf_check_obj
+export function pdf_check_obj(e: Engine, t: number, n: number): void {
+  let k = e.ps.head_tab[t]!
+  while (k !== 0 && k !== n) k = e.ps.obj_link[k]!
+  if (k === 0) pdf_error(e, 'ext1', 'cannot find referenced object')
+}
+
+// [53] find_obj, get_obj (avl_find_obj: a named object is found by its string)
+const obj_key = (e: Engine, t: number, i: number) => i < 0 ? t + ':n:' + e.ps.strs[-i] : t + ':' + i
+export function find_obj(e: Engine, t: number, i: number | string): number {
+  return e.ps.objs.get(typeof i === 'string' ? t + ':n:' + i : t + ':' + i) ?? 0
+}
+export function get_obj(e: Engine, t: number, i: number, byname: number): number {
+  const s = byname > 0 ? str(tokens_to_string(e, i)) : ''
+  let r = find_obj(e, t, byname > 0 ? s : i)
+  if (r === 0) {
+    if (byname > 0) { e.ps.strs.push(s); pdf_create_obj(e, t, -(e.ps.strs.length - 1)) }
+    else pdf_create_obj(e, t, i)
+    r = e.ps.obj_ptr
+    if (t === obj_type_dest || t === obj_type_struct_dest) e.ps.obj_aux[r] = 0 // obj_dest_ptr := null
+  }
+  return r
 }
 
 // [32d] object streams
@@ -366,6 +398,53 @@ function pdf_print_str(e: Engine, t: string): void {
 }
 function pdf_str_entry_ln(e: Engine, s: string, v: string): void { pdf_out(e, 47); pdf_print(e, s); pdf_out(e, 32); pdf_print_str(e, v); pdf_print_nl(e) }
 
+// [32d] pdf_indirect, pdf_int_entry, pdf_str_entry (no newline)
+function pdf_indirect(e: Engine, s: string, o: number): void { pdf_out(e, 47); pdf_print(e, s); pdf_out(e, 32); pdf_print_int(e, o); pdf_print(e, ' 0 R') }
+function pdf_int_entry(e: Engine, s: string, v: number): void { pdf_out(e, 47); pdf_print(e, s); pdf_out(e, 32); pdf_print_int(e, v) }
+function pdf_str_entry(e: Engine, s: string, v: string): void { pdf_out(e, 47); pdf_print(e, s); pdf_out(e, 32); pdf_print_str(e, v) }
+
+// [53] write_action
+export function write_action(e: Engine, p: PdfAction): void {
+  if (p.type === pdf_action_user) { pdf_print_toks_ln(e, p.tokens); return }
+  const toks = (t: number) => str(tokens_to_string(e, t))
+  pdf_print(e, '<< ')
+  if (p.file !== 0) {
+    pdf_print(e, '/F ')
+    const s = toks(p.file)
+    if (s[0] === '(' && s[s.length - 1] === ')') pdf_print(e, s); else pdf_print_str(e, s)
+    pdf_print(e, ' ')
+    if (p.new_window > 0) { pdf_print(e, '/NewWindow '); pdf_print(e, p.new_window === 1 ? 'true ' : 'false ') }
+  }
+  let d = 0
+  switch (p.type) {
+    case pdf_action_page:
+      if (p.file === 0) { pdf_print(e, '/S /GoTo /D ['); pdf_print_int(e, get_obj(e, obj_type_page, p.id, 0)); pdf_print(e, ' 0 R') }
+      else { pdf_print(e, '/S /GoToR /D ['); pdf_print_int(e, p.id - 1) }
+      pdf_out(e, 32); pdf_print(e, toks(p.tokens)); pdf_out(e, 93)
+      break
+    case pdf_action_goto:
+      if (p.file === 0) { pdf_print(e, '/S /GoTo '); d = get_obj(e, obj_type_dest, p.id, p.named_id % 2) }
+      else pdf_print(e, '/S /GoToR ')
+      if (p.named_id % 2 === 1) pdf_str_entry(e, 'D', toks(p.id))
+      else if (p.file === 0) pdf_indirect(e, 'D', d)
+      else pdf_error(e, 'ext4', "`goto' option cannot be used with both `file' and `num'")
+      break
+    case pdf_action_thread:
+      pdf_print(e, '/S /Thread ')
+      if (p.file === 0) d = get_obj(e, obj_type_thread, p.id, p.named_id % 2)
+      if (p.named_id % 2 === 1) pdf_str_entry(e, 'D', toks(p.id))
+      else if (p.file === 0) pdf_indirect(e, 'D', d)
+      else pdf_int_entry(e, 'D', p.id)
+      break
+  }
+  if (p.struct_id !== 0) {
+    pdf_out(e, 32)
+    if (p.file === 0) pdf_indirect(e, 'SD', get_obj(e, obj_type_struct_dest, p.struct_id, Math.trunc(p.named_id / 2) % 2))
+    else { pdf_print(e, '/SD '); pdf_print(e, toks(p.struct_id)) }
+  }
+  pdf_print_ln(e, ' >>')
+}
+
 // [32f] pdf_print_toks_ln
 function pdf_print_toks_ln(e: Engine, p: number): void { const s = tokens_to_string(e, p); if (s.length > 0) pdf_print_ln(e, s) }
 
@@ -403,7 +482,7 @@ function pdf_use_font(e: Engine, f: number, fontnum: number): void {
   divide_scaled(e, e.font_size[f]!, one_hundred_bp, 6)
   e.ps.font_size[f] = e.ps.scaled_out; e.font_used[f] = true; e.ps.font_num[f] = fontnum
 }
-function pdf_init_font(e: Engine, f: number): void {
+export function pdf_init_font(e: Engine, f: number): void {
   const s = e.ps
   if (isscalable(e, f)) {
     for (let i = s.head_tab[obj_type_font]!; i !== 0; i = s.obj_link[i]!) {
@@ -697,12 +776,16 @@ function pdf_hlist_out(e: Engine, this_box: BoxNode): void {
   e.cur_s--
 }
 
-// [32e] output_one_char (virtual fonts are refused when the font is set up)
-function output_one_char(e: Engine, f: number, c: number): void {
-  if (!e.ps.vf_checked[f]) { // do_vf: pdf_font_type[f] = new_font_type
+// [32e] do_vf: a virtual font is refused (pdf_check_vf_cur_val's error would follow it)
+export function pdf_check_vf(e: Engine, f: number): void {
+  if (!e.ps.vf_checked[f]) {
     e.ps.vf_checked[f] = true
-    if (e.fs.find(e.font_name[f] + '.vf', 'vf') !== null) fatal_error(e, `unsupported: virtual font ${e.font_name[f]}`) // pass B
+    if (e.fs.find(e.font_name[f] + '.vf', 'vf') !== null) fatal_error(e, `unsupported: virtual font ${e.font_name[f]}`)
   }
+}
+// [32e] output_one_char
+function output_one_char(e: Engine, f: number, c: number): void {
+  pdf_check_vf(e, f)
   pdf_begin_string(e, f); pdf_print_char(e, f, c)
   if (!isscalable(e, f)) fatal_error(e, `unsupported: bitmap (PK) font ${e.font_name[f]}`) // adv_char_width's get_pk_char_width
   adv_char_width(e, f, c)
@@ -829,7 +912,7 @@ export function pdf_ship_out(e: Engine, p: BoxNode): void {
     s.cur_page_width = e.equiv[dimen_base + pdf_page_width_code]! !== 0 ? e.equiv[dimen_base + pdf_page_width_code]! : (p.width + 2 * s.cur_h_offset) | 0
     e.cur_page_height = e.equiv[dimen_base + pdf_page_height_code]! !== 0 ? e.equiv[dimen_base + pdf_page_height_code]!
       : (p.height + p.depth + 2 * s.cur_v_offset) | 0
-    s.last_page = get_obj(e, obj_type_page, e.total_pages + 1)
+    s.last_page = get_obj(e, obj_type_page, e.total_pages + 1, 0)
     s.obj_aux[s.last_page] = 1
     pdf_new_dict(e, obj_type_others, 0, 0)
     s.last_stream = s.obj_ptr
@@ -996,11 +1079,16 @@ export function finish_pdf_file(e: Engine): void {
       b = c
       if (l === 0) break
     }
-    // Output outlines, name tree, article threads: pass B (none can exist yet)
+    const outlines = 0, names_tree = 0, threads = 0 // Output outlines, name tree, article threads
     // Output the catalog object
     pdf_new_dict(e, obj_type_others, 0, 1)
     const root = s.obj_ptr
     pdf_print_ln(e, '/Type /Catalog'); pdf_indirect_ln(e, 'Pages', s.last_pages)
+    if (threads !== 0) pdf_indirect_ln(e, 'Threads', threads)
+    if (outlines !== 0) pdf_indirect_ln(e, 'Outlines', outlines)
+    if (names_tree !== 0) pdf_indirect_ln(e, 'Names', names_tree)
+    if (s.catalog_toks !== 0) { pdf_print_toks_ln(e, s.catalog_toks); delete_token_ref(e, s.catalog_toks); s.catalog_toks = 0 }
+    if (s.catalog_openaction !== 0) pdf_indirect_ln(e, 'OpenAction', s.catalog_openaction)
     pdf_end_dict(e)
     if (int_par(e, pdf_omit_info_dict_code) === 0) pdf_print_info(e)
     if (s.os_enable) {
@@ -1015,7 +1103,7 @@ export function finish_pdf_file(e: Engine): void {
       pdf_print(e, '/W [1 '); pdf_print_int(e, w); pdf_print_ln(e, ' 1]')
       pdf_indirect_ln(e, 'Root', root)
       if (int_par(e, pdf_omit_info_dict_code) === 0) pdf_indirect_ln(e, 'Info', s.obj_ptr - 1)
-      print_ID(e); pdf_print_nl(e)
+      print_trailer_toks_and_ID(e); pdf_print_nl(e)
       pdf_begin_stream(e)
       const bytes = (n: number) => { for (let q = w - 1; q >= 0; q--) pdf_out(e, Math.floor(n / 256 ** q) % 256) }
       for (k = 0; k <= s.sys_obj_ptr; k++) {
@@ -1040,7 +1128,7 @@ export function finish_pdf_file(e: Engine): void {
       pdf_print_ln(e, 'trailer'); pdf_print(e, '<< ')
       pdf_int_entry_ln(e, 'Size', s.sys_obj_ptr + 1); pdf_indirect_ln(e, 'Root', root)
       if (int_par(e, pdf_omit_info_dict_code) === 0) pdf_indirect_ln(e, 'Info', s.sys_obj_ptr)
-      print_ID(e); pdf_print_ln(e, ' >>')
+      print_trailer_toks_and_ID(e); pdf_print_ln(e, ' >>')
     }
     pdf_print_ln(e, 'startxref')
     pdf_print_int_ln(e, s.os_enable ? s.obj_offset[s.sys_obj_ptr]! : s.save_offset)
@@ -1070,26 +1158,41 @@ function build_free_list(e: Engine): void {
 // utils.c start_time_str (texmfmp.c initstarttime: with SOURCE_DATE_EPOCH, i.e. run({ date }), in UTC)
 const start_time_str = (e: Engine) => makepdftime(new Date(e.start_time), e.date !== undefined)
 
-// utils.c printID: MD5 of the start time and the output file name
-function print_ID(e: Engine): void {
-  const id = md5(Array.from(start_time_str(e) + e.ps.output_file_name, c => c.charCodeAt(0)))
-  pdf_print(e, `/ID [<${id}> <${id}>]`)
+// [32f] Output the trailer: \pdftrailer's tokens, then utils.c printIDalt (MD5 of \pdftrailerid, nothing if empty) or printID
+// (MD5 of the start time and the output file name)
+function print_trailer_toks_and_ID(e: Engine): void {
+  const s = e.ps
+  if (s.trailer_toks !== 0) { pdf_print_toks_ln(e, s.trailer_toks); delete_token_ref(e, s.trailer_toks); s.trailer_toks = 0 }
+  if (s.trailer_id_toks !== 0) {
+    const t = tokens_to_string(e, s.trailer_id_toks)
+    if (t.length > 0) { const id = md5(t); pdf_print(e, `/ID [<${id}> <${id}>]`) }
+  } else {
+    const id = md5(Array.from(start_time_str(e) + s.output_file_name, c => c.charCodeAt(0)))
+    pdf_print(e, `/ID [<${id}> <${id}>]`)
+  }
 }
 
-// [32f] pdf_print_info (\pdfinfo is pass B)
+// [32f] pdf_print_info
 function pdf_print_info(e: Engine): void {
+  const st = e.ps
   pdf_new_dict(e, obj_type_others, 0, 3)
-  pdf_print_ln(e, '/Producer (pdfTeX-1.40.29)') // Print the Producer key: pdftex_version div 100 . mod 100 . pdftex_revision
-  pdf_str_entry_ln(e, 'Creator', 'TeX')
-  if (int_par(e, pdf_info_omit_date_code) === 0) {
-    pdf_print_ln(e, `/CreationDate (${start_time_str(e)})`)
-    pdf_print_ln(e, `/ModDate (${start_time_str(e)})`)
+  let s = ''
+  if (st.info_toks !== 0) s = str(tokens_to_string(e, st.info_toks))
+  const given = (k: string) => s.includes(k) // substr_of_str
+  if (!given('/Producer')) pdf_print_ln(e, '/Producer (pdfTeX-1.40.29)') // Print the Producer key: pdftex_version div 100 . mod 100 . pdftex_revision
+  if (st.info_toks !== 0) {
+    if (s.length > 0) pdf_print_ln(e, s)
+    delete_token_ref(e, st.info_toks); st.info_toks = 0
   }
-  pdf_print_ln(e, '/Trapped /False')
+  if (!given('/Creator')) pdf_str_entry_ln(e, 'Creator', 'TeX')
+  if (int_par(e, pdf_info_omit_date_code) === 0) {
+    if (!given('/CreationDate')) pdf_print_ln(e, `/CreationDate (${start_time_str(e)})`)
+    if (!given('/ModDate')) pdf_print_ln(e, `/ModDate (${start_time_str(e)})`)
+  }
+  if (!given('/Trapped')) pdf_print_ln(e, '/Trapped /False')
   if (int_par(e, pdf_suppress_ptex_info_code) % 2 === 0) {
     const key = int_par(e, pdf_ptex_use_underscore_code) > 0 || int_par(e, pdf_major_version_code) >= 2 ? 'PTEX_Fullbanner' : 'PTEX.Fullbanner'
     pdf_str_entry_ln(e, key, 'This is pdfTeX, Version 3.141592653-2.6-1.40.29 (TeX Live 2026) kpathsea version 6.4.2')
   }
   pdf_end_dict(e)
 }
-

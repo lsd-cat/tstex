@@ -12,9 +12,11 @@ import { escapestring, escapename, escapehex, unescapehex, makepdftime, md5, mat
 import { unsupported } from '../main.ts'
 import { open_log_file, find_tex_file } from '../files.ts'
 import { print_err, help, int_error, fatal_error } from '../error.ts'
-import { scan_font_ident } from '../tfm.ts'
+import { scan_font_ident, null_font } from '../tfm.ts'
+import { pdf_error, pdf_check_vf, pdf_init_font, pdf_check_obj, get_obj, obj_type_page, obj_type_xform } from '../pdf.ts'
 import { print_scaled, unif_rand, norm_rand } from '../arith.ts'
 
+const pdf_font_name_code = 9, pdf_font_objnum_code = 10, pdf_font_size_code = 11, pdf_page_ref_code = 12, pdf_xform_name_code = 13
 const number_code = 0, roman_numeral_code = 1, string_code = 2, meaning_code = 3, font_name_code = 4, eTeX_revision_code = 5, expanded_code = 6, pdftex_revision_code = 7, pdftex_banner_code = 8, pdf_creation_date_code = 22, pdf_file_size_code = 24, pdf_file_mod_date_code = 23, pdf_mdfive_sum_code = 25, pdf_strcmp_code = 18, job_name_code = 33, uniform_deviate_code = 29, pdf_match_code = 27, pdf_last_match_code = 28, normal_deviate_code = 30
 const names: Record<number, string> = { 0: 'number', 1: 'romannumeral', 2: 'string', 3: 'meaning', 4: 'fontname', 5: 'eTeXrevision',
   6: 'expanded', 7: 'pdftexrevision', 8: 'pdftexbanner', 9: 'pdffontname', 10: 'pdffontobjnum', 11: 'pdffontsize', 12: 'pdfpageref',
@@ -111,6 +113,13 @@ export function run(e: Engine, chr: number): void {
     e.selector = new_string; print_str(e, makepdftime(e.date ?? new Date()))
     e.selector = old_setting; e.link[garbage] = str_toks(e, b); ins_list(e, e.link[temp_head]!); return
   }
+  else if (c === pdf_font_name_code || c === pdf_font_objnum_code || c === pdf_font_size_code) { // pdftex.web
+    scan_font_ident(e)
+    if (e.cur_val === null_font) pdf_error(e, 'font', 'invalid font identifier')
+    if (c !== pdf_font_size_code) { pdf_check_vf(e, e.cur_val); if (!e.font_used[e.cur_val]) pdf_init_font(e, e.cur_val) }
+  }
+  else if (c === pdf_page_ref_code) { scan_int(e); if (e.cur_val <= 0) pdf_error(e, 'pageref', 'invalid page number') }
+  else if (c === pdf_xform_name_code) { scan_int(e); pdf_check_obj(e, obj_type_xform, e.cur_val) }
   else if (c === uniform_deviate_code) scan_int(e)
   else if (c !== normal_deviate_code && c !== eTeX_revision_code && c !== pdftex_revision_code && c !== pdftex_banner_code) unsupported(e)
   e.selector = new_string
@@ -127,6 +136,13 @@ export function run(e: Engine, chr: number): void {
   else if (c === pdftex_revision_code) print_str(e, '29') // pdftex.web pdftex_revision
   else if (c === pdftex_banner_code) print_str(e, 'This is pdfTeX, Version 3.141592653-2.6-1.40.29 (TeX Live 2026) kpathsea version 6.4.2') // texmfmp.c; pdftex's own, for identical logs
   else if (c === pdf_strcmp_code) print_int(e, e.cur_val)
+  else if (c === pdf_font_name_code || c === pdf_font_objnum_code) {
+    const f = e.ps.font_num[e.cur_val]! < 0 ? -e.ps.font_num[e.cur_val]! : e.cur_val // set_ff
+    print_int(e, c === pdf_font_name_code ? e.ps.obj_info[e.ps.font_num[f]!]! : e.ps.font_num[f]!)
+  }
+  else if (c === pdf_font_size_code) { print_scaled(e, e.font_size[e.cur_val]!); print_str(e, 'pt') }
+  else if (c === pdf_page_ref_code) print_int(e, get_obj(e, obj_type_page, e.cur_val, 0))
+  else if (c === pdf_xform_name_code) print_int(e, e.ps.obj_info[e.cur_val]!)
   else if (c === uniform_deviate_code) print_int(e, unif_rand(e, e.cur_val))
   else if (c === normal_deviate_code) print_int(e, norm_rand(e))
   else print_str(e, e.job_name)

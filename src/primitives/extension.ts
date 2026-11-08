@@ -16,7 +16,11 @@ import { unsupported, report_illegal_case, tail_append, norm_min } from '../main
 import { tokens_to_string } from '../tokens.ts'
 import { str } from '../utils.ts'
 import { def_tounicode } from '../backend/fonts.ts'
-import { pdf_error, pdf_warning, pdf_create_obj, pdf_get_mem, pdf_write_obj, obj_type_obj, set_origin, direct_page, direct_always } from '../pdf.ts'
+import { pdf_error, pdf_warning, pdf_create_obj, pdf_get_mem, pdf_write_obj, obj_type_obj, obj_type_others, set_origin, direct_page, direct_always,
+  pdf_new_obj, pdf_end_obj, write_action, pdf_check_obj, pdf_check_vf, pdf_init_font, pdf_mark_char } from '../pdf.ts'
+import type { PdfAction } from '../nodes.ts'
+import { pdf_action_user, pdf_action_goto, pdf_action_thread, pdf_action_page, free_avail, delete_action_ref } from '../nodes.ts'
+import { scan_font_ident, null_font } from '../tfm.ts'
 
 // pdftex.web check_pdfoutput
 function check_pdfoutput(e: Engine, s: string, is_error: boolean): void {
@@ -25,6 +29,7 @@ function check_pdfoutput(e: Engine, s: string, is_error: boolean): void {
   pdf_warning(e, s, 'not allowed in DVI mode (\\pdfoutput <= 0); ignoring it', true, true)
 }
 
+const pdf_info_code = 24, pdf_catalog_code = 25, pdf_names_code = 26, pdf_include_chars_code = 28, pdf_trailer_code = 31, pdf_trailer_id_code = 32
 const pdf_obj_code = 9, immediate_code = 5, set_language_code = 6, pdf_glyph_to_unicode_code = 39, set_random_seed_code = 35, reset_timer_code = 33
 const names: Record<number, string> = { 0: 'openout', 1: 'write', 2: 'closeout', 3: 'special', 5: 'immediate', 6: 'setlanguage',
   7: 'pdfliteral', 40: 'pdfcolorstack', 41: 'pdfsetmatrix', 42: 'pdfsave', 43: 'pdfrestore', 9: 'pdfobj', 10: 'pdfrefobj',
@@ -37,6 +42,52 @@ const names: Record<number, string> = { 0: 'openout', 1: 'write', 2: 'closeout',
 export const cmd = Cmd.extension
 export const primitives: [string, number][] = Object.entries(names).map(([k, n]) => [n, +k])
 export function print(e: Engine, chr: number): void { print_esc(e, names[chr] ?? '[unknown extension!]') }
+
+// pdftex.web concat_tokens
+function concat_tokens(e: Engine, q: number, r: number): number {
+  if (q === 0) return r
+  let p = q
+  while (e.link[p] !== 0) p = e.link[p]!
+  e.link[p] = e.link[r]!; free_avail(e, r)
+  return q
+}
+
+// pdftex.web scan_action
+function scan_action(e: Engine): PdfAction {
+  const p: PdfAction = { type: 0, named_id: 0, id: 0, file: 0, new_window: 0, tokens: 0, struct_id: 0, refcount: 0 }
+  if (scan_keyword(e, 'user')) p.type = pdf_action_user
+  else if (scan_keyword(e, 'goto')) p.type = pdf_action_goto
+  else if (scan_keyword(e, 'thread')) p.type = pdf_action_thread
+  else pdf_error(e, 'ext1', 'action type missing')
+  if (p.type === pdf_action_user) { scan_toks(e, false, true); p.tokens = e.def_ref; return p }
+  if (scan_keyword(e, 'file')) { scan_toks(e, false, true); p.file = e.def_ref }
+  if (scan_keyword(e, 'struct')) {
+    if (p.type !== pdf_action_goto) pdf_error(e, 'ext1', "only GoTo action can be used with `struct'")
+    if (p.file !== 0 || scan_keyword(e, 'name')) { scan_toks(e, false, true); p.named_id += 2; p.struct_id = e.def_ref }
+    else if (scan_keyword(e, 'num')) {
+      scan_int(e); if (e.cur_val <= 0) pdf_error(e, 'ext1', 'num identifier must be positive')
+      p.struct_id = e.cur_val
+    } else pdf_error(e, 'ext1', 'identifier type missing')
+  }
+  if (scan_keyword(e, 'page')) {
+    if (p.type !== pdf_action_goto) pdf_error(e, 'ext1', "only GoTo action can be used with `page'")
+    p.type = pdf_action_page
+    scan_int(e); if (e.cur_val <= 0) pdf_error(e, 'ext1', 'page number must be positive')
+    p.id = e.cur_val
+    scan_toks(e, false, true); p.tokens = e.def_ref
+  } else if (scan_keyword(e, 'name')) { scan_toks(e, false, true); p.named_id += 1; p.id = e.def_ref }
+  else if (scan_keyword(e, 'num')) {
+    if (p.type === pdf_action_goto && p.file !== 0) pdf_error(e, 'ext1', "`goto' option cannot be used with both `file' and `num'")
+    scan_int(e); if (e.cur_val <= 0) pdf_error(e, 'ext1', 'num identifier must be positive')
+    p.id = e.cur_val
+  } else pdf_error(e, 'ext1', 'identifier type missing')
+  if (scan_keyword(e, 'newwindow')) { p.new_window = 1; scan_optional_space(e) }
+  else if (scan_keyword(e, 'nonewwindow')) { p.new_window = 2; scan_optional_space(e) }
+  if (p.new_window > 0 && ((p.type !== pdf_action_goto && p.type !== pdf_action_page) || p.file === 0))
+    pdf_error(e, 'ext1', "`newwindow'/`nonewwindow' must be used with `goto' and `file' option")
+  return p
+}
+function scan_optional_space(e: Engine): void { get_x_token(e); if (e.cur_cmd !== Cmd.spacer) back_input(e) }
 
 // §1350 new_write_whatsit (tex.ch: \write18 is a stream of its own)
 function new_write_whatsit(e: Engine, open: boolean): WhatsitNode {
@@ -117,7 +168,7 @@ export function run(e: Engine, chr: number): void {
       check_pdfoutput(e, '\\pdfobj', true)
       const s = e.ps
       if (scan_keyword(e, 'reserveobjnum')) {
-        get_x_token(e); if (e.cur_cmd !== Cmd.spacer) back_input(e) // Scan an optional space
+        scan_optional_space(e)
         pdf_create_obj(e, obj_type_obj, ++s.obj_count); s.last_obj = s.obj_ptr
         return
       }
@@ -141,10 +192,7 @@ export function run(e: Engine, chr: number): void {
     }
     case pdf_refobj_node: { // pdftex.web Implement \pdfrefobj
       check_pdfoutput(e, '\\pdfrefobj', true)
-      scan_int(e)
-      let k = e.ps.head_tab[obj_type_obj]! // pdf_check_obj
-      while (k !== 0 && k !== e.cur_val) k = e.ps.obj_link[k]!
-      if (k === 0) pdf_error(e, 'ext1', 'cannot find referenced object')
+      scan_int(e); pdf_check_obj(e, obj_type_obj, e.cur_val)
       const p = new_whatsit_node(pdf_refobj_node); tail_append(e, p); p.pdf_objnum = e.cur_val
       return
     }
@@ -154,6 +202,31 @@ export function run(e: Engine, chr: number): void {
       return
     case pdf_save_node: check_pdfoutput(e, '\\pdfsave', true); tail_append(e, new_whatsit_node(pdf_save_node)); return
     case pdf_restore_node: check_pdfoutput(e, '\\pdfrestore', true); tail_append(e, new_whatsit_node(pdf_restore_node)); return
+    case pdf_info_code: case pdf_catalog_code: case pdf_trailer_code: case pdf_trailer_id_code: case pdf_names_code: { // pdftex.web Implement \pdfinfo …
+      check_pdfoutput(e, '\\' + names[chr], chr === pdf_names_code)
+      scan_toks(e, false, true)
+      const ps = e.ps, key = chr === pdf_info_code ? 'info_toks' : chr === pdf_catalog_code ? 'catalog_toks' : chr === pdf_trailer_code ? 'trailer_toks'
+        : chr === pdf_trailer_id_code ? 'trailer_id_toks' : 'names_toks'
+      if (int_par(e, 65) > 0 || chr === pdf_names_code) ps[key] = concat_tokens(e, ps[key], e.def_ref)
+      if (chr === pdf_catalog_code && scan_keyword(e, 'openaction')) {
+        if (ps.catalog_openaction !== 0) pdf_error(e, 'ext1', 'duplicate of openaction')
+        const a = scan_action(e)
+        pdf_new_obj(e, obj_type_others, 0, 1)
+        if (int_par(e, 65) > 0) ps.catalog_openaction = ps.obj_ptr
+        write_action(e, a); pdf_end_obj(e); delete_action_ref(e, a)
+      }
+      return
+    }
+    case pdf_include_chars_code: { // pdftex.web pdf_include_chars
+      check_pdfoutput(e, '\\pdfincludechars', true)
+      scan_font_ident(e); const f = e.cur_val
+      if (f === null_font) pdf_error(e, 'font', 'invalid font identifier')
+      pdf_check_vf(e, f)
+      if (!e.font_used[f]) pdf_init_font(e, f)
+      scan_toks(e, false, true); const t = tokens_to_string(e, e.def_ref); delete_token_ref(e, e.def_ref)
+      for (const c of t) pdf_mark_char(e, f, c)
+      return
+    }
     case reset_timer_code: e.start_ms = performance.now(); return // pdftex.web Implement \pdfresettimer
     default: unsupported(e)
   }

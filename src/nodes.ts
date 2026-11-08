@@ -321,6 +321,18 @@ export function flush_node_list(e: Engine, p: Node | null): void {
   }
 }
 
+// pdftex.web delete_action_ref
+export function delete_action_ref(e: Engine, a: PdfAction): void {
+  if (a.refcount > 0) { a.refcount--; return }
+  const del = (t: number) => { if (t !== 0) delete_token_ref(e, t) }
+  if (a.type === pdf_action_user) del(a.tokens)
+  else {
+    del(a.file)
+    if (a.type === pdf_action_page) del(a.tokens); else if ((a.named_id & 1) === 1) del(a.id)
+    if ((a.named_id & 2) === 2) del(a.struct_id)
+  }
+}
+
 // §1357/§1358 (pdftex.web) the token lists and actions a whatsit holds: d = 1 adds a reference (copy), d = -1 deletes one (flush)
 function whatsit_refs(e: Engine, p: WhatsitNode, d: number): void {
   const ref = (t: number) => { if (t !== 0) { if (d > 0) add_token_ref(e, t); else delete_token_ref(e, t) } }
@@ -330,16 +342,7 @@ function whatsit_refs(e: Engine, p: WhatsitNode, d: number): void {
     case pdf_colorstack_node: if (p.pdf_mode <= colorstack_data) ref(p.pdf_data); return
     case pdf_start_link_node: {
       ref(p.pdf_data)
-      const a = p.pdf_action!
-      if (d > 0) a.refcount++
-      else if (a.refcount === 0) { // delete_action_ref
-        if (a.type === pdf_action_user) ref(a.tokens)
-        else {
-          ref(a.file)
-          if (a.type === pdf_action_page) ref(a.tokens); else if ((a.named_id & 1) === 1) ref(a.id)
-          if ((a.named_id & 2) === 2) ref(a.struct_id)
-        }
-      } else a.refcount--
+      if (d > 0) p.pdf_action!.refcount++; else delete_action_ref(e, p.pdf_action!)
       return
     }
     case pdf_dest_node: if (p.pdf_named_id > 0) ref(p.pdf_id); return

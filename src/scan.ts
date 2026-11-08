@@ -190,12 +190,12 @@ export function scan_something_internal(e: Engine, level: number, negative: bool
         if (m === input_line_no_code) e.cur_val = e.line
         else if (m === badness_code) e.cur_val = e.last_badness
         else if (m === pdftex_version_code) e.cur_val = 140
-        else if (m < eTeX_int) { // pdftex.web: \pdflastxform … \pdflastlink stay 0 while every primitive that sets them is unsupported
-          const us = Math.round((performance.now() - e.start_ms) * 1000) // get_microinterval: scaled seconds since the start
-          e.cur_val = m === pdftex_version_code + 10 ? (us >= 32768e6 ? 0x7fffffff : Math.trunc(us / 1e6) * 65536 + Math.trunc(Math.trunc((us % 1e6) / 100) * 65536 / 10000))
-            : m === pdftex_version_code + 6 ? e.pdf_last_x_pos : m === pdftex_version_code + 7 ? e.pdf_last_y_pos
-            : m === pdftex_version_code + 11 ? 2 : m === pdftex_version_code + 12 ? e.random_seed // \pdfshellescape: restricted
-            : m === pdftex_version_code + 1 ? e.ps.last_obj : m === pdftex_version_code + 8 ? e.ps.retval : 0
+        else if (m < eTeX_int) { // pdftex.web \pdflastobj … \pdflastlink
+          const us = Math.round((performance.now() - e.start_ms) * 1000), ps = e.ps // get_microinterval: scaled seconds since the start
+          e.cur_val = [0, ps.last_obj, ps.last_xform, ps.last_ximage, ps.last_ximage_pages, ps.last_annot, e.pdf_last_x_pos, e.pdf_last_y_pos,
+            ps.retval, ps.last_ximage_colordepth,
+            us >= 32768e6 ? 0x7fffffff : Math.trunc(us / 1e6) * 65536 + Math.trunc(Math.trunc((us % 1e6) / 100) * 65536 / 10000),
+            2, e.random_seed, ps.last_link][m - pdftex_version_code]! // \pdfshellescape: restricted
         }
         else if (m >= eTeX_glue) { // etex.ch Process an expression and return
           if (m < eTeX_mu) { scan_glue(e, mu_val); e.cur_val_level = glue_val } // \mutoglue
