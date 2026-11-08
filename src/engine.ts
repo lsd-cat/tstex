@@ -24,6 +24,8 @@ const contrib_head0 = new_char(0, 0) // replaced per Engine in the constructor
 const ignore_depth = -65536000
 import type { CondNode } from './conditional.ts'
 import type { SaElem } from './etex.ts'
+import { show_save_groups, do_marks, destroy_marks } from './etex.ts'
+import { flush_node_list } from './nodes.ts'
 import { open_log_file, start_input, print_file_name } from './files.ts'
 import { print_cmd_chr } from './tokens.ts'
 import { main_control } from './main.ts'
@@ -249,6 +251,7 @@ function final_cleanup(e: Engine): void {
     print_nl(e, '('); print_esc(e, 'end occurred ')
     print(e, 'inside a group at level ')
     print_int(e, e.cur_level - level_one); print_char(e, 41)
+    if (e.eTeX_ex) show_save_groups(e) // etex.ch
   }
   while (e.cond_ptr !== null) {
     print_nl(e, '('); print_esc(e, 'end occurred ')
@@ -264,6 +267,8 @@ function final_cleanup(e: Engine): void {
   }
   if (c === 1) {
     for (let k = 0; k < 5; k++) if (e.cur_mark[k] !== 0) delete_token_ref(e, e.cur_mark[k]!)
+    do_marks(e, destroy_marks) // etex.ch
+    for (let k = 2; k <= 3; k++) { flush_node_list(e, e.disc_ptr[k]!); e.disc_ptr[k] = null }
     if (e.last_glue !== 0o17777777777) delete_glue_ref(e, e.last_glue)
     store_fmt_file(e)
   }

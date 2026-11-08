@@ -2,6 +2,7 @@
 // §1211–1215 prefixed_command, §1236–1240 do_register_command
 import type { Engine } from './engine.ts'
 import { etex_pen_base } from './types.ts'
+import { batch_mode, no_print, term_only } from './types.ts'
 import { Cmd, vmode, hmode, mmode, int_val, dimen_val, glue_val, mu_val, tok_val, new_string } from './types.ts'
 import { print, print_char, print_esc, print_mode, print_nl, print_ln, print_int, begin_diagnostic, end_diagnostic } from './print.ts'
 import { print_scaled, xn_over_d, half } from './arith.ts'
@@ -889,6 +890,14 @@ function fix_language(e: Engine): void {
   }
 }
 export { fix_language, norm_min }
+
+// §1265 new_interaction
+export function new_interaction(e: Engine): void {
+  print_ln(e)
+  e.interaction = e.cur_chr
+  e.selector = e.interaction === batch_mode ? no_print : term_only // §75
+  if (e.log_opened) e.selector += 2
+}
 
 // §1214 define and word_define
 export function define(e: Engine, a: number, p: number, t: number, q: number): void {

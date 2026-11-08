@@ -18,6 +18,7 @@ import { cs_token_flag, left_brace_token, left_brace_limit, right_brace_limit, o
 import { get_token, get_next, back_input, back_error, back_list, defining, absorbing, normal, begin_file_reading, end_file_reading, input_ln, runaway, new_line, prompt_input } from './input.ts'
 import { closed, just_open } from './files.ts'
 import { get_x_token, x_token, expand } from './expand.ts'
+import { read_line_toks } from './etex.ts'
 import { scan_expr, the_unexpanded, find_sa_element, sa, current_if_type, current_if_branch } from './etex.ts'
 import { char_info, char_width, char_height, char_depth, char_italic, height_depth } from './tfm.ts'
 import { level_one } from './types.ts'
@@ -718,7 +719,7 @@ export function scan_toks(e: Engine, macro_def: boolean, xpand: boolean): number
 }
 
 // §482 read_toks
-export function read_toks(e: Engine, n: number, r: number): void {
+export function read_toks(e: Engine, n: number, r: number, j: number): void {
   e.scanner_status = defining; e.warning_index = r
   e.def_ref = get_avail(e); e.info[e.def_ref] = 0
   let p = e.def_ref
@@ -751,7 +752,8 @@ export function read_toks(e: Engine, n: number, r: number): void {
     if (int_par(e, end_line_char_code) < 0 || int_par(e, end_line_char_code) > 255) ci.limit--
     else e.buffer[ci.limit] = int_par(e, end_line_char_code)
     e.first = ci.limit + 1; ci.loc = ci.start; ci.state = new_line
-    for (;;) {
+    if (j === 1) p = read_line_toks(e, p) // etex.ch Handle \readline and goto done
+    else for (;;) {
       get_token(e)
       if (e.cur_tok === 0) break // cur_cmd=cur_chr=0 will occur at the end of the line
       if (e.align_state < 1000000) { // unmatched `}' aborts the line

@@ -2,6 +2,7 @@
 import type { Engine } from './engine.ts'
 import { Cmd, log_only, nonstop_mode } from './types.ts'
 import { print, print_char, print_nl, print_ln, print_esc, print_int, begin_diagnostic, end_diagnostic } from './print.ts'
+import { every_eof_text } from './error.ts'
 import { error, print_err, help, fatal_error, overflow, token_list, parameter, u_template, v_template, backed_up, inserted, macro, output_text, mark_text, write_text } from './error.ts'
 import { int_par, tracing_macros_code, end_line_char_code, cat_code_base, null_cs, single_base, active_base, output_routine_loc, frozen_fi, frozen_cr, end_write } from './eqtb.ts'
 import { id_lookup, sprint_cs } from './hash.ts'
@@ -9,6 +10,8 @@ import { get_avail, flush_list, add_token_ref, delete_token_ref, temp_head, hold
 import { insert_v_template } from './align.ts'
 import { cs_token_flag, right_brace_token, right_brace_limit, left_brace_limit, show_token_list, token_show, print_cmd_chr } from './tokens.ts'
 import { open_log_file } from './files.ts'
+import { pseudo_close, pseudo_input, file_warning, tracing_nesting_code } from './etex.ts'
+import { every_eof_loc } from './types.ts'
 
 // §303
 export const mid_line = 1, skip_blanks = 2 + Cmd.max_char_code, new_line = 3 + 2 * Cmd.max_char_code
@@ -149,6 +152,7 @@ export function begin_file_reading(e: Engine): void {
   e.in_open++; push_input(e)
   const ci = e.cur_input
   ci.index = e.in_open
+  e.eof_seen[ci.index] = false; e.grp_stack[ci.index] = e.cur_boundary; e.if_stack[ci.index] = e.cond_ptr // etex.ch
   e.line_stack[ci.index] = e.line; ci.start = e.first; ci.state = mid_line
   ci.name = 0
 }
@@ -156,7 +160,8 @@ export function begin_file_reading(e: Engine): void {
 // §329 end_file_reading
 export function end_file_reading(e: Engine): void {
   e.first = e.cur_input.start; e.line = e.line_stack[e.cur_input.index]!
-  if (e.cur_input.name > 17) delete e.input_file[e.cur_input.index]
+  if (e.cur_input.name === 18 || e.cur_input.name === 19) pseudo_close(e) // etex.ch
+  else if (e.cur_input.name > 17) delete e.input_file[e.cur_input.index]
   pop_input(e); e.in_open--
 }
 
@@ -330,12 +335,17 @@ export function get_next(e: Engine): void {
           if (ci.name > 17) {
             // §362 Read next line of file into buffer, or goto restart if the file has ended
             e.line++; e.first = ci.start
-            if (!e.force_eof) {
-              if (input_ln(e, e.input_file[ci.index]!)) firm_up_the_line(e)
-              else e.force_eof = true
+            if (!e.force_eof) { // etex.ch: pseudo files and \everyeof
+              if (ci.name <= 19 ? pseudo_input(e) : input_ln(e, e.input_file[ci.index]!)) firm_up_the_line(e)
+              else if (e.equiv[every_eof_loc] !== 0 && !e.eof_seen[ci.index]) {
+                ci.limit = e.first - 1; e.eof_seen[ci.index] = true // fake one empty line
+                begin_token_list(e, e.equiv[every_eof_loc]!, every_eof_text); continue restart
+              } else e.force_eof = true
             }
             if (e.force_eof) {
-              print_char(e, 41); e.open_parens--
+              if (int_par(e, tracing_nesting_code) > 0 &&
+                (e.grp_stack[e.in_open] !== e.cur_boundary || e.if_stack[e.in_open] !== e.cond_ptr)) file_warning(e)
+              if (ci.name >= 19) { print_char(e, 41); e.open_parens-- }
               e.force_eof = false
               end_file_reading(e)
               check_outer_validity(e); continue restart
