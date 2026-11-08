@@ -262,7 +262,7 @@ Deviations and unsupported (each `fatal_error("unsupported: …")`):
 - Encrypted files are `unsupported` (xpdf decrypts those with an empty user password; with any other it fails with `xpdf: reading PDF image failed`).
 - Replaced fonts with a Mac/WinAnsi base encoding, a CFF (Type1C) font program, or an unidentifiable program named Symbol/ZapfDingbats are `unsupported` (they need xpdf's encoding tables or FoFiType1C). `epdf_mark_glyphs` (the included font's `/CharSet` joins the shared descriptor's glyph set; without one, or with a `<<` entry, `embed_whole_font`) is ported.
 - Hostile-input bounds (`shortcut:`): page-tree recursion stops at depth 1000 (counted as no pages / xpdf's empty page), at most 10^7 entries per xref stream, at most 64 MiB per decoded stream, predictor rows over 64 MiB are left undecoded. A page pdftex would dereference as a null dictionary (broken page tree) is `xpdf: reading PDF image failed`. xpdf's stderr messages (`libxpdf: Syntax Error …`) are not reproduced; they do not reach the log.
-- Checked: all `m8-epdf-*` and `m8-latex-epdf`; 57 PDFs from various producers (pdfTeX, Ghostscript, cairo, Skia, iText, PDFlib…) and ~1500 crafted/mutated files byte-identical to pdftex's output when both embed whole fonts (a map with `<<`), apart from the inflate case above.
+- Checked: all `m8-epdf-*` and `m8-latex-epdf`; 57 PDFs from various producers (pdfTeX, Ghostscript, cairo, Skia, iText, PDFlib…) and ~1500 crafted/mutated files byte-identical to pdftex's output when both embed whole fonts (a map with `<<`), apart from the inflate case above. With the default `<` entries (subset, the included fonts' `/CharSet` merged) `m8-epdf-fonts-nested` and `m8-latex-epdf` are byte-identical too.
 
 ### M8 Type 1 subsetting (writet1.c)
 
