@@ -276,7 +276,7 @@ function write_epdf(e: Engine, img: Img): void {
   const page = get_page(pdf, img.selected_page), page_ref = get_page_ref(pdf, img.selected_page)
   const page_obj = page_ref === null ? null : fetch(x, page_ref.num, page_ref.gen)
   if (!is_dict(page_obj)) fail('xpdf: reading PDF image failed') // pdftex dereferences a null page dictionary here
-  const page_dict = page_obj as PDict, rotate = page.attrs.rotate, suppress = int_par(e, 97), sep = int_par(e, 101) !== 0 ? '_' : '.'
+  const page_dict = page_obj as PDict, rotate = page.attrs.rotate, suppress = int_par(e, 97), sep = int_par(e, 101) > 0 || int_par(e, 74) >= 2 ? '_' : '.' // get_ptex_use_underscore
   puts('/Type /XObject\n'); puts('/Subtype /Form\n'); puts('/FormType 1\n')
   if ((suppress & 2) === 0) puts(`/PTEX${sep}FileName (${pdf_string(file)})\n`)
   if ((suppress & 4) === 0) puts(`/PTEX${sep}PageNumber ${img.selected_page}\n`)
