@@ -1,0 +1,12 @@
+\catcode`\{=1 \catcode`\}=2 \catcode`\#=6 \catcode`\^=7 \catcode`\~=12 \catcode`\^^?=12
+\message{[\pdfmdfivesum{}][\pdfmdfivesum{abc}][\pdfmdfivesum file {m5-pdfstrings.tex}][\pdfmdfivesum file{nonexistent.xyz}]}
+\catcode`\%=12 \def\x{a b(c)d\e##^^I^^?^^80~/[]{}<>%}\catcode`\%=14
+\message{[\pdfescapestring{\x}]}
+\message{[\pdfescapename{\x}]}
+\message{[\pdfescapehex{\x}]}
+\message{[\pdfunescapehex{41424 3zz4a6b7}][\pdfunescapehex{414}]}
+\message{[\pdfescapestring{}][\pdfescapename{}]}
+\edef\y{\pdfescapehex{ab}}\show\y
+\edef\y{\pdfunescapehex{2023412023}}\show\y
+\message{[\pdffilemoddate{nonexistent.xyz}]}
+\end

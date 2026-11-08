@@ -1,0 +1,51 @@
+(m5-pdfstrings.tex
+[D41D8CD98F00B204E9800998ECF8427E][900150983CD24FB0D6963F7D28E17F72][BF809821D7
+479F6B7BCBFF7E0C917FF2][]
+! Undefined control sequence.
+\x ->a b(c)d\e
+               ##^^I^^?^^80~/[]{}<>%
+l.4 \message{[\pdfescapestring{\x
+                                 }]}
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+[a\040b\(c\)d##\011\177\200~/[]{}<>%]
+! Undefined control sequence.
+\x ->a b(c)d\e
+               ##^^I^^?^^80~/[]{}<>%
+l.5 \message{[\pdfescapename{\x
+                               }]}
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+[a#20b#28c#29d#23#23#09#7F#80~#2F#5B#5D#7B#7D#3C#3E#25]
+! Undefined control sequence.
+\x ->a b(c)d\e
+               ##^^I^^?^^80~/[]{}<>%
+l.6 \message{[\pdfescapehex{\x
+                              }]}
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+[612062286329642323097F807E2F5B5D7B7D3C3E25] [ABCJkp][A@] [][]
+> \y=macro:
+->6162.
+l.9 \edef\y{\pdfescapehex{ab}}\show\y
+
+
+> \y=macro:
+-> #A #.
+l.10 \edef\y{\pdfunescapehex{2023412023}}\show\y
+
+
+[] )
+No pages of output.

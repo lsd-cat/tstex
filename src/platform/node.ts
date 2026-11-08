@@ -52,5 +52,6 @@ export function nodeFS(roots: string[], texmfRoots: string[] = []): TexFS {
   return {
     find: (name, kind) => { const l = locate(name, kind); return l && read(l.file) },
     path: (name, kind) => locate(name, kind)?.shown ?? null,
+    stat: (name, kind) => { const l = locate(name, kind), st = l && statSync(l.file, { throwIfNoEntry: false }); return st ? { size: st.size, mtime: st.mtime } : null },
   }
 }

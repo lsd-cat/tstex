@@ -1,4 +1,4 @@
-// §468–471 \number \romannumeral \string \meaning, pdftex.web \expanded \pdfstrcmp (the rest of the convert family is unsupported for now)
+// §468–471 \number \romannumeral \string \meaning, pdftex.web \expanded \pdfstrcmp \pdffilesize \pdfmdfivesum \pdfescape… \pdf…deviate (the rest of the convert family is unsupported for now)
 import type { Engine } from '../engine.ts'
 import { Cmd, new_string } from '../types.ts'
 import { print as print_str, print_esc, print_int, print_roman_int, print_char } from '../print.ts'
@@ -7,13 +7,14 @@ import { garbage, temp_head } from '../nodes.ts'
 import { print_meaning, show_token_list } from '../tokens.ts'
 import { delete_token_ref, free_avail } from '../nodes.ts'
 import { get_token, ins_list } from '../input.ts'
-import { scan_int, str_toks, scan_toks } from '../scan.ts'
+import { scan_int, str_toks, scan_toks, scan_keyword } from '../scan.ts'
+import { escapestring, escapename, escapehex, unescapehex, makepdftime, md5 } from '../utils.ts'
 import { unsupported } from '../main.ts'
 import { open_log_file } from '../files.ts'
 import { scan_font_ident } from '../tfm.ts'
 import { print_scaled, unif_rand, norm_rand } from '../arith.ts'
 
-const number_code = 0, roman_numeral_code = 1, string_code = 2, meaning_code = 3, font_name_code = 4, eTeX_revision_code = 5, expanded_code = 6, pdftex_revision_code = 7, pdftex_banner_code = 8, pdf_creation_date_code = 22, pdf_file_size_code = 24, pdf_strcmp_code = 18, job_name_code = 33, uniform_deviate_code = 29, normal_deviate_code = 30
+const number_code = 0, roman_numeral_code = 1, string_code = 2, meaning_code = 3, font_name_code = 4, eTeX_revision_code = 5, expanded_code = 6, pdftex_revision_code = 7, pdftex_banner_code = 8, pdf_creation_date_code = 22, pdf_file_size_code = 24, pdf_file_mod_date_code = 23, pdf_mdfive_sum_code = 25, pdf_strcmp_code = 18, job_name_code = 33, uniform_deviate_code = 29, normal_deviate_code = 30
 const names: Record<number, string> = { 0: 'number', 1: 'romannumeral', 2: 'string', 3: 'meaning', 4: 'fontname', 5: 'eTeXrevision',
   6: 'expanded', 7: 'pdftexrevision', 8: 'pdftexbanner', 9: 'pdffontname', 10: 'pdffontobjnum', 11: 'pdffontsize', 12: 'pdfpageref',
   13: 'pdfxformname', 14: 'pdfescapestring', 15: 'pdfescapename', 16: 'leftmarginkern', 17: 'rightmarginkern', 18: 'pdfstrcmp',
@@ -76,16 +77,20 @@ export function run(e: Engine, chr: number): void {
     compare_strings(e)
     e.def_ref = dr; e.warning_index = wi; e.scanner_status = ss
   }
-  else if (c === pdf_file_size_code) { // pdftex.web; utils.c getfilesize: empty unless kpse_find_tex finds the file
-    const f = e.fs.find(String.fromCharCode(...scan_ext_string(e)).replaceAll('"', ''), 'tex') // makecfilename drops quotes
-    e.selector = new_string; if (f !== null) print_int(e, f.length)
-    e.selector = old_setting; e.link[garbage] = str_toks(e, b); ins_list(e, e.link[temp_head]!); return
+  else if (c === pdf_file_size_code || c === pdf_file_mod_date_code || c === pdf_mdfive_sum_code || (c >= 14 && c <= 21 && c !== 16 && c !== 17 && c !== 18 && c !== 19)) {
+    // pdftex.web: scan_pdf_ext_toks, then a utils.c conversion of the string (getfilesize, getfilemoddate, getmd5sum, escape…)
+    const file = c === pdf_mdfive_sum_code && scan_keyword(e, 'file'), s = scan_ext_string(e)
+    const name = () => String.fromCharCode(...s).replaceAll('"', '') // makecfilename drops quotes; kpse_find_tex
+    let r: number[] | string
+    if (c === pdf_file_size_code) { const f = e.fs.find(name(), 'tex'); r = f === null ? '' : String(f.length) }
+    else if (c === pdf_file_mod_date_code) { const st = e.fs.stat?.(name(), 'tex'); r = st ? makepdftime(st.mtime) : '' }
+    else if (c === pdf_mdfive_sum_code) { const f = file ? e.fs.find(name(), 'tex') : s; r = f === null ? '' : md5(f) }
+    else r = (c === 14 ? escapestring : c === 15 ? escapename : c === 20 ? escapehex : unescapehex)(s)
+    e.cur_str.push(...(typeof r === 'string' ? Array.from(r, ch => ch.charCodeAt(0)) : r))
+    e.link[garbage] = str_toks(e, b); ins_list(e, e.link[temp_head]!); return
   }
-  else if (c === pdf_creation_date_code) { // pdftex.web; utils.c makepdftime: D:YYYYMMDDHHMMSS then Z or +HH'MM'
-    const d = e.date ?? new Date(), p2 = (n: number) => String(n).padStart(2, '0'), off = -d.getTimezoneOffset()
-    const z = off === 0 ? 'Z' : (off < 0 ? '-' : '+') + p2(Math.trunc(Math.abs(off) / 60)) + "'" + p2(Math.abs(off) % 60) + "'"
-    e.selector = new_string
-    print_str(e, `D:${d.getFullYear()}${p2(d.getMonth() + 1)}${p2(d.getDate())}${p2(d.getHours())}${p2(d.getMinutes())}${p2(d.getSeconds())}${z}`)
+  else if (c === pdf_creation_date_code) { // pdftex.web; utils.c makepdftime
+    e.selector = new_string; print_str(e, makepdftime(e.date ?? new Date()))
     e.selector = old_setting; e.link[garbage] = str_toks(e, b); ins_list(e, e.link[temp_head]!); return
   }
   else if (c === uniform_deviate_code) scan_int(e)
