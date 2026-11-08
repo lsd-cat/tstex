@@ -86,6 +86,9 @@ export function pdf_state() {
     last_thread: null as WhatsitNode | null, thread_wd: 0, thread_ht: 0, thread_dp: 0, last_thread_id: 0, last_thread_named_id: false,
     thread_level: 0, first_outline: 0, last_outline: 0, parent_outline: 0,
     colstacks: [] as Colstack[], // utils.c colstacks (created with stack 0 on first use)
+    cur_form: 0, xform_width: 0, xform_height: 0, xform_depth: 0, page_group_val: 0,
+    obj_box: [] as (BoxNode | null | undefined)[], // obj_xform_box
+    img_procset: [] as number[], // per image object: the ProcSet bits of update_image_procset (1 ImageB, 2 ImageC, 4 ImageI)
   }
 }
 export type PdfState = ReturnType<typeof pdf_state>
@@ -729,8 +732,20 @@ function pdf_out_whatsit(e: Engine, p: WhatsitNode, vlist: boolean, b: BoxNode, 
   switch (p.subtype) {
     case pdf_literal_node: case pdf_lateliteral_node: pdf_out_literal(e, p); return
     case pdf_refobj_node: e.ps.obj_list.push(p.pdf_objnum); return
-    case pdf_save_pos_node: // Save current position to pdf_last_x_pos, pdf_last_y_pos (forms are pass B)
-      e.pdf_last_x_pos = e.cur_h; e.pdf_last_y_pos = (e.cur_page_height - e.cur_v) | 0; return
+    case pdf_save_pos_node: // Save current position to pdf_last_x_pos, pdf_last_y_pos
+      e.pdf_last_x_pos = e.cur_h
+      e.pdf_last_y_pos = e.ps.is_shipping_page ? (e.cur_page_height - e.cur_v) | 0 : (e.ps.xform_height + e.ps.xform_depth - e.cur_v) | 0
+      return
+    case pdf_refxform_node: { // Output a Form node in a vlist / hlist
+      if (vlist) {
+        e.cur_v = (e.cur_v + p.pdf_top) | 0; const save_v = e.cur_v
+        e.cur_h = x; out_form(e, p); e.cur_v = (save_v + p.pdf_right) | 0; e.cur_h = x
+      } else {
+        e.cur_v = y; const edge = e.cur_h
+        out_form(e, p); e.cur_h = (edge + p.pdf_left) | 0; e.cur_v = y
+      }
+      return
+    }
     case special_node: case latespecial_node: pdf_special(e, p); return
     case pdf_snapy_comp_node: case pdf_snapy_node: if (!vlist) return; break
     case pdf_interword_space_on_node: e.ps.gen_faked_interword_space = true; return
@@ -748,7 +763,7 @@ function pdf_out_whatsit(e: Engine, p: WhatsitNode, vlist: boolean, b: BoxNode, 
     case pdf_start_thread_node: if (!vlist) pdf_error(e, 'ext4', '\\pdfstartthread ended up in hlist'); do_thread(e, p, b, x, y); return
     case pdf_end_thread_node: if (!vlist) pdf_error(e, 'ext4', '\\pdfendthread ended up in hlist'); end_thread(e); return
     case pdf_colorstack_node: pdf_out_colorstack(e, p); return
-    case pdf_refxform_node: case pdf_refximage_node: case pdf_snap_ref_point_node: case pdf_fake_space_node:
+    case pdf_refximage_node: case pdf_snap_ref_point_node: case pdf_fake_space_node:
       break
     default: out_what(e, p); return
   }
@@ -1116,19 +1131,21 @@ function init_pdf_output(e: Engine): void {
   if (int_par(e, pdf_unique_resname_code) > 0) fatal_error(e, 'unsupported: \\pdfuniqueresname') // pass B
 }
 
-// [32f] pdf_ship_out (shipping_page; forms are pass B)
-export function pdf_ship_out(e: Engine, p: BoxNode): void {
+// [32f] pdf_ship_out: a page, or the form pdf_cur_form when shipping_page is false
+export function pdf_ship_out(e: Engine, p: BoxNode, shipping_page: boolean): void {
   const s = e.ps
   if (int_par(e, tracing_output_code) > 0) { print_nl(e, ''); print_ln(e); print(e, 'Completed box being shipped out') }
   if (!s.init_output) { init_pdf_output(e); s.init_output = true }
-  s.is_shipping_page = true
-  if (e.term_offset > e.lim.max_print_line - 9) print_ln(e)
-  else if (e.term_offset > 0 || e.file_offset > 0) print_char(e, 32)
-  print_char(e, 91)
-  let j = 9
-  while (e.equiv[count_base + j] === 0 && j > 0) j--
-  for (let k = 0; k <= j; k++) { print_int(e, e.equiv[count_base + k]!); if (k < j) print_char(e, 46) }
-  if (int_par(e, tracing_output_code) > 0) { print_char(e, 93); begin_diagnostic(e); show_box(e, p); end_diagnostic(e, true) }
+  s.is_shipping_page = shipping_page
+  if (shipping_page) {
+    if (e.term_offset > e.lim.max_print_line - 9) print_ln(e)
+    else if (e.term_offset > 0 || e.file_offset > 0) print_char(e, 32)
+    print_char(e, 91)
+    let j = 9
+    while (e.equiv[count_base + j] === 0 && j > 0) j--
+    for (let k = 0; k <= j; k++) { print_int(e, e.equiv[count_base + k]!); if (k < j) print_char(e, 46) }
+  }
+  if (int_par(e, tracing_output_code) > 0) { if (shipping_page) print_char(e, 93); begin_diagnostic(e); show_box(e, p); end_diagnostic(e, true) }
   // (pdfTeX) Ship box p out
   const h_offset = e.equiv[dimen_base + h_offset_code]!, v_offset = e.equiv[dimen_base + v_offset_code]!
   done: {
@@ -1148,67 +1165,105 @@ export function pdf_ship_out(e: Engine, p: BoxNode): void {
     // Initialize variables as pdf_ship_out begins
     fix_pdfoutput(e); prepare_mag(e)
     const pdf_last_resources = pdf_new_objnum(e)
+    s.page_group_val = 0
     s.font_list = []; s.obj_list = []; s.xform_list = []; s.ximage_list = []; s.text_procset = false; s.image_procset = 0
-    // Calculate page dimensions and margins
-    s.cur_h_offset = (e.equiv[dimen_base + pdf_h_origin_code]! + h_offset) | 0
-    s.cur_v_offset = (e.equiv[dimen_base + pdf_v_origin_code]! + v_offset) | 0
-    s.cur_page_width = e.equiv[dimen_base + pdf_page_width_code]! !== 0 ? e.equiv[dimen_base + pdf_page_width_code]! : (p.width + 2 * s.cur_h_offset) | 0
-    e.cur_page_height = e.equiv[dimen_base + pdf_page_height_code]! !== 0 ? e.equiv[dimen_base + pdf_page_height_code]!
-      : (p.height + p.depth + 2 * s.cur_v_offset) | 0
-    s.last_page = get_obj(e, obj_type_page, e.total_pages + 1, 0)
-    s.obj_aux[s.last_page] = 1
-    pdf_new_dict(e, obj_type_others, 0, 0)
-    s.last_stream = s.obj_ptr
-    e.cur_h = s.cur_h_offset; e.cur_v = (p.height + s.cur_v_offset) | 0
-    s.origin_h = 0; s.origin_v = e.cur_page_height
-    s.annot_list = []; s.link_list = []; s.dest_list = []; s.bead_list = []; s.last_thread = null // Reset PDF mark lists
+    if (!shipping_page) {
+      s.xform_width = p.width; s.xform_height = p.height; s.xform_depth = p.depth
+      pdf_begin_dict(e, s.cur_form, 0)
+      s.last_stream = s.cur_form
+      e.cur_v = p.height; e.cur_h = 0
+      s.origin_h = 0; s.origin_v = (s.xform_height + s.xform_depth) | 0
+      // Write out Form stream header
+      const d = s.obj_aux[s.cur_form]!
+      pdf_print_ln(e, '/Type /XObject'); pdf_print_ln(e, '/Subtype /Form')
+      if (s.mem[d + 4] !== 0) { pdf_print_toks_ln(e, s.mem[d + 4]!); delete_token(e, s.mem[d + 4]!); s.mem[d + 4] = 0 }
+      pdf_print(e, '/BBox ['); pdf_print(e, '0 0 '); pdf_print_bp(e, s.xform_width); pdf_out(e, 32)
+      pdf_print_bp(e, (s.xform_height + s.xform_depth) | 0); pdf_print_ln(e, ']')
+      pdf_print_ln(e, '/FormType 1'); pdf_print_ln(e, '/Matrix [1 0 0 1 0 0]')
+      pdf_indirect_ln(e, 'Resources', pdf_last_resources)
+    } else {
+      // Calculate page dimensions and margins
+      s.cur_h_offset = (e.equiv[dimen_base + pdf_h_origin_code]! + h_offset) | 0
+      s.cur_v_offset = (e.equiv[dimen_base + pdf_v_origin_code]! + v_offset) | 0
+      s.cur_page_width = e.equiv[dimen_base + pdf_page_width_code]! !== 0 ? e.equiv[dimen_base + pdf_page_width_code]! : (p.width + 2 * s.cur_h_offset) | 0
+      e.cur_page_height = e.equiv[dimen_base + pdf_page_height_code]! !== 0 ? e.equiv[dimen_base + pdf_page_height_code]!
+        : (p.height + p.depth + 2 * s.cur_v_offset) | 0
+      s.last_page = get_obj(e, obj_type_page, e.total_pages + 1, 0)
+      s.obj_aux[s.last_page] = 1
+      pdf_new_dict(e, obj_type_others, 0, 0)
+      s.last_stream = s.obj_ptr
+      e.cur_h = s.cur_h_offset; e.cur_v = (p.height + s.cur_v_offset) | 0
+      s.origin_h = 0; s.origin_v = e.cur_page_height
+      s.annot_list = []; s.link_list = []; s.dest_list = []; s.bead_list = []; s.last_thread = null // Reset PDF mark lists
+    }
     // Start stream of page/form contents
     pdf_begin_stream(e)
-    prepare_mag(e)
-    if (int_par(e, mag_code) !== 1000) {
-      pdf_print_real(e, int_par(e, mag_code), 3); pdf_print(e, ' 0 0 '); pdf_print_real(e, int_par(e, mag_code), 3); pdf_print_ln(e, ' 0 0 cm')
+    if (shipping_page) {
+      prepare_mag(e)
+      if (int_par(e, mag_code) !== 1000) {
+        pdf_print_real(e, int_par(e, mag_code), 3); pdf_print(e, ' 0 0 '); pdf_print_real(e, int_par(e, mag_code), 3); pdf_print_ln(e, ' 0 0 cm')
+      }
     }
-    s.pos_stack = []; s.page_mode = true // pdfshipoutbegin (colorstackpagestart returns at once in page mode)
-    pdf_out_colorstack_startpage(e)
+    s.pos_stack = []; s.page_mode = shipping_page // pdfshipoutbegin (colorstackpagestart returns at once in page mode)
+    if (shipping_page) pdf_out_colorstack_startpage(e)
     if (p.type === vlist_node) pdf_vlist_out(e, p); else pdf_hlist_out(e, p)
-    e.total_pages++
+    if (shipping_page) e.total_pages++
     e.cur_s = -1
     // Finish shipping: Finish stream of page/form contents
     pdf_end_text(e)
-    if (s.pos_stack.length > 0) pdftex_fail(e, null, `${s.pos_stack.length} unmatched \\pdfsave after page shipout`) // pdfshipoutend
+    if (s.pos_stack.length > 0) // pdfshipoutend
+      pdftex_fail(e, null, `${s.pos_stack.length} unmatched \\pdfsave after ${shipping_page ? 'page' : 'form'} shipout`)
     pdf_end_stream(e)
-    // Write out page object
-    pdf_begin_dict(e, s.last_page, 1)
-    pdf_print_ln(e, '/Type /Page')
-    pdf_indirect_ln(e, 'Contents', s.last_stream); pdf_indirect_ln(e, 'Resources', pdf_last_resources)
-    const page_attr = e.equiv[pdf_page_attr_loc]!
-    const mediabox_given = page_attr !== 0 && str(tokens_to_string(e, page_attr)).slice(0, -1).includes('/MediaBox')
-    if (!mediabox_given) {
-      pdf_print(e, '/MediaBox [0 0 '); pdf_print_mag_bp(e, s.cur_page_width); pdf_out(e, 32)
-      pdf_print_mag_bp(e, e.cur_page_height); pdf_print_ln(e, ']')
+    if (shipping_page) {
+      // Write out page object
+      pdf_begin_dict(e, s.last_page, 1)
+      pdf_print_ln(e, '/Type /Page')
+      pdf_indirect_ln(e, 'Contents', s.last_stream); pdf_indirect_ln(e, 'Resources', pdf_last_resources)
+      const page_attr = e.equiv[pdf_page_attr_loc]!
+      const mediabox_given = page_attr !== 0 && str(tokens_to_string(e, page_attr)).slice(0, -1).includes('/MediaBox')
+      if (!mediabox_given) {
+        pdf_print(e, '/MediaBox [0 0 '); pdf_print_mag_bp(e, s.cur_page_width); pdf_out(e, 32)
+        pdf_print_mag_bp(e, e.cur_page_height); pdf_print_ln(e, ']')
+      }
+      if (page_attr !== 0) pdf_print_toks_ln(e, page_attr)
+      if (e.total_pages % pages_tree_kids_max === 1) { pdf_create_obj(e, obj_type_pages, pages_tree_kids_max); s.last_pages = s.obj_ptr }
+      pdf_indirect_ln(e, 'Parent', s.last_pages)
+      if (s.page_group_val > 0) { pdf_print(e, '/Group '); pdf_print_int(e, s.page_group_val); pdf_print_ln(e, ' 0 R') }
+      // Generate array of annotations or beads in page
+      if (s.annot_list.length > 0 || s.link_list.length > 0) {
+        pdf_print(e, '/Annots [ ')
+        for (const k of s.annot_list.concat(s.link_list)) { pdf_print_int(e, k); pdf_print(e, ' 0 R ') }
+        pdf_print_ln(e, ']')
+      }
+      if (s.bead_list.length > 0) {
+        pdf_print(e, '/B [ ')
+        for (const k of s.bead_list) { pdf_print_int(e, k); pdf_print(e, ' 0 R ') }
+        pdf_print_ln(e, ']')
+      }
+      pdf_end_dict(e)
     }
-    if (page_attr !== 0) pdf_print_toks_ln(e, page_attr)
-    if (e.total_pages % pages_tree_kids_max === 1) { pdf_create_obj(e, obj_type_pages, pages_tree_kids_max); s.last_pages = s.obj_ptr }
-    pdf_indirect_ln(e, 'Parent', s.last_pages)
-    // Generate array of annotations or beads in page
-    if (s.annot_list.length > 0 || s.link_list.length > 0) {
-      pdf_print(e, '/Annots [ ')
-      for (const k of s.annot_list.concat(s.link_list)) { pdf_print_int(e, k); pdf_print(e, ' 0 R ') }
-      pdf_print_ln(e, ']')
-    }
-    if (s.bead_list.length > 0) {
-      pdf_print(e, '/B [ ')
-      for (const k of s.bead_list) { pdf_print_int(e, k); pdf_print(e, ' 0 R ') }
-      pdf_print_ln(e, ']')
-    }
-    pdf_end_dict(e)
-    // Write out resource lists: Write out pending raw objects
+    // Write out resource lists: pending raw objects, images, forms (forms last: the recursive ship_out resets the page group)
     for (const k of s.obj_list) if (!is_obj_written(e, k)) pdf_write_obj(e, k)
-    write_pdf_marks(e)
+    for (const k of s.ximage_list) if (!is_obj_written(e, k)) pdf_write_image(e, k)
+    for (const k of s.xform_list) {
+      if (is_obj_written(e, k)) continue
+      const saved_cur_form = s.cur_form, fl = s.font_list, ol = s.obj_list, xl = s.xform_list, il = s.ximage_list, tp: boolean = s.text_procset, ip: number = s.image_procset
+      s.cur_form = k
+      s.font_list = []; s.obj_list = []; s.xform_list = []; s.ximage_list = []; s.text_procset = false; s.image_procset = 0
+      pdf_ship_out(e, s.obj_box[k]!, false)
+      s.cur_form = saved_cur_form
+      s.font_list = fl; s.obj_list = ol; s.xform_list = xl; s.ximage_list = il; s.text_procset = tp; s.image_procset = ip
+    }
+    if (shipping_page) write_pdf_marks(e)
     // Write out resources dictionary
     pdf_begin_dict(e, pdf_last_resources, 1)
-    const page_resources = e.equiv[pdf_page_resources_loc]!
-    if (page_resources !== 0) pdf_print_toks_ln(e, page_resources)
+    if (shipping_page) { // Print additional resources
+      const page_resources = e.equiv[pdf_page_resources_loc]!
+      if (page_resources !== 0) pdf_print_toks_ln(e, page_resources)
+    } else {
+      const d = s.obj_aux[s.cur_form]!
+      if (s.mem[d + 5] !== 0) { pdf_print_toks_ln(e, s.mem[d + 5]!); delete_token(e, s.mem[d + 5]!); s.mem[d + 5] = 0 }
+    }
     if (s.font_list.length > 0) { // Generate font resources
       pdf_print(e, '/Font << ')
       for (const k of s.font_list) {
@@ -1218,20 +1273,49 @@ export function pdf_ship_out(e: Engine, p: BoxNode): void {
       pdf_print_ln(e, '>>')
       s.text_procset = true
     }
-    // Generate ProcSet if desired (no images yet)
+    if (s.xform_list.length > 0 || s.ximage_list.length > 0) { // Generate XObject resources
+      pdf_print(e, '/XObject << ')
+      for (const k of s.xform_list) { pdf_print(e, '/Fm'); pdf_print_int(e, s.obj_info[k]!); pdf_out(e, 32); pdf_print_int(e, k); pdf_print(e, ' 0 R ') }
+      for (const k of s.ximage_list) {
+        pdf_print(e, '/Im'); pdf_print_int(e, s.obj_info[k]!); pdf_out(e, 32); pdf_print_int(e, k); pdf_print(e, ' 0 R ')
+        s.image_procset |= s.img_procset[k] ?? 0 // update_image_procset
+      }
+      pdf_print_ln(e, '>>')
+    }
+    // Generate ProcSet if desired
     if (int_par(e, pdf_omit_procset_code) < 0 || (int_par(e, pdf_omit_procset_code) === 0 && int_par(e, pdf_major_version_code) < 2)) {
       pdf_print(e, '/ProcSet [ /PDF')
       if (s.text_procset) pdf_print(e, ' /Text')
+      if (s.image_procset & 1) pdf_print(e, ' /ImageB')
+      if (s.image_procset & 2) pdf_print(e, ' /ImageC')
+      if (s.image_procset & 4) pdf_print(e, ' /ImageI')
       pdf_print_ln(e, ' ]')
     }
     pdf_end_dict(e)
   }
-  if (int_par(e, tracing_output_code) <= 0) print_char(e, 93)
+  if (int_par(e, tracing_output_code) <= 0 && shipping_page) print_char(e, 93)
   e.dead_cycles = 0
   // §639 Flush the box from memory, showing statistics if requested (see dvi.ts: no mem array)
   if (int_par(e, tracing_stats_code) > 1) { print_nl(e, 'Memory usage before: '); print(e, '0&0;') }
   flush_node_list(e, p)
   if (int_par(e, tracing_stats_code) > 1) { print(e, ' after: 0&0; still untouched: 0'); print_ln(e) }
+}
+
+// [32f] pdf_write_image (images: src/backend/images.ts)
+export function pdf_write_image(e: Engine, n: number): void {
+  fatal_error(e, 'unsupported: \\pdfximage') // unit 6
+}
+
+// [53] out_form
+function out_form(e: Engine, p: WhatsitNode): void {
+  const s = e.ps, n = p.pdf_objnum
+  pdf_end_text(e)
+  pdf_print_ln(e, 'q')
+  if (!s.xform_list.includes(n)) s.xform_list.push(n) // pdf_lookup_list
+  e.cur_v = (e.cur_v + s.mem[s.obj_aux[n]! + 2]!) | 0
+  pdf_print(e, '1 0 0 1 '); pdf_print_bp(e, e.cur_h - s.origin_h); pdf_out(e, 32); pdf_print_bp(e, s.origin_v - e.cur_v); pdf_print_ln(e, ' cm')
+  pdf_print(e, '/Fm'); pdf_print_int(e, s.obj_info[n]!); pdf_print_ln(e, ' Do')
+  pdf_print_ln(e, 'Q')
 }
 
 // [32f] Write out pending PDF marks (the start-link and thread nodes made by append_link/append_thread are garbage afterwards)

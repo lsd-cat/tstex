@@ -344,7 +344,7 @@ function vlist_out(e: Engine, this_box: BoxNode): void {
 export function ship_out(e: Engine, p: BoxNode): void {
   fix_pdfoutput(e)
   if (int_par(e, synctex_code) !== 0) fatal_error(e, 'unsupported: synctex') // synctex-rec.ch0 synctex_sheet would start recording
-  if (int_par(e, pdf_output_code) > 0) pdf_ship_out(e, p); else dvi_ship_out(e, p)
+  if (int_par(e, pdf_output_code) > 0) pdf_ship_out(e, p, true); else dvi_ship_out(e, p)
 }
 
 // §638 dvi_ship_out

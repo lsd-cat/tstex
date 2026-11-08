@@ -18,7 +18,7 @@ import { str } from '../utils.ts'
 import { def_tounicode } from '../backend/fonts.ts'
 import { pdf_error, pdf_warning, pdf_create_obj, pdf_get_mem, pdf_write_obj, obj_type_obj, obj_type_others, set_origin, direct_page, direct_always,
   pdf_new_obj, pdf_end_obj, write_action, pdf_check_obj, pdf_new_objnum, find_obj, warn_dest_dup, pdf_print_str_ln,
-  obj_type_dest, obj_type_struct_dest, obj_type_outline, colorstackused, pdf_check_vf, pdf_init_font, pdf_mark_char } from '../pdf.ts'
+  obj_type_dest, obj_type_struct_dest, obj_type_outline, colorstackused, obj_type_xform, obj_type_ximage, pdf_ship_out, pdf_write_image, pdf_check_vf, pdf_init_font, pdf_mark_char } from '../pdf.ts'
 import type { PdfAction } from '../nodes.ts'
 import { pdf_action_user, pdf_action_goto, pdf_action_thread, pdf_action_page, free_avail, delete_action_ref, pdf_annot_node, pdf_start_link_node,
   pdf_end_link_node, pdf_dest_node, pdf_thread_node, pdf_start_thread_node, pdf_end_thread_node, null_flag, pdf_null, pdf_dest_xyz, pdf_dest_fit,
@@ -26,7 +26,8 @@ import { pdf_action_user, pdf_action_goto, pdf_action_thread, pdf_action_page, f
   colorstack_push, colorstack_pop, colorstack_current, colorstack_data } from '../nodes.ts'
 import { print_err, help, error } from '../error.ts'
 import { print_int } from '../print.ts'
-import { scan_normal_dimen } from '../scan.ts'
+import { scan_normal_dimen, scan_register_num } from '../scan.ts'
+import { box, change_box, pdf_refxform_node, pdf_refximage_node } from '../nodes.ts'
 import { scan_font_ident, null_font } from '../tfm.ts'
 
 // pdftex.web check_pdfoutput
@@ -36,7 +37,7 @@ function check_pdfoutput(e: Engine, s: string, is_error: boolean): void {
   pdf_warning(e, s, 'not allowed in DVI mode (\\pdfoutput <= 0); ignoring it', true, true)
 }
 
-const max_halfword = 0xFFFFFFF, pdf_outline_code = 18
+const max_halfword = 0xFFFFFFF, pdf_outline_code = 18, pdf_xform_code = 11, pdf_ximage_code = 13
 const pdf_info_code = 24, pdf_catalog_code = 25, pdf_names_code = 26, pdf_include_chars_code = 28, pdf_trailer_code = 31, pdf_trailer_id_code = 32
 const pdf_obj_code = 9, immediate_code = 5, set_language_code = 6, pdf_glyph_to_unicode_code = 39, set_random_seed_code = 35, reset_timer_code = 33
 const names: Record<number, string> = { 0: 'openout', 1: 'write', 2: 'closeout', 3: 'special', 5: 'immediate', 6: 'setlanguage',
@@ -159,8 +160,14 @@ export function run(e: Engine, chr: number): void {
         run(e, pdf_obj_code)
         if (e.ps.obj_aux[e.ps.last_obj] === 0) pdf_error(e, 'ext1', "`\\pdfobj reserveobjnum' cannot be used with \\immediate")
         pdf_write_obj(e, e.ps.last_obj)
-      } else if (e.cur_cmd === Cmd.extension && (e.cur_chr === 11 || e.cur_chr === 13)) unsupported(e)
-      else back_input(e)
+      } else if (e.cur_cmd === Cmd.extension && e.cur_chr === pdf_xform_code) {
+        run(e, pdf_xform_code)
+        e.ps.cur_form = e.ps.last_xform
+        pdf_ship_out(e, e.ps.obj_box[e.ps.last_xform]!, false)
+      } else if (e.cur_cmd === Cmd.extension && e.cur_chr === pdf_ximage_code) {
+        run(e, pdf_ximage_code)
+        pdf_write_image(e, e.ps.last_ximage)
+      } else back_input(e)
       return
     case set_language_code: { // §1377
       if (Math.abs(e.mode) !== hmode) { report_illegal_case(e); return }
@@ -361,6 +368,30 @@ export function run(e: Engine, chr: number): void {
         p.pdf_id = e.cur_val; p.pdf_named_id = 0
       } else if (scan_keyword(e, 'name')) { scan_toks(e, false, true); p.pdf_id = e.def_ref; p.pdf_named_id = 1 }
       else pdf_error(e, 'ext1', 'identifier type missing')
+      return
+    }
+    case pdf_xform_code: { // pdftex.web Implement \pdfxform
+      check_pdfoutput(e, '\\pdfxform', true)
+      const ps = e.ps
+      pdf_create_obj(e, obj_type_xform, ++ps.xform_count)
+      const k = ps.obj_ptr, d = ps.obj_aux[k] = pdf_get_mem(e, 6) // width, height, depth, box, attr, resources
+      if (scan_keyword(e, 'attr')) { scan_toks(e, false, true); ps.mem[d + 4] = e.def_ref } else ps.mem[d + 4] = 0
+      if (scan_keyword(e, 'resources')) { scan_toks(e, false, true); ps.mem[d + 5] = e.def_ref } else ps.mem[d + 5] = 0
+      scan_register_num(e)
+      const n = e.cur_val, p = box(e, n)
+      if (p === null) pdf_error(e, 'ext1', '\\pdfxform cannot be used with a void box')
+      ps.mem[d] = p.width; ps.mem[d + 1] = p.height; ps.mem[d + 2] = p.depth; ps.obj_box[k] = p
+      change_box(e, n, null)
+      ps.last_xform = k
+      return
+    }
+    case pdf_refxform_node: case pdf_refximage_node: { // pdftex.web Implement \pdfrefxform, \pdfrefximage
+      const ps = e.ps
+      check_pdfoutput(e, chr === pdf_refxform_node ? '\\pdfrefxform' : '\\pdfrefximage', true)
+      scan_int(e); pdf_check_obj(e, chr === pdf_refxform_node ? obj_type_xform : obj_type_ximage, e.cur_val)
+      const p = new_whatsit_node(chr); tail_append(e, p)
+      const d = ps.obj_aux[e.cur_val]!
+      p.pdf_objnum = e.cur_val; p.pdf_left = ps.mem[d]!; p.pdf_top = ps.mem[d + 1]!; p.pdf_right = ps.mem[d + 2]!
       return
     }
     case pdf_colorstack_node: { // pdftex.web Implement \pdfcolorstack
