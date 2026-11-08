@@ -1,6 +1,6 @@
 // pdftex.web [32b]–[32f], [53] PDF output: the output buffer, object table, page description, pdf_ship_out, finishing the file
-// The file lives in one growable buffer (nothing is flushed early), so pdf_gone stays 0 and the /Length placeholder is
-// overwritten in place; with \pdfcompresslevel>0 a stream's bytes are deflated by the platform when it ends.
+// The file lives in one growable buffer (nothing is flushed early), so the /Length placeholder is overwritten in place;
+// `gone' only records where pdf_flush would have flushed the pdf_op_buf_size buffer (pdf_gone, for garbage_warning); with \pdfcompresslevel>0 a stream's bytes are deflated by the platform when it ends.
 import type { Engine } from './engine.ts'
 import { int_base, dimen_base, tex_toks, spotless, warning_issued, fatal_error_stop } from './types.ts'
 import { print, print_char, print_nl, print_ln, print_int, begin_diagnostic, end_diagnostic } from './print.ts'
@@ -36,7 +36,7 @@ const tracing_output_code = 34, tracing_stats_code = 31
 const max_dimen = 0o7777777777
 
 // [32b] constants
-const pdf_os_max_objs = 100, inf_obj_tab_size = 1000, sup_obj_tab_size = 8388607, inf_dest_names_size = 1000,
+const pdf_os_max_objs = 100, pdf_op_buf_size = 16384, inf_obj_tab_size = 1000, sup_obj_tab_size = 8388607, inf_dest_names_size = 1000,
   sup_dest_names_size = 500000, inf_pdf_mem_size = 10000, sup_pdf_mem_size = 10000000
 const one_bp = 65782, one_hundred_bp = 6578176
 const ten_pow = [1, 10, 100, 1000, 10000, 100000, 1000000, 10000000, 100000000, 1000000000]
@@ -59,7 +59,7 @@ export function pdf_state() {
   return {
     op_buf, buf: op_buf, ptr: 0, op_ptr: 0, os_buf: new Uint8Array(1 << 12), os_ptr: 0,
     os_mode: false, os_enable: false, os_cur_objnum: 0, os_cntr: 0, os_objidx: 0, os_objnum: [] as number[], os_objoff: [] as number[],
-    zip_start: -1, save_offset: 0, stream_length_offset: 0, seek_write_length: false,
+    gone: 0, zip_start: -1, save_offset: 0, stream_length_offset: 0, seek_write_length: false,
     version_written: false, fixed_major: 0, fixed_minor: 0, fixed_objcompresslevel: 0, fixed_decimal_digits: 0, min_bp_val: 0,
     scaled_out: 0, init_output: false, output_file_name: '',
     f: null_font, h: 0, v: 0, tj_start_h: 0, delta_h: 0, origin_h: 0, origin_v: 0, doing_string: false, doing_text: false,
@@ -161,13 +161,14 @@ function pdf_out_colorstack_startpage(e: Engine): void {
 
 // [32b] pdf_room, pdf_out: the buffer only grows
 function pdf_room(s: PdfState, n: number): void {
+  if (!s.os_mode && s.ptr - s.gone + n > pdf_op_buf_size) s.gone = s.ptr // pdf_flush
   if (s.ptr + n <= s.buf.length) return
   const b = new Uint8Array(Math.max(s.buf.length * 2, s.ptr + n)); b.set(s.buf.subarray(0, s.ptr))
   if (s.os_mode) s.os_buf = b; else s.op_buf = b
   s.buf = b
 }
 export function pdf_out(e: Engine, c: number): void { const s = e.ps; pdf_room(s, 1); s.buf[s.ptr++] = c }
-const pdf_offset = (e: Engine) => e.ps.ptr // pdf_gone is always 0
+const pdf_offset = (e: Engine) => e.ps.ptr // pdf_gone + pdf_ptr
 export function pdf_print(e: Engine, t: string | number[]): void {
   const s = e.ps; pdf_room(s, t.length)
   for (let i = 0; i < t.length; i++) s.buf[s.ptr++] = typeof t === 'string' ? t.charCodeAt(i) : t[i]!
@@ -326,7 +327,7 @@ export function pdf_begin_stream(e: Engine): void {
   s.seek_write_length = true; s.stream_length_offset = pdf_offset(e) - 11
   if (int_par(e, pdf_compress_level_code) > 0) {
     pdf_print_ln(e, '/Filter /FlateDecode'); pdf_print_ln(e, '>>'); pdf_print_ln(e, 'stream')
-    s.zip_start = s.ptr
+    s.zip_start = s.ptr; s.gone = s.ptr // pdf_flush
   } else {
     pdf_print_ln(e, '>>'); pdf_print_ln(e, 'stream')
     s.save_offset = pdf_offset(e)
@@ -340,6 +341,7 @@ export function pdf_end_stream(e: Engine): void {
     const z = e.fs.compress(s.buf.slice(s.zip_start, s.ptr), Math.min(int_par(e, pdf_compress_level_code), 9))
     s.ptr = s.zip_start; s.zip_start = -1; pdf_print(e, Array.from(z)); length = z.length
   } else length = pdf_offset(e) - s.save_offset
+  s.gone = s.ptr // pdf_flush
   if (s.seek_write_length) { const t = String(length); for (let i = 0; i < t.length; i++) s.buf[s.stream_length_offset + i] = t.charCodeAt(i) }
   s.seek_write_length = false
   pdf_out(e, 10); pdf_print_ln(e, 'endstream'); pdf_end_obj(e)
@@ -1489,7 +1491,7 @@ export function finish_pdf_file(e: Engine): void {
   const s = e.ps
   if (e.total_pages === 0) {
     print_nl(e, 'No pages of output.')
-    if (s.ptr > 0) { // garbage_warning
+    if (s.gone > 0) { // garbage_warning
       print_ln(e); print_ln(e); print(e, 'pdfTeX warning: pdftex: dangling objects discarded, no output file produced.'); print_ln(e)
       s.ptr = 0
     }

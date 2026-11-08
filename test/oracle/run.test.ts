@@ -64,9 +64,11 @@ for (const file of readdirSync(dir).filter(f => f.endsWith('.tex')).sort()) {
     }
     assert.strictEqual(normalizeLog(engine!.log), expected)
     if (existsSync(`${dir}${name}.expected.out`)) assert.strictEqual(engine!.outputFiles.get(`${name}.out`), readFileSync(`${dir}${name}.expected.out`, 'utf8'))
-    if (pdfMode) {
+    const wantPdf = `${dir}${name}.expected.pdf`
+    if (pdfMode && !(existsSync(wantPdf) && readFileSync(wantPdf).length)) assert.strictEqual(engine!.pdf, null, 'pdftex wrote no PDF') // none or empty (no pages)
+    else if (pdfMode) {
       assert.ok(engine!.pdf, 'no PDF produced')
-      assert.strictEqual(normalizePdf(engine!.pdf), normalizePdf(readFileSync(`${dir}${name}.expected.pdf`)))
+      assert.strictEqual(normalizePdf(engine!.pdf), normalizePdf(readFileSync(wantPdf)))
     }
     if (!existsSync(`${dir}${name}.expected.dvi`)) return
     const want = maskDvi(readFileSync(`${dir}${name}.expected.dvi`))

@@ -1,0 +1,7 @@
+%! oracle: pdftex
+\pdfoutput=1 \pdfcompresslevel=0 \pdfobjcompresslevel=0 \input plain
+% pdftex warns about dangling objects only when more than pdf_op_buf_size (16384) bytes were flushed
+\immediate\pdfobj{/small}
+\count1=0
+\loop \immediate\pdfobj{(this object is long enough that five hundred of them overflow the buffer)}\advance\count1 1 \ifnum\count1<500 \repeat
+\end
