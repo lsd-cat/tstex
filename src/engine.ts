@@ -3,7 +3,7 @@ import type { TexFS } from './platform/fs.ts'
 import { Cmd, vmode, batch_mode, fatal_error_stop, spotless, no_print, term_only, int_val, warning_issued, error_stop_mode, term_and_log } from './types.ts'
 import type { InState } from './types.ts'
 import { tracing_stats_code, pdf_output_code } from './types.ts'
-import { print, print_nl, print_char, print_esc, print_int } from './print.ts'
+import { print, print_nl, print_char, print_esc, print_int, print_ln } from './print.ts'
 import { JumpOut, fatal_error, overflow, print_err, token_list } from './error.ts'
 import { init_eqtb, fix_date_and_time, eqtb_size, int_base, new_line_char_code, end_line_char_code, cat_code_base, level_one } from './eqtb.ts'
 import { init_prim } from './primitives/index.ts'
@@ -23,7 +23,7 @@ import { hyph_state } from './hyphenate.ts'
 const contrib_head0 = new_char(0, 0) // replaced per Engine in the constructor
 const ignore_depth = -65536000
 import type { CondNode } from './conditional.ts'
-import { open_log_file, start_input } from './files.ts'
+import { open_log_file, start_input, print_file_name } from './files.ts'
 import { print_cmd_chr } from './tokens.ts'
 import { main_control } from './main.ts'
 import { finish_dvi_file } from './dvi.ts'
@@ -266,5 +266,9 @@ function close_files_and_terminate(e: Engine): void {
         + ' 1 words of extra memory for PDF output out of 10000 (max. 10000000)\n'
     }
   } else finish_dvi_file(e) // §642
-  if (e.log_opened) { e.log += '\n'; e.selector -= 2 }
+  if (e.log_opened) {
+    e.log += '\n'; e.selector -= 2
+    if (e.selector === term_only) { print_nl(e, 'Transcript written on '); print_file_name(e, e.job_name + '.log', '', ''); print_char(e, 46) }
+  }
+  print_ln(e) // tex.ch
 }
