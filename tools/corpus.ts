@@ -1,7 +1,7 @@
 // Nightly differential runner: pdflatex (TeX Live) vs this engine over whole documents. See test/corpus/README.md.
-// usage: node tools/corpus.ts [--texlive-docs] [--samples] [--list FILE] [--only RE] [--jobs N] [--timeout S] [--slow] [--update-skip]
+// usage: node tools/corpus.ts [--texlive-docs] [--samples] [--list FILE] [--only RE] [--jobs N] [--timeout S] [--slow] [--update-skip] [--resume]
 // Internal: node tools/corpus.ts --side pdftex|engine DIR MAIN  (one side, in its own process; prints a JSON result)
-import { readFileSync, writeFileSync, readdirSync, statSync, mkdtempSync, mkdirSync, cpSync, rmSync, existsSync, appendFileSync } from 'node:fs'
+import { readFileSync, writeFileSync, readdirSync, statSync, statfsSync, mkdtempSync, mkdirSync, cpSync, rmSync, existsSync, appendFileSync } from 'node:fs'
 import { spawn, spawnSync } from 'node:child_process'
 import { tmpdir } from 'node:os'
 import { join, dirname, basename, relative, resolve } from 'node:path'
@@ -13,7 +13,8 @@ const TEXMFDIST = process.env.TEXMFDIST ?? TL + '/texmf-dist', TEXMFVAR = proces
 const bindir = readdirSync(TL + '/bin').map(d => `${TL}/bin/${d}`).find(d => existsSync(d + '/pdftex')) ?? ''
 const env = { ...process.env, PATH: `${bindir}:${process.env.PATH}`, SOURCE_DATE_EPOCH: '0', FORCE_SOURCE_DATE: '1', max_print_line: '9999' }
 const AUX = /\.(aux|out|toc|lof|lot|nav|snm)$/ // compile.ts's rerun_files
-const JOB = 'main', FIRST = (main: string) => `\\pdfcompresslevel=0\\pdfobjcompresslevel=0\\input{${main}}`
+// \pdfsetrandomseed: pdftex seeds \pdfuniformdeviate from the clock, not SOURCE_DATE_EPOCH (tagpdf's namespace UUID differed per run)
+const JOB = 'main', FIRST = (main: string) => `\\pdfsetrandomseed 1 \\pdfcompresslevel=0\\pdfobjcompresslevel=0\\input{${main}}`
 
 // ---- one side: run -> (bibtex after run 1) -> rerun while an AUX file changed, at most 4 runs
 async function side(kind: string, dir: string, main: string) {
@@ -104,6 +105,8 @@ type Res = { cat: string, detail: string, tp?: number, te?: number }
 async function runDoc(doc: Doc, timeout: number): Promise<Res> {
   const src = readFileSync(join(doc.dir, doc.main), 'latin1')
   if (size(doc.dir) > MB50 && !doc.strip) return { cat: 'skipped', detail: 'directory over 50 MB' }
+  const free = (({ bavail, bsize }) => bavail * bsize)(statfsSync(tmpdir()))
+  if (free < 2 ** 31) return { cat: 'skipped', detail: `disk: ${(free / 2 ** 30).toFixed(1)} GB free` } // the last run died of ENOSPC
   const tmp = mkdtempSync(join(tmpdir(), 'corpus-')), A = join(tmp, 'a'), B = join(tmp, 'b')
   try {
     try { prepare(doc, A); prepare(doc, B) } catch (x) { return { cat: 'skipped', detail: 'runner: ' + String(x instanceof Error ? x.message : x) } }
@@ -140,10 +143,18 @@ if (!args.some(a => ['--texlive-docs', '--samples', '--list'].includes(a))) { pr
 const skipFile = root + '/test/corpus/skip.txt', statusFile = root + '/test/corpus/status.md'
 const skip = new Map(readFileSync(skipFile, 'utf8').split('\n').filter(l => l && !l.startsWith('#')).map(l => [l.split(': ')[0]!, l.split(': ').slice(1).join(': ')]))
 const only = arg('--only') ? new RegExp(arg('--only')!) : null, jobs = +(arg('--jobs') ?? 8), timeout = +(arg('--timeout') ?? 120)
+const git = spawnSync('git', ['rev-parse', '--short', 'HEAD'], { cwd: root, encoding: 'utf8' }).stdout.trim()
+// the ledger so far: kept for --only (other documents) and --resume (same engine commit: documents with a final category)
+const lines = new Map<string, string[]>() // id -> [cat, detail]
+const prev = existsSync(statusFile) ? readFileSync(statusFile, 'utf8') : ''
+const resume = args.includes('--resume') && prev.match(/^Engine (\w+);/m)?.[1] === git
+if (only || resume) for (const l of prev.split('\n')) { const m = l.match(/^([a-z-]+) \| (.*?) \| (.*)$/); if (m && m[1] !== 'category') lines.set(m[2]!, [m[1]!, m[3]!]) }
+const final = (id: string) => { const l = lines.get(id); return resume && l !== undefined && l[0] !== 'timeout' && !(l[0] === 'skipped' && /^(disk|runner)/.test(l[1]!)) }
 const docs = discover(args).filter(d => !only || only.test(d.id))
 const results = new Map<string, Res>(), newSkips: string[] = []
 const todo: Doc[] = []
 for (const d of docs) {
+  if (final(d.id)) continue
   const why = skip.get(d.id) ?? needs(readFileSync(join(d.dir, d.main), 'latin1'))
   if (why !== undefined) { results.set(d.id, { cat: 'skipped', detail: why }); if (!skip.has(d.id)) newSkips.push(`${d.id}: ${why}`) }
   else if (d.slow && !args.includes('--slow')) results.set(d.id, { cat: 'skipped', detail: 'slow (use --slow)' })
@@ -155,25 +166,27 @@ await Promise.all(Array.from({ length: Math.min(jobs, todo.length) }, async () =
   while (next < todo.length) {
     const d = todo[next++]!, r = await runDoc(d, timeout).catch(x => ({ cat: 'skipped', detail: 'runner: ' + (x instanceof Error ? x.message : x) }) as Res)
     results.set(d.id, r); process.stderr.write(`[${++done}/${todo.length}] ${r.cat} ${d.id}\n`)
+    if (done % 20 === 0) ledger() // so --resume can continue after a crash
   }
 }))
 if (args.includes('--update-skip') && newSkips.length) appendFileSync(skipFile, newSkips.map(l => l + '\n').join(''))
 
-// ledger: with --only, lines of the other documents are kept
-const lines = new Map<string, string[]>() // id -> [cat, detail]
-if (only && existsSync(statusFile)) for (const l of readFileSync(statusFile, 'utf8').split('\n')) { const m = l.match(/^([a-z-]+) \| (.*?) \| (.*)$/); if (m && m[1] !== 'category') lines.set(m[2]!, [m[1]!, m[3]!]) }
-for (const [id, r] of results) lines.set(id, [r.cat, r.detail.replace(/\s+/g, ' ')])
-const cats = ['identical', 'both-error', 'pdf-differs', 'log-differs-only', 'engine-error', 'pdftex-error', 'timeout', 'skipped']
-const pct = (v: number[], q: number) => v.length ? (v.sort((a, b) => a - b)[Math.min(v.length - 1, Math.floor(q * v.length))]! / 1000).toFixed(1) + ' s' : '-'
-const tp = [...results.values()].flatMap(r => r.tp ? [r.tp] : []), te = [...results.values()].flatMap(r => r.te ? [r.te] : [])
-const git = spawnSync('git', ['rev-parse', '--short', 'HEAD'], { cwd: root, encoding: 'utf8' }).stdout.trim()
-const tlv = spawnSync('pdftex', ['--version'], { env, encoding: 'utf8' }).stdout.split('\n')[0]
-const groups = new Map<string, number>()
-for (const [, [c, d]] of lines) if (c === 'engine-error') groups.set(d!, (groups.get(d!) ?? 0) + 1)
-const out = [`# Corpus status`, '', `Engine ${git}; ${tlv}; ${lines.size} documents${only ? ' (partial rerun merged; timings are from this run only)' : ''}.`, '',
-  '| category | count |', '|---|---|', ...cats.map(c => `| ${c} | ${[...lines.values()].filter(v => v[0] === c).length} |`), '',
-  '| side | p50 | p95 | (this run, documents run: ' + tp.length + ') |', '|---|---|---|---|', `| pdftex | ${pct(tp, .5)} | ${pct(tp, .95)} | |`, `| engine | ${pct(te, .5)} | ${pct(te, .95)} | |`, '']
-if (groups.size) out.push('## engine-error by message', '', ...[...groups].sort((a, b) => b[1] - a[1]).map(([m, n]) => `- ${n}x ${m}`), '')
-out.push('## Documents', '', 'category | path | detail', ...[...lines].sort((a, b) => a[1][0]! === b[1][0]! ? (a[0] < b[0] ? -1 : 1) : cats.indexOf(a[1][0]!) - cats.indexOf(b[1][0]!)).map(([id, [c, d]]) => `${c} | ${id} | ${d}`))
-writeFileSync(statusFile, out.join('\n') + '\n')
+// ledger: with --only or --resume, lines of the other documents are kept
+function ledger(): string[] {
+  for (const [id, r] of results) lines.set(id, [r.cat, r.detail.replace(/\s+/g, ' ')])
+  const cats = ['identical', 'both-error', 'pdf-differs', 'log-differs-only', 'engine-error', 'pdftex-error', 'timeout', 'skipped']
+  const pct = (v: number[], q: number) => v.length ? (v.sort((a, b) => a - b)[Math.min(v.length - 1, Math.floor(q * v.length))]! / 1000).toFixed(1) + ' s' : '-'
+  const tp = [...results.values()].flatMap(r => r.tp ? [r.tp] : []), te = [...results.values()].flatMap(r => r.te ? [r.te] : [])
+  const tlv = spawnSync('pdftex', ['--version'], { env, encoding: 'utf8' }).stdout.split('\n')[0]
+  const groups = new Map<string, number>()
+  for (const [, [c, d]] of lines) if (c === 'engine-error') groups.set(d!, (groups.get(d!) ?? 0) + 1)
+  const out = [`# Corpus status`, '', `Engine ${git}; ${tlv}; ${lines.size} documents${only || resume ? ' (partial rerun merged; timings are from this run only)' : ''}.`, '',
+    '| category | count |', '|---|---|', ...cats.map(c => `| ${c} | ${[...lines.values()].filter(v => v[0] === c).length} |`), '',
+    '| side | p50 | p95 | (this run, documents run: ' + tp.length + ') |', '|---|---|---|---|', `| pdftex | ${pct(tp, .5)} | ${pct(tp, .95)} | |`, `| engine | ${pct(te, .5)} | ${pct(te, .95)} | |`, '']
+  if (groups.size) out.push('## engine-error by message', '', ...[...groups].sort((a, b) => b[1] - a[1]).map(([m, n]) => `- ${n}x ${m}`), '')
+  out.push('## Documents', '', 'category | path | detail', ...[...lines].sort((a, b) => a[1][0]! === b[1][0]! ? (a[0] < b[0] ? -1 : 1) : cats.indexOf(a[1][0]!) - cats.indexOf(b[1][0]!)).map(([id, [c, d]]) => `${c} | ${id} | ${d}`))
+  writeFileSync(statusFile, out.join('\n') + '\n')
+  return out
+}
+const out = ledger()
 process.stdout.write(out.slice(0, out.indexOf('## Documents')).join('\n') + '\n')
