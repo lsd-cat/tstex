@@ -31,7 +31,7 @@ for (const file of readdirSync(dir).filter(f => f.endsWith('.tex')).sort()) {
   const name = file.slice(0, -4)
   if (!existsSync(`${dir}${name}.expected.log`)) continue
   test(name, { skip: skip[name] }, async () => {
-    const expected = readFileSync(`${dir}${name}.expected.log`, 'utf8')
+    const expected = readFileSync(`${dir}${name}.expected.log`, 'latin1')
     const mode = (readFileSync(dir + file, 'utf8').split('\n')[0]!.match(/^%! oracle: *(\w+)/)?.[1] ?? 'ini') as 'ini' | 'etex' | 'latex'
     // string specifiers keep tsc quiet while the modules do not exist yet
     const [{ Engine }, { nodeFS }, { loadFormat }] = await Promise.all([
@@ -44,13 +44,13 @@ for (const file of readdirSync(dir).filter(f => f.endsWith('.tex')).sort()) {
       if (!existsSync(fmtPath)) assert.fail('build/latex.fmt missing: run `node tools/build-format.ts --out build/latex.fmt` first')
       assert.ok(loadFormat, 'src/format.ts missing')
       format = loadFormat(readFileSync(fmtPath))
-      fs = nodeFS([dir, texmf, lvt], [TEXMFDIST, TEXMFVAR])
+      fs = nodeFS([dir, texmf, lvt], [TEXMFVAR, TEXMFDIST])
       runs = Number(readFileSync(dir + file, 'utf8').match(/^%! runs: *(\d+)/m)?.[1] ?? 1)
       limits = { max_print_line: 9999 }
     }
     const overlay = new Map<string, string | Uint8Array>() // files written by earlier runs (.aux ...)
     const base = fs
-    fs = { find: (n: string, k: string) => { const o = overlay.get(n); return o === undefined ? base.find(n, k) : typeof o === 'string' ? new TextEncoder().encode(o) : o } }
+    fs = { find: (n: string, k: string) => { const o = overlay.get(n); return o === undefined ? base.find(n, k) : typeof o === 'string' ? Buffer.from(o, 'latin1') : o } }
     let engine
     for (let i = 0; i < runs; i++) {
       engine = new Engine({ fs, format, limits })

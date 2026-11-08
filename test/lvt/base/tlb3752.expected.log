@@ -152,7 +152,7 @@ Completed box being shipped out [1]
 ........\penalty 10000
 ........\hbox(9.86447+0.0)x0.0, glue set - 5.69318fil
 .........\hbox(5.50977+1.55518)x5.19318, shifted -4.3547
-..........\TS1/cmr/m/n/8 ï¿½
+..........\TS1/cmr/m/n/8 ¶
 .........\penalty 10000
 .........\glue 0.5
 .........\kern 0.0
@@ -174,7 +174,7 @@ Completed box being shipped out [1]
 ........\penalty 10000
 ........\hbox(10.35324+0.0)x0.0, glue set - 4.74896fil
 .........\hbox(5.99854+1.99951)x4.24896, shifted -4.3547
-..........\TS1/cmr/m/n/8 ï¿½
+..........\TS1/cmr/m/n/8 †
 .........\penalty 10000
 .........\glue 0.5
 .........\kern 0.0
@@ -234,10 +234,10 @@ Completed box being shipped out [1]
 ....\OMS/cmsy/m/n/10 x
 ....\mathoff
 ....\glue 3.33333 plus 1.66666 minus 1.11111
-....\TS1/cmr/m/n/10 ï¿½
+....\TS1/cmr/m/n/10 §
 ....\OT1/cmr/m/n/10 ,
 ....\glue 3.33333 plus 2.08331 minus 0.88889
-....\TS1/cmr/m/n/10 ï¿½
+....\TS1/cmr/m/n/10 §
 ....\OT1/cmr/m/n/10 ,
 ....\glue 3.33333 plus 2.08331 minus 0.88889
 ....\OT1/cmr/m/n/10 A
@@ -245,7 +245,7 @@ Completed box being shipped out [1]
 ....\penalty 10000
 ....\hbox(8.48885+0.0)x4.05469
 .....\hbox(4.85992+1.36078)x3.55469, shifted -3.62892
-......\TS1/cmr/m/n/7 ï¿½
+......\TS1/cmr/m/n/7 …
 .....\penalty 10000
 .....\glue 0.5
 .....\kern 0.0
@@ -255,7 +255,7 @@ Completed box being shipped out [1]
 ....\penalty 10000
 ....\hbox(8.48885+0.0)x5.34604
 .....\hbox(4.85992+1.36078)x4.84604, shifted -3.62892
-......\TS1/cmr/m/n/7 ï¿½
+......\TS1/cmr/m/n/7 ¶
 .....\penalty 10000
 .....\glue 0.5
 .....\kern 0.0
@@ -289,7 +289,7 @@ Completed box being shipped out [1]
 ....\hbox(6.98898+0.0)x15.30023, glue set 10.35689fil
 .....\glue 0.0 plus 1.0fil minus 1.0fil
 .....\hbox(4.16565+1.16638)x4.44334, shifted -2.82333
-......\TS1/cmr/m/n/6 ï¿½
+......\TS1/cmr/m/n/6 ¶
 .....\penalty 10000
 .....\glue 0.5
 .....\kern 0.0
@@ -309,7 +309,7 @@ Completed box being shipped out [1]
 ....\hbox(7.32224+0.0)x15.30023, glue set 11.13446fil
 .....\glue 0.0 plus 1.0fil minus 1.0fil
 .....\hbox(4.4989+1.49963)x3.66577, shifted -2.82333
-......\TS1/cmr/m/n/6 ï¿½
+......\TS1/cmr/m/n/6 †
 .....\penalty 10000
 .....\glue 0.5
 .....\kern 0.0
@@ -351,7 +351,7 @@ Completed box being shipped out [1]
 .....\glue 0.0 plus 1.0fil minus 1.0fil
 .....\hbox(6.98898+0.0)x4.94334
 ......\hbox(4.16565+1.16638)x4.44334, shifted -2.82333
-.......\TS1/cmr/m/n/6 ï¿½
+.......\TS1/cmr/m/n/6 ¶
 ......\penalty 10000
 ......\glue 0.5
 ......\kern 0.0

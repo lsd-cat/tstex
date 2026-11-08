@@ -19,5 +19,5 @@ export function normalizeLog(text: string): string {
 }
 
 if (process.argv[1] === fileURLToPath(import.meta.url)) {
-  process.stdout.write(normalizeLog(readFileSync(process.argv[2] ?? 0, 'utf8')))
+  process.stdout.write(Buffer.from(normalizeLog(readFileSync(process.argv[2] ?? 0, 'latin1')), 'latin1'))
 }

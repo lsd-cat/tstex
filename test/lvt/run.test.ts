@@ -25,10 +25,10 @@ for (const pkg of readdirSync(dir).filter(p => existsSync(`${dir}${p}/`) && !p.s
         import('../../src/platform/node' + '.ts').catch(() => assert.fail('src/platform/node.ts missing')),
         import('../../src/format' + '.ts').catch(() => assert.fail('src/format.ts missing')),
       ])
-      const fs = nodeFS([dir + pkg, dir], [TEXMFDIST, TEXMFVAR])
+      const fs = nodeFS([dir + pkg, dir], [TEXMFVAR, TEXMFDIST])
       const engine = new Engine({ fs, format: loadFormat(readFileSync(fmtPath)), limits: { max_print_line: 9999 } })
       await engine.run({ jobname: name, mode: 'latex', file: name + '.lvt' })
-      assert.strictEqual(normalizeLog(engine.log), readFileSync(`${base}.expected.log`, 'utf8'))
+      assert.strictEqual(normalizeLog(engine.log), readFileSync(`${base}.expected.log`, 'latin1'))
       if (!existsSync(`${base}.expected.dvi`)) return
       const want = maskDvi(readFileSync(`${base}.expected.dvi`)), got = engine.dvi ? maskDvi(engine.dvi) : new Uint8Array()
       const at = want.findIndex((v, i) => v !== got[i])

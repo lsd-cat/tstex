@@ -300,7 +300,7 @@ Completed box being shipped out [2]
 ....\OT1/cmr/m/sl/10 d
 ....\OT1/cmr/m/sl/10 ?
 ....\glue 4.44444 plus 4.99997 minus 0.37036
-....\TS1/cmr/m/n/5 ï¿½
+....\TS1/cmr/m/n/5 £
 ....\glue 3.33333 plus 1.66666 minus 1.11111
 ....\mathon
 ....\U/eus/m/n/10 A
@@ -312,7 +312,7 @@ Completed box being shipped out [2]
 ......\OT1/cmr/m/it/7 $
 .....\kern1.59991
 .....\hbox(7.49817+2.49939)x11.6084
-......\TS1/cmr/m/n/10 ï¿½
+......\TS1/cmr/m/n/10 ©
 ....\mathoff
 ....\penalty 10000
 ....\glue(\parfillskip) 0.0 plus 1.0fil

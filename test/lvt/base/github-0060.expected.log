@@ -85,7 +85,7 @@ TOO BIG!!
 
 ===110FFE
 
-! LaTeX Error: Unicode character ÔøΩÔøΩÔøΩÔøΩ (U+110FFE)
+! LaTeX Error: Unicode character Ùêøæ (U+110FFE)
                not set up for use with LaTeX.
 
 See the LaTeX manual or LaTeX Companion for explanation.
@@ -100,7 +100,7 @@ You may provide a definition with
 
 ===bad 2 byte
 
-! LaTeX Error: Invalid UTF-8 byte sequence (ÔøΩÔøΩ).
+! LaTeX Error: Invalid UTF-8 byte sequence (››).
 
 See the LaTeX manual or LaTeX Companion for explanation.
 Type  H <return>  for immediate help.

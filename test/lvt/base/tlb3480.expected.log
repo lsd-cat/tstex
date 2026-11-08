@@ -508,7 +508,7 @@ LaTeX Encoding Info:    Ignoring declaration for text command \textbrokenbar (en
 File: utf8.def 2026-06-01 v1.3c UTF-8 support
 )
 
-! LaTeX Error: Invalid UTF-8 byte sequence (ï¿½F).
+! LaTeX Error: Invalid UTF-8 byte sequence (ÃF).
 
 See the LaTeX manual or LaTeX Companion for explanation.
 Type  H <return>  for immediate help.
@@ -536,7 +536,7 @@ You may provide a definition with
 \DeclareUnicodeCharacter
 
 
-! LaTeX Error: Invalid UTF-8 byte sequence (ï¿½X).
+! LaTeX Error: Invalid UTF-8 byte sequence (ÃX).
 
 See the LaTeX manual or LaTeX Companion for explanation.
 Type  H <return>  for immediate help.
@@ -551,7 +551,7 @@ in the document preamble.
 Alternatively, save the file in UTF-8 using your editor or another tool
 
 
-! LaTeX Error: Invalid UTF-8 byte sequence (ï¿½XY).
+! LaTeX Error: Invalid UTF-8 byte sequence (áXY).
 
 See the LaTeX manual or LaTeX Companion for explanation.
 Type  H <return>  for immediate help.
@@ -606,9 +606,9 @@ Completed box being shipped out [1]
 ....\T1/cmr/m/n/10 8
 ....\T1/cmr/m/n/10 :
 ....\glue 4.44336 plus 3.33252 minus 0.55542
-....\T1/cmr/m/n/10 ï¿½
-....\T1/cmr/m/n/10 ï¿½
-....\T1/cmr/m/n/10 ï¿½
+....\T1/cmr/m/n/10 ä
+....\T1/cmr/m/n/10 ö
+....\T1/cmr/m/n/10 ü
 ....\penalty 10000
 ....\glue(\parfillskip) 0.0 plus 1.0fil
 ....\glue(\rightskip) 0.0
@@ -736,12 +736,12 @@ Completed box being shipped out [1]
 ....\T1/cmr/m/n/10 )
 ....\T1/cmr/m/n/10 :
 ....\glue 4.44336 plus 3.33252 minus 0.55542
-....\T1/cmr/m/n/10 ï¿½
-....\TS1/cmr/m/n/10 ï¿½
-....\T1/cmr/m/n/10 ï¿½
-....\TS1/cmr/m/n/10 ï¿½
-....\T1/cmr/m/n/10 ï¿½
-....\TS1/cmr/m/n/10 ï¿½
+....\T1/cmr/m/n/10 Ã
+....\TS1/cmr/m/n/10 ¤
+....\T1/cmr/m/n/10 Ã
+....\TS1/cmr/m/n/10 ¶
+....\T1/cmr/m/n/10 Ã
+....\TS1/cmr/m/n/10 ¼
 ....\penalty 10000
 ....\glue(\parfillskip) 0.0 plus 1.0fil
 ....\glue(\rightskip) 0.0
@@ -776,9 +776,9 @@ Completed box being shipped out [1]
 ....\T1/cmr/m/n/10 8
 ....\T1/cmr/m/n/10 :
 ....\glue 4.44336 plus 3.33252 minus 0.55542
-....\T1/cmr/m/n/10 ï¿½
-....\T1/cmr/m/n/10 ï¿½
-....\T1/cmr/m/n/10 ï¿½
+....\T1/cmr/m/n/10 ä
+....\T1/cmr/m/n/10 ö
+....\T1/cmr/m/n/10 ü
 ....\penalty 10000
 ....\glue(\parfillskip) 0.0 plus 1.0fil
 ....\glue(\rightskip) 0.0

@@ -115,7 +115,7 @@ Completed box being shipped out [1]
 .......\TS1/cmr/m/n/10 O
 ......\glue(\tabskip) 0.0
 ....\glue 3.33333 plus 1.66666 minus 1.11111
-....\TS1/cmr/m/n/10 ï¿½
+....\TS1/cmr/m/n/10 ©
 ....\glue 3.33333 plus 1.66666 minus 1.11111
 ....\kern 0.27771 (for accent)
 ....\T1/cmr/m/n/10
@@ -138,7 +138,7 @@ Completed box being shipped out [1]
 .......\TS1/cmr/m/n/10 O
 ......\glue(\tabskip) 0.0
 ....\glue 3.33252 plus 1.66626 minus 1.11084
-....\TS1/cmr/m/n/10 ï¿½
+....\TS1/cmr/m/n/10 ©
 ....\penalty 10000
 ....\glue(\parfillskip) 0.0 plus 1.0fil
 ....\glue(\rightskip) 0.0

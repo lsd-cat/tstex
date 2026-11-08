@@ -519,7 +519,7 @@ LaTeX Font Info:    Switching to \T1/cmr/m/n/24.88  on input line 58.
 LaTeX Font Info:    Changing size to 24.88/30.0pt on input line 58.
 
 
-! LaTeX Error: Invalid UTF-8 byte sequence (ï¿½\par\showoutput).
+! LaTeX Error: Invalid UTF-8 byte sequence (ã\par\showoutput).
 
 See the LaTeX manual or LaTeX Companion for explanation.
 Type  H <return>  for immediate help.
