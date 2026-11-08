@@ -1,6 +1,6 @@
 // §1344–1378 \openout \write \closeout \special \immediate \setlanguage (pdfTeX's extensions are registered, not supported)
 import type { Engine } from '../engine.ts'
-import { Cmd, hmode } from '../types.ts'
+import { Cmd, hmode, vmode } from '../types.ts'
 import { print_esc } from '../print.ts'
 import { int_par } from '../eqtb.ts'
 import { delete_token_ref, new_whatsit_node, flush_node_list, open_node, write_node, close_node, special_node, latespecial_node, language_node, pdf_save_pos_node,
@@ -17,9 +17,13 @@ import { tokens_to_string } from '../tokens.ts'
 import { str } from '../utils.ts'
 import { def_tounicode } from '../backend/fonts.ts'
 import { pdf_error, pdf_warning, pdf_create_obj, pdf_get_mem, pdf_write_obj, obj_type_obj, obj_type_others, set_origin, direct_page, direct_always,
-  pdf_new_obj, pdf_end_obj, write_action, pdf_check_obj, pdf_check_vf, pdf_init_font, pdf_mark_char } from '../pdf.ts'
+  pdf_new_obj, pdf_end_obj, write_action, pdf_check_obj, pdf_new_objnum, find_obj, warn_dest_dup, pdf_print_str_ln,
+  obj_type_dest, obj_type_struct_dest, obj_type_outline, pdf_check_vf, pdf_init_font, pdf_mark_char } from '../pdf.ts'
 import type { PdfAction } from '../nodes.ts'
-import { pdf_action_user, pdf_action_goto, pdf_action_thread, pdf_action_page, free_avail, delete_action_ref } from '../nodes.ts'
+import { pdf_action_user, pdf_action_goto, pdf_action_thread, pdf_action_page, free_avail, delete_action_ref, pdf_annot_node, pdf_start_link_node,
+  pdf_end_link_node, pdf_dest_node, pdf_thread_node, pdf_start_thread_node, pdf_end_thread_node, null_flag, pdf_null, pdf_dest_xyz, pdf_dest_fit,
+  pdf_dest_fith, pdf_dest_fitv, pdf_dest_fitb, pdf_dest_fitbh, pdf_dest_fitbv, pdf_dest_fitr } from '../nodes.ts'
+import { scan_normal_dimen } from '../scan.ts'
 import { scan_font_ident, null_font } from '../tfm.ts'
 
 // pdftex.web check_pdfoutput
@@ -29,6 +33,7 @@ function check_pdfoutput(e: Engine, s: string, is_error: boolean): void {
   pdf_warning(e, s, 'not allowed in DVI mode (\\pdfoutput <= 0); ignoring it', true, true)
 }
 
+const max_halfword = 0xFFFFFFF, pdf_outline_code = 18
 const pdf_info_code = 24, pdf_catalog_code = 25, pdf_names_code = 26, pdf_include_chars_code = 28, pdf_trailer_code = 31, pdf_trailer_id_code = 32
 const pdf_obj_code = 9, immediate_code = 5, set_language_code = 6, pdf_glyph_to_unicode_code = 39, set_random_seed_code = 35, reset_timer_code = 33
 const names: Record<number, string> = { 0: 'openout', 1: 'write', 2: 'closeout', 3: 'special', 5: 'immediate', 6: 'setlanguage',
@@ -85,6 +90,23 @@ function scan_action(e: Engine): PdfAction {
   else if (scan_keyword(e, 'nonewwindow')) { p.new_window = 2; scan_optional_space(e) }
   if (p.new_window > 0 && ((p.type !== pdf_action_goto && p.type !== pdf_action_page) || p.file === 0))
     pdf_error(e, 'ext1', "`newwindow'/`nonewwindow' must be used with `goto' and `file' option")
+  return p
+}
+// pdftex.web scan_alt_rule into the whatsit's pdf_width/height/depth (pdf_left/top/right)
+function scan_alt_rule(e: Engine, p: WhatsitNode): void {
+  p.pdf_left = null_flag; p.pdf_top = null_flag; p.pdf_right = null_flag
+  for (;;) {
+    if (scan_keyword(e, 'width')) { scan_normal_dimen(e); p.pdf_left = e.cur_val }
+    else if (scan_keyword(e, 'height')) { scan_normal_dimen(e); p.pdf_top = e.cur_val }
+    else if (scan_keyword(e, 'depth')) { scan_normal_dimen(e); p.pdf_right = e.cur_val }
+    else return
+  }
+}
+// pdftex.web new_annot_whatsit
+function new_annot_whatsit(e: Engine, w: number): WhatsitNode {
+  const p = new_whatsit_node(w); tail_append(e, p)
+  scan_alt_rule(e, p)
+  if ((w === pdf_start_link_node || w === pdf_thread_node || w === pdf_start_thread_node) && scan_keyword(e, 'attr')) { scan_toks(e, false, true); p.pdf_data = e.def_ref }
   return p
 }
 function scan_optional_space(e: Engine): void { get_x_token(e); if (e.cur_cmd !== Cmd.spacer) back_input(e) }
@@ -227,6 +249,118 @@ export function run(e: Engine, chr: number): void {
       for (const c of t) pdf_mark_char(e, f, c)
       return
     }
+    case pdf_annot_node: { // pdftex.web Implement \pdfannot
+      check_pdfoutput(e, '\\pdfannot', true)
+      const ps = e.ps
+      if (scan_keyword(e, 'reserveobjnum')) { ps.last_annot = pdf_new_objnum(e); scan_optional_space(e); return }
+      let k: number
+      if (scan_keyword(e, 'useobjnum')) {
+        scan_int(e); k = e.cur_val
+        if (k <= 0 || k > ps.obj_ptr || ps.obj_aux[k] !== 0 || ps.obj_node[k]) pdf_error(e, 'ext1', 'invalid object number')
+      } else k = pdf_new_objnum(e)
+      const p = new_annot_whatsit(e, pdf_annot_node)
+      p.pdf_objnum = k
+      scan_toks(e, false, true); p.pdf_data = e.def_ref
+      ps.last_annot = k
+      return
+    }
+    case pdf_start_link_node: { // pdftex.web Implement \pdfstartlink
+      check_pdfoutput(e, '\\pdfstartlink', true)
+      if (Math.abs(e.mode) === vmode) pdf_error(e, 'ext1', '\\pdfstartlink cannot be used in vertical mode')
+      const k = pdf_new_objnum(e), p = new_annot_whatsit(e, pdf_start_link_node)
+      p.pdf_action = scan_action(e); p.pdf_objnum = k; e.ps.last_link = k
+      return
+    }
+    case pdf_end_link_node: // pdftex.web Implement \pdfendlink
+      check_pdfoutput(e, '\\pdfendlink', true)
+      if (Math.abs(e.mode) === vmode) pdf_error(e, 'ext1', '\\pdfendlink cannot be used in vertical mode')
+      tail_append(e, new_whatsit_node(pdf_end_link_node))
+      return
+    case pdf_outline_code: { // pdftex.web Implement \pdfoutline
+      check_pdfoutput(e, '\\pdfoutline', true)
+      const ps = e.ps
+      let r = 0
+      if (scan_keyword(e, 'attr')) { scan_toks(e, false, true); r = e.def_ref }
+      const p = scan_action(e)
+      let i = 0
+      if (scan_keyword(e, 'count')) { scan_int(e); i = e.cur_val }
+      scan_toks(e, false, true); const q = e.def_ref
+      pdf_new_obj(e, obj_type_others, 0, 1)
+      let j = ps.obj_ptr
+      write_action(e, p); pdf_end_obj(e); delete_action_ref(e, p)
+      pdf_create_obj(e, obj_type_outline, 0)
+      const k = ps.obj_ptr, d = ps.obj_aux[k] = pdf_get_mem(e, 8), m = ps.mem, o = (x: number) => ps.obj_aux[x]!
+      m[d + 6] = j; ps.obj_info[k] = i
+      pdf_new_obj(e, obj_type_others, 0, 1)
+      pdf_print_str_ln(e, str(tokens_to_string(e, q))); delete_token_ref(e, q)
+      pdf_end_obj(e)
+      m[d] = ps.obj_ptr; m[d + 2] = 0; m[d + 3] = 0; m[d + 4] = 0; m[d + 5] = 0; m[d + 1] = ps.parent_outline; m[d + 7] = r
+      if (ps.first_outline === 0) ps.first_outline = k
+      if (ps.last_outline === 0) { if (ps.parent_outline !== 0) m[o(ps.parent_outline) + 4] = k }
+      else { m[o(ps.last_outline) + 3] = k; m[d + 2] = ps.last_outline }
+      ps.last_outline = k
+      const outline_list_count = (x: number) => { let n = 1; while (m[o(x) + 2] !== 0) { n++; x = m[o(x) + 2]! } return n }
+      if (ps.obj_info[k] !== 0) { ps.parent_outline = k; ps.last_outline = 0 }
+      else if (ps.parent_outline !== 0 && outline_list_count(k) === Math.abs(ps.obj_info[ps.parent_outline]!)) {
+        j = ps.last_outline
+        do {
+          m[o(ps.parent_outline) + 5] = j; j = ps.parent_outline; ps.parent_outline = m[o(ps.parent_outline) + 1]!
+        } while (!(ps.parent_outline === 0 || outline_list_count(j) < Math.abs(ps.obj_info[ps.parent_outline]!)))
+        ps.last_outline = ps.parent_outline === 0 ? ps.first_outline : m[o(ps.parent_outline) + 4]!
+        while (m[o(ps.last_outline) + 3] !== 0) ps.last_outline = m[o(ps.last_outline) + 3]!
+      }
+      return
+    }
+    case pdf_dest_node: { // pdftex.web Implement \pdfdest
+      check_pdfoutput(e, '\\pdfdest', true)
+      const q = e.tail, p = new_whatsit_node(pdf_dest_node); tail_append(e, p)
+      let j = obj_type_dest
+      if (scan_keyword(e, 'struct')) {
+        scan_int(e); if (e.cur_val <= 0) pdf_error(e, 'ext1', 'struct identifier must be positive')
+        p.pdf_objnum = e.cur_val; j = obj_type_struct_dest
+      }
+      if (scan_keyword(e, 'num')) {
+        scan_int(e)
+        if (e.cur_val <= 0) pdf_error(e, 'ext1', 'num identifier must be positive')
+        if (e.cur_val > max_halfword) pdf_error(e, 'ext1', 'number too big')
+        p.pdf_id = e.cur_val; p.pdf_named_id = 0
+      } else if (scan_keyword(e, 'name')) { scan_toks(e, false, true); p.pdf_id = e.def_ref; p.pdf_named_id = 1 }
+      else pdf_error(e, 'ext1', 'identifier type missing')
+      if (scan_keyword(e, 'xyz')) {
+        p.pdf_mode = pdf_dest_xyz
+        if (scan_keyword(e, 'zoom')) { scan_int(e); if (e.cur_val > max_halfword) pdf_error(e, 'ext1', 'number too big'); p.pdf_zoom = e.cur_val }
+        else p.pdf_zoom = pdf_null
+      }
+      else if (scan_keyword(e, 'fitbh')) p.pdf_mode = pdf_dest_fitbh
+      else if (scan_keyword(e, 'fitbv')) p.pdf_mode = pdf_dest_fitbv
+      else if (scan_keyword(e, 'fitb')) p.pdf_mode = pdf_dest_fitb
+      else if (scan_keyword(e, 'fith')) p.pdf_mode = pdf_dest_fith
+      else if (scan_keyword(e, 'fitv')) p.pdf_mode = pdf_dest_fitv
+      else if (scan_keyword(e, 'fitr')) p.pdf_mode = pdf_dest_fitr
+      else if (scan_keyword(e, 'fit')) p.pdf_mode = pdf_dest_fit
+      else pdf_error(e, 'ext1', 'destination type missing')
+      scan_optional_space(e)
+      if (p.pdf_mode === pdf_dest_fitr) scan_alt_rule(e, p)
+      const k = find_obj(e, j, p.pdf_named_id !== 0 ? str(tokens_to_string(e, p.pdf_id)) : p.pdf_id)
+      if (k !== 0 && e.ps.obj_node[k]) {
+        warn_dest_dup(e, p.pdf_id, p.pdf_named_id, 'ext4', 'has been already used, duplicate ignored')
+        flush_node_list(e, p); e.tail = q; q.link = null
+      }
+      return
+    }
+    case pdf_thread_node: case pdf_start_thread_node: { // pdftex.web Implement \pdfthread, \pdfstartthread
+      check_pdfoutput(e, chr === pdf_thread_node ? '\\pdfthread' : '\\pdfstartthread', true)
+      const p = new_annot_whatsit(e, chr)
+      if (scan_keyword(e, 'num')) { // scan_thread_id
+        scan_int(e)
+        if (e.cur_val <= 0) pdf_error(e, 'ext1', 'num identifier must be positive')
+        if (e.cur_val > max_halfword) pdf_error(e, 'ext1', 'number too big')
+        p.pdf_id = e.cur_val; p.pdf_named_id = 0
+      } else if (scan_keyword(e, 'name')) { scan_toks(e, false, true); p.pdf_id = e.def_ref; p.pdf_named_id = 1 }
+      else pdf_error(e, 'ext1', 'identifier type missing')
+      return
+    }
+    case pdf_end_thread_node: check_pdfoutput(e, '\\pdfendthread', true); tail_append(e, new_whatsit_node(pdf_end_thread_node)); return
     case reset_timer_code: e.start_ms = performance.now(); return // pdftex.web Implement \pdfresettimer
     default: unsupported(e)
   }

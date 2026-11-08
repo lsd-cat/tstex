@@ -135,6 +135,7 @@ export const open_node = 0, write_node = 1, close_node = 2, special_node = 3, la
   pdf_running_link_on_node = 49
 export const colorstack_set = 0, colorstack_push = 1, colorstack_data = 1, colorstack_pop = 2, colorstack_current = 3
 export const pdf_action_page = 0, pdf_action_goto = 1, pdf_action_thread = 2, pdf_action_user = 3
+export const pdf_null = -0xFFFFFFF // web2c's null (min_halfword), a value \pdfdest's zoom can hold
 export const pdf_dest_xyz = 0, pdf_dest_fit = 1, pdf_dest_fith = 2, pdf_dest_fitv = 3, pdf_dest_fitb = 4, pdf_dest_fitbh = 5,
   pdf_dest_fitbv = 6, pdf_dest_fitr = 7
 // pdftex.web [32d] an action; `id' is a token list when named_id is odd, a number otherwise; `tokens' are the page or user tokens
@@ -160,7 +161,7 @@ export type WhatsitNode = Link & { type: typeof whatsit_node, subtype: number, w
   // pdftex.web: pdf_data = literal/colorstack/setmatrix data, annot data, link attr, thread attr; pdf_mode = literal mode, colorstack
   // command, dest type; pdf_objnum = refobj/xform/ximage/annot/link/dest-struct object, colorstack stack number; pdf_left/top/right
   // share words 1..3 with pdf_width/height/depth, so they are one field each here: pdf_left is pdf_width, pdf_top is pdf_height,
-  // pdf_right is pdf_depth; pdf_named_id/pdf_id the dest/thread identifier, pdf_zoom the xyz zoom (null_flag stands for null)
+  // pdf_right is pdf_depth; pdf_named_id/pdf_id the dest/thread identifier, pdf_zoom the xyz zoom (pdf_null when absent)
   pdf_data: number, pdf_mode: number, pdf_objnum: number, pdf_left: number, pdf_top: number, pdf_right: number, pdf_bottom: number,
   pdf_action: PdfAction | null, pdf_named_id: number, pdf_id: number, pdf_zoom: number, pdf_synthetic: boolean }
 export type MathNode = Link & { type: typeof math_node, subtype: number, width: number }
@@ -574,7 +575,7 @@ export function show_node_list(e: Engine, p: Node | null): void {
             if (p.pdf_named_id > 0) { print(e, ' name'); print_mark(e, p.pdf_id) } else { print(e, ' num'); print_int(e, p.pdf_id) }
             print(e, ' ')
             switch (p.pdf_mode) {
-              case pdf_dest_xyz: print(e, 'xyz'); if (p.pdf_zoom !== null_flag) { print(e, ' zoom'); print_int(e, p.pdf_zoom) } break
+              case pdf_dest_xyz: print(e, 'xyz'); if (p.pdf_zoom !== pdf_null) { print(e, ' zoom'); print_int(e, p.pdf_zoom) } break
               case pdf_dest_fitbh: print(e, 'fitbh'); break
               case pdf_dest_fitbv: print(e, 'fitbv'); break
               case pdf_dest_fitb: print(e, 'fitb'); break

@@ -4,14 +4,15 @@
 import type { Engine } from './engine.ts'
 import { int_base, dimen_base, tex_toks, spotless, warning_issued, fatal_error_stop } from './types.ts'
 import { print, print_char, print_nl, print_ln, print_int, begin_diagnostic, end_diagnostic } from './print.ts'
-import { error, print_err, help, confusion, fatal_error, normalize_selector, succumb, int_error, overflow } from './error.ts'
+import { error, print_err, help, confusion, fatal_error, normalize_selector, succumb, int_error, overflow, show_context } from './error.ts'
 import { int_par, prepare_mag, count_base, mag_code } from './eqtb.ts'
 import { tokens_to_string } from './tokens.ts'
 import { flush_node_list, show_box, zround, is_char_node, hlist_node, vlist_node, rule_node, whatsit_node, glue_node, kern_node,
   math_node, ligature_node, normal, stretching, a_leaders, c_leaders, null_flag, special_node, latespecial_node, pdf_save_pos_node,
   flush_list, delete_token_ref } from './nodes.ts'
 import type { BoxNode, Node, WhatsitNode, PdfAction } from './nodes.ts'
-import { pdf_action_user, pdf_action_page, pdf_action_goto, pdf_action_thread } from './nodes.ts'
+import { pdf_action_user, pdf_action_page, pdf_action_goto, pdf_action_thread, copy_node_list, add_token_ref, new_whatsit_node, print_mark,
+  pdf_dest_xyz, pdf_dest_fit, pdf_dest_fith, pdf_dest_fitv, pdf_dest_fitb, pdf_dest_fitbh, pdf_dest_fitbv, pdf_dest_fitr, pdf_null } from './nodes.ts'
 import { char_info, char_width, char_exists, null_font, param, space_code, space_shrink_code } from './tfm.ts'
 import { char_warning } from './tfm.ts'
 import { open_log_file, print_file_name } from './files.ts'
@@ -76,6 +77,13 @@ export function pdf_state() {
     // [53] token lists of \pdfinfo, \pdfcatalog, \pdfnames, \pdftrailer, \pdftrailerid; the openaction object
     info_toks: 0, catalog_toks: 0, names_toks: 0, trailer_toks: 0, trailer_id_toks: 0, catalog_openaction: 0,
     strs: [''] as string[], // the string pool for named objects: obj_info = -k names strs[k]
+    // [32f] PDF mark lists; obj_node holds obj_annot_ptr/obj_dest_ptr/obj_bead_data (a node, where pdftex keeps a pointer)
+    annot_list: [] as number[], link_list: [] as number[], dest_list: [] as number[], bead_list: [] as number[],
+    obj_node: [] as (WhatsitNode | null | undefined)[],
+    link_stack: [] as { nesting_level: number, link_node: WhatsitNode, ref_link_node: WhatsitNode }[],
+    last_rect: [0, 0, 0, 0], // utils.c last_llx … last_ury for matrixrecalculate
+    last_thread: null as WhatsitNode | null, thread_wd: 0, thread_ht: 0, thread_dp: 0, last_thread_id: 0, last_thread_named_id: false,
+    thread_level: 0, first_outline: 0, last_outline: 0, parent_outline: 0,
   }
 }
 export type PdfState = ReturnType<typeof pdf_state>
@@ -396,6 +404,7 @@ function pdf_print_str(e: Engine, t: string): void {
   }
   if (is_hex) pdf_print(e, t); else { pdf_out(e, 40); pdf_print(e, t); pdf_out(e, 41) }
 }
+export function pdf_print_str_ln(e: Engine, t: string): void { pdf_print_str(e, t); pdf_print_nl(e) }
 function pdf_str_entry_ln(e: Engine, s: string, v: string): void { pdf_out(e, 47); pdf_print(e, s); pdf_out(e, 32); pdf_print_str(e, v); pdf_print_nl(e) }
 
 // [32d] pdf_indirect, pdf_int_entry, pdf_str_entry (no newline)
@@ -651,8 +660,8 @@ function pdf_out_restore(e: Engine): void {
   literal(e, [81], set_origin, false)
 }
 
-// [32f] the whatsit cases of pdf_hlist_out/pdf_vlist_out
-function pdf_out_whatsit(e: Engine, p: WhatsitNode, vlist: boolean): void {
+// [32f] the whatsit cases of pdf_hlist_out/pdf_vlist_out; (x, y) is (left_edge, base_line) or (left_edge, top_edge + height)
+function pdf_out_whatsit(e: Engine, p: WhatsitNode, vlist: boolean, b: BoxNode, x: number, y: number): void {
   switch (p.subtype) {
     case pdf_literal_node: case pdf_lateliteral_node: pdf_out_literal(e, p); return
     case pdf_refobj_node: e.ps.obj_list.push(p.pdf_objnum); return
@@ -667,13 +676,176 @@ function pdf_out_whatsit(e: Engine, p: WhatsitNode, vlist: boolean): void {
     case pdf_setmatrix_node: pdf_out_setmatrix(e, p); return
     case pdf_save_node: pdf_out_save(e); return
     case pdf_restore_node: pdf_out_restore(e); return
-    case pdf_colorstack_node: case pdf_refxform_node:
-    case pdf_refximage_node: case pdf_annot_node: case pdf_start_link_node: case pdf_end_link_node: case pdf_dest_node:
-    case pdf_thread_node: case pdf_start_thread_node: case pdf_end_thread_node: case pdf_snap_ref_point_node: case pdf_fake_space_node:
+    case pdf_annot_node: do_annot(e, p, b, x, y); return
+    case pdf_start_link_node: if (vlist) pdf_error(e, 'ext4', '\\pdfstartlink ended up in vlist'); do_link(e, p, b, x, y); return
+    case pdf_end_link_node: if (vlist) pdf_error(e, 'ext4', '\\pdfendlink ended up in vlist'); end_link(e); return
+    case pdf_dest_node: do_dest(e, p, b, x, y); return
+    case pdf_thread_node: do_thread(e, p, b, x, y); return
+    case pdf_start_thread_node: if (!vlist) pdf_error(e, 'ext4', '\\pdfstartthread ended up in hlist'); do_thread(e, p, b, x, y); return
+    case pdf_end_thread_node: if (!vlist) pdf_error(e, 'ext4', '\\pdfendthread ended up in hlist'); end_thread(e); return
+    case pdf_colorstack_node: case pdf_refxform_node: case pdf_refximage_node: case pdf_snap_ref_point_node: case pdf_fake_space_node:
       break
     default: out_what(e, p); return
   }
   fatal_error(e, `unsupported: PDF whatsit ${p.subtype} in shipout`) // pass B
+}
+
+// utils.c matrixtransformrect, matrixtransformpoint, matrixrecalculate (the results are returned, not kept in ret_llx …)
+function do_matrixtransform(e: Engine, x: number, y: number): [number, number] {
+  const m = e.ps.matrix_stack[e.ps.matrix_stack.length - 1]!
+  const r = (v: number) => Math.trunc(v > 0 ? v + 0.5 : v - 0.5) // DO_ROUND, then (scaled)
+  return [r(x * m[0]! + y * m[2]! + m[4]!), r(x * m[1]! + y * m[3]! + m[5]!)]
+}
+function matrixtransformrect(e: Engine, llx: number, lly: number, urx: number, ury: number): number[] {
+  const s = e.ps
+  if (!(s.page_mode && s.matrix_stack.length > 0)) return [llx, lly, urx, ury]
+  s.last_rect = [llx, lly, urx, ury]
+  const [x1, y1] = do_matrixtransform(e, llx, lly), [x2, y2] = do_matrixtransform(e, llx, ury)
+  const [x3, y3] = do_matrixtransform(e, urx, lly), [x4, y4] = do_matrixtransform(e, urx, ury)
+  return [Math.min(x1, x2, x3, x4), Math.min(y1, y2, y3, y4), Math.max(x1, x2, x3, x4), Math.max(y1, y2, y3, y4)]
+}
+const matrixused = (e: Engine) => e.ps.matrix_stack.length > 0
+
+// [53] set_rect_dimens: pdf_left/top/right are pdf_width/height/depth, so w, h, d are read before they are overwritten
+function set_rect_dimens(e: Engine, p: WhatsitNode, b: BoxNode, x: number, y: number, w: number, h: number, d: number, margin: number): void {
+  p.pdf_left = e.cur_h
+  p.pdf_right = w === null_flag ? (x + b.width) | 0 : (e.cur_h + w) | 0
+  p.pdf_top = h === null_flag ? (y - b.height) | 0 : (e.cur_v - h) | 0
+  p.pdf_bottom = d === null_flag ? (y + b.depth) | 0 : (e.cur_v + d) | 0
+  if (e.ps.is_shipping_page && matrixused(e)) {
+    const H = e.cur_page_height
+    const [llx, lly, urx, ury] = matrixtransformrect(e, p.pdf_left, (H - p.pdf_bottom) | 0, p.pdf_right, (H - p.pdf_top) | 0)
+    p.pdf_left = llx!; p.pdf_bottom = (H - lly!) | 0; p.pdf_right = urx!; p.pdf_top = (H - ury!) | 0
+  }
+  p.pdf_left = (p.pdf_left - margin) | 0; p.pdf_top = (p.pdf_top - margin) | 0
+  p.pdf_right = (p.pdf_right + margin) | 0; p.pdf_bottom = (p.pdf_bottom + margin) | 0
+}
+const dimen_par = (e: Engine, c: number) => e.equiv[dimen_base + c]!
+const pdf_link_margin_code = 25, pdf_dest_margin_code = 26, pdf_thread_margin_code = 27, pdf_suppress_warning_dup_dest_code = 83
+const is_obj_scheduled = (e: Engine, k: number) => e.ps.obj_offset[k]! > -2
+const set_obj_scheduled = (e: Engine, k: number) => { if (e.ps.obj_offset[k] === -2) e.ps.obj_offset[k] = -1 }
+
+// [53] do_annot
+function do_annot(e: Engine, p: WhatsitNode, b: BoxNode, x: number, y: number): void {
+  if (!e.ps.is_shipping_page) pdf_error(e, 'ext4', 'annotations cannot be inside an XForm')
+  if (e.doing_leaders) return
+  if (is_obj_scheduled(e, p.pdf_objnum)) p.pdf_objnum = pdf_new_objnum(e)
+  set_rect_dimens(e, p, b, x, y, p.pdf_left, p.pdf_top, p.pdf_right, 0)
+  e.ps.obj_node[p.pdf_objnum] = p
+  e.ps.annot_list.push(p.pdf_objnum)
+  set_obj_scheduled(e, p.pdf_objnum)
+}
+
+// [53] push_link_level, pop_link_level, do_link, end_link, append_link (copy_node_list copies the node alone here: pdftex
+// copies the rest of the list too and drops it, which only costs memory)
+const pdf_max_link_level = 10
+function copy_one(e: Engine, p: WhatsitNode): WhatsitNode { return copy_node_list(e, { ...p, link: null }) as WhatsitNode }
+function do_link(e: Engine, p: WhatsitNode, b: BoxNode, x: number, y: number): void {
+  const s = e.ps
+  if (!s.is_shipping_page) pdf_error(e, 'ext4', 'link annotations cannot be inside an XForm')
+  if (is_obj_scheduled(e, p.pdf_objnum)) p.pdf_objnum = pdf_new_objnum(e)
+  if (s.link_stack.length >= pdf_max_link_level) overflow(e, 'pdf link stack size', pdf_max_link_level)
+  s.link_stack.push({ nesting_level: e.cur_s, link_node: copy_one(e, p), ref_link_node: p })
+  set_rect_dimens(e, p, b, x, y, p.pdf_left, p.pdf_top, p.pdf_right, dimen_par(e, pdf_link_margin_code))
+  s.obj_node[p.pdf_objnum] = p
+  s.link_list.push(p.pdf_objnum)
+  set_obj_scheduled(e, p.pdf_objnum)
+}
+function end_link(e: Engine): void {
+  const s = e.ps, top = s.link_stack[s.link_stack.length - 1]
+  if (top === undefined) pdf_error(e, 'ext4', 'pdf_link_stack empty, \\pdfendlink used without \\pdfstartlink?')
+  if (top.nesting_level !== e.cur_s) pdf_warning(e, '', '\\pdfendlink ended up in different nesting level than \\pdfstartlink', true, true)
+  if (top.link_node.pdf_left === null_flag) {
+    const p = top.ref_link_node, m = dimen_par(e, pdf_link_margin_code)
+    if (s.is_shipping_page && matrixused(e)) {
+      const [llx, lly, urx, ury] = matrixtransformrect(e, s.last_rect[0]!, s.last_rect[1]!, (e.cur_h + m) | 0, s.last_rect[3]!) // matrixrecalculate
+      p.pdf_left = (llx! - m) | 0; p.pdf_top = (e.cur_page_height - ury! - m) | 0
+      p.pdf_right = (urx! + m) | 0; p.pdf_bottom = (e.cur_page_height - lly! + m) | 0
+    } else p.pdf_right = (e.cur_h + m) | 0
+  }
+  flush_node_list(e, top.link_node); s.link_stack.pop() // pop_link_level
+}
+function append_link(e: Engine, b: BoxNode, x: number, y: number, i: number): void {
+  const s = e.ps, p = copy_one(e, s.link_stack[i]!.link_node)
+  s.link_stack[i]!.ref_link_node = p
+  p.pdf_synthetic = true // info(p) := max_halfword: not linked in any list
+  set_rect_dimens(e, p, b, x, y, p.pdf_left, p.pdf_top, p.pdf_right, dimen_par(e, pdf_link_margin_code))
+  pdf_create_obj(e, obj_type_others, 0)
+  s.obj_node[s.obj_ptr] = p
+  s.link_list.push(s.obj_ptr)
+}
+
+// [53] append_bead, do_thread, append_thread, end_thread
+function append_bead(e: Engine, p: WhatsitNode): void {
+  const s = e.ps, m = s.mem
+  if (!s.is_shipping_page) pdf_error(e, 'ext4', 'threads cannot be inside an XForm')
+  const t = get_obj(e, obj_type_thread, p.pdf_id, p.pdf_named_id)
+  const b = pdf_new_objnum(e), d = s.obj_aux[b] = pdf_get_mem(e, 5) // obj_bead_rect/data, page, next, prev, attr
+  m[d + 1] = s.last_page; s.obj_node[b] = p
+  if (p.pdf_data !== 0) { s.strs.push(str(tokens_to_string(e, p.pdf_data))); m[d + 4] = s.strs.length - 1 } else m[d + 4] = 0
+  if (s.obj_aux[t] === 0) { s.obj_aux[t] = b; m[d + 2] = b; m[d + 3] = b }
+  else {
+    const a = s.obj_aux[t]!, c = m[s.obj_aux[a]! + 3]!
+    m[d + 3] = c; m[d + 2] = a; m[s.obj_aux[a]! + 3] = b; m[s.obj_aux[c]! + 2] = b
+  }
+  s.bead_list.push(b)
+}
+function do_thread(e: Engine, p: WhatsitNode, b: BoxNode, x: number, y: number): void {
+  const s = e.ps
+  if (e.doing_leaders) return
+  if (p.subtype === pdf_start_thread_node) {
+    s.thread_wd = p.pdf_left; s.thread_ht = p.pdf_top; s.thread_dp = p.pdf_right
+    s.last_thread_id = p.pdf_id; s.last_thread_named_id = p.pdf_named_id > 0
+    if (s.last_thread_named_id) add_token_ref(e, p.pdf_id)
+    s.thread_level = e.cur_s
+  }
+  set_rect_dimens(e, p, b, x, y, p.pdf_left, p.pdf_top, p.pdf_right, dimen_par(e, pdf_thread_margin_code))
+  append_bead(e, p)
+  s.last_thread = p
+}
+function append_thread(e: Engine, b: BoxNode, x: number, y: number): void {
+  const s = e.ps, p = new_whatsit_node(pdf_start_thread_node)
+  p.pdf_synthetic = true
+  p.pdf_left = s.thread_wd; p.pdf_top = s.thread_ht; p.pdf_right = s.thread_dp
+  p.pdf_id = s.last_thread_id
+  if (s.last_thread_named_id) { add_token_ref(e, p.pdf_id); p.pdf_named_id = 1 }
+  set_rect_dimens(e, p, b, x, y, p.pdf_left, p.pdf_top, p.pdf_right, dimen_par(e, pdf_thread_margin_code))
+  append_bead(e, p)
+  s.last_thread = p
+}
+function end_thread(e: Engine): void {
+  const s = e.ps
+  if (s.thread_level !== e.cur_s) pdf_error(e, 'ext4', '\\pdfendthread ended up in different nesting level than \\pdfstartthread')
+  if (s.thread_dp === null_flag && s.last_thread !== null) s.last_thread.pdf_bottom = (e.cur_v + dimen_par(e, pdf_thread_margin_code)) | 0
+  if (s.last_thread_named_id) delete_token_ref(e, s.last_thread_id)
+  s.last_thread = null
+}
+
+// [53] warn_dest_dup
+export function warn_dest_dup(e: Engine, id: number, byname: number, s1: string, s2: string): void {
+  if (int_par(e, pdf_suppress_warning_dup_dest_code) > 0) return
+  pdf_warning(e, s1, 'destination with the same identifier (', true, false)
+  if (byname > 0) { print(e, 'name'); print_mark(e, id) } else { print(e, 'num'); print_int(e, id) }
+  print(e, ') '); print(e, s2); print_ln(e)
+  show_context(e)
+}
+
+// [53] do_dest
+function do_dest(e: Engine, p: WhatsitNode, b: BoxNode, x: number, y: number): void {
+  const s = e.ps
+  if (!s.is_shipping_page) pdf_error(e, 'ext4', 'destinations cannot be inside an XForm')
+  if (e.doing_leaders) return
+  const k = get_obj(e, p.pdf_objnum === 0 ? obj_type_dest : obj_type_struct_dest, p.pdf_id, p.pdf_named_id)
+  if (s.obj_node[k]) { warn_dest_dup(e, p.pdf_id, p.pdf_named_id, 'ext4', 'has been already used, duplicate ignored'); return }
+  s.obj_node[k] = p
+  s.dest_list.push(k)
+  const margin = dimen_par(e, pdf_dest_margin_code), rect = () => set_rect_dimens(e, p, b, x, y, p.pdf_left, p.pdf_top, p.pdf_right, margin)
+  switch (p.pdf_mode) {
+    case pdf_dest_xyz: if (matrixused(e)) rect(); else { p.pdf_left = e.cur_h; p.pdf_top = e.cur_v } break
+    case pdf_dest_fith: case pdf_dest_fitbh: if (matrixused(e)) rect(); else p.pdf_top = e.cur_v; break
+    case pdf_dest_fitv: case pdf_dest_fitbv: if (matrixused(e)) rect(); else p.pdf_left = e.cur_h; break
+    case pdf_dest_fitr: rect(); break
+  }
 }
 
 // [32f] glue in pdf_hlist_out/pdf_vlist_out: vet_glue and round
@@ -693,6 +865,9 @@ function pdf_hlist_out(e: Engine, this_box: BoxNode): void {
   let p = this_box.list_ptr
   e.cur_s++
   const base_line = e.cur_v, left_edge = e.cur_h
+  // Create link annotations for the current hbox if needed
+  for (let i = 0; i < e.ps.link_stack.length; i++)
+    if (e.ps.link_stack[i]!.nesting_level === e.cur_s && e.ps.gen_running_link) append_link(e, this_box, left_edge, base_line, i)
   while (p !== null) {
     if (is_char_node(p) || p.type === ligature_node) { // a ligature looks like a char_node
       do {
@@ -718,7 +893,7 @@ function pdf_hlist_out(e: Engine, this_box: BoxNode): void {
             }
             break
           case rule_node: rule_ht = p.height; rule_dp = p.depth; rule_wd = p.width; break fin_rule
-          case whatsit_node: pdf_out_whatsit(e, p, false); break
+          case whatsit_node: pdf_out_whatsit(e, p, false, this_box, left_edge, base_line); break
           case glue_node: { // (pdfTeX) Move right or output leaders
             rule_wd = (e.spec[p.glue_ptr]!.width - st.cur_g) | 0
             glue_amount(e, st, this_box, p.glue_ptr)
@@ -799,6 +974,9 @@ function pdf_vlist_out(e: Engine, this_box: BoxNode): void {
   const left_edge = e.cur_h
   e.cur_v = (e.cur_v - this_box.height) | 0
   const top_edge = e.cur_v
+  // Create thread for the current vbox if needed
+  if (e.ps.last_thread !== null && e.ps.thread_dp === null_flag && e.ps.thread_level === e.cur_s)
+    append_thread(e, this_box, left_edge, (top_edge + this_box.height) | 0)
   for (; p !== null; p = p.link) {
     if (is_char_node(p)) confusion(e, 'pdfvlistout')
     let rule_ht = 0, rule_dp = 0, rule_wd = 0
@@ -814,7 +992,7 @@ function pdf_vlist_out(e: Engine, this_box: BoxNode): void {
           }
           continue
         case rule_node: rule_ht = p.height; rule_dp = p.depth; rule_wd = p.width; break fin_rule
-        case whatsit_node: pdf_out_whatsit(e, p, true); continue
+        case whatsit_node: pdf_out_whatsit(e, p, true, this_box, left_edge, (top_edge + this_box.height) | 0); continue
         case glue_node: { // (pdfTeX) Move down or output leaders
           rule_ht = (e.spec[p.glue_ptr]!.width - st.cur_g) | 0
           glue_amount(e, st, this_box, p.glue_ptr)
@@ -918,6 +1096,7 @@ export function pdf_ship_out(e: Engine, p: BoxNode): void {
     s.last_stream = s.obj_ptr
     e.cur_h = s.cur_h_offset; e.cur_v = (p.height + s.cur_v_offset) | 0
     s.origin_h = 0; s.origin_v = e.cur_page_height
+    s.annot_list = []; s.link_list = []; s.dest_list = []; s.bead_list = []; s.last_thread = null // Reset PDF mark lists
     // Start stream of page/form contents
     pdf_begin_stream(e)
     prepare_mag(e)
@@ -945,9 +1124,21 @@ export function pdf_ship_out(e: Engine, p: BoxNode): void {
     if (page_attr !== 0) pdf_print_toks_ln(e, page_attr)
     if (e.total_pages % pages_tree_kids_max === 1) { pdf_create_obj(e, obj_type_pages, pages_tree_kids_max); s.last_pages = s.obj_ptr }
     pdf_indirect_ln(e, 'Parent', s.last_pages)
+    // Generate array of annotations or beads in page
+    if (s.annot_list.length > 0 || s.link_list.length > 0) {
+      pdf_print(e, '/Annots [ ')
+      for (const k of s.annot_list.concat(s.link_list)) { pdf_print_int(e, k); pdf_print(e, ' 0 R ') }
+      pdf_print_ln(e, ']')
+    }
+    if (s.bead_list.length > 0) {
+      pdf_print(e, '/B [ ')
+      for (const k of s.bead_list) { pdf_print_int(e, k); pdf_print(e, ' 0 R ') }
+      pdf_print_ln(e, ']')
+    }
     pdf_end_dict(e)
     // Write out resource lists: Write out pending raw objects
     for (const k of s.obj_list) if (!is_obj_written(e, k)) pdf_write_obj(e, k)
+    write_pdf_marks(e)
     // Write out resources dictionary
     pdf_begin_dict(e, pdf_last_resources, 1)
     const page_resources = e.equiv[pdf_page_resources_loc]!
@@ -975,6 +1166,74 @@ export function pdf_ship_out(e: Engine, p: BoxNode): void {
   if (int_par(e, tracing_stats_code) > 1) { print_nl(e, 'Memory usage before: '); print(e, '0&0;') }
   flush_node_list(e, p)
   if (int_par(e, tracing_stats_code) > 1) { print(e, ' after: 0&0; still untouched: 0'); print_ln(e) }
+}
+
+// [32f] Write out pending PDF marks (the start-link and thread nodes made by append_link/append_thread are garbage afterwards)
+function pdf_rectangle(e: Engine, p: WhatsitNode): void {
+  const s = e.ps
+  prepare_mag(e)
+  pdf_print(e, '/Rect [')
+  pdf_print_mag_bp(e, p.pdf_left - s.origin_h); pdf_out(e, 32); pdf_print_mag_bp(e, s.origin_v - p.pdf_bottom); pdf_out(e, 32)
+  pdf_print_mag_bp(e, p.pdf_right - s.origin_h); pdf_out(e, 32); pdf_print_mag_bp(e, s.origin_v - p.pdf_top)
+  pdf_print_ln(e, ']')
+}
+function pdf_print_rect_spec(e: Engine, p: WhatsitNode): void {
+  const s = e.ps
+  pdf_print_mag_bp(e, p.pdf_left - s.origin_h); pdf_out(e, 32); pdf_print_mag_bp(e, s.origin_v - p.pdf_bottom); pdf_out(e, 32)
+  pdf_print_mag_bp(e, p.pdf_right - s.origin_h); pdf_out(e, 32); pdf_print_mag_bp(e, s.origin_v - p.pdf_top)
+}
+function write_pdf_marks(e: Engine): void {
+  const s = e.ps
+  s.origin_h = 0; s.origin_v = e.cur_page_height
+  for (const k of s.annot_list) { // Write out PDF annotations
+    const i = s.obj_node[k]!
+    pdf_begin_dict(e, k, 1); pdf_print_ln(e, '/Type /Annot'); pdf_print_toks_ln(e, i.pdf_data); pdf_rectangle(e, i); pdf_end_dict(e)
+  }
+  for (const k of s.link_list) { // Write out PDF link annotations
+    const i = s.obj_node[k]!, user = i.pdf_action!.type === pdf_action_user
+    pdf_begin_dict(e, k, 1); pdf_print_ln(e, '/Type /Annot')
+    if (!user) pdf_print_ln(e, '/Subtype /Link')
+    if (i.pdf_data !== 0) pdf_print_toks_ln(e, i.pdf_data)
+    pdf_rectangle(e, i)
+    if (!user) pdf_print(e, '/A ')
+    write_action(e, i.pdf_action!)
+    pdf_end_dict(e)
+  }
+  for (const k of s.link_list) { const i = s.obj_node[k]!; if (i.pdf_synthetic) flush_node_list(e, i) }
+  for (const k of s.dest_list) { // Write out PDF mark destinations
+    if (is_obj_written(e, k)) { pdf_error(e, 'ext5', "destination has been already written (this shouldn't happen)") }
+    const i = s.obj_node[k]!, dict = i.pdf_named_id > 0 && i.pdf_objnum === 0
+    if (dict) { pdf_begin_dict(e, k, 1); pdf_print(e, '/D ') } else pdf_begin_obj(e, k, 1)
+    pdf_out(e, 91); pdf_print_int(e, i.pdf_objnum === 0 ? s.last_page : i.pdf_objnum); pdf_print(e, ' 0 R ')
+    const x = () => pdf_print_mag_bp(e, i.pdf_left - s.origin_h), y = () => pdf_print_mag_bp(e, s.origin_v - i.pdf_top)
+    switch (i.pdf_mode) {
+      case pdf_dest_xyz:
+        pdf_print(e, '/XYZ '); x(); pdf_out(e, 32); y(); pdf_out(e, 32)
+        if (i.pdf_zoom === pdf_null) pdf_print(e, 'null')
+        else { pdf_print_int(e, Math.trunc(i.pdf_zoom / 1000)); pdf_out(e, 46); pdf_print_int(e, i.pdf_zoom % 1000) }
+        break
+      case pdf_dest_fit: pdf_print(e, '/Fit'); break
+      case pdf_dest_fith: pdf_print(e, '/FitH '); y(); break
+      case pdf_dest_fitv: pdf_print(e, '/FitV '); x(); break
+      case pdf_dest_fitb: pdf_print(e, '/FitB'); break
+      case pdf_dest_fitbh: pdf_print(e, '/FitBH '); y(); break
+      case pdf_dest_fitbv: pdf_print(e, '/FitBV '); x(); break
+      case pdf_dest_fitr: pdf_print(e, '/FitR '); pdf_print_rect_spec(e, i); break
+      default: pdf_error(e, 'ext5', 'unknown dest type')
+    }
+    pdf_print_ln(e, ']')
+    if (dict) pdf_end_dict(e); else pdf_end_obj(e)
+  }
+  for (const k of s.bead_list) { // Write out PDF bead rectangle specifications
+    pdf_new_obj(e, obj_type_others, 0, 1)
+    pdf_out(e, 91)
+    const i = s.obj_node[k]!
+    pdf_print_rect_spec(e, i)
+    if (i.pdf_synthetic) flush_node_list(e, i)
+    pdf_print_ln(e, ']')
+    s.mem[s.obj_aux[k]!] = s.obj_ptr // obj_bead_rect
+    pdf_end_obj(e)
+  }
 }
 
 // [32f] pdf_write_obj (raw objects from \pdfobj; files are pass B)
@@ -1036,6 +1295,18 @@ export function finish_pdf_file(e: Engine): void {
     k = s.head_tab[obj_type_pages]!; s.pages_tail = k; l = 0
     do { const i = s.obj_link[k]!; s.obj_link[k] = l; l = k; k = i } while (k !== 0)
     s.head_tab[obj_type_pages] = l
+    // Check for non-existing destinations, structure destinations (pdf_fix_dest, pdf_fix_struct_dest)
+    for (k = s.head_tab[obj_type_dest]!; k !== 0; k = s.obj_link[k]!) {
+      if (s.obj_node[k]) continue
+      pdf_warning(e, 'dest', '', true, false); print_obj_id(e, k)
+      print(e, ' has been referenced but does not exist, replaced by a fixed one'); print_ln(e); print_ln(e)
+      pdf_begin_obj(e, k, 1); pdf_out(e, 91); pdf_print_int(e, s.head_tab[obj_type_page]!); pdf_print_ln(e, ' 0 R /Fit]'); pdf_end_obj(e)
+    }
+    for (k = s.head_tab[obj_type_struct_dest]!; k !== 0; k = s.obj_link[k]!) {
+      if (s.obj_node[k]) continue
+      pdf_warning(e, 'structure dest', '', false, false); print_obj_id(e, k)
+      print(e, ' has been referenced but does not exist'); print_ln(e); print_ln(e)
+    }
     // Output fonts definition (fonts sharing an object merge their used characters; \pdffontattr is pass B)
     for (let f = 1; f <= e.font_ptr; f++) {
       if (e.font_used[f] && hasfmentry(e, f) && s.font_num[f]! < 0) {
@@ -1079,7 +1350,7 @@ export function finish_pdf_file(e: Engine): void {
       b = c
       if (l === 0) break
     }
-    const outlines = 0, names_tree = 0, threads = 0 // Output outlines, name tree, article threads
+    const outlines = output_outlines(e), names_tree = output_name_tree(e), threads = output_threads(e)
     // Output the catalog object
     pdf_new_dict(e, obj_type_others, 0, 1)
     const root = s.obj_ptr
@@ -1144,6 +1415,202 @@ export function finish_pdf_file(e: Engine): void {
     e.log += ` ${s.dest_names_ptr} named destinations out of ${s.dest_names_size} (max. ${sup_dest_names_size})\n`
       + ` ${s.mem_ptr} words of extra memory for PDF output out of ${s.mem_size} (max. ${sup_pdf_mem_size})\n`
   }
+}
+
+// [32f] `name{…}' or `num…' of a dest/thread object
+function print_obj_id(e: Engine, k: number): void {
+  const i = e.ps.obj_info[k]!
+  if (i < 0) { print(e, 'name{'); print(e, e.ps.strs[-i]!); print(e, '}') } else { print(e, 'num'); print_int(e, i) }
+}
+
+// [32f] Output outlines (the outline fields live in pdf_mem: title, parent, prev, next, first, last, action, attr)
+function open_subentries(e: Engine, p: number): number {
+  const s = e.ps, m = s.mem, o = (q: number) => s.obj_aux[q]!
+  let k = 0
+  if (m[o(p) + 4] !== 0) {
+    let l = m[o(p) + 4]!
+    do {
+      k++
+      const c = open_subentries(e, l)
+      if (s.obj_info[l]! > 0) k += c
+      m[o(l) + 1] = p
+      const r = m[o(l) + 3]!
+      if (r === 0) m[o(p) + 5] = l
+      l = r
+    } while (l !== 0)
+  }
+  s.obj_info[p] = s.obj_info[p]! > 0 ? k : -k
+  return k
+}
+function output_outlines(e: Engine): number {
+  const s = e.ps, m = s.mem, o = (q: number) => s.obj_aux[q]!
+  if (s.first_outline === 0) return 0
+  pdf_new_dict(e, obj_type_others, 0, 1)
+  const outlines = s.obj_ptr
+  let l = s.first_outline, k = 0
+  do {
+    k++
+    const a = open_subentries(e, l)
+    if (s.obj_info[l]! > 0) k += a
+    m[o(l) + 1] = s.obj_ptr
+    l = m[o(l) + 3]!
+  } while (l !== 0)
+  pdf_print_ln(e, '/Type /Outlines')
+  pdf_indirect_ln(e, 'First', s.first_outline); pdf_indirect_ln(e, 'Last', s.last_outline)
+  pdf_int_entry_ln(e, 'Count', k)
+  pdf_end_dict(e)
+  for (k = s.head_tab[obj_type_outline]!; k !== 0; k = s.obj_link[k]!) { // Output PDF outline entries
+    const d = o(k)
+    if (m[d + 1] === s.parent_outline) {
+      if (m[d + 2] === 0) s.first_outline = k
+      if (m[d + 3] === 0) s.last_outline = k
+    }
+    pdf_begin_dict(e, k, 1)
+    pdf_indirect_ln(e, 'Title', m[d]!); pdf_indirect_ln(e, 'A', m[d + 6]!)
+    if (m[d + 1] !== 0) pdf_indirect_ln(e, 'Parent', m[d + 1]!)
+    if (m[d + 2] !== 0) pdf_indirect_ln(e, 'Prev', m[d + 2]!)
+    if (m[d + 3] !== 0) pdf_indirect_ln(e, 'Next', m[d + 3]!)
+    if (m[d + 4] !== 0) pdf_indirect_ln(e, 'First', m[d + 4]!)
+    if (m[d + 5] !== 0) pdf_indirect_ln(e, 'Last', m[d + 5]!)
+    if (s.obj_info[k] !== 0) pdf_int_entry_ln(e, 'Count', s.obj_info[k]!)
+    if (m[d + 7] !== 0) { pdf_print_toks_ln(e, m[d + 7]!); delete_token_ref(e, m[d + 7]!); m[d + 7] = 0 }
+    pdf_end_dict(e)
+  }
+  return outlines
+}
+
+// [32f] str_less_str: compare two PDF strings after their escapes (get_next_char)
+function str_less_str(a: string, b: string): boolean {
+  let j1 = 0, j2 = 0
+  const next = (t: string, j: number): [number, number] => {
+    let c = t.charCodeAt(j++)
+    if (c === 92 && j < t.length) {
+      c = t.charCodeAt(j++)
+      if (c >= 48 && c <= 55) {
+        c -= 48
+        if (j < t.length && t.charCodeAt(j) >= 48 && t.charCodeAt(j) <= 55) {
+          c = 8 * c + t.charCodeAt(j++) - 48
+          if (j < t.length && t.charCodeAt(j) >= 48 && t.charCodeAt(j) <= 55 && c < 32) c = 8 * c + t.charCodeAt(j++) - 48
+        }
+      } else c = c === 98 ? 8 : c === 102 ? 12 : c === 110 ? 10 : c === 114 ? 13 : c === 116 ? 9 : c
+    }
+    return [c, j]
+  }
+  while (j1 < a.length && j2 < b.length) {
+    let c1, c2
+    [c1, j1] = next(a, j1); [c2, j2] = next(b, j2)
+    if (c1 < c2) return true
+    if (c1 > c2) return false
+  }
+  return j1 >= a.length && j2 < b.length
+}
+// [32f] sort_dest_names (Hoare's quicksort as pdftex has it; equal names keep pdftex's order)
+function sort_dest_names(e: Engine, l: number, r: number): void {
+  const d = e.ps.dest_names, nm = (k: number) => e.ps.strs[d[k]!.objname]!
+  let i = l, j = r
+  const s = nm(Math.trunc((l + r) / 2))
+  do {
+    while (str_less_str(nm(i), s)) i++
+    while (str_less_str(s, nm(j))) j--
+    if (i <= j) { const t = d[i]!; d[i] = d[j]!; d[j] = t; i++; j-- }
+  } while (i <= j)
+  if (l < j) sort_dest_names(e, l, j)
+  if (i < r) sort_dest_names(e, i, r)
+}
+// [32f] Output name tree (obj_info/obj_aux of a node hold the string numbers of its /Limits)
+const name_tree_kids_max = 6
+function output_name_tree(e: Engine): number {
+  const s = e.ps, dn = s.dest_names
+  let dests = 0
+  if (s.dest_names_ptr > 0) {
+    sort_dest_names(e, 0, s.dest_names_ptr - 1)
+    let names_head = 0, names_tail = 0, k = 0, is_names = true, b = 0, l = 0
+    for (;;) {
+      do {
+        pdf_create_obj(e, obj_type_others, 0); l = s.obj_ptr
+        if (b === 0) b = l
+        if (names_head === 0) { names_head = l; names_tail = l } else { s.obj_link[names_tail] = l; names_tail = l }
+        s.obj_link[names_tail] = 0
+        // Output the current node in this level
+        pdf_begin_dict(e, l, 1)
+        let j = 0
+        if (is_names) {
+          s.obj_info[l] = dn[k]!.objname
+          pdf_print(e, '/Names [')
+          do {
+            pdf_print_str(e, s.strs[dn[k]!.objname]!); pdf_out(e, 32); pdf_print_int(e, dn[k]!.objnum); pdf_print(e, ' 0 R ')
+            j++; k++
+          } while (j !== name_tree_kids_max && k !== s.dest_names_ptr)
+          remove_last_space(e); pdf_print_ln(e, ']')
+          s.obj_aux[l] = dn[k - 1]!.objname
+          if (k === s.dest_names_ptr) { is_names = false; k = names_head; b = 0 }
+        } else {
+          s.obj_info[l] = s.obj_info[k]!
+          pdf_print(e, '/Kids [')
+          do {
+            pdf_print_int(e, k); pdf_print(e, ' 0 R ')
+            j++; s.obj_aux[l] = s.obj_aux[k]!; k = s.obj_link[k]!
+          } while (j !== name_tree_kids_max && k !== b && s.obj_link[k] !== 0)
+          remove_last_space(e); pdf_print_ln(e, ']')
+          if (k === b) b = 0
+        }
+        pdf_print(e, '/Limits ['); pdf_print_str(e, s.strs[s.obj_info[l]!]!); pdf_out(e, 32); pdf_print_str(e, s.strs[s.obj_aux[l]!]!)
+        pdf_print_ln(e, ']')
+        pdf_end_dict(e)
+      } while (b !== 0)
+      if (k === l) { dests = l; break }
+    }
+  }
+  if (dests === 0 && s.names_toks === 0) return 0
+  pdf_new_dict(e, obj_type_others, 0, 1)
+  if (dests !== 0) pdf_indirect_ln(e, 'Dests', dests)
+  if (s.names_toks !== 0) { pdf_print_toks_ln(e, s.names_toks); delete_token_ref(e, s.names_toks); s.names_toks = 0 }
+  pdf_end_dict(e)
+  return s.obj_ptr
+}
+
+// [53] thread_title, pdf_fix_thread, out_thread; [32f] Output article threads (beads: rect, page, next, prev, attr in pdf_mem)
+function thread_title(e: Engine, t: number): void {
+  const i = e.ps.obj_info[t]!
+  pdf_print(e, '/Title ('); if (i < 0) pdf_print(e, e.ps.strs[-i]!); else pdf_print_int(e, i); pdf_print_ln(e, ')')
+}
+function output_threads(e: Engine): number {
+  const s = e.ps, m = s.mem, o = (q: number) => s.obj_aux[q]!
+  if (s.head_tab[obj_type_thread] === 0) return 0
+  pdf_new_obj(e, obj_type_others, 0, 1)
+  const threads = s.obj_ptr
+  pdf_out(e, 91)
+  for (let k = s.head_tab[obj_type_thread]!; k !== 0; k = s.obj_link[k]!) { pdf_print_int(e, k); pdf_print(e, ' 0 R ') }
+  remove_last_space(e); pdf_print_ln(e, ']'); pdf_end_obj(e)
+  for (let t = s.head_tab[obj_type_thread]!; t !== 0; t = s.obj_link[t]!) {
+    if (s.obj_aux[t] === 0) { // pdf_fix_thread
+      pdf_warning(e, 'thread', 'destination ', true, false); print_obj_id(e, t)
+      print(e, ' has been referenced but does not exist, replaced by a fixed one'); print_ln(e); print_ln(e)
+      pdf_new_dict(e, obj_type_others, 0, 0)
+      const a = s.obj_ptr
+      pdf_indirect_ln(e, 'T', t); pdf_indirect_ln(e, 'V', a); pdf_indirect_ln(e, 'N', a); pdf_indirect_ln(e, 'P', s.head_tab[obj_type_page]!)
+      pdf_print(e, '/R [0 0 '); pdf_print_bp(e, dimen_par(e, pdf_page_width_code)); pdf_out(e, 32); pdf_print_bp(e, dimen_par(e, pdf_page_height_code))
+      pdf_print_ln(e, ']'); pdf_end_dict(e)
+      pdf_begin_dict(e, t, 1); pdf_print_ln(e, '/I << '); thread_title(e, t); pdf_print_ln(e, '>>'); pdf_indirect_ln(e, 'F', a); pdf_end_dict(e)
+      continue
+    }
+    pdf_begin_dict(e, t, 1)
+    let a = s.obj_aux[t]!, last_attr = 0
+    const b = a
+    do { if (m[o(a) + 4] !== 0) last_attr = m[o(a) + 4]!; a = m[o(a) + 2]! } while (a !== b)
+    if (last_attr !== 0) pdf_print_ln(e, s.strs[last_attr]!)
+    else { pdf_print_ln(e, '/I << '); thread_title(e, t); pdf_print_ln(e, '>>') }
+    pdf_indirect_ln(e, 'F', a); pdf_end_dict(e)
+    do {
+      pdf_begin_dict(e, a, 1)
+      if (a === b) pdf_indirect_ln(e, 'T', t)
+      pdf_indirect_ln(e, 'V', m[o(a) + 3]!); pdf_indirect_ln(e, 'N', m[o(a) + 2]!)
+      pdf_indirect_ln(e, 'P', m[o(a) + 1]!); pdf_indirect_ln(e, 'R', m[o(a)]!)
+      pdf_end_dict(e)
+      a = m[o(a) + 2]!
+    } while (a !== b)
+  }
+  return threads
 }
 
 // Build a linked list of free objects
