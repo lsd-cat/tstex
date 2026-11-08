@@ -2,7 +2,9 @@
 import { etex_pen_base } from './types.ts'
 // \interlinepenalties etc. are inactive in this engine)
 import type { Engine } from './engine.ts'
-import { no_TeXXeT } from './etex.ts'
+import { no_TeXXeT, fract, last_line_fit_code } from './etex.ts'
+import { print_scaled } from './arith.ts'
+import { max_dimen } from './scan.ts'
 import { print, print_char, print_esc, print_int, print_nl, begin_diagnostic, end_diagnostic } from './print.ts'
 import { badness, inf_bad } from './arith.ts'
 import { error, print_err, help, confusion, fatal_error, normalize_selector } from './error.ts'
@@ -14,7 +16,7 @@ import type { Node, BoxNode, DiscNode, GlueNode, PenaltyNode } from './nodes.ts'
 import { char_info, char_width, null_font } from './tfm.ts'
 import { hpack, append_to_vlist, exactly } from './pack.ts'
 import { pop_nest } from './main.ts'
-import { init_trie, try_hyphenate } from './hyphenate.ts'
+import { init_trie, try_hyphenate, set_hyph_index } from './hyphenate.ts'
 
 const pretolerance_code = 0, tolerance_code = 1, line_penalty_code = 2, hyphen_penalty_code = 3, ex_hyphen_penalty_code = 4,
   club_penalty_code = 5, widow_penalty_code = 6, display_widow_penalty_code = 7, broken_penalty_code = 8,
@@ -31,7 +33,8 @@ const awful_bad = 0o7777777777
 
 // §819–822 active, delta and passive nodes; a delta node keeps its six differences in w[1..6]
 type Passive = { link: Passive | null, cur_break: Node | null, prev_break: Passive | null, serial: number }
-type Active = { type: number, link: Active, fitness: number, line_number: number, total_demerits: number, break_node: Passive | null, w: number[] }
+type Active = { type: number, link: Active, fitness: number, line_number: number, total_demerits: number, break_node: Passive | null, w: number[],
+  active_short?: number, active_glue?: number } // etex.ch: the two extra words of active_node_size_extended
 
 const dimen = (e: Engine, c: number) => e.equiv[dimen_base + c]!
 const precedes_break = (p: Node) => p.type < math_node // §148
@@ -77,7 +80,8 @@ export function line_break(e: Engine, d: boolean): void {
     const n = t as unknown as PenaltyNode & { glue_ptr?: number, leader_ptr?: Node | null }
     delete n.glue_ptr; delete n.leader_ptr; n.type = penalty_node; n.penalty = inf_penalty
   }
-  e.tail.link = new_param_glue(e, par_fill_skip_code)
+  const last_line_fill = new_param_glue(e, par_fill_skip_code) // etex.ch
+  e.tail.link = last_line_fill
   const init_cur_lang = e.prev_graf % 0o200000, init_l_hyf = Math.trunc(e.prev_graf / 0o20000000),
     init_r_hyf = Math.trunc(e.prev_graf / 0o200000) % 0o100
   pop_nest(e)
@@ -96,7 +100,16 @@ export function line_break(e: Engine, d: boolean): void {
     background[2 + r.stretch_order] = (background[2 + r.stretch_order]! + r.stretch) | 0
     background[6] = (q.shrink + r.shrink) | 0
   }
-  // §1655 (e-TeX) Check for special treatment of last line of paragraph: \lastlinefit is 0 outside e-TeX mode
+  // etex.ch Check for special treatment of last line of paragraph
+  let do_last_line_fit = false
+  const fill_width = [0, 0, 0]
+  if (int_par(e, last_line_fit_code) > 0) {
+    const q = e.spec[last_line_fill.glue_ptr]!
+    if (q.stretch > 0 && q.stretch_order > normal && background[3] === 0 && background[4] === 0 && background[5] === 0) {
+      do_last_line_fit = true; fill_width[q.stretch_order - 1] = q.stretch
+    }
+  }
+  const best_pl_short = [0, 0, 0, 0], best_pl_glue = [0, 0, 0, 0]
   const active_width = [0, 0, 0, 0, 0, 0, 0], cur_active_width = [0, 0, 0, 0, 0, 0, 0], break_width = [0, 0, 0, 0, 0, 0, 0],
     disc_width = [0, 0, 0, 0, 0, 0, 0]
   // §834
@@ -210,6 +223,7 @@ export function line_break(e: Engine, d: boolean): void {
               passive = { link: passive, cur_break: cur_p, serial: pass_number, prev_break: best_place[fit_class]! }
               const q: Active = { type: break_type, link: r, fitness: fit_class, line_number: best_pl_line[fit_class]! + 1,
                 total_demerits: minimal_demerits[fit_class]!, break_node: passive, w: [] }
+              if (do_last_line_fit) { q.active_short = best_pl_short[fit_class]!; q.active_glue = best_pl_glue[fit_class]! }
               prev_r.link = q; prev_r = q
               if (tracing()) { // §846 Print a symbolic description of the new break node
                 print_nl(e, '@@'); print_int(e, passive.serial)
@@ -217,6 +231,9 @@ export function line_break(e: Engine, d: boolean): void {
                 print_char(e, 46); print_int(e, fit_class)
                 if (break_type === hyphenated) print_char(e, 45)
                 print(e, ' t='); print_int(e, q.total_demerits)
+                if (do_last_line_fit) { // etex.ch Print additional data in the new active node
+                  print(e, ' s='); print_scaled(e, q.active_short!); print(e, cur_p === null ? ' a=' : ' g='); print_scaled(e, q.active_glue!)
+                }
                 print(e, ' -> @@')
                 if (passive.prev_break === null) print_char(e, 48)
                 else print_int(e, passive.prev_break.serial)
@@ -244,10 +261,39 @@ export function line_break(e: Engine, d: boolean): void {
       }
       // §851 Consider the demerits for a line from r to cur_p; deactivate node r if it should no longer be active;
       // then goto continue if a line from r to cur_p is infeasible, otherwise record a new feasible break
-      let artificial_demerits = false, b: number, fit_class: number, node_r_stays_active = false
-      const shortfall = (line_width - cur_active_width[1]!) | 0
+      let artificial_demerits = false, b = 0, fit_class = 0, node_r_stays_active = false, g = 0
+      let shortfall = (line_width - cur_active_width[1]!) | 0
+      found: {
       if (shortfall > 0) { // §852
-        if (cur_active_width[3] !== 0 || cur_active_width[4] !== 0 || cur_active_width[5] !== 0) { b = 0; fit_class = decent_fit }
+        if (cur_active_width[3] !== 0 || cur_active_width[4] !== 0 || cur_active_width[5] !== 0) {
+          if (do_last_line_fit) {
+            if (cur_p === null) { // etex.ch Perform computations for last line and goto found
+              not_found: {
+                if (r.active_short === 0 || r.active_glue! <= 0) break not_found
+                if (cur_active_width[3] !== fill_width[0] || cur_active_width[4] !== fill_width[1] || cur_active_width[5] !== fill_width[2]) break not_found
+                g = r.active_short! > 0 ? cur_active_width[2]! : cur_active_width[6]!
+                if (g <= 0) break not_found
+                e.arith_error = false; g = fract(e, g, r.active_short!, r.active_glue!, max_dimen)
+                if (int_par(e, last_line_fit_code) < 1000) g = fract(e, g, int_par(e, last_line_fit_code), 1000, max_dimen)
+                if (e.arith_error) g = r.active_short! > 0 ? max_dimen : -max_dimen
+                if (g > 0) { // the badness of the last line for stretching
+                  if (g > shortfall) g = shortfall
+                  if (g > 7230584 && cur_active_width[2]! < 1663497) { b = inf_bad; fit_class = very_loose_fit; break found }
+                  b = badness(g, cur_active_width[2]!)
+                  fit_class = b > 12 ? (b > 99 ? very_loose_fit : loose_fit) : decent_fit
+                  break found
+                } else if (g < 0) { // the badness of the last line for shrinking
+                  if (-g > cur_active_width[6]!) g = -cur_active_width[6]!
+                  b = badness(-g, cur_active_width[6]!)
+                  fit_class = b > 12 ? tight_fit : decent_fit
+                  break found
+                }
+              }
+            }
+            shortfall = 0
+          }
+          b = 0; fit_class = decent_fit
+        }
         else if (shortfall > 7230584 && cur_active_width[2]! < 1663497) { b = inf_bad; fit_class = very_loose_fit }
         else {
           b = badness(shortfall, cur_active_width[2]!)
@@ -257,6 +303,11 @@ export function line_break(e: Engine, d: boolean): void {
         if (-shortfall > cur_active_width[6]!) b = inf_bad + 1
         else b = badness(-shortfall, cur_active_width[6]!)
         fit_class = b > 12 ? tight_fit : decent_fit
+      }
+      if (do_last_line_fit) { // etex.ch Adjust the additional data for last line
+        if (cur_p === null) shortfall = 0
+        g = shortfall > 0 ? cur_active_width[2]! : shortfall < 0 ? cur_active_width[6]! : 0
+      }
       }
       let deactivate = false
       if (b > inf_bad || pi === eject_penalty) { // §854
@@ -316,6 +367,7 @@ export function line_break(e: Engine, d: boolean): void {
         if (dd <= minimal_demerits[fit_class]!) {
           minimal_demerits[fit_class] = dd
           best_place[fit_class] = r.break_node; best_pl_line[fit_class] = l
+          if (do_last_line_fit) { best_pl_short[fit_class] = shortfall; best_pl_glue[fit_class] = g }
           if (dd < minimum_demerits) minimum_demerits = dd
         }
         if (node_r_stays_active) continue
@@ -371,11 +423,12 @@ export function line_break(e: Engine, d: boolean): void {
     if (threshold > inf_bad) threshold = inf_bad
     if (second_pass) { // §891 Initialize for hyphenating a paragraph
       if (e.hy.trie_not_ready) init_trie(e)
-      e.hy.cur_lang = init_cur_lang; e.hy.l_hyf = init_l_hyf; e.hy.r_hyf = init_r_hyf
+      e.hy.cur_lang = init_cur_lang; e.hy.l_hyf = init_l_hyf; e.hy.r_hyf = init_r_hyf; set_hyph_index(e)
     }
     // §864 Create an active breakpoint representing the beginning of the paragraph
     active.link = { type: unhyphenated, fitness: decent_fit, link: last_active, break_node: null, line_number: e.prev_graf + 1,
       total_demerits: 0, w: [] }
+    if (do_last_line_fit) { active.link.active_short = 0; active.link.active_glue = 0 }
     for (let k = 1; k <= 6; k++) active_width[k] = background[k]!
     passive = null; printed_node = temp_head; pass_number = 0
     e.font_in_short_display = null_font
@@ -396,7 +449,7 @@ export function line_break(e: Engine, d: boolean): void {
       switch (p.type) {
         case hlist_node: case vlist_node: case rule_node: active_width[1] = (active_width[1]! + p.width) | 0; break
         case whatsit_node: // §1362
-          if (p.subtype === language_node) { e.hy.cur_lang = p.what_lang; e.hy.l_hyf = p.what_lhm; e.hy.r_hyf = p.what_rhm }
+          if (p.subtype === language_node) { e.hy.cur_lang = p.what_lang; e.hy.l_hyf = p.what_lhm; e.hy.r_hyf = p.what_rhm; set_hyph_index(e) }
           break
         case glue_node: {
           // §868 If node cur_p is a legal breakpoint, call try_break; then update the active widths by including the glue
@@ -485,6 +538,14 @@ export function line_break(e: Engine, d: boolean): void {
     }
   }
   if (tracing()) { end_diagnostic(e, true); normalize_selector(e) }
+  if (do_last_line_fit) { // etex.ch Adjust the final line of the paragraph
+    if (best_bet.active_short === 0) do_last_line_fit = false
+    else {
+      const q = new_spec(e, last_line_fill.glue_ptr); delete_glue_ref(e, last_line_fill.glue_ptr)
+      const s = e.spec[q]!
+      s.width = (s.width + best_bet.active_short! - best_bet.active_glue!) | 0; s.stretch = 0; last_line_fill.glue_ptr = q
+    }
+  }
   // §876 Break the paragraph at the chosen breakpoints, justify the resulting lines to the correct widths, and append
   // them to the current vertical list
   post_line_break(e, d, temp_head, best_bet.break_node!, best_line,

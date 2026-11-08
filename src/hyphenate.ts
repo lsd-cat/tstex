@@ -1,10 +1,11 @@
 // §891–965 pre-hyphenation, post-hyphenation, Liang's hyphenation, \hyphenation and \patterns (tex.ch: exceptions in a
-// simple hash, bigger tries; e-TeX's \savinghyphcodes is inactive outside e-TeX mode, so hyph_index is always 0)
+// simple hash, bigger tries; etex.ch: \savinghyphcodes stores lc codes in the trie under hyph_root=trie_r[0])
 import type { Engine } from './engine.ts'
 import { Cmd } from './types.ts'
 import { print, print_esc } from './print.ts'
 import { error, print_err, help, overflow } from './error.ts'
 import { int_par, lc_code_base } from './eqtb.ts'
+import { saving_hyph_codes_code } from './etex.ts'
 import { new_char, new_kern, new_ligature, new_lig_item, new_disc, flush_node_list, flush_list, is_char_node, garbage,
   ligature_node, kern_node, math_node, whatsit_node, glue_node, penalty_node, ins_node, adjust_node, mark_node, normal, L_code,
   language_node } from './nodes.ts'
@@ -31,11 +32,24 @@ export function hyph_state() {
     trie_op_ptr: 0, max_op_used: 0,
     trie_c: [0], trie_o: [0], trie_l: [0], trie_r: [0], trie_ptr: 0, trie_ref: [] as number[],
     trie_taken: [] as boolean[], trie_back: [] as number[], trie_min: new Array<number>(256).fill(0), trie_max: 0, trie_not_ready: true,
+    hyph_start: 0, hyph_index: 0, // etex.ch
   }
 }
 export type HyphState = ReturnType<typeof hyph_state>
 
 const lc_code = (e: Engine, c: number) => e.equiv[lc_code_base + c]!
+// etex.ch set_hyph_index: the hyphenation codes for cur_lang, if any
+export function set_hyph_index(e: Engine): void {
+  const h = e.hy
+  h.hyph_index = h.trie_char[h.hyph_start + h.cur_lang] !== h.cur_lang ? 0 : h.trie_link[h.hyph_start + h.cur_lang]!
+}
+// etex.ch set_lc_code: hc[0] is the hyphenation or lc code of c
+function set_lc_code(e: Engine, c: number): void {
+  const h = e.hy
+  if (h.hyph_index === 0) h.hc[0] = lc_code(e, c)
+  else if (h.trie_char[h.hyph_index + c] !== c) h.hc[0] = 0
+  else h.hc[0] = h.trie_op[h.hyph_index + c]!
+}
 // §934 set_cur_lang
 const set_cur_lang = (e: Engine) => { const l = int_par(e, language_code); e.hy.cur_lang = l <= 0 || l > 255 ? 0 : l }
 
@@ -55,10 +69,10 @@ export function try_hyphenate(e: Engine, cur_p: Node): void {
       } else if (s.type === kern_node && s.subtype === normal) break skip
       else if (s.type === math_node && s.subtype >= L_code) break skip
       else if (s.type === whatsit_node) { // §1363
-        if (s.subtype === language_node) { h.cur_lang = s.what_lang; h.l_hyf = s.what_lhm; h.r_hyf = s.what_rhm }
+        if (s.subtype === language_node) { h.cur_lang = s.what_lang; h.l_hyf = s.what_lhm; h.r_hyf = s.what_rhm; set_hyph_index(e) }
         break skip
       } else return
-      h.hc[0] = lc_code(e, c)
+      set_lc_code(e, c)
       if (h.hc[0] !== 0) {
         if (h.hc[0] === c || int_par(e, uc_hyph_code) > 0) break
         return
@@ -76,7 +90,7 @@ export function try_hyphenate(e: Engine, cur_p: Node): void {
     if (is_char_node(s)) {
       if (s.font !== h.hf) break
       h.hyf_bchar = s.character; const c = h.hyf_bchar
-      h.hc[0] = lc_code(e, c)
+      set_lc_code(e, c)
       if (h.hc[0] === 0) break
       if (h.hn === 63) break
       h.hb = s; h.hn++; h.hu[h.hn] = c; h.hc[h.hn] = h.hc[0]; h.hyf_bchar = non_char
@@ -86,7 +100,7 @@ export function try_hyphenate(e: Engine, cur_p: Node): void {
       if (q !== null) h.hyf_bchar = (q as CharNode).character
       while (q !== null) {
         const c = (q as CharNode).character
-        h.hc[0] = lc_code(e, c)
+        set_lc_code(e, c)
         if (h.hc[0] === 0) break done3
         if (j === 63) break done3
         j++; h.hu[j] = c; h.hc[j] = h.hc[0]
@@ -346,6 +360,7 @@ function reconstitute(e: Engine, j: number, n: number, bchar: number, hchar: num
 export function new_hyph_exceptions(e: Engine): void {
   const h = e.hy
   scan_left_brace(e); set_cur_lang(e)
+  if (h.trie_not_ready) h.hyph_index = 0; else set_hyph_index(e) // etex.ch
   // §935 Enter as many hyphenation exceptions as are listed, until coming to a right brace
   let n = 0, p: number[] = []
   for (;;) {
@@ -355,7 +370,7 @@ export function new_hyph_exceptions(e: Engine): void {
         case Cmd.letter: case Cmd.other_char: case Cmd.char_given: // §937 Append a new letter or hyphen
           if (e.cur_chr === 45) { if (n < 63) p.push(n) } // §938
           else {
-            h.hc[0] = lc_code(e, e.cur_chr)
+            set_lc_code(e, e.cur_chr)
             if (h.hc[0] === 0) {
               print_err(e, 'Not a letter')
               help(e, 'Letters in \\hyphenation words must have \\lccode>0.', "Proceed; I'll ignore the character I just read.")
@@ -530,12 +545,38 @@ export function new_patterns(e: Engine): void {
           if (h.trie_o[q] !== 0) { print_err(e, 'Duplicate pattern'); help(e, '(See Appendix H.)'); error(e) }
           h.trie_o[q] = v
         }
-        if (e.cur_cmd === Cmd.right_brace) return
+        if (e.cur_cmd === Cmd.right_brace) {
+          if (int_par(e, saving_hyph_codes_code) > 0) store_hyph_codes(e) // etex.ch
+          return
+        }
         k = 0; hyf[0] = 0; digit_sensed = false
         break
       default: print_err(e, 'Bad '); print_esc(e, 'patterns'); help(e, '(See Appendix H.)'); error(e)
     }
   }
+}
+
+// etex.ch Store hyphenation codes for current language (the lc codes become a family of the linked trie under trie_r[0])
+function store_hyph_codes(e: Engine): void {
+  const h = e.hy
+  let c = h.cur_lang, first_child = false, p = 0, q = 0
+  const insert = () => { // §964 Insert a new trie node between q and p, and make p point to it
+    if (h.trie_ptr === e.lim.trie_size) overflow(e, 'pattern memory', e.lim.trie_size)
+    h.trie_ptr++; h.trie_r[h.trie_ptr] = p; p = h.trie_ptr; h.trie_l[p] = 0
+    if (first_child) h.trie_l[q] = p; else h.trie_r[q] = p
+    h.trie_c[p] = c; h.trie_o[p] = 0
+  }
+  do { q = p; p = h.trie_r[q]! } while (!(p === 0 || c <= h.trie_c[p]!))
+  if (p === 0 || c < h.trie_c[p]!) insert()
+  q = p
+  // Store all current lc_code values
+  p = h.trie_l[q]!; first_child = true
+  for (c = 0; c <= 255; c++) if (lc_code(e, c) > 0 || (c === 255 && first_child)) {
+    if (p === 0) insert(); else h.trie_c[p] = c
+    h.trie_o[p] = lc_code(e, c)
+    q = p; p = h.trie_r[q]!; first_child = false
+  }
+  if (first_child) h.trie_l[q] = 0; else h.trie_r[q] = 0
 }
 
 // §966 init_trie
@@ -553,17 +594,25 @@ export function init_trie(e: Engine): void {
     x = t.hyf_next[k]!; t.hyf_next[k] = t.hyf_next[j]!; t.hyf_next[j] = x
     dest[j] = dest[k]!; dest[k] = k
   }
-  t.trie_l[0] = compress_trie(t, new Map(), t.trie_l[0]!) // trie_root
+  const seen = new Map<string, number>()
+  t.trie_r[0] = compress_trie(t, seen, t.trie_r[0]!) // hyph_root (etex.ch)
+  t.trie_l[0] = compress_trie(t, seen, t.trie_l[0]!) // trie_root
   t.trie_ref = []
   for (let p = 0; p <= 255; p++) t.trie_min[p] = p + 1
   t.trie_link[0] = 1; t.trie_max = 0
   if (t.trie_l[0] !== 0) { first_fit(e, t.trie_l[0]!); trie_pack(e, t.trie_l[0]!) }
+  if (t.trie_r[0] !== 0) { // etex.ch Pack all stored hyph_codes
+    if (t.trie_l[0] === 0) for (let p = 0; p <= 255; p++) t.trie_min[p] = p + 2
+    first_fit(e, t.trie_r[0]!); trie_pack(e, t.trie_r[0]!)
+    t.hyph_start = t.trie_ref[t.trie_r[0]!]!
+  }
   // §958 Move the data into trie
   if (t.trie_max === 0) {
     for (let r = 0; r <= 256; r++) { t.trie_link[r] = 0; t.trie_op[r] = 0; t.trie_char[r] = 0 }
     t.trie_max = 256
   } else {
-    trie_fix(t, t.trie_l[0]!)
+    if (t.trie_r[0]! > 0) trie_fix(t, t.trie_r[0]!)
+    if (t.trie_l[0]! > 0) trie_fix(t, t.trie_l[0]!)
     let r = 0
     do { const s = t.trie_link[r]!; t.trie_link[r] = 0; t.trie_op[r] = 0; t.trie_char[r] = 0; r = s } while (r <= t.trie_max)
   }
