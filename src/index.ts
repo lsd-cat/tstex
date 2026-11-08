@@ -8,11 +8,13 @@ export interface CompileOptions {
   main: string // e.g. 'main.tex'; the job name is its base name
   runs?: 'auto' | number // 'auto' (default): rerun while .aux/.out/.toc/... change, at most 4 runs
   date?: Date // fixed \today, /CreationDate and /ID (SOURCE_DATE_EPOCH); default now
+  synctex?: number // pdftex -synctex=N: 1 writes a gzipped SyncTeX file, -1 an uncompressed one; \synctex in the document works too
   onProgress?: (p: Progress) => void
   signal?: AbortSignal // aborting terminates the worker (a new one starts for the next call)
 }
 export interface CompileResult {
   pdf: Uint8Array | null, log: string, outputs: Record<string, string> // \openout files (.aux ...), latin1 strings
+  synctex: Uint8Array | null // the .synctex file (gzipped unless synctex<0); its Input names are relative (./main.tex)
   fetched: number // bytes read over the network (not from memory or Cache Storage) during this compile
   runs: number, ok: boolean // ok: no errors (TeX's history <= warning_issued)
 }
@@ -53,11 +55,11 @@ export function createTeX(opts: { texmf: string, cache?: 'http' | 'persistent', 
   return {
     async compile(o) {
       let fetched = 0
-      const m = await request<any>({ type: 'compile', files: o.files, main: o.main, runs: o.runs ?? 'auto', date: o.date?.getTime() }, m => {
+      const m = await request<any>({ type: 'compile', files: o.files, main: o.main, runs: o.runs ?? 'auto', date: o.date?.getTime(), synctex: o.synctex }, m => {
         if (m.type === 'fetch' && !m.cached) fetched += m.bytes
         o.onProgress?.(m.type === 'done' ? { type: 'done' } : m)
       }, o.signal)
-      return { pdf: m.pdf, log: m.log, outputs: m.outputs, fetched, runs: m.runs, ok: m.ok }
+      return { pdf: m.pdf, log: m.log, outputs: m.outputs, synctex: m.synctex, fetched, runs: m.runs, ok: m.ok }
     },
     prefetch: names => request({ type: 'prefetch', names }),
     cache: { clear: () => request({ type: 'clear' }) },

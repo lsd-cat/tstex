@@ -46,9 +46,9 @@ export function createTeX(opts: { texmf: string, cache?: 'http' | 'persistent', 
       for (;;) {
         o.signal?.throwIfAborted()
         try {
-          const { engine: e, runs } = await compileRuns({ fs, format, file: o.main, runs: o.runs, date: o.date, onRun: n => o.onProgress?.({ type: 'run', n }) })
+          const { engine: e, runs } = await compileRuns({ fs, format, file: o.main, runs: o.runs, date: o.date, synctex: o.synctex, onRun: n => o.onProgress?.({ type: 'run', n }) })
           o.onProgress?.({ type: 'done' })
-          return { pdf: e.pdf, log: e.log, outputs: Object.fromEntries(e.outputFiles), fetched, runs, ok: e.history <= 1 }
+          return { pdf: e.pdf, log: e.log, outputs: Object.fromEntries(e.outputFiles), synctex: e.synctex, fetched, runs, ok: e.history <= 1 }
         } catch (x) {
           if (!(x instanceof Miss)) throw x
           const n = await fetchToCache(x.path); fetched += n

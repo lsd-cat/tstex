@@ -19,7 +19,8 @@ const { pdf, log, outputs, fetched } = await tex.compile({
 ```
 
 Also `tex.prefetch(['beamer.cls', ...])`, `tex.cache.clear()`, `tex.dispose()`, and `date: new Date(0)` for reproducible
-PDFs. Bundlers must emit `dist/worker.js` next to `dist/index.js` (`new URL('./worker.js', import.meta.url)`).
+PDFs. SyncTeX: `compile({ ..., synctex: -1 })` (pdftex's `-synctex=N`; `1` gzips, `-1` does not; `\synctex=1` in
+the document also works) returns the file as `synctex` (else `null`); its `Input:` names are relative (`./main.tex`). Bundlers must emit `dist/worker.js` next to `dist/index.js` (`new URL('./worker.js', import.meta.url)`).
 
 ## Resource protocol
 
@@ -51,7 +52,7 @@ bundle from TeX Live 2026 and a format made by `node tools/build-format.ts`:
 
 `createTeX({ texmf: '/path/to/bundle' })` compiles in-process over a local bundle; with an `https://` URL, files are
 cached in `~/.cache/tstex/<version>/` and a file missing there restarts the compile after fetching it (slow on a cold
-cache: `prefetch` first). CLI: `tstex --fmt latex.fmt --pdf --runs auto file.tex` over a TeX Live tree (`TEXMFDIST`).
+cache: `prefetch` first). CLI: `tstex --fmt latex.fmt --pdf --runs auto [--synctex 1] file.tex` over a TeX Live tree (`TEXMFDIST`).
 
 ## Unsupported
 

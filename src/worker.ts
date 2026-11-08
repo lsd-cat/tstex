@@ -29,7 +29,7 @@ async function init(texmf: string, persistent: boolean) {
   format = await loadFormat(fmt)
 }
 
-async function compile(m: { files: Record<string, Uint8Array | string>, main: string, runs?: 'auto' | number, date?: number }) {
+async function compile(m: { files: Record<string, Uint8Array | string>, main: string, runs?: 'auto' | number, date?: number, synctex?: number }) {
   const files = new Map(Object.entries(m.files).map(([k, v]) => [k, typeof v === 'string' ? new TextEncoder().encode(v) : v]))
   const fetched: string[] = []
   const fs = httpFS(base, index, { files, cache, onFetch: (path, d) => { fetched.push(path); post({ type: 'fetch', name: path, bytes: d.length }) } })
@@ -39,9 +39,9 @@ async function compile(m: { files: Record<string, Uint8Array | string>, main: st
     if (p !== null && stored.delete(p)) post({ type: 'fetch', name: p, bytes: cache.get(p)!.length, cached: true })
     return read(n, k)
   }
-  const { engine: e, runs } = await compileRuns({ fs, format, file: m.main, runs: m.runs, date: m.date === undefined ? undefined : new Date(m.date), onRun: n => post({ type: 'run', n }) })
+  const { engine: e, runs } = await compileRuns({ fs, format, file: m.main, runs: m.runs, date: m.date === undefined ? undefined : new Date(m.date), synctex: m.synctex, onRun: n => post({ type: 'run', n }) })
   if (store) for (const p of fetched) await store.put(base + p, new Response(cache.get(p)! as Uint8Array<ArrayBuffer>))
-  post({ type: 'done', pdf: e.pdf, log: e.log, outputs: Object.fromEntries(e.outputFiles), runs, ok: e.history <= 1, fetched }, e.pdf ? [e.pdf.buffer] : [])
+  post({ type: 'done', pdf: e.pdf, log: e.log, outputs: Object.fromEntries(e.outputFiles), synctex: e.synctex, runs, ok: e.history <= 1, fetched }, e.pdf ? [e.pdf.buffer] : [])
 }
 
 let queue = Promise.resolve(), init_error: unknown = null
