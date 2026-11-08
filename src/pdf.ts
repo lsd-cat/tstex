@@ -25,7 +25,7 @@ import { out_what, expand_write_tokens } from './dvi.ts'
 import { makepdftime, md5, str } from './utils.ts'
 import { write_image, delete_image } from './backend/images.ts'
 import type { Img, EpdfDoc } from './backend/images.ts'
-import { isscalable, hasspacechar, do_pdf_font, write_fontstuff, hasfmentry } from './backend/fonts.ts'
+import { isscalable, hasspacechar, do_pdf_font, write_fontstuff, hasfmentry, process_map_item } from './backend/fonts.ts'
 
 // pdftex.web §236/§247 parameter codes (pdftex_first_integer_code = 65, pdftex_first_dimen_code = 21)
 const pdf_output_code = 65, pdf_compress_level_code = 66, pdf_decimal_digits_code = 67, pdf_unique_resname_code = 71,
@@ -67,7 +67,7 @@ export function pdf_state() {
     version_written: false, fixed_major: 0, fixed_minor: 0, fixed_objcompresslevel: 0, fixed_decimal_digits: 0, min_bp_val: 0,
     scaled_out: 0, init_output: false, output_file_name: '',
     f: null_font, h: 0, v: 0, tj_start_h: 0, cur_Tm_a: 0, vf_cur_s: 0, vf_stack: [] as { h: number, v: number, w: number, x: number, y: number, z: number }[], delta_h: 0, origin_h: 0, origin_v: 0, doing_string: false, doing_text: false,
-    last_f: null_font, last_fs: 0, gen_faked_interword_space: false, gen_running_link: true,
+    last_f: null_font, last_fs: 0, gen_faked_interword_space: false, gen_running_link: true, space_font_name: 'pdftexspace', dummy_font: null_font,
     // [32d] obj_tab
     obj_info: [0], obj_link: [0], obj_offset: [0], obj_os_idx: [0], obj_aux: [0], head_tab: new Array<number>(11).fill(0),
     obj_ptr: 0, sys_obj_ptr: 0, obj_tab_size: inf_obj_tab_size, objs: new Map<string, number>(), // avl_put_obj/find_obj
@@ -628,8 +628,8 @@ function pdf_begin_text(e: Engine): void {
   s.doing_text = true; s.f = null_font; s.last_f = null_font; s.last_fs = 0; s.doing_string = false; s.cur_Tm_a = 0
 }
 
-// [32b] adv_char_width (PK fonts are unsupported)
-function adv_char_width(e: Engine, f: number, c: number): number {
+// [32b] adv_char_width (PK fonts are unsupported); returns adv_char_width_s (round(s/10)) and adv_char_width_s_out
+function adv_char_width(e: Engine, f: number, c: number): [number, number] {
   const w = char_width(e, f, char_info(e, f, c)), st = e.ps
   let s: number, s_out: number
   if (st.cur_Tm_a === 0) { s = divide_scaled(e, w, st.font_size[f]!, 4); s_out = st.scaled_out }
@@ -639,7 +639,18 @@ function adv_char_width(e: Engine, f: number, c: number): number {
     if (s < 0) s_out = -s_out
   }
   st.delta_h = (st.delta_h + s_out) | 0
-  return s
+  return [s < 0 ? -Math.round(-s / 10) : Math.round(s / 10), s_out]
+}
+
+// [32c] pdf_read_dummy_font, pdf_insert_interword_space: the space glyph of \pdfspacefont (mapfile.c pdfmaplinesp maps it)
+function pdf_read_dummy_font(e: Engine): void {
+  if (e.ps.dummy_font !== null_font) return
+  e.ps.dummy_font = read_font_info(e, null_cs, e.ps.space_font_name, '', -1000)
+  process_map_item(e, '=pdftexspace PdfTeX-Space <pdftexspace.pfb', 1)
+  pdf_mark_char(e, e.ps.dummy_font, 32)
+}
+function pdf_insert_interword_space(e: Engine): void {
+  pdf_read_dummy_font(e); pdf_set_font(e, e.ps.dummy_font); pdf_print(e, '( )Tj')
 }
 
 // [32c] pdf_begin_string
@@ -666,8 +677,20 @@ function pdf_begin_string(e: Engine, f: number): void {
   const space = param(e, space_code, f)
   const move_looks_like_interword_space = space > one_bp && s_out > space - param(e, space_shrink_code, f) - Math.trunc(one_bp / 10) && v === 0
   if (st.gen_faked_interword_space && move_looks_like_interword_space) must_insert_space = true
-  if (must_insert_space) fatal_error(e, 'unsupported: \\pdfinterwordspaceon') // pass B
-  if (must_end_string) { pdf_end_string(e); pdf_set_font(e, f); pdf_set_text_pos(e, v, v_out, f); s = 0 }
+  if (must_insert_space) { // a real space character from the font when possible
+    if (st.font_has_space_char[f] && st.doing_string) {
+      pdf_out(e, 32)
+      const [as, as_out] = adv_char_width(e, f, 32)
+      s -= as; s_out -= as_out
+      pdf_mark_char(e, f, 32)
+    } else must_end_string = true
+  }
+  if (must_end_string) {
+    pdf_end_string(e)
+    if (must_insert_space && !st.font_has_space_char[f]) pdf_insert_interword_space(e) // this changes the current font
+    pdf_set_font(e, f); pdf_set_text_pos(e, v, v_out, f); s = 0
+  }
+  if (st.gen_faked_interword_space && st.f !== f) { pdf_end_string(e); pdf_set_font(e, f) } // the delayed font switch
   if (!st.doing_string) { pdf_print(e, ' ['); if (s === 0) pdf_out(e, 40) }
   if (s !== 0) {
     if (st.doing_string) pdf_out(e, 41)
@@ -816,7 +839,14 @@ function pdf_out_whatsit(e: Engine, p: WhatsitNode, vlist: boolean, b: BoxNode, 
       if (vlist) { e.cur_v = (e.cur_v + p.pdf_top + p.pdf_right) | 0; const save_v = e.cur_v; e.cur_h = x; out_image(e, p); e.cur_v = save_v; e.cur_h = x }
       else { e.cur_v = (y + p.pdf_right) | 0; const edge = e.cur_h; out_image(e, p); e.cur_h = (edge + p.pdf_left) | 0; e.cur_v = y }
       return
-    case pdf_snap_ref_point_node: case pdf_fake_space_node:
+    case pdf_fake_space_node: { // pdf_insert_fake_space
+      const st = e.ps, g = st.gen_faked_interword_space
+      st.gen_faked_interword_space = false // no second fake space in pdf_begin_string
+      pdf_read_dummy_font(e); pdf_begin_string(e, st.dummy_font); pdf_print(e, ' '); adv_char_width(e, st.dummy_font, 32); pdf_end_string_nl(e)
+      st.gen_faked_interword_space = g
+      return
+    }
+    case pdf_snap_ref_point_node:
       break
     default: out_what(e, p); return
   }

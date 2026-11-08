@@ -459,8 +459,12 @@ export function run(e: Engine, chr: number): void {
       }
       return
     }
-    case pdf_running_link_off_node: case pdf_running_link_on_node: // pdftex.web Implement \pdfrunninglinkoff, \pdfrunninglinkon
+    case pdf_running_link_off_node: case pdf_running_link_on_node: case 45: case 46: case 47: // Implement \pdfrunninglinkoff, \pdfrunninglinkon, \pdfinterwordspaceon, \pdfinterwordspaceoff, \pdffakespace
       check_pdfoutput(e, '\\' + names[chr], true); tail_append(e, new_whatsit_node(chr)); return
+    case 50: // pdftex.web Implement \pdfspacefont
+      check_pdfoutput(e, '\\pdfspacefont', true)
+      scan_toks(e, false, true); e.ps.space_font_name = str(tokens_to_string(e, e.def_ref)); delete_token_ref(e, e.def_ref)
+      return
     case pdf_nobuiltin_tounicode_code: // pdftex.web Implement \pdfnobuiltintounicode
       check_pdfoutput(e, '\\pdfnobuiltintounicode', true)
       scan_font_ident(e)

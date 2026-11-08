@@ -1,0 +1,13 @@
+%! oracle: pdflatex
+\pdfcompresslevel=0 \pdfobjcompresslevel=0
+\documentclass{article}
+\usepackage{times}
+\pdfgentounicode=1 \pdfspacefont{dummy-space}
+\pdfinterwordspaceon
+\begin{document}
+\section{Interword spaces}
+Text extraction gets real spaces: some words, \emph{emphasis}, \texttt{typewriter text}, and $a+b$.
+\[ \sum_{i=1}^n x_i \]
+More text in a second paragraph, long enough to be broken across lines by the line breaker of \TeX, so that we see
+the spaces at line ends too.
+\end{document}

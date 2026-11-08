@@ -1,0 +1,12 @@
+%! oracle: pdftex
+\pdfoutput=1 \input plain
+\pdfcompresslevel=0 \pdfobjcompresslevel=0
+% \pdfinterwordspaceon: a move that looks like an interword space gets a space glyph, the font's own (8r has one at 32)
+% or one from the dummy font pdftexspace; \pdffakespace inserts one always
+\pdfinterwordspaceon
+The quick brown fox jumps over the lazy dog. {\bf Bold words} and $x + y$ math, then a long line that is broken into
+two lines by the paragraph builder so that the second line starts afresh.\par
+\font\tm=ptmr8r {\tm Times has a space glyph at 32,} back to {\it italic words} and {\tm Times again}.\par
+A\pdffakespace B\hskip 1em C\kern 3pt D\hskip 10pt E \pdfinterwordspaceoff F G \pdfinterwordspaceon H I\par
+\setbox0\hbox{x y}\copy0 \box0 \vbox{\hbox{p q}\pdffakespace\hbox{r s}}
+\bye
