@@ -389,6 +389,8 @@ function write_fontdictionary(e: Engine, fo: FoEntry): void {
   pdf_print(e, `/FirstChar ${fo.first_char}\n/LastChar ${fo.last_char}\n/Widths ${fo.cw_objnum} 0 R\n`)
   if (fo.fe !== null && fo.fe.fe_objnum !== 0) pdf_print(e, `/Encoding ${fo.fe.fe_objnum} 0 R\n`)
   if (fo.tounicode_objnum !== 0) pdf_print(e, `/ToUnicode ${fo.tounicode_objnum} 0 R\n`)
+  const attr = e.ps.font_attr[fo.tex_font] // \pdffontattr; even an empty one prints its newline (a string other than the null string)
+  if (attr !== undefined) pdf_print(e, attr + '\n')
   pdf_end_dict(e)
 }
 

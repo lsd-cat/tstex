@@ -12,7 +12,7 @@ import { flush_node_list, show_box, zround, is_char_node, hlist_node, vlist_node
   flush_list, delete_token_ref } from './nodes.ts'
 import type { BoxNode, Node, WhatsitNode, PdfAction } from './nodes.ts'
 import { colorstack_set, colorstack_push, colorstack_pop, colorstack_current } from './nodes.ts'
-import { pdf_action_user, pdf_action_page, pdf_action_goto, pdf_action_thread, copy_node_list, add_token_ref, new_whatsit_node, print_mark,
+import { pdf_action_user, pdf_action_page, pdf_action_goto, pdf_action_thread, copy_node_list, add_token_ref, new_whatsit_node, print_mark, print_font_identifier,
   pdf_dest_xyz, pdf_dest_fit, pdf_dest_fith, pdf_dest_fitv, pdf_dest_fitb, pdf_dest_fitbh, pdf_dest_fitbv, pdf_dest_fitr, pdf_null } from './nodes.ts'
 import { char_info, char_width, char_exists, null_font, param, space_code, space_shrink_code } from './tfm.ts'
 import { char_warning } from './tfm.ts'
@@ -72,7 +72,7 @@ export function pdf_state() {
     font_list: [] as number[], obj_list: [] as number[], xform_list: [] as number[], ximage_list: [] as number[],
     text_procset: false, image_procset: 0,
     char_used: [] as (Uint8Array | undefined)[], font_size: [] as number[], font_num: [] as number[], font_has_space_char: [] as boolean[],
-    font_nobuiltin_tounicode: [] as boolean[], vf_checked: [] as boolean[],
+    font_nobuiltin_tounicode: [] as boolean[], vf_checked: [] as boolean[], font_attr: [] as (string | undefined)[],
     obj_count: 0, last_obj: 0, retval: 0, // \pdfobj's counters, \pdflastobj, \pdfretval
     xform_count: 0, ximage_count: 0, last_xform: 0, last_ximage: 0, last_ximage_pages: 0, last_ximage_colordepth: 0, last_annot: 0, last_link: 0,
     cur_page_width: 0, cur_h_offset: 0, cur_v_offset: 0, is_shipping_page: false, fixed_gen_tounicode: 0,
@@ -1528,6 +1528,15 @@ export function finish_pdf_file(e: Engine): void {
       if (e.font_used[f] && hasfmentry(e, f) && s.font_num[f]! < 0) {
         const i = -s.font_num[f]!
         for (let c = 0; c <= 255; c++) if (pdf_char_marked(e, f, c)) pdf_mark_char(e, i, c)
+        const a = s.font_attr, li = a[i]?.length ?? 0, lk = a[f]?.length ?? 0
+        if (li === 0 && lk !== 0) a[i] = a[f]
+        else if (lk === 0 && li !== 0) a[f] = a[i]
+        else if (li !== 0 && lk !== 0 && a[i] !== a[f]) {
+          pdf_warning(e, '\\pdffontattr', 'fonts ', true, false)
+          print_font_identifier(e, i); print(e, ' and '); print_font_identifier(e, f)
+          print(e, ' have conflicting attributes; I will ignore the attributes assigned to '); print_font_identifier(e, i)
+          print_ln(e); print_ln(e)
+        }
       }
     }
     s.fixed_gen_tounicode = int_par(e, pdf_gen_tounicode_code)

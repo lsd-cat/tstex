@@ -39,6 +39,7 @@ function check_pdfoutput(e: Engine, s: string, is_error: boolean): void {
   pdf_warning(e, s, 'not allowed in DVI mode (\\pdfoutput <= 0); ignoring it', true, true)
 }
 
+const pdf_font_attr_code = 27, pdf_nobuiltin_tounicode_code = 44, pdf_running_link_off_node = 48, pdf_running_link_on_node = 49
 const max_halfword = 0xFFFFFFF, pdf_outline_code = 18, pdf_xform_code = 11, pdf_ximage_code = 13
 const pdf_info_code = 24, pdf_catalog_code = 25, pdf_names_code = 26, pdf_include_chars_code = 28, pdf_trailer_code = 31, pdf_trailer_id_code = 32
 const pdf_obj_code = 9, immediate_code = 5, set_language_code = 6, pdf_glyph_to_unicode_code = 39, set_random_seed_code = 35, reset_timer_code = 33
@@ -458,6 +459,21 @@ export function run(e: Engine, chr: number): void {
       }
       return
     }
+    case pdf_running_link_off_node: case pdf_running_link_on_node: // pdftex.web Implement \pdfrunninglinkoff, \pdfrunninglinkon
+      check_pdfoutput(e, '\\' + names[chr], true); tail_append(e, new_whatsit_node(chr)); return
+    case pdf_nobuiltin_tounicode_code: // pdftex.web Implement \pdfnobuiltintounicode
+      check_pdfoutput(e, '\\pdfnobuiltintounicode', true)
+      scan_font_ident(e)
+      if (e.cur_val === null_font) pdf_error(e, 'font', 'invalid font identifier')
+      e.ps.font_nobuiltin_tounicode[e.cur_val] = true
+      return
+    case pdf_font_attr_code: // pdftex.web Implement \pdffontattr
+      check_pdfoutput(e, '\\pdffontattr', true)
+      scan_font_ident(e)
+      { const k = e.cur_val
+        if (k === null_font) pdf_error(e, 'font', 'invalid font identifier')
+        scan_toks(e, false, true); e.ps.font_attr[k] = str(tokens_to_string(e, e.def_ref)) }
+      return
     case pdf_end_thread_node: check_pdfoutput(e, '\\pdfendthread', true); tail_append(e, new_whatsit_node(pdf_end_thread_node)); return
     case reset_timer_code: e.start_ms = performance.now(); return // pdftex.web Implement \pdfresettimer
     default: unsupported(e)

@@ -1,0 +1,17 @@
+%! oracle: pdftex
+\pdfoutput=1 \input plain
+\pdfcompresslevel=0 \pdfobjcompresslevel=0
+\pdffontattr\tenrm{/Foo 1}\pdfnobuiltintounicode\tenit
+\font\big=cmr10 at 12pt \pdffontattr\big{/Bar 2}
+\vbox{\pdfstartthread num 1 \hsize=2in Thread text that is long enough to break over a few lines of the vbox here.\par\pdfendthread}
+\vbox{\pdfthread attr{/I << /Title (t2) >>} name{two} width 1in height 10pt depth 2pt}
+\hbox{\pdfsave\pdfsetmatrix{0.5 0 0 2}\pdfstartlink user{/Subtype /Link /A <</S /URI /URI (u)>>}Scaled\pdfendlink
+  \pdfannot width 10pt height 5pt depth 1pt{/Subtype /Text}\pdfdest name{m} xyz\pdfrestore}
+\hbox{\pdfsave\pdfsetmatrix{0 1 -1 0}\pdfdest name{r} fitr width 5pt height 5pt depth 0pt\pdfdest num 7 fith\pdfrestore}
+\pdfximage{images/fig.jpg}\message{\pdfximagebbox\pdflastximage 3}
+\setbox0\hbox{\pdfsavepos A\pdfliteral{0 g}}\pdfxform0 \hbox{\pdfrefxform\pdflastxform}\message{\the\pdflastxpos}
+\vbox{\pdfrefxform\pdflastxform}
+\hsize=1in \noindent\pdfstartlink goto num 7 one two three\pdfrunninglinkoff\ four five six seven eight\pdfrunninglinkon\ nine ten eleven\pdfendlink\par
+\pdfdest name{m} xyz \noindent\pdfstartlink goto name{nowhere} x\pdfendlink\par
+{\big Big}
+\bye

@@ -1,0 +1,101 @@
+entering extended mode
+(m6-pdf-threads-matrix.tex (plain.tex Preloading the plain format: codes, registers,
+\maxdimen=\dimen10
+\hideskip=\skip10
+\centering=\skip11
+\p@=\dimen11
+\z@=\dimen12
+\z@skip=\skip12
+\voidb@x=\box10
+parameters,
+\smallskipamount=\skip13
+\medskipamount=\skip14
+\bigskipamount=\skip15
+\normalbaselineskip=\skip16
+\normallineskip=\skip17
+\normallineskiplimit=\dimen13
+\jot=\dimen14
+\interdisplaylinepenalty=\count23
+\interfootnotelinepenalty=\count24
+fonts, more fonts,
+\itfam=\fam4
+\slfam=\fam5
+\bffam=\fam6
+\ttfam=\fam7
+macros,
+\strutbox=\box11
+\mscount=\count25
+\tabs=\box12
+\tabsyet=\box13
+\tabsdone=\box14
+math definitions,
+\rootbox=\box15
+\p@renwd=\dimen15
+output routines,
+\headline=\toks10
+\footline=\toks11
+\footins=\insert254
+\topins=\insert253
+hyphenation (hyphen.tex))
+Overfull \hbox (10.26582pt too wide) in paragraph at lines 6--6
+[]\tenrm Thread text that is long enough|
+
+\hbox(6.94444+1.94444)x144.54, glue set - 1.0
+.\hbox(0.0+0.0)x20.0
+.\tenrm T
+.\tenrm h
+.\tenrm r
+.\tenrm e
+.etc.
+
+0.0pt 0
+Overfull \hbox (4.73012pt too wide) in paragraph at lines 14--14
+[]\tenrm one two three[] four|
+
+\hbox(6.94444+0.0)x72.26999, glue set - 1.0
+.\pdfstartlink(*+*)x* action goto num7
+.\tenrm o
+.\tenrm n
+.\tenrm e
+.\glue 3.33333 plus 1.66666 minus 1.11111
+.etc.
+
+
+Overfull \hbox (6.17456pt too wide) in paragraph at lines 14--14
+\tenrm five six seven eight[]|
+
+\hbox(6.94444+1.94444)x72.26999, glue set - 1.0
+.\tenrm ^^L (ligature fi)
+.\tenrm v
+.\kern-0.27779
+.\tenrm e
+.\glue 3.33333 plus 1.66666 minus 1.11111
+.etc.
+
+[1{pdftex.map}
+
+pdfTeX warning: pdftex: Misplaced \pdfrestore by (1820448sp, 0sp)
+
+pdfTeX warning (ext4): destination with the same identifier (name{m}) has been already used, duplicate ignored
+
+\plainoutput ...headline \pagebody \makefootline }
+                                                  \advancepageno \ifnum \out...
+<output> {\plainoutput
+                       }
+\supereject ->\par \penalty -\@MM
+
+\bye ->\par \vfill \supereject
+                               \end
+l.17 \bye
+         ] )
+pdfTeX warning (dest): name{nowhere} has been referenced but does not exist, replaced by a fixed one
+
+
+pdfTeX warning (\pdffontattr): fonts \tenrm and \big have conflicting attributes; I will ignore the attributes assigned to \tenrm
+
+<cmr10.pfb>
+Output written on m6-pdf-threads-matrix.pdf (1 page, * bytes).
+PDF statistics:
+ 33 PDF objects out of 1000 (max. 8388607)
+ 3 named destinations out of 1000 (max. 500000)
+ 27 words of extra memory for PDF output out of 10000 (max. 10000000)
