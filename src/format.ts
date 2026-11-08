@@ -90,3 +90,40 @@ export function store_fmt_file(e: Engine): void {
   e.fmt_file = dump_format(e)
   e.equiv[int_base + tracing_stats_code] = 0
 }
+
+// The format file as bytes: the snapshot as JSON (Maps, typed arrays, undefined, non-finite numbers and shared objects tagged), gzipped.
+// shortcut: JSON+gzip and a recursive walk (node lists deeper than the JS stack would overflow), switch to a binary encoding if size, load time or deep boxes matter
+type J = null | boolean | number | string | J[] | { [k: string]: J }
+const typed = { Uint8Array, Int32Array } as const
+function enc(v: unknown, seen: Map<object, number>): J {
+  if (typeof v === 'number') return Number.isFinite(v) && !Object.is(v, -0) ? v : { $n: String(v === 0 ? '-0' : v) }
+  if (v === undefined) return { $u: 1 }
+  if (v === null || typeof v !== 'object') return v as J
+  const id = seen.get(v)
+  if (id !== undefined) return { $r: id }
+  seen.set(v, seen.size)
+  if (Array.isArray(v)) return Array.from(v, x => enc(x, seen)) // holes become undefined, as structuredClone keeps them readable
+  if (v instanceof Map) return { $m: [...v].map(([k, x]) => [enc(k, seen), enc(x, seen)]) }
+  if (v instanceof Uint8Array || v instanceof Int32Array) return { $t: v.constructor.name, d: Array.from(v) }
+  const o: { [k: string]: J } = {}
+  for (const k of Object.keys(v)) o[k] = enc((v as Record<string, unknown>)[k], seen)
+  return { $o: o }
+}
+function dec(j: J, refs: unknown[]): unknown {
+  if (j === null || typeof j !== 'object') return j
+  if (Array.isArray(j)) { const a: unknown[] = []; refs.push(a); for (const x of j) a.push(dec(x, refs)); return a }
+  if ('$n' in j) return j.$n === '-0' ? -0 : Number(j.$n)
+  if ('$u' in j) return undefined
+  if ('$r' in j) return refs[j.$r as number]
+  if ('$m' in j) { const m = new Map(); refs.push(m); for (const [k, x] of j.$m as J[][]) m.set(dec(k!, refs), dec(x!, refs)); return m }
+  if ('$t' in j) { const a = typed[j.$t as keyof typeof typed].from(j.d as number[]); refs.push(a); return a }
+  const o: Record<string, unknown> = {}; refs.push(o)
+  for (const [k, x] of Object.entries(j.$o as Record<string, J>)) o[k] = dec(x, refs)
+  return o
+}
+const pipe = async (b: Uint8Array, s: CompressionStream | DecompressionStream) =>
+  new Uint8Array(await new Response(new Blob([b as Uint8Array<ArrayBuffer>]).stream().pipeThrough(s)).arrayBuffer())
+export const dumpFormat = (f: Format): Promise<Uint8Array> =>
+  pipe(new TextEncoder().encode(JSON.stringify(enc(f, new Map()))), new CompressionStream('gzip'))
+export const loadFormat = async (b: Uint8Array): Promise<Format> =>
+  dec(JSON.parse(new TextDecoder().decode(await pipe(b, new DecompressionStream('gzip')))), []) as Format

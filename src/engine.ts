@@ -161,9 +161,9 @@ export class Engine {
   sys_time = 0; sys_day = 0; sys_month = 0; sys_year = 0
 
   // §71 lines the terminal will supply (null: no terminal); §1302 the format made by \dump, §1337 the one `&name' loads
-  term_in: string[] | null = null; fmt_file: Format | null = null; format: Format | null; date: Date | undefined
+  term_in: string[] | null = null; fmt_file: Format | null = null; format: Format | Promise<Format> | null; date: Date | undefined
 
-  constructor(opts: { fs: TexFS, limits?: Partial<Limits>, format?: Format, tcx?: string }) {
+  constructor(opts: { fs: TexFS, limits?: Partial<Limits>, format?: Format | Promise<Format>, tcx?: string }) {
     this.fs = opts.fs; this.format = opts.format ?? null
     if (opts.tcx !== undefined) read_tcx_file(this, opts.tcx)
     this.lim = { ...default_limits, ...opts.limits }; this.dvi_limit = this.lim.dvi_buf_size
@@ -174,7 +174,7 @@ export class Engine {
   // with it, the first line comes from `terminal' (init_terminal) and so does every later terminal read.
   async run(opts: { jobname?: string, mode: 'ini' | 'etex' | 'latex', terminal?: string[], date?: Date }): Promise<void> {
     if (opts.mode === 'latex') throw new Error(`unsupported mode: ${opts.mode}`)
-    this.date = opts.date; this.etex_p = opts.mode === 'etex'
+    this.date = opts.date; this.etex_p = opts.mode === 'etex'; this.format = await this.format // loadFormat's result may be passed unawaited
     init_specs(this); init_fonts(this); init_eqtb(this); init_prim(this); fix_date_and_time(this)
     this.terminal += 'This is tstex, Version 3.141592653' + this.format_ident + '\n' // §61
     if (this.translate_filename !== '') this.terminal += ' (' + this.translate_filename + ')\n' // tex.ch
