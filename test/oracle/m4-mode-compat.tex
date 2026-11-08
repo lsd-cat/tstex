@@ -6,4 +6,5 @@
 \show\ifdefined
 \show\scantokens
 \message{[\the\numexpr 1+1\relax]}
+\def\a{A}\show\expanded \message{\expanded{[\a\noexpand\a]}}
 \end

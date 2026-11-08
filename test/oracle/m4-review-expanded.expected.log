@@ -1,0 +1,92 @@
+entering extended mode
+(m4-review-expanded.tex
+> \x=macro:
+->ABC.
+l.5 \edef\x{\expanded{\a\b}}\show\x
+
+
+> \x=macro:
+->\expanded {ABC}.
+l.6 \edef\x{\noexpand\expanded{\a\b}}\show\x
+
+
+> \x=macro:
+->ABCCBC.
+l.7 ...\x{\expanded{\a\unexpanded{\b\c}\b}}\show\x
+
+
+> \x=macro:
+->\p A.
+l.9 \edef\x{\expanded{\p\a}}\show\x
+
+
+\p ABC
+! Illegal parameter number in definition of \x.
+<to be read again>
+                   A
+l.12 \edef\x{\expanded{\the\toks0 \a}
+                                     }\show\x
+You meant to type ## instead of #, right?
+Or maybe a } was forgotten somewhere earlier, and things
+are all screwed up? I'm going to assume that you meant ##.
+
+> \x=macro:
+->A##A.
+l.12 \edef\x{\expanded{\the\toks0 \a}}\show\x
+
+
+> \x=macro:
+->[A].
+l.14 \edef\x{\expanded{\noexpand\y{\a}}}\show\x
+
+
+> \nA=macro:
+->N.
+l.15 ...\csname\expanded{n\a}\endcsname{N}\show\nA
+
+
+> \x=macro:
+->ABC.
+l.16 ...xpanded{\a}\expanded{\noexpand\b}}}\show\x
+
+
+> \z=macro:
+->A\b .
+l.17 ...pandafter{\expanded{\a\noexpand\b}}\show\z
+
+
+> \w=macro:
+->\expanded {\a \b }.
+l.18 \def\w{\expanded{\a\b}}\show\w
+
+
+{vertical mode: \expanded}
+{\noexpand}
+
+\a ->A
+{\def}
+{\show}
+> \v=macro:
+->A.
+l.20 \expanded{\def\noexpand\v{\a}}\show\v
+
+
+{\expanded}
+
+\a ->A
+
+\b ->B\c
+
+\c ->C
+{the letter A}
+{horizontal mode: the letter A}
+{the letter B}
+{the letter C}
+{blank space  }
+{\end}
+{\par}
+{vertical mode: \end}
+[0]
+{\end}
+ )
+Output written on m4-review-expanded.dvi (1 page, 128 bytes).

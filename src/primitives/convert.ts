@@ -1,11 +1,11 @@
-// §468–471 \number \romannumeral \string \meaning (and the rest of the convert family, unsupported for now)
+// §468–471 \number \romannumeral \string \meaning, pdftex.web \expanded \pdfstrcmp (the rest of the convert family is unsupported for now)
 import type { Engine } from '../engine.ts'
 import { Cmd, new_string } from '../types.ts'
 import { print as print_str, print_esc, print_int, print_roman_int, print_char } from '../print.ts'
 import { sprint_cs } from '../hash.ts'
 import { garbage, temp_head } from '../nodes.ts'
 import { print_meaning, show_token_list } from '../tokens.ts'
-import { delete_token_ref } from '../nodes.ts'
+import { delete_token_ref, free_avail } from '../nodes.ts'
 import { get_token, ins_list } from '../input.ts'
 import { scan_int, str_toks, scan_toks } from '../scan.ts'
 import { unsupported } from '../main.ts'
@@ -13,7 +13,7 @@ import { open_log_file } from '../files.ts'
 import { scan_font_ident } from '../tfm.ts'
 import { print_scaled } from '../arith.ts'
 
-const number_code = 0, roman_numeral_code = 1, string_code = 2, meaning_code = 3, font_name_code = 4, eTeX_revision_code = 5, pdf_strcmp_code = 18, job_name_code = 33
+const number_code = 0, roman_numeral_code = 1, string_code = 2, meaning_code = 3, font_name_code = 4, eTeX_revision_code = 5, expanded_code = 6, pdf_strcmp_code = 18, job_name_code = 33
 const names: Record<number, string> = { 0: 'number', 1: 'romannumeral', 2: 'string', 3: 'meaning', 4: 'fontname', 5: 'eTeXrevision',
   6: 'expanded', 7: 'pdftexrevision', 8: 'pdftexbanner', 9: 'pdffontname', 10: 'pdffontobjnum', 11: 'pdffontsize', 12: 'pdfpageref',
   13: 'pdfxformname', 14: 'pdfescapestring', 15: 'pdfescapename', 16: 'leftmarginkern', 17: 'rightmarginkern', 18: 'pdfstrcmp',
@@ -54,6 +54,13 @@ export function run(e: Engine, chr: number): void {
     const save_scanner_status = e.scanner_status
     e.scanner_status = 0; get_token(e); e.scanner_status = save_scanner_status
   } else if (c === font_name_code) scan_font_ident(e)
+  else if (c === expanded_code) { // pdftex.web; save_cur_string is not needed: cur_str is only spliced from a saved length
+    const ss = e.scanner_status, wi = e.warning_index, dr = e.def_ref
+    scan_toks(e, false, true)
+    e.warning_index = wi; e.scanner_status = ss
+    ins_list(e, e.link[e.def_ref]!); free_avail(e, e.def_ref); e.def_ref = dr
+    return
+  }
   else if (c === job_name_code) { if (e.job_name === '') open_log_file(e) }
   else if (c === pdf_strcmp_code) { // pdftex.web (scanner_status, warning_index and def_ref are restored)
     const ss = e.scanner_status, wi = e.warning_index, dr = e.def_ref

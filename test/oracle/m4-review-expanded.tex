@@ -1,0 +1,22 @@
+%! oracle: etex
+\catcode`\{=1 \catcode`\}=2 \catcode`\#=6 \catcode`\^=7
+\tracingonline1
+\def\a{A}\def\b{B\c}\def\c{C}
+\edef\x{\expanded{\a\b}}\show\x
+\edef\x{\noexpand\expanded{\a\b}}\show\x
+\edef\x{\expanded{\a\unexpanded{\b\c}\b}}\show\x
+\protected\def\p{P}
+\edef\x{\expanded{\p\a}}\show\x
+\message{\expanded{\p\a\noexpand\b}}
+\toks0{\a#}
+\edef\x{\expanded{\the\toks0 \a}}\show\x
+\def\y#1{[#1]}
+\edef\x{\expanded{\noexpand\y{\a}}}\show\x
+\expandafter\def\csname\expanded{n\a}\endcsname{N}\show\nA
+\edef\x{\expanded{\expanded{\a}\expanded{\noexpand\b}}}\show\x
+\expandafter\def\expandafter\z\expandafter{\expanded{\a\noexpand\b}}\show\z
+\def\w{\expanded{\a\b}}\show\w
+\tracingmacros2 \tracingcommands2
+\expanded{\def\noexpand\v{\a}}\show\v
+\expanded{\a\b}
+\end

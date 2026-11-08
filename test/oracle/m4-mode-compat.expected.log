@@ -33,5 +33,10 @@ l.8 \message{[\the\numexpr 1
                             +1\relax]}
 I'm forgetting what you said and using zero instead.
 
-[0+1\relax ] )
+[0+1\relax ]
+> \expanded=\expanded.
+l.9 \def\a{A}\show\expanded
+                            \message{\expanded{[\a\noexpand\a]}}
+
+[AA] )
 No pages of output.
