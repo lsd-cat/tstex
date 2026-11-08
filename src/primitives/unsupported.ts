@@ -8,11 +8,6 @@ import type { Prim } from './index.ts'
 // [name, cmd, chr, 1 if e-TeX mode only, 2 if print-only]
 const table: [string, number, number, number?][] = [
   ['letterspacefont', Cmd.letterspace_font, 0], ['pdfcopyfont', Cmd.pdf_copy_font, 0],
-  ['ignorespaces', Cmd.ignore_spaces, 0], 
-  ['batchmode', Cmd.set_interaction, 0],
-  ['nonstopmode', Cmd.set_interaction, 1], ['scrollmode', Cmd.set_interaction, 2],
-  ['errorstopmode', Cmd.set_interaction, 3],
-  ['pdfprimitive', Cmd.ignore_spaces, 1, 2], // eq_type of frozen_primitive (pdftex.web §258)
 ]
 export const prims: Prim[] = []
 const names = new Map<number, string>()

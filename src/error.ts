@@ -1,4 +1,4 @@
-// §72–98 reporting errors (no interactive dialog: interaction<error_stop_mode always), §311–320 show_context
+// §72–98 reporting errors (no interactive dialog: error_stop_mode's prompt is a fatal error), §311–320 show_context
 import type { Engine } from './engine.ts'
 import { batch_mode, error_stop_mode, scroll_mode, error_message_issued, fatal_error_stop, term_and_log, term_only, pseudo, error_line, half_error_line } from './types.ts'
 import { print, print_char, print_nl, print_ln, print_int } from './print.ts'
@@ -24,7 +24,8 @@ export function help(e: Engine, ...lines: string[]): void {
 export function error(e: Engine): void {
   if (e.history < error_message_issued) e.history = error_message_issued
   print_char(e, 46); show_context(e)
-  // §83 Get user's advice: deferred (PLAN), interaction is always batch_mode
+  // §83 Get user's advice: there is no terminal, so \errorstopmode's prompt stops the run
+  if (e.interaction === error_stop_mode) fatal_error(e, 'unsupported: terminal input')
   e.error_count++
   if (e.error_count === 100) {
     print_nl(e, '(That makes 100 errors; please try again.)')

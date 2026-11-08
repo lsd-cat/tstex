@@ -9,7 +9,8 @@ import { vmode, par_shape_loc } from './types.ts'
 import { box, is_char_node, math_node, penalty_node, kern_node, glue_node, mu_glue, unset_node } from './nodes.ts'
 import type { Node } from './nodes.ts'
 import { scan_font_ident, find_font_dimen, param, quad_code, x_height_code } from './tfm.ts'
-import { sprint_cs } from './hash.ts'
+import { sprint_cs, prim_lookup_cs } from './hash.ts'
+import { prim_eqtb_base, frozen_primitive, frozen_relax } from './types.ts'
 import { get_avail, free_avail, flush_list, temp_head, backup_head, new_spec, add_glue_ref, delete_glue_ref, print_spec, zero_glue, fil, filll } from './nodes.ts'
 import { unsupported } from './main.ts'
 import { cs_token_flag, left_brace_token, left_brace_limit, right_brace_limit, other_token, letter_token, space_token, end_match_token, match_token, out_param_token, print_cmd_chr } from './tokens.ts'
@@ -72,8 +73,19 @@ export function mu_error(e: Engine): void {
   error(e)
 }
 
+// pdftex.web Reset cur_tok for unexpandable primitives (the frozen \pdfprimitive seen by scan_int or scan_something_internal)
+function reset_prim_tok(e: Engine): void {
+  get_token(e)
+  const p = prim_lookup_cs(e, e.cur_cs)
+  if (p !== 0) {
+    e.cur_cmd = e.eq_type[prim_eqtb_base + p]!; e.cur_chr = e.equiv[prim_eqtb_base + p]!
+    e.cur_cs = prim_eqtb_base + p; e.cur_tok = cs_token_flag + e.cur_cs
+  } else { e.cur_cmd = Cmd.relax; e.cur_chr = 0; e.cur_tok = cs_token_flag + frozen_relax; e.cur_cs = frozen_relax }
+}
+
 // §413 scan_something_internal
 export function scan_something_internal(e: Engine, level: number, negative: boolean): void {
+  while (e.cur_cmd === Cmd.ignore_spaces && e.cur_chr === 1) reset_prim_tok(e) // restart
   const m = e.cur_chr
   switch (e.cur_cmd) {
     case Cmd.def_code: // §414 Fetch a character code from some table
@@ -182,8 +194,7 @@ export function scan_something_internal(e: Engine, level: number, negative: bool
         }
       }
       break
-    case Cmd.ignore_spaces: // pdftex: trap unexpandable primitives; chr=0 (\ignorespaces) leaves cur_val, cur_val_level as they were
-      if (e.cur_chr === 1) unsupported(e) // \pdfprimitive
+    case Cmd.ignore_spaces: // pdftex: trap unexpandable primitives (chr=1 handled above); \ignorespaces leaves cur_val, cur_val_level as they were
       break
     default:
       if (e.cur_cmd >= Cmd.min_internal && e.cur_cmd <= Cmd.max_internal) unsupported(e)
@@ -280,6 +291,7 @@ export function scan_int(e: Engine): void {
     do get_x_token(e); while (e.cur_cmd === Cmd.spacer)
     if (e.cur_tok === other_token + 45) { negative = !negative; e.cur_tok = other_token + 43 }
   } while (e.cur_tok === other_token + 43)
+  while (e.cur_tok === cs_token_flag + frozen_primitive) reset_prim_tok(e) // pdftex.web: goto restart
   if (e.cur_tok === alpha_token) {
     // §442 Scan an alphabetic character code into cur_val
     get_token(e)

@@ -104,6 +104,8 @@ import * as no_align from './no_align.ts'
 import * as omit from './omit.ts'
 import * as tab_mark from './tab_mark.ts'
 import * as car_ret from './car_ret.ts'
+import * as ignore_spaces from './ignore_spaces.ts'
+import * as set_interaction from './set_interaction.ts'
 
 export type Prim = {
   cmd: number
@@ -121,7 +123,7 @@ const prims: Prim[] = [relax, par_end, stop, def, register, assign_int, assign_d
   un_hbox, un_vbox, remove_item, hskip, vskip, kern, hrule, vrule, insert, vadjust, mark, break_penalty, start_par, ital_corr, accent,
   discretionary, ex_space, char_num, no_boundary, end_cs_name, extension, def_family, hyph_data, set_shape, set_page_dimen, set_page_int, top_bot_mark, partoken_name,
   delim_num, math_char_num, math_accent, math_choice, non_script, radical, vcenter, mskip, mkern, eq_no, math_comp, limit_switch, math_style, above, left_right,
-  halign, valign, no_align, omit, tab_mark, car_ret, ...unsupported.prims]
+  halign, valign, no_align, omit, tab_mark, car_ret, ignore_spaces, set_interaction, ...unsupported.prims]
 export const registry = new Map<number, Prim>() // filled by init_prim, after every module is evaluated
 
 // §1336 init_prim (with the frozen copies of §265, §334, §491, §553, §780, §1188, §1344)

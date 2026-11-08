@@ -6,6 +6,8 @@ import { error, print_err, help, confusion } from './error.ts'
 import { int_par, tracing_commands_code, active_base } from './eqtb.ts'
 import { cs_token_flag, other_token, print_cmd_chr } from './tokens.ts'
 import { get_next, back_error, skipping } from './input.ts'
+import { prim_lookup_cs } from './hash.ts'
+import { prim_eqtb_base } from './types.ts'
 import { get_x_token, insert_relax } from './expand.ts'
 import { scan_int, scan_dimen, scan_eight_bit_int, scan_four_bit_int_or_18 } from './scan.ts'
 import { closed } from './files.ts'
@@ -17,7 +19,7 @@ export type CondNode = { link: CondNode | null, if_limit: number, cur_if: number
 export const unless_code = 32
 export const if_char_code = 0, if_cat_code = 1, if_int_code = 2, if_dim_code = 3, if_odd_code = 4, if_vmode_code = 5,
   if_hmode_code = 6, if_mmode_code = 7, if_inner_code = 8, if_void_code = 9, if_hbox_code = 10, if_vbox_code = 11,
-  ifx_code = 12, if_eof_code = 13, if_true_code = 14, if_false_code = 15, if_case_code = 16
+  ifx_code = 12, if_eof_code = 13, if_true_code = 14, if_false_code = 15, if_case_code = 16, if_pdfprimitive_code = 21
 export const if_code = 1, fi_code = 2, else_code = 3, or_code = 4
 
 // §494 pass_text
@@ -148,7 +150,14 @@ export function conditional(e: Engine): void {
       break
     case if_eof_code: // tex.ch; shellenabledp is reported true, as pdftex's restricted shell escape (AUDIT.md)
       scan_four_bit_int_or_18(e); b = e.cur_val === 18 ? false : e.read_open[e.cur_val] === closed; break
-    default: unsupported(e) // \ifpdfprimitive
+    case if_pdfprimitive_code: { // pdftex.web
+      const save_scanner_status = e.scanner_status; e.scanner_status = 0
+      get_next(e); e.scanner_status = save_scanner_status
+      const m = prim_lookup_cs(e, e.cur_cs)
+      b = e.cur_cmd !== Cmd.undefined_cs && m !== 0 && e.cur_cmd === e.eq_type[prim_eqtb_base + m] && e.cur_chr === e.equiv[prim_eqtb_base + m]
+      break
+    }
+    default: unsupported(e) // e-TeX's conditionals
   }
   if (is_unless) b = !b
   if (int_par(e, tracing_commands_code) > 1) { // §502

@@ -39,6 +39,8 @@ export const bottom_level = 0, simple_group = 1, hbox_group = 2, adjusted_hbox_g
   align_group = 6, no_align_group = 7, output_group = 8, math_group = 9, disc_group = 10, insert_group = 11, vcenter_group = 12,
   math_choice_group = 13, semi_simple_group = 14, math_shift_group = 15, math_left_group = 16
 import { registry } from './primitives/index.ts'
+import { prim_lookup_cs } from './hash.ts'
+import { prim_eqtb_base } from './types.ts'
 import { do_endv, align_group_right_brace, no_align_group_right_brace } from './align.ts'
 
 // §1071 box context codes, §1055–1058
@@ -180,10 +182,17 @@ export function main_control(e: Engine): void {
           back_input(e); e.cur_tok = e.par_token; back_input(e); e.cur_input.index = inserted
         } else do_endv(e)
         continue
-      case Cmd.ignore_spaces: // §1045
-        if (e.cur_chr !== 0) unsupported(e) // the frozen \pdfprimitive
-        do get_x_token(e); while (e.cur_cmd === Cmd.spacer) // §406
-        fetch = false; continue
+      case Cmd.ignore_spaces: // §1045; pdftex.web: chr=1 is the frozen \pdfprimitive
+        if (e.cur_chr === 0) { do get_x_token(e); while (e.cur_cmd === Cmd.spacer); fetch = false; continue } // §406
+        {
+          const t = e.scanner_status; e.scanner_status = 0; get_next(e); e.scanner_status = t // normal
+          const p = prim_lookup_cs(e, e.cur_cs)
+          if (p !== 0) {
+            e.cur_cmd = e.eq_type[prim_eqtb_base + p]!; e.cur_chr = e.equiv[prim_eqtb_base + p]!
+            e.cur_tok = cs_token_flag + prim_eqtb_base + p; fetch = false
+          }
+        }
+        continue
     }
     if ((c === Cmd.vmove && m === vmode) || (c === Cmd.hmove && m !== vmode) || (c === Cmd.vadjust && m === vmode)
       || (c === Cmd.ital_corr && m === vmode) || (c === Cmd.eq_no && m !== mmode)) { report_illegal_case(e); continue } // §1048

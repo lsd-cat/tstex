@@ -47,6 +47,7 @@ export class Engine {
   eq_level = new Uint8Array(eqtb_size + 1); eq_type = new Uint8Array(eqtb_size + 1)
   equiv = new Int32Array(eqtb_size + 1); xeq_level = new Uint8Array(eqtb_size + 1)
   hash = new Map<string, number>(); text = new Map<number, string>()
+  prim = new Map<string, number>(); prim_text: (string | number)[] = [0] // pdftex.web primitives table; 0 is undefined_primitive
   hash_used = 0; no_new_control_sequence = true; cs_count = 0
   // §271 save stack
   save_b0: number[] = []; save_b1: number[] = []; save_rh: number[] = []

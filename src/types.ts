@@ -79,8 +79,10 @@ export const frozen_endv = frozen_control_sequence + 6
 export const frozen_relax = frozen_control_sequence + 7
 export const end_write = frozen_control_sequence + 8
 export const frozen_dont_expand = frozen_control_sequence + 9
-export const frozen_null_font = frozen_control_sequence + 10
+export const frozen_special = frozen_control_sequence + 10 // tex.ch: source specials (unused)
 export const frozen_primitive = frozen_control_sequence + 11 // pdftex.web: permanent \pdfprimitive
+export const prim_eqtb_base = frozen_primitive + 1, prim_size = 2100 // pdftex.web: the primitives' permanent eqtb copies
+export const frozen_null_font = prim_eqtb_base + prim_size // pdftex.ch
 export const font_id_base = frozen_null_font
 export const undefined_control_sequence = frozen_null_font + 9000 + 1 // tex.ch: max_font_max+1
 // §224 region 3

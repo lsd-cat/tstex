@@ -21,11 +21,12 @@ export function expand(e: Engine): void {
   if (e.expand_depth_count > 100) try { stack_probe(500) } catch { overflow(e, 'expansion depth', expand_depth) }
   const cv_backup = e.cur_val, cvl_backup = e.cur_val_level, radix_backup = e.radix
   const co_backup = e.cur_order, backup_backup = e.link[backup_head]!
+  reswitch: for (;;) {
   if (e.cur_cmd < Cmd.call) {
     // §367 Expand a nonmacro
     if (int_par(e, tracing_commands_code) > 1) show_cur_cmd_chr(e)
     const prim = registry.get(e.cur_cmd)
-    if (prim?.run) prim.run(e, e.cur_chr)
+    if (prim?.run) { if (prim.run(e, e.cur_chr) === true) continue reswitch } // \pdfprimitive's goto reswitch
     else if (prim) unsupported(e)
     else { // §370 Complain about an undefined macro
       print_err(e, 'Undefined control sequence')
@@ -36,6 +37,8 @@ export function expand(e: Engine): void {
     }
   } else if (e.cur_cmd < Cmd.end_template) macro_call(e)
   else { e.cur_tok = cs_token_flag + frozen_endv; back_input(e) } // §375
+  break
+  }
   e.cur_val = cv_backup; e.cur_val_level = cvl_backup; e.radix = radix_backup
   e.cur_order = co_backup; e.link[backup_head] = backup_backup
   e.expand_depth_count--
