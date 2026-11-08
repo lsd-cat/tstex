@@ -5,7 +5,9 @@ import { print, print_char, print_esc, print_nl, print_ln, print_hex, print_mode
 import { print_cs } from './hash.ts'
 import { registry } from './primitives/index.ts'
 
-import { cs_token_flag } from './types.ts'
+import { cs_token_flag, protected_token, int_base } from './types.ts'
+import { print_int } from './print.ts'
+import { print_if_line, tracing_ifs_code } from './etex.ts'
 export * from './types.ts'
 
 // §292 show_token_list
@@ -34,7 +36,7 @@ export function show_token_list(e: Engine, p: number, q: number, l: number): voi
           match_chr = c; print(e, c); n++; print_char(e, n)
           if (n > 57) return
           break
-        case Cmd.end_match: print(e, '->'); break
+        case Cmd.end_match: if (c === 0) print(e, '->'); break // etex.ch: protected_token prints nothing
         default: print_esc(e, 'BAD.')
       }
     }
@@ -59,7 +61,7 @@ export function token_show(e: Engine, p: number): void {
 export function print_meaning(e: Engine): void {
   print_cmd_chr(e, e.cur_cmd, e.cur_chr)
   if (e.cur_cmd >= Cmd.call) { print_char(e, 58); print_ln(e); token_show(e, e.cur_chr) }
-  else if (e.cur_cmd === Cmd.top_bot_mark && e.cur_chr < 5) { print_char(e, 58); print_ln(e); token_show(e, e.cur_mark[e.cur_chr]!) }
+  else if (e.cur_cmd === Cmd.top_bot_mark && e.cur_chr < 5) { print_char(e, 58); print_ln(e); token_show(e, e.cur_mark[e.cur_chr]!) } // etex.ch: not \topmarks
 }
 
 // §298 print_cmd_chr; primitive commands print through their primitives/* file
@@ -83,10 +85,15 @@ export function print_cmd_chr(e: Engine, cmd: number, chr_code: number): void {
     case Cmd.math_given: print_esc(e, 'mathchar'); print_hex(e, chr_code); return
     // §1295
     case Cmd.undefined_cs: print(e, 'undefined'); return
-    case Cmd.call: print(e, 'macro'); return
-    case Cmd.long_call: print_esc(e, 'long macro'); return
-    case Cmd.outer_call: print_esc(e, 'outer macro'); return
-    case Cmd.long_outer_call: print_esc(e, 'long'); print_esc(e, 'outer macro'); return
+    case Cmd.call: case Cmd.long_call: case Cmd.outer_call: case Cmd.long_outer_call: { // etex.ch
+      let n = cmd - Cmd.call
+      if (e.info[e.link[chr_code]!] === protected_token) n += 4
+      if ((n >> 2) & 1) print_esc(e, 'protected')
+      if (n & 1) print_esc(e, 'long')
+      if ((n >> 1) & 1) print_esc(e, 'outer')
+      if (n > 0) print_char(e, 32)
+      print(e, 'macro'); return
+    }
     case Cmd.end_template: print_esc(e, 'outer endtemplate'); return
   }
   const prim = registry.get(cmd)
@@ -98,6 +105,15 @@ export function print_cmd_chr(e: Engine, cmd: number, chr_code: number): void {
 export function show_cur_cmd_chr(e: Engine): void {
   begin_diagnostic(e); print_nl(e, '{')
   if (e.mode !== e.shown_mode) { print_mode(e, e.mode); print(e, ': '); e.shown_mode = e.mode }
-  print_cmd_chr(e, e.cur_cmd, e.cur_chr); print_char(e, 125)
+  print_cmd_chr(e, e.cur_cmd, e.cur_chr)
+  if (e.equiv[int_base + tracing_ifs_code]! > 0 && e.cur_cmd >= Cmd.if_test && e.cur_cmd <= Cmd.fi_or_else) { // etex.ch
+    print(e, ': ')
+    let n: number, l: number
+    if (e.cur_cmd === Cmd.fi_or_else) { print_cmd_chr(e, Cmd.if_test, e.cur_if); print_char(e, 32); n = 0; l = e.if_line }
+    else { n = 1; l = e.line }
+    for (let p = e.cond_ptr; p !== null; p = p.link) n++
+    print(e, '(level '); print_int(e, n); print_char(e, 41); print_if_line(e, l)
+  }
+  print_char(e, 125)
   end_diagnostic(e, false)
 }

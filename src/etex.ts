@@ -427,7 +427,7 @@ export function show_save_groups(e: Engine): void {
   for (;;) {
     print_nl(e, '### '); print_group(e, true)
     if (e.cur_group === bottom_level) break
-    do { m = e.nest[p]!.mode; if (p > 0) p--; else m = vmode } while (m === hmode)
+    do { m = e.nest[p]?.mode ?? 0; if (p > 0) p--; else m = vmode } while (m === hmode) // nest[p] may be stale, as in TeX
     print(e, ' (')
     let to: 'box' | 'found1' | 'found2' | 'found' = 'box'
     switch (e.cur_group) {
@@ -454,7 +454,7 @@ export function show_save_groups(e: Engine): void {
       case semi_simple_group: p++; print_esc(e, 'begingroup'); to = 'found'; break
       case math_shift_group:
         if (m === mmode) print_char(e, 36)
-        else if (e.nest[p]!.mode === mmode) { print_cmd_chr(e, Cmd.eq_no, saved(e, -2)); to = 'found'; break }
+        else if (e.nest[p]?.mode === mmode) { print_cmd_chr(e, Cmd.eq_no, saved(e, -2)); to = 'found'; break }
         print_char(e, 36); to = 'found'; break
       case math_left_group:
         print_esc(e, e.nest[p + 1]!.eTeX_aux!.type === left_noad ? 'left' : 'middle'); to = 'found'; break
@@ -463,7 +463,7 @@ export function show_save_groups(e: Engine): void {
       let i = saved(e, -4)
       if (i !== 0) {
         if (i < box_flag) {
-          const j = Math.abs(e.nest[p]!.mode) === vmode ? Cmd.hmove : Cmd.vmove
+          const j = Math.abs(e.nest[p]?.mode ?? 0) === vmode ? Cmd.hmove : Cmd.vmove
           print_cmd_chr(e, j, i > 0 ? 0 : 1); print_scaled(e, Math.abs(i)); print(e, 'pt')
         } else if (i < ship_out_flag) {
           if (i >= global_box_flag) { print_esc(e, 'global'); i -= global_box_flag - box_flag }

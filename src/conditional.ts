@@ -1,4 +1,4 @@
-// §487–510 conditional processing (e-TeX's \unless is honoured; its tracing and if_warning need \tracingifs/\tracingnesting, which -ini lacks)
+// §487–510 conditional processing, with etex.ch's \unless, \tracingifs, if_warning and the e-TeX conditionals
 import type { Engine } from './engine.ts'
 import { Cmd, vmode, hmode, mmode } from './types.ts'
 import { print, print_char, print_int, print_esc, begin_diagnostic, end_diagnostic } from './print.ts'
@@ -11,7 +11,14 @@ import { prim_eqtb_base } from './types.ts'
 import { get_x_token, insert_relax } from './expand.ts'
 import { scan_int, scan_dimen, scan_register_num, scan_four_bit_int_or_18 } from './scan.ts'
 import { closed } from './files.ts'
-import { unsupported } from './main.ts'
+import { overflow } from './error.ts'
+import { show_cur_cmd_chr } from './tokens.ts'
+import { if_warning, tracing_ifs_code } from './etex.ts'
+import { get_avail, flush_list } from './nodes.ts'
+import { id_lookup } from './hash.ts'
+import { null_cs, single_base } from './types.ts'
+import { scan_char_num } from './scan.ts'
+import { scan_font_ident, char_exists, char_info } from './tfm.ts'
 import { box, hlist_node, vlist_node } from './nodes.ts'
 
 // §489
@@ -19,7 +26,8 @@ export type CondNode = { link: CondNode | null, if_limit: number, cur_if: number
 export const unless_code = 32
 export const if_char_code = 0, if_cat_code = 1, if_int_code = 2, if_dim_code = 3, if_odd_code = 4, if_vmode_code = 5,
   if_hmode_code = 6, if_mmode_code = 7, if_inner_code = 8, if_void_code = 9, if_hbox_code = 10, if_vbox_code = 11,
-  ifx_code = 12, if_eof_code = 13, if_true_code = 14, if_false_code = 15, if_case_code = 16, if_pdfprimitive_code = 21
+  ifx_code = 12, if_eof_code = 13, if_true_code = 14, if_false_code = 15, if_case_code = 16, if_def_code = 17, if_cs_code = 18,
+  if_font_char_code = 19, if_in_csname_code = 20, if_pdfprimitive_code = 21, if_pdfabs_num_code = 22, if_pdfabs_dim_code = 23
 export const if_code = 1, fi_code = 2, else_code = 3, or_code = 4
 
 // §494 pass_text
@@ -35,6 +43,7 @@ export function pass_text(e: Engine): void {
     } else if (e.cur_cmd === Cmd.if_test) l++
   }
   e.scanner_status = save_scanner_status
+  if (int_par(e, tracing_ifs_code) > 0) show_cur_cmd_chr(e) // etex.ch
 }
 
 // §495 Push the condition stack
@@ -45,6 +54,7 @@ function push_cond(e: Engine): void {
 
 // §496 Pop the condition stack
 export function pop_cond(e: Engine): void {
+  if (e.if_stack[e.in_open] === e.cond_ptr) if_warning(e) // etex.ch: conditionals possibly not properly nested with files
   const p = e.cond_ptr!
   e.if_line = p.if_line; e.cur_if = p.cur_if; e.if_limit = p.if_limit; e.cond_ptr = p.link
 }
@@ -68,6 +78,7 @@ function get_x_token_or_active_char(e: Engine): void {
 
 // §498 conditional
 export function conditional(e: Engine): void {
+  if (int_par(e, tracing_ifs_code) > 0 && int_par(e, tracing_commands_code) <= 1) show_cur_cmd_chr(e) // etex.ch
   push_cond(e); const save_cond_ptr = e.cond_ptr
   const is_unless = e.cur_chr >= unless_code, this_if = e.cur_chr % unless_code
   let b = false
@@ -157,7 +168,61 @@ export function conditional(e: Engine): void {
       b = e.cur_cmd !== Cmd.undefined_cs && m !== 0 && e.cur_cmd === e.eq_type[prim_eqtb_base + m] && e.cur_chr === e.equiv[prim_eqtb_base + m]
       break
     }
-    default: unsupported(e) // e-TeX's conditionals
+    case if_def_code: { // etex.ch \ifdefined
+      const save_scanner_status = e.scanner_status; e.scanner_status = 0
+      get_next(e); b = e.cur_cmd !== Cmd.undefined_cs
+      e.scanner_status = save_scanner_status
+      break
+    }
+    case if_cs_code: { // etex.ch \ifcsname (pdftex.web: is_in_csname)
+      const n = get_avail(e); let p = n
+      const ic = e.is_in_csname; e.is_in_csname = true
+      do {
+        get_x_token(e)
+        if (e.cur_cs === 0) { const q = get_avail(e); e.link[p] = q; e.info[q] = e.cur_tok; p = q }
+      } while (e.cur_cs === 0)
+      if (e.cur_cmd !== Cmd.end_cs_name) { // §373 Complain about missing \endcsname
+        print_err(e, 'Missing '); print_esc(e, 'endcsname'); print(e, ' inserted')
+        help(e, 'The control sequence marked <to be read again> should', 'not appear between \\csname and \\endcsname.')
+        back_error(e)
+      }
+      // Look up the characters of list n in the hash table, and set cur_cs
+      let m = e.first
+      for (p = e.link[n]!; p !== 0; p = e.link[p]!) {
+        if (m >= e.max_buf_stack) { e.max_buf_stack = m + 1; if (e.max_buf_stack === e.lim.buf_size) overflow(e, 'buffer size', e.lim.buf_size) }
+        e.buffer[m++] = e.info[p]! % 0o400
+      }
+      if (m > e.first + 1) e.cur_cs = id_lookup(e, e.first, m - e.first)
+      else if (m === e.first) e.cur_cs = null_cs
+      else e.cur_cs = single_base + e.buffer[e.first]!
+      flush_list(e, n)
+      b = e.eq_type[e.cur_cs] !== Cmd.undefined_cs
+      e.is_in_csname = ic
+      break
+    }
+    case if_in_csname_code: b = e.is_in_csname; break
+    case if_pdfabs_num_code: case if_pdfabs_dim_code: { // pdftex.web
+      if (this_if === if_pdfabs_num_code) scan_int(e); else scan_dimen(e, false, false, false)
+      let n = e.cur_val; if (n < 0) n = -n | 0
+      let r: number
+      do get_x_token(e); while (e.cur_cmd === Cmd.spacer)
+      if (e.cur_tok >= other_token + 60 && e.cur_tok <= other_token + 62) r = e.cur_tok - other_token
+      else {
+        print_err(e, 'Missing = inserted for '); print_cmd_chr(e, Cmd.if_test, this_if)
+        help(e, "I was expecting to see `<', `=', or `>'. Didn't.")
+        back_error(e); r = 61
+      }
+      if (this_if === if_pdfabs_num_code) scan_int(e); else scan_dimen(e, false, false, false)
+      if (e.cur_val < 0) e.cur_val = -e.cur_val | 0
+      b = r === 60 ? n < e.cur_val : r === 61 ? n === e.cur_val : n > e.cur_val
+      break
+    }
+    case if_font_char_code: { // etex.ch \iffontchar
+      scan_font_ident(e); const n = e.cur_val; scan_char_num(e)
+      b = e.font_bc[n]! <= e.cur_val && e.font_ec[n]! >= e.cur_val ? char_exists(char_info(e, n, e.cur_val)) : false
+      break
+    }
+    default: confusion(e, 'if')
   }
   if (is_unless) b = !b
   if (int_par(e, tracing_commands_code) > 1) { // §502
@@ -185,6 +250,7 @@ function common_ending(e: Engine): void {
 
 // §510 Terminate the current conditional and skip to \fi
 export function fi_or_else(e: Engine): void {
+  if (int_par(e, tracing_ifs_code) > 0 && int_par(e, tracing_commands_code) <= 1) show_cur_cmd_chr(e) // etex.ch
   if (e.cur_chr > e.if_limit) {
     if (e.if_limit === if_code) insert_relax(e)
     else {

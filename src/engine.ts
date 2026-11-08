@@ -144,6 +144,7 @@ export class Engine {
   name_chars: number[] = []; area_delimiter = 0; ext_delimiter = 0; quoted_filename = false
   // etex.ch: compatibility (0) or extended (1) mode, pdftex.ch's -etex switch, scan_register_num's limit
   eTeX_mode = 0; etex_p = false; max_reg_num = 255; max_reg_help_line = 'A register number must be between 0 and 255.'
+  is_in_csname = false // pdftex.web \ifincsname
   get eTeX_ex(): boolean { return this.eTeX_mode === 1 }
   // etex.ch sparse arrays (sa[0..3] unused so register chr codes 0..3 stay the primitives), sa_chain, sa_level
   sa: (SaElem | null)[] = [null, null, null, null]; sa_free: number[] = []; sa_root = [0, 1, 2, 3, 4, 5, 6].map(() => new Map<number, number>())

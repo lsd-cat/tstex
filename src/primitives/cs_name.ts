@@ -15,6 +15,7 @@ export const primitives: [string, number][] = [['csname', 0]]
 export function print(e: Engine, _chr: number): void { print_esc(e, 'csname') }
 export function run(e: Engine, _chr: number): void {
   const r = get_avail(e); let p = r
+  const b = e.is_in_csname; e.is_in_csname = true // pdftex.web
   do {
     get_x_token(e)
     if (e.cur_cs === 0) { const q = get_avail(e); e.link[p] = q; e.info[q] = e.cur_tok; p = q }
@@ -24,6 +25,7 @@ export function run(e: Engine, _chr: number): void {
     help(e, 'The control sequence marked <to be read again> should', 'not appear between \\csname and \\endcsname.')
     back_error(e)
   }
+  e.is_in_csname = b
   // §374 Look up the characters of list r in the hash table, and set cur_cs
   let j = e.first
   for (p = e.link[r]!; p !== 0; p = e.link[p]!) {

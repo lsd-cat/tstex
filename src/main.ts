@@ -906,16 +906,22 @@ export function prefixed_command(e: Engine): void {
     do get_x_token(e); while ((e.cur_cmd as number) === Cmd.spacer || (e.cur_cmd as number) === Cmd.relax)
     if (e.cur_cmd <= Cmd.max_non_prefixed_command) { // §1212 Discard erroneous prefixes and return
       print_err(e, "You can't use a prefix with `"); print_cmd_chr(e, e.cur_cmd, e.cur_chr); print_char(e, 39)
-      help(e, "I'll pretend you didn't say \\long or \\outer or \\global.")
+      help(e, e.eTeX_ex ? "I'll pretend you didn't say \\long or \\outer or \\global or \\protected."
+        : "I'll pretend you didn't say \\long or \\outer or \\global.")
       back_error(e); return
     }
+    if (int_par(e, tracing_commands_code) > 2 && e.eTeX_ex) show_cur_cmd_chr(e) // etex.ch
   }
-  // §1213 Discard the prefixes \long and \outer if they are irrelevant
-  if (e.cur_cmd !== Cmd.def && a % 4 !== 0) {
+  // §1213 Discard the prefixes \long and \outer if they are irrelevant (etex.ch: and \protected; j is the protected flag)
+  let j = 0
+  if (a >= 8) { j = 8; a -= 8 }
+  if (e.cur_cmd !== Cmd.def && (a % 4 !== 0 || j !== 0)) {
     print_err(e, "You can't use `"); print_esc(e, 'long'); print(e, "' or `")
-    print_esc(e, 'outer'); print(e, "' with `")
-    print_cmd_chr(e, e.cur_cmd, e.cur_chr); print_char(e, 39)
+    print_esc(e, 'outer')
     help(e, "I'll pretend you didn't say \\long or \\outer here.")
+    if (e.eTeX_ex) { e.help_line[0] = "I'll pretend you didn't say \\long or \\outer or \\protected here."; print(e, "' or `"); print_esc(e, 'protected') }
+    print(e, "' with `")
+    print_cmd_chr(e, e.cur_cmd, e.cur_chr); print_char(e, 39)
     error(e)
   }
   // §1214 Adjust for the setting of \globaldefs
@@ -924,7 +930,7 @@ export function prefixed_command(e: Engine): void {
     else if (a < 4) a += 4
   }
   const prim = registry.get(e.cur_cmd)
-  if (prim?.assign) prim.assign(e, a)
+  if (prim?.assign) prim.assign(e, e.cur_cmd === Cmd.def ? a + j : a) // def sees \protected as a+8
   else if (prim && e.cur_cmd !== Cmd.partoken_name) unsupported(e)
   else confusion(e, 'prefix') // also \global\partokenname (partoken.ch adds no prefixed case)
   // §1269 Insert a token saved by \afterassignment, if any

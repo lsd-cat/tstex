@@ -9,7 +9,8 @@ import { flush_list, temp_head } from '../nodes.ts'
 import { get_token } from '../input.ts'
 import { the_toks } from '../scan.ts'
 import { int_par, tracing_online_code, show_stream_code } from '../eqtb.ts'
-import { unsupported, show_activities } from '../main.ts'
+import { show_activities } from '../main.ts'
+import { show_save_groups, show_ifs } from '../etex.ts'
 import { box, show_box } from '../nodes.ts'
 import { scan_register_num } from '../scan.ts'
 
@@ -28,8 +29,10 @@ function adjust_selector(e: Engine): void {
 }
 // §1293 show_whatever
 export function run(e: Engine, chr: number): void {
-  if (chr === show_lists_code || chr === show_box_code) {
+  if (chr === show_lists_code || chr === show_box_code || chr === 4 || chr === 6) {
     if (chr === show_lists_code) { adjust_selector(e); begin_diagnostic(e); show_activities(e) }
+    else if (chr === 4) { adjust_selector(e); begin_diagnostic(e); show_save_groups(e) } // etex.ch \showgroups
+    else if (chr === 6) { adjust_selector(e); show_ifs(e) } // etex.ch \showifs
     else { // §1296 Show the current contents of a box
       scan_register_num(e); const p = box(e, e.cur_val); adjust_selector(e); begin_diagnostic(e)
       print_nl(e, '> \\box'); print_int(e, e.cur_val); print_char(e, 61)
@@ -40,13 +43,12 @@ export function run(e: Engine, chr: number): void {
     if (e.selector === term_and_log && int_par(e, tracing_online_code) <= 0) {
       e.selector = term_only; print_str(e, ' (see the transcript file)'); e.selector = term_and_log
     }
-  } else if (chr !== show_code && chr !== show_the_code) unsupported(e)
-  else if (chr === show_code) { // §1294 Show the current meaning of a token
+  } else if (chr === show_code) { // §1294 Show the current meaning of a token
     get_token(e); adjust_selector(e)
     print_nl(e, '> ')
     if (e.cur_cs !== 0) { sprint_cs(e, e.cur_cs); print_char(e, 61) }
     print_meaning(e)
-  } else { // §1297 Show the current value of some parameter or register
+  } else { // §1297 Show the current value of some parameter or register (etex.ch: or \showtokens)
     the_toks(e); adjust_selector(e)
     print_nl(e, '> '); token_show(e, temp_head)
     flush_list(e, e.link[temp_head]!)

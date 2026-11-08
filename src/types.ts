@@ -56,7 +56,7 @@ export const cs_token_flag = 0o7777
 export const left_brace_token = 0o400, left_brace_limit = 0o1000, right_brace_token = 0o1000,
   right_brace_limit = 0o1400, math_shift_token = 0o1400, tab_token = 0o2000, out_param_token = 0o2400,
   space_token = 0o5040, letter_token = 0o5400, other_token = 0o6000, match_token = 0o6400,
-  end_match_token = 0o7000
+  end_match_token = 0o7000, protected_token = 0o7001 // etex.ch
 
 // §221–247 eqtb layout
 export const level_zero = 0, level_one = 1

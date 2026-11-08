@@ -6,6 +6,7 @@ import { error, print_err, help, overflow, token_list, v_template, macro, insert
 import { int_par, tracing_stack_levels_code, tracing_macros_code, tracing_commands_code, frozen_endv, frozen_relax } from './eqtb.ts'
 import { print_cs, sprint_cs } from './hash.ts'
 import { get_avail, free_avail, flush_list, temp_head, backup_head } from './nodes.ts'
+import { protected_token } from './types.ts'
 import { cs_token_flag, left_brace_limit, right_brace_limit, match_token, end_match_token, space_token, show_token_list, token_show, show_cur_cmd_chr } from './tokens.ts'
 import { get_next, get_token, back_input, back_error, ins_error, end_token_list, begin_token_list, runaway, matching } from './input.ts'
 import { registry } from './primitives/index.ts'
@@ -65,11 +66,12 @@ export function get_x_token(e: Engine): void {
   e.cur_tok = e.cur_cs === 0 ? e.cur_cmd * 0o400 + e.cur_chr : cs_token_flag + e.cur_cs
 }
 
-// etex.ch get_x_or_protected; \protected macros exist only in e-TeX mode (not ported), so every macro expands
+// etex.ch get_x_or_protected
 export function get_x_or_protected(e: Engine): void {
   for (;;) {
     get_token(e)
     if (e.cur_cmd <= Cmd.max_command) return
+    if (e.cur_cmd >= Cmd.call && e.cur_cmd < Cmd.end_template && e.info[e.link[e.cur_chr]!] === protected_token) return
     expand(e)
   }
 }
@@ -101,6 +103,7 @@ export function macro_call(e: Engine): void {
     end_diagnostic(e, false)
   }
   exit: {
+    if (e.info[r] === protected_token) r = e.link[r]! // etex.ch
     if (e.info[r] !== end_match_token) {
       // §391 Scan the parameters and make link(r) point to the macro body
       e.scanner_status = matching; unbalance = 0

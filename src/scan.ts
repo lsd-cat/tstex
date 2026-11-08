@@ -13,6 +13,7 @@ import { sprint_cs, prim_lookup_cs } from './hash.ts'
 import { prim_eqtb_base, frozen_primitive, frozen_relax } from './types.ts'
 import { get_avail, free_avail, flush_list, temp_head, backup_head, new_spec, add_glue_ref, delete_glue_ref, print_spec, zero_glue, fil, filll } from './nodes.ts'
 import { unsupported } from './main.ts'
+import { protected_token } from './types.ts'
 import { cs_token_flag, left_brace_token, left_brace_limit, right_brace_limit, other_token, letter_token, space_token, end_match_token, match_token, out_param_token, print_cmd_chr } from './tokens.ts'
 import { get_token, get_next, back_input, back_error, back_list, defining, absorbing, normal, begin_file_reading, end_file_reading, input_ln, runaway, new_line, prompt_input } from './input.ts'
 import { closed, just_open } from './files.ts'
@@ -682,6 +683,7 @@ export function scan_toks(e: Engine, macro_def: boolean, xpand: boolean): number
         // §478 Expand the next part of the input
         for (;;) {
           get_next(e)
+          if (e.cur_cmd >= Cmd.call && e.info[e.link[e.cur_chr]!] === protected_token) { e.cur_cmd = Cmd.relax; e.cur_chr = 257 } // etex.ch
           if (e.cur_cmd <= Cmd.max_command) break
           if (e.cur_cmd !== Cmd.the) expand(e)
           else {
