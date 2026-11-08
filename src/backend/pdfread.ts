@@ -222,7 +222,7 @@ function make_stream(p: Parser, d: PDict, depth: number): PStream | null {
 export const raw_bytes = (s: PStream) => s.b.subarray(Math.min(s.pos, s.b.length), Math.min(s.pos + s.len, s.b.length))
 
 // Stream::addFilters, makeFilter (FlateStream + StreamPredictor); /F and /DP stand in for missing /Filter and /DecodeParms
-export function decode_stream(s: PStream): Uint8Array {
+export function decode_stream(e: Engine, s: PStream): Uint8Array {
   const x = s.d.x
   let f = lookup(s.d, 'Filter')
   if (f === null) f = lookup(s.d, 'F')
@@ -231,8 +231,7 @@ export function decode_stream(s: PStream): Uint8Array {
   let data = raw_bytes(s)
   const filter = (name: string, p: PObj) => {
     if (name === 'Crypt') return
-    if (name !== 'FlateDecode' && name !== 'Fl') fatal_error(x!.e, `unsupported: PDF stream filter /${name}`)
-    const e = x!.e
+    if (name !== 'FlateDecode' && name !== 'Fl') fatal_error(e, `unsupported: PDF stream filter /${name}`)
     if (e.fs.inflate === undefined) fatal_error(e, 'unsupported: PDF inclusion without an inflater')
     data = e.fs.inflate(data, Math.min(1 << 28, Math.max(1 << 20, data.length * 1032)))
     const pi = (k: string, v: number) => { if (!is_dict(p)) return v; const o = lookup(p, k); return typeof o === 'number' ? o : v }
@@ -315,7 +314,7 @@ function object_stream(x: XRef, n: number, depth: number): ObjStm | null {
   if (!is_stream(s)) return null
   const N = lookup(s.d, 'N', depth), first = lookup(s.d, 'First', depth)
   if (typeof N !== 'number' || N <= 0 || typeof first !== 'number' || first < 0 || N > 1000000) return null
-  const d = decode_stream(s), nums: number[] = [], offs: number[] = []
+  const d = decode_stream(x.e, s), nums: number[] = [], offs: number[] = []
   const hp = parser(x, lexer(d, 0, Math.min(first, d.length)), false)
   for (let i = 0; i < N; i++) {
     const a = get_obj(hp, true, 0), b = get_obj(hp, true, 0)
@@ -457,7 +456,7 @@ function read_xref_stream(x: XRef, s: PStream, pos: { v: number }): boolean {
   if (!w.every(v => typeof v === 'number')) return err()
   const [w0, w1, w2] = w as number[]
   if (w0! < 0 || w0! > 8 || w1! < 0 || w1! > 8 || w2! < 0 || w2! > 8) return err()
-  const data = decode_stream(s)
+  const data = decode_stream(x.e, s)
   let q = 0, budget = 1e7 // shortcut: at most 10^7 entries per stream (xpdf allocates whatever /Index asks for); raise if a real file needs more
   const rd = (k: number) => { let v = 0; for (let j = 0; j < k; j++) { if (q >= data.length) return -1; v = v * 256 + data[q++]! } return v }
   const section = (first: number, n: number): boolean => {
@@ -544,7 +543,7 @@ function construct_xref(x: XRef): boolean {
     else if (is_name(t, 'ObjStm')) { // constructObjectStreamEntries (the index is stored as the generation)
       const N = lookup(o.d, 'N')
       if (typeof N !== 'number' || N <= 0 || N > 1000000) continue
-      const hp = parser(null, lexer(decode_stream(o), 0), false)
+      const hp = parser(null, lexer(decode_stream(x.e, o), 0), false)
       for (let i = 0; i < N; i++) {
         const a = get_obj(hp, true, 0), c = get_obj(hp, true, 0)
         if (typeof a === 'number' && typeof c === 'number' && a >= 0 && a < 1000000) construct_entry(x, a, i, n, COMPRESSED)

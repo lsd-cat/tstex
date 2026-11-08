@@ -150,7 +150,7 @@ function font_encoding(e: Engine, img: Img, x: XRef, fontdict: PDict): (string |
   if (emb !== null) {
     const s = deref(x, emb)
     if (is_stream(s)) {
-      const d = decode_stream(s), head = String.fromCharCode(...d.subarray(d[0] === 0x80 ? 6 : 0, (d[0] === 0x80 ? 6 : 0) + 16))
+      const d = decode_stream(e, s), head = String.fromCharCode(...d.subarray(d[0] === 0x80 ? 6 : 0, (d[0] === 0x80 ? 6 : 0) + 16))
       if (head.startsWith('%!PS-AdobeFont-1') || head.startsWith('%!FontType1')) file = d // FoFiIdentifier: Type 1 PFA/PFB
       else if (cff || d[0] === 1) unsupported('a CFF (Type1C) font file')
     }
@@ -330,7 +330,7 @@ function write_epdf(e: Engine, img: Img): void {
     contents.forEach((o, i) => {
       const s = deref(x, o)
       if (!is_stream(s)) fail(`PDF inclusion: type <${type_name(s)}> cannot be copied`) // pdftex reads a non-stream as one
-      copy_stream(decode_stream(s as PStream))
+      copy_stream(decode_stream(e, s as PStream))
       if (i < contents.length - 1) newline()
     })
     pdf_end_stream(e)
