@@ -449,7 +449,7 @@ export function line_break(e: Engine, d: boolean): void {
       switch (p.type) {
         case hlist_node: case vlist_node: case rule_node: active_width[1] = (active_width[1]! + p.width) | 0; break
         case whatsit_node: // §1362
-          if (p.subtype === language_node) { e.hy.cur_lang = p.what_lang; e.hy.l_hyf = p.what_lhm; e.hy.r_hyf = p.what_rhm; set_hyph_index(e) }
+          if (p.subtype === language_node) { e.hy.cur_lang = p.what_lang; e.hy.l_hyf = p.what_lhm; e.hy.r_hyf = p.what_rhm } // adv_past: no set_hyph_index (pdftex.web)
           break
         case glue_node: {
           // §868 If node cur_p is a legal breakpoint, call try_break; then update the active widths by including the glue

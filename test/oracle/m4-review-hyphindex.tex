@@ -1,0 +1,10 @@
+%! oracle: etex
+\catcode`\{=1 \catcode`\}=2 \catcode`\#=6
+\def\lc#1{\lccode`#1=`#1 }\lc a\lc b\lc x
+\patterns{b1b}
+\language=1 \savinghyphcodes=1 \lccode`x=`a \patterns{a1a}\lccode`x=`x \savinghyphcodes=0 \language=0
+\font\f=cmr10 \f \showboxbreadth=10000 \showboxdepth=10000 \tracingonline1
+\hsize=100pt \pretolerance=-1 \uchyph=1 \lefthyphenmin=1 \righthyphenmin=1 \parfillskip=0pt plus 1fil
+\setbox0\vbox{\noindent bbbb\language=1 \setlanguage1\ xxxxxx\par}
+\showbox0
+\end

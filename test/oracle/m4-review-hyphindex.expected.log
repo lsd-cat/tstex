@@ -1,0 +1,27 @@
+entering extended mode
+(m4-review-hyphindex.tex
+> \box0=
+\vbox(6.94444+0.0)x100.0
+.\hbox(6.94444+0.0)x100.0, glue set 42.77757fil
+..\f b
+..\f b
+..\f b
+..\f b
+..\setlanguage1 (hyphenmin 1,1)
+..\glue 3.33333 plus 1.66666 minus 1.11111
+..\f x
+..\f x
+..\f x
+..\f x
+..\f x
+..\f x
+..\penalty 10000
+..\glue(\parfillskip) 0.0 plus 1.0fil
+..\glue(\rightskip) 0.0
+
+! OK.
+l.9 \showbox0
+
+
+ )
+No pages of output.
