@@ -1228,8 +1228,7 @@ function output_one_char(e: Engine, f: number, c: number): void {
 function do_vf_packet(e: Engine, vf_f: number, c: number): void {
   if (++e.ps.vf_cur_s > vf_max_recursion) overflow(e, 'max level recursion of virtual fonts', vf_max_recursion)
   const save_h = e.cur_h, save_v = e.cur_v, fonts = e.vf_fonts[vf_f]!, fs = e.font_size[vf_f]!, st = e.ps.vf_stack
-  const pk = e.vf_packets[vf_f]![c]
-  if (pk === undefined) pdftex_fail(e, null, `vf: character ${c} of font ${e.font_name[vf_f]} not found`) // shortcut: vfpacket.c's wording unverified
+  const pk = e.vf_packets[vf_f]![c] ?? [] // vfpacket.c start_packet: a character without a packet has length 0
   let f = fonts[0]!.i, w = 0, x = 0, y = 0, z = 0, pos = 0
   const byte = () => pk[pos++]!
   const read_signed = (k: number): number => { let i = byte(); if (i >= 128) i -= 256; while (--k > 0) i = i * 256 + byte(); return i }
@@ -1252,7 +1251,7 @@ function do_vf_packet(e: Engine, vf_f: number, c: number): void {
       if (st.length >= vf_stack_size) overflow(e, 'virtual font stack size', vf_stack_size)
       st.push({ h: e.cur_h, v: e.cur_v, w, x, y, z })
     } else if (cmd === pop) { const r = st.pop()!; e.cur_h = r.h; e.cur_v = r.v; w = r.w; x = r.x; y = r.y; z = r.z }
-    else if (cmd >= set1 && cmd <= put1 + 3) { // four_cases(set1), four_cases(put1)
+    else if ((cmd >= set1 && cmd <= set1 + 3) || (cmd >= put1 && cmd <= put1 + 3)) { // four_cases(set1), four_cases(put1)
       char_move = cmd <= set1 + 3
       ch = read_unsigned(char_move ? cmd - set1 + 1 : cmd - put1 + 1)
       if (!vf_valid_char(e, f, ch)) { char_warning(e, f, ch); continue }

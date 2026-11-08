@@ -1,0 +1,10 @@
+%! oracle: pdftex
+\pdfoutput=1 \input plain
+\pdfcompresslevel=0 \pdfobjcompresslevel=0
+% rvf.vf: A = SETCHAR A, SETRULE 0.4x0.2, SETCHAR B (set_rule inside a packet)
+\font\r=rvf
+\shipout\hbox{\r A}
+% rvf2 = cmr10.tfm + rvf.vf: B has no packet, so nothing is output (TFM width kept)
+\font\s=rvf2
+\shipout\hbox{\s AB}
+\bye

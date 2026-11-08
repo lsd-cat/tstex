@@ -28,7 +28,7 @@ tmp=$(mktemp -d); trap 'rm -rf "$tmp"' EXIT
 cp "$dir"/*.tex "$root"/test/texmf/*.tex "$tmp/"
 cp -R "$root/test/texmf/images" "$tmp/images" # images resolve as images/NAME relative to the cwd / a root
 i=0; while [ $i -lt "$runs" ]; do i=$((i+1))
-  (cd "$tmp" && TEXINPUTS=".:$root/test/lvt:" TFMFONTS="$root/test/texmf:" "$pdftex" $args -interaction=batchmode $fmt -jobname="$name" "$name.tex" >/dev/null 2>&1)
+  (cd "$tmp" && TEXINPUTS=".:$root/test/lvt:" TFMFONTS="$root/test/texmf:" VFFONTS="$root/test/texmf:" "$pdftex" $args -interaction=batchmode $fmt -jobname="$name" "$name.tex" >/dev/null 2>&1)
 done
 [ -f "$tmp/$name.log" ] || { echo "oracle.sh: pdftex produced no log" >&2; exit 1; }
 node "$root/tools/normalize-log.ts" "$tmp/$name.log" > "$dir/$name.expected.log"
