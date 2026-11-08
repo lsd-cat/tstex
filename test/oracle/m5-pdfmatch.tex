@@ -1,0 +1,12 @@
+\catcode`\{=1 \catcode`\}=2 \catcode`\#=6 \catcode`\^=12 \catcode`\$=12
+\def\show{\message{[\pdflastmatch0][\pdflastmatch1][\pdflastmatch2][\pdflastmatch3][\pdflastmatch4]}}
+\message{\pdfmatch{b(c+)(d)?}{abcccx}}\show
+\message{\pdfmatch{^b}{abc}}\show
+\message{\pdfmatch icase{(A)(B)}{xxab}}\show
+\message{\pdfmatch subcount 1 {(a)(b)}{ab}}\show
+\message{\pdfmatch subcount 0 {(a)(b)}{ab}}\show
+\message{\pdfmatch{^[[:digit:]]+ x$}{123 x}}\show
+\message{\pdfmatch{a|ab}{xab}}\show
+\message{\pdfmatch{^(0([.][0-9]*)?|1([.]0*)?|[.][0-9]+) }{0.5 1 0}}\show
+\message{\pdflastmatch-1}
+\end

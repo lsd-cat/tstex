@@ -8,13 +8,14 @@ import { print_meaning, tokens_to_string } from '../tokens.ts'
 import { delete_token_ref, free_avail } from '../nodes.ts'
 import { get_token, ins_list } from '../input.ts'
 import { scan_int, str_toks, scan_toks, scan_keyword } from '../scan.ts'
-import { escapestring, escapename, escapehex, unescapehex, makepdftime, md5 } from '../utils.ts'
+import { escapestring, escapename, escapehex, unescapehex, makepdftime, md5, matchstrings } from '../utils.ts'
 import { unsupported } from '../main.ts'
 import { open_log_file, find_tex_file } from '../files.ts'
+import { print_err, help, int_error, fatal_error } from '../error.ts'
 import { scan_font_ident } from '../tfm.ts'
 import { print_scaled, unif_rand, norm_rand } from '../arith.ts'
 
-const number_code = 0, roman_numeral_code = 1, string_code = 2, meaning_code = 3, font_name_code = 4, eTeX_revision_code = 5, expanded_code = 6, pdftex_revision_code = 7, pdftex_banner_code = 8, pdf_creation_date_code = 22, pdf_file_size_code = 24, pdf_file_mod_date_code = 23, pdf_mdfive_sum_code = 25, pdf_strcmp_code = 18, job_name_code = 33, uniform_deviate_code = 29, normal_deviate_code = 30
+const number_code = 0, roman_numeral_code = 1, string_code = 2, meaning_code = 3, font_name_code = 4, eTeX_revision_code = 5, expanded_code = 6, pdftex_revision_code = 7, pdftex_banner_code = 8, pdf_creation_date_code = 22, pdf_file_size_code = 24, pdf_file_mod_date_code = 23, pdf_mdfive_sum_code = 25, pdf_strcmp_code = 18, job_name_code = 33, uniform_deviate_code = 29, pdf_match_code = 27, pdf_last_match_code = 28, normal_deviate_code = 30
 const names: Record<number, string> = { 0: 'number', 1: 'romannumeral', 2: 'string', 3: 'meaning', 4: 'fontname', 5: 'eTeXrevision',
   6: 'expanded', 7: 'pdftexrevision', 8: 'pdftexbanner', 9: 'pdffontname', 10: 'pdffontobjnum', 11: 'pdffontsize', 12: 'pdfpageref',
   13: 'pdfxformname', 14: 'pdfescapestring', 15: 'pdfescapename', 16: 'leftmarginkern', 17: 'rightmarginkern', 18: 'pdfstrcmp',
@@ -81,6 +82,29 @@ export function run(e: Engine, chr: number): void {
     else if (c === pdf_mdfive_sum_code) { const f = file ? find_tex_file(e, name()) : s; r = f === null ? '' : md5(f) }
     else r = (c === 14 ? escapestring : c === 15 ? escapename : c === 20 ? escapehex : unescapehex)(s)
     e.cur_str.push(...(typeof r === 'string' ? Array.from(r, ch => ch.charCodeAt(0)) : r))
+    e.link[garbage] = str_toks(e, b); ins_list(e, e.link[temp_head]!); return
+  }
+  else if (c === pdf_match_code) { // pdftex.web; utils.c matchstrings: 1, 0, or -1 for a bad pattern (the last match is kept)
+    const ss = e.scanner_status, wi = e.warning_index, dr = e.def_ref
+    const icase = scan_keyword(e, 'icase')
+    let n = -1
+    if (scan_keyword(e, 'subcount')) { scan_int(e); n = e.cur_val }
+    const pat = String.fromCharCode(...scan_ext_string(e)), t = String.fromCharCode(...scan_ext_string(e))
+    e.def_ref = dr; e.warning_index = wi; e.scanner_status = ss
+    const m = matchstrings(pat, t, icase)
+    if (m === null) fatal_error(e, 'unsupported: \\pdfmatch pattern ' + pat) // shortcut: pdftex warns with the C library's regerror text and returns -1
+    e.last_match = n < 0 ? m : m.slice(0, n)
+    e.cur_str.push(...Array.from(m === null ? '-1' : m.length > 0 ? '1' : '0', ch => ch.charCodeAt(0)))
+    e.link[garbage] = str_toks(e, b); ins_list(e, e.link[temp_head]!); return
+  }
+  else if (c === pdf_last_match_code) { // pdftex.web; utils.c getmatch: `start->text', `-1->' when that subexpression did not match
+    scan_int(e)
+    if (e.cur_val < 0) {
+      print_err(e, 'Bad match number'); help(e, 'Since I expected zero or a positive number,', 'I changed this one to zero.')
+      int_error(e, e.cur_val); e.cur_val = 0
+    }
+    const m = e.last_match[e.cur_val]
+    e.cur_str.push(...Array.from(m ? m[0] + '->' + m[1] : '-1->', ch => ch.charCodeAt(0)))
     e.link[garbage] = str_toks(e, b); ins_list(e, e.link[temp_head]!); return
   }
   else if (c === pdf_creation_date_code) { // pdftex.web; utils.c makepdftime

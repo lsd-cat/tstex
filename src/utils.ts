@@ -72,3 +72,39 @@ export function md5(data: Uint8Array | number[]): string {
   }
   return [a0, b0, c0, d0].map(w => Array.from({ length: 4 }, (_, i) => hex((w >>> (8 * i)) & 255)).join('')).join('')
 }
+
+// utils.c matchstrings/getmatch: POSIX extended regexps (regcomp REG_EXTENDED) through RegExp. Bracket expressions are
+// translated ([:class:], literal `\' and leading `]'); POSIX's leftmost-longest match is found by asking for the longest end.
+// shortcut: POSIX subexpression rules and other ERE/RegExp differences are not emulated; port a POSIX matcher if a document needs them
+const classes: Record<string, string> = { alpha: 'A-Za-z', digit: '0-9', alnum: '0-9A-Za-z', upper: 'A-Z', lower: 'a-z', space: ' \\t\\n\\r\\f\\v',
+  blank: ' \\t', punct: '!-\\/:-@\\[-`{-~', xdigit: '0-9A-Fa-f', cntrl: '\\x00-\\x1f\\x7f', print: ' -~', graph: '!-~' }
+function ere_to_js(re: string): string {
+  let out = ''
+  for (let i = 0; i < re.length; i++) {
+    if (re[i] !== '[') { out += re[i] === '\\' ? re.slice(i, ++i + 1) : re[i]; continue }
+    out += '['; i++
+    if (re[i] === '^') { out += '^'; i++ }
+    if (re[i] === ']') { out += '\\]'; i++ }
+    for (; i < re.length && re[i] !== ']'; i++) {
+      const m = /^\[:([a-z]+):\]/.exec(re.slice(i))
+      if (m && classes[m[1]!] !== undefined) { out += classes[m[1]!]; i += m[0].length - 1 }
+      else out += re[i] === '\\' || re[i] === '[' ? '\\' + re[i] : re[i]
+    }
+    out += ']'
+  }
+  return out
+}
+// returns null for a bad pattern, else the matched [start, text] per subexpression (null: no match for it) or [] for no match
+export function matchstrings(pattern: string, s: string, icase: boolean): ([number, string] | null)[] | null {
+  let re: RegExp
+  try { re = new RegExp(ere_to_js(pattern), icase ? 'i' : '') } catch { return null }
+  const first = re.exec(s)
+  if (first === null) return []
+  const start = first.index, src = re.source
+  for (let end = s.length; end >= start; end--) { // leftmost-longest: the longest match at the leftmost start
+    const r = new RegExp(`(?:${src})(?<=^[\\s\\S]{${end}})`, (icase ? 'i' : '') + 'yd'); r.lastIndex = start
+    const m = r.exec(s)
+    if (m) return Array.from(m, (t, i) => t === undefined ? null : [m.indices![i]![0], t])
+  }
+  return []
+}
