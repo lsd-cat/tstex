@@ -172,7 +172,7 @@ XeTeX/LuaTeX, OpenType, Unicode input, Type1 subsetting, `\valign`, TeXXeT, `\ma
 - [x] M1 mouth and expansion (2026-11-07; 48 tests; known limit: nested expansion depth ~1500 vs pdftex 10000, see AUDIT.md)
 - [x] M2 boxes, paragraphs, DVI (2026-11-07; 25 oracle tests, logs and DVI byte-identical)
 - [x] M3 math and alignment (2026-11-08; 116 tests; trip test: 0 engine diffs, tools/trip.ts; \dump/undump in-memory; configurable limits; scripted terminal)
-- [ ] M4 e‑TeX
+- [x] M4 e‑TeX (2026-11-08; 147 tests, 1 skipped (m4-texxet); etrip: 0 bugs, identical to pdftex with `\TeXXeTstate=1`→0, see test/etrip-diffs.md; TeXXeT deferred)
 - [ ] M5 LaTeX boots, trip test
 - [ ] M6 pdfTeX primitives, PDF output
 - [ ] M7 browser distribution

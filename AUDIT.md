@@ -43,6 +43,8 @@ Findings from porting. The port reproduces TeX's behaviour, bugs included; entri
 - `\interlinepenalties0` (and the other arrays at index 0) returns the number of entries; negative indexes give 0, indexes past the end the last entry.
 - `\dump` zeroes `\TeXXeTstate` in the dumped eqtb; `\scantokens` input is flushed.
 - An `\edef` of `\scantokens{…}` without `\everyeof{\noexpand}` reads past the pseudo file's end: "File ended while scanning definition".
+- Right after the first line's `*` (or `-etex`) switches INITEX to extended mode, the `&format` load is skipped: etex.ch's «Enable eTeX, if requested» ends `if not no_new_control_sequence then no_new_control_sequence:=true else`, and that `else` takes §1337's `if (format_ident=0)or(buffer[loc]="&")`. `*&x` therefore reads `&x` as a file name (`! I can't find file `&x'.`). Unit test in `test/unit/format.test.ts`.
+- `\expanded` (pdftex.web `conv_toks`, `expanded_code`) scans its argument like `\message` (`scan_toks(false,true)`: `\protected` macros and `\unexpanded` text stay, `#` is not doubled) and inserts the list as an `inserted` token list, so the result is expanded again by whoever reads it (`\message{\expanded{\noexpand\a}}` expands `\a`). It exists in compatibility mode. Ported; oracles `m4-review-expanded`, `m4-mode-compat`. pdftex's `save_cur_string` has no counterpart (the port's string under construction is only ever spliced from a saved length).
 
 ## Known bugs in the original
 
@@ -151,10 +153,11 @@ Findings from porting. The port reproduces TeX's behaviour, bugs included; entri
 - TeXXeT is not ported. `\TeXXeTstate` can be read and assigned and `\beginL`…`\endR` are registered; with the state ≤0 they give e‑TeX's "Improper \beginL" error, with it >0 they stop with `unsupported: TeXXeT`, as do `hpack`, `line_break`, `init_math` and `after_math` whenever `TeXXeT_en` holds (etex.ch branches on it there). `hlist_out`'s mixed-direction code (glue-to-kern conversion, the LR stack, `reverse`) changes nothing visible without TeXXeT nodes and is not ported; `LR_save` and `LR_ptr` are always null, so `\predisplaydirection` is set to 0 on entering a display. `app_display` and the display prototype box are ported.
 - `\pdfstrcmp` (pdftex.web `compare_strings`) is ported ahead of M6 because e‑TeX-era format probes use it.
 - A format dumped in e‑TeX mode stores `eTeX_mode` and the sparse arrays (`format.ts` keys `eTeX_mode`, `sa`, `sa_free`, `sa_root`) and loads in e‑TeX mode; `\TeXXeTstate` is zeroed before dumping, as etex.ch does.
-- Conformance: Breitenlohner's etrip (spec/etrip.tex) with every `\TeXXeTstate=1` changed to 0 gives a log identical to `pdftex -ini -etex`'s (both passes, after normalisation) except the memory-usage lines, and identical DVI and `etrip.out`. The unmodified etrip stops at its first TeXXeT paragraph (line 195).
+- Conformance: Breitenlohner's etrip (spec/etrip.tex) runs in `tools/trip.ts` on a copy with every `\TeXXeTstate=1` changed to 0 (TeXXeT is deferred; the unmodified etrip stops at its first TeXXeT paragraph, line 195). The result is identical to `pdftex -ini`'s on the same copy (both passes, after normalisation; `etrip.out`; DVI except the date). Remaining differences from Breitenlohner's logs, classified, are in `test/etrip-diffs.md`; none is a bug.
 
 ## Harness
 
+- `tools/trip.ts` also runs etrip the same way (see the e‑TeX conformance entry and `test/etrip-diffs.md`).
 - `tools/trip.ts` runs Knuth's trip test with tripman's capacities and also both passes through the real `pdftex -ini` (TeX Live capacities, `SOURCE_DATE_EPOCH=0`) against this engine with the same capacities; pdftex reads trip fine with TeX Live's sizes, so that pair is a direct oracle for the whole of trip.tex. Remaining Knuth differences are in `test/trip-diffs.md`.
 
 - `.gitignore` ignored `*.dvi`, so the `.expected.dvi` files the harness compares were never committed and a fresh checkout skipped every DVI comparison; `!*.expected.dvi` now keeps them.
