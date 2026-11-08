@@ -1,5 +1,13 @@
 # lvt failures
 
+Status: **892 pass, 0 fail, 11 skipped** (skip.txt gives each reason). Resolution of the baseline below:
+
+- unsupported: terminal input (49): no terminal is now a terminal at end of file (`End of file on the terminal!`), and files written by `filecontents` are seen by `\pdffilesize` (`\IfFileExists`).
+- unsupported: \pdfmdfivesum (15), \pdfescapestring (2), \pdfsavepos (2): ported.
+- unsupported: braced file name (9): tex.ch `scan_file_name_braced`.
+- log differs (39): mostly `\IfFileExists` on a just-written file (`find_tex_file`), `./`/`././` written-file names, `\openout` into a missing directory (github-0414/0422), `\pdfmatch` (hyperref/testnb).
+- skipped: base/github-0094 (PDF output, M6), base/github-1092 and l3kernel/m3shell001 (shell escape), base/tlb2661 (case-insensitive file system in the oracle), base/sx172785 (character protrusion).
+
 Baseline classification of the first full run on `m5` (778 pass, 119 fail, 6 skipped), by the first error/unsupported message or first differing line.
 
 ## unsupported: terminal input (49)
