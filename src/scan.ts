@@ -17,6 +17,9 @@ import { cs_token_flag, left_brace_token, left_brace_limit, right_brace_limit, o
 import { get_token, get_next, back_input, back_error, back_list, defining, absorbing, normal, begin_file_reading, end_file_reading, input_ln, runaway, new_line, prompt_input } from './input.ts'
 import { closed, just_open } from './files.ts'
 import { get_x_token, x_token, expand } from './expand.ts'
+import { scan_expr, the_unexpanded, current_if_type, current_if_branch } from './etex.ts'
+import { char_info, char_width, char_height, char_depth, char_italic, height_depth } from './tfm.ts'
+import { level_one } from './types.ts'
 
 const zero_token = other_token + 48, alpha_token = other_token + 96, octal_token = other_token + 39,
   hex_token = other_token + 34, A_token = letter_token + 65, other_A_token = other_token + 65
@@ -25,7 +28,9 @@ const point_token = other_token + 46, continental_point_token = other_token + 44
 const pdf_px_dimen_code = 33
 // §416 last_item codes (pdftex.web numbering)
 const last_node_type_code = glue_val + 1, input_line_no_code = glue_val + 2, badness_code = input_line_no_code + 1,
-  pdftex_version_code = badness_code + 1
+  pdftex_version_code = badness_code + 1, eTeX_int = 20, eTeX_dim = eTeX_int + 8, eTeX_glue = eTeX_dim + 9, eTeX_mu = eTeX_glue + 1,
+  eTeX_expr = eTeX_mu + 1, font_char_ic_code = eTeX_dim + 3, par_shape_length_code = eTeX_dim + 4, par_shape_dimen_code = eTeX_dim + 6,
+  glue_stretch_code = eTeX_dim + 7
 
 // §403 scan_left_brace
 export function scan_left_brace(e: Engine): void {
@@ -126,8 +131,7 @@ export function scan_something_internal(e: Engine, level: number, negative: bool
       e.cur_val_level = int_val
       break
     case Cmd.set_page_int: // §419 Fetch the dead_cycles or the insert_penalties
-      if (m === 2) unsupported(e) // \interactionmode (e-TeX)
-      e.cur_val = m === 0 ? e.dead_cycles : e.insert_penalties; e.cur_val_level = int_val
+      e.cur_val = m === 0 ? e.dead_cycles : m === 2 ? e.interaction : e.insert_penalties; e.cur_val_level = int_val
       break
     case Cmd.set_page_dimen: // §421 Fetch something on the page_so_far
       if (e.page_contents === 0 && !e.output_active) e.cur_val = m === 0 ? max_dimen : 0
@@ -169,8 +173,60 @@ export function scan_something_internal(e: Engine, level: number, negative: bool
         if (m === input_line_no_code) e.cur_val = e.line
         else if (m === badness_code) e.cur_val = e.last_badness
         else if (m === pdftex_version_code) e.cur_val = 140
-        else unsupported(e)
-        e.cur_val_level = int_val
+        else if (m >= eTeX_glue) { // etex.ch Process an expression and return
+          if (m < eTeX_mu) { scan_glue(e, mu_val); e.cur_val_level = glue_val } // \mutoglue
+          else if (m < eTeX_expr) { scan_glue(e, glue_val); e.cur_val_level = mu_val } // \gluetomu
+          else { e.cur_val_level = m - eTeX_expr + int_val; scan_expr(e) }
+          while (e.cur_val_level > level) {
+            if (e.cur_val_level === glue_val) { const g = e.cur_val; e.cur_val = e.spec[g]!.width; delete_glue_ref(e, g) }
+            else if (e.cur_val_level === mu_val) mu_error(e)
+            e.cur_val_level--
+          }
+          if (negative) {
+            if (e.cur_val_level >= glue_val) {
+              const g = e.cur_val; e.cur_val = new_spec(e, g); delete_glue_ref(e, g); const h = e.spec[e.cur_val]!
+              h.width = -h.width | 0; h.stretch = -h.stretch | 0; h.shrink = -h.shrink | 0
+            } else e.cur_val = -e.cur_val | 0
+          }
+          return
+        } else if (m >= eTeX_dim) { // etex.ch Cases for fetching a dimension value
+          if (m <= font_char_ic_code) {
+            scan_font_ident(e); const q = e.cur_val; scan_char_num(e)
+            if (e.font_bc[q]! <= e.cur_val && e.font_ec[q]! >= e.cur_val) {
+              const i = char_info(e, q, e.cur_val)
+              e.cur_val = m === eTeX_dim ? char_width(e, q, i) : m === eTeX_dim + 1 ? char_height(e, q, height_depth(i))
+                : m === eTeX_dim + 2 ? char_depth(e, q, height_depth(i)) : char_italic(e, q, i)
+            } else e.cur_val = 0
+          } else if (m <= par_shape_dimen_code) {
+            let q = m - par_shape_length_code; scan_int(e)
+            const ps = e.shapes[e.equiv[par_shape_loc]!]
+            if (ps === undefined || e.cur_val <= 0) e.cur_val = 0
+            else {
+              if (q === 2) { q = e.cur_val % 2; e.cur_val = (e.cur_val + q) >> 1 }
+              if (e.cur_val > ps[0]!) e.cur_val = ps[0]!
+              e.cur_val = ps[2 * e.cur_val - q]!
+            }
+          } else { // \gluestretch, \glueshrink
+            scan_glue(e, glue_val); const q = e.cur_val
+            e.cur_val = m === glue_stretch_code ? e.spec[q]!.stretch : e.spec[q]!.shrink; delete_glue_ref(e, q)
+          }
+          e.cur_val_level = dimen_val
+        } else { // etex.ch Cases for fetching an integer value
+          switch (m - eTeX_int) {
+            case 0: e.cur_val = 2; break // \eTeXversion
+            case 1: e.cur_val = e.cur_level - level_one; break
+            case 2: e.cur_val = e.cur_group; break
+            case 3: { let q = e.cond_ptr; e.cur_val = 0; while (q !== null) { e.cur_val++; q = q.link } break }
+            case 4: e.cur_val = current_if_type(e); break
+            case 5: e.cur_val = current_if_branch(e); break
+            default: { // \gluestretchorder, \glueshrinkorder
+              scan_glue(e, glue_val); const q = e.cur_val
+              e.cur_val = m === eTeX_int + 6 ? e.spec[q]!.stretch_order : e.spec[q]!.shrink_order; delete_glue_ref(e, q)
+            }
+          }
+          e.cur_val_level = int_val
+        }
+        if (m < eTeX_dim) e.cur_val_level = int_val
       } else {
         e.cur_val = m === glue_val ? zero_glue : 0
         let tx = e.tail // find_effective_tail (etex.ch)
@@ -529,7 +585,7 @@ export function str_toks(e: Engine, b: number): number {
 
 // §465 the_toks
 export function the_toks(e: Engine): number {
-  if ((e.cur_chr & 1) === 1) unsupported(e) // e-TeX's \unexpanded and \detokenize
+  if ((e.cur_chr & 1) === 1) return the_unexpanded(e, e.cur_chr) // etex.ch
   get_x_token(e); scan_something_internal(e, tok_val, false)
   if (e.cur_val_level >= ident_val) { // §466 Copy the token list
     let p = temp_head

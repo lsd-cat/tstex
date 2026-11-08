@@ -12,7 +12,7 @@ import { open_log_file } from '../files.ts'
 import { scan_font_ident } from '../tfm.ts'
 import { print_scaled } from '../arith.ts'
 
-const number_code = 0, roman_numeral_code = 1, string_code = 2, meaning_code = 3, font_name_code = 4, job_name_code = 33
+const number_code = 0, roman_numeral_code = 1, string_code = 2, meaning_code = 3, font_name_code = 4, eTeX_revision_code = 5, job_name_code = 33
 const names: Record<number, string> = { 0: 'number', 1: 'romannumeral', 2: 'string', 3: 'meaning', 4: 'fontname', 5: 'eTeXrevision',
   6: 'expanded', 7: 'pdftexrevision', 8: 'pdftexbanner', 9: 'pdffontname', 10: 'pdffontobjnum', 11: 'pdffontsize', 12: 'pdfpageref',
   13: 'pdfxformname', 14: 'pdfescapestring', 15: 'pdfescapename', 16: 'leftmarginkern', 17: 'rightmarginkern', 18: 'pdfstrcmp',
@@ -33,7 +33,7 @@ export function run(e: Engine, chr: number): void {
     e.scanner_status = 0; get_token(e); e.scanner_status = save_scanner_status
   } else if (c === font_name_code) scan_font_ident(e)
   else if (c === job_name_code) { if (e.job_name === '') open_log_file(e) }
-  else unsupported(e)
+  else if (c !== eTeX_revision_code) unsupported(e)
   const old_setting = e.selector; e.selector = new_string
   const b = e.cur_str.length
   // §472 Print the result of command c
@@ -45,6 +45,7 @@ export function run(e: Engine, chr: number): void {
     print_str(e, e.font_name[e.cur_val]!)
     if (e.font_size[e.cur_val] !== e.font_dsize[e.cur_val]) { print_str(e, ' at '); print_scaled(e, e.font_size[e.cur_val]!); print_str(e, 'pt') }
   }
+  else if (c === eTeX_revision_code) print_str(e, '.6')
   else print_str(e, e.job_name)
   e.selector = old_setting; e.link[garbage] = str_toks(e, b); ins_list(e, e.link[temp_head]!)
 }

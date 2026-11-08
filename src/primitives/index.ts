@@ -126,13 +126,18 @@ const prims: Prim[] = [relax, par_end, stop, def, register, assign_int, assign_d
   halign, valign, no_align, omit, tab_mark, car_ret, ignore_spaces, set_interaction, ...unsupported.prims]
 export const registry = new Map<number, Prim>() // filled by init_prim, after every module is evaluated
 
-// §1336 init_prim (with the frozen copies of §265, §334, §491, §553, §780, §1188, §1344)
+// §1336 init_prim (with the frozen copies of §265, §334, §491, §553, §780, §1188, §1344);
+// with etex, etex.ch's Generate all eTeX primitives instead
 export function init_prim(e: Engine, etex = false): void {
   e.no_new_control_sequence = false
   for (const p of prims) registry.set(p.cmd, p)
+  if (etex) {
+    for (const p of prims) for (const [name, chr] of p.etex_primitives ?? []) primitive(e, name, p.cmd, chr)
+    e.no_new_control_sequence = true; return
+  }
   const frozen: Record<string, number> = { relax: frozen_relax, endgroup: frozen_end_group, fi: frozen_fi, nullfont: frozen_null_font,
     cr: frozen_cr, right: frozen_right }
-  for (const p of prims) for (const [name, chr] of etex ? [...p.primitives, ...p.etex_primitives ?? []] : p.primitives) {
+  for (const p of prims) for (const [name, chr] of p.primitives) {
     const loc = primitive(e, name, p.cmd, chr)
     if (name === 'par') { e.par_loc = loc; e.par_token = cs_token_flag + loc } // §334
     if (name === 'write') e.write_loc = loc // §1344

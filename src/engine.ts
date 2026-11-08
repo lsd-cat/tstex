@@ -23,6 +23,7 @@ import { hyph_state } from './hyphenate.ts'
 const contrib_head0 = new_char(0, 0) // replaced per Engine in the constructor
 const ignore_depth = -65536000
 import type { CondNode } from './conditional.ts'
+import type { SaElem } from './etex.ts'
 import { open_log_file, start_input, print_file_name } from './files.ts'
 import { print_cmd_chr } from './tokens.ts'
 import { main_control } from './main.ts'
@@ -141,6 +142,15 @@ export class Engine {
   // §512–520 file names
   name_in_progress = false; cur_name = ''; cur_area = ''; cur_ext = ''
   name_chars: number[] = []; area_delimiter = 0; ext_delimiter = 0; quoted_filename = false
+  // etex.ch: compatibility (0) or extended (1) mode, pdftex.ch's -etex switch, scan_register_num's limit
+  eTeX_mode = 0; etex_p = false; max_reg_num = 255; max_reg_help_line = 'A register number must be between 0 and 255.'
+  get eTeX_ex(): boolean { return this.eTeX_mode === 1 }
+  // etex.ch sparse arrays (sa[0..3] unused so register chr codes 0..3 stay the primitives), sa_chain, sa_level
+  sa: (SaElem | null)[] = [null, null, null, null]; sa_free: number[] = []; sa_root = [0, 1, 2, 3, 4, 5, 6].map(() => new Map<number, number>())
+  sa_chain: unknown = null; sa_chain_stack: unknown[] = []; sa_level = 0
+  // etex.ch grp_stack, if_stack, eof_seen per input file; \scantokens pseudo files (lines still to be read); disc_ptr
+  grp_stack: number[] = [0]; if_stack: (CondNode | null)[] = [null]; eof_seen: boolean[] = []; pseudo_files: number[][][] = []
+  disc_ptr: (Node | null)[] = [null, null, null, null]
   // §246
   sys_time = 0; sys_day = 0; sys_month = 0; sys_year = 0
 
@@ -156,8 +166,8 @@ export class Engine {
   // §1332 the main program. Without `terminal' it is `pdftex -ini -interaction=batchmode <jobname>.tex';
   // with it, the first line comes from `terminal' (init_terminal) and so does every later terminal read.
   async run(opts: { jobname?: string, mode: 'ini' | 'etex' | 'latex', terminal?: string[], date?: Date }): Promise<void> {
-    if (opts.mode !== 'ini') throw new Error(`unsupported mode: ${opts.mode}`)
-    this.date = opts.date
+    if (opts.mode === 'latex') throw new Error(`unsupported mode: ${opts.mode}`)
+    this.date = opts.date; this.etex_p = opts.mode === 'etex'
     init_specs(this); init_fonts(this); init_eqtb(this); init_prim(this); fix_date_and_time(this)
     this.terminal += 'This is tstex, Version 3.141592653' + this.format_ident + '\n' // §61
     // §1337 Get the first line of input and prepare to start; §331 Initialize the input routines
@@ -171,6 +181,12 @@ export class Engine {
       this.last = this.first + name.length; this.cur_input.loc = this.first
     }
     this.cur_input.limit = this.last; this.first = this.last + 1
+    // etex.ch Enable eTeX, if requested (pdftex.ch: or -etex)
+    if ((this.etex_p || this.buffer[this.cur_input.loc] === 42) && this.format_ident === ' (INITEX)') {
+      init_prim(this, true)
+      if (this.buffer[this.cur_input.loc] === 42) this.cur_input.loc++
+      this.eTeX_mode = 1; etex_ext_vars(this)
+    }
     if (this.buffer[this.cur_input.loc] === 38) { // §524 open_fmt_file: `&name' names the format
       let j = ++this.cur_input.loc; this.buffer[this.last] = 32
       while (this.buffer[j] !== 32) j++
@@ -181,6 +197,7 @@ export class Engine {
       while (this.cur_input.loc < this.cur_input.limit && this.buffer[this.cur_input.loc] === 32) this.cur_input.loc++
       fix_date_and_time(this)
     }
+    if (this.eTeX_ex) this.terminal += 'entering extended mode\n'
     if (this.equiv[int_base + end_line_char_code]! < 0 || this.equiv[int_base + end_line_char_code]! > 255) this.cur_input.limit--
     else this.buffer[this.cur_input.limit] = this.equiv[int_base + end_line_char_code]!
     this.selector = this.interaction === batch_mode ? no_print : term_only
@@ -199,6 +216,11 @@ export class Engine {
     }
     close_files_and_terminate(this)
   }
+}
+
+// etex.ch Initialize variables for eTeX extended mode
+export function etex_ext_vars(e: Engine): void {
+  e.max_reg_num = 32767; e.max_reg_help_line = 'A register number must be between 0 and 32767.'
 }
 
 // §37 init_terminal

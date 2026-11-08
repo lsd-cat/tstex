@@ -23,6 +23,7 @@ export function open_log_file(e: Engine): void {
   e.log += 'JANFEBMARAPRMAYJUNJULAUGSEPOCTNOVDEC'.slice(3 * e.sys_month - 3, 3 * e.sys_month)
   print_char(e, 32); print_int(e, e.sys_year); print_char(e, 32)
   print_two(e, Math.trunc(e.sys_time / 60)); print_char(e, 58); print_two(e, e.sys_time % 60)
+  if (e.eTeX_ex) e.log += '\nentering extended mode' // etex.ch: wlog_cr, wlog (file_offset unchanged)
   e.input_stack[e.input_ptr] = e.cur_input
   print_nl(e, '**')
   let l = e.input_stack[0]!.limit
