@@ -56,6 +56,7 @@ export function print_char(e: Engine, s: number): void {
 // §59 print; a number or a one-character string is TeX's single-character string
 export function print(e: Engine, s: string | number): void {
   if (typeof s === 'string' && s.length === 1) s = s.charCodeAt(0)
+  if (typeof s === 'number' && s < 0) s = '???' // §59 can't happen
   if (typeof s === 'number') {
     if (e.selector > pseudo && !e.message_printing) { print_char(e, s); return } // enctex1.ch: \message strings get the ^^ form
     if (s === e.equiv[int_base + new_line_char_code]) {
