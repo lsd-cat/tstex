@@ -7,6 +7,7 @@ import { get_x_token } from './expand.ts'
 import { print, print_char, print_nl, print_ln, print_int, print_two, slow_print, begin_diagnostic, end_diagnostic } from './print.ts'
 import { int_par, end_line_char_code, tracing_stack_levels_code } from './eqtb.ts'
 import { scan_toks } from './scan.ts'
+import { prompt_input } from './input.ts'
 import { tokens_to_string } from './tokens.ts'
 import { delete_token_ref } from './nodes.ts'
 import { begin_file_reading, end_file_reading, back_input, input_ln, firm_up_the_line, new_line } from './input.ts'
@@ -126,7 +127,8 @@ export function prompt_file_name(e: Engine, s: string, ext: string): never {
   print(e, ')'); print_ln(e)
   print_nl(e, 'Please type another '); print(e, s)
   if (e.interaction < scroll_mode) fatal_error(e, '*** (job aborted, file error in nonstop mode)')
-  fatal_error(e, 'unsupported: terminal input')
+  prompt_input(e, ': ') // clear_terminal; with no terminal lines left this is `End of file on the terminal!'
+  fatal_error(e, 'unsupported: terminal input') // shortcut: §531 Scan file name in the buffer is not ported
 }
 
 // §537 start_input (tex.ch: no forced `.tex', print the name as found)

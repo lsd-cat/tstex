@@ -35,5 +35,5 @@ test('* then &name: &name is a file name, not a format', async () => {
   const e = new Engine({ fs })
   await e.run({ mode: 'ini', terminal: ['*&x \\message{hi}\\end'], date })
   assert.match(e.terminal, /entering extended mode\n! I can't find file `&x'\.\n<\*> \*&x \n {8}\\message\{hi\}\\end\n/)
-  assert.match(e.log, /unsupported: terminal input/) // the file-name prompt (AUDIT: prompt_file_name)
+  assert.match(e.log, /End of file on the terminal!/) // the file-name prompt reads the exhausted terminal
 })

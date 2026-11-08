@@ -36,9 +36,9 @@ export function input_ln(e: Engine, f: InputFile): boolean {
 }
 
 // The terminal: Engine.term_in holds the lines still to be typed (run's `terminal` option); the typed text is
-// appended to Engine.terminal as a terminal would echo it. Without the option every terminal read is unsupported.
+// appended to Engine.terminal as a terminal would echo it. Without the option the terminal is at end of file
+// (pdftex with stdin </dev/null: `End of file on the terminal!').
 export function term_line(e: Engine): boolean {
-  if (e.term_in === null) fatal_error(e, 'unsupported: terminal input')
   const s = e.term_in.shift()
   if (s === undefined) return false
   e.terminal += s + '\n'
@@ -358,7 +358,6 @@ export function get_next(e: Engine): void {
             if (e.input_ptr > 0) { end_file_reading(e); continue restart }
             if (e.selector < log_only) open_log_file(e)
             if (e.interaction > nonstop_mode) {
-              if (e.term_in === null) fatal_error(e, 'unsupported: terminal input')
               if (end_line_char_inactive(e)) ci.limit++
               if (ci.limit === ci.start) print_nl(e, "(Please type a command or say `\\end')")
               print_ln(e); e.first = ci.start

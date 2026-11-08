@@ -26,7 +26,6 @@ export function error(e: Engine): void {
   if (e.history < error_message_issued) e.history = error_message_issued
   print_char(e, 46); show_context(e)
   if (e.interaction === error_stop_mode) { // §83 Get user's advice and return; only the empty answer is ported
-    if (e.term_in === null) fatal_error(e, 'unsupported: terminal input')
     clear_for_error_prompt(e); prompt_input(e, '? ')
     if (e.last === e.first) return
     fatal_error(e, 'unsupported: terminal dialogue response ' + String.fromCharCode(e.buffer[e.first]!))

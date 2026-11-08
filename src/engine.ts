@@ -163,7 +163,7 @@ export class Engine {
   start_ms = 0; random_seed = 0; randoms: number[] = new Array(55).fill(0); j_random = 0 // pdftex.web: the start time for \pdfelapsedtime, random_seed, [7b]
 
   // §71 lines the terminal will supply (null: no terminal); §1302 the format made by \dump, §1337 the one `&name' loads
-  term_in: string[] | null = null; fmt_file: Format | null = null; format: Format | Promise<Format> | null; date: Date | undefined
+  term_in: string[] = []; fmt_file: Format | null = null; format: Format | Promise<Format> | null; date: Date | undefined
 
   constructor(opts: { fs: TexFS, limits?: Partial<Limits>, format?: Format | Promise<Format>, tcx?: string }) {
     this.fs = opts.fs; this.format = opts.format ?? null

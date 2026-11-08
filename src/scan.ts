@@ -737,7 +737,6 @@ export function read_toks(e: Engine, n: number, r: number, j: number): void {
     begin_file_reading(e); e.cur_input.name = m + 1
     if (e.read_open[m] === closed) { // §484 Input for \read from the terminal
       if (e.interaction > nonstop_mode) {
-        if (e.term_in === null) fatal_error(e, 'unsupported: terminal input')
         if (n < 0) prompt_input(e, '')
         else { print_ln(e); sprint_cs(e, r); prompt_input(e, '='); n = -1 }
       } else fatal_error(e, '*** (cannot \\read from terminal in nonstop modes)')
