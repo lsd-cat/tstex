@@ -18,7 +18,7 @@ import { str } from '../utils.ts'
 import { def_tounicode } from '../backend/fonts.ts'
 import { pdf_error, pdf_warning, pdf_create_obj, pdf_get_mem, pdf_write_obj, obj_type_obj, obj_type_others, set_origin, direct_page, direct_always,
   pdf_new_obj, pdf_end_obj, write_action, pdf_check_obj, pdf_new_objnum, find_obj, warn_dest_dup, pdf_print_str_ln,
-  obj_type_dest, obj_type_struct_dest, obj_type_outline, colorstackused, obj_type_xform, obj_type_ximage, pdf_ship_out, pdf_write_image, pdf_check_vf, pdf_init_font, pdf_mark_char } from '../pdf.ts'
+  obj_type_dest, obj_type_struct_dest, obj_type_outline, colorstackused, obj_type_xform, obj_type_ximage, pdf_ship_out, pdf_write_image, check_pdfversion, scale_image, pdf_check_vf, pdf_init_font, pdf_mark_char } from '../pdf.ts'
 import type { PdfAction } from '../nodes.ts'
 import { pdf_action_user, pdf_action_goto, pdf_action_thread, pdf_action_page, free_avail, delete_action_ref, pdf_annot_node, pdf_start_link_node,
   pdf_end_link_node, pdf_dest_node, pdf_thread_node, pdf_start_thread_node, pdf_end_thread_node, null_flag, pdf_null, pdf_dest_xyz, pdf_dest_fit,
@@ -29,6 +29,8 @@ import { print_int } from '../print.ts'
 import { scan_normal_dimen, scan_register_num } from '../scan.ts'
 import { box, change_box, pdf_refxform_node, pdf_refximage_node } from '../nodes.ts'
 import { scan_font_ident, null_font } from '../tfm.ts'
+import { read_image } from '../backend/images.ts'
+import { int_base } from '../types.ts'
 
 // pdftex.web check_pdfoutput
 function check_pdfoutput(e: Engine, s: string, is_error: boolean): void {
@@ -383,6 +385,39 @@ export function run(e: Engine, chr: number): void {
       ps.mem[d] = p.width; ps.mem[d + 1] = p.height; ps.mem[d + 2] = p.depth; ps.obj_box[k] = p
       change_box(e, n, null)
       ps.last_xform = k
+      return
+    }
+    case pdf_ximage_code: { // pdftex.web Implement \pdfximage: scan_image
+      check_pdfoutput(e, '\\pdfximage', true)
+      check_pdfversion(e)
+      const ps = e.ps
+      pdf_create_obj(e, obj_type_ximage, ++ps.ximage_count)
+      const k = ps.obj_ptr, d = ps.obj_aux[k] = pdf_get_mem(e, 5) // width, height, depth, attr, data
+      const r = new_whatsit_node(0); scan_alt_rule(e, r)
+      ps.mem[d] = r.pdf_left; ps.mem[d + 1] = r.pdf_top; ps.mem[d + 2] = r.pdf_right
+      if (scan_keyword(e, 'attr')) { scan_toks(e, false, true); ps.mem[d + 3] = e.def_ref } else ps.mem[d + 3] = 0
+      if (scan_keyword(e, 'named')) { scan_toks(e, false, true); delete_token_ref(e, e.def_ref) } // only PDF images use it
+      else if (scan_keyword(e, 'page')) scan_int(e)
+      let colorspace = 0
+      if (scan_keyword(e, 'colorspace')) { scan_int(e); colorspace = e.cur_val }
+      for (const b of ['mediabox', 'cropbox', 'bleedbox', 'trimbox', 'artbox']) if (scan_keyword(e, b)) break // scan_pdf_box_spec
+      scan_toks(e, false, true); const s = str(tokens_to_string(e, e.def_ref)); delete_token_ref(e, e.def_ref)
+      if (int_par(e, 72) !== 0) { // \pdfoptionalwaysusepdfpagebox
+        pdf_warning(e, 'PDF inclusion', 'Primitive \\pdfoptionalwaysusepdfpagebox is obsolete; use \\pdfpagebox instead.', true, true)
+        e.equiv[int_base + 76] = int_par(e, 72); e.equiv[int_base + 72] = 0; ps.warn_pdfpagebox = false
+      }
+      if (int_par(e, 73) !== 0) { // \pdfoptionpdfinclusionerrorlevel
+        pdf_warning(e, 'PDF inclusion', 'Primitive \\pdfoptionpdfinclusionerrorlevel is obsolete; use \\pdfinclusionerrorlevel instead.', true, true)
+        e.equiv[int_base + 78] = int_par(e, 73); e.equiv[int_base + 73] = 0
+      }
+      if (int_par(e, 76) > 0 && ps.warn_pdfpagebox) { // \pdfforcepagebox
+        pdf_warning(e, 'PDF inclusion', 'Primitive \\pdfforcepagebox is obsolete; use \\pdfpagebox instead.', true, true)
+        ps.warn_pdfpagebox = false
+      }
+      ps.images.push(read_image(e, s, colorspace)); ps.mem[d + 4] = ps.images.length - 1
+      scale_image(e, k)
+      const img = ps.images[ps.images.length - 1]!
+      ps.last_ximage = k; ps.last_ximage_pages = img.pages; ps.last_ximage_colordepth = img.type === 'png' ? img.png!.bd : img.bpc
       return
     }
     case pdf_refxform_node: case pdf_refximage_node: { // pdftex.web Implement \pdfrefxform, \pdfrefximage

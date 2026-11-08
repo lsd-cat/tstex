@@ -19,6 +19,8 @@ import { char_warning } from './tfm.ts'
 import { open_log_file, print_file_name } from './files.ts'
 import { out_what, expand_write_tokens } from './dvi.ts'
 import { makepdftime, md5, str } from './utils.ts'
+import { write_image } from './backend/images.ts'
+import type { Img } from './backend/images.ts'
 import { isscalable, hasspacechar, do_pdf_font, write_fontstuff, hasfmentry } from './backend/fonts.ts'
 
 // pdftex.web §236/§247 parameter codes (pdftex_first_integer_code = 65, pdftex_first_dimen_code = 21)
@@ -26,6 +28,7 @@ const pdf_output_code = 65, pdf_compress_level_code = 66, pdf_decimal_digits_cod
   pdf_major_version_code = 74, pdf_minor_version_code = 75, pdf_objcompresslevel_code = 86, pdf_gen_tounicode_code = 90,
   pdf_draftmode_code = 91, pdf_info_omit_date_code = 96, pdf_suppress_ptex_info_code = 97, pdf_omit_info_dict_code = 99,
   pdf_omit_procset_code = 100, pdf_ptex_use_underscore_code = 101
+const pdf_image_resolution_code = 69, pdf_image_hicolor_code = 81, pdf_image_apply_gamma_code = 82, one_hundred_inch = 473628672
 const pdf_h_origin_code = 21, pdf_v_origin_code = 22, pdf_page_width_code = 23, pdf_page_height_code = 24,
   h_offset_code = 18, v_offset_code = 19
 const pdf_pages_attr_loc = tex_toks, pdf_page_attr_loc = tex_toks + 1, pdf_page_resources_loc = tex_toks + 2
@@ -88,7 +91,8 @@ export function pdf_state() {
     colstacks: [] as Colstack[], // utils.c colstacks (created with stack 0 on first use)
     cur_form: 0, xform_width: 0, xform_height: 0, xform_depth: 0, page_group_val: 0,
     obj_box: [] as (BoxNode | null | undefined)[], // obj_xform_box
-    img_procset: [] as number[], // per image object: the ProcSet bits of update_image_procset (1 ImageB, 2 ImageC, 4 ImageI)
+    images: [] as Img[], // writeimg.c image_array; obj_ximage_data indexes it
+    fixed_image_hicolor: 0, fixed_image_apply_gamma: 0, warn_pdfpagebox: true,
   }
 }
 export type PdfState = ReturnType<typeof pdf_state>
@@ -268,7 +272,7 @@ export function pdf_print_mag_bp(e: Engine, s: number): void {
 
 // [32b] fix_int, check_pdfversion, ensure_pdf_open
 const fix_int = (v: number, min: number, max: number) => v < min ? min : v > max ? max : v
-function check_pdfversion(e: Engine): void {
+export function check_pdfversion(e: Engine): void {
   const s = e.ps
   if (!s.version_written) {
     s.version_written = true
@@ -283,6 +287,8 @@ function check_pdfversion(e: Engine): void {
       int_error(e, int_par(e, pdf_minor_version_code)); e.equiv[int_base + pdf_minor_version_code] = 4
     }
     s.fixed_major = int_par(e, pdf_major_version_code); s.fixed_minor = int_par(e, pdf_minor_version_code)
+    s.fixed_image_hicolor = fix_int(int_par(e, pdf_image_hicolor_code), 0, 1)
+    s.fixed_image_apply_gamma = fix_int(int_par(e, pdf_image_apply_gamma_code), 0, 1)
     s.fixed_objcompresslevel = fix_int(int_par(e, pdf_objcompresslevel_code), 0, 3)
     if (int_par(e, pdf_draftmode_code) > 0) fatal_error(e, 'unsupported: \\pdfdraftmode') // pass B
     if ((s.fixed_major > 1 || s.fixed_minor >= 5) && s.fixed_objcompresslevel > 0) s.os_enable = true
@@ -763,7 +769,11 @@ function pdf_out_whatsit(e: Engine, p: WhatsitNode, vlist: boolean, b: BoxNode, 
     case pdf_start_thread_node: if (!vlist) pdf_error(e, 'ext4', '\\pdfstartthread ended up in hlist'); do_thread(e, p, b, x, y); return
     case pdf_end_thread_node: if (!vlist) pdf_error(e, 'ext4', '\\pdfendthread ended up in hlist'); end_thread(e); return
     case pdf_colorstack_node: pdf_out_colorstack(e, p); return
-    case pdf_refximage_node: case pdf_snap_ref_point_node: case pdf_fake_space_node:
+    case pdf_refximage_node: // Output an Image node in a vlist / hlist
+      if (vlist) { e.cur_v = (e.cur_v + p.pdf_top + p.pdf_right) | 0; const save_v = e.cur_v; e.cur_h = x; out_image(e, p); e.cur_v = save_v; e.cur_h = x }
+      else { e.cur_v = (y + p.pdf_right) | 0; const edge = e.cur_h; out_image(e, p); e.cur_h = (edge + p.pdf_left) | 0; e.cur_v = y }
+      return
+    case pdf_snap_ref_point_node: case pdf_fake_space_node:
       break
     default: out_what(e, p); return
   }
@@ -801,7 +811,7 @@ function set_rect_dimens(e: Engine, p: WhatsitNode, b: BoxNode, x: number, y: nu
   p.pdf_right = (p.pdf_right + margin) | 0; p.pdf_bottom = (p.pdf_bottom + margin) | 0
 }
 const dimen_par = (e: Engine, c: number) => e.equiv[dimen_base + c]!
-const pdf_link_margin_code = 25, pdf_dest_margin_code = 26, pdf_thread_margin_code = 27, pdf_suppress_warning_dup_dest_code = 83
+const pdf_link_margin_code = 25, pdf_dest_margin_code = 26, pdf_thread_margin_code = 27, pdf_suppress_warning_dup_dest_code = 93
 const is_obj_scheduled = (e: Engine, k: number) => e.ps.obj_offset[k]! > -2
 const set_obj_scheduled = (e: Engine, k: number) => { if (e.ps.obj_offset[k] === -2) e.ps.obj_offset[k] = -1 }
 
@@ -1278,7 +1288,7 @@ export function pdf_ship_out(e: Engine, p: BoxNode, shipping_page: boolean): voi
       for (const k of s.xform_list) { pdf_print(e, '/Fm'); pdf_print_int(e, s.obj_info[k]!); pdf_out(e, 32); pdf_print_int(e, k); pdf_print(e, ' 0 R ') }
       for (const k of s.ximage_list) {
         pdf_print(e, '/Im'); pdf_print_int(e, s.obj_info[k]!); pdf_out(e, 32); pdf_print_int(e, k); pdf_print(e, ' 0 R ')
-        s.image_procset |= s.img_procset[k] ?? 0 // update_image_procset
+        s.image_procset |= s.images[s.mem[s.obj_aux[k]! + 4]!]!.color // update_image_procset
       }
       pdf_print_ln(e, '>>')
     }
@@ -1301,9 +1311,62 @@ export function pdf_ship_out(e: Engine, p: BoxNode, shipping_page: boolean): voi
   if (int_par(e, tracing_stats_code) > 1) { print(e, ' after: 0&0; still untouched: 0'); print_ln(e) }
 }
 
-// [32f] pdf_write_image (images: src/backend/images.ts)
+// [32f] pdf_write_image
 export function pdf_write_image(e: Engine, n: number): void {
-  fatal_error(e, 'unsupported: \\pdfximage') // unit 6
+  const s = e.ps, d = s.obj_aux[n]!
+  pdf_begin_dict(e, n, 0)
+  if (s.mem[d + 3] !== 0) { pdf_print_toks_ln(e, s.mem[d + 3]!); delete_token(e, s.mem[d + 3]!); s.mem[d + 3] = 0 }
+  write_image(e, s.images[s.mem[d + 4]!]!) // fixed_pdf_draftmode is 0: \pdfdraftmode is unsupported
+}
+
+// utils.c extxnoverd
+export function ext_xn_over_d(e: Engine, x: number, n: number, d: number): number {
+  let r = x * n / d
+  if (r > Number.EPSILON) r += 0.5; else r -= 0.5
+  if (r >= 0x7fffffff || r <= -0x7fffffff) pdftex_warn(e, null, 'arithmetic: number too big')
+  return Math.trunc(r) | 0
+}
+
+// [53] scale_image (one_inch is pdftex's 226, i.e. (1in in sp)/maxdimen)
+export function scale_image(e: Engine, n: number): void {
+  const s = e.ps, m = s.mem, d = s.obj_aux[n]!, img = s.images[m[d + 4]!]!
+  let x = img.width, y = img.height, xr = img.xres, yr = img.yres, w = 0, h = 0
+  if (img.rotate === 90 || img.rotate === 270) { y = img.width; x = img.height; yr = img.xres; xr = img.yres }
+  if (xr > 65535 || yr > 65535) { xr = 0; yr = 0; pdf_warning(e, 'ext1', 'too large image resolution ignored', true, true) }
+  if (x <= 0 || y <= 0 || xr < 0 || yr < 0) pdf_error(e, 'ext1', 'invalid image dimensions')
+  if (xr === 0 && yr === 0) { /* missing resolution: no warning */ }
+  else if (x / 226 >= xr || y / 226 >= yr) { xr = 0; yr = 0; pdf_warning(e, 'ext1', 'too small image resolution ignored', true, true) }
+  const default_res = fix_int(int_par(e, pdf_image_resolution_code), 0, 65535)
+  if (default_res > 0 && (xr === 0 || yr === 0)) { xr = default_res; yr = default_res }
+  const run = (k: number) => m[d + k] === null_flag
+  if (run(0) && run(1)) {
+    if (xr > 0 && yr > 0) { w = ext_xn_over_d(e, one_hundred_inch, x, 100 * xr); h = ext_xn_over_d(e, one_hundred_inch, y, 100 * yr) }
+    else { w = ext_xn_over_d(e, one_hundred_inch, x, 7200); h = ext_xn_over_d(e, one_hundred_inch, y, 7200) }
+  }
+  if (run(0) && run(1) && run(2)) { m[d] = w; m[d + 1] = h; m[d + 2] = 0 }
+  else if (run(0)) {
+    if (run(1)) { m[d] = ext_xn_over_d(e, h, x, y); m[d + 1] = (h - m[d + 2]!) | 0 }
+    else if (run(2)) { m[d] = ext_xn_over_d(e, m[d + 1]!, x, y); m[d + 2] = 0 }
+    else m[d] = ext_xn_over_d(e, (m[d + 1]! + m[d + 2]!) | 0, x, y)
+  } else {
+    if (run(1) && run(2)) { m[d + 1] = ext_xn_over_d(e, m[d]!, y, x); m[d + 2] = 0 }
+    else if (run(1)) m[d + 1] = (ext_xn_over_d(e, m[d]!, y, x) - m[d + 2]!) | 0
+    else if (run(2)) m[d + 2] = 0
+  }
+}
+
+// [53] out_image (PNG and JPEG only: no page group, no PDF images)
+function out_image(e: Engine, p: WhatsitNode): void {
+  const s = e.ps, n = p.pdf_objnum
+  pdf_end_text(e)
+  pdf_print_ln(e, 'q')
+  if (!s.ximage_list.includes(n)) s.ximage_list.push(n) // pdf_lookup_list
+  pdf_print_real(e, ext_xn_over_d(e, p.pdf_left, ten_pow[6]!, one_hundred_bp), 4); pdf_print(e, ' 0 0 ')
+  pdf_print_real(e, ext_xn_over_d(e, (p.pdf_top + p.pdf_right) | 0, ten_pow[6]!, one_hundred_bp), 4); pdf_out(e, 32)
+  pdf_print_bp(e, e.cur_h - s.origin_h); pdf_out(e, 32); pdf_print_bp(e, s.origin_v - e.cur_v)
+  pdf_print_ln(e, ' cm')
+  pdf_print(e, '/Im'); pdf_print_int(e, s.obj_info[n]!); pdf_print_ln(e, ' Do')
+  pdf_print_ln(e, 'Q')
 }
 
 // [53] out_form

@@ -11,7 +11,7 @@ import { error, print_err, help, confusion, fatal_error, normalize_selector } fr
 import { int_par, dimen_base, glue_base, par_shape_loc } from './eqtb.ts'
 import { new_char, new_penalty, new_param_glue, new_spec, delete_glue_ref, add_glue_ref, flush_node_list, short_display, is_char_node,
   hlist_node, vlist_node, rule_node, ins_node, mark_node, adjust_node, ligature_node, disc_node, whatsit_node, math_node, glue_node,
-  kern_node, penalty_node, normal, explicit, L_code, inf_penalty, eject_penalty, language_node } from './nodes.ts'
+  kern_node, penalty_node, normal, explicit, L_code, inf_penalty, eject_penalty, language_node, pdf_refxform_node, pdf_refximage_node } from './nodes.ts'
 import type { Node, BoxNode, DiscNode, GlueNode, PenaltyNode } from './nodes.ts'
 import { char_info, char_width, null_font } from './tfm.ts'
 import { hpack, append_to_vlist, exactly } from './pack.ts'
@@ -450,6 +450,7 @@ export function line_break(e: Engine, d: boolean): void {
         case hlist_node: case vlist_node: case rule_node: active_width[1] = (active_width[1]! + p.width) | 0; break
         case whatsit_node: // §1362
           if (p.subtype === language_node) { e.hy.cur_lang = p.what_lang; e.hy.l_hyf = p.what_lhm; e.hy.r_hyf = p.what_rhm } // adv_past: no set_hyph_index (pdftex.web)
+          if (p.subtype === pdf_refxform_node || p.subtype === pdf_refximage_node) active_width[1] = (active_width[1]! + p.pdf_left) | 0
           break
         case glue_node: {
           // §868 If node cur_p is a legal breakpoint, call try_break; then update the active widths by including the glue

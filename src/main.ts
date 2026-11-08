@@ -15,7 +15,7 @@ import { add_glue_ref, delete_glue_ref, new_spec, zero_glue, get_avail, free_ava
   a_leaders, mu_glue, explicit, acc_kern, language_node, fill_glue, new_math, new_noad, new_choice, null_delimiter, node_free,
   stretching, shrinking, L_code, before, after, inf_penalty, ord_noad, inner_noad, radical_noad, fraction_noad, accent_noad,
   vcenter_noad, left_noad, right_noad, math_char, sub_box, sub_mlist, default_code, text_style, display_style } from './nodes.ts'
-import { new_skip_param } from './nodes.ts'
+import { new_skip_param, pdf_refxform_node, pdf_refximage_node, whatsit_node } from './nodes.ts'
 import type { KernNode } from './nodes.ts'
 import type { Node, CharNode, LigNode, BoxNode, InsNode, AdjustNode, MarkNode, GlueNode, Noad, Field, Delim, ChoiceNode } from './nodes.ts'
 import { mlist_to_hlist, flush_math, fam_fnt, math_quad, text_size, script_size, script_script_size, total_mathsy_params,
@@ -1238,7 +1238,8 @@ export function init_math(e: Engine): void {
           if (p.subtype >= a_leaders) found = true
           break
         }
-        default: d = 0 // a whatsit has width 0 (no \pdfrefxform or \pdfrefximage nodes)
+        case whatsit_node: d = p.subtype === pdf_refxform_node || p.subtype === pdf_refximage_node ? p.pdf_left : 0; break // pdftex.web
+        default: d = 0
       }
       if (done) break
       if (!found) { if (v < max_dimen) v = (v + d) | 0; continue }

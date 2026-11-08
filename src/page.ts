@@ -12,7 +12,7 @@ import { int_par, int_base, dimen_base, glue_base, count_base, scaled_base, skip
   new_save_level, unsave } from './eqtb.ts'
 import { new_skip_param, new_spec, delete_glue_ref, add_glue_ref, add_token_ref, delete_token_ref, flush_node_list, show_box, box,
   change_box, new_null_box, new_glue, new_penalty, fill_glue, hlist_node, vlist_node, rule_node, ins_node, mark_node,
-  whatsit_node, glue_node, kern_node, penalty_node, math_node, normal, inf_penalty, eject_penalty, new_char } from './nodes.ts'
+  whatsit_node, glue_node, kern_node, penalty_node, math_node, normal, inf_penalty, eject_penalty, new_char, pdf_refxform_node, pdf_refximage_node } from './nodes.ts'
 import type { Node, BoxNode, InsNode } from './nodes.ts'
 import { vpack, vpackage, exactly, additional, max_dimen } from './pack.ts'
 import { push_nest, pop_nest, normal_paragraph, end_graf, privileged, tail_append, output_group } from './main.ts'
@@ -83,7 +83,9 @@ export function vert_break(e: Engine, p: Node | null, h: number, d: number): Nod
     else switch (p.type) { // §973
       case hlist_node: case vlist_node: case rule_node:
         active_height[1] = (active_height[1]! + prev_dp + p.height) | 0; prev_dp = p.depth; legal = false; break
-      case whatsit_node: legal = false; break // §1365
+      case whatsit_node: // §1365 (pdftex.web: Process whatsit p in vert_break loop)
+        if (p.subtype === pdf_refxform_node || p.subtype === pdf_refximage_node) { active_height[1] = (active_height[1]! + prev_dp + p.pdf_top) | 0; prev_dp = p.pdf_right }
+        legal = false; break
       case glue_node: if (precedes_break(prev_p!)) pi = 0; else { legal = false; update = true } break
       case kern_node: {
         const t = p.link === null ? penalty_node : p.link.type
@@ -295,7 +297,9 @@ export function build_page(e: Engine): void {
         }
         s[1] = (s[1]! + s[7]! + p.height) | 0; s[7] = p.depth; go = 'contribute' // §1002
         break
-      case whatsit_node: go = 'contribute'; break // §1364
+      case whatsit_node: // §1364 (pdftex.web: Prepare to move whatsit p to the current page)
+        if (p.subtype === pdf_refxform_node || p.subtype === pdf_refximage_node) { s[1] = (s[1]! + s[7]! + p.pdf_top) | 0; s[7] = p.pdf_right }
+        go = 'contribute'; break
       case glue_node:
         if (e.page_contents < box_there) go = 'done1'
         else if (precedes_break(e.page_tail)) pi = 0

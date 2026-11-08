@@ -1,7 +1,7 @@
 // TexFS over local directories, searched in order (printed as `./name'), then texmf trees through their ls-R databases
 import { readFileSync, statSync, lstatSync, realpathSync } from 'node:fs'
 import { join, dirname, sep } from 'node:path'
-import { deflateSync } from 'node:zlib'
+import { deflateSync, inflateSync } from 'node:zlib'
 import type { TexFS } from './fs.ts'
 
 // kpathsea's search path per file kind, as directories relative to a texmf root (`progname=pdflatex' TEXINPUTS);
@@ -68,6 +68,7 @@ export function nodeFS(roots: string[], texmfRoots: string[] = []): TexFS {
       try { return statSync(dirname(file)).isDirectory() && inside(dirname(file), real_roots[0] ?? null) && lstatSync(file, { throwIfNoEntry: false })?.isSymbolicLink() !== true } catch { return false }
     },
     compress: (data, level) => new Uint8Array(deflateSync(data, { level })),
+    inflate: (data, max) => { try { return new Uint8Array(inflateSync(data, { maxOutputLength: max })) } catch { return new Uint8Array(0) } },
     stat: (name, kind) => { const l = locate(name, kind); try { const st = l && statSync(l.file); return st ? { size: st.size, mtime: st.mtime } : null } catch { return null } },
   }
 }

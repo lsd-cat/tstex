@@ -9,7 +9,7 @@ import { new_save_level } from './eqtb.ts'
 import { scan_keyword, scan_normal_dimen, scan_left_brace } from './scan.ts'
 import { new_char, new_null_box, new_rule, new_param_glue, new_skip_param, short_display, show_box, is_char_node, normal, fil, fill, filll,
   stretching, shrinking, hlist_node, vlist_node, rule_node, unset_node, ins_node, mark_node, adjust_node, whatsit_node,
-  glue_node, kern_node, math_node, ligature_node, a_leaders } from './nodes.ts'
+  glue_node, kern_node, math_node, ligature_node, a_leaders, pdf_refxform_node, pdf_refximage_node } from './nodes.ts'
 import type { Node, BoxNode } from './nodes.ts'
 import { char_info, char_width, char_height, char_depth, height_depth, null_font } from './tfm.ts'
 
@@ -83,7 +83,13 @@ export function hpack(e: Engine, p: Node | null, w: number, m: number): BoxNode 
           q.link = p; p = q
         }
         break
-      case whatsit_node: break // §1360
+      case whatsit_node: // §1360 (pdftex.web: Incorporate a whatsit node into an hbox)
+        if (p.subtype === pdf_refxform_node || p.subtype === pdf_refximage_node) {
+          x = (x + p.pdf_left) | 0
+          if (p.pdf_top > h) h = p.pdf_top
+          if (p.pdf_right > d) d = p.pdf_right
+        }
+        break
       case glue_node: { // §656
         const g = e.spec[p.glue_ptr]!
         x = (x + g.width) | 0
@@ -190,7 +196,12 @@ export function vpackage(e: Engine, p: Node | null, h: number, m: number, l: num
         if (p.width + s > w) w = (p.width + s) | 0
         break
       }
-      case whatsit_node: break // §1359
+      case whatsit_node: // §1359 (pdftex.web: Incorporate a whatsit node into a vbox)
+        if (p.subtype === pdf_refxform_node || p.subtype === pdf_refximage_node) {
+          x = (x + d + p.pdf_top) | 0; d = p.pdf_right
+          if (p.pdf_left > w) w = p.pdf_left
+        }
+        break
       case glue_node: { // §671
         x = (x + d) | 0; d = 0
         const g = e.spec[p.glue_ptr]!
