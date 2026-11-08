@@ -127,7 +127,9 @@ function c_fixed(x: number, d: number): string {
   }
   return Object.is(x, -0) ? '-' + x.toFixed(d) : x.toFixed(d)
 }
-const c_int = (v: number) => v >= 2 ** 31 || v < -(2 ** 31) || Number.isNaN(v) ? -2147483648 : Math.trunc(v) // x86 cvttsd2si
+// C's (int) of a double: x86 cvttsd2si wraps out-of-range values to INT_MIN; we match the arm64 build we test against (fcvtzs saturates, NaN is 0)
+const c_int = (v: number) => Number.isNaN(v) ? 0 : Math.max(-(2 ** 31), Math.min(2 ** 31 - 1, Math.trunc(v)))
+// pdftoepdf.cc convertNumToPDF: precision 6; fval may exceed 10^6 after saturation, then only its last 6 digits are written
 function num_to_pdf(n: number): string {
   if (Math.abs(n) < 0.5e-6) return '0'
   let s = ''
@@ -136,8 +138,12 @@ function num_to_pdf(n: number): string {
   const ival = c_int(Math.floor(n))
   n -= ival
   s += String(ival)
-  const fval = c_int(Math.floor(n * 1e6))
-  return fval !== 0 ? s + '.' + String(fval).padStart(6, '0').replace(/0+$/, '') : s
+  let fval = c_int(Math.floor(n * 1e6)), k = 6
+  if (fval === 0) return s
+  while (fval % 10 === 0 && k > 0) { fval = Math.trunc(fval / 10); k-- }
+  let d = ''
+  for (; k > 0; k--) { d = String(fval % 10) + d; fval = Math.trunc(fval / 10) }
+  return s + '.' + d
 }
 
 // GfxFont::makeFont, Gfx8BitFont: the font's encoding (base encoding, from the font file or the default, plus /Differences)
