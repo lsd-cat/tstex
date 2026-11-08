@@ -6,6 +6,7 @@ import { int_par, error_context_lines_code, end_line_char_code, err_help_loc } f
 import { print_cs } from './hash.ts'
 import { show_token_list, set_trick_count, token_show } from './tokens.ts'
 import { open_log_file } from './files.ts'
+import { end_file_reading, prompt_input } from './input.ts'
 
 // §81 jump_out unwinds to Engine.run, which calls close_files_and_terminate (tex.ch)
 export class JumpOut { }
@@ -24,8 +25,12 @@ export function help(e: Engine, ...lines: string[]): void {
 export function error(e: Engine): void {
   if (e.history < error_message_issued) e.history = error_message_issued
   print_char(e, 46); show_context(e)
-  // §83 Get user's advice: there is no terminal, so \errorstopmode's prompt stops the run
-  if (e.interaction === error_stop_mode) fatal_error(e, 'unsupported: terminal input')
+  if (e.interaction === error_stop_mode) { // §83 Get user's advice and return; only the empty answer is ported
+    if (e.term_in === null) fatal_error(e, 'unsupported: terminal input')
+    clear_for_error_prompt(e); prompt_input(e, '? ')
+    if (e.last === e.first) return
+    fatal_error(e, 'unsupported: terminal dialogue response ' + String.fromCharCode(e.buffer[e.first]!))
+  }
   e.error_count++
   if (e.error_count === 100) {
     print_nl(e, '(That makes 100 errors; please try again.)')
@@ -37,6 +42,12 @@ export function error(e: Engine): void {
   else while (e.help_ptr > 0) { e.help_ptr--; print_nl(e, e.help_line[e.help_ptr]!) }
   print_ln(e)
   if (e.interaction > batch_mode) e.selector++
+  print_ln(e)
+}
+
+// §330 clear_for_error_prompt
+function clear_for_error_prompt(e: Engine): void {
+  while (e.cur_input.state !== token_list && e.cur_input.name === 0 && e.input_ptr > 0 && e.cur_input.loc > e.cur_input.limit) end_file_reading(e)
   print_ln(e)
 }
 
@@ -53,7 +64,7 @@ export function normalize_selector(e: Engine): void {
 }
 
 // §93 succumb
-function succumb(e: Engine): never {
+export function succumb(e: Engine): never {
   if (e.interaction === error_stop_mode) e.interaction = scroll_mode
   if (e.log_opened) error(e)
   e.history = fatal_error_stop; throw new JumpOut()

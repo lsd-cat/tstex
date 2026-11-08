@@ -99,7 +99,7 @@ export function init_eqtb(e: Engine): void {
 
 // §241 fix_date_and_time (web2c takes the system clock)
 export function fix_date_and_time(e: Engine): void {
-  const d = new Date()
+  const d = e.date ?? new Date()
   e.sys_time = d.getHours() * 60 + d.getMinutes()
   e.sys_day = d.getDate(); e.sys_month = d.getMonth() + 1; e.sys_year = d.getFullYear()
   e.equiv[int_base + time_code] = e.sys_time; e.equiv[int_base + day_code] = e.sys_day

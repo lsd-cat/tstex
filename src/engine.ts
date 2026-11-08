@@ -7,9 +7,11 @@ import { print, print_nl, print_char, print_esc, print_int } from './print.ts'
 import { JumpOut, fatal_error, overflow, print_err, token_list } from './error.ts'
 import { init_eqtb, fix_date_and_time, eqtb_size, int_base, new_line_char_code, end_line_char_code, cat_code_base, level_one } from './eqtb.ts'
 import { init_prim } from './primitives/index.ts'
-import { new_line, end_token_list, end_file_reading, normal } from './input.ts'
+import { new_line, end_token_list, end_file_reading, normal, term_line } from './input.ts'
 import type { InputFile } from './input.ts'
-import { init_specs, new_char, glue_node } from './nodes.ts'
+import { init_specs, new_char, glue_node, delete_token_ref, delete_glue_ref } from './nodes.ts'
+import { store_fmt_file, load_fmt_file } from './format.ts'
+import type { Format } from './format.ts'
 import { new_page_ins_head } from './page.ts'
 import type { GlueSpec, Node, CharNode } from './nodes.ts'
 import type { ListState } from './main.ts'
@@ -43,6 +45,7 @@ export class Engine {
   selector = term_only; tally = 0; term_offset = 0; file_offset = 0
   trick_buf: number[] = []; trick_count = 0; first_count = 0; dig: number[] = []; old_setting = 0
   cur_str: number[] = [] // the string being built while selector=new_string
+  message_printing = false // enctex1.ch
   // §73–96 errors
   interaction = batch_mode; deletions_allowed = true; history = fatal_error_stop; error_count = 0
   help_line: string[] = []; help_ptr = 0; OK_to_interrupt = true; use_err_help = false; long_help_seen = false
@@ -141,23 +144,45 @@ export class Engine {
   // §246
   sys_time = 0; sys_day = 0; sys_month = 0; sys_year = 0
 
-  constructor(opts: { fs: TexFS, limits?: Partial<Limits> }) {
-    this.fs = opts.fs
+  // §71 lines the terminal will supply (null: no terminal); §1302 the format made by \dump, §1337 the one `&name' loads
+  term_in: string[] | null = null; fmt_file: Format | null = null; format: Format | null; date: Date | undefined
+
+  constructor(opts: { fs: TexFS, limits?: Partial<Limits>, format?: Format }) {
+    this.fs = opts.fs; this.format = opts.format ?? null
     this.lim = { ...default_limits, ...opts.limits }; this.dvi_limit = this.lim.dvi_buf_size
     this.contrib_head = new_char(0, 0); this.head = this.tail = this.cur_q = this.contrib_head
   }
 
-  // §1332 the main program, as `pdftex -ini -interaction=batchmode <jobname>.tex`
-  async run(opts: { jobname: string, mode: 'ini' | 'etex' | 'latex' }): Promise<void> {
+  // §1332 the main program. Without `terminal' it is `pdftex -ini -interaction=batchmode <jobname>.tex';
+  // with it, the first line comes from `terminal' (init_terminal) and so does every later terminal read.
+  async run(opts: { jobname?: string, mode: 'ini' | 'etex' | 'latex', terminal?: string[], date?: Date }): Promise<void> {
     if (opts.mode !== 'ini') throw new Error(`unsupported mode: ${opts.mode}`)
-    const name = opts.jobname + '.tex'
+    this.date = opts.date
     init_specs(this); init_fonts(this); init_eqtb(this); init_prim(this); fix_date_and_time(this)
-    // §1337 Get the first line of input and prepare to start; init_terminal reads the command line
+    this.terminal += 'This is tstex, Version 3.141592653' + this.format_ident + '\n' // §61
+    // §1337 Get the first line of input and prepare to start; §331 Initialize the input routines
     this.first = 1
-    for (let k = 0; k < name.length; k++) this.buffer[this.first + k] = name.charCodeAt(k)
-    this.last = this.first + name.length; this.cur_input.loc = this.first
+    if (opts.terminal) {
+      this.term_in = [...opts.terminal]; this.interaction = error_stop_mode
+      if (!init_terminal(this)) return
+    } else {
+      const name = opts.jobname + '.tex'
+      for (let k = 0; k < name.length; k++) this.buffer[this.first + k] = name.charCodeAt(k)
+      this.last = this.first + name.length; this.cur_input.loc = this.first
+    }
     this.cur_input.limit = this.last; this.first = this.last + 1
-    this.buffer[this.cur_input.limit] = this.equiv[int_base + end_line_char_code]!
+    if (this.buffer[this.cur_input.loc] === 38) { // §524 open_fmt_file: `&name' names the format
+      let j = ++this.cur_input.loc; this.buffer[this.last] = 32
+      while (this.buffer[j] !== 32) j++
+      const name = String.fromCharCode(...this.buffer.slice(this.cur_input.loc, j))
+      if (this.format === null) throw new Error(`format ${name} was not supplied`)
+      this.cur_input.loc = j
+      load_fmt_file(this, this.format)
+      while (this.cur_input.loc < this.cur_input.limit && this.buffer[this.cur_input.loc] === 32) this.cur_input.loc++
+      fix_date_and_time(this)
+    }
+    if (this.equiv[int_base + end_line_char_code]! < 0 || this.equiv[int_base + end_line_char_code]! > 255) this.cur_input.limit--
+    else this.buffer[this.cur_input.limit] = this.equiv[int_base + end_line_char_code]!
     this.selector = this.interaction === batch_mode ? no_print : term_only
     try {
       if (this.cur_input.loc < this.cur_input.limit && this.equiv[cat_code_base + this.buffer[this.cur_input.loc]!] !== Cmd.escape) {
@@ -173,6 +198,18 @@ export class Engine {
       } else if (!(x instanceof JumpOut)) throw x
     }
     close_files_and_terminate(this)
+  }
+}
+
+// §37 init_terminal
+function init_terminal(e: Engine): boolean {
+  for (;;) {
+    e.terminal += '**'
+    if (!term_line(e)) { e.terminal += '\n! End of file on the terminal... why?\n'; return false }
+    e.cur_input.loc = e.first
+    while (e.cur_input.loc < e.last && e.buffer[e.cur_input.loc] === 32) e.cur_input.loc++
+    if (e.cur_input.loc < e.last) return true
+    e.terminal += 'Please type the name of your input file.\n'
   }
 }
 
@@ -202,7 +239,11 @@ function final_cleanup(e: Engine): void {
     print_nl(e, '(see the transcript file for additional information)')
     e.selector = term_and_log
   }
-  if (c === 1) fatal_error(e, 'unsupported: \\dump')
+  if (c === 1) {
+    for (let k = 0; k < 5; k++) if (e.cur_mark[k] !== 0) delete_token_ref(e, e.cur_mark[k]!)
+    if (e.last_glue !== 0o17777777777) delete_glue_ref(e, e.last_glue)
+    store_fmt_file(e)
+  }
 }
 
 // §1333 close_files_and_terminate

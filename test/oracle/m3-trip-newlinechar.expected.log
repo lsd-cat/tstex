@@ -1,0 +1,13 @@
+(m3-trip-newlinechar.tex
+> the character ^^Y.
+l.3 \newlinechar=`
+ \show^^
+
+
+
+a
+b
+c^^Yd
+c^^Zd
+^^Z )
+No pages of output.

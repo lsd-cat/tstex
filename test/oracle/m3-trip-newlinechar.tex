@@ -1,0 +1,8 @@
+%! oracle: ini
+\catcode`\{=1 \catcode`\}=2 \catcode`\^=7
+\newlinechar=`Y \show^^Y
+\newlinechar=10 \message{a^^Jb}
+\immediate\write-1{c^^Yd}
+\newlinechar=`Y \immediate\write-1{c^^Zd}
+\newlinechar=`Y \message{^^Z}
+\end

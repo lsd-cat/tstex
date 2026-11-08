@@ -32,6 +32,36 @@ export function input_ln(e: Engine, f: InputFile): boolean {
   return true
 }
 
+// The terminal: Engine.term_in holds the lines still to be typed (run's `terminal` option); the typed text is
+// appended to Engine.terminal as a terminal would echo it. Without the option every terminal read is unsupported.
+export function term_line(e: Engine): boolean {
+  if (e.term_in === null) fatal_error(e, 'unsupported: terminal input')
+  const s = e.term_in.shift()
+  if (s === undefined) return false
+  e.terminal += s + '\n'
+  e.last = e.first
+  for (let k = 0; k < s.length; k++) {
+    if (e.last >= e.lim.buf_size - 1) overflow(e, 'buffer size', e.lim.buf_size)
+    e.buffer[e.last++] = s.charCodeAt(k) & 255
+  }
+  if (e.last >= e.max_buf_stack) e.max_buf_stack = e.last
+  while (e.last > e.first && e.buffer[e.last - 1] === 32) e.last--
+  return true
+}
+
+// §71 term_input
+export function term_input(e: Engine): void {
+  if (!term_line(e)) fatal_error(e, 'End of file on the terminal!')
+  e.term_offset = 0; e.selector--
+  for (let k = e.first; k < e.last; k++) print(e, e.buffer[k]!)
+  print_ln(e); e.selector++
+}
+
+// §71 prompt_input
+export function prompt_input(e: Engine, s: string): void {
+  print(e, s); term_input(e)
+}
+
 // §321 push_input
 export function push_input(e: Engine): void {
   if (e.input_ptr > e.max_in_stack) {
@@ -317,8 +347,17 @@ export function get_next(e: Engine): void {
             if (ci.name !== 0) { e.cur_cmd = 0; e.cur_chr = 0; return }
             if (e.input_ptr > 0) { end_file_reading(e); continue restart }
             if (e.selector < log_only) open_log_file(e)
-            if (e.interaction > nonstop_mode) fatal_error(e, 'unsupported: terminal input')
-            fatal_error(e, '*** (job aborted, no legal \\end found)')
+            if (e.interaction > nonstop_mode) {
+              if (e.term_in === null) fatal_error(e, 'unsupported: terminal input')
+              if (end_line_char_inactive(e)) ci.limit++
+              if (ci.limit === ci.start) print_nl(e, "(Please type a command or say `\\end')")
+              print_ln(e); e.first = ci.start
+              prompt_input(e, '*')
+              ci.limit = e.last
+              if (end_line_char_inactive(e)) ci.limit--
+              else e.buffer[ci.limit] = int_par(e, end_line_char_code)
+              e.first = ci.limit + 1; ci.loc = ci.start
+            } else fatal_error(e, '*** (job aborted, no legal \\end found)')
           }
         }
       }

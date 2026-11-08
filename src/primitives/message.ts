@@ -1,7 +1,7 @@
 // §1277–1284 \message \errmessage
 import type { Engine } from '../engine.ts'
 import { Cmd, new_string, error_stop_mode } from '../types.ts'
-import { print_esc, print_ln, print_char, slow_print } from '../print.ts'
+import { print_esc, print_ln, print_char } from '../print.ts'
 import { token_show } from '../tokens.ts'
 import { flush_list } from '../nodes.ts'
 import { scan_toks } from '../scan.ts'
@@ -16,11 +16,11 @@ export function run(e: Engine, chr: number): void {
   scan_toks(e, false, true)
   const old_setting = e.selector; e.selector = new_string
   const b = e.cur_str.length
-  token_show(e, e.def_ref); e.selector = old_setting
+  e.message_printing = true; token_show(e, e.def_ref); e.message_printing = false; e.selector = old_setting // enctex2.ch
   flush_list(e, e.def_ref)
   const s = String.fromCharCode(...e.cur_str.splice(b))
   if (chr !== 0) { // §1283 Print string s as an error message
-    print_err(e, ''); slow_print(e, s)
+    print_err(e, ''); print_str(e, s)
     if (e.equiv[err_help_loc] !== 0) e.use_err_help = true
     else if (e.long_help_seen) help(e, '(That was another \\errmessage.)')
     else {
@@ -34,5 +34,10 @@ export function run(e: Engine, chr: number): void {
   // §1280 Print string s on the terminal
   if (e.term_offset + s.length > e.lim.max_print_line - 2) print_ln(e)
   else if (e.term_offset > 0 || e.file_offset > 0) print_char(e, 32)
-  slow_print(e, s)
+  print_str(e, s)
+}
+
+// §59 print of a made string (s>=256); enctex2.ch prints \message strings with print, not slow_print
+function print_str(e: Engine, s: string): void {
+  for (let j = 0; j < s.length; j++) print_char(e, s.charCodeAt(j))
 }

@@ -1,7 +1,7 @@
 // §402–440 basic scanning subroutines, §464–473 building token lists
 import type { Engine } from './engine.ts'
 import { Cmd, nonstop_mode, int_val, dimen_val, glue_val, mu_val, ident_val, tok_val, new_string } from './types.ts'
-import { print, print_int, print_esc } from './print.ts'
+import { print, print_int, print_esc, print_ln } from './print.ts'
 import { print_scaled, round_decimals, xn_over_d, nx_plus_y, unity } from './arith.ts'
 import { error, print_err, help, int_error, fatal_error } from './error.ts'
 import { count_base, scaled_base, skip_base, mu_skip_base, toks_base, active_base, single_base, dimen_base, int_par, mag_code, prepare_mag, end_line_char_code, font_id_base, cur_font_loc } from './eqtb.ts'
@@ -14,7 +14,7 @@ import { prim_eqtb_base, frozen_primitive, frozen_relax } from './types.ts'
 import { get_avail, free_avail, flush_list, temp_head, backup_head, new_spec, add_glue_ref, delete_glue_ref, print_spec, zero_glue, fil, filll } from './nodes.ts'
 import { unsupported } from './main.ts'
 import { cs_token_flag, left_brace_token, left_brace_limit, right_brace_limit, other_token, letter_token, space_token, end_match_token, match_token, out_param_token, print_cmd_chr } from './tokens.ts'
-import { get_token, get_next, back_input, back_error, back_list, defining, absorbing, normal, begin_file_reading, end_file_reading, input_ln, runaway, new_line } from './input.ts'
+import { get_token, get_next, back_input, back_error, back_list, defining, absorbing, normal, begin_file_reading, end_file_reading, input_ln, runaway, new_line, prompt_input } from './input.ts'
 import { closed, just_open } from './files.ts'
 import { get_x_token, x_token, expand } from './expand.ts'
 
@@ -648,8 +648,11 @@ export function read_toks(e: Engine, n: number, r: number): void {
     // §483 Input and store tokens from the next line of the file
     begin_file_reading(e); e.cur_input.name = m + 1
     if (e.read_open[m] === closed) { // §484 Input for \read from the terminal
-      if (e.interaction > nonstop_mode) fatal_error(e, 'unsupported: terminal input')
-      fatal_error(e, '*** (cannot \\read from terminal in nonstop modes)')
+      if (e.interaction > nonstop_mode) {
+        if (e.term_in === null) fatal_error(e, 'unsupported: terminal input')
+        if (n < 0) prompt_input(e, '')
+        else { print_ln(e); sprint_cs(e, r); prompt_input(e, '='); n = -1 }
+      } else fatal_error(e, '*** (cannot \\read from terminal in nonstop modes)')
     } else if (e.read_open[m] === just_open) { // §485 Input the first line of read_file[m]
       if (input_ln(e, e.read_file[m]!)) e.read_open[m] = normal
       else { delete e.read_file[m]; e.read_open[m] = closed }
