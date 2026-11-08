@@ -115,7 +115,7 @@ export function run(e: Engine, chr: number): void {
     e.link[garbage] = str_toks(e, b); ins_list(e, e.link[temp_head]!); return
   }
   else if (c === pdf_creation_date_code) { // pdftex.web; utils.c makepdftime
-    e.selector = new_string; print_str(e, makepdftime(e.date ?? new Date()))
+    e.selector = new_string; print_str(e, makepdftime(e.date ?? new Date(), e.date !== undefined))
     e.selector = old_setting; e.link[garbage] = str_toks(e, b); ins_list(e, e.link[temp_head]!); return
   }
   else if (c === pdf_font_name_code || c === pdf_font_objnum_code || c === pdf_font_size_code) { // pdftex.web

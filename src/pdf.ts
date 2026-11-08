@@ -5,7 +5,7 @@ import type { Engine } from './engine.ts'
 import { int_base, dimen_base, tex_toks, spotless, warning_issued, fatal_error_stop } from './types.ts'
 import { print, print_char, print_nl, print_ln, print_int, begin_diagnostic, end_diagnostic } from './print.ts'
 import { error, print_err, help, confusion, fatal_error, normalize_selector, succumb, int_error, overflow, show_context } from './error.ts'
-import { int_par, prepare_mag, count_base, mag_code } from './eqtb.ts'
+import { int_par, prepare_mag, count_base, mag_code, null_cs } from './eqtb.ts'
 import { tokens_to_string } from './tokens.ts'
 import { flush_node_list, show_box, zround, is_char_node, hlist_node, vlist_node, rule_node, whatsit_node, glue_node, kern_node,
   math_node, ligature_node, normal, stretching, a_leaders, c_leaders, null_flag, special_node, latespecial_node, pdf_save_pos_node,
@@ -14,9 +14,10 @@ import type { BoxNode, Node, WhatsitNode, PdfAction } from './nodes.ts'
 import { colorstack_set, colorstack_push, colorstack_pop, colorstack_current, margin_kern_node } from './nodes.ts'
 import { pdf_action_user, pdf_action_page, pdf_action_goto, pdf_action_thread, copy_node_list, add_token_ref, new_whatsit_node, print_mark, print_font_identifier,
   pdf_dest_xyz, pdf_dest_fit, pdf_dest_fith, pdf_dest_fitv, pdf_dest_fitb, pdf_dest_fitbh, pdf_dest_fitbv, pdf_dest_fitr, pdf_null } from './nodes.ts'
-import { char_info, char_width, char_exists, null_font, param, space_code, space_shrink_code, new_font_type, real_font_type, virtual_font_type, store_scaled_f } from './tfm.ts'
+import { char_info, char_width, char_exists, null_font, param, space_code, space_shrink_code, new_font_type, real_font_type, virtual_font_type, store_scaled_f,
+  tfm_lookup, read_font_info, set_expand_params, auto_expand_font, copy_expand_params } from './tfm.ts'
 import { char_warning } from './tfm.ts'
-import { open_log_file, print_file_name } from './files.ts'
+import { open_log_file, print_file_name, find_tex_file } from './files.ts'
 import { out_what, expand_write_tokens } from './dvi.ts'
 import { makepdftime, md5, str } from './utils.ts'
 import { write_image, delete_image } from './backend/images.ts'
@@ -62,7 +63,7 @@ export function pdf_state() {
     gone: 0, fixed_draftmode: 0, draftmode_set: false, zip_start: -1, save_offset: 0, stream_length_offset: 0, seek_write_length: false,
     version_written: false, fixed_major: 0, fixed_minor: 0, fixed_objcompresslevel: 0, fixed_decimal_digits: 0, min_bp_val: 0,
     scaled_out: 0, init_output: false, output_file_name: '',
-    f: null_font, h: 0, v: 0, tj_start_h: 0, cur_Tm_a: 0, delta_h: 0, origin_h: 0, origin_v: 0, doing_string: false, doing_text: false,
+    f: null_font, h: 0, v: 0, tj_start_h: 0, cur_Tm_a: 0, vf_cur_s: 0, vf_stack: [] as { h: number, v: number, w: number, x: number, y: number, z: number }[], delta_h: 0, origin_h: 0, origin_v: 0, doing_string: false, doing_text: false,
     last_f: null_font, last_fs: 0, gen_faked_interword_space: false, gen_running_link: true,
     // [32d] obj_tab
     obj_info: [0], obj_link: [0], obj_offset: [0], obj_os_idx: [0], obj_aux: [0], head_tab: new Array<number>(11).fill(0),
@@ -1080,14 +1081,134 @@ function pdf_hlist_out(e: Engine, this_box: BoxNode): void {
   e.cur_s--
 }
 
-// [32e] do_vf: a virtual font is refused (pdf_check_vf_cur_val's error would follow it); auto_expand_vf finds no virtual base font
-export function pdf_check_vf(e: Engine, f: number): void {
-  if (e.pdf_font_type[f] === new_font_type) {
-    e.pdf_font_type[f] = real_font_type
-    const b = e.pdf_font_blink[f]!
-    if (e.pdf_font_auto_expand[f] && b !== null_font) pdf_check_vf(e, b)
-    if (e.fs.find(e.font_name[f] + '.vf', 'vf') !== null) fatal_error(e, `unsupported: virtual font ${e.font_name[f]}`)
+// [32e] do_vf: read the VF file of f (if there is one), its local fonts and character packets (packed as pdftex stores them:
+// font changes as fnt_num_k/fnt1 k, xxx1 with a one-byte length, nop dropped)
+const vf_id = 202, long_char = 242, set1 = 128, set_rule = 132, put1 = 133, put_rule = 137, nop = 138, push = 141, pop = 142,
+  right1 = 143, w0 = 147, w1 = 148, x0 = 152, x1 = 153, down1 = 157, y0 = 161, y1 = 162, z0 = 166, z1 = 167, fnt_num_0 = 171,
+  fnt1 = 235, xxx1 = 239, fnt_def1 = 243, pre = 247, post = 248, vf_max_packet_length = 10000, vf_max_recursion = 10, vf_stack_size = 100
+const vf_error = (e: Engine, f: number, msg: string): never => pdf_error(e, e.font_name[f] + '.vf', msg)
+export function pdf_check_vf(e: Engine, f: number): void { if (e.pdf_font_type[f] === new_font_type) do_vf(e, f) }
+function do_vf(e: Engine, f: number): void {
+  e.pdf_font_type[f] = real_font_type
+  if (auto_expand_vf(e, f)) return
+  const data = e.fs.find(e.font_name[f] + '.vf', 'vf')
+  if (data === null) return
+  let pos = 0
+  const vf_byte = (): number => { if (pos >= data.length) pdf_error(e, 'vf', 'unexpected EOF or error'); return data[pos++]! }
+  const read_signed = (k: number): number => { let i = vf_byte(); if (i >= 128) i -= 256; while (--k > 0) i = i * 256 + vf_byte(); return i }
+  const read_unsigned = (k: number): number => {
+    let i = vf_byte()
+    if (k === 4 && i >= 128) vf_error(e, f, 'number too big')
+    while (--k > 0) i = i * 256 + vf_byte()
+    return i
   }
+  const fc = e.font_check[f]!, mismatch = (a: number, b: number) => a !== 0 && b !== 0 && a !== b
+  // Process the preamble
+  if (vf_byte() !== pre) vf_error(e, f, 'PRE command expected')
+  if (vf_byte() !== vf_id) vf_error(e, f, 'wrong id byte')
+  const comment_length = vf_byte(); pos += comment_length
+  const cs = read_signed(4) | 0
+  if (mismatch(cs, fc)) { print_nl(e, 'checksum mismatch in font '); print(e, e.font_name[f]!); print(e, '.vf ignored') }
+  if (Math.trunc(read_signed(4) / 0o20) !== e.font_dsize[f]) { print_nl(e, 'design size mismatch in font '); print(e, e.font_name[f]!); print(e, '.vf ignored') }
+  // Process the font definitions
+  let cmd = vf_byte()
+  const fonts: { e: number, i: number }[] = e.vf_fonts[f] = []
+  while (cmd >= fnt_def1 && cmd <= fnt_def1 + 3) {
+    const ext = read_unsigned(cmd - fnt_def1 + 1)
+    // vf_def_font
+    const lcs = read_signed(4) | 0, fs = store_scaled_f(e, read_signed(4), e.font_size[f]!), ds = Math.trunc(read_signed(4) / 0o20)
+    let a = vf_byte(), l = vf_byte()
+    pos += a
+    let name = ''
+    while (l-- > 0) name += String.fromCharCode(vf_byte())
+    let k = tfm_lookup(e, name, fs)
+    if (k === null_font) k = read_font_info(e, null_cs, name, '', fs)
+    if (k !== null_font) {
+      const warn = (m: string) => { print_nl(e, m); print(e, ' in local font '); print(e, e.font_name[k]!); print(e, ' in virtual font '); print(e, e.font_name[f]!); print(e, '.vf ignored.') }
+      if (mismatch(lcs, e.font_check[k]!)) warn('checksum mismatch')
+      if (ds !== e.font_dsize[k]) warn('design size mismatch')
+      if (e.pdf_font_step[f] !== 0) vf_expand_local_font(e, k, f)
+    }
+    fonts.push({ e: ext, i: k })
+    cmd = vf_byte()
+  }
+  const packets: (Uint8Array | undefined)[] = e.vf_packets[f] = []
+  while (cmd <= long_char) { // Build a character packet
+    let packet_length: number, cc: number, tfm_width: number
+    if (cmd === long_char) {
+      packet_length = read_unsigned(4); cc = read_unsigned(4)
+      if (!vf_valid_char(e, f, cc)) vf_error(e, f, 'invalid character code')
+      tfm_width = store_scaled_f(e, read_signed(4), e.font_size[f]!)
+    } else {
+      packet_length = cmd; cc = vf_byte()
+      if (!vf_valid_char(e, f, cc)) vf_error(e, f, 'invalid character code')
+      tfm_width = store_scaled_f(e, read_unsigned(3), e.font_size[f]!)
+    }
+    if (packet_length < 0) vf_error(e, f, 'negative packet length')
+    if (packet_length > vf_max_packet_length) vf_error(e, f, 'packet length too long')
+    if (tfm_width !== char_width(e, f, char_info(e, f, cc))) { print_nl(e, 'character width mismatch in font '); print(e, e.font_name[f]!); print(e, '.vf ignored') }
+    const out: number[] = []
+    let stack_level = 0
+    while (packet_length > 0) {
+      cmd = vf_byte(); packet_length--
+      let cmd_length = 0
+      // Cases of DVI commands that can appear in character packet
+      if (cmd < set1) cmd_length = 0
+      else if ((fnt_num_0 <= cmd && cmd <= fnt_num_0 + 63) || (fnt1 <= cmd && cmd <= fnt1 + 3)) {
+        let k: number
+        if (cmd >= fnt1) { k = read_unsigned(cmd - fnt1 + 1); packet_length -= cmd - fnt1 + 1 } else k = cmd - fnt_num_0
+        if (k >= 256) vf_error(e, f, 'too many local fonts')
+        if (!fonts.some(x => x.e === k)) vf_error(e, f, 'undefined local font')
+        if (k <= 63) out.push(fnt_num_0 + k); else out.push(fnt1, k)
+        cmd = nop
+      } else if (cmd === set_rule || cmd === put_rule) cmd_length = 8
+      else if (cmd >= set1 && cmd <= set1 + 3) cmd_length = cmd - set1 + 1
+      else if (cmd >= put1 && cmd <= put1 + 3) cmd_length = cmd - put1 + 1
+      else if (cmd >= right1 && cmd <= right1 + 3) cmd_length = cmd - right1 + 1
+      else if (cmd >= w1 && cmd <= w1 + 3) cmd_length = cmd - w1 + 1
+      else if (cmd >= x1 && cmd <= x1 + 3) cmd_length = cmd - x1 + 1
+      else if (cmd >= down1 && cmd <= down1 + 3) cmd_length = cmd - down1 + 1
+      else if (cmd >= y1 && cmd <= y1 + 3) cmd_length = cmd - y1 + 1
+      else if (cmd >= z1 && cmd <= z1 + 3) cmd_length = cmd - z1 + 1
+      else if (cmd >= xxx1 && cmd <= xxx1 + 3) {
+        cmd_length = read_unsigned(cmd - xxx1 + 1); packet_length -= cmd - xxx1 + 1
+        if (cmd_length > vf_max_packet_length) vf_error(e, f, 'packet length too long')
+        if (cmd_length < 0) vf_error(e, f, 'string of negative length')
+        out.push(xxx1, cmd_length & 255) // append_char keeps the low byte
+        cmd = nop
+      } else if (cmd === w0 || cmd === x0 || cmd === y0 || cmd === z0 || cmd === nop) cmd_length = 0
+      else if (cmd === push) { if (stack_level === vf_stack_size) overflow(e, 'virtual font stack size', vf_stack_size); stack_level++ }
+      else if (cmd === pop) { if (stack_level === 0) vf_error(e, f, 'more POPs than PUSHs in character'); stack_level-- }
+      else vf_error(e, f, 'improver DVI command')
+      if (cmd !== nop) out.push(cmd)
+      packet_length -= cmd_length
+      while (cmd_length-- > 0) out.push(vf_byte())
+    }
+    if (stack_level !== 0) vf_error(e, f, 'more PUSHs than POPs in character packet')
+    if (packet_length !== 0) vf_error(e, f, 'invalid packet length or DVI command in packet')
+    packets[cc] = Uint8Array.from(out)
+    cmd = vf_byte()
+  }
+  if (cmd !== post) vf_error(e, f, 'POST command expected')
+  e.pdf_font_type[f] = virtual_font_type
+}
+const vf_valid_char = (e: Engine, f: number, c: number) => e.font_bc[f]! <= c && c <= e.font_ec[f]! && char_exists(char_info(e, f, c))
+// vf_def_font's set_expand_params for a local font of an expanded virtual font (vf_expand_local_fonts likewise)
+function vf_expand_local_font(e: Engine, k: number, f: number): void {
+  set_expand_params(e, k, !!e.pdf_font_auto_expand[f], e.pdf_font_expand_ratio[e.pdf_font_stretch[f]!]!,
+    -e.pdf_font_expand_ratio[e.pdf_font_shrink[f]!]!, e.pdf_font_step[f]!, e.pdf_font_expand_ratio[f]!)
+}
+// pdftex.web auto_expand_vf: an auto-expanded instance of a virtual font gets auto-expanded copies of the local fonts
+function auto_expand_vf(e: Engine, f: number): boolean {
+  const bf = e.pdf_font_blink[f]!
+  if (!e.pdf_font_auto_expand[f] || bf === null_font) return false
+  if (e.pdf_font_type[bf] === new_font_type) do_vf(e, bf)
+  if (e.pdf_font_type[bf] !== virtual_font_type) return false
+  const x = e.pdf_font_expand_ratio[f]!
+  e.vf_fonts[f] = e.vf_fonts[bf]!.map(l => { const i = auto_expand_font(e, l.i, x); copy_expand_params(e, i, l.i, x); return { e: l.e, i } })
+  e.vf_packets[f] = e.vf_packets[bf]!
+  e.pdf_font_type[f] = virtual_font_type
+  return true
 }
 // pdftex.web pdf_check_vf_cur_val
 export function pdf_check_vf_cur_val(e: Engine, f: number): void {
@@ -1103,14 +1224,60 @@ function output_one_char(e: Engine, f: number, c: number): void {
   adv_char_width(e, f, c)
 }
 
-// [32e] do_vf_packet for the only virtual fonts there are, \letterspacefont's: right4 w, set_char c, right4 w
+// [32e] do_vf_packet: typeset the DVI commands of character c's packet in virtual font vf_f
 function do_vf_packet(e: Engine, vf_f: number, c: number): void {
-  const save_h = e.cur_h, save_v = e.cur_v, { f, sq } = e.vf_ls[vf_f]!, w = store_scaled_f(e, sq, e.font_size[vf_f]!)
-  e.cur_h = (e.cur_h + w) | 0
-  if (e.font_bc[f]! <= c && c <= e.font_ec[f]! && char_exists(char_info(e, f, c))) output_one_char(e, f, c)
-  else char_warning(e, f, c)
-  e.cur_h = (e.cur_h + char_width(e, f, char_info(e, f, c)) + w) | 0
-  e.cur_h = save_h; e.cur_v = save_v
+  if (++e.ps.vf_cur_s > vf_max_recursion) overflow(e, 'max level recursion of virtual fonts', vf_max_recursion)
+  const save_h = e.cur_h, save_v = e.cur_v, fonts = e.vf_fonts[vf_f]!, fs = e.font_size[vf_f]!, st = e.ps.vf_stack
+  const pk = e.vf_packets[vf_f]![c]
+  if (pk === undefined) pdftex_fail(e, null, `vf: character ${c} of font ${e.font_name[vf_f]} not found`) // shortcut: vfpacket.c's wording unverified
+  let f = fonts[0]!.i, w = 0, x = 0, y = 0, z = 0, pos = 0
+  const byte = () => pk[pos++]!
+  const read_signed = (k: number): number => { let i = byte(); if (i >= 128) i -= 256; while (--k > 0) i = i * 256 + byte(); return i }
+  const read_unsigned = (k: number): number => {
+    let i = byte()
+    if (k === 4 && i >= 128) vf_error(e, f, 'number too big')
+    while (--k > 0) i = i * 256 + byte()
+    return i
+  }
+  const scaled = (k: number) => store_scaled_f(e, read_signed(k), fs)
+  while (pos < pk.length) {
+    const cmd = byte()
+    let ch = -1, char_move = false
+    if (cmd < set1) { ch = cmd; char_move = true; if (!vf_valid_char(e, f, ch)) { char_warning(e, f, ch); continue } }
+    else if ((fnt_num_0 <= cmd && cmd <= fnt_num_0 + 63) || cmd === fnt1) {
+      const k = cmd === fnt1 ? byte() : cmd - fnt_num_0, l = fonts.find(l => l.e === k)
+      if (l === undefined) pdf_error(e, 'vf', 'local font not found')
+      f = l.i
+    } else if (cmd === push) {
+      if (st.length >= vf_stack_size) overflow(e, 'virtual font stack size', vf_stack_size)
+      st.push({ h: e.cur_h, v: e.cur_v, w, x, y, z })
+    } else if (cmd === pop) { const r = st.pop()!; e.cur_h = r.h; e.cur_v = r.v; w = r.w; x = r.x; y = r.y; z = r.z }
+    else if (cmd >= set1 && cmd <= put1 + 3) { // four_cases(set1), four_cases(put1)
+      char_move = cmd <= set1 + 3
+      ch = read_unsigned(char_move ? cmd - set1 + 1 : cmd - put1 + 1)
+      if (!vf_valid_char(e, f, ch)) { char_warning(e, f, ch); continue }
+    } else if (cmd === set_rule || cmd === put_rule) {
+      const rule_ht = scaled(4), rule_wd = scaled(4)
+      if (rule_wd > 0 && rule_ht > 0) { pdf_set_rule(e, e.cur_h, e.cur_v, rule_wd, rule_ht); if (cmd === set_rule) e.cur_h = (e.cur_h + rule_wd) | 0 }
+    } else if (cmd >= right1 && cmd <= right1 + 3) e.cur_h = (e.cur_h + scaled(cmd - right1 + 1)) | 0
+    else if (cmd >= w0 && cmd <= w0 + 4) { if (cmd > w0) w = scaled(cmd - w0); e.cur_h = (e.cur_h + w) | 0 }
+    else if (cmd >= x0 && cmd <= x0 + 4) { if (cmd > x0) x = scaled(cmd - x0); e.cur_h = (e.cur_h + x) | 0 }
+    else if (cmd >= down1 && cmd <= down1 + 3) e.cur_v = (e.cur_v + scaled(cmd - down1 + 1)) | 0
+    else if (cmd >= y0 && cmd <= y0 + 4) { if (cmd > y0) y = scaled(cmd - y0); e.cur_v = (e.cur_v + y) | 0 }
+    else if (cmd >= z0 && cmd <= z0 + 4) { if (cmd > z0) z = scaled(cmd - z0); e.cur_v = (e.cur_v + z) | 0 }
+    else if (cmd >= xxx1 && cmd <= xxx1 + 3) {
+      let n = read_unsigned(cmd - xxx1 + 1)
+      const t: number[] = []
+      while (n-- > 0) t.push(byte())
+      literal(e, t, scan_special, false)
+    } else pdf_error(e, 'vf', 'invalid DVI command')
+    if (ch >= 0) { // do_char
+      if (vf_valid_char(e, f, ch)) output_one_char(e, f, ch); else char_warning(e, f, ch)
+      if (char_move) e.cur_h = (e.cur_h + char_width(e, f, char_info(e, f, ch))) | 0
+    }
+  }
+  e.cur_v = save_v; e.cur_h = save_h
+  e.ps.vf_cur_s--
 }
 
 // [32f] pdf_vlist_out
@@ -1534,8 +1701,16 @@ export function pdf_write_obj(e: Engine, n: number): void {
     if (s.mem[d + 2]! !== 0) { pdf_print_toks_ln(e, s.mem[d + 2]!); delete_token(e, s.mem[d + 2]!); s.mem[d + 2] = 0 }
     pdf_begin_stream(e)
   } else pdf_begin_obj(e, n, 1)
-  if (s.mem[d + 3]! > 0) fatal_error(e, 'unsupported: \\pdfobj file') // pass B
-  if (s.mem[d + 1]! > 0) pdf_print(e, t); else pdf_print_ln(e, t)
+  if (s.mem[d + 3]! > 0) { // the file's bytes, as tex_b_openin finds it
+    const name = String.fromCharCode(...t), f = find_tex_file(e, name)
+    if (f === null) { print_nl(e, '! '); print(e, name); print(e, ' not found.'); pdf_error(e, 'ext5', 'cannot open file for embedding') }
+    print(e, '<<'); print(e, name)
+    if (f.length > 0) {
+      for (const c of f) pdf_out(e, c)
+      if (s.mem[d + 1]! <= 0 && s.ptr > 0 && s.buf[s.ptr - 1] !== 10) pdf_out(e, 10)
+    }
+    print(e, '>>')
+  } else if (s.mem[d + 1]! > 0) pdf_print(e, t); else pdf_print_ln(e, t)
   if (s.mem[d + 1]! > 0) pdf_end_stream(e); else pdf_end_obj(e)
 }
 function delete_toks(e: Engine, d: number): void { delete_token(e, e.ps.mem[d]!); e.ps.mem[d] = 0 }

@@ -103,9 +103,10 @@ export function init_eqtb(e: Engine): void {
 
 // §241 fix_date_and_time (web2c takes the system clock)
 export function fix_date_and_time(e: Engine): void {
-  const d = e.date ?? new Date()
-  e.sys_time = d.getHours() * 60 + d.getMinutes()
-  e.sys_day = d.getDate(); e.sys_month = d.getMonth() + 1; e.sys_year = d.getFullYear()
+  const d = e.date ?? new Date(), u = e.date !== undefined // texmfmp.c: SOURCE_DATE_EPOCH with FORCE_SOURCE_DATE is read as UTC
+  e.sys_time = (u ? d.getUTCHours() : d.getHours()) * 60 + (u ? d.getUTCMinutes() : d.getMinutes())
+  e.sys_day = u ? d.getUTCDate() : d.getDate(); e.sys_month = (u ? d.getUTCMonth() : d.getMonth()) + 1
+  e.sys_year = u ? d.getUTCFullYear() : d.getFullYear()
   e.equiv[int_base + time_code] = e.sys_time; e.equiv[int_base + day_code] = e.sys_day
   e.equiv[int_base + month_code] = e.sys_month; e.equiv[int_base + year_code] = e.sys_year
 }

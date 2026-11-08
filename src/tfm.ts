@@ -363,7 +363,7 @@ function ensure_font_code(e: Engine, n: number, f: number): number {
 function expand_font_name(e: Engine, f: number, x: number): string { return e.font_name[f]! + (x > 0 ? '+' : '') + x }
 
 // pdftex.web auto_expand_font: a copy of f's metrics with widths, italic corrections and kerns scaled by 1000+x
-function auto_expand_font(e: Engine, f: number, x: number): number {
+export function auto_expand_font(e: Engine, f: number, x: number): number {
   const k = ++e.font_ptr, fi = e.font_info
   if (e.font_ptr >= e.lim.font_max) overflow(e, 'maximum internal font number (font_max)', e.lim.font_max)
   e.font_name[k] = expand_font_name(e, f, x); e.font_area[k] = e.font_area[f]!; e.font_check[k] = 0 // pdftex leaves font_check unset (uninitialised memory in its DVI fnt_def)
@@ -387,7 +387,7 @@ function auto_expand_font(e: Engine, f: number, x: number): number {
 }
 
 // pdftex.web copy_expand_params
-function copy_expand_params(e: Engine, k: number, f: number, x: number): void {
+export function copy_expand_params(e: Engine, k: number, f: number, x: number): void {
   for (const n of [rp_code_base, lp_code_base, ef_code_base]) e.pdf_font_code_base[n]![k] = ensure_font_code(e, n, f)
   e.pdf_font_expand_ratio[k] = x; e.pdf_font_step[k] = e.pdf_font_step[f]!; e.pdf_font_auto_expand[k] = e.pdf_font_auto_expand[f]!
   e.pdf_font_blink[k] = f
@@ -395,7 +395,7 @@ function copy_expand_params(e: Engine, k: number, f: number, x: number): void {
 }
 
 // pdftex.web tfm_lookup
-function tfm_lookup(e: Engine, s: string, fs: number): number {
+export function tfm_lookup(e: Engine, s: string, fs: number): number {
   for (let k = 1; k <= e.font_ptr; k++)
     if (e.font_area[k] !== non_existent_path && e.font_name[k] === s && (fs === 0 || e.font_size[k] === fs)) return k
   return null_font
@@ -434,7 +434,7 @@ export function expand_font(e: Engine, f: number, x: number): number {
   if (e.pdf_font_elink[f] === null_font) pdf_error(e, 'font expansion', 'uninitialized pdf_font_elink')
   return get_expand_font(e, f, x)
 }
-function set_expand_params(e: Engine, f: number, auto_expand: boolean, stretch_limit: number, shrink_limit: number, font_step: number,
+export function set_expand_params(e: Engine, f: number, auto_expand: boolean, stretch_limit: number, shrink_limit: number, font_step: number,
   expand_ratio: number): void {
   e.pdf_font_step[f] = font_step; e.pdf_font_auto_expand[f] = +auto_expand
   if (stretch_limit > 0) e.pdf_font_stretch[f] = get_expand_font(e, f, stretch_limit)
@@ -442,7 +442,15 @@ function set_expand_params(e: Engine, f: number, auto_expand: boolean, stretch_l
   if (expand_ratio !== 0) e.pdf_font_expand_ratio[f] = expand_ratio
 }
 
-// pdftex.web read_expand_font (\pdffontexpand); vf_expand_local_fonts is unreachable, virtual fonts are refused at shipout
+// pdftex.web vf_expand_local_fonts
+function vf_expand_local_fonts(e: Engine, f: number): void {
+  for (const { i: lf } of e.vf_fonts[f]!) {
+    set_expand_params(e, lf, !!e.pdf_font_auto_expand[f], e.pdf_font_expand_ratio[e.pdf_font_stretch[f]!]!,
+      -e.pdf_font_expand_ratio[e.pdf_font_shrink[f]!]!, e.pdf_font_step[f]!, e.pdf_font_expand_ratio[f]!)
+    if (e.pdf_font_type[lf] === virtual_font_type) vf_expand_local_fonts(e, lf)
+  }
+}
+// pdftex.web read_expand_font (\pdffontexpand)
 export function read_expand_font(e: Engine): void {
   scan_font_ident(e); const f = e.cur_val
   if (f === null_font) pdf_error(e, 'font expansion', 'invalid font identifier')
@@ -472,11 +480,12 @@ export function read_expand_font(e: Engine): void {
     if (e.pdf_font_type[f] !== new_font_type && e.pdf_font_type[f] !== virtual_font_type)
       pdf_warning(e, 'font expansion', 'font should be expanded before its first use', true, true)
     set_expand_params(e, f, auto_expand, stretch_limit, shrink_limit, font_step, 0)
+    if (e.pdf_font_type[f] === virtual_font_type) vf_expand_local_fonts(e, f)
   }
 }
 
 // pdftex.web letter_space_font: a new TFM instance with widths + e/1000 em and a one-font virtual font whose packet for each
-// character is right4(w) set_char right4(w), w = e/2000 em as a fix_word; vf_ls[k] keeps the base font and right4's argument
+// character is right4(w) set_char right4(w), w = e/2000 em as a fix_word
 function letter_space_font(e: Engine, u: number, f: number, x: number): number {
   const k = read_font_info(e, u, e.font_name[f]!, '', e.font_size[f]!)
   if (scan_keyword(e, 'nolig')) set_no_ligatures(e, k)
@@ -494,7 +503,9 @@ function letter_space_font(e: Engine, u: number, f: number, x: number): number {
   let r = w * vf_beta
   const b1 = Math.trunc(r / vf_z); r = r % vf_z
   if (r !== 0) { r *= 256; b2 = Math.trunc(r / vf_z); r = r % vf_z; if (r !== 0) { r *= 256; b3 = Math.trunc(r / vf_z) } }
-  e.vf_ls[k] = { f, sq: (((b0 >= 128 ? b0 - 256 : b0) * 256 + b1) * 256 + b2) * 256 + b3 } // packet_read_signed(4)
+  e.vf_fonts[k] = [{ e: 0, i: f }]; e.vf_packets[k] = []
+  for (let c = e.font_bc[k]!; c <= e.font_ec[k]!; c++)
+    e.vf_packets[k]![c] = Uint8Array.from([143 + 3, b0, b1, b2, b3, ...(c < 128 ? [c] : [128, c]), 143 + 3, b0, b1, b2, b3]) // right4, set1
   return k
 }
 // pdftex.web store_scaled_f

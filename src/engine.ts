@@ -124,7 +124,9 @@ export class Engine {
   // dumped); code_base[n][f] is pdf_font_lp_base…pdf_font_kn_ac_base for assign_font_int's chr n, an index into ps.mem or 0
   pdf_font_type!: Uint8Array; pdf_font_blink!: Int32Array; pdf_font_elink!: Int32Array; pdf_font_stretch!: Int32Array
   pdf_font_shrink!: Int32Array; pdf_font_step!: Int32Array; pdf_font_expand_ratio!: Int32Array; pdf_font_auto_expand!: Uint8Array
-  pdf_font_code_base!: Int32Array[]; vf_ls: { f: number, sq: number }[] = [] // letter_space_font's packet: base font, right4 amount
+  pdf_font_code_base!: Int32Array[]; 
+  // pdftex.web [32e] virtual fonts: vf_e_fnts/vf_i_fnts of each font (external number, internal font) and its character packets
+  vf_fonts: { e: number, i: number }[][] = []; vf_packets: (Uint8Array | undefined)[][] = []
   font_expand_ratio = 0; prev_char_p: Node | null = null; last_leftmost_char: Node | null = null; last_rightmost_char: Node | null = null
   cur_font_step = 0; max_stretch_ratio = 0; max_shrink_ratio = 0; save_tail: Node | null = null; prev_tail: Node = contrib_head0
   ps = pdf_state(); fm = font_state(); glyph_unicode = new Map<string, number | string>(); start_time = 0
