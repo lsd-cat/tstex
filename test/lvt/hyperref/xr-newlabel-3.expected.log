@@ -299,7 +299,7 @@ Completed box being shipped out [1]
 ......\OT1/cmr/m/n/10 1
 .....\hbox(0.0+0.0)x0.0, shifted -6.44444
 ......\special{ps:SDict begin H.R end}
-.....\special{ps:SDict begin [/Subtype H Border [0 0 1]BorderArrayPatch/Color [0 .5 .5]/Action <</S/GoToR/F(test-aux3.pdf)/D(section.title)cvn>> H.B /ANN pdfmark end}
+.....\special{ps:SDict begin [/Subtype H Border [0 0 1]BorderArrayPatch/Color [0 .5 .5]/Action <<F(test-aux3.pdf)/D(section.title)cvn>> H.B /ANN pdfmark end}
 .....\penalty 10000
 .....\glue(\parfillskip) 0.0 plus 1.0fil
 .....\glue(\rightskip) 0.0
