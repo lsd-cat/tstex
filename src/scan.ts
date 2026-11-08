@@ -253,6 +253,15 @@ export function scan_fifteen_bit_int(e: Engine): void {
   }
 }
 
+// §437 scan_twenty_seven_bit_int
+export function scan_twenty_seven_bit_int(e: Engine): void {
+  scan_int(e)
+  if (e.cur_val < 0 || e.cur_val > 0o777777777) {
+    print_err(e, 'Bad delimiter code')
+    help(e, 'A numeric delimiter code must be between 0 and 2^{27}-1.', 'I changed this one to zero.'); int_error(e, e.cur_val); e.cur_val = 0
+  }
+}
+
 // §441 Get the next non-blank non-sign token; set negative appropriately
 function get_sign(e: Engine): boolean {
   let negative = false

@@ -3,29 +3,33 @@
 import type { Engine } from './engine.ts'
 import { Cmd, vmode, hmode, mmode, int_val, dimen_val, glue_val, new_string } from './types.ts'
 import { print, print_char, print_esc, print_mode, print_nl, print_ln, print_int, begin_diagnostic, end_diagnostic } from './print.ts'
-import { print_scaled, xn_over_d } from './arith.ts'
+import { print_scaled, xn_over_d, half } from './arith.ts'
 import { error, print_err, help, confusion, fatal_error, overflow, every_job_text, every_par_text, inserted } from './error.ts'
 import { add_glue_ref, delete_glue_ref, new_spec, zero_glue, get_avail, free_avail, add_token_ref, temp_head, normal,
   new_char, new_null_box, new_rule, new_glue, new_param_glue, new_kern, new_penalty, new_disc, new_ligature, new_lig_item,
   new_whatsit_node, flush_node_list, copy_node_list, show_box, box, change_box, node_ref, is_char_node, char_node, hlist_node,
   vlist_node, rule_node, ins_node, mark_node, adjust_node, ligature_node, disc_node, math_node, glue_node, kern_node,
-  a_leaders, mu_glue, explicit, acc_kern, language_node, fill_glue } from './nodes.ts'
-import type { Node, CharNode, LigNode, BoxNode, InsNode, AdjustNode, MarkNode, GlueNode } from './nodes.ts'
+  a_leaders, mu_glue, explicit, acc_kern, language_node, fill_glue, new_math, new_noad, new_choice, null_delimiter, node_free,
+  stretching, shrinking, L_code, before, after, inf_penalty, ord_noad, inner_noad, radical_noad, fraction_noad, accent_noad,
+  vcenter_noad, left_noad, right_noad, math_char, sub_box, sub_mlist, default_code, text_style, display_style } from './nodes.ts'
+import type { Node, CharNode, LigNode, BoxNode, InsNode, AdjustNode, MarkNode, GlueNode, Noad, Field, Delim, ChoiceNode } from './nodes.ts'
+import { mlist_to_hlist, flush_math, fam_fnt, math_quad, text_size, script_size, script_script_size, total_mathsy_params,
+  total_mathex_params } from './math.ts'
 import { int_par, partoken_context_code, tracing_commands_code, global_defs_code, every_job_loc, every_par_loc, eq_define, geq_define, eq_word_define,
   geq_word_define, frozen_control_sequence, frozen_protection, count_base, int_base, looseness_code, hang_after_code, dimen_base,
   hang_indent_code, scaled_base, skip_base, mu_skip_base, toks_base, output_routine_loc, frozen_end_group, frozen_right,
-  new_save_level, unsave, cur_font_loc, sf_code_base, box_base, glue_base, local_base, par_shape_loc } from './eqtb.ts'
+  new_save_level, unsave, cur_font_loc, sf_code_base, box_base, glue_base, local_base, par_shape_loc, math_code_base, del_code_base } from './eqtb.ts'
 import { cs_token_flag, space_token, other_token, right_brace_token, left_brace_token, math_shift_token, tab_token, print_cmd_chr,
   show_cur_cmd_chr } from './tokens.ts'
 import { get_token, get_next, back_input, back_error, ins_error, ins_list, begin_token_list } from './input.ts'
 import { get_x_token, x_token } from './expand.ts'
 import { scan_int, scan_eight_bit_int, scan_char_num, scan_optional_equals, scan_keyword, scan_normal_dimen, scan_dimen, scan_glue,
-  scan_toks, scan_left_brace } from './scan.ts'
+  scan_toks, scan_left_brace, scan_fifteen_bit_int, scan_twenty_seven_bit_int, max_dimen } from './scan.ts'
 import { mult_integers, nx_plus_y, x_over_n } from './arith.ts'
 import { char_info, char_exists, char_width, char_italic, char_height, height_depth, char_tag, char_kern, lig_kern_start,
   lig_kern_restart, skip_byte, next_char, op_byte, rem_byte, stop_flag, kern_flag, lig_tag, non_char, non_address, char_warning,
-  new_character, param, space_code, x_height_code, slant_code, extra_space_code } from './tfm.ts'
-import { hpack, vpack, vpackage, append_to_vlist, scan_spec, saved, set_saved, additional } from './pack.ts'
+  new_character, param, space_code, x_height_code, slant_code, extra_space_code, quad_code } from './tfm.ts'
+import { hpack, vpack, vpackage, append_to_vlist, scan_spec, saved, set_saved, additional, exactly } from './pack.ts'
 import { ship_out } from './dvi.ts'
 import { line_break } from './linebreak.ts'
 import { build_page, its_all_over, vsplit, show_page_status, resume_page_builder } from './page.ts'
@@ -126,6 +130,7 @@ const starts_par = new Set<number>([Cmd.letter, Cmd.other_char, Cmd.char_num, Cm
 const math_only = new Set<number>([Cmd.sup_mark, Cmd.sub_mark, Cmd.math_char_num, Cmd.math_given, Cmd.math_comp, Cmd.delim_num,
   Cmd.left_right, Cmd.above, Cmd.radical, Cmd.math_style, Cmd.math_choice, Cmd.vcenter, Cmd.non_script, Cmd.mkern,
   Cmd.limit_switch, Cmd.mskip, Cmd.math_accent])
+const non_math_only = new Set<number>([Cmd.endv, Cmd.par_end, Cmd.stop, Cmd.vskip, Cmd.un_vbox, Cmd.valign, Cmd.hrule])
 
 // §1030 main_control
 export function main_control(e: Engine): void {
@@ -139,7 +144,17 @@ export function main_control(e: Engine): void {
     const c = e.cur_cmd, m = Math.abs(e.mode)
     if (c > Cmd.max_non_prefixed_command && c !== Cmd.partoken_name) { prefixed_command(e); continue } // §1210
     if (m === vmode && starts_par.has(c)) { back_input(e); new_graf(e, true); continue } // §1090
-    if (m !== mmode && math_only.has(c)) { insert_dollar_sign(e); continue }
+    if (m !== mmode ? math_only.has(c) : non_math_only.has(c)) { insert_dollar_sign(e); continue }
+    if (m === mmode) switch (c) {
+      case Cmd.letter: case Cmd.other_char: case Cmd.char_given: set_math_char(e, e.equiv[math_code_base + e.cur_chr]!); continue // §1154
+      case Cmd.char_num: scan_char_num(e); e.cur_chr = e.cur_val; set_math_char(e, e.equiv[math_code_base + e.cur_chr]!); continue
+      case Cmd.math_given: set_math_char(e, e.cur_chr); continue
+      case Cmd.no_boundary: continue // §1045
+      case Cmd.left_brace: { const n = new_noad(); tail_append(e, n); back_input(e); scan_math(e, n.nucleus); continue } // §1150
+      case Cmd.sup_mark: case Cmd.sub_mark: sub_sup(e); continue // §1175
+      case Cmd.math_shift: if (e.cur_group === math_shift_group) after_math(e); else off_save(e); continue // §1193
+      case Cmd.ital_corr: tail_append(e, new_kern(0)); continue // §1112
+    }
     switch (c) {
       case Cmd.letter: case Cmd.other_char: case Cmd.char_given: fetch = !main_loop(e); continue // hmode
       case Cmd.char_num: scan_char_num(e); e.cur_chr = e.cur_val; fetch = !main_loop(e); continue
@@ -154,7 +169,7 @@ export function main_control(e: Engine): void {
         }
         continue // §1045 vmode+spacer, mmode+spacer: do_nothing
       case Cmd.ex_space: append_normal_space(e); continue
-      case Cmd.math_shift: fatal_error(e, 'unsupported: math') // hmode: init_math (M3)
+      case Cmd.math_shift: init_math(e); continue // §1137 hmode+math_shift
       case Cmd.left_brace: new_save_level(e, simple_group); continue // §1063
       case Cmd.right_brace: handle_right_brace(e); continue // §1067
       case Cmd.mac_param: case Cmd.last_item: report_illegal_case(e); continue // §1045, §1048
@@ -440,9 +455,10 @@ export function box_end(e: Engine, box_context: number): void {
       }
       if (e.mode > 0) build_page(e)
     } else {
+      let bb: Node = b
       if (Math.abs(e.mode) === hmode) e.space_factor = 1000
-      else fatal_error(e, 'unsupported: math') // new_noad (M3)
-      e.tail.link = b; e.tail = b
+      else { const n = new_noad(); n.nucleus.math_type = sub_box; n.nucleus.info = b; bb = n }
+      e.tail.link = bb; e.tail = bb
     }
   } else if (box_context < ship_out_flag) { // §1077 Store cur_box in a box register
     let a: number
@@ -616,9 +632,9 @@ export function new_graf(e: Engine, indented: boolean): void {
 // §1093 indent_in_hmode
 export function indent_in_hmode(e: Engine): void {
   if (e.cur_chr > 0) {
-    const p = new_null_box(); p.width = e.equiv[dimen_base + par_indent_code]!
+    let p: Node = new_null_box(); p.width = e.equiv[dimen_base + par_indent_code]!
     if (Math.abs(e.mode) === hmode) e.space_factor = 1000
-    else fatal_error(e, 'unsupported: math') // new_noad (M3)
+    else { const q = new_noad(); q.nucleus.math_type = sub_box; q.nucleus.info = p; p = q }
     tail_append(e, p)
   }
 }
@@ -1081,7 +1097,10 @@ function handle_right_brace(e: Engine): void {
     }
     case disc_group: build_discretionary(e); break // §1118
     case output_group: resume_page_builder(e); break // §1100
-    default: confusion(e, 'rightbrace') // align, no_align, output, math, vcenter, math_choice groups: not yet
+    case vcenter_group: finish_vcenter(e); break // §1168
+    case math_choice_group: build_choices(e); break // §1173
+    case math_group: finish_math_group(e); break // §1186
+    default: confusion(e, 'rightbrace') // align, no_align groups: pass B
   }
 }
 
@@ -1095,4 +1114,449 @@ function extra_right_brace(e: Engine): void {
     "you forgot something else, as in `\\hbox{$x}'. In such cases", 'the way to recover is to insert both the forgotten and the',
     "deleted material, e.g., by typing `I$}'.")
   error(e); e.align_state++
+}
+
+// §1136–1207 building math lists
+const cur_fam_code = 44, var_code = 0o70000, every_math_loc = local_base + 3, every_display_loc = local_base + 4
+const every_math_text = 8, every_display_text = 9
+const math_surround_code = 1, hsize_code = 3, pre_display_size_code = 13, display_width_code = 14, display_indent_code = 15
+const pre_display_penalty_code = 11, post_display_penalty_code = 12, pre_display_direction_code = 107
+const above_display_skip_code = 3, below_display_skip_code = 4, above_display_short_skip_code = 5, below_display_short_skip_code = 6
+const dlist = 2 // etex.ch: box_lr of an hlist from display math mode
+const fam_in_range = (e: Engine) => int_par(e, cur_fam_code) >= 0 && int_par(e, cur_fam_code) < 16
+// a noad field on the save stack (TeX keeps its mem address there): a handle into Engine.nodes
+const field_ref = (e: Engine, f: Field): number => node_ref(e, f as unknown as Node)
+const field_at = (e: Engine, h: number): Field => e.nodes[h] as unknown as Field
+
+// §1136 push_math
+export function push_math(e: Engine, c: number): void {
+  push_nest(e); e.mode = -mmode; e.incompleat_noad = null; new_save_level(e, c)
+}
+
+// §1139 Go into ordinary math mode
+function go_into_ordinary_math(e: Engine): void {
+  push_math(e, math_shift_group); eq_word_define(e, int_base + cur_fam_code, -1)
+  if (e.equiv[every_math_loc] !== 0) begin_token_list(e, e.equiv[every_math_loc]!, every_math_text)
+}
+
+// §1138 init_math (e-TeX's prototype box j and direction x stay null and 0: eTeX_ex and TeXXeT are off)
+export function init_math(e: Engine): void {
+  get_token(e) // get_x_token would fail on \ifmmode!
+  if (e.cur_cmd !== Cmd.math_shift || e.mode <= 0) { back_input(e); go_into_ordinary_math(e); return }
+  // §1145 Go into display math mode
+  let w = -max_dimen
+  if (e.head === e.tail) pop_nest(e) // §1145 Prepare for display after an empty paragraph
+  else {
+    line_break(e, true)
+    // §1146 Calculate the natural width, w, by which the characters of the final line extend to the right of the reference point
+    const jb = e.just_box as BoxNode
+    let v = jb.shift_amount
+    v = (v + Math.imul(2, param(e, quad_code, e.equiv[cur_font_loc]!))) | 0
+    for (let p = jb.list_ptr; p !== null; p = p.link) {
+      // §1147 Let d be the natural width of node p; if the node is visible, goto found
+      let d = 0, found = false, done = false
+      if (is_char_node(p) || p.type === ligature_node) {
+        const f = (p as CharNode).font
+        d = char_width(e, f, char_info(e, f, (p as CharNode).character)); found = true
+      } else switch (p.type) {
+        case hlist_node: case vlist_node: case rule_node: d = p.width; found = true; break
+        case kern_node: d = p.width; break
+        case math_node: // §1439 (TeXXeT off)
+          d = p.width
+          if (p.subtype >= L_code) { w = max_dimen; done = true }
+          break
+        case glue_node: { // §1148
+          const q = e.spec[p.glue_ptr]!
+          d = q.width
+          if (jb.glue_sign === stretching) { if (jb.glue_order === q.stretch_order && q.stretch !== 0) v = max_dimen }
+          else if (jb.glue_sign === shrinking) { if (jb.glue_order === q.shrink_order && q.shrink !== 0) v = max_dimen }
+          if (p.subtype >= a_leaders) found = true
+          break
+        }
+        default: d = 0 // a whatsit has width 0 (no \pdfrefxform or \pdfrefximage nodes)
+      }
+      if (done) break
+      if (!found) { if (v < max_dimen) v = (v + d) | 0; continue }
+      if (v < max_dimen) { v = (v + d) | 0; w = v }
+      else { w = max_dimen; break }
+    }
+  }
+  // §1149 Calculate the length, l, and the shift amount, s, of the display lines
+  let l: number, s: number
+  if (e.equiv[par_shape_loc] === 0) {
+    const hi = e.equiv[dimen_base + hang_indent_code]!, ha = int_par(e, hang_after_code)
+    if (hi !== 0 && ((ha >= 0 && e.prev_graf + 2 > ha) || (e.prev_graf + 1 < (-ha | 0)))) {
+      l = (e.equiv[dimen_base + hsize_code]! - (Math.abs(hi) | 0)) | 0; s = hi > 0 ? hi : 0
+    } else { l = e.equiv[dimen_base + hsize_code]!; s = 0 }
+  } else {
+    const sh = e.shapes[e.equiv[par_shape_loc]!]!, n = sh[0]!
+    const k = e.prev_graf + 2 >= n ? n : e.prev_graf + 2
+    s = sh[2 * k - 1]!; l = sh[2 * k]!
+  }
+  push_math(e, math_shift_group); e.mode = mmode
+  eq_word_define(e, int_base + cur_fam_code, -1)
+  eq_word_define(e, dimen_base + pre_display_size_code, w)
+  e.eTeX_aux = null // LR_box:=j
+  eq_word_define(e, dimen_base + display_width_code, l)
+  eq_word_define(e, dimen_base + display_indent_code, s)
+  if (e.equiv[every_display_loc] !== 0) begin_token_list(e, e.equiv[every_display_loc]!, every_display_text)
+  if (e.nest_ptr === 1) build_page(e)
+}
+
+// §1142 start_eq_no
+export function start_eq_no(e: Engine): void {
+  set_saved(e, 0, e.cur_chr); e.save_ptr++
+  go_into_ordinary_math(e)
+}
+
+// §1151 Treat cur_chr as an active character
+function treat_as_active(e: Engine): void {
+  e.cur_cs = e.cur_chr + 1 // active_base
+  e.cur_cmd = e.eq_type[e.cur_cs]!; e.cur_chr = e.equiv[e.cur_cs]!
+  x_token(e); back_input(e)
+}
+
+// §1151 scan_math
+export function scan_math(e: Engine, p: Field): void {
+  let c: number
+  restart: for (;;) {
+    do get_x_token(e); while (e.cur_cmd === Cmd.spacer || e.cur_cmd === Cmd.relax) // §404
+    for (;;) { // reswitch
+      switch (e.cur_cmd) {
+        case Cmd.letter: case Cmd.other_char: case Cmd.char_given:
+          c = e.equiv[math_code_base + e.cur_chr]!
+          if (c === 0o100000) { treat_as_active(e); continue restart }
+          break
+        case Cmd.char_num: scan_char_num(e); e.cur_chr = e.cur_val; e.cur_cmd = Cmd.char_given; continue
+        case Cmd.math_char_num: scan_fifteen_bit_int(e); c = e.cur_val; break
+        case Cmd.math_given: c = e.cur_chr; break
+        case Cmd.delim_num: scan_twenty_seven_bit_int(e); c = Math.trunc(e.cur_val / 0o10000); break
+        default: // §1153 Scan a subformula enclosed in braces and return
+          back_input(e); scan_left_brace(e)
+          set_saved(e, 0, field_ref(e, p)); e.save_ptr++; push_math(e, math_group)
+          return
+      }
+      break restart
+    }
+  }
+  p.math_type = math_char; p.character = c % 256
+  p.fam = c >= var_code && fam_in_range(e) ? int_par(e, cur_fam_code) : (c >> 8) % 16
+}
+
+// §1155 set_math_char
+export function set_math_char(e: Engine, c: number): void {
+  if (c >= 0o100000) { treat_as_active(e); return }
+  const p = new_noad()
+  p.nucleus.math_type = math_char; p.nucleus.character = c % 256; p.nucleus.fam = (c >> 8) % 16
+  if (c >= var_code) {
+    if (fam_in_range(e)) p.nucleus.fam = int_par(e, cur_fam_code)
+    p.type = ord_noad
+  } else p.type = (ord_noad + (c >> 12)) as Noad['type']
+  e.tail.link = p; e.tail = p
+}
+
+// §1160 scan_delimiter (TeX's garbage target is a throwaway object)
+export function scan_delimiter(e: Engine, p: Delim, r: boolean): void {
+  if (r) scan_twenty_seven_bit_int(e)
+  else {
+    do get_x_token(e); while (e.cur_cmd === Cmd.spacer || e.cur_cmd === Cmd.relax) // §404
+    switch (e.cur_cmd) {
+      case Cmd.letter: case Cmd.other_char: e.cur_val = e.equiv[del_code_base + e.cur_chr]!; break
+      case Cmd.delim_num: scan_twenty_seven_bit_int(e); break
+      default: e.cur_val = -1
+    }
+  }
+  if (e.cur_val < 0) { // §1161 Report that an invalid delimiter code is being changed to null
+    print_err(e, 'Missing delimiter (. inserted)')
+    help(e, "I was expecting to see something like `(' or `\\{' or", "`\\}' here. If you typed, e.g., `{' instead of `\\{', you",
+      "should probably delete the `{' by typing `1' now, so that", 'braces don\'t get unbalanced. Otherwise just proceed.',
+      'Acceptable delimiters are characters whose \\delcode is', "nonnegative, or you can use `\\delimiter <delimiter code>'.")
+    back_error(e); e.cur_val = 0
+  }
+  p.small_fam = (e.cur_val >> 20) % 16; p.small_char = (e.cur_val >> 12) % 256
+  p.large_fam = (e.cur_val >> 8) % 16; p.large_char = e.cur_val % 256
+}
+
+// §1165 math_ac
+export function math_ac(e: Engine): void {
+  if (e.cur_cmd === Cmd.accent) { // §1166 Complain that the user should have said \mathaccent
+    print_err(e, 'Please use '); print_esc(e, 'mathaccent'); print(e, ' for accents in math mode')
+    help(e, "I'm changing \\accent to \\mathaccent here; wish me luck.", '(Accents are not the same in formulas as they are in text.)')
+    error(e)
+  }
+  const n = new_noad(); n.type = accent_noad; tail_append(e, n)
+  n.accent_chr.math_type = math_char
+  scan_fifteen_bit_int(e)
+  n.accent_chr.character = e.cur_val % 256
+  n.accent_chr.fam = e.cur_val >= var_code && fam_in_range(e) ? int_par(e, cur_fam_code) : (e.cur_val >> 8) % 16
+  scan_math(e, n.nucleus)
+}
+
+// §1176 sub_sup
+export function sub_sup(e: Engine): void {
+  let t = 0, p: Field | null = null
+  const tl = e.tail as Noad
+  if (tl !== e.head && !is_char_node(tl) && tl.type >= ord_noad && tl.type < left_noad) { // scripts_allowed
+    p = e.cur_cmd === Cmd.sup_mark ? tl.supscr : tl.subscr
+    t = p.math_type
+  }
+  if (p === null || t !== 0) { // §1177 Insert a dummy noad to be sub/superscripted
+    const n = new_noad(); tail_append(e, n)
+    p = e.cur_cmd === Cmd.sup_mark ? n.supscr : n.subscr
+    if (t !== 0) {
+      if (e.cur_cmd === Cmd.sup_mark) { print_err(e, 'Double superscript'); help(e, "I treat `x^1^2' essentially like `x^1{}^2'.") }
+      else { print_err(e, 'Double subscript'); help(e, "I treat `x_1_2' essentially like `x_1{}_2'.") }
+      error(e)
+    }
+  }
+  scan_math(e, p)
+}
+
+// §1184 fin_mlist
+export function fin_mlist(e: Engine, p: Node | null): Node | null {
+  let q: Node | null
+  const n = e.incompleat_noad as Noad | null
+  if (n !== null) { // §1185 Compleat the incompleat noad
+    n.subscr.math_type = sub_mlist; n.subscr.info = e.head.link
+    if (p === null) q = n
+    else {
+      q = n.supscr.info
+      if (q === null || q.type !== left_noad || e.eTeX_aux === null) confusion(e, 'right')
+      n.supscr.info = e.eTeX_aux.link; e.eTeX_aux.link = n; n.link = p
+    }
+  } else { e.tail.link = p; q = e.head.link }
+  pop_nest(e)
+  return q
+}
+
+// §1194 Check that the necessary fonts for math symbols are present; if not, flush the current math lists and return true
+function math_fonts_missing(e: Engine): boolean {
+  const fp = (n: number) => e.font_params[fam_fnt(e, n)]!
+  if (fp(2 + text_size) < total_mathsy_params || fp(2 + script_size) < total_mathsy_params || fp(2 + script_script_size) < total_mathsy_params) {
+    print_err(e, 'Math formula deleted: Insufficient symbol fonts')
+    help(e, "Sorry, but I can't typeset math unless \\textfont 2", 'and \\scriptfont 2 and \\scriptscriptfont 2 have all',
+      'the \\fontdimen values needed in math symbol fonts.')
+    error(e); flush_math(e); return true
+  }
+  if (fp(3 + text_size) < total_mathex_params || fp(3 + script_size) < total_mathex_params || fp(3 + script_script_size) < total_mathex_params) {
+    print_err(e, 'Math formula deleted: Insufficient extension fonts')
+    help(e, "Sorry, but I can't typeset math unless \\textfont 3", 'and \\scriptfont 3 and \\scriptscriptfont 3 have all',
+      'the \\fontdimen values needed in math extension fonts.')
+    error(e); flush_math(e); return true
+  }
+  return false
+}
+
+// §1197 Check that another $ follows
+export function check_that_another_dollar_follows(e: Engine): void {
+  get_x_token(e)
+  if (e.cur_cmd !== Cmd.math_shift) {
+    print_err(e, 'Display math should end with $$')
+    help(e, "The `$' that I just saw supposedly matches a previous `$$'.", "So I shall assume that you typed `$$' both times.")
+    back_error(e)
+  }
+}
+
+// §1194 after_math
+export function after_math(e: Engine): void {
+  let j: Node | null = null
+  if (e.mode === mmode) j = e.eTeX_aux // §1194 Retrieve the prototype box
+  let danger = math_fonts_missing(e)
+  let m = e.mode, l = false, p = fin_mlist(e, null), a: BoxNode | null = null
+  if (e.mode === -m) { // end of equation number
+    check_that_another_dollar_follows(e)
+    e.cur_mlist = p; e.cur_style = text_style; e.mlist_penalties = false
+    a = hpack(e, mlist_to_hlist(e), 0, additional); a.subtype = dlist
+    unsave(e); e.save_ptr-- // now cur_group=math_shift_group
+    if (saved(e, 0) === 1) l = true
+    if (e.mode === mmode) j = e.eTeX_aux
+    danger = math_fonts_missing(e)
+    m = e.mode; p = fin_mlist(e, null)
+  }
+  if (m < 0) { // §1196 Finish math in text
+    tail_append(e, new_math(e.equiv[dimen_base + math_surround_code]!, before))
+    e.cur_mlist = p; e.cur_style = text_style; e.mlist_penalties = e.mode > 0
+    e.tail.link = mlist_to_hlist(e)
+    while (e.tail.link !== null) e.tail = e.tail.link
+    tail_append(e, new_math(e.equiv[dimen_base + math_surround_code]!, after))
+    e.space_factor = 1000; unsave(e)
+    return
+  }
+  if (a === null) check_that_another_dollar_follows(e)
+  // §1199 Finish displayed math
+  e.cur_mlist = p; e.cur_style = display_style; e.mlist_penalties = false
+  p = mlist_to_hlist(e)
+  e.adjust_tail = e.adjust_head; e.pre_adjust_tail = e.pre_adjust_head
+  let b = hpack(e, p, 0, additional); p = b.list_ptr
+  const t = e.adjust_tail; e.adjust_tail = null
+  const pre_t = e.pre_adjust_tail; e.pre_adjust_tail = null
+  let w = b.width
+  const z = e.equiv[dimen_base + display_width_code]!
+  let s = e.equiv[dimen_base + display_indent_code]!
+  if (int_par(e, pre_display_direction_code) < 0) s = (-s - z) | 0
+  let en: number, q: number
+  if (a === null || danger) { en = 0; q = 0 } else { en = a.width; q = (en + math_quad(e, text_size)) | 0 }
+  if (w + q > z) { // §1201 Squeeze the equation as much as possible
+    if (en !== 0 && (w - e.total_shrink[normal]! + q <= z || e.total_shrink[1] !== 0 || e.total_shrink[2] !== 0 || e.total_shrink[3] !== 0)) {
+      b = hpack(e, p, (z - q) | 0, exactly)
+    } else {
+      en = 0
+      if (w > z) b = hpack(e, p, z, exactly)
+    }
+    w = b.width
+  }
+  // §1202 Determine the displacement, d, of the left edge of the equation
+  b.subtype = dlist
+  let d = half((z - w) | 0)
+  if (en > 0 && d < 2 * en) { // too close
+    d = half((z - w - en) | 0)
+    if (p !== null && !is_char_node(p) && p.type === glue_node) d = 0
+  }
+  // §1203 Append the glue or equation number preceding the display
+  tail_append(e, new_penalty(int_par(e, pre_display_penalty_code)))
+  let g1: number, g2: number
+  if (d + s <= e.equiv[dimen_base + pre_display_size_code]! || l) { g1 = above_display_skip_code; g2 = below_display_skip_code }
+  else { g1 = above_display_short_skip_code; g2 = below_display_short_skip_code }
+  if (l && en === 0) { app_display(e, j, a!, 0); tail_append(e, new_penalty(inf_penalty)) }
+  else tail_append(e, new_param_glue(e, g1))
+  // §1204 Append the display and perhaps also the equation number
+  if (en !== 0) {
+    const r = new_kern((z - w - en - d) | 0)
+    let bb: Node
+    if (l) { a!.link = r; r.link = b; bb = a!; d = 0 } else { b.link = r; r.link = a; bb = b }
+    b = hpack(e, bb, 0, additional)
+  }
+  app_display(e, j, b, d)
+  // §1205 Append the glue or equation number following the display
+  if (a !== null && en === 0 && !l) {
+    tail_append(e, new_penalty(inf_penalty))
+    app_display(e, j, a, (z - a.width) | 0)
+    g2 = 0
+  }
+  if (t !== e.adjust_head) { e.tail.link = e.adjust_head.link; e.tail = t! } // migrating material comes after equation number
+  if (pre_t !== e.pre_adjust_head) { e.tail.link = e.pre_adjust_head.link; e.tail = pre_t! }
+  tail_append(e, new_penalty(int_par(e, post_display_penalty_code)))
+  if (g2 > 0) tail_append(e, new_param_glue(e, g2))
+  flush_node_list(e, j) // §1199 Flush the prototype box
+  resume_after_display(e)
+}
+
+// §1200 resume_after_display
+export function resume_after_display(e: Engine): void {
+  if (e.cur_group !== math_shift_group) confusion(e, 'display')
+  unsave(e); e.prev_graf += 3
+  push_nest(e); e.mode = hmode; e.space_factor = 1000; e.clang = cur_lang_of(e)
+  e.prev_graf = (norm_min(int_par(e, left_hyphen_min_code)) * 0o100 + norm_min(int_par(e, right_hyphen_min_code))) * 0o200000 + e.clang
+  get_x_token(e); if (e.cur_cmd !== Cmd.spacer) back_input(e) // §443 Scan an optional space
+  if (e.nest_ptr === 1) build_page(e)
+}
+
+// etex.ch app_display (pre_display_direction=0 without e-TeX, so the TeXXeT branch is unreachable)
+function app_display(e: Engine, _j: Node | null, b: BoxNode, d: number): void {
+  if (int_par(e, pre_display_direction_code) !== 0) fatal_error(e, 'unsupported: \\predisplaydirection')
+  b.shift_amount = (e.equiv[dimen_base + display_indent_code]! + d) | 0
+  append_to_vlist(e, b)
+}
+
+// §1181 math_fraction
+export function math_fraction(e: Engine): void {
+  const c = e.cur_chr, delimited_code = 3
+  if (e.incompleat_noad !== null) { // §1183 Ignore the fraction operation and complain about this ambiguous case
+    if (c >= delimited_code) { scan_delimiter(e, null_delimiter(), false); scan_delimiter(e, null_delimiter(), false) }
+    if (c % delimited_code === 0) scan_normal_dimen(e)
+    print_err(e, 'Ambiguous; you need another { and }')
+    help(e, "I'm ignoring this fraction specification, since I don't", "know whether a construction like `x \\over y \\over z'",
+      "means `{x \\over y} \\over z' or `x \\over {y \\over z}'.")
+    error(e)
+    return
+  }
+  const n = new_noad(); e.incompleat_noad = n
+  n.type = fraction_noad; n.subtype = normal
+  n.supscr.math_type = sub_mlist; n.supscr.info = e.head.link
+  e.head.link = null; e.tail = e.head
+  // §1182 Use code c to distinguish between generalized fractions
+  if (c >= delimited_code) { scan_delimiter(e, n.left_delimiter, false); scan_delimiter(e, n.right_delimiter, false) }
+  switch (c % delimited_code) {
+    case 0: scan_normal_dimen(e); n.thickness = e.cur_val; break
+    case 1: n.thickness = default_code; break
+    case 2: n.thickness = 0; break
+  }
+}
+
+// §1191 math_left_right
+export function math_left_right(e: Engine): void {
+  const t = e.cur_chr, middle_noad = 1
+  if (t !== left_noad && e.cur_group !== math_left_group) { // §1192 Try to recover from mismatched \right
+    if (e.cur_group === math_shift_group) {
+      scan_delimiter(e, null_delimiter(), false)
+      print_err(e, 'Extra ')
+      if (t === middle_noad) { print_esc(e, 'middle'); help(e, "I'm ignoring a \\middle that had no matching \\left.") }
+      else { print_esc(e, 'right'); help(e, "I'm ignoring a \\right that had no matching \\left.") }
+      error(e)
+    } else off_save(e)
+    return
+  }
+  const p = new_noad(); p.type = t as Noad['type']
+  scan_delimiter(e, p.left_delimiter, false)
+  if (t === middle_noad) { p.type = right_noad; p.subtype = middle_noad }
+  let q: Node | null
+  if (t === left_noad) q = p
+  else { q = fin_mlist(e, p); unsave(e) } // end of math_left_group
+  if (t !== right_noad) { push_math(e, math_left_group); e.head.link = q; e.tail = p; e.eTeX_aux = p }
+  else {
+    const n = new_noad(); tail_append(e, n); n.type = inner_noad
+    n.nucleus.math_type = sub_mlist; n.nucleus.info = q
+  }
+}
+
+// §1172 append_choices
+export function append_choices(e: Engine): void {
+  tail_append(e, new_choice()); e.save_ptr++; set_saved(e, -1, 0)
+  push_math(e, math_choice_group); scan_left_brace(e)
+}
+
+// §1174 build_choices
+function build_choices(e: Engine): void {
+  unsave(e)
+  const p = fin_mlist(e, null), t = e.tail as ChoiceNode
+  switch (saved(e, -1)) {
+    case 0: t.display_mlist = p; break
+    case 1: t.text_mlist = p; break
+    case 2: t.script_mlist = p; break
+    case 3: t.script_script_mlist = p; e.save_ptr--; return
+  }
+  set_saved(e, -1, saved(e, -1) + 1); push_math(e, math_choice_group); scan_left_brace(e)
+}
+
+// §1186 math_group in handle_right_brace
+function finish_math_group(e: Engine): void {
+  unsave(e); e.save_ptr--
+  const h = saved(e, 0), f = field_at(e, h)
+  node_free(e, h)
+  f.math_type = sub_mlist
+  const p = fin_mlist(e, null)
+  f.info = p
+  if (p === null || p.link !== null) return
+  if (p.type === ord_noad) {
+    if (p.subscr.math_type === 0 && p.supscr.math_type === 0) Object.assign(f, p.nucleus)
+  } else if (p.type === accent_noad && f === (e.tail as Noad).nucleus && e.tail.type === ord_noad) {
+    // §1187 Replace the tail of the list by p
+    let q = e.head
+    while (q.link !== e.tail) q = q.link!
+    q.link = p; e.tail = p
+  }
+}
+
+// §1167 vcenter_group in handle_right_brace
+function finish_vcenter(e: Engine): void {
+  end_graf(e); unsave(e); e.save_ptr -= 2
+  const p = vpack(e, e.head.link, saved(e, 1), saved(e, 0)); pop_nest(e)
+  const n = new_noad(); tail_append(e, n); n.type = vcenter_noad
+  n.nucleus.math_type = sub_box; n.nucleus.info = p
+}
+
+// §1164 math_radical
+export function math_radical(e: Engine): void {
+  const n = new_noad(); tail_append(e, n); n.type = radical_noad
+  scan_delimiter(e, n.left_delimiter, true); scan_math(e, n.nucleus)
 }

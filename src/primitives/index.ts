@@ -83,6 +83,21 @@ import * as set_page_dimen from './set_page_dimen.ts'
 import * as set_page_int from './set_page_int.ts'
 import * as top_bot_mark from './top_bot_mark.ts'
 import * as partoken_name from './partoken_name.ts'
+import * as delim_num from './delim_num.ts'
+import * as math_char_num from './math_char_num.ts'
+import * as math_accent from './math_accent.ts'
+import * as math_choice from './math_choice.ts'
+import * as non_script from './non_script.ts'
+import * as radical from './radical.ts'
+import * as vcenter from './vcenter.ts'
+import * as mskip from './mskip.ts'
+import * as mkern from './mkern.ts'
+import * as eq_no from './eq_no.ts'
+import * as math_comp from './math_comp.ts'
+import * as limit_switch from './limit_switch.ts'
+import * as math_style from './math_style.ts'
+import * as above from './above.ts'
+import * as left_right from './left_right.ts'
 
 export type Prim = {
   cmd: number
@@ -98,7 +113,8 @@ const prims: Prim[] = [relax, par_end, stop, def, register, assign_int, assign_d
   end_group, expand_after, if_test, fi_or_else, convert, case_shift, last_item, set_font, message, xray, the, no_expand, cs_name, input, in_stream, read_to_cs,
   set_box, set_box_dimen, set_aux, set_prev_graf, def_font, assign_font_dimen, assign_font_int, make_box, hmove, vmove, leader_ship,
   un_hbox, un_vbox, remove_item, hskip, vskip, kern, hrule, vrule, insert, vadjust, mark, break_penalty, start_par, ital_corr, accent,
-  discretionary, ex_space, char_num, no_boundary, end_cs_name, extension, def_family, hyph_data, set_shape, set_page_dimen, set_page_int, top_bot_mark, partoken_name, ...unsupported.prims]
+  discretionary, ex_space, char_num, no_boundary, end_cs_name, extension, def_family, hyph_data, set_shape, set_page_dimen, set_page_int, top_bot_mark, partoken_name,
+  delim_num, math_char_num, math_accent, math_choice, non_script, radical, vcenter, mskip, mkern, eq_no, math_comp, limit_switch, math_style, above, left_right, ...unsupported.prims]
 export const registry = new Map<number, Prim>() // filled by init_prim, after every module is evaluated
 
 // §1336 init_prim (with the frozen copies of §265, §334, §491, §553, §780, §1188, §1344)
