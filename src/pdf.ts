@@ -11,7 +11,7 @@ import { flush_node_list, show_box, zround, is_char_node, hlist_node, vlist_node
   math_node, ligature_node, normal, stretching, a_leaders, c_leaders, null_flag, special_node, latespecial_node, pdf_save_pos_node,
   flush_list, delete_token_ref } from './nodes.ts'
 import type { BoxNode, Node, WhatsitNode, PdfAction } from './nodes.ts'
-import { colorstack_set, colorstack_push, colorstack_pop, colorstack_current } from './nodes.ts'
+import { colorstack_set, colorstack_push, colorstack_pop, colorstack_current, margin_kern_node } from './nodes.ts'
 import { pdf_action_user, pdf_action_page, pdf_action_goto, pdf_action_thread, copy_node_list, add_token_ref, new_whatsit_node, print_mark, print_font_identifier,
   pdf_dest_xyz, pdf_dest_fit, pdf_dest_fith, pdf_dest_fitv, pdf_dest_fitb, pdf_dest_fitbh, pdf_dest_fitbv, pdf_dest_fitr, pdf_null } from './nodes.ts'
 import { char_info, char_width, char_exists, null_font, param, space_code, space_shrink_code, new_font_type, real_font_type, virtual_font_type } from './tfm.ts'
@@ -1028,7 +1028,7 @@ function pdf_hlist_out(e: Engine, this_box: BoxNode): void {
             }
             break move_past
           }
-          case kern_node: case math_node: e.cur_h = (e.cur_h + p.width) | 0; break // margin_kern_node: protrusion is unsupported
+          case kern_node: case margin_kern_node: case math_node: e.cur_h = (e.cur_h + p.width) | 0; break
         }
         p = p.link; continue
       }

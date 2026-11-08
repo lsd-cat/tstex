@@ -1,0 +1,250 @@
+entering extended mode
+(m8-protrude-dvi.tex (plain.tex Preloading the plain format: codes, registe
+rs,
+\maxdimen=\dimen10
+\hideskip=\skip10
+\centering=\skip11
+\p@=\dimen11
+\z@=\dimen12
+\z@skip=\skip12
+\voidb@x=\box10
+parameters,
+\smallskipamount=\skip13
+\medskipamount=\skip14
+\bigskipamount=\skip15
+\normalbaselineskip=\skip16
+\normallineskip=\skip17
+\normallineskiplimit=\dimen13
+\jot=\dimen14
+\interdisplaylinepenalty=\count23
+\interfootnotelinepenalty=\count24
+fonts, more fonts,
+\itfam=\fam4
+\slfam=\fam5
+\bffam=\fam6
+\ttfam=\fam7
+macros,
+\strutbox=\box11
+\mscount=\count25
+\tabs=\box12
+\tabsyet=\box13
+\tabsdone=\box14
+math definitions,
+\rootbox=\box15
+\p@renwd=\dimen15
+output routines,
+\headline=\toks10
+\footline=\toks11
+\footins=\insert254
+\topins=\insert253
+hyphenation (hyphen.tex))
+Underfull \hbox (badness 3815) in paragraph at lines 6--6
+[]\tenrm (A test, of pro-tru-sion.)
+
+\hbox(7.5+2.5)x108.405, glue set 3.36812
+.\kern-6.00002 (left margin)
+.\hbox(0.0+0.0)x0.0
+.\tenrm (
+.\tenrm A
+.\glue 3.33333 plus 1.66498 minus 1.11221
+.\tenrm t
+.\tenrm e
+.\tenrm s
+.\tenrm t
+.\tenrm ,
+.\glue 3.33333 plus 2.08331 minus 0.88889
+.\tenrm o
+.\tenrm f
+.\glue 3.33333 plus 1.66666 minus 1.11111
+.\tenrm p
+.\tenrm r
+.\tenrm o
+.\discretionary
+..\tenrm -
+.\tenrm t
+.\tenrm r
+.\tenrm u
+.\discretionary
+..\tenrm -
+.\tenrm s
+.\tenrm i
+.\tenrm o
+.\tenrm n
+.\tenrm .
+.\tenrm )
+.\kern-4.0 (right margin)
+.\glue(\rightskip) 0.0
+
+> \box1=
+\vbox(31.5+2.5)x108.405
+.\hbox(7.5+2.5)x108.405, glue set 3.36812
+..\kern-6.00002 (left margin)
+..\hbox(0.0+0.0)x0.0
+..\tenrm (
+..\tenrm A
+..\glue 3.33333 plus 1.66498 minus 1.11221
+..\tenrm t
+..\tenrm e
+..\tenrm s
+..\tenrm t
+..\tenrm ,
+..\glue 3.33333 plus 2.08331 minus 0.88889
+..\tenrm o
+..\tenrm f
+..\glue 3.33333 plus 1.66666 minus 1.11111
+..\tenrm p
+..\tenrm r
+..\tenrm o
+..\discretionary
+...\tenrm -
+..\tenrm t
+..\tenrm r
+..\tenrm u
+..\discretionary
+...\tenrm -
+..\tenrm s
+..\tenrm i
+..\tenrm o
+..\tenrm n
+..\tenrm .
+..\tenrm )
+..\kern-4.0 (right margin)
+..\glue(\rightskip) 0.0
+.\penalty 150
+.\glue(\baselineskip) 2.55556
+.\hbox(6.94444+1.94444)x108.405, glue set 21.016fil
+..\kern-3.0 (left margin)
+..\tenrm T
+..\kern-0.83334
+..\tenrm a
+..\tenrm l
+..\tenrm l
+..\glue 3.33333 plus 1.66666 minus 1.11111
+..\tenrm t
+..\tenrm o
+..\kern-0.27779
+..\discretionary replacing 2
+...\tenrm w
+...\tenrm -
+..\tenrm w
+..\kern-0.27779
+..\tenrm e
+..\tenrm r
+..\tenrm s
+..\tenrm .
+..\glue 4.44444 plus 4.99997 minus 0.37036
+..\tenrm A
+..\glue 3.33333 plus 1.66498 minus 1.11221
+..\tenrm w
+..\kern-0.27779
+..\tenrm o
+..\tenrm r
+..\tenrm d
+..\tenrm ,
+..\glue 0.0 plus 1.0fil
+..\penalty -10000
+..\glue(\rightskip) 0.0
+.\penalty 150
+.\glue(\baselineskip) 2.55556
+.\hbox(7.5+2.5)x108.405, glue set 15.76596fil
+..\kern-3.0 (left margin)
+..\tenrm T
+..\tenrm (
+..\tenrm r
+..\tenrm e
+..\tenrm e
+..\tenrm s
+..\tenrm )
+..\glue 3.33333 plus 1.66666 minus 1.11111
+..\tenrm \ (ligature ``)
+..\tenrm q
+..\tenrm u
+..\tenrm o
+..\tenrm t
+..\tenrm e
+..\tenrm d
+..\tenrm .
+..\tenrm " (ligature '')
+..\glue 4.44444 plus 4.99997 minus 0.37036
+..\hbox(6.83331+0.0)x10.2778
+...\tenrm A
+...\tenrm .
+..\glue 3.33333 plus 1.66666 minus 1.11111
+..\tenrm T
+..\tenrm .
+..\penalty 10000
+..\kern-10.00002 (right margin)
+..\glue(\parfillskip) 0.0 plus 1.0fil
+..\glue(\rightskip) 0.0
+
+! OK.
+l.7 \showbox1
+
+
+[-3.0pt][0pt]
+> \box5=
+\hbox(7.5+2.5)x105.63905
+.\tenrm T
+.\tenrm (
+.\tenrm r
+.\tenrm e
+.\tenrm e
+.\tenrm s
+.\tenrm )
+.\glue 3.33333 plus 1.66666 minus 1.11111
+.\tenrm \ (ligature ``)
+.\tenrm q
+.\tenrm u
+.\tenrm o
+.\tenrm t
+.\tenrm e
+.\tenrm d
+.\tenrm .
+.\tenrm " (ligature '')
+.\glue 4.44444 plus 4.99997 minus 0.37036
+.\hbox(6.83331+0.0)x10.2778
+..\tenrm A
+..\tenrm .
+.\glue 3.33333 plus 1.66666 minus 1.11111
+.\tenrm T
+.\tenrm .
+.\penalty 10000
+.\glue(\parfillskip) 0.0 plus 1.0fil
+.\glue(\rightskip) 0.0
+
+! OK.
+l.9 \setbox5\hbox{\unhcopy4}\showbox5
+
+
+[-3.0pt][0pt][0pt]
+> \box6=
+\vbox(6.94444+0.0)x108.405
+.\hbox(6.94444+0.0)x108.405, glue set 60.73828fil
+..\glue(\leftskip) 3.0
+..\kern-3.0 (left margin)
+..\hbox(0.0+0.0)x0.0
+..\tenrm T
+..\kern-0.83334
+..\tenrm a
+..\tenrm l
+..\tenrm l
+..\glue 3.33333 plus 1.66666 minus 1.11111
+..\tenrm t
+..\tenrm e
+..\tenrm s
+..\tenrm t
+..\tenrm .
+..\glue 4.44444 plus 4.99997 minus 0.37036
+..\tenrm T
+..\tenrm .
+..\penalty 10000
+..\kern-10.00002 (right margin)
+..\glue(\parfillskip) 0.0 plus 1.0fil
+..\glue(\rightskip) 4.0
+
+! OK.
+l.11 ...\rightskip=4pt Tall test. T.\par}\showbox6
+
+
+[-3.0pt][0pt] [1] )
+Output written on m8-protrude-dvi.dvi (1 page, 300 bytes).

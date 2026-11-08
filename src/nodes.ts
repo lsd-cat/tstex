@@ -120,6 +120,7 @@ export function print_spec(e: Engine, p: number, s: string): void {
 export const char_node = -1, hlist_node = 0, vlist_node = 1, rule_node = 2, ins_node = 3, mark_node = 4, adjust_node = 5,
   ligature_node = 6, disc_node = 7, whatsit_node = 8, math_node = 9, glue_node = 10, kern_node = 11, penalty_node = 12,
   unset_node = 13
+export const margin_kern_node = 40, left_side = 0, right_side = 1 // pdftex.web
 export const stretching = 1, shrinking = 2 // §135
 export const null_flag = -0o10000000000 // §138
 export const before = 0, after = 1, L_code = 4 // §147
@@ -168,8 +169,10 @@ export type MathNode = Link & { type: typeof math_node, subtype: number, width: 
 export type GlueNode = Link & { type: typeof glue_node, subtype: number, glue_ptr: number, leader_ptr: Node | null }
 export type KernNode = Link & { type: typeof kern_node, subtype: number, width: number }
 export type PenaltyNode = Link & { type: typeof penalty_node, subtype: number, penalty: number }
+// pdftex.web margin_kern_node: subtype left_side/right_side, margin_char the protruding character (a fresh char node)
+export type MarginKernNode = Link & { type: typeof margin_kern_node, subtype: number, width: number, margin_char: CharNode }
 export type Node = CharNode | BoxNode | RuleNode | InsNode | MarkNode | AdjustNode | LigNode | DiscNode | WhatsitNode | MathNode
-  | GlueNode | KernNode | PenaltyNode | StyleNode | ChoiceNode | Noad
+  | GlueNode | KernNode | PenaltyNode | MarginKernNode | StyleNode | ChoiceNode | Noad
 
 // §681–688 noads. A noad field (nucleus, supscr, subscr, accent_chr) is an object so that scan_math and the
 // save stack can point at it; new_hlist, which TeX overlays on the nucleus word, is a field of its own.
@@ -293,7 +296,7 @@ export function flush_node_list(e: Engine, p: Node | null): void {
   while (p !== null) {
     const q: Node | null = p.link
     switch (p.type) {
-      case char_node: case rule_node: case kern_node: case math_node: case penalty_node: break
+      case char_node: case rule_node: case kern_node: case math_node: case penalty_node: case margin_kern_node: break
       case hlist_node: case vlist_node: case unset_node: flush_node_list(e, p.list_ptr); break
       case ins_node: flush_node_list(e, p.ins_ptr); delete_glue_ref(e, p.split_top_ptr); break
       case whatsit_node: // §1358
@@ -373,6 +376,7 @@ export function copy_node_list(e: Engine, p: Node | null): Node | null {
       case mark_node: add_token_ref(e, p.mark_ptr); r = { ...p }; break
       case adjust_node: r = { ...p, adjust_ptr: copy_node_list(e, p.adjust_ptr) }; break
       case char_node: case rule_node: case kern_node: case math_node: case penalty_node: r = { ...p }; break
+      case margin_kern_node: r = { ...p, margin_char: { ...p.margin_char } }; break
       default: confusion(e, 'copying')
     }
     q.link = r; q = r; p = p.link
@@ -623,6 +627,9 @@ export function show_node_list(e: Engine, p: Node | null): void {
             print_spec(e, p.glue_ptr, p.subtype < cond_math_glue ? '' : 'mu')
           }
         }
+        break
+      case margin_kern_node: // pdftex.web
+        print_esc(e, 'kern'); print_scaled(e, p.width); print(e, p.subtype === left_side ? ' (left margin)' : ' (right margin)')
         break
       case kern_node: // §191
         if (p.subtype !== mu_glue) {

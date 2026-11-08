@@ -3,7 +3,11 @@ import type { Engine } from '../engine.ts'
 import { Cmd, new_string } from '../types.ts'
 import { print as print_str, print_esc, print_int, print_roman_int, print_char } from '../print.ts'
 import { sprint_cs } from '../hash.ts'
-import { garbage, temp_head } from '../nodes.ts'
+import { garbage, temp_head, box, hlist_node, glue_node, margin_kern_node, left_side, right_side } from '../nodes.ts'
+import type { BoxNode } from '../nodes.ts'
+import { cp_skipable, prev_rightmost } from '../linebreak.ts'
+import { scan_register_num } from '../scan.ts'
+const left_skip_code = 7, right_skip_code = 8
 import { print_meaning, tokens_to_string } from '../tokens.ts'
 import { delete_token_ref, free_avail } from '../nodes.ts'
 import { get_token, ins_list } from '../input.ts'
@@ -52,6 +56,7 @@ function compare_strings(e: Engine): void {
 // §470 conv_toks
 export function run(e: Engine, chr: number): void {
   const c = chr, old_setting = e.selector, b = e.cur_str.length
+  let mk: BoxNode | null = null
   // §471 Scan the argument for command c
   if (c === number_code || c === roman_numeral_code) scan_int(e)
   else if (c === string_code || c === meaning_code) {
@@ -138,6 +143,10 @@ export function run(e: Engine, chr: number): void {
     if (e.cur_val < 1 || e.cur_val > 4) pdf_error(e, 'pdfximagebbox', 'invalid parameter')
     e.cur_val = img.type !== 'pdf' ? 0 : [img.orig_x, img.orig_y, img.orig_x + img.width, img.orig_y + img.height][e.cur_val - 1]! | 0
   }
+  else if (c === 16 || c === 17) { // left_margin_kern_code, right_margin_kern_code
+    scan_register_num(e); mk = box(e, e.cur_val)
+    if (mk === null || mk.type !== hlist_node) pdf_error(e, 'marginkern', 'a non-empty hbox expected')
+  }
   else if (c === uniform_deviate_code) scan_int(e)
   else if (c !== normal_deviate_code && c !== eTeX_revision_code && c !== pdftex_revision_code && c !== pdftex_banner_code) unsupported(e)
   e.selector = new_string
@@ -162,6 +171,14 @@ export function run(e: Engine, chr: number): void {
   else if (c === pdf_font_size_code) { print_scaled(e, e.font_size[e.cur_val]!); print_str(e, 'pt') }
   else if (c === pdf_page_ref_code) print_int(e, get_obj(e, obj_type_page, e.cur_val, 0))
   else if (c === pdf_xform_name_code) print_int(e, e.ps.obj_info[e.cur_val]!)
+  else if (c === 16 || c === 17) {
+    const q = mk!.list_ptr, skip = c === 16 ? left_skip_code + 1 : right_skip_code + 1
+    let p = c === 16 ? q : prev_rightmost(q, null)
+    while (p !== null && (cp_skipable(p) || (p.type === glue_node && p.subtype === skip))) p = c === 16 ? p.link : prev_rightmost(q, p)
+    if (p !== null && p.type === margin_kern_node && p.subtype === (c === 16 ? left_side : right_side)) print_scaled(e, p.width)
+    else print_str(e, '0')
+    print_str(e, 'pt')
+  }
   else if (c === uniform_deviate_code) print_int(e, unif_rand(e, e.cur_val))
   else if (c === normal_deviate_code) print_int(e, norm_rand(e))
   else print_str(e, e.job_name)

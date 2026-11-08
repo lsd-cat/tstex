@@ -1,20 +1,23 @@
-// §813–890 breaking paragraphs into lines (pdftex.web; \pdfadjustspacing, \pdfprotrudechars and e-TeX's \lastlinefit,
+// §813–890 breaking paragraphs into lines (pdftex.web: font expansion with \pdfadjustspacing>1 keeps the font stretch and
+// shrink in active_width[7..8]; \pdfprotrudechars puts margin kerns at the line ends; e-TeX's \lastlinefit, \interlinepenalties)
 import { etex_pen_base } from './types.ts'
-// \interlinepenalties etc. are inactive in this engine)
 import type { Engine } from './engine.ts'
 import { no_TeXXeT, fract, last_line_fit_code } from './etex.ts'
 import { print_scaled } from './arith.ts'
 import { max_dimen } from './scan.ts'
 import { print, print_char, print_esc, print_int, print_nl, begin_diagnostic, end_diagnostic } from './print.ts'
 import { badness, inf_bad } from './arith.ts'
-import { error, print_err, help, confusion, fatal_error, normalize_selector } from './error.ts'
+import { error, print_err, help, confusion, normalize_selector } from './error.ts'
 import { int_par, dimen_base, glue_base, par_shape_loc } from './eqtb.ts'
 import { new_char, new_penalty, new_param_glue, new_spec, delete_glue_ref, add_glue_ref, flush_node_list, short_display, is_char_node,
   hlist_node, vlist_node, rule_node, ins_node, mark_node, adjust_node, ligature_node, disc_node, whatsit_node, math_node, glue_node,
-  kern_node, penalty_node, normal, explicit, L_code, inf_penalty, eject_penalty, language_node, pdf_refxform_node, pdf_refximage_node } from './nodes.ts'
-import type { Node, BoxNode, DiscNode, GlueNode, PenaltyNode } from './nodes.ts'
+  kern_node, penalty_node, normal, explicit, auto_kern, L_code, inf_penalty, eject_penalty, language_node, pdf_refxform_node,
+  pdf_refximage_node, zero_glue, left_side, right_side } from './nodes.ts'
+import type { Node, BoxNode, DiscNode, GlueNode, PenaltyNode, CharNode } from './nodes.ts'
 import { char_info, char_width, null_font } from './tfm.ts'
-import { hpack, append_to_vlist, exactly } from './pack.ts'
+import { hpack, append_to_vlist, exactly, cal_expand_ratio, char_stretch, char_shrink, kern_stretch_shrink, do_subst_font, char_pw,
+  new_margin_kern } from './pack.ts'
+import { pdf_error } from './pdf.ts'
 import { pop_nest } from './main.ts'
 import { init_trie, try_hyphenate, set_hyph_index } from './hyphenate.ts'
 
@@ -56,18 +59,109 @@ function finite_shrink(e: Engine, s: { no_shrink_error_yet: boolean }, p: number
   return q
 }
 
-// width of a char, ligature, box, rule or kern node inside a discretionary (§841–842, §870–871)
-function disc_node_width(e: Engine, s: Node, what: string): number {
-  if (is_char_node(s) || s.type === ligature_node) return char_width(e, s.font, char_info(e, s.font, s.character))
-  if (s.type === hlist_node || s.type === vlist_node || s.type === rule_node || s.type === kern_node) return s.width
-  confusion(e, what)
+// pdftex.web check_expand_pars
+function check_expand_pars(e: Engine, f: number): boolean {
+  if (e.pdf_font_step[f] === 0 || (e.pdf_font_stretch[f] === null_font && e.pdf_font_shrink[f] === null_font)) return false
+  if (e.cur_font_step < 0) e.cur_font_step = e.pdf_font_step[f]!
+  else if (e.cur_font_step !== e.pdf_font_step[f]) pdf_error(e, 'font expansion', 'using fonts with different step of expansion in one paragraph is not allowed')
+  let k = e.pdf_font_stretch[f]!
+  if (k !== null_font) {
+    if (e.max_stretch_ratio < 0) e.max_stretch_ratio = e.pdf_font_expand_ratio[k]!
+    else if (e.max_stretch_ratio !== e.pdf_font_expand_ratio[k]) pdf_error(e, 'font expansion', 'using fonts with different limit of expansion in one paragraph is not allowed')
+  }
+  k = e.pdf_font_shrink[f]!
+  if (k !== null_font) {
+    if (e.max_shrink_ratio < 0) e.max_shrink_ratio = -e.pdf_font_expand_ratio[k]!
+    else if (e.max_shrink_ratio !== -e.pdf_font_expand_ratio[k]!) pdf_error(e, 'font expansion', 'using fonts with different limit of expansion in one paragraph is not allowed')
+  }
+  return true
+}
+
+// Add (sign 1) or subtract (-1) the width of a char, ligature, box, rule or kern node to w[1], and with \pdfadjustspacing>1 its
+// font stretch and shrink to w[7..8] (§841–842, §867, §870–871 with pdftex.web's add_char_stretch etc.)
+function add_node_width(e: Engine, w: number[], s: Node, sign: number, what: string): void {
+  if (is_char_node(s) || s.type === ligature_node) {
+    const f = s.font
+    w[1] = (w[1]! + sign * char_width(e, f, char_info(e, f, s.character))) | 0
+    if (int_par(e, pdf_adjust_spacing_code) > 1 && check_expand_pars(e, f)) {
+      e.prev_char_p = s
+      w[7] = (w[7]! + sign * char_stretch(e, f, s.character)) | 0
+      w[8] = (w[8]! + sign * char_shrink(e, f, s.character)) | 0
+    }
+  } else if (s.type === hlist_node || s.type === vlist_node || s.type === rule_node || s.type === kern_node) {
+    w[1] = (w[1]! + sign * s.width) | 0
+    if (s.type === kern_node && int_par(e, pdf_adjust_spacing_code) > 1 && s.subtype === normal) {
+      w[7] = (w[7]! + sign * kern_stretch_shrink(e, s, true)) | 0
+      w[8] = (w[8]! + sign * kern_stretch_shrink(e, s, false)) | 0
+    }
+  } else confusion(e, what)
+}
+
+// pdftex.web cp_skipable: nodes skipped at the margins during character protrusion
+export function cp_skipable(p: Node | null): boolean {
+  if (p === null || is_char_node(p)) return false
+  switch (p.type) {
+    case ins_node: case mark_node: case adjust_node: case penalty_node: return true
+    case whatsit_node: return p.subtype !== pdf_refximage_node && p.subtype !== pdf_refxform_node
+    case disc_node: return p.pre_break === null && p.post_break === null && p.replace_count === 0
+    case math_node: return p.width === 0
+    case kern_node: return p.width === 0 || p.subtype === normal || p.subtype === auto_kern
+    case glue_node: return p.glue_ptr === zero_glue
+    case hlist_node: return p.width === 0 && p.height === 0 && p.depth === 0 && p.list_ptr === null
+  }
+  return false
+}
+// utils.c prev_rightmost: the node whose link is e, searching from s (null if there is none)
+export function prev_rightmost(s: Node | null, e: Node | null): Node | null {
+  let p = s
+  if (p === null) return null
+  while (p.link !== e) { p = p.link; if (p === null) return null }
+  return p
+}
+const max_hlist_stack = 512
+function push_node(e: Engine, st: Node[], p: Node): void {
+  if (st.length > max_hlist_stack) pdf_error(e, 'push_node', 'stack overflow')
+  st.push(p)
+}
+// pdftex.web find_protchar_left, find_protchar_right
+function find_protchar_left(e: Engine, l: Node, d: boolean): Node {
+  if (l.link !== null && l.type === hlist_node && l.width === 0 && l.height === 0 && l.depth === 0 && l.list_ptr === null) l = l.link
+  else if (d) while (l.link !== null && !(is_char_node(l) || l.type < math_node)) l = l.link
+  const st: Node[] = []
+  let run = true, t: Node
+  do {
+    t = l
+    while (run && l.type === hlist_node && l.list_ptr !== null) { push_node(e, st, l); l = l.list_ptr }
+    while (run && cp_skipable(l)) {
+      while (l.link === null && st.length > 0) l = st.pop()!
+      if (l.link !== null) l = l.link
+      else if (st.length === 0) run = false
+    }
+  } while (t !== l)
+  return l
+}
+function find_protchar_right(e: Engine, l: Node | null, r: Node | null): Node | null {
+  if (r === null) return null
+  const st: Node[] = []
+  let run = true, t: Node | null
+  do {
+    t = r
+    while (run && r !== null && r.type === hlist_node && r.list_ptr !== null) {
+      push_node(e, st, l!); push_node(e, st, r); l = r.list_ptr; r = l
+      while (r.link !== null) r = r.link
+    }
+    while (run && cp_skipable(r)) {
+      while (r === l && st.length > 0) { r = st.pop()!; l = st.pop()! }
+      if (r !== l && r !== null) r = prev_rightmost(l, r)
+      else if (r === l && st.length === 0) run = false
+    }
+  } while (t !== r)
+  return r
 }
 
 // §815 line_break
 export function line_break(e: Engine, d: boolean): void {
   no_TeXXeT(e) // etex.ch branches on TeXXeT_en here; TeXXeT is not ported
-  if (int_par(e, pdf_adjust_spacing_code) !== 0) fatal_error(e, 'unsupported: \\pdfadjustspacing')
-  if (int_par(e, pdf_protrude_chars_code) !== 0) fatal_error(e, 'unsupported: \\pdfprotrudechars')
   e.pack_begin_line = e.mode_line
   const tracing = () => int_par(e, tracing_paragraphs_code) > 0
   // §816 Get ready to start line breaking
@@ -92,7 +186,9 @@ export function line_break(e: Engine, d: boolean): void {
     if (g.shrink_order !== normal && g.shrink !== 0) e.equiv[glue_base + c] = finite_shrink(e, ns, e.equiv[glue_base + c]!)
   }
   check_shrinkage(left_skip_code); check_shrinkage(right_skip_code)
-  const background = [0, 0, 0, 0, 0, 0, 0]
+  const adjust_spacing = int_par(e, pdf_adjust_spacing_code), protrude_chars = int_par(e, pdf_protrude_chars_code)
+  const nw = adjust_spacing > 1 ? 8 : 6 // do_all_eight
+  const background = [0, 0, 0, 0, 0, 0, 0, 0, 0]
   {
     const q = e.spec[e.equiv[glue_base + left_skip_code]!]!, r = e.spec[e.equiv[glue_base + right_skip_code]!]!
     background[1] = (q.width + r.width) | 0
@@ -100,6 +196,7 @@ export function line_break(e: Engine, d: boolean): void {
     background[2 + r.stretch_order] = (background[2 + r.stretch_order]! + r.stretch) | 0
     background[6] = (q.shrink + r.shrink) | 0
   }
+  if (adjust_spacing > 1) { e.max_stretch_ratio = -1; e.max_shrink_ratio = -1; e.cur_font_step = -1; e.prev_char_p = null }
   // etex.ch Check for special treatment of last line of paragraph
   let do_last_line_fit = false
   const fill_width = [0, 0, 0]
@@ -110,8 +207,8 @@ export function line_break(e: Engine, d: boolean): void {
     }
   }
   const best_pl_short = [0, 0, 0, 0], best_pl_glue = [0, 0, 0, 0]
-  const active_width = [0, 0, 0, 0, 0, 0, 0], cur_active_width = [0, 0, 0, 0, 0, 0, 0], break_width = [0, 0, 0, 0, 0, 0, 0],
-    disc_width = [0, 0, 0, 0, 0, 0, 0]
+  const active_width = [0, 0, 0, 0, 0, 0, 0, 0, 0], cur_active_width = [0, 0, 0, 0, 0, 0, 0, 0, 0],
+    break_width = [0, 0, 0, 0, 0, 0, 0, 0, 0], disc_width = [0, 0, 0, 0, 0, 0, 0, 0, 0]
   // §834
   let minimum_demerits = awful_bad
   const minimal_demerits = [awful_bad, awful_bad, awful_bad, awful_bad], best_place: (Passive | null)[] = [null, null, null, null],
@@ -145,7 +242,7 @@ export function line_break(e: Engine, d: boolean): void {
   active.link = active
   const last_active = active
   let passive: Passive | null = null, printed_node: Node = temp_head, pass_number = 0
-  let cur_p: Node | null = null, second_pass = false, final_pass = false, threshold = 0
+  let cur_p: Node | null = null, second_pass = false, final_pass = false, threshold = 0, prev_p: Node = temp_head, first_p: Node | null = null
   let best_bet: Active = active, fewest_demerits = 0, best_line = 0, actual_looseness = 0
 
   // §829 try_break
@@ -156,12 +253,12 @@ export function line_break(e: Engine, d: boolean): void {
       pi = eject_penalty
     }
     let no_break_yet = true, prev_r: Active = active, prev_prev_r: Active = active, old_l = 0, r: Active, line_width = 0, l = 0
-    for (let k = 1; k <= 6; k++) cur_active_width[k] = active_width[k]!
+    for (let k = 1; k <= nw; k++) cur_active_width[k] = active_width[k]!
     for (;;) {
       r = prev_r.link
       // §832 If node r is of type delta_node, update cur_active_width, set prev_r and prev_prev_r, then goto continue
       if (r.type === delta_node) {
-        for (let k = 1; k <= 6; k++) cur_active_width[k] = (cur_active_width[k]! + r.w[k]!) | 0
+        for (let k = 1; k <= nw; k++) cur_active_width[k] = (cur_active_width[k]! + r.w[k]!) | 0
         prev_prev_r = prev_r; prev_r = r; continue
       }
       // §835 If a line number class has ended, create new active nodes for the best feasible breaks in that class;
@@ -172,15 +269,16 @@ export function line_break(e: Engine, d: boolean): void {
           // §836 Create new active nodes for the best feasible breaks just found
           if (no_break_yet) { // §837 Compute the values of break_width
             no_break_yet = false
-            for (let k = 1; k <= 6; k++) break_width[k] = background[k]!
+            for (let k = 1; k <= nw; k++) break_width[k] = background[k]!
             let s: Node | null = cur_p
             if (break_type > unhyphenated && cur_p !== null) { // §840 Compute the discretionary break_width values
               const dp = cur_p as DiscNode
               let t = dp.replace_count, v: Node = dp
               s = dp.post_break
-              while (t > 0) { t--; v = v.link!; break_width[1] = (break_width[1]! - disc_node_width(e, v, 'disc1')) | 0 }
-              while (s !== null) { break_width[1] = (break_width[1]! + disc_node_width(e, s, 'disc2')) | 0; s = s.link }
+              while (t > 0) { t--; v = v.link!; add_node_width(e, break_width, v, -1, 'disc1') }
+              while (s !== null) { add_node_width(e, break_width, s, 1, 'disc2'); s = s.link }
               break_width[1] = (break_width[1]! + disc_width[1]!) | 0
+              if (adjust_spacing > 1) { break_width[7] = (break_width[7]! + disc_width[7]!) | 0; break_width[8] = (break_width[8]! + disc_width[8]!) | 0 }
               if (dp.post_break === null) s = v.link
             }
             done: while (s !== null) {
@@ -205,12 +303,12 @@ export function line_break(e: Engine, d: boolean): void {
           }
           // §843 Insert a delta node to prepare for breaks at cur_p
           if (prev_r.type === delta_node) {
-            for (let k = 1; k <= 6; k++) prev_r.w[k] = (prev_r.w[k]! - cur_active_width[k]! + break_width[k]!) | 0
+            for (let k = 1; k <= nw; k++) prev_r.w[k] = (prev_r.w[k]! - cur_active_width[k]! + break_width[k]!) | 0
           } else if (prev_r === active) {
-            for (let k = 1; k <= 6; k++) active_width[k] = break_width[k]!
+            for (let k = 1; k <= nw; k++) active_width[k] = break_width[k]!
           } else {
             const q: Active = { type: delta_node, link: r, fitness: 0, line_number: 0, total_demerits: 0, break_node: null, w: [0] }
-            for (let k = 1; k <= 6; k++) q.w[k] = (break_width[k]! - cur_active_width[k]!) | 0
+            for (let k = 1; k <= nw; k++) q.w[k] = (break_width[k]! - cur_active_width[k]!) | 0
             prev_r.link = q; prev_prev_r = prev_r; prev_r = q
           }
           const adj = Math.abs(int_par(e, adj_demerits_code))
@@ -245,7 +343,7 @@ export function line_break(e: Engine, d: boolean): void {
           // §844 Insert a delta node to prepare for the next active node
           if (r !== last_active) {
             const q: Active = { type: delta_node, link: r, fitness: 0, line_number: 0, total_demerits: 0, break_node: null, w: [0] }
-            for (let k = 1; k <= 6; k++) q.w[k] = (cur_active_width[k]! - break_width[k]!) | 0
+            for (let k = 1; k <= nw; k++) q.w[k] = (cur_active_width[k]! - break_width[k]!) | 0
             prev_r.link = q; prev_prev_r = prev_r; prev_r = q
           }
         }
@@ -263,6 +361,31 @@ export function line_break(e: Engine, d: boolean): void {
       // then goto continue if a line from r to cur_p is infeasible, otherwise record a new feasible break
       let artificial_demerits = false, b = 0, fit_class = 0, node_r_stays_active = false, g = 0
       let shortfall = (line_width - cur_active_width[1]!) | 0
+      if (protrude_chars > 1) shortfall = (shortfall + total_pw(r, cur_p)) | 0
+      if (adjust_spacing > 1 && shortfall !== 0) {
+        let margin_kern_stretch = 0, margin_kern_shrink = 0
+        if (protrude_chars > 1) { // Calculate variations of marginal kerns; cal_margin_kern_var uses left_pw for both sides
+          const lp = e.last_leftmost_char, rp = e.last_rightmost_char
+          const cal = (m: Node) => {
+            const n = m as CharNode, cp = new_char(n.font, n.character)
+            do_subst_font(e, cp, 1000)
+            if (cp.font !== n.font) margin_kern_stretch = (margin_kern_stretch + char_pw(e, n, left_side) - char_pw(e, cp, left_side)) | 0
+            cp.font = n.font
+            do_subst_font(e, cp, -1000)
+            if (cp.font !== n.font) margin_kern_shrink = (margin_kern_shrink + char_pw(e, cp, left_side) - char_pw(e, n, left_side)) | 0
+          }
+          if (lp !== null) cal(lp)
+          if (rp !== null) cal(rp)
+        }
+        const st = (cur_active_width[7]! + margin_kern_stretch) | 0, sh = (cur_active_width[8]! + margin_kern_shrink) | 0
+        if (shortfall > 0 && st > 0) {
+          if (st > shortfall) shortfall = Math.trunc(Math.trunc(st / Math.trunc(e.max_stretch_ratio / e.cur_font_step)) / 2)
+          else shortfall = (shortfall - st) | 0
+        } else if (shortfall < 0 && sh > 0) {
+          if (sh > -shortfall) shortfall = -Math.trunc(Math.trunc(sh / Math.trunc(e.max_shrink_ratio / e.cur_font_step)) / 2)
+          else shortfall = (shortfall + sh) | 0
+        }
+      }
       found: {
       if (shortfall > 0) { // §852
         if (cur_active_width[3] !== 0 || cur_active_width[4] !== 0 || cur_active_width[5] !== 0) {
@@ -377,23 +500,39 @@ export function line_break(e: Engine, d: boolean): void {
       if (prev_r === active) { // §861 Update the active widths, since the first active node has been deleted
         r = active.link
         if (r.type === delta_node) {
-          for (let k = 1; k <= 6; k++) active_width[k] = (active_width[k]! + r.w[k]!) | 0
-          for (let k = 1; k <= 6; k++) cur_active_width[k] = active_width[k]!
+          for (let k = 1; k <= nw; k++) active_width[k] = (active_width[k]! + r.w[k]!) | 0
+          for (let k = 1; k <= nw; k++) cur_active_width[k] = active_width[k]!
           active.link = r.link
         }
       } else if (prev_r.type === delta_node) {
         r = prev_r.link
         if (r === last_active) {
-          for (let k = 1; k <= 6; k++) cur_active_width[k] = (cur_active_width[k]! - prev_r.w[k]!) | 0
+          for (let k = 1; k <= nw; k++) cur_active_width[k] = (cur_active_width[k]! - prev_r.w[k]!) | 0
           prev_prev_r.link = last_active
           prev_r = prev_prev_r
         } else if (r.type === delta_node) {
-          for (let k = 1; k <= 6; k++) cur_active_width[k] = (cur_active_width[k]! + r.w[k]!) | 0
-          for (let k = 1; k <= 6; k++) prev_r.w[k] = (prev_r.w[k]! + r.w[k]!) | 0
+          for (let k = 1; k <= nw; k++) cur_active_width[k] = (cur_active_width[k]! + r.w[k]!) | 0
+          for (let k = 1; k <= nw; k++) prev_r.w[k] = (prev_r.w[k]! + r.w[k]!) | 0
           prev_r.link = r.link
         }
       }
     }
+  }
+  // pdftex.web total_pw: the protrusion of the line from r's break to p
+  const total_pw = (q: Active, p: Node | null): number => {
+    let l: Node | null = q.break_node === null ? first_p : q.break_node.cur_break, r = prev_rightmost(prev_p, p)
+    if (p !== null && p.type === disc_node && p.pre_break !== null) { r = p.pre_break; while (r.link !== null) r = r.link }
+    else r = find_protchar_right(e, l, r)
+    found: {
+      if (l !== null && l.type === disc_node) {
+        if (l.post_break !== null) { l = l.post_break; break found }
+        let n = l.replace_count
+        l = l.link!
+        while (n > 0) { if (l.link !== null) l = l.link; n-- }
+      }
+      l = find_protchar_left(e, l!, true)
+    }
+    return (char_pw(e, l, left_side) + char_pw(e, r, right_side)) | 0
   }
   // §858 Update the value of printed_node for symbolic displays (the exit of try_break)
   const update_printed_node = (): void => {
@@ -429,21 +568,17 @@ export function line_break(e: Engine, d: boolean): void {
     active.link = { type: unhyphenated, fitness: decent_fit, link: last_active, break_node: null, line_number: e.prev_graf + 1,
       total_demerits: 0, w: [] }
     if (do_last_line_fit) { active.link.active_short = 0; active.link.active_glue = 0 }
-    for (let k = 1; k <= 6; k++) active_width[k] = background[k]!
+    for (let k = 1; k <= nw; k++) active_width[k] = background[k]!
     passive = null; printed_node = temp_head; pass_number = 0
     e.font_in_short_display = null_font
     cur_p = temp_head.link; auto_breaking = true
-    let prev_p: Node = cur_p!
+    prev_p = cur_p!; e.prev_char_p = null; first_p = cur_p
     while (cur_p !== null && active.link !== last_active) {
       // §866 Call try_break if cur_p is a legal breakpoint; on the second pass, also try to hyphenate the next word, if cur_p
       // is a glue node; then advance cur_p to the next node of the paragraph that could possibly be a legal breakpoint
       if (is_char_node(cur_p)) { // §867
         prev_p = cur_p
-        do {
-          const c: Node = cur_p
-          active_width[1] = (active_width[1]! + char_width(e, c.font, char_info(e, c.font, c.character))) | 0
-          cur_p = c.link!
-        } while (is_char_node(cur_p))
+        do { add_node_width(e, active_width, cur_p, 1, ''); cur_p = cur_p.link! } while (is_char_node(cur_p))
       }
       const p: Node = cur_p
       switch (p.type) {
@@ -470,22 +605,29 @@ export function line_break(e: Engine, d: boolean): void {
         }
         case kern_node:
           if (p.subtype === explicit) kern_break()
-          else active_width[1] = (active_width[1]! + p.width) | 0
+          else {
+            active_width[1] = (active_width[1]! + p.width) | 0
+            if (adjust_spacing > 1 && p.subtype === normal) {
+              active_width[7] = (active_width[7]! + kern_stretch_shrink(e, p, true)) | 0
+              active_width[8] = (active_width[8]! + kern_stretch_shrink(e, p, false)) | 0
+            }
+          }
           break
-        case ligature_node: active_width[1] = (active_width[1]! + char_width(e, p.font, char_info(e, p.font, p.character))) | 0; break
+        case ligature_node: add_node_width(e, active_width, p, 1, ''); break
         case disc_node: { // §869 Try to break after a discretionary fragment, then goto done5
           let s = p.pre_break
-          disc_width[1] = 0
+          const k8 = adjust_spacing > 1 ? [1, 7, 8] : [1] // do_one_seven_eight
+          for (const k of k8) disc_width[k] = 0
           if (s === null) try_break(int_par(e, ex_hyphen_penalty_code), hyphenated)
           else {
-            do { disc_width[1] = (disc_width[1]! + disc_node_width(e, s, 'disc3')) | 0; s = s.link } while (s !== null)
-            active_width[1] = (active_width[1]! + disc_width[1]!) | 0
+            do { add_node_width(e, disc_width, s, 1, 'disc3'); s = s.link } while (s !== null)
+            for (const k of k8) active_width[k] = (active_width[k]! + disc_width[k]!) | 0
             try_break(int_par(e, hyphen_penalty_code), hyphenated)
-            active_width[1] = (active_width[1]! - disc_width[1]!) | 0
+            for (const k of k8) active_width[k] = (active_width[k]! - disc_width[k]!) | 0
           }
           let r = p.replace_count
           s = p.link
-          while (r > 0) { active_width[1] = (active_width[1]! + disc_node_width(e, s!, 'disc4')) | 0; r--; s = s!.link }
+          while (r > 0) { add_node_width(e, active_width, s!, 1, 'disc4'); r--; s = s!.link }
           prev_p = p; cur_p = s
           continue
         }
@@ -605,11 +747,26 @@ function post_line_break(e: Engine, d: boolean, temp_head: Node, last: Passive, 
       q = temp_head
       while (q.link !== null) q = q.link
     }
+    if (int_par(e, pdf_protrude_chars_code) > 0) { // pdftex.web: q is the rightmost breakpoint or the last node of pre_break
+      let p: Node | null, ptmp: Node | null
+      if (disc_break && (is_char_node(q) || q.type !== disc_node)) { p = q; ptmp = p }
+      else { p = prev_rightmost(temp_head.link, q); ptmp = p; p = find_protchar_right(e, temp_head.link, p) }
+      const w = char_pw(e, p, right_side)
+      if (w !== 0) {
+        const k = new_margin_kern(e, -w, e.last_rightmost_char, right_side)
+        k.link = ptmp!.link; ptmp!.link = k
+        if (ptmp === q) q = q.link!
+      }
+    }
     if (!glue_break) { // §886 Put the \rightskip glue after node q
       const g = new_param_glue(e, right_skip_code); g.link = q.link; q.link = g; q = g
     }
     // §887 Put the \leftskip glue at the left and detach this line
     r = q.link; q.link = null; q = temp_head.link; temp_head.link = r
+    if (int_par(e, pdf_protrude_chars_code) > 0) {
+      const p = find_protchar_left(e, q!, false), w = char_pw(e, p, left_side)
+      if (w !== 0) { const k = new_margin_kern(e, -w, e.last_leftmost_char, left_side); k.link = q; q = k }
+    }
     if (e.equiv[glue_base + left_skip_code] !== 0) {
       const g = new_param_glue(e, left_skip_code); g.link = q; q = g
     }
@@ -619,7 +776,7 @@ function post_line_break(e: Engine, d: boolean, temp_head: Node, last: Passive, 
     else if (w.par_shape === undefined) { cur_width = w.first_width; cur_indent = w.first_indent }
     else { cur_width = w.par_shape[2 * cur_line]!; cur_indent = w.par_shape[2 * cur_line - 1]! }
     e.adjust_tail = e.adjust_head; e.pre_adjust_tail = e.pre_adjust_head
-    const just_box: BoxNode = hpack(e, q, cur_width, exactly)
+    const just_box: BoxNode = hpack(e, q, cur_width, int_par(e, pdf_adjust_spacing_code) > 0 ? cal_expand_ratio : exactly)
     e.just_box = just_box
     just_box.shift_amount = cur_indent
     // §888 Append the new box to the current vertical list, followed by the list of special nodes taken out of the box

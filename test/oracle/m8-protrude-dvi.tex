@@ -1,0 +1,14 @@
+%! oracle: etex
+\input plain
+\pdfprotrudechars=2 \pdfadjustspacing=0
+\rpcode\tenrm`.=1000 \rpcode\tenrm`,=700 \lpcode\tenrm`A=500 \lpcode\tenrm`T=300 \lpcode\tenrm`(=600 \rpcode\tenrm`)=400
+\hsize=1.5in \parindent=0pt \tolerance=10000 \showboxbreadth=10000 \showboxdepth=10000
+\setbox1\vbox{(A test, of protrusion.) Tall towers. A word,\hfil\break T(rees) ``quoted.'' \hbox{A.} T.\par}
+\showbox1
+\setbox2\vbox{\unvcopy1 \setbox3\lastbox \global\setbox4\copy3 \message{[\leftmarginkern3][\rightmarginkern3]}}
+\setbox5\hbox{\unhcopy4}\showbox5
+\message{[\leftmarginkern4][\rightmarginkern4][\leftmarginkern5]}
+\setbox6\vbox{\leftskip=3pt \rightskip=4pt Tall test. T.\par}\showbox6
+\setbox7\vbox{\unvcopy6 \setbox3\lastbox \message{[\leftmarginkern3][\rightmarginkern3]}}
+\shipout\copy1
+\end

@@ -9,9 +9,12 @@ import { new_save_level } from './eqtb.ts'
 import { scan_keyword, scan_normal_dimen, scan_left_brace } from './scan.ts'
 import { new_char, new_null_box, new_rule, new_param_glue, new_skip_param, short_display, show_box, is_char_node, normal, fil, fill, filll,
   stretching, shrinking, hlist_node, vlist_node, rule_node, unset_node, ins_node, mark_node, adjust_node, whatsit_node,
-  glue_node, kern_node, math_node, ligature_node, a_leaders, pdf_refxform_node, pdf_refximage_node } from './nodes.ts'
-import type { Node, BoxNode } from './nodes.ts'
-import { char_info, char_width, char_height, char_depth, height_depth, null_font } from './tfm.ts'
+  glue_node, kern_node, math_node, ligature_node, a_leaders, pdf_refxform_node, pdf_refximage_node, char_node, disc_node, margin_kern_node,
+  left_side } from './nodes.ts'
+import type { Node, BoxNode, CharNode, KernNode, MarginKernNode } from './nodes.ts'
+import { char_info, char_width, char_height, char_depth, height_depth, null_font, get_font_code, ef_code_base, lp_code_base, rp_code_base,
+  char_tag, lig_tag, lig_kern_start, lig_kern_restart, skip_byte, next_char, op_byte, stop_flag, kern_flag, char_kern, expand_font, quad } from './tfm.ts'
+import { round_xn_over_d, ext_xn_over_d, divide_scaled, fix_int, pdf_error } from './pdf.ts'
 
 export const exactly = 0, additional = 1 // §644
 export const max_dimen = 0o7777777777
@@ -37,20 +40,113 @@ export function scan_spec(e: Engine, c: number, three_codes: boolean): void {
   new_save_level(e, c); scan_left_brace(e)
 }
 
-// §649 hpack (pdftex: no font expansion, m is exactly or additional)
+// pdftex.web font expansion helpers: char_stretch, char_shrink, get_kern, kern_stretch, kern_shrink, do_subst_font, char_pw,
+// new_margin_kern. A ligature node carries its lig_char's font and character itself.
+export const cal_expand_ratio = 2, subst_ex_font = 3
+export function char_stretch(e: Engine, f: number, c: number): number {
+  const k = e.pdf_font_stretch[f]!, ef = get_font_code(e, ef_code_base, f, c)
+  if (k !== null_font && ef > 0) {
+    const dw = (char_width(e, k, char_info(e, k, c)) - char_width(e, f, char_info(e, f, c))) | 0
+    if (dw > 0) return round_xn_over_d(e, dw, ef, 1000)
+  }
+  return 0
+}
+export function char_shrink(e: Engine, f: number, c: number): number {
+  const k = e.pdf_font_shrink[f]!, ef = get_font_code(e, ef_code_base, f, c)
+  if (k !== null_font && ef > 0) {
+    const dw = (char_width(e, f, char_info(e, f, c)) - char_width(e, k, char_info(e, k, c))) | 0
+    if (dw > 0) return round_xn_over_d(e, dw, ef, 1000)
+  }
+  return 0
+}
+function get_kern(e: Engine, f: number, lc: number, rc: number): number {
+  const i = char_info(e, f, lc)
+  if (char_tag(i) !== lig_tag) return 0
+  let k = lig_kern_start(e, f, i), j = e.font_info[k]!
+  if (skip_byte(j) > stop_flag) { k = lig_kern_restart(e, f, j); j = e.font_info[k]! }
+  for (;;) {
+    if (next_char(j) === rc && skip_byte(j) <= stop_flag && op_byte(j) >= kern_flag) return char_kern(e, f, j)
+    if (skip_byte(j) === 0) k++
+    else { if (skip_byte(j) >= stop_flag) return 0; k += skip_byte(j) + 1 }
+    j = e.font_info[k]!
+  }
+}
+// kern_stretch (s = true) and kern_shrink
+export function kern_stretch_shrink(e: Engine, p: Node, s: boolean): number {
+  const l = e.prev_char_p, r = p.link
+  if (l === null || l.link !== p || r === null) return 0
+  if (!(is_char_node(l) || l.type === ligature_node) || !(is_char_node(r) || r.type === ligature_node)) return 0
+  const k = s ? e.pdf_font_stretch[l.font]! : e.pdf_font_shrink[l.font]!
+  if (l.font !== r.font || k === null_font) return 0
+  const d = get_kern(e, k, l.character, r.character), w = (p as KernNode).width
+  return round_xn_over_d(e, s ? (d - w) | 0 : (w - d) | 0, get_font_code(e, ef_code_base, l.font, l.character), 1000)
+}
+export function do_subst_font(e: Engine, p: Node, ex_ratio: number): void {
+  if (p.type === disc_node) {
+    for (let r = p.pre_break; r !== null; r = r.link) if (is_char_node(r) || r.type === ligature_node) do_subst_font(e, r, ex_ratio)
+    for (let r = p.post_break; r !== null; r = r.link) if (is_char_node(r) || r.type === ligature_node) do_subst_font(e, r, ex_ratio)
+    return
+  }
+  if (!is_char_node(p) && p.type !== ligature_node) pdf_error(e, 'font expansion', 'invalid node type')
+  const f = p.font, ef = get_font_code(e, ef_code_base, f, p.character)
+  if (ef === 0) return
+  let k = f
+  if (e.pdf_font_stretch[f] !== null_font && ex_ratio > 0)
+    k = expand_font(e, f, ext_xn_over_d(e, Math.imul(ex_ratio, ef), e.pdf_font_expand_ratio[e.pdf_font_stretch[f]!]!, 1000000))
+  else if (e.pdf_font_shrink[f] !== null_font && ex_ratio < 0)
+    k = expand_font(e, f, ext_xn_over_d(e, Math.imul(ex_ratio, ef), -e.pdf_font_expand_ratio[e.pdf_font_shrink[f]!]!, 1000000))
+  if (k !== f) {
+    p.font = k
+    if (!is_char_node(p)) for (let r = p.lig_ptr; r !== null; r = r.link) (r as CharNode).font = k
+  }
+}
+export function char_pw(e: Engine, p: Node | null, side: number): number {
+  if (side === left_side) e.last_leftmost_char = null; else e.last_rightmost_char = null
+  if (p === null || !(is_char_node(p) || p.type === ligature_node)) return 0
+  const f = p.font
+  let c: number
+  if (side === left_side) { c = get_font_code(e, lp_code_base, f, p.character); e.last_leftmost_char = p }
+  else { c = get_font_code(e, rp_code_base, f, p.character); e.last_rightmost_char = p }
+  if (c === 0) return 0
+  return round_xn_over_d(e, quad(e, f), c, 1000)
+}
+export function new_margin_kern(e: Engine, w: number, p: Node | null, side: number): MarginKernNode {
+  if (p === null) pdf_error(e, 'margin kerning', 'invalid pointer to marginal char node')
+  const c = p as CharNode
+  return { type: margin_kern_node, link: null, subtype: side, width: w, margin_char: new_char(c.font, c.character) }
+}
+
+// §649 hpack (pdftex.web: m=cal_expand_ratio measures the font stretch and shrink and, if the line needs expansion, packs
+// again with m=subst_ex_font, which substitutes expanded fonts)
 export function hpack(e: Engine, p: Node | null, w: number, m: number): BoxNode {
+  const r = hpack_(e, p, w, m)
+  if (m === cal_expand_ratio && e.font_expand_ratio !== 0) {
+    e.font_expand_ratio = fix_int(e.font_expand_ratio, -1000, 1000)
+    return hpack(e, r.list_ptr, w, subst_ex_font)
+  }
+  return r
+}
+function hpack_(e: Engine, p: Node | null, w: number, m: number): BoxNode {
   no_TeXXeT(e) // etex.ch branches on TeXXeT_en here; TeXXeT is not ported
   e.last_badness = 0
   const r = new_null_box()
   r.list_ptr = p
   const fake = new_char(0, 0) // plays r+list_offset: link(fake) is the list, q runs behind p (§655)
   fake.link = p
-  let q: Node = fake
+  let q: Node = fake, font_stretch = 0, font_shrink = 0
+  if (m === cal_expand_ratio) { e.prev_char_p = null; e.font_expand_ratio = 0 }
   let h = 0, d = 0, x = 0
   const ts = e.total_stretch, tsh = e.total_shrink
   ts.fill(0); tsh.fill(0)
   while (p !== null) { // §651
     if (is_char_node(p)) { // §654
+      if (m >= cal_expand_ratio) {
+        e.prev_char_p = p
+        if (m === cal_expand_ratio) {
+          font_stretch = (font_stretch + char_stretch(e, p.font, p.character)) | 0
+          font_shrink = (font_shrink + char_shrink(e, p.font, p.character)) | 0
+        } else do_subst_font(e, p, e.font_expand_ratio)
+      }
       const f = p.font, i = char_info(e, f, p.character), hd = height_depth(i)
       x = (x + char_width(e, f, i)) | 0
       let s = char_height(e, f, hd); if (s > h) h = s
@@ -102,14 +198,40 @@ export function hpack(e: Engine, p: Node | null, w: number, m: number): BoxNode 
         }
         break
       }
-      case kern_node: case math_node: x = (x + p.width) | 0; break
-      case ligature_node: { // §652 Make node p look like a char_node and goto reswitch
-        const f = p.font, i = char_info(e, f, p.character), hd = height_depth(i)
-        x = (x + char_width(e, f, i)) | 0
-        let s = char_height(e, f, hd); if (s > h) h = s
-        s = char_depth(e, f, hd); if (s > d) d = s
+      case margin_kern_node: {
+        const c = p.margin_char
+        if (m === cal_expand_ratio) {
+          const f = c.font
+          do_subst_font(e, c, 1000)
+          if (f !== c.font) font_stretch = (font_stretch - p.width - char_pw(e, c, p.subtype)) | 0
+          c.font = f
+          do_subst_font(e, c, -1000)
+          if (f !== c.font) font_shrink = (font_shrink - p.width - char_pw(e, c, p.subtype)) | 0
+          c.font = f
+        } else if (m === subst_ex_font) { do_subst_font(e, c, e.font_expand_ratio); p.width = -char_pw(e, c, p.subtype) }
+        x = (x + p.width) | 0
         break
       }
+      case kern_node:
+        if (p.subtype === normal) {
+          if (m === cal_expand_ratio) {
+            font_stretch = (font_stretch + kern_stretch_shrink(e, p, true)) | 0
+            font_shrink = (font_shrink + kern_stretch_shrink(e, p, false)) | 0
+          } else if (m === subst_ex_font) {
+            const k = kern_stretch_shrink(e, p, e.font_expand_ratio > 0)
+            if (k !== 0) {
+              const l = e.prev_char_p as CharNode, n = p.link!
+              if (is_char_node(n) || n.type === ligature_node) p.width = get_kern(e, l.font, l.character, n.character)
+            }
+          }
+        }
+        x = (x + p.width) | 0; break
+      case math_node: x = (x + p.width) | 0; break
+      case ligature_node: // §652 Make node p look like a char_node and goto reswitch
+        if (m === subst_ex_font) do_subst_font(e, p, e.font_expand_ratio)
+        p = { type: char_node, link: p.link, font: p.font, character: p.character } // lig_trick
+        continue
+      case disc_node: if (m === subst_ex_font) do_subst_font(e, p, e.font_expand_ratio); break
     }
     p = p.link
   }
@@ -124,6 +246,7 @@ export function hpack(e: Engine, p: Node | null, w: number, m: number): BoxNode 
   let o: number
   if (x > 0) { // §658
     o = ts[filll] !== 0 ? filll : ts[fill] !== 0 ? fill : ts[fil] !== 0 ? fil : normal // §659
+    if (m === cal_expand_ratio && o === normal && font_stretch > 0) { e.font_expand_ratio = divide_scaled(e, x, font_stretch, 3); return r }
     r.glue_order = o; r.glue_sign = stretching
     if (ts[o] !== 0) r.glue_set = x / ts[o]!
     else { r.glue_sign = normal; r.glue_set = 0 }
@@ -139,6 +262,7 @@ export function hpack(e: Engine, p: Node | null, w: number, m: number): BoxNode 
     return r
   }
   o = tsh[filll] !== 0 ? filll : tsh[fill] !== 0 ? fill : tsh[fil] !== 0 ? fil : normal // §665
+  if (m === cal_expand_ratio && o === normal && font_shrink > 0) { e.font_expand_ratio = divide_scaled(e, x, font_shrink, 3); return r }
   r.glue_order = o; r.glue_sign = shrinking
   if (tsh[o] !== 0) r.glue_set = -x / tsh[o]!
   else { r.glue_sign = normal; r.glue_set = 0 }

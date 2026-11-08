@@ -9,7 +9,7 @@ import { int_par, prepare_mag, count_base, dimen_base, end_write, mag_code, sync
 import { show_token_list, token_show, cs_token_flag, right_brace_token, left_brace_token } from './tokens.ts'
 import { get_avail, flush_list, flush_node_list, show_box, zround, is_char_node, hlist_node, vlist_node, rule_node, whatsit_node,
   glue_node, kern_node, math_node, ligature_node, normal, stretching, a_leaders, c_leaders, null_flag, open_node, write_node,
-  close_node, special_node, latespecial_node, language_node, pdf_save_pos_node } from './nodes.ts'
+  close_node, special_node, latespecial_node, language_node, pdf_save_pos_node, margin_kern_node } from './nodes.ts'
 import type { BoxNode, WhatsitNode } from './nodes.ts'
 import { char_info, char_width, null_font } from './tfm.ts'
 import { get_token, ins_list, begin_token_list, end_token_list } from './input.ts'
@@ -230,7 +230,7 @@ function hlist_out(e: Engine, this_box: BoxNode): void {
             }
             break move_past
           }
-          case kern_node: e.cur_h = (e.cur_h + p.width) | 0; break
+          case kern_node: case margin_kern_node: e.cur_h = (e.cur_h + p.width) | 0; break
           case math_node: e.cur_h = (e.cur_h + p.width) | 0; break // §1409 (no TeXXeT)
         }
         p = p.link; continue

@@ -15,7 +15,7 @@ import { add_glue_ref, delete_glue_ref, new_spec, zero_glue, get_avail, free_ava
   a_leaders, mu_glue, explicit, acc_kern, language_node, fill_glue, new_math, new_noad, new_choice, null_delimiter, node_free,
   stretching, shrinking, L_code, before, after, inf_penalty, ord_noad, inner_noad, radical_noad, fraction_noad, accent_noad,
   vcenter_noad, left_noad, right_noad, math_char, sub_box, sub_mlist, default_code, text_style, display_style } from './nodes.ts'
-import { new_skip_param, pdf_refxform_node, pdf_refximage_node, whatsit_node } from './nodes.ts'
+import { new_skip_param, pdf_refxform_node, pdf_refximage_node, whatsit_node, margin_kern_node } from './nodes.ts'
 import type { KernNode } from './nodes.ts'
 import type { Node, CharNode, LigNode, BoxNode, InsNode, AdjustNode, MarkNode, GlueNode, Noad, Field, Delim, ChoiceNode } from './nodes.ts'
 import { mlist_to_hlist, flush_math, fam_fnt, math_quad, text_size, script_size, script_script_size, total_mathsy_params,
@@ -751,7 +751,11 @@ export function unpackage(e: Engine): void {
   if (c === copy_code) e.tail.link = copy_node_list(e, p.list_ptr)
   else { e.tail.link = p.list_ptr; change_box(e, e.cur_val, null) }
   }
-  while (e.tail.link !== null) e.tail = e.tail.link // no margin kern nodes exist (\pdfprotrudechars is unsupported)
+  while (e.tail.link !== null) { // pdftex.web: margin kerns do not survive unboxing
+    const r = e.tail.link
+    if (r.type === margin_kern_node) { e.tail.link = r.link; if (r.link === null) break } // pdftex would set tail:=null here
+    e.tail = e.tail.link!
+  }
 }
 
 // §1113 append_italic_correction
@@ -1225,7 +1229,7 @@ export function init_math(e: Engine): void {
         d = char_width(e, f, char_info(e, f, (p as CharNode).character)); found = true
       } else switch (p.type) {
         case hlist_node: case vlist_node: case rule_node: d = p.width; found = true; break
-        case kern_node: d = p.width; break
+        case kern_node: case margin_kern_node: d = p.width; break
         case math_node: // §1439 (TeXXeT off)
           d = p.width
           if (p.subtype >= L_code) { w = max_dimen; done = true }
