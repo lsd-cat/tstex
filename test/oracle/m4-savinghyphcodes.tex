@@ -1,0 +1,16 @@
+%! oracle: etex
+\input plain
+\tracingonline=0 \showboxbreadth=10000 \showboxdepth=10000 \tracingoutput=1
+\showthe\savinghyphcodes
+\lefthyphenmin=1 \righthyphenmin=1 \uchyph=1 \hbadness=10000
+\language=1 \savinghyphcodes=1 \lccode`Q=`z \patterns{z1z} \lccode`Q=`q
+\language=2 \savinghyphcodes=0 \lccode`Q=`z \patterns{z1z} \lccode`Q=`q
+\language=3 \patterns{q1q}
+\showthe\savinghyphcodes
+\language=1 \showhyphens{QQQQ}
+\language=2 \showhyphens{QQQQ}
+\language=3 \showhyphens{QQQQ qqqq}
+\language=1 \showhyphens{qqqq zzzz ZZZZ}
+\language=1 \hyphenation{QaQ-Qa}\showhyphens{QaQQa}
+\language=2 \showhyphens{QaQQa}
+\end

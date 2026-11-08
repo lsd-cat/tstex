@@ -1,0 +1,36 @@
+entering extended mode
+(m4-interactionmode.tex
+> 0.
+l.3 \showthe\interactionmode
+
+
+[0]
+> 1.
+l.5 \interactionmode=1 \showthe\interactionmode
+
+
+
+[1]
+[2]
+[0]
+
+[0]
+[1]
+> 1.
+l.11 \count1=\interactionmode \showthe\count1
+
+
+! Bad interaction mode (-1).
+l.12 \interactionmode=-1
+
+Modes are 0=batch, 1=nonstop, 2=scroll, and
+3=errorstop. Proceed, and I'll ignore this case.
+
+! Bad interaction mode (4).
+l.13 \interactionmode=4
+
+Modes are 0=batch, 1=nonstop, 2=scroll, and
+3=errorstop. Proceed, and I'll ignore this case.
+
+[1] )
+No pages of output.

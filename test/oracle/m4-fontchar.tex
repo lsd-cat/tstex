@@ -1,0 +1,17 @@
+%! oracle: etex
+\catcode`\{=1 \catcode`\}=2 \catcode`\#=6
+\font\tenrm=cmr10 \relax \font\tenit=cmti10 \relax \font\big=cmr10 scaled 2000 \relax
+\message{[\the\fontcharwd\tenrm`A,\the\fontcharht\tenrm`A,\the\fontchardp\tenrm`A,\the\fontcharic\tenrm`A]}
+\message{[\the\fontcharwd\tenrm`g,\the\fontchardp\tenrm`g,\the\fontcharic\tenit`f,\the\fontcharwd\tenit`f]}
+\message{[\the\fontcharwd\big`A,\the\fontcharht\big`A]}
+\message{[\the\fontcharwd\tenrm 200,\the\fontcharht\tenrm 200,\the\fontchardp\tenrm 200,\the\fontcharic\tenrm 200]}
+\message{[\the\fontcharwd\nullfont`A,\the\fontcharic\nullfont 0]}
+\iffontchar\tenrm 0 \message{has0}\fi \iffontchar\tenrm 255 \message{has255}\else\message{no255}\fi
+\iffontchar\tenit`f \message{itf}\fi \iffontchar\nullfont`f \else\message{nullno}\fi
+\dimen0=\fontcharwd\tenrm`A \showthe\dimen0
+\dimen1=2\fontcharwd\tenrm`A \showthe\dimen1
+\count1=\fontcharwd\tenrm`A \showthe\count1
+\message{[\the\fontcharwd\tenrm 300]}
+\message{[\the\fontcharwd\tenrm -1]}
+\message{[\the\fontcharwd 5]}
+\end

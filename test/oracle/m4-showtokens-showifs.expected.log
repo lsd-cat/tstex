@@ -1,0 +1,84 @@
+entering extended mode
+(m4-showtokens-showifs.tex
+> a ##b \c .
+l.4 \showtokens{a #b \c}
+
+
+> x ##y \c .
+<recently read> }
+
+l.5 \showtokens\expandafter{\the\toks0}
+
+
+> .
+l.6 \showtokens{}
+
+
+> C.
+l.7 \showtokens\expandafter{\c}
+
+
+> {a} b ~.
+l.8 \showtokens{{a}  b ~}
+
+
+
+### no active conditionals
+
+! OK.
+l.9 \showifs
+
+
+
+### level 4: \ifx entered on line 10
+### level 3: \unless\iffalse entered on line 10
+### level 2: \ifcase entered on line 10
+### level 1: \ifnum entered on line 10
+
+! OK.
+l.10 ...e 2 \or\or \unless\iffalse \ifx aa\showifs
+                                                  \fi\fi\fi\fi
+
+
+### level 1: \iffalse\else entered on line 12
+
+! OK.
+l.12 \iffalse \else \showifs
+                             \fi
+
+
+### level 3: \unless\ifx entered on line 13
+### level 2: \ifcsname entered on line 13
+### level 1: \iftrue entered on line 13
+
+! OK.
+l.13 ...e c\endcsname \unless\ifx\c\relax \showifs
+                                                   \fi\fi\fi
+
+
+### bottom level
+
+! OK.
+l.14 \showgroups
+
+
+
+### semi simple group (level 2) entered at line 15 (\begingroup)
+### simple group (level 1) entered at line 15 ({)
+### bottom level
+
+! OK.
+l.15 {\begingroup \showgroups
+                              \endgroup}
+
+
+### adjusted hbox group (level 2) entered at line 16 (\hbox{)
+### vbox group (level 1) entered at line 16 (\setbox1=\vbox{)
+### bottom level
+
+! OK.
+l.16 \setbox1\vbox{\hbox{\showgroups
+                                    }}
+
+ )
+No pages of output.

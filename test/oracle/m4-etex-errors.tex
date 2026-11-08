@@ -1,0 +1,16 @@
+%! oracle: etex
+\catcode`\{=1 \catcode`\}=2 \catcode`\#=6
+\count32768=1
+\count-1=1
+\message{\the\numexpr(1+2\relax}
+\message{\the\dimexpr 16383pt*2\relax}
+\message{\the\dimexpr 16383.99999pt+1sp\relax}
+\message{\the\numexpr 1/0\relax}
+\message{\the\glueexpr 1pt plus 1fil*40000\relax}
+\unless\ifcase 1 \fi
+\unless\relax
+\font\sy=cmsy10 \relax \font\ex=cmex10 \relax \textfont2=\sy \scriptfont2=\sy \scriptscriptfont2=\sy \textfont3=\ex \scriptfont3=\ex \scriptscriptfont3=\ex
+\catcode`\$=3 \hbox{$\middle.$}
+\marks32768{x}
+\interactionmode=5
+\end

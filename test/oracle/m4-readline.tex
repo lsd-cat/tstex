@@ -1,0 +1,16 @@
+%! oracle: etex
+\catcode`\{=1 \catcode`\}=2 \catcode`\#=6
+\openin1=m4-nesting-inner
+\readline1 to\x \show\x
+\readline1 to\x \show\x
+\readline1 to\x \show\x \ifeof1 \message{eof}\else\message{not eof}\fi
+\closein1
+\openin1=m4-nesting-inner
+\read1 to\y \show\y
+\endlinechar=-1 \readline1 to\x \show\x
+\endlinechar=`\% \closein1 \openin1=m4-nesting-inner \readline1 to\x \show\x
+\endlinechar=13
+\closein1 \openin1=m4-nesting-inner \readline1 to\z \show\z
+{\global\readline1 to\gg}\show\gg
+\closein1
+\end

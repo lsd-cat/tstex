@@ -1,0 +1,31 @@
+entering extended mode
+(m4-nesting.tex{entering semi simple group (level 1) at line 4}
+(m4-nesting-inner.tex inner{entering semi simple group (level 2) at line 1}
+{vertical mode: \iftrue: (level 1) entered on line 1}
+ a b {c} \relax
+Warning: end of file when semi simple group (level 2) entered at line 1 is inco
+mplete
+Warning: end of file when \iftrue entered on line 1 is incomplete
+l.3 \message{ a  b {c} \relax  }
+                                ){leaving semi simple group (level 2) entered a
+t line 1}
+{leaving semi simple group (level 1) entered at line 4}
+{\fi: \iftrue (level 1) entered on line 1}
+done{entering simple group (level 1) at line 8}
+{\iftrue: (level 1) entered on line 8}
+(m4-nesting-inner.tex inner{entering semi simple group (level 2) at line 1}
+{\iftrue: (level 2) entered on line 1}
+ a b {c} \relax
+Warning: end of file when semi simple group (level 2) entered at line 1 is inco
+mplete
+Warning: end of file when \iftrue entered on line 1 is incomplete
+){leaving semi simple group (level 2) entered at line 1}
+{\fi: \iftrue (level 2) entered on line 1}
+{\fi: \iftrue (level 1) entered on line 8}
+{leaving simple group (level 1) entered at line 8}
+(m4-nesting-inner.tex inner{entering semi simple group (level 1) at line 1}
+{\iftrue: (level 1) entered on line 1}
+ a b {c} \relax ){leaving semi simple group (level 1) entered at line 1}
+{\fi: \iftrue (level 1) entered on line 1}
+ )
+No pages of output.

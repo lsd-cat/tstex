@@ -1,0 +1,24 @@
+%! oracle: etex
+\catcode`\{=1 \catcode`\}=2 \catcode`\#=6
+\def\a{A}\protected\def\p{P}\protected\def\q#1{Q#1}
+\show\p \show\q \show\a
+\message{\meaning\p}
+\edef\x{\a\p\q1}\show\x
+\xdef\y{\p\a}\show\y
+\message{\a\p\q2}
+\immediate\write16{\a\p}
+\toks0=\expandafter{\p\a}\showthe\toks0
+\edef\z{\unexpanded{\a\p#}\a}\show\z
+\message{\unexpanded{\a#\b}}
+\edef\w{\unexpanded\expandafter{\a}\a}\show\w
+\toks1={\a x}\edef\v{\the\toks1 \unexpanded\expandafter{\the\toks1}}\show\v
+\message{\detokenize{a #b \c \d{e} f}.}
+\message{\detokenize\expandafter{\a} \detokenize{\par\relax ~}}
+\edef\u{\detokenize{#a \b}}\show\u
+\ifx\p\a \message{same}\else\message{differ}\fi
+\protected\def\r{A}\ifx\p\r\message{pp same}\fi
+\def\s{P}\ifx\p\s\else\message{prot vs plain differ}\fi
+\let\t\p \show\t
+\protected\edef\e{\a}\show\e
+\protected\let\l\a
+\end

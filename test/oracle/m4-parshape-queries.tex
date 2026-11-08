@@ -1,0 +1,20 @@
+%! oracle: etex
+\catcode`\{=1 \catcode`\}=2 \catcode`\#=6
+\parshape 3 1pt 2pt 3pt 4pt 5pt 6pt
+\message{[\the\parshape]}
+\message{[\the\parshapelength1,\the\parshapelength2,\the\parshapelength3,\the\parshapelength4,\the\parshapelength0,\the\parshapelength-1]}
+\message{[\the\parshapeindent1,\the\parshapeindent2,\the\parshapeindent3,\the\parshapeindent4,\the\parshapeindent0,\the\parshapeindent-5]}
+\message{[\the\parshapedimen1,\the\parshapedimen2,\the\parshapedimen3,\the\parshapedimen4,\the\parshapedimen5,\the\parshapedimen6,\the\parshapedimen7,\the\parshapedimen0]}
+\showthe\parshapelength2
+\showthe\parshapeindent3
+\showthe\parshapedimen4
+\dimen0=\parshapedimen3 \showthe\dimen0
+\parshape=0
+\message{[\the\parshape,\the\parshapelength1,\the\parshapeindent1,\the\parshapedimen1,\the\parshapedimen2]}
+\parshape 1 7pt 8pt
+\message{[\the\parshapelength1,\the\parshapelength9,\the\parshapedimen2,\the\parshapedimen9]}
+\hangindent=3pt \hangafter=-2
+\message{[\the\parshapelength1]}
+{\parshape 2 1pt 1pt 2pt 2pt \message{[\the\parshapedimen4]}}
+\message{[\the\parshapedimen4,\the\parshapedimen2]}
+\end

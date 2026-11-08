@@ -1,0 +1,33 @@
+%! oracle: etex
+\catcode`\{=1 \catcode`\}=2 \catcode`\#=6
+\tracingifs=1 \tracingonline=0 \tracingcommands=0
+\def\a{x}
+\ifdefined\a \message{a def}\fi
+\ifdefined\undefined \else\message{undef}\fi
+\unless\ifdefined\undefined \message{unless undef}\fi
+\ifdefined\relax \message{relax def}\fi
+\ifcsname a\endcsname \message{cs a}\fi
+\ifcsname nonexist\endcsname \else\message{no cs}\fi
+\expandafter\ifx\csname nonexist\endcsname\relax \message{now relax}\fi
+\ifcsname nonexist\endcsname \message{defined now}\else\message{still undef}\fi
+\def\n{non}\ifcsname \n exist\endcsname\message{expanded}\fi
+\unless\ifx\a\relax \message{unless ifx}\fi
+\unless\ifnum1>2 \message{unless ifnum}\fi
+\unless\ifodd2 \message{unless odd}\fi
+\unless\unless\iftrue \message{double}\fi
+\unless\ifcase 1 \or\fi
+\iffontchar\nullfont 65 \else\message{no nullfont A}\fi
+\font\tenrm=cmr10 \relax
+\iffontchar\tenrm`A \message{has A}\fi
+\iffontchar\tenrm 200 \message{200}\else\message{no 200}\fi
+\iffontchar\tenrm 256 \message{256}\else\message{no 256}\fi
+\ifnum1=1 \ifdim1pt<2pt \unless\ifx aa\else \message{[\the\currentiflevel,\the\currentiftype,\the\currentifbranch]}\fi
+ \message{[\the\currentiflevel,\the\currentiftype,\the\currentifbranch]}\fi
+ \message{[\the\currentiflevel,\the\currentiftype,\the\currentifbranch]}\fi
+\ifcase 1 \or \message{[\the\currentiftype,\the\currentifbranch]}\fi
+\ifcase 3 \else \message{[\the\currentiftype,\the\currentifbranch]}\fi
+\iffalse\else\message{[\the\currentiftype,\the\currentifbranch]}\fi
+\iftrue\message{[\the\currentiftype,\the\currentifbranch]}\fi
+\unless\ifvoid0 \else\message{[\the\currentiftype,\the\currentifbranch]}\fi
+\message{[\the\currentiflevel,\the\currentiftype,\the\currentifbranch]}
+\end

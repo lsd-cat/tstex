@@ -1,0 +1,13 @@
+%! oracle: etex
+\catcode`\{=1 \catcode`\}=2 \catcode`\#=6
+\tracingnesting=2 \tracinggroups=1 \tracingifs=1 \tracingonline=0
+\begingroup \input m4-nesting-inner
+\endgroup \endgroup \fi
+\message{done}
+\tracingnesting=1
+{\iftrue \input m4-nesting-inner
+\endgroup \fi \fi }
+\tracingnesting=0
+\input m4-nesting-inner
+\endgroup \fi
+\end

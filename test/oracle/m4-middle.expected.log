@@ -1,0 +1,189 @@
+entering extended mode
+(m4-middle.tex (plain.tex Preloading the plain format: codes, registers,
+\maxdimen=\dimen10
+\hideskip=\skip10
+\centering=\skip11
+\p@=\dimen11
+\z@=\dimen12
+\z@skip=\skip12
+\voidb@x=\box10
+parameters,
+\smallskipamount=\skip13
+\medskipamount=\skip14
+\bigskipamount=\skip15
+\normalbaselineskip=\skip16
+\normallineskip=\skip17
+\normallineskiplimit=\dimen13
+\jot=\dimen14
+\interdisplaylinepenalty=\count23
+\interfootnotelinepenalty=\count24
+fonts, more fonts,
+\itfam=\fam4
+\slfam=\fam5
+\bffam=\fam6
+\ttfam=\fam7
+macros,
+\strutbox=\box11
+\mscount=\count25
+\tabs=\box12
+\tabsyet=\box13
+\tabsdone=\box14
+math definitions,
+\rootbox=\box15
+\p@renwd=\dimen15
+output routines,
+\headline=\toks10
+\footline=\toks11
+\footins=\insert254
+\topins=\insert253
+hyphenation (hyphen.tex))
+> \box1=
+\hbox(20.50018+15.50018)x44.98802
+.\mathon
+.\hbox(20.50018+15.50018)x44.98802
+..\vbox(0.39998+35.60036)x8.75002, shifted -20.10019
+...\hbox(0.39998+17.60019)x8.75002
+....\tenex 0
+...\hbox(0.39998+17.60019)x8.75002
+....\tenex @
+..\rule(20.0+5.0)x0.4
+..\vbox(0.0+36.00037)x3.33333, shifted -20.50018
+...\hbox(0.0+6.00006)x3.33333
+....\tenex ^^L
+...\hbox(0.0+6.00006)x3.33333
+....\tenex ^^L
+...\hbox(0.0+6.00006)x3.33333
+....\tenex ^^L
+...\hbox(0.0+6.00006)x3.33333
+....\tenex ^^L
+...\hbox(0.0+6.00006)x3.33333
+....\tenex ^^L
+...\hbox(0.0+6.00006)x3.33333
+....\tenex ^^L
+..\teni x
+..\hbox(0.39998+29.60031)x12.7778, shifted -17.10016
+...\tenex ,
+..\teni y
+..\kern0.35878
+..\vbox(0.39998+35.60036)x8.75002, shifted -20.10019
+...\hbox(0.39998+17.60019)x8.75002
+....\tenex 1
+...\hbox(0.39998+17.60019)x8.75002
+....\tenex A
+.\mathoff
+
+! OK.
+l.5 \showbox1
+
+
+> \box1=
+\hbox(7.5+2.5)x44.11005
+.\mathon
+.\hbox(7.5+2.5)x44.11005
+..\hbox(7.5+2.5)x3.8889
+...\tenrm (
+..\teni a
+..\hbox(7.5+2.5)x2.77779
+...\tensy j
+..\hbox(7.5+2.5)x16.95258
+...\hbox(7.5+2.5)x2.77779
+....\tenrm [
+...\teni b
+...\hbox(7.5+2.5)x2.77779
+....\tensy j
+...\teni c
+...\hbox(7.5+2.5)x2.77779
+....\tenrm ]
+..\hbox(7.5+2.5)x5.00002
+...\tensy f
+..\teni d
+..\hbox(7.5+2.5)x5.00002
+...\tensy g
+.\mathoff
+
+! OK.
+l.7 \showbox1
+
+
+> \box1=
+\hbox(7.5+2.5)x5.17778
+.\mathon
+.\hbox(7.5+2.5)x5.17778
+..\hbox(0.0+0.0)x1.2, shifted -2.5
+..\hbox(7.5+2.5)x2.77779
+...\tensy j
+..\hbox(0.0+0.0)x1.2, shifted -2.5
+.\mathoff
+
+! OK.
+l.9 \showbox1
+
+
+
+### math mode entered at line 10
+\left"28300
+\mathord
+.\fam1 a
+\middle"26A30C
+### math mode entered at line 10
+### restricted horizontal mode entered at line 10
+spacefactor 1000
+### vertical mode entered at line 0
+prevdepth ignored
+
+! OK.
+l.10 \setbox1\hbox{$\left(a\middle| \showlists
+                                               b\right)$}
+
+! Extra \middle.
+l.11 \setbox1\hbox{$\middle|
+                            $}
+I'm ignoring a \middle that had no matching \left.
+
+! Extra \middle.
+l.12 \setbox1\hbox{$a\middle)
+                              \left( b \right)$}
+I'm ignoring a \middle that had no matching \left.
+
+! Missing delimiter (. inserted).
+<to be read again>
+                   $
+l.13 \setbox1\hbox{$\left( a \middle$
+                                     }
+I was expecting to see something like `(' or `\{' or
+`\}' here. If you typed, e.g., `{' instead of `\{', you
+should probably delete the `{' by typing `1' now, so that
+braces don't get unbalanced. Otherwise just proceed.
+Acceptable delimiters are characters whose \delcode is
+nonnegative, or you can use `\delimiter <delimiter code>'.
+
+! Missing \right. inserted.
+<inserted text>
+                \right .
+<to be read again>
+                   $
+l.13 \setbox1\hbox{$\left( a \middle$
+                                     }
+I've inserted something that you may have forgotten.
+(See the <inserted text> above.)
+With luck, this will get me unwedged. But if you
+really didn't forget anything, try typing `2' now; then
+my insertion and my current dilemma will both disappear.
+
+> \box1=
+\hbox(7.5+2.5)x11.57478
+.\mathon
+.\hbox(7.5+2.5)x11.57478
+..\hbox(7.5+2.5)x3.8889
+...\tenrm (
+..\teni a
+..\hbox(0.0+0.0)x1.2, shifted -2.5
+..\hbox(0.0+0.0)x1.2, shifted -2.5
+.\mathoff
+
+! OK.
+l.14 \showbox1
+
+
+ )
+No pages of output.

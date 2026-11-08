@@ -1,0 +1,26 @@
+%! oracle: etex
+\catcode`\{=1 \catcode`\}=2 \catcode`\#=6
+\message{\the\dimexpr 1pt*3/2\relax,\the\dimexpr(1pt+2pt)*3\relax,\the\dimexpr 1pt/3\relax}
+\message{\the\dimexpr 1pt*3\relax,\the\dimexpr 7pt/2\relax}
+\message{\the\glueexpr 1pt plus 1fil minus 2pt * 2\relax}
+\message{\the\glueexpr 1pt plus 2pt + 3pt minus 1fill\relax}
+\message{\the\glueexpr (1pt plus 1fil)*3/2\relax}
+\message{\the\muexpr 3mu*2\relax,\the\muexpr 1mu plus 2fil minus 3mu\relax}
+\message{\the\dimexpr 1pt*(2/3)\relax}
+\showthe\dimexpr 1in\relax
+\skip3=1pt plus 2fil minus 3fill
+\message{\the\gluestretch\skip3,\the\glueshrink\skip3,\the\gluestretchorder\skip3,\the\glueshrinkorder\skip3}
+\skip4=1pt plus 2pt minus 3pt
+\message{\the\gluestretch\skip4,\the\glueshrink\skip4,\the\gluestretchorder\skip4,\the\glueshrinkorder\skip4}
+\skip5=\glueexpr\skip3*2\relax \showthe\skip5
+\muskip1=1mu plus 2fil minus 3mu
+\message{\the\mutoglue\muskip1,\the\gluetomu\skip3}
+\skip6=\mutoglue\muskip1 \showthe\skip6
+\muskip2=\gluetomu\skip3 \showthe\muskip2
+\dimen1=\dimexpr 1pt+\skip3\relax \showthe\dimen1
+\message{\the\dimexpr 16383pt+1pt\relax}
+\message{\the\dimexpr 16383pt*2\relax}
+\message{\the\numexpr 1pt\relax}
+\message{\the\dimexpr 1\relax}
+\count1=\dimexpr 2pt\relax \showthe\count1
+\end

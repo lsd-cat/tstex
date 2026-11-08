@@ -1,0 +1,22 @@
+%! oracle: etex
+\catcode`\{=1 \catcode`\}=2 \catcode`\#=6
+\ifx\eTeXversion\undefined \message{no etex}\else\message{etex}\fi
+\ifdefined\eTeXversion \message{defined}\else\message{undefd}\fi
+\expandafter\ifx\csname eTeXversion\endcsname\relax \message{csrelax}\else\message{csdef}\fi
+\ifnum\eTeXversion<2 \message{old}\else\message{new}\fi
+\ifx\pdfstrcmp\undefined \message{no pdfTeX}\else\message{pdfTeX}\fi
+\ifdefined\pdftexversion \message{pdftexversion}\fi
+\ifdefined\directlua \message{lua}\else\message{no lua}\fi
+\ifdefined\XeTeXversion \message{xetex}\else\message{no xetex}\fi
+\ifdefined\luatexversion \message{luatex}\else\message{no luatex}\fi
+\ifdefined\pdfoutput \message{pdfoutput}\fi
+\ifdefined\ptexversion \message{ptex}\else\message{no ptex}\fi
+\ifx\undefined\undefined \message{x}\fi
+\ifcsname eTeXrevision\endcsname \message{rev}\fi
+\ifcsname nonexistentcs\endcsname \else\message{nocs}\fi
+\expandafter\ifx\csname nonexistentcs\endcsname\relax \message{created}\fi
+\ifdefined\nonexistentcs \message{nowdef}\else\message{still undefined}\fi
+\message{\ifdefined\protected prot\fi \ifdefined\scantokens scan\fi \ifdefined\middle mid\fi \ifdefined\TeXXeTstate tex\fi}
+\message{\ifdefined\pdfstrcmp\pdfstrcmp{a}{a}\fi \ifdefined\pdfstrcmp\pdfstrcmp{a}{b}\fi}
+\message{\the\eTeXversion\eTeXrevision}
+\end

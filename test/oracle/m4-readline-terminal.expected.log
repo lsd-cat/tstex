@@ -1,0 +1,10 @@
+entering extended mode
+(m4-readline-terminal.tex before
+! Emergency stop.
+<read 5>
+
+l.4 \readline5 to\x
+
+*** (cannot \read from terminal in nonstop modes)
+
+No pages of output.

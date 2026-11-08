@@ -1,0 +1,61 @@
+entering extended mode
+(m4-numexpr.tex 7,9,5 4,-4,3,-3,2,0 2,11,99 9 -3,2147483647
+> 20.
+l.8 \count1=\numexpr 4*5\relax \showthe\count1
+
+
+eq eq2
+> 7.
+l.11 \count2=\numexpr 3+4\relax 5 \showthe\count2
+
+
+> 2.
+l.12 \showthe\numexpr 8/(2+2)\relax
+
+
+9
+! Arithmetic overflow.
+<recently read> \relax
+
+l.14 \message{\the\numexpr 2147483647+1\relax
+                                             }
+I can't evaluate this expression,
+since the result is out of range.
+
+0
+! Arithmetic overflow.
+<recently read> \relax
+
+l.15 \message{\the\numexpr 65536*65536\relax
+                                            }
+I can't evaluate this expression,
+since the result is out of range.
+
+0
+! Arithmetic overflow.
+<recently read> \relax
+
+l.16 \message{\the\numexpr 1/0\relax
+                                    }
+I can't evaluate this expression,
+since the result is out of range.
+
+0
+! Missing ) inserted for expression.
+<to be read again>
+                   \relax
+l.17 \message{\the\numexpr (1+2\relax
+                                     }
+I was expecting to see `+', `-', `*', `/', or `)'. Didn't.
+
+3
+! Arithmetic overflow.
+<recently read> \relax
+
+l.18 \message{\the\numexpr 2147483647/2*2\relax
+                                               }
+I can't evaluate this expression,
+since the result is out of range.
+
+0 1431655765 23 [0.20.7] )
+Output written on m4-numexpr.dvi (1 page, 128 bytes).

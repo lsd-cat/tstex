@@ -1,0 +1,17 @@
+%! oracle: etex
+\catcode`\{=1 \catcode`\}=2 \catcode`\#=6
+\tracingassigns=1 \tracingonline=0
+\count0=0 \count0=1 \count0=1
+{\count0=2 \global\count0=3 \dimen2=1pt \dimen2=1pt}
+\def\a{x}\def\a{x}\def\a{y}
+\let\b\a \let\b\a \let\c\relax
+\skip1=1pt plus 1fil \skip1=1pt plus 1fil \skip1=2pt
+\toks0={a}\toks0={a}\toks0={b}
+\catcode`\@=11 \catcode`\@=11
+\font\f=cmr10 \relax \font\f=cmr10 \relax
+\countdef\n=5 \n=7 \advance\n by 1
+\chardef\z=65 \mathchardef\y=7
+\parshape 1 1pt 2pt \hsize=3pt \tolerance=100
+\setbox1=\hbox{}
+\interlinepenalties=2 1 2 \count300=4 \dimen300=1pt \toks300={a}
+\end

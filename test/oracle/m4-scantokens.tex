@@ -1,0 +1,23 @@
+%! oracle: etex
+\catcode`\{=1 \catcode`\}=2 \catcode`\#=6
+\scantokens{\def\a{x}}\show\a
+\def\b{\scantokens{\message{scanned}}\message{after}}\b
+\edef\c{\scantokens{ab}}\show\c
+\everyeof{\noexpand}\edef\c{\scantokens{ab}}\show\c
+\everyeof{}
+\endlinechar=-1 \edef\d{}\scantokens{\def\e{y}}\show\e \endlinechar=13
+\everyeof{\message{eof}}\scantokens{\message{in}}\scantokens{\message{in2}\everyeof{}}
+\everyeof{}
+\scantokens{\scantokens{\message{nested}}\message{outer}}
+\tracingscantokens=1
+\scantokens{\message{tr}\undefinedcs}
+\scantokens{\message{tr2}
+\undefinedcs}
+\tracingscantokens=0
+\scantokens{\message{notr}\undefinedcs}
+\scantokens{\input m4-nesting-inner \endgroup\fi}
+\toks0={\message{from toks}}\scantokens\expandafter{\the\toks0}
+\tracingnesting=1 \scantokens{\message{open}
+\message{groups}\begingroup}
+\endgroup
+\end

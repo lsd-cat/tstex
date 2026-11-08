@@ -1,0 +1,82 @@
+entering extended mode
+(m4-scantokens.tex
+> \a=macro:
+->x.
+l.3 \scantokens{\def\a{x}}\show\a
+
+
+scanned after
+Runaway definition?
+->ab
+! File ended while scanning definition of \c.
+<inserted text>
+                }
+l.5 \edef\c{\scantokens{ab}
+                           }\show\c
+I suspect you have forgotten a `}', causing me
+to read past where you wanted me to stop.
+I'll try to recover; but if the error is serious,
+you'd better type `E' or `X' now and fix your file.
+
+! Too many }'s.
+l.5 \edef\c{\scantokens{ab}}
+                            \show\c
+You've closed more groups than you opened.
+Such booboos are generally harmless, so keep going.
+
+> \c=macro:
+->ab .
+l.5 \edef\c{\scantokens{ab}}\show\c
+
+
+> \c=macro:
+->ab .
+l.6 ...f{\noexpand}\edef\c{\scantokens{ab}}\show\c
+
+
+> \e=macro:
+->y.
+l.8 ...r=-1 \edef\d{}\scantokens{\def\e{y}}\show\e
+                                                   \endlinechar=13^^M
+
+in eof in2 nested outer (  tr
+! Undefined control sequence.
+l.1 \message {tr}\undefinedcs
+
+l.13 \scantokens{\message{tr}\undefinedcs}
+
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+) (  tr2
+! Undefined control sequence.
+l.1 \message {tr2} \undefinedcs
+
+l.15 \undefinedcs}
+
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+) notr
+! Undefined control sequence.
+l.1 \message {notr}\undefinedcs
+
+l.17 \scantokens{\message{notr}\undefinedcs}
+
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+(m4-nesting-inner.tex inner  a b {c} \relax ) from toks open groups
+Warning: end of file when semi simple group (level 1) entered at line 1 is inco
+mplete
+ )
+No pages of output.

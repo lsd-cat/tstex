@@ -1,0 +1,22 @@
+%! oracle: etex
+\catcode`\{=1 \catcode`\}=2 \catcode`\#=6
+\count300=5 \dimen32767=3pt \skip1000=1pt plus 2fil \muskip400=3mu minus 1mu \toks9999={abc}
+\showthe\count300 \showthe\dimen32767 \showthe\skip1000 \showthe\muskip400 \showthe\toks9999
+\showthe\count301
+\countdef\x=4000 \x=77 \show\x \showthe\x \showthe\count4000
+\dimendef\d=500 \skipdef\s=501 \muskipdef\m=502 \toksdef\t=503
+\show\d \show\s \show\m \show\t
+\d=2pt \s=\d \showthe\s \t={q} \showthe\t
+\advance\count300 by 2 \multiply\count300 by 3 \showthe\count300
+\tracingrestores=1 \tracingonline=0
+{\count300=9 \dimen32767=1pt \skip1000=9pt \toks9999={zz} \count301=1 \global\count302=2 \count300=10}
+\setbox300=\hbox to 5pt{} \showboxbreadth=100 \showboxdepth=100
+\showbox300 \showthe\wd300 \wd300=7pt \showthe\wd300 \showthe\ht300
+\setbox301=\vbox{\copy300 \box300} \showbox301 \showbox300
+{\setbox300=\hbox{}}
+\ifvoid300 \message{void}\fi \ifhbox301 \message{h}\fi \ifvbox301 \message{v}\fi
+\count32768=1
+\box32768
+\toks-1={}
+\showthe\count255
+\end

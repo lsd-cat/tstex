@@ -1,0 +1,97 @@
+entering extended mode
+(m4-etex-errors.tex
+! Bad register code (32768).
+<to be read again>
+                   =
+l.3 \count32768=
+                1
+A register number must be between 0 and 32767.
+I changed this one to zero.
+
+! Bad register code (-1).
+<to be read again>
+                   =
+l.4 \count-1=
+             1
+A register number must be between 0 and 32767.
+I changed this one to zero.
+
+! Missing ) inserted for expression.
+<to be read again>
+                   \relax
+l.5 \message{\the\numexpr(1+2\relax
+                                   }
+I was expecting to see `+', `-', `*', `/', or `)'. Didn't.
+
+3
+! Arithmetic overflow.
+<recently read> \relax
+
+l.6 \message{\the\dimexpr 16383pt*2\relax
+                                         }
+I can't evaluate this expression,
+since the result is out of range.
+
+0.0pt
+! Arithmetic overflow.
+<recently read> \relax
+
+l.7 \message{\the\dimexpr 16383.99999pt+1sp\relax
+                                                 }
+I can't evaluate this expression,
+since the result is out of range.
+
+0.0pt
+! Arithmetic overflow.
+<recently read> \relax
+
+l.8 \message{\the\numexpr 1/0\relax
+                                   }
+I can't evaluate this expression,
+since the result is out of range.
+
+0
+! Arithmetic overflow.
+<recently read> \relax
+
+l.9 ...age{\the\glueexpr 1pt plus 1fil*40000\relax
+                                                  }
+I can't evaluate this expression,
+since the result is out of range.
+
+0.0pt
+! You can't use `\unless' before `\ifcase'.
+<to be read again>
+                   \ifcase
+l.10 \unless\ifcase
+                    1 \fi
+Continue, and I'll forget that it ever happened.
+
+! You can't use `\unless' before `\relax'.
+<to be read again>
+                   \relax
+l.11 \unless\relax
+
+Continue, and I'll forget that it ever happened.
+
+! Extra \middle.
+l.13 \catcode`\$=3 \hbox{$\middle.
+                                  $}
+I'm ignoring a \middle that had no matching \left.
+
+! Bad register code (32768).
+<to be read again>
+                   {
+l.14 \marks32768{
+                 x}
+A register number must be between 0 and 32767.
+I changed this one to zero.
+
+! Bad interaction mode (5).
+l.15 \interactionmode=5
+
+Modes are 0=batch, 1=nonstop, 2=scroll, and
+3=errorstop. Proceed, and I'll ignore this case.
+
+[1] )
+Output written on m4-etex-errors.dvi (1 page, 128 bytes).

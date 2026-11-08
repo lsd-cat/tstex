@@ -1,0 +1,25 @@
+entering extended mode
+(m4-mode.tex [2][.6]
+> 2.
+l.4 \showthe\eTeXversion
+
+
+> \eTeXrevision=\eTeXrevision.
+l.5 \show\eTeXrevision
+
+
+> \eTeXversion=\eTeXversion.
+l.6 \show\eTeXversion
+
+
+2
+> -1.
+l.8 \showthe\lastnodetype
+
+
+> 0.
+l.9 \showthe\currentgrouplevel
+
+
+ )
+No pages of output.

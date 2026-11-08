@@ -1,0 +1,21 @@
+%! oracle: etex
+\catcode`\{=1 \catcode`\}=2 \catcode`\#=6
+\message{\the\numexpr 1+2*3\relax,\the\numexpr(1+2)*3\relax,\the\numexpr 10-2-3\relax}
+\message{\the\numexpr 7/2\relax,\the\numexpr -7/2\relax,\the\numexpr 5/2\relax,\the\numexpr -5/2\relax,\the\numexpr 6/4\relax,\the\numexpr 1/3\relax}
+\message{\the\numexpr 2*3/4\relax,\the\numexpr 7*3/2\relax,\the\numexpr 100/3*3\relax}
+\message{\the\numexpr((1+2)*(3+(4-1)))/2\relax}
+\message{\the\numexpr - 3\relax,\the\numexpr 2147483647\relax}
+\count1=\numexpr 4*5\relax \showthe\count1
+\ifnum\numexpr 3+4\relax=7 \message{eq}\fi
+\ifnum\numexpr 3+4=7 \message{eq2}\fi
+\count2=\numexpr 3+4\relax 5 \showthe\count2
+\showthe\numexpr 8/(2+2)\relax
+\def\a{3}\message{\the\numexpr\a*\a\relax}
+\message{\the\numexpr 2147483647+1\relax}
+\message{\the\numexpr 65536*65536\relax}
+\message{\the\numexpr 1/0\relax}
+\message{\the\numexpr (1+2\relax}
+\message{\the\numexpr 2147483647/2*2\relax}
+\message{\the\numexpr 2147483647*2/3\relax}
+\message{\the\numexpr\numexpr 3\relax+\count1\relax}
+\end

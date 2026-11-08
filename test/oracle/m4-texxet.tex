@@ -1,0 +1,16 @@
+%! oracle: etex
+\input plain
+\tracingonline=0 \showboxbreadth=10000 \showboxdepth=10000 \tracingoutput=1
+\hsize=100pt \parindent=0pt
+\showthe\TeXXeTstate
+\setbox1\hbox{a\beginL b\endL c\beginR de\endR f}\showbox1
+\TeXXeTstate=1 \showthe\TeXXeTstate
+\setbox1\hbox{a\beginL b\endL c\beginR de\endR f}\showbox1
+\setbox1\hbox{\beginR ab\showlists}
+\setbox1\hbox{ab\endR}
+\setbox1\vbox{\noindent a\beginR bc\beginL d\endL\endR e\par}\showbox1
+\setbox1\vbox{\noindent\beginR abc\hskip 0pt plus 1fil def\break ghi\par}\showbox1
+\setbox1\vbox{\noindent\beginR abc $$ \predisplaydirection=-1 \showthe\predisplaydirection \halign{#\cr x\cr}$$ \par}\showbox1
+\setbox1\vbox{\noindent a $$ \showthe\predisplaydirection $$ \par}
+\showthe\lastlinefit
+\end

@@ -1,0 +1,15 @@
+%! oracle: etex
+\catcode`\{=1 \catcode`\}=2 \catcode`\#=6
+\showthe\interactionmode
+\message{[\the\interactionmode]}
+\interactionmode=1 \showthe\interactionmode
+\nonstopmode \message{[\the\interactionmode]}
+\scrollmode \message{[\the\interactionmode]}
+\batchmode \message{[\the\interactionmode]}
+\interactionmode=2 \interactionmode=0 \message{[\the\interactionmode]}
+{\interactionmode=1 }\message{[\the\interactionmode]}
+\count1=\interactionmode \showthe\count1
+\interactionmode=-1
+\interactionmode=4
+\message{[\the\interactionmode]}
+\end

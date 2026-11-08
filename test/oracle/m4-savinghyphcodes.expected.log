@@ -1,0 +1,86 @@
+entering extended mode
+(m4-savinghyphcodes.tex (plain.tex Preloading the plain format: codes, regi
+sters,
+\maxdimen=\dimen10
+\hideskip=\skip10
+\centering=\skip11
+\p@=\dimen11
+\z@=\dimen12
+\z@skip=\skip12
+\voidb@x=\box10
+parameters,
+\smallskipamount=\skip13
+\medskipamount=\skip14
+\bigskipamount=\skip15
+\normalbaselineskip=\skip16
+\normallineskip=\skip17
+\normallineskiplimit=\dimen13
+\jot=\dimen14
+\interdisplaylinepenalty=\count23
+\interfootnotelinepenalty=\count24
+fonts, more fonts,
+\itfam=\fam4
+\slfam=\fam5
+\bffam=\fam6
+\ttfam=\fam7
+macros,
+\strutbox=\box11
+\mscount=\count25
+\tabs=\box12
+\tabsyet=\box13
+\tabsdone=\box14
+math definitions,
+\rootbox=\box15
+\p@renwd=\dimen15
+output routines,
+\headline=\toks10
+\footline=\toks11
+\footins=\insert254
+\topins=\insert253
+hyphenation (hyphen.tex))
+> 0.
+l.4 \showthe\savinghyphcodes
+
+
+> 0.
+l.9 \showthe\savinghyphcodes
+
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 10--10
+[] \tenrm Q-Q-Q-Q
+
+\hbox(6.83331+1.94444)x16383.99998, glue set 9797.79308 []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 11--11
+[] \tenrm QQQQ
+
+\hbox(6.83331+1.94444)x16383.99998, glue set 9797.79308 []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 12--12
+[] \tenrm Q-Q-Q-Q q-q-q-q
+
+\hbox(6.83331+1.94444)x16383.99998, glue set 4894.0275 []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 13--13
+[] \tenrm qqqq z-z-z-z Z-Z-Z-Z
+
+\hbox(6.83331+1.94444)x16383.99998, glue set 3258.15321 []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 14--14
+[] \tenrm QaQ-Qa
+
+\hbox(6.83331+1.94444)x16383.99998, glue set 9796.45973 []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 15--15
+[] \tenrm QaQQa
+
+\hbox(6.83331+1.94444)x16383.99998, glue set 9796.45973 []
+
+ )
+No pages of output.

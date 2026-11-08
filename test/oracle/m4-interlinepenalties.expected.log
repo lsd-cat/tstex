@@ -1,0 +1,179 @@
+entering extended mode
+(m4-interlinepenalties.tex (plain.tex Preloading the plain format: codes, r
+egisters,
+\maxdimen=\dimen10
+\hideskip=\skip10
+\centering=\skip11
+\p@=\dimen11
+\z@=\dimen12
+\z@skip=\skip12
+\voidb@x=\box10
+parameters,
+\smallskipamount=\skip13
+\medskipamount=\skip14
+\bigskipamount=\skip15
+\normalbaselineskip=\skip16
+\normallineskip=\skip17
+\normallineskiplimit=\dimen13
+\jot=\dimen14
+\interdisplaylinepenalty=\count23
+\interfootnotelinepenalty=\count24
+fonts, more fonts,
+\itfam=\fam4
+\slfam=\fam5
+\bffam=\fam6
+\ttfam=\fam7
+macros,
+\strutbox=\box11
+\mscount=\count25
+\tabs=\box12
+\tabsyet=\box13
+\tabsdone=\box14
+math definitions,
+\rootbox=\box15
+\p@renwd=\dimen15
+output routines,
+\headline=\toks10
+\footline=\toks11
+\footins=\insert254
+\topins=\insert253
+hyphenation (hyphen.tex)) [3,100,200,300,300,0] [2,1000,2000,7,9,1]
+> 200.
+l.12 \showthe\interlinepenalties2
+
+
+> 3.
+l.13 \showthe\interlinepenalties0
+
+
+[0]
+> \box1=
+\vbox(60.0+0.0)x100.0
+.\hbox(0.0+0.0)x100.0
+..\hbox(0.0+0.0)x0.0
+..\penalty -10000
+..\glue(\rightskip) 0.0
+.\penalty 1107
+.\glue(\baselineskip) 12.0
+.\hbox(0.0+0.0)x100.0
+..\hbox(0.0+0.0)x0.0
+..\penalty -10000
+..\glue(\rightskip) 0.0
+.\penalty 2207
+.\glue(\baselineskip) 12.0
+.\hbox(0.0+0.0)x100.0
+..\hbox(0.0+0.0)x0.0
+..\penalty -10000
+..\glue(\rightskip) 0.0
+.\penalty 2307
+.\glue(\baselineskip) 12.0
+.\hbox(0.0+0.0)x100.0
+..\hbox(0.0+0.0)x0.0
+..\penalty -10000
+..\glue(\rightskip) 0.0
+.\penalty 2306
+.\glue(\baselineskip) 12.0
+.\hbox(0.0+0.0)x100.0
+..\hbox(0.0+0.0)x0.0
+..\penalty -10000
+..\glue(\rightskip) 0.0
+.\penalty 2305
+.\glue(\baselineskip) 12.0
+.\hbox(0.0+0.0)x100.0, glue set 100.0fil
+..\hbox(0.0+0.0)x0.0
+..\penalty 10000
+..\glue(\parfillskip) 0.0 plus 1.0fil
+..\glue(\rightskip) 0.0
+
+! OK.
+l.14 ...terlinepenalties=3 100 200 300 } \showbox1
+
+
+[3] [0]
+> \box1=
+\vbox(60.0+0.0)x100.0
+.\hbox(0.0+0.0)x100.0
+..\hbox(0.0+0.0)x0.0
+..\penalty -10000
+..\glue(\rightskip) 0.0
+.\penalty 33
+.\glue(\baselineskip) 12.0
+.\hbox(0.0+0.0)x100.0
+..\hbox(0.0+0.0)x0.0
+..\penalty -10000
+..\glue(\rightskip) 0.0
+.\penalty 11
+.\glue(\baselineskip) 12.0
+.\hbox(0.0+0.0)x100.0
+..\hbox(0.0+0.0)x0.0
+..\penalty -10000
+..\glue(\rightskip) 0.0
+.\penalty 11
+.\glue(\baselineskip) 12.0
+.\hbox(0.0+0.0)x100.0
+..\hbox(0.0+0.0)x0.0
+..\penalty -10000
+..\glue(\rightskip) 0.0
+.\penalty 11
+.\glue(\baselineskip) 12.0
+.\hbox(0.0+0.0)x100.0
+..\hbox(0.0+0.0)x0.0
+..\penalty -10000
+..\glue(\rightskip) 0.0
+.\penalty 44
+.\glue(\baselineskip) 12.0
+.\hbox(0.0+0.0)x100.0, glue set 100.0fil
+..\hbox(0.0+0.0)x0.0
+..\penalty 10000
+..\glue(\parfillskip) 0.0 plus 1.0fil
+..\glue(\rightskip) 0.0
+
+! OK.
+l.17 \showbox1
+
+
+[0]
+> \box1=
+\vbox(60.0+0.0)x100.0
+.\hbox(0.0+0.0)x100.0
+..\hbox(0.0+0.0)x0.0
+..\penalty -10000
+..\glue(\rightskip) 0.0
+.\penalty 162
+.\glue(\baselineskip) 12.0
+.\hbox(0.0+0.0)x100.0
+..\hbox(0.0+0.0)x0.0
+..\penalty -10000
+..\glue(\rightskip) 0.0
+.\penalty 12
+.\glue(\baselineskip) 12.0
+.\hbox(0.0+0.0)x100.0
+..\hbox(0.0+0.0)x0.0
+..\penalty -10000
+..\glue(\rightskip) 0.0
+.\penalty 12
+.\glue(\baselineskip) 12.0
+.\hbox(0.0+0.0)x100.0
+..\hbox(0.0+0.0)x0.0
+..\penalty -10000
+..\glue(\rightskip) 0.0
+.\penalty 12
+.\glue(\baselineskip) 12.0
+.\hbox(0.0+0.0)x100.0
+..\hbox(0.0+0.0)x0.0
+..\penalty -10000
+..\glue(\rightskip) 0.0
+.\penalty 12
+.\glue(\baselineskip) 12.0
+.\hbox(0.0+0.0)x100.0, glue set 100.0fil
+..\hbox(0.0+0.0)x0.0
+..\penalty 10000
+..\glue(\parfillskip) 0.0 plus 1.0fil
+..\glue(\rightskip) 0.0
+
+! OK.
+l.19 \showbox1
+
+
+[0] )
+No pages of output.

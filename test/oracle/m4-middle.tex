@@ -1,0 +1,15 @@
+%! oracle: etex
+\input plain
+\tracingonline=0 \showboxbreadth=10000 \showboxdepth=10000 \tracingoutput=1
+\setbox1\hbox{$\left(\vrule height 20pt depth 5pt\middle|x\middle/ y\right)$}
+\showbox1
+\setbox1\hbox{$\left(a\middle| \left[b\middle\vert c\right]\middle\{d\right\}$}
+\showbox1
+\setbox1\hbox{$\left.\middle|\right.$}
+\showbox1
+\setbox1\hbox{$\left(a\middle| \showlists b\right)$}
+\setbox1\hbox{$\middle|$}
+\setbox1\hbox{$a\middle) \left( b \right)$}
+\setbox1\hbox{$\left( a \middle$}
+\showbox1
+\end

@@ -1,0 +1,44 @@
+entering extended mode
+(m4-fontchar.tex [7.50002pt,6.83331pt,0.0pt,0.0pt] [5.00002pt,1.94444pt,2.119
+45pt,3.06665pt] [15.00003pt,13.66664pt] [0.0pt,0.0pt,0.0pt,0.0pt] [0.0pt,0.0pt]
+has0 no255 itf nullno
+> 7.50002pt.
+l.11 \dimen0=\fontcharwd\tenrm`A \showthe\dimen0
+
+
+> 15.00003pt.
+l.12 \dimen1=2\fontcharwd\tenrm`A \showthe\dimen1
+
+
+> 491521.
+l.13 \count1=\fontcharwd\tenrm`A \showthe\count1
+
+
+! Bad character code (300).
+<to be read again>
+                   ]
+l.14 \message{[\the\fontcharwd\tenrm 300]
+                                         }
+A character number must be between 0 and 255.
+I changed this one to zero.
+
+[6.25002pt]
+! Bad character code (-1).
+<to be read again>
+                   ]
+l.15 \message{[\the\fontcharwd\tenrm -1]
+                                        }
+A character number must be between 0 and 255.
+I changed this one to zero.
+
+[6.25002pt]
+! Missing font identifier.
+<to be read again>
+                   5
+l.16 \message{[\the\fontcharwd 5
+                                ]}
+I was looking for a control sequence whose
+current meaning has been defined by \font.
+
+[0.0pt] )
+No pages of output.

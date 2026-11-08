@@ -1,0 +1,65 @@
+entering extended mode
+(m4-dimexpr-glueexpr.tex 1.5pt,9.0pt,0.33333pt 3.0pt,3.5pt 2.0pt plus 2.0fil
+minus 4.0pt 4.0pt plus 2.0pt minus 1.0fill 1.5pt plus 1.5fil 6.0mu,1.0mu plus 2
+.0fil minus 3.0mu 1.0pt
+> 72.26999pt.
+<recently read> \relax
+
+l.10 \showthe\dimexpr 1in\relax
+
+
+2.0pt,3.0pt,1,2 2.0pt,3.0pt,0,0
+> 2.0pt plus 4.0fil minus 6.0fill.
+l.15 \skip5=\glueexpr\skip3*2\relax \showthe\skip5
+
+
+1.0pt plus 2.0fil minus 3.0pt,1.0mu plus 2.0fil minus 3.0fill
+> 1.0pt plus 2.0fil minus 3.0pt.
+l.18 \skip6=\mutoglue\muskip1 \showthe\skip6
+
+
+> 1.0mu plus 2.0fil minus 3.0fill.
+l.19 \muskip2=\gluetomu\skip3 \showthe\muskip2
+
+
+> 2.0pt.
+l.20 ...=\dimexpr 1pt+\skip3\relax \showthe\dimen1
+
+
+! Arithmetic overflow.
+<recently read> \relax
+
+l.21 \message{\the\dimexpr 16383pt+1pt\relax
+                                            }
+I can't evaluate this expression,
+since the result is out of range.
+
+0.0pt
+! Arithmetic overflow.
+<recently read> \relax
+
+l.22 \message{\the\dimexpr 16383pt*2\relax
+                                          }
+I can't evaluate this expression,
+since the result is out of range.
+
+0.0pt 1pt\relax
+! Illegal unit of measure (pt inserted).
+<to be read again>
+                   \relax
+l.24 \message{\the\dimexpr 1\relax
+                                  }
+Dimensions can be in units of em, ex, in, pt, pc,
+cm, mm, dd, cc, nd, nc, bp, or sp; but yours is a new one!
+I'll assume that you meant to say pt, for printer's points.
+To recover gracefully from this error, it's best to
+delete the erroneous units; e.g., type `2' to delete
+two letters. (See Chapter 27 of The TeXbook.)
+
+1.0pt
+> 131072.
+l.25 \count1=\dimexpr 2pt\relax \showthe\count1
+
+
+ )
+No pages of output.

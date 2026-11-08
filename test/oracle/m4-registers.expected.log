@@ -1,0 +1,139 @@
+entering extended mode
+(m4-registers.tex
+> 5.
+l.4 \showthe\count300
+                      \showthe\dimen32767 \showthe\skip1000 \showthe\muskip4...
+
+
+> 3.0pt.
+l.4 \showthe\count300 \showthe\dimen32767
+                                          \showthe\skip1000 \showthe\muskip4...
+
+
+> 1.0pt plus 2.0fil.
+l.4 ...t300 \showthe\dimen32767 \showthe\skip1000
+                                                  \showthe\muskip400 \showth...
+
+
+> 3.0mu minus 1.0mu.
+l.4 ...32767 \showthe\skip1000 \showthe\muskip400
+                                                  \showthe\toks9999
+
+> abc.
+l.4 ...ip1000 \showthe\muskip400 \showthe\toks9999
+
+
+> 0.
+l.5 \showthe\count301
+
+
+> \x=\count4000.
+l.6 \countdef\x=4000 \x=77 \show\x
+                                   \showthe\x \showthe\count4000
+
+> 77.
+l.6 \countdef\x=4000 \x=77 \show\x \showthe\x
+                                              \showthe\count4000
+
+> 77.
+l.6 ...\x=77 \show\x \showthe\x \showthe\count4000
+
+
+> \d=\dimen500.
+l.8 \show\d
+            \show\s \show\m \show\t
+
+> \s=\skip501.
+l.8 \show\d \show\s
+                    \show\m \show\t
+
+> \m=\muskip502.
+l.8 \show\d \show\s \show\m
+                            \show\t
+
+> \t=\toks503.
+l.8 \show\d \show\s \show\m \show\t
+
+
+> 2.0pt.
+l.9 \d=2pt \s=\d \showthe\s
+                            \t={q} \showthe\t
+
+> q.
+l.9 \d=2pt \s=\d \showthe\s \t={q} \showthe\t
+
+
+> 21.
+l.10 ... \multiply\count300 by 3 \showthe\count300
+
+
+{restoring \count301=0}
+{restoring \toks9999=abc}
+{restoring \skip1000=1.0pt plus 2.0fil}
+{restoring \dimen32767=3.0pt}
+{restoring \count300=21}
+> \box300=
+\hbox(0.0+0.0)x5.0
+
+! OK.
+l.14 \showbox300
+                 \showthe\wd300 \wd300=7pt \showthe\wd300 \showthe\ht300
+
+> 5.0pt.
+l.14 \showbox300 \showthe\wd300
+                                \wd300=7pt \showthe\wd300 \showthe\ht300
+
+> 7.0pt.
+l.14 ... \showthe\wd300 \wd300=7pt \showthe\wd300
+                                                  \showthe\ht300
+
+> 0.0pt.
+l.14 ...0 \wd300=7pt \showthe\wd300 \showthe\ht300
+
+
+> \box301=
+\vbox(0.0+0.0)x7.0
+.\hbox(0.0+0.0)x7.0
+.\glue(\baselineskip) 0.0
+.\hbox(0.0+0.0)x7.0
+
+! OK.
+l.15 ...ox301=\vbox{\copy300 \box300} \showbox301
+                                                  \showbox300
+
+> \box300=void
+
+! OK.
+l.15 ...{\copy300 \box300} \showbox301 \showbox300
+
+
+{restoring \box300=void}
+void v
+! Bad register code (32768).
+<to be read again>
+                   =
+l.18 \count32768=
+                 1
+A register number must be between 0 and 32767.
+I changed this one to zero.
+
+! Bad register code (32768).
+l.19 \box32768
+
+A register number must be between 0 and 32767.
+I changed this one to zero.
+
+! Bad register code (-1).
+<to be read again>
+                   =
+l.20 \toks-1=
+             {}
+A register number must be between 0 and 32767.
+I changed this one to zero.
+
+> 0.
+l.21 \showthe\count255
+
+
+ )
+No pages of output.

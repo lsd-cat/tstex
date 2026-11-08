@@ -1,0 +1,74 @@
+entering extended mode
+(m4-protected-unexpanded.tex
+> \p=\protected macro:
+->P.
+l.4 \show\p
+            \show\q \show\a
+
+> \q=\protected macro:
+#1->Q#1.
+l.4 \show\p \show\q
+                    \show\a
+
+> \a=macro:
+->A.
+l.4 \show\p \show\q \show\a
+
+
+\protected macro:->P
+> \x=macro:
+->A\p \q 1.
+l.6 \edef\x{\a\p\q1}\show\x
+
+
+> \y=macro:
+->\p A.
+l.7 \xdef\y{\p\a}\show\y
+
+
+A\p \q 2
+A\p
+> P\a .
+l.10 \toks0=\expandafter{\p\a}\showthe\toks0
+
+
+> \z=macro:
+->\a \p ##A.
+l.11 \edef\z{\unexpanded{\a\p#}\a}\show\z
+
+
+\a ##\b
+> \w=macro:
+->AA.
+l.13 \edef\w{\unexpanded\expandafter{\a}\a}\show\w
+
+
+> \v=macro:
+->\a x\a x.
+l.14 ...unexpanded\expandafter{\the\toks1}}\show\v
+
+
+a ##b \c \d {e} f. A \par \relax ~
+> \u=macro:
+->##a \b .
+l.17 \edef\u{\detokenize{#a \b}}\show\u
+
+
+differ prot vs plain differ
+> \t=\protected macro:
+->P.
+l.21 \let\t\p \show\t
+
+
+> \e=\protected macro:
+->A.
+l.22 \protected\edef\e{\a}\show\e
+
+
+! You can't use `\long' or `\outer' or `\protected' with `\let'.
+l.23 \protected\let
+                   \l\a
+I'll pretend you didn't say \long or \outer or \protected here.
+
+ )
+No pages of output.

@@ -1,0 +1,72 @@
+entering extended mode
+(m4-etex-misc.tex
+> 0.
+l.3 \showthe\currentgrouplevel
+
+
+> 1.
+l.4 {\showthe\currentgrouplevel
+                                \begingroup \showthe\currentgrouplevel \endg...
+
+
+> 2.
+l.4 ...evel \begingroup \showthe\currentgrouplevel
+                                                   \endgroup}
+
+> \a=\protected\long\outer macro:
+#1->x#1.
+l.5 \protected\long\outer\def\a#1{x#1}\show\a
+
+
+> \b=\protected\long\outer macro:
+->y.
+l.6 \protected\outer\long\def\b{y}\show\b
+
+
+> \c=\protected\long macro:
+#1#2->.
+l.7 \long\protected\def\c#1#2{}\show\c
+
+
+> \d=\outer macro:
+->.
+l.8 \outer\def\d{}\show\d
+
+
+> \e=\protected macro:
+->z.
+l.9 \protected\global\def\e{z}\show\e
+                                      \global\protected\long\def\f{}\show\f
+
+> \f=\protected\long macro:
+->.
+l.9 ...how\e \global\protected\long\def\f{}\show\f
+
+
+\par \par x\par .
+> \g=macro:
+->\par .
+l.11 \edef\g{\detokenize{\par}}\show\g
+
+
+(m4-nesting-inner.tex inner  a b {c} \relax  EOF) (m4-nesting-inner.tex inn
+er  a b {c} \relax  EOF) EOF [65536]
+! Illegal unit of measure (pt inserted).
+<to be read again>
+                   \relax
+l.17 \message{[\the\dimexpr\numexpr 3\relax\relax
+                                                 ]}
+Dimensions can be in units of em, ex, in, pt, pc,
+cm, mm, dd, cc, nd, nc, bp, or sp; but yours is a new one!
+I'll assume that you meant to say pt, for printer's points.
+To recover gracefully from this error, it's best to
+delete the erroneous units; e.g., type `2' to delete
+two letters. (See Chapter 27 of The TeXbook.)
+
+[3.0pt] [3.0pt] [0,65536] [1.0pt]
+> 2.
+l.21 \showthe\eTeXversion
+
+
+ )
+No pages of output.

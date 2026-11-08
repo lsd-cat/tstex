@@ -1,0 +1,499 @@
+entering extended mode
+(m4-lastlinefit.tex (plain.tex Preloading the plain format: codes, register
+s,
+\maxdimen=\dimen10
+\hideskip=\skip10
+\centering=\skip11
+\p@=\dimen11
+\z@=\dimen12
+\z@skip=\skip12
+\voidb@x=\box10
+parameters,
+\smallskipamount=\skip13
+\medskipamount=\skip14
+\bigskipamount=\skip15
+\normalbaselineskip=\skip16
+\normallineskip=\skip17
+\normallineskiplimit=\dimen13
+\jot=\dimen14
+\interdisplaylinepenalty=\count23
+\interfootnotelinepenalty=\count24
+fonts, more fonts,
+\itfam=\fam4
+\slfam=\fam5
+\bffam=\fam6
+\ttfam=\fam7
+macros,
+\strutbox=\box11
+\mscount=\count25
+\tabs=\box12
+\tabsyet=\box13
+\tabsdone=\box14
+math definitions,
+\rootbox=\box15
+\p@renwd=\dimen15
+output routines,
+\headline=\toks10
+\footline=\toks11
+\footins=\insert254
+\topins=\insert253
+hyphenation (hyphen.tex))
+@firstpass
+@secondpass
+[]\tenrm The
+@ via @@0 b=10000 p=0 d=100010000
+@@1: line 1.0 t=100010000 s=82.77776 g=0.0 -> @@0
+quick
+@ via @@0 b=10000 p=0 d=100010000
+@ via @@1 b=10000 p=0 d=100000000
+@@2: line 1.0 t=100010000 s=56.38882 g=1.66666 -> @@0
+fox
+@ via @@0 b=10000 p=0 d=100010000
+@ via @@1 b=10000 p=0 d=100000000
+@ via @@2 b=10000 p=0 d=100000000
+@@3: line 1.0 t=100010000 s=39.9999 g=3.33331 -> @@0
+jumps
+@ via @@0 b=853 p=0 d=754769
+@ via @@1 b=10000 p=0 d=100000000
+@ via @@2 b=10000 p=0 d=100000000
+@ via @@3 b=10000 p=0 d=100000000
+@@4: line 1.0 t=754769 s=10.22205 g=4.99997 -> @@0
+over
+@ via @@1 b=656 p=0 d=443556
+@ via @@2 b=10000 p=0 d=100000000
+@ via @@3 b=10000 p=0 d=100000000
+@ via @@4 b=10000 p=0 d=100000000
+@@5: line 2.0 t=100453556 s=9.36093 g=4.99997 -> @@1
+a
+@ via @@1 b=0 p=0 d=10100
+@ via @@2 b=10000 p=0 d=100000000
+@ via @@3 b=10000 p=0 d=100000000
+@ via @@4 b=10000 p=0 d=100000000
+@ via @@5 b=10000 p=0 d=100000000
+@@6: line 2.2 t=100020100 s=1.02759 g=6.66663 -> @@1
+lazy
+@ via @@2 b=96 p=0 d=11236
+@ via @@3 b=10000 p=0 d=100000000
+@ via @@4 b=10000 p=0 d=100000000
+@ via @@5 b=10000 p=0 d=100000000
+@ via @@6 b=10000 p=0 d=100010000
+@@7: line 2.1 t=100021236 s=6.58315 g=6.66663 -> @@2
+dog
+@ via @@3 b=23 p=0 d=1089
+@ via @@4 b=10000 p=0 d=100000000
+@ via @@5 b=10000 p=0 d=100000000
+@ via @@6 b=10000 p=0 d=100010000
+@ via @@7 b=10000 p=0 d=100000000
+@@8: line 2.1 t=100011089 s=4.08315 g=6.66663 -> @@3
+to-
+@\discretionary via @@4 b=2065 p=50 d=4308125
+@\discretionary via @@5 b=10000 p=50 d=100002500
+@\discretionary via @@6 b=10000 p=50 d=100012500
+@\discretionary via @@7 b=10000 p=50 d=100002500
+@\discretionary via @@8 b=10000 p=50 d=100002500
+@@9: line 2.0- t=5062894 s=18.30542 g=6.66663 -> @@4
+day.
+@\par via @@4 b=19 p=-10000 d=841
+@\par via @@5 b=656 p=-10000 d=443556
+@\par via @@6 b=0 p=-10000 d=100
+@\par via @@7 b=96 p=-10000 d=11236
+@\par via @@8 b=0 p=-10000 d=100
+@\par via @@9 b=0 p=-10000 d=15100
+@@10: line 2.1- t=755610 s=3.86092 a=3.86092 -> @@4
+
+> \box1=
+\vbox(18.94444+1.94444)x100.0
+.\hbox(6.94444+1.94444)x100.0, glue set 2.04442
+..\hbox(0.0+0.0)x0.0
+..\tenrm T
+..\tenrm h
+..\tenrm e
+..\glue 3.33333 plus 1.66666 minus 1.11111
+..\tenrm q
+..\tenrm u
+..\tenrm i
+..\tenrm c
+..\kern-0.27779
+..\tenrm k
+..\glue 3.33333 plus 1.66666 minus 1.11111
+..\tenrm f
+..\tenrm o
+..\kern-0.27779
+..\tenrm x
+..\glue 3.33333 plus 1.66666 minus 1.11111
+..\tenrm j
+..\tenrm u
+..\tenrm m
+..\tenrm p
+..\tenrm s
+..\glue(\rightskip) 0.0
+.\penalty 300
+.\glue(\baselineskip) 3.11111
+.\hbox(6.94444+1.94444)x100.0, glue set 0.57915
+..\tenrm o
+..\kern-0.27779
+..\tenrm v
+..\kern-0.27779
+..\tenrm e
+..\tenrm r
+..\glue 3.33333 plus 1.66666 minus 1.11111
+..\tenrm a
+..\glue 3.33333 plus 1.66666 minus 1.11111
+..\tenrm l
+..\tenrm a
+..\tenrm z
+..\tenrm y
+..\glue 3.33333 plus 1.66666 minus 1.11111
+..\tenrm d
+..\tenrm o
+..\tenrm g
+..\glue 3.33333 plus 1.66666 minus 1.11111
+..\tenrm t
+..\discretionary replacing 2
+...\tenrm o
+...\tenrm -
+..\tenrm o
+..\kern0.27779
+..\tenrm d
+..\tenrm a
+..\kern-0.27779
+..\tenrm y
+..\kern-0.83334
+..\tenrm .
+..\penalty 10000
+..\glue(\parfillskip) 0.0
+..\glue(\rightskip) 0.0
+
+! OK.
+l.7 \setbox1\vbox{\t}\showbox1
+
+
+@firstpass
+@secondpass
+[]\tenrm The
+@ via @@0 b=10000 p=0 d=100010000
+@@1: line 1.0 t=100010000 s=82.77776 g=0.0 -> @@0
+quick
+@ via @@0 b=10000 p=0 d=100010000
+@ via @@1 b=10000 p=0 d=100000000
+@@2: line 1.0 t=100010000 s=56.38882 g=1.66666 -> @@0
+fox
+@ via @@0 b=10000 p=0 d=100010000
+@ via @@1 b=10000 p=0 d=100000000
+@ via @@2 b=10000 p=0 d=100000000
+@@3: line 1.0 t=100010000 s=39.9999 g=3.33331 -> @@0
+jumps
+@ via @@0 b=853 p=0 d=754769
+@ via @@1 b=10000 p=0 d=100000000
+@ via @@2 b=10000 p=0 d=100000000
+@ via @@3 b=10000 p=0 d=100000000
+@@4: line 1.0 t=754769 s=10.22205 g=4.99997 -> @@0
+over
+@ via @@1 b=656 p=0 d=443556
+@ via @@2 b=10000 p=0 d=100000000
+@ via @@3 b=10000 p=0 d=100000000
+@ via @@4 b=10000 p=0 d=100000000
+@@5: line 2.0 t=100453556 s=9.36093 g=4.99997 -> @@1
+a
+@ via @@1 b=0 p=0 d=10100
+@ via @@2 b=10000 p=0 d=100000000
+@ via @@3 b=10000 p=0 d=100000000
+@ via @@4 b=10000 p=0 d=100000000
+@ via @@5 b=10000 p=0 d=100000000
+@@6: line 2.2 t=100020100 s=1.02759 g=6.66663 -> @@1
+lazy
+@ via @@2 b=96 p=0 d=11236
+@ via @@3 b=10000 p=0 d=100000000
+@ via @@4 b=10000 p=0 d=100000000
+@ via @@5 b=10000 p=0 d=100000000
+@ via @@6 b=10000 p=0 d=100010000
+@@7: line 2.1 t=100021236 s=6.58315 g=6.66663 -> @@2
+dog
+@ via @@3 b=23 p=0 d=1089
+@ via @@4 b=10000 p=0 d=100000000
+@ via @@5 b=10000 p=0 d=100000000
+@ via @@6 b=10000 p=0 d=100010000
+@ via @@7 b=10000 p=0 d=100000000
+@@8: line 2.1 t=100011089 s=4.08315 g=6.66663 -> @@3
+to-
+@\discretionary via @@4 b=2065 p=50 d=4308125
+@\discretionary via @@5 b=10000 p=50 d=100002500
+@\discretionary via @@6 b=10000 p=50 d=100012500
+@\discretionary via @@7 b=10000 p=50 d=100002500
+@\discretionary via @@8 b=10000 p=50 d=100002500
+@@9: line 2.0- t=5062894 s=18.30542 g=6.66663 -> @@4
+day.
+@\par via @@4 b=19 p=-10000 d=841
+@\par via @@5 b=82 p=-10000 d=8464
+@\par via @@6 b=0 p=-10000 d=100
+@\par via @@7 b=12 p=-10000 d=484
+@\par via @@8 b=0 p=-10000 d=100
+@\par via @@9 b=0 p=-10000 d=15100
+@@10: line 2.1- t=755610 s=3.86092 a=3.86092 -> @@4
+
+> \box1=
+\vbox(18.94444+1.94444)x100.0
+.\hbox(6.94444+1.94444)x100.0, glue set 2.04442
+..\hbox(0.0+0.0)x0.0
+..\tenrm T
+..\tenrm h
+..\tenrm e
+..\glue 3.33333 plus 1.66666 minus 1.11111
+..\tenrm q
+..\tenrm u
+..\tenrm i
+..\tenrm c
+..\kern-0.27779
+..\tenrm k
+..\glue 3.33333 plus 1.66666 minus 1.11111
+..\tenrm f
+..\tenrm o
+..\kern-0.27779
+..\tenrm x
+..\glue 3.33333 plus 1.66666 minus 1.11111
+..\tenrm j
+..\tenrm u
+..\tenrm m
+..\tenrm p
+..\tenrm s
+..\glue(\rightskip) 0.0
+.\penalty 300
+.\glue(\baselineskip) 3.11111
+.\hbox(6.94444+1.94444)x100.0, glue set 0.57915
+..\tenrm o
+..\kern-0.27779
+..\tenrm v
+..\kern-0.27779
+..\tenrm e
+..\tenrm r
+..\glue 3.33333 plus 1.66666 minus 1.11111
+..\tenrm a
+..\glue 3.33333 plus 1.66666 minus 1.11111
+..\tenrm l
+..\tenrm a
+..\tenrm z
+..\tenrm y
+..\glue 3.33333 plus 1.66666 minus 1.11111
+..\tenrm d
+..\tenrm o
+..\tenrm g
+..\glue 3.33333 plus 1.66666 minus 1.11111
+..\tenrm t
+..\discretionary replacing 2
+...\tenrm o
+...\tenrm -
+..\tenrm o
+..\kern0.27779
+..\tenrm d
+..\tenrm a
+..\kern-0.27779
+..\tenrm y
+..\kern-0.83334
+..\tenrm .
+..\penalty 10000
+..\glue(\parfillskip) 0.0
+..\glue(\rightskip) 0.0
+
+! OK.
+l.9 \setbox1\vbox{\t}\showbox1
+
+
+@firstpass
+@secondpass
+[]\tenrm The
+@ via @@0 b=10000 p=0 d=100010000
+@@1: line 1.0 t=100010000 -> @@0
+quick
+@ via @@0 b=10000 p=0 d=100010000
+@ via @@1 b=10000 p=0 d=100000000
+@@2: line 1.0 t=100010000 -> @@0
+fox
+@ via @@0 b=10000 p=0 d=100010000
+@ via @@1 b=10000 p=0 d=100000000
+@ via @@2 b=10000 p=0 d=100000000
+@@3: line 1.0 t=100010000 -> @@0
+jumps
+@ via @@0 b=853 p=0 d=754769
+@ via @@1 b=10000 p=0 d=100000000
+@ via @@2 b=10000 p=0 d=100000000
+@ via @@3 b=10000 p=0 d=100000000
+@@4: line 1.0 t=754769 -> @@0
+over
+@ via @@1 b=656 p=0 d=443556
+@ via @@2 b=10000 p=0 d=100000000
+@ via @@3 b=10000 p=0 d=100000000
+@ via @@4 b=10000 p=0 d=100000000
+@@5: line 2.0 t=100453556 -> @@1
+a
+@ via @@1 b=0 p=0 d=10100
+@ via @@2 b=10000 p=0 d=100000000
+@ via @@3 b=10000 p=0 d=100000000
+@ via @@4 b=10000 p=0 d=100000000
+@ via @@5 b=10000 p=0 d=100000000
+@@6: line 2.2 t=100020100 -> @@1
+lazy
+@ via @@2 b=96 p=0 d=11236
+@ via @@3 b=10000 p=0 d=100000000
+@ via @@4 b=10000 p=0 d=100000000
+@ via @@5 b=10000 p=0 d=100000000
+@ via @@6 b=10000 p=0 d=100010000
+@@7: line 2.1 t=100021236 -> @@2
+dog
+@ via @@3 b=23 p=0 d=1089
+@ via @@4 b=10000 p=0 d=100000000
+@ via @@5 b=10000 p=0 d=100000000
+@ via @@6 b=10000 p=0 d=100010000
+@ via @@7 b=10000 p=0 d=100000000
+@@8: line 2.1 t=100011089 -> @@3
+to-
+@\discretionary via @@4 b=2065 p=50 d=4308125
+@\discretionary via @@5 b=10000 p=50 d=100002500
+@\discretionary via @@6 b=10000 p=50 d=100012500
+@\discretionary via @@7 b=10000 p=50 d=100002500
+@\discretionary via @@8 b=10000 p=50 d=100002500
+@@9: line 2.0- t=5062894 -> @@4
+day.
+@\par via @@4 b=0 p=-10000 d=10100
+@\par via @@5 b=0 p=-10000 d=10100
+@\par via @@6 b=0 p=-10000 d=100
+@\par via @@7 b=0 p=-10000 d=100
+@\par via @@8 b=0 p=-10000 d=100
+@\par via @@9 b=0 p=-10000 d=15100
+@@10: line 2.2- t=764869 -> @@4
+
+> \box1=
+\vbox(18.94444+1.94444)x100.0
+.\hbox(6.94444+1.94444)x100.0, glue set 2.04442
+..\hbox(0.0+0.0)x0.0
+..\tenrm T
+..\tenrm h
+..\tenrm e
+..\glue 3.33333 plus 1.66666 minus 1.11111
+..\tenrm q
+..\tenrm u
+..\tenrm i
+..\tenrm c
+..\kern-0.27779
+..\tenrm k
+..\glue 3.33333 plus 1.66666 minus 1.11111
+..\tenrm f
+..\tenrm o
+..\kern-0.27779
+..\tenrm x
+..\glue 3.33333 plus 1.66666 minus 1.11111
+..\tenrm j
+..\tenrm u
+..\tenrm m
+..\tenrm p
+..\tenrm s
+..\glue(\rightskip) 0.0
+.\penalty 300
+.\glue(\baselineskip) 3.11111
+.\hbox(6.94444+1.94444)x100.0, glue set 3.86092fil
+..\tenrm o
+..\kern-0.27779
+..\tenrm v
+..\kern-0.27779
+..\tenrm e
+..\tenrm r
+..\glue 3.33333 plus 1.66666 minus 1.11111
+..\tenrm a
+..\glue 3.33333 plus 1.66666 minus 1.11111
+..\tenrm l
+..\tenrm a
+..\tenrm z
+..\tenrm y
+..\glue 3.33333 plus 1.66666 minus 1.11111
+..\tenrm d
+..\tenrm o
+..\tenrm g
+..\glue 3.33333 plus 1.66666 minus 1.11111
+..\tenrm t
+..\discretionary replacing 2
+...\tenrm o
+...\tenrm -
+..\tenrm o
+..\kern0.27779
+..\tenrm d
+..\tenrm a
+..\kern-0.27779
+..\tenrm y
+..\kern-0.83334
+..\tenrm .
+..\penalty 10000
+..\glue(\parfillskip) 0.0 plus 1.0fil
+..\glue(\rightskip) 0.0
+
+! OK.
+l.11 \setbox1\vbox{\t}\showbox1
+
+
+@firstpass
+@secondpass
+[]\tenrm The
+@ via @@0 b=10000 p=0 d=100010000
+@@1: line 1.0 t=100010000 -> @@0
+quick
+@ via @@0 b=10000 p=0 d=100010000
+@ via @@1 b=10000 p=0 d=100000000
+@@2: line 1.0 t=100010000 -> @@0
+fox
+@ via @@0 b=10000 p=0 d=100010000
+@ via @@1 b=10000 p=0 d=100000000
+@ via @@2 b=10000 p=0 d=100000000
+@@3: line 1.0 t=100010000 -> @@0
+jumps
+@ via @@0 b=853 p=0 d=754769
+@ via @@1 b=10000 p=0 d=100000000
+@ via @@2 b=10000 p=0 d=100000000
+@ via @@3 b=10000 p=0 d=100000000
+@@4: line 1.0 t=754769 -> @@0
+over
+@ via @@1 b=656 p=0 d=443556
+@ via @@2 b=10000 p=0 d=100000000
+@ via @@3 b=10000 p=0 d=100000000
+@ via @@4 b=10000 p=0 d=100000000
+@@5: line 2.0 t=100453556 -> @@1
+a
+@ via @@1 b=0 p=0 d=10100
+@ via @@2 b=10000 p=0 d=100000000
+@ via @@3 b=10000 p=0 d=100000000
+@ via @@4 b=10000 p=0 d=100000000
+@ via @@5 b=10000 p=0 d=100000000
+@@6: line 2.2 t=100020100 -> @@1
+lazy
+@ via @@2 b=96 p=0 d=11236
+@ via @@3 b=10000 p=0 d=100000000
+@ via @@4 b=10000 p=0 d=100000000
+@ via @@5 b=10000 p=0 d=100000000
+@ via @@6 b=10000 p=0 d=100010000
+@@7: line 2.1 t=100021236 -> @@2
+dog
+@ via @@3 b=23 p=0 d=1089
+@ via @@4 b=10000 p=0 d=100000000
+@ via @@5 b=10000 p=0 d=100000000
+@ via @@6 b=10000 p=0 d=100010000
+@ via @@7 b=10000 p=0 d=100000000
+@@8: line 2.1 t=100011089 -> @@3
+to-
+@\discretionary via @@4 b=2065 p=50 d=4308125
+@\discretionary via @@5 b=10000 p=50 d=100002500
+@\discretionary via @@6 b=10000 p=50 d=100012500
+@\discretionary via @@7 b=10000 p=50 d=100002500
+@\discretionary via @@8 b=10000 p=50 d=100002500
+@@9: line 2.0- t=5062894 -> @@4
+day.
+@\par via @@4 b=19 p=-10000 d=841
+@\par via @@5 b=10000 p=-10000 d=100000000
+@\par via @@6 b=10000 p=-10000 d=100010000
+@\par via @@7 b=10000 p=-10000 d=100000000
+@\par via @@8 b=10000 p=-10000 d=100000000
+@\par via @@9 b=10000 p=-10000 d=100005000
+@@10: line 2.1- t=755610 -> @@4
+
+> 1000.
+l.14 \showthe\lastlinefit
+
+
+ )
+No pages of output.

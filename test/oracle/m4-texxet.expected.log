@@ -1,0 +1,223 @@
+entering extended mode
+(m4-texxet.tex (plain.tex Preloading the plain format: codes, registers,
+\maxdimen=\dimen10
+\hideskip=\skip10
+\centering=\skip11
+\p@=\dimen11
+\z@=\dimen12
+\z@skip=\skip12
+\voidb@x=\box10
+parameters,
+\smallskipamount=\skip13
+\medskipamount=\skip14
+\bigskipamount=\skip15
+\normalbaselineskip=\skip16
+\normallineskip=\skip17
+\normallineskiplimit=\dimen13
+\jot=\dimen14
+\interdisplaylinepenalty=\count23
+\interfootnotelinepenalty=\count24
+fonts, more fonts,
+\itfam=\fam4
+\slfam=\fam5
+\bffam=\fam6
+\ttfam=\fam7
+macros,
+\strutbox=\box11
+\mscount=\count25
+\tabs=\box12
+\tabsyet=\box13
+\tabsdone=\box14
+math definitions,
+\rootbox=\box15
+\p@renwd=\dimen15
+output routines,
+\headline=\toks10
+\footline=\toks11
+\footins=\insert254
+\topins=\insert253
+hyphenation (hyphen.tex))
+> 0.
+l.5 \showthe\TeXXeTstate
+
+
+! Improper \beginL.
+l.6 \setbox1\hbox{a\beginL
+                           b\endL c\beginR de\endR f}\showbox1
+Sorry, this optional e-TeX feature has been disabled.
+
+! Improper \endL.
+l.6 \setbox1\hbox{a\beginL b\endL
+                                  c\beginR de\endR f}\showbox1
+Sorry, this optional e-TeX feature has been disabled.
+
+! Improper \beginR.
+l.6 \setbox1\hbox{a\beginL b\endL c\beginR
+                                           de\endR f}\showbox1
+Sorry, this optional e-TeX feature has been disabled.
+
+! Improper \endR.
+l.6 \setbox1\hbox{a\beginL b\endL c\beginR de\endR
+                                                   f}\showbox1
+Sorry, this optional e-TeX feature has been disabled.
+
+> \box1=
+\hbox(6.94444+0.0)x28.05562
+.\tenrm a
+.\tenrm b
+.\tenrm c
+.\tenrm d
+.\tenrm e
+.\tenrm f
+
+! OK.
+l.6 ...\beginL b\endL c\beginR de\endR f}\showbox1
+
+
+> 1.
+l.7 \TeXXeTstate=1 \showthe\TeXXeTstate
+
+
+> \box1=
+\hbox(6.94444+0.0)x28.05562
+.\tenrm a
+.\beginL
+.\tenrm b
+.\endL
+.\tenrm c
+.\beginR
+.\tenrm d
+.\tenrm e
+.\endR
+.\tenrm f
+
+! OK.
+l.8 ...\beginL b\endL c\beginR de\endR f}\showbox1
+
+
+
+### restricted horizontal mode entered at line 9
+\beginR
+\tenrm a
+\tenrm b
+spacefactor 1000
+### vertical mode entered at line 0
+prevdepth ignored
+
+! OK.
+l.9 \setbox1\hbox{\beginR ab\showlists
+                                      }
+
+
+\endL or \endR problem (1 missing, 0 extra) detected at line 9
+[]\tenrm ab[]
+
+\hbox(6.94444+0.0)x10.55559
+.\beginR
+.\tenrm a
+.\tenrm b
+.\endR
+
+
+\endL or \endR problem (0 missing, 1 extra) detected at line 10
+\tenrm ab
+
+\hbox(6.94444+0.0)x10.55559
+.\tenrm a
+.\tenrm b
+.\kern 0.0
+
+> \box1=
+\vbox(6.94444+0.0)x100.0
+.\hbox(6.94444+0.0)x100.0, glue set 74.72217fil
+..\tenrm a
+..\beginR
+..\tenrm b
+..\kern0.27779
+..\tenrm c
+..\beginL
+..\tenrm d
+..\endL
+..\endR
+..\tenrm e
+..\penalty 10000
+..\glue(\parfillskip) 0.0 plus 1.0fil
+..\glue(\rightskip) 0.0
+
+! OK.
+l.11 ...ginR bc\beginL d\endL\endR e\par}\showbox1
+
+
+> \box1=
+\vbox(18.94444+1.94444)x100.0
+.\hbox(6.94444+0.0)x100.0, glue set 71.6666fil
+..\beginR
+..\tenrm a
+..\tenrm b
+..\kern0.27779
+..\tenrm c
+..\glue 0.0 plus 1.0fil
+..\tenrm d
+..\tenrm e
+..\tenrm f
+..\penalty -10000
+..\endR
+..\glue(\rightskip) 0.0
+.\penalty 300
+.\glue(\baselineskip) 5.05556
+.\hbox(6.94444+1.94444)x100.0, glue set 86.66663fil
+..\beginR
+..\tenrm g
+..\tenrm h
+..\tenrm i
+..\penalty 10000
+..\glue(\parfillskip) 0.0 plus 1.0fil
+..\endR
+..\glue(\rightskip) 0.0
+
+! OK.
+l.12 ... 0pt plus 1fil def\break ghi\par}\showbox1
+
+
+> -1.
+l.13 ...ydirection=-1 \showthe\predisplaydirection
+                                                   \halign{#\cr x\cr}$$ \par...
+
+
+> \box1=
+\vbox(42.94444+0.0)x100.0
+.\hbox(6.94444+0.0)x100.0, glue set 84.72218fil
+..\beginR
+..\tenrm a
+..\tenrm b
+..\kern0.27779
+..\tenrm c
+..\penalty 10000
+..\glue(\parfillskip) 0.0 plus 1.0fil
+..\endR
+..\glue(\rightskip) 0.0
+.\penalty 10000
+.\glue(\abovedisplayskip) 12.0 plus 3.0 minus 9.0
+.\glue(\baselineskip) 7.69446
+.\hbox(4.30554+0.0)x5.2778, display
+..\glue(\tabskip) 0.0
+..\hbox(4.30554+0.0)x5.2778
+...\tenrm x
+..\glue(\tabskip) 0.0
+.\penalty 0
+.\glue(\belowdisplayskip) 12.0 plus 3.0 minus 9.0
+
+! OK.
+l.13 ...ection \halign{#\cr x\cr}$$ \par}\showbox1
+
+
+> 0.
+l.14 ...noindent a $$ \showthe\predisplaydirection
+                                                   $$ \par}
+
+> 0.
+l.15 \showthe\lastlinefit
+
+
+ )
+No pages of output.

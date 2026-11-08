@@ -1,0 +1,19 @@
+%! oracle: etex
+\input plain
+\tracingonline=0 \showboxbreadth=10000 \showboxdepth=10000 \tracingoutput=1
+\vbadness=10000 \hsize=100pt \vsize=50pt \parindent=0pt \baselineskip=12pt \topskip=10pt \maxdepth=2pt
+\output={\message{[top:\topmarks3/\firstmarks3/\botmarks3 m0:\topmark/\firstmark/\botmark m5:\topmarks5/\botmarks5]}\shipout\box255 }
+\marks3{a1}\marks0{z1}\hbox{x}\marks3{a2}\hbox{y}\penalty-10000
+\hbox{p}\marks0{z2}\hbox{q}\penalty-10000
+\hbox{r}\marks5{five}\marks3{a3}\marks3{a4}\hbox{s}\penalty-10000
+\hbox{t}\penalty-10000
+\setbox1\vbox{\hbox{a}\marks3{s1}\marks0{m1}\hbox{b}\marks3{s2}\hbox{c}\marks3{s3}\hbox{d}}
+\setbox2\vsplit1 to 30pt
+\message{[\splitfirstmarks3/\splitbotmarks3/\splitfirstmark/\splitbotmark/\splitfirstmarks4]}
+\setbox2\vsplit1 to 100pt
+\message{[\splitfirstmarks3/\splitbotmarks3/\splitfirstmark/\splitbotmark]}
+\showbox2
+\marks32768{x}
+\message{\topmarks32768}
+\marks-1{x}
+\end

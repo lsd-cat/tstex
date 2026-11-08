@@ -1,0 +1,159 @@
+entering extended mode
+(m4-discards.tex (plain.tex Preloading the plain format: codes, registers,
+\maxdimen=\dimen10
+\hideskip=\skip10
+\centering=\skip11
+\p@=\dimen11
+\z@=\dimen12
+\z@skip=\skip12
+\voidb@x=\box10
+parameters,
+\smallskipamount=\skip13
+\medskipamount=\skip14
+\bigskipamount=\skip15
+\normalbaselineskip=\skip16
+\normallineskip=\skip17
+\normallineskiplimit=\dimen13
+\jot=\dimen14
+\interdisplaylinepenalty=\count23
+\interfootnotelinepenalty=\count24
+fonts, more fonts,
+\itfam=\fam4
+\slfam=\fam5
+\bffam=\fam6
+\ttfam=\fam7
+macros,
+\strutbox=\box11
+\mscount=\count25
+\tabs=\box12
+\tabsyet=\box13
+\tabsdone=\box14
+math definitions,
+\rootbox=\box15
+\p@renwd=\dimen15
+output routines,
+\headline=\toks10
+\footline=\toks11
+\footins=\insert254
+\topins=\insert253
+hyphenation (hyphen.tex))
+> 1.
+l.5 \savingvdiscards=1 \showthe\savingvdiscards
+
+
+[page 1]
+> \box0=
+\vbox(0.0+0.0)x0.0
+
+! OK.
+<output> ...sage {[page \the \count 0]}\showbox 0
+                                                  \shipout \box 255 \global ...
+l.7 \hbox{a}\penalty-10000
+                           \vskip 5pt \penalty 3 \kern 2pt \hbox{b}\penalty-...
+
+
+
+Completed box being shipped out [1]
+\vbox(30.0+0.0)x5.00002
+.\glue(\topskip) 5.69446
+.\hbox(4.30554+0.0)x5.00002
+..\tenrm a
+
+[page 2]
+> \box0=
+\vbox(12.05556+0.0)x0.0
+.\penalty 10000
+.\glue 5.0
+.\penalty 3
+.\kern 2.0
+.\glue(\baselineskip) 5.05556
+
+! OK.
+<output> ...sage {[page \the \count 0]}\showbox 0
+                                                  \shipout \box 255 \global ...
+l.7 ...\penalty 3 \kern 2pt \hbox{b}\penalty-10000
+
+
+
+Completed box being shipped out [2]
+\vbox(30.0+0.0)x5.55557
+.\glue(\topskip) 3.05556
+.\hbox(6.94444+0.0)x5.55557
+..\tenrm b
+
+[page 3]
+> \box0=
+\vbox(14.69446+0.0)x0.0
+.\penalty 10000
+.\glue 7.0 plus 1.0
+.\penalty 4
+.\glue(\baselineskip) 7.69446
+
+! OK.
+<output> ...sage {[page \the \count 0]}\showbox 0
+                                                  \shipout \box 255 \global ...
+l.8 ... plus 1pt \penalty 4 \hbox{c}\penalty-10000
+
+
+
+Completed box being shipped out [3]
+\vbox(30.0+0.0)x4.44444
+.\glue(\topskip) 5.69446
+.\hbox(4.30554+0.0)x4.44444
+..\tenrm c
+
+[page 4]
+> \box0=
+\vbox(5.05556+0.0)x0.0
+.\penalty 10000
+.\glue(\baselineskip) 5.05556
+
+! OK.
+<output> ...sage {[page \the \count 0]}\showbox 0
+                                                  \shipout \box 255 \global ...
+l.9 \hbox{d}\penalty-10000
+
+
+
+Completed box being shipped out [4]
+\vbox(30.0+0.0)x5.55557
+.\glue(\topskip) 3.05556
+.\hbox(6.94444+0.0)x5.55557
+..\tenrm d
+
+> \box3=
+\vbox(13.05556+0.0)x0.0
+.\glue 5.0
+.\penalty 5
+.\kern 3.0
+.\glue(\baselineskip) 5.05556
+
+! OK.
+l.11 ...5pt \setbox3\vbox{\splitdiscards}\showbox3
+
+
+> \box3=
+\vbox(0.0+0.0)x0.0
+
+! OK.
+l.12 \setbox3\vbox{\splitdiscards}\showbox3
+
+
+> \box3=
+\vbox(8.69446+0.0)x0.0
+.\glue 1.0
+.\glue(\baselineskip) 7.69446
+
+! OK.
+l.13 ...1pt \setbox3\vbox{\splitdiscards}\showbox3
+
+
+> \box3=
+\vbox(0.0+0.0)x0.0
+
+! OK.
+l.15 ...5pt \setbox3\vbox{\splitdiscards}\showbox3
+
+
+ )
+Output written on m4-discards.dvi (4 pages, 340 bytes).

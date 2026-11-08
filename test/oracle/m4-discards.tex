@@ -1,0 +1,16 @@
+%! oracle: etex
+\input plain
+\tracingonline=0 \showboxbreadth=10000 \showboxdepth=10000 \tracingoutput=1
+\hsize=100pt \vsize=30pt \parindent=0pt \baselineskip=12pt \topskip=10pt \vbadness=10000 \vfuzz=100pt
+\savingvdiscards=1 \showthe\savingvdiscards
+\output={\setbox0\vbox{\pagediscards}\message{[page \the\count0]}\showbox0 \shipout\box255 \global\advance\count0 1 }
+\hbox{a}\penalty-10000 \vskip 5pt \penalty 3 \kern 2pt \hbox{b}\penalty-10000
+\vskip 7pt plus 1pt \penalty 4 \hbox{c}\penalty-10000
+\hbox{d}\penalty-10000
+\setbox1\vbox{\hbox{a}\vskip 5pt \penalty 5 \kern 3pt \hbox{b}\vskip 1pt \hbox{c}}
+\setbox2\vsplit1 to 5pt \setbox3\vbox{\splitdiscards}\showbox3
+\setbox3\vbox{\splitdiscards}\showbox3
+\setbox2\vsplit1 to 1pt \setbox3\vbox{\splitdiscards}\showbox3
+\savingvdiscards=0 \setbox1\vbox{\hbox{a}\vskip 5pt \hbox{b}}
+\setbox2\vsplit1 to 5pt \setbox3\vbox{\splitdiscards}\showbox3
+\end

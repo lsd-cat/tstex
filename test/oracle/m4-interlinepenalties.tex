@@ -1,0 +1,21 @@
+%! oracle: etex
+\input plain
+\tracingonline=0 \showboxbreadth=10000 \showboxdepth=10000 \tracingoutput=1
+\parindent=0pt \hsize=100pt \hbadness=10000
+\def\P#1{\vbox{#1\noindent\hbox{}\break\hbox{}\break\hbox{}\break\hbox{}\break\hbox{}\break\hbox{}\par\message{[\the\interlinepenalties0]}}}
+\interlinepenalties=3 100 200 300
+\clubpenalties=2 1000 2000
+\widowpenalties=3 5 6 7
+\displaywidowpenalties=1 9
+\message{[\the\interlinepenalties0,\the\interlinepenalties1,\the\interlinepenalties2,\the\interlinepenalties3,\the\interlinepenalties4,\the\interlinepenalties-1]}
+\message{[\the\clubpenalties0,\the\clubpenalties1,\the\clubpenalties5,\the\widowpenalties3,\the\displaywidowpenalties1,\the\displaywidowpenalties0]}
+\showthe\interlinepenalties2
+\showthe\interlinepenalties0
+\setbox1\P{\interlinepenalties=3 100 200 300 } \showbox1
+\message{[\the\interlinepenalties0]}
+\setbox1\P{\interlinepenalty=11 \clubpenalty=22 \widowpenalty=33 \clubpenalties=0 \widowpenalties=0 }
+\showbox1
+\setbox1\P{\interlinepenalty=11 \interlinepenalties=1 4 \clubpenalties=0 \widowpenalties=1 8 }
+\showbox1
+\interlinepenalties=-1 \message{[\the\interlinepenalties0]}
+\end

@@ -1,0 +1,112 @@
+entering extended mode
+(m4-conditionals.tex
+{vertical mode: \ifdefined: (level 1) entered on line 5}
+a def
+{\fi: \ifdefined (level 1) entered on line 5}
+{\ifdefined: (level 1) entered on line 6}
+{\else: \ifdefined (level 1) entered on line 6}
+undef
+{\fi: \ifdefined (level 1) entered on line 6}
+{\unless\ifdefined: (level 1) entered on line 7}
+unless undef
+{\fi: \unless\ifdefined (level 1) entered on line 7}
+{\ifdefined: (level 1) entered on line 8}
+relax def
+{\fi: \ifdefined (level 1) entered on line 8}
+{\ifcsname: (level 1) entered on line 9}
+cs a
+{\fi: \ifcsname (level 1) entered on line 9}
+{\ifcsname: (level 1) entered on line 10}
+{\else: \ifcsname (level 1) entered on line 10}
+no cs
+{\fi: \ifcsname (level 1) entered on line 10}
+{\ifx: (level 1) entered on line 11}
+now relax
+{\fi: \ifx (level 1) entered on line 11}
+{\ifcsname: (level 1) entered on line 12}
+defined now
+{\else: \ifcsname (level 1) entered on line 12}
+{\fi: \ifcsname (level 1) entered on line 12}
+{\ifcsname: (level 1) entered on line 13}
+expanded
+{\fi: \ifcsname (level 1) entered on line 13}
+{\unless\ifx: (level 1) entered on line 14}
+unless ifx
+{\fi: \unless\ifx (level 1) entered on line 14}
+{\unless\ifnum: (level 1) entered on line 15}
+unless ifnum
+{\fi: \unless\ifnum (level 1) entered on line 15}
+{\unless\ifodd: (level 1) entered on line 16}
+unless odd
+{\fi: \unless\ifodd (level 1) entered on line 16}
+! You can't use `\unless' before `\unless'.
+<to be read again>
+                   \unless
+l.17 \unless\unless
+                   \iftrue \message{double}\fi
+Continue, and I'll forget that it ever happened.
+
+{\unless\iftrue: (level 1) entered on line 17}
+{\fi: \unless\iftrue (level 1) entered on line 17}
+! You can't use `\unless' before `\ifcase'.
+<to be read again>
+                   \ifcase
+l.18 \unless\ifcase
+                    1 \or\fi
+Continue, and I'll forget that it ever happened.
+
+{\ifcase: (level 1) entered on line 18}
+{\or: \ifcase (level 1) entered on line 18}
+{\fi: \ifcase (level 1) entered on line 18}
+{\iffontchar: (level 1) entered on line 19}
+{\else: \iffontchar (level 1) entered on line 19}
+no nullfont A
+{\fi: \iffontchar (level 1) entered on line 19}
+{\iffontchar: (level 1) entered on line 21}
+has A
+{\fi: \iffontchar (level 1) entered on line 21}
+{\iffontchar: (level 1) entered on line 22}
+{\else: \iffontchar (level 1) entered on line 22}
+no 200
+{\fi: \iffontchar (level 1) entered on line 22}
+{\iffontchar: (level 1) entered on line 23}
+! Bad character code (256).
+l.23 \iffontchar\tenrm 256
+                           \message{256}\else\message{no 256}\fi
+A character number must be between 0 and 255.
+I changed this one to zero.
+
+256
+{\else: \iffontchar (level 1) entered on line 23}
+{\fi: \iffontchar (level 1) entered on line 23}
+{\ifnum: (level 1) entered on line 24}
+{\ifdim: (level 2) entered on line 24}
+{\unless\ifx: (level 3) entered on line 24}
+{\else: \unless\ifx (level 3) entered on line 24}
+[3,-13,-1]
+{\fi: \unless\ifx (level 3) entered on line 24}
+[2,4,1]
+{\fi: \ifdim (level 2) entered on line 24}
+[1,3,1]
+{\fi: \ifnum (level 1) entered on line 24}
+{\ifcase: (level 1) entered on line 27}
+{\or: \ifcase (level 1) entered on line 27}
+[17,1]
+{\fi: \ifcase (level 1) entered on line 27}
+{\ifcase: (level 1) entered on line 28}
+{\else: \ifcase (level 1) entered on line 28}
+[17,-1]
+{\fi: \ifcase (level 1) entered on line 28}
+{\iffalse: (level 1) entered on line 29}
+{\else: \iffalse (level 1) entered on line 29}
+[16,-1]
+{\fi: \iffalse (level 1) entered on line 29}
+{\iftrue: (level 1) entered on line 30}
+[15,1]
+{\fi: \iftrue (level 1) entered on line 30}
+{\unless\ifvoid: (level 1) entered on line 31}
+{\else: \unless\ifvoid (level 1) entered on line 31}
+[-10,-1]
+{\fi: \unless\ifvoid (level 1) entered on line 31}
+[0,0,0] )
+No pages of output.

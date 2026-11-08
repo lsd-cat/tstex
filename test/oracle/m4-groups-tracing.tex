@@ -1,0 +1,16 @@
+%! oracle: etex
+\input plain
+\tracingonline=0 \showboxbreadth=10000 \showboxdepth=10000 \tracingoutput=1
+\tracinggroups=1
+\def\g{\message{[\the\currentgrouplevel/\the\currentgrouptype]}}
+\g {\g} \begingroup\g\endgroup
+\hbox{\g}\setbox1\hbox{\g}\setbox1\vbox{\g}\setbox1\vtop{\g}
+\noindent\hbox{\g}\par
+\setbox1\vbox{\discretionary{\g}{}{}\insert100{\g}}
+\setbox1\hbox{${\g}$ $\vcenter{\g}$ $\mathchoice{\g}{}{}{}$ $\left(\g\right)$ $\g$}
+\setbox1\vbox{\halign{#\cr\g\cr\noalign{\g}}}
+\output={\g\shipout\box255}\hbox{}\penalty-10000
+\showgroups
+\hbox{\vbox{\begingroup{\hbox{${\left(\showgroups\right)}$}}\endgroup}}
+\message{\the\currentgrouplevel,\the\currentgrouptype}
+\end

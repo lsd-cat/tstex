@@ -1,0 +1,45 @@
+entering extended mode
+(m4-readline.tex
+> \x=macro:
+->\message{inner}\begingroup\iftrue^^M.
+l.4 \readline1 to\x \show\x
+
+
+> \x=macro:
+->\message{ a  b {c} \relax  }^^M.
+l.5 \readline1 to\x \show\x
+
+
+> \x=macro:
+->^^M.
+l.6 \readline1 to\x \show\x
+                            \ifeof1 \message{eof}\else\message{not eof}\fi
+
+eof
+> \y=macro:
+->\message {inner}\begingroup \iftrue .
+l.9 \read1 to\y \show\y
+
+
+> \x=macro:
+->\message{ a  b {c} \relax  }.
+l.10 \endlinechar=-1 \readline1 to\x \show\x
+                                            ^^M
+
+> \x=macro:
+->\message{inner}\begingroup\iftrue%.
+l.11 ...1=m4-nesting-inner \readline1 to\x \show\x
+
+
+> \z=macro:
+->\message{inner}\begingroup\iftrue^^M.
+l.13 ...1=m4-nesting-inner \readline1 to\z \show\z
+                                                  %
+
+> \gg=macro:
+->\message{ a  b {c} \relax  }^^M.
+l.14 {\global\readline1 to\gg}\show\gg
+
+
+ )
+No pages of output.

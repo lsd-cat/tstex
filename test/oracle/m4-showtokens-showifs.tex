@@ -1,0 +1,17 @@
+%! oracle: etex
+\catcode`\{=1 \catcode`\}=2 \catcode`\#=6
+\def\c{C}\toks0={x #y \c}
+\showtokens{a #b \c}
+\showtokens\expandafter{\the\toks0}
+\showtokens{}
+\showtokens\expandafter{\c}
+\showtokens{{a}  b ~}
+\showifs
+\ifnum1=1 \ifcase 2 \or\or \unless\iffalse \ifx aa\showifs\fi\fi\fi\fi
+\ifdefined\c \else\fi \iftrue \else \showifs \fi
+\iffalse \else \showifs \fi
+\iftrue \ifcsname c\endcsname \unless\ifx\c\relax \showifs \fi\fi\fi
+\showgroups
+{\begingroup \showgroups \endgroup}
+\setbox1\vbox{\hbox{\showgroups}}
+\end

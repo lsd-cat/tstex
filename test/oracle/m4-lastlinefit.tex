@@ -1,0 +1,15 @@
+%! oracle: etex
+\input plain
+\tracingonline=0 \showboxbreadth=10000 \showboxdepth=10000 \tracingoutput=1
+\hsize=100pt \parindent=0pt \tolerance=10000 \parfillskip=0pt plus 1fil \tracingparagraphs=1
+\def\t{The quick fox jumps over a lazy dog today.\par}
+\lastlinefit=1000
+\setbox1\vbox{\t}\showbox1
+\lastlinefit=500
+\setbox1\vbox{\t}\showbox1
+\lastlinefit=0
+\setbox1\vbox{\t}\showbox1
+\lastlinefit=1000 \parfillskip=0pt
+\setbox1\vbox{\t}
+\showthe\lastlinefit
+\end

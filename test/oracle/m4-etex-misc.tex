@@ -1,0 +1,22 @@
+%! oracle: etex
+\catcode`\{=1 \catcode`\}=2 \catcode`\#=6
+\showthe\currentgrouplevel
+{\showthe\currentgrouplevel \begingroup \showthe\currentgrouplevel \endgroup}
+\protected\long\outer\def\a#1{x#1}\show\a
+\protected\outer\long\def\b{y}\show\b
+\long\protected\def\c#1#2{}\show\c
+\outer\def\d{}\show\d
+\protected\global\def\e{z}\show\e \global\protected\long\def\f{}\show\f
+\message{\detokenize{\par\par x\par}.}
+\edef\g{\detokenize{\par}}\show\g
+\everyeof{\message{EOF}}
+\input m4-nesting-inner \endgroup\fi
+\scantokens{\input m4-nesting-inner }\endgroup\fi
+\everyeof{}
+\message{[\the\numexpr\dimexpr 1pt\relax\relax]}
+\message{[\the\dimexpr\numexpr 3\relax\relax]}
+\message{[\the\dimexpr 1pt*\numexpr 2+1\relax\relax]}
+\message{[\the\numexpr\skip0\relax,\the\numexpr\glueexpr 1pt plus 2pt\relax]}
+\message{[\the\glueexpr\dimexpr 1pt\relax\relax]}
+\showthe\eTeXversion
+\end

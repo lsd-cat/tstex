@@ -1,0 +1,134 @@
+entering extended mode
+(m4-marks.tex (plain.tex Preloading the plain format: codes, registers,
+\maxdimen=\dimen10
+\hideskip=\skip10
+\centering=\skip11
+\p@=\dimen11
+\z@=\dimen12
+\z@skip=\skip12
+\voidb@x=\box10
+parameters,
+\smallskipamount=\skip13
+\medskipamount=\skip14
+\bigskipamount=\skip15
+\normalbaselineskip=\skip16
+\normallineskip=\skip17
+\normallineskiplimit=\dimen13
+\jot=\dimen14
+\interdisplaylinepenalty=\count23
+\interfootnotelinepenalty=\count24
+fonts, more fonts,
+\itfam=\fam4
+\slfam=\fam5
+\bffam=\fam6
+\ttfam=\fam7
+macros,
+\strutbox=\box11
+\mscount=\count25
+\tabs=\box12
+\tabsyet=\box13
+\tabsdone=\box14
+math definitions,
+\rootbox=\box15
+\p@renwd=\dimen15
+output routines,
+\headline=\toks10
+\footline=\toks11
+\footins=\insert254
+\topins=\insert253
+hyphenation (hyphen.tex)) [top:/a1/a2m0:/z1/z1m5:/]
+
+Completed box being shipped out [1]
+\vbox(50.0+1.94444)x5.2778
+.\marks3{a1}
+.\mark{z1}
+.\glue(\topskip) 5.69446
+.\hbox(4.30554+0.0)x5.2778
+..\tenrm x
+.\marks3{a2}
+.\glue(\baselineskip) 7.69446
+.\hbox(4.30554+1.94444)x5.2778
+..\tenrm y
+
+[top:a2/a2/a2m0:z1/z2/z2m5:/]
+
+Completed box being shipped out [1]
+\vbox(50.0+1.94444)x5.55557
+.\glue(\topskip) 5.69446
+.\hbox(4.30554+1.94444)x5.55557
+..\tenrm p
+.\mark{z2}
+.\glue(\baselineskip) 5.75002
+.\hbox(4.30554+1.94444)x5.27779
+..\tenrm q
+
+[top:a2/a3/a4m0:z2/z2/z2m5:/five]
+
+Completed box being shipped out [1]
+\vbox(50.0+0.0)x3.94444
+.\glue(\topskip) 5.69446
+.\hbox(4.30554+0.0)x3.91667
+..\tenrm r
+.\marks5{five}
+.\marks3{a3}
+.\marks3{a4}
+.\glue(\baselineskip) 7.69446
+.\hbox(4.30554+0.0)x3.94444
+..\tenrm s
+
+[top:a4/a4/a4m0:z2/z2/z2m5:five/five]
+
+Completed box being shipped out [1]
+\vbox(50.0+0.0)x3.8889
+.\glue(\topskip) 3.84921
+.\hbox(6.15079+0.0)x3.8889
+..\tenrm t
+
+[s1/s3/m1/m1/] [///]
+> \box2=
+\vbox(100.0+0.0)x5.55557
+.\glue(\splittopskip) 3.05556
+.\hbox(6.94444+0.0)x5.55557
+..\tenrm d
+
+! OK.
+l.15 \showbox2
+
+
+! Bad register code (32768).
+<to be read again>
+                   {
+l.16 \marks32768{
+                 x}
+A register number must be between 0 and 32767.
+I changed this one to zero.
+
+! Bad register code (32768).
+<to be read again>
+                   }
+l.17 \message{\topmarks32768}
+
+A register number must be between 0 and 32767.
+I changed this one to zero.
+
+z2
+! Bad register code (-1).
+<to be read again>
+                   {
+l.18 \marks-1{
+              x}
+A register number must be between 0 and 32767.
+I changed this one to zero.
+
+[top:a4/a4/a4m0:z2/x/xm5:five/five]
+
+Completed box being shipped out [1]
+\vbox(50.0+0.0)x100.0, glue set 40.0fill
+.\mark{x}
+.\mark{x}
+.\glue(\topskip) 10.0
+.\hbox(0.0+0.0)x100.0
+.\glue 0.0 plus 1.0fill
+
+ )
+Output written on m4-marks.dvi (5 pages, 408 bytes).

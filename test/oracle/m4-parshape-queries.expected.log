@@ -1,0 +1,22 @@
+entering extended mode
+(m4-parshape-queries.tex [3] [2.0pt,4.0pt,6.0pt,6.0pt,0.0pt,0.0pt] [1.0pt,3.0
+pt,5.0pt,5.0pt,0.0pt,0.0pt] [1.0pt,2.0pt,3.0pt,4.0pt,5.0pt,6.0pt,5.0pt,0.0pt]
+> 4.0pt.
+l.8 \showthe\parshapelength2
+
+
+> 5.0pt.
+l.9 \showthe\parshapeindent3
+
+
+> 4.0pt.
+l.10 \showthe\parshapedimen4
+
+
+> 3.0pt.
+l.11 \dimen0=\parshapedimen3 \showthe\dimen0
+
+
+[0,0.0pt,0.0pt,0.0pt,0.0pt] [8.0pt,8.0pt,8.0pt,7.0pt] [8.0pt] [2.0pt] [8.0pt,8.
+0pt] )
+No pages of output.

@@ -1,0 +1,180 @@
+entering extended mode
+(m4-groups-tracing.tex (plain.tex Preloading the plain format: codes, regis
+ters,
+\maxdimen=\dimen10
+\hideskip=\skip10
+\centering=\skip11
+\p@=\dimen11
+\z@=\dimen12
+\z@skip=\skip12
+\voidb@x=\box10
+parameters,
+\smallskipamount=\skip13
+\medskipamount=\skip14
+\bigskipamount=\skip15
+\normalbaselineskip=\skip16
+\normallineskip=\skip17
+\normallineskiplimit=\dimen13
+\jot=\dimen14
+\interdisplaylinepenalty=\count23
+\interfootnotelinepenalty=\count24
+fonts, more fonts,
+\itfam=\fam4
+\slfam=\fam5
+\bffam=\fam6
+\ttfam=\fam7
+macros,
+\strutbox=\box11
+\mscount=\count25
+\tabs=\box12
+\tabsyet=\box13
+\tabsdone=\box14
+math definitions,
+\rootbox=\box15
+\p@renwd=\dimen15
+output routines,
+\headline=\toks10
+\footline=\toks11
+\footins=\insert254
+\topins=\insert253
+hyphenation (hyphen.tex)) [0/0]{entering simple group (level 1) at line 6}
+[1/1]{leaving simple group (level 1) entered at line 6}
+{entering semi simple group (level 1) at line 6}
+[1/14]{leaving semi simple group (level 1) entered at line 6}
+{entering adjusted hbox group (level 1) at line 7}
+[1/3]{leaving adjusted hbox group (level 1) entered at line 7}
+{entering hbox group (level 1) at line 7}
+[1/2]{leaving hbox group (level 1) entered at line 7}
+{entering vbox group (level 1) at line 7}
+[1/4]{leaving vbox group (level 1) entered at line 7}
+{entering vtop group (level 1) at line 7}
+[1/5]{leaving vtop group (level 1) entered at line 7}
+{entering hbox group (level 1) at line 8}
+[1/2]{leaving hbox group (level 1) entered at line 8}
+{entering vbox group (level 1) at line 9}
+{entering disc group (level 2) at line 9}
+[2/10]{leaving disc group (level 2) entered at line 9}
+{entering disc group (level 2) at line 9}
+{leaving disc group (level 2) entered at line 9}
+{entering disc group (level 2) at line 9}
+{leaving disc group (level 2) entered at line 9}
+{entering insert group (level 2) at line 9}
+[2/11]{leaving insert group (level 2) entered at line 9}
+{leaving vbox group (level 1) entered at line 9}
+{entering hbox group (level 1) at line 10}
+{entering math shift group (level 2) at line 10}
+{entering math group (level 3) at line 10}
+[3/9]{leaving math group (level 3) entered at line 10}
+{leaving math shift group (level 2) entered at line 10}
+{entering math shift group (level 2) at line 10}
+{entering vcenter group (level 3) at line 10}
+[3/12]{leaving vcenter group (level 3) entered at line 10}
+{leaving math shift group (level 2) entered at line 10}
+{entering math shift group (level 2) at line 10}
+{entering math choice group (level 3) at line 10}
+[3/13]{leaving math choice group (level 3) entered at line 10}
+{entering math choice group (level 3) at line 10}
+{leaving math choice group (level 3) entered at line 10}
+{entering math choice group (level 3) at line 10}
+{leaving math choice group (level 3) entered at line 10}
+{entering math choice group (level 3) at line 10}
+{leaving math choice group (level 3) entered at line 10}
+{leaving math shift group (level 2) entered at line 10}
+{entering math shift group (level 2) at line 10}
+{entering math left group (level 3) at line 10}
+[3/16]{leaving math left group (level 3) entered at line 10}
+{leaving math shift group (level 2) entered at line 10}
+{entering math shift group (level 2) at line 10}
+[2/15]{leaving math shift group (level 2) entered at line 10}
+{leaving hbox group (level 1) entered at line 10}
+{entering vbox group (level 1) at line 11}
+{entering align group (level 2) at line 11}
+{entering align group (level 3) at line 11}
+[3/6]{leaving align group (level 3) entered at line 11}
+{entering align group (level 3) at line 11}
+{entering no align group (level 4) at line 11}
+[4/7]{leaving no align group (level 4) entered at line 11}
+{leaving align group (level 3) entered at line 11}
+{leaving align group (level 2) entered at line 11}
+{leaving vbox group (level 1) entered at line 11}
+{entering adjusted hbox group (level 1) at line 12}
+{leaving adjusted hbox group (level 1) entered at line 12}
+{entering output group (level 1) at line 12}
+[1/8]
+
+Completed box being shipped out [1]
+\vbox(643.20255+0.0)x469.75499, glue set 609.20255
+.\glue(\topskip) 10.0
+.\hbox(0.0+0.0)x0.0
+.\glue(\parskip) 0.0 plus 1.0
+.\glue(\baselineskip) 12.0
+.\hbox(0.0+0.0)x469.75499, glue set 469.75499fil
+..\hbox(0.0+0.0)x0.0
+..\penalty 10000
+..\glue(\parfillskip) 0.0 plus 1.0fil
+..\glue(\rightskip) 0.0
+.\glue(\baselineskip) 12.0
+.\hbox(0.0+0.0)x0.0
+
+{leaving output group (level 1) entered at line 12}
+
+### bottom level
+
+! OK.
+l.13 \showgroups
+
+
+{entering adjusted hbox group (level 1) at line 14}
+{entering vbox group (level 2) at line 14}
+{entering semi simple group (level 3) at line 14}
+{entering simple group (level 4) at line 14}
+{entering adjusted hbox group (level 5) at line 14}
+{entering math shift group (level 6) at line 14}
+{entering math group (level 7) at line 14}
+{entering math left group (level 8) at line 14}
+
+### math left group (level 8) entered at line 14 (\left)
+### math group (level 7) entered at line 14 ({)
+### math shift group (level 6) entered at line 14 ($)
+### adjusted hbox group (level 5) entered at line 14 (\hbox{)
+### simple group (level 4) entered at line 14 ({)
+### semi simple group (level 3) entered at line 14 (\begingroup)
+### vbox group (level 2) entered at line 14 (\vbox{)
+### adjusted hbox group (level 1) entered at line 14 (\hbox{)
+### bottom level
+
+! OK.
+l.14 ...vbox{\begingroup{\hbox{${\left(\showgroups
+                                                  \right)}$}}\endgroup}}
+
+{leaving math left group (level 8) entered at line 14}
+{leaving math group (level 7) entered at line 14}
+{leaving math shift group (level 6) entered at line 14}
+{leaving adjusted hbox group (level 5) entered at line 14}
+{leaving simple group (level 4) entered at line 14}
+{leaving semi simple group (level 3) entered at line 14}
+{leaving vbox group (level 2) entered at line 14}
+{leaving adjusted hbox group (level 1) entered at line 14}
+0,0{entering output group (level 1) at line 16}
+[1/8]
+
+Completed box being shipped out [1]
+\vbox(643.20255+0.0)x469.75499, glue set 630.70255fill
+.\glue(\topskip) 2.5
+.\hbox(7.5+2.5)x7.7778
+..\vbox(7.5+2.5)x7.7778
+...\hbox(7.5+2.5)x7.7778
+....\mathon
+....\hbox(7.5+2.5)x7.7778
+.....\hbox(7.5+2.5)x7.7778
+......\hbox(7.5+2.5)x3.8889
+.......\tenrm (
+......\hbox(7.5+2.5)x3.8889
+.......\tenrm )
+....\mathoff
+.\hbox(0.0+0.0)x469.75499
+.\glue 0.0 plus 1.0fill
+
+{leaving output group (level 1) entered at line 16}
+ )
+Output written on m4-groups-tracing.dvi (2 pages, 248 bytes).

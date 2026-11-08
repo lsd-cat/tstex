@@ -1,0 +1,25 @@
+%! oracle: etex
+\input plain
+\tracingonline=0 \showboxbreadth=10000 \showboxdepth=10000 \tracingoutput=1
+\def\t#1{\setbox1\hbox{#1\message{[\the\lastnodetype]}}}
+\setbox1\hbox{\message{[\the\lastnodetype]}}
+\t{A}\t{\hbox{}}\t{\vbox{}}\t{\vrule}\t{\insert100{}}\t{\mark{}}\t{\vadjust{}}
+\t{fi}\t{\discretionary{}{}{}}\t{\special{x}}\t{\write16{}}\t{\openout3=x }\t{\hskip 1pt}\t{\kern 1pt}\t{\penalty 5}
+\t{$ $}\t{$$}\t{A\unskip}\t{A\hskip1pt\unskip}\t{A\kern1pt\unkern}\t{\penalty5\unpenalty}
+\t{\char65}\t{\accent65 B}\t{\vtop{}}\t{\leaders\hrule\hskip 1pt}\t{\hfil}\t{\raise1pt\hbox{}}
+\message{vmode:}
+\message{[\the\lastnodetype]}
+\hbox{}\message{[\the\lastnodetype]}
+\vskip 1pt\message{[\the\lastnodetype]}
+\hrule\message{[\the\lastnodetype]}
+\penalty 1\message{[\the\lastnodetype]}
+\kern 1pt\message{[\the\lastnodetype]}
+\mark{}\message{[\the\lastnodetype]}
+\insert100{}\message{[\the\lastnodetype]}
+\vbox{}\message{[\the\lastnodetype]}
+\special{x}\message{[\the\lastnodetype]}
+\showlists
+\message{math:}
+\t{$\message{[\the\lastnodetype]}a\message{[\the\lastnodetype]}+\message{[\the\lastnodetype]}{}\message{[\the\lastnodetype]}\hskip 1pt\message{[\the\lastnodetype]}\mathsurround=1pt $}
+\setbox2\vbox{\halign{#\cr a\cr\noalign{\message{[\the\lastnodetype]}}}}
+\end

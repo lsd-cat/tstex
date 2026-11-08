@@ -1,0 +1,54 @@
+Options selected:
+  Starting page = * 
+  Maximum number of pages = 1000000
+  Output level = 4 (the works)
+  Resolution = 300.00000000 pixels per inch
+numerator/denominator=25400000/473628672
+magnification=1000;       0.00006334 pixels per DVI unit
+'<comment>'
+Postamble starts at byte 185.
+maxv=42152922, maxh=30785863, maxstackdepth=6, totalpages=2
+Font 0: cmr10---loaded at size 655360 DVI units 
+ 
+42: beginning of page 1 
+87: down4 41366490 v:=0+41366490=41366490, vv:=2620 
+92: eop 
+ 
+93: beginning of page 1 
+138: down3 655360 v:=0+655360=655360, vv:=42 
+142: push 
+level 0:(h=0,v=655360,w=0,x=0,y=0,z=0,hh=0,vv=42) 
+143: push 
+level 1:(h=0,v=655360,w=0,x=0,y=0,z=0,hh=0,vv=42) 
+144: push 
+level 2:(h=0,v=655360,w=0,x=0,y=0,z=0,hh=0,vv=42) 
+145: push 
+level 3:(h=0,v=655360,w=0,x=0,y=0,z=0,hh=0,vv=42) 
+146: push 
+level 4:(h=0,v=655360,w=0,x=0,y=0,z=0,hh=0,vv=42) 
+147: push 
+level 5:(h=0,v=655360,w=0,x=0,y=0,z=0,hh=0,vv=42) 
+148: fntdef1 0: cmr10 
+169: fntnum0 current font is cmr10 
+170: setchar40 h:=0+254863=254863, hh:=16 
+[(]
+171: pop 
+level 5:(h=0,v=655360,w=0,x=0,y=0,z=0,hh=0,vv=42) 
+172: push 
+level 5:(h=0,v=655360,w=0,x=0,y=0,z=0,hh=0,vv=42) 
+173: right3 254863 h:=0+254863=254863, hh:=16 
+177: setchar41 h:=254863+254863=509726, hh:=32 
+[ )]
+178: pop 
+level 5:(h=0,v=655360,w=0,x=0,y=0,z=0,hh=0,vv=42) 
+179: pop 
+level 4:(h=0,v=655360,w=0,x=0,y=0,z=0,hh=0,vv=42) 
+180: pop 
+level 3:(h=0,v=655360,w=0,x=0,y=0,z=0,hh=0,vv=42) 
+181: pop 
+level 2:(h=0,v=655360,w=0,x=0,y=0,z=0,hh=0,vv=42) 
+182: pop 
+level 1:(h=0,v=655360,w=0,x=0,y=0,z=0,hh=0,vv=42) 
+183: pop 
+level 0:(h=0,v=655360,w=0,x=0,y=0,z=0,hh=0,vv=42) 
+184: eop 

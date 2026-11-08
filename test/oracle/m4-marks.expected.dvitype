@@ -1,0 +1,80 @@
+Options selected:
+  Starting page = * 
+  Maximum number of pages = 1000000
+  Output level = 4 (the works)
+  Resolution = 300.00000000 pixels per inch
+numerator/denominator=25400000/473628672
+magnification=1000;       0.00006334 pixels per DVI unit
+'<comment>'
+Postamble starts at byte 346.
+maxv=3404231, maxh=6553600, maxstackdepth=1, totalpages=5
+Font 0: cmr10---loaded at size 655360 DVI units 
+ 
+42: beginning of page 1 
+87: down3 655360 v:=0+655360=655360, vv:=42 
+91: push 
+level 0:(h=0,v=655360,w=0,x=0,y=0,z=0,hh=0,vv=42) 
+92: fntdef1 0: cmr10 
+113: fntnum0 current font is cmr10 
+114: setchar120 h:=0+345886=345886, hh:=22 
+[x]
+115: pop 
+level 0:(h=0,v=655360,w=0,x=0,y=0,z=0,hh=0,vv=42) 
+116: down3 786432 v:=655360+786432=1441792, vv:=91 
+120: push 
+level 0:(h=0,v=1441792,w=0,x=0,y=0,z=0,hh=0,vv=91) 
+121: setchar121 h:=0+345886=345886, hh:=22 
+[y]
+122: pop 
+level 0:(h=0,v=1441792,w=0,x=0,y=0,z=0,hh=0,vv=91) 
+123: eop 
+ 
+124: beginning of page 1 
+169: down3 655360 v:=0+655360=655360, vv:=42 
+173: push 
+level 0:(h=0,v=655360,w=0,x=0,y=0,z=0,hh=0,vv=42) 
+174: fntnum0 current font is cmr10 
+175: setchar112 h:=0+364090=364090, hh:=23 
+[p]
+176: pop 
+level 0:(h=0,v=655360,w=0,x=0,y=0,z=0,hh=0,vv=42) 
+177: down3 786432 v:=655360+786432=1441792, vv:=91 
+181: push 
+level 0:(h=0,v=1441792,w=0,x=0,y=0,z=0,hh=0,vv=91) 
+182: setchar113 h:=0+345885=345885, hh:=22 
+[q]
+183: pop 
+level 0:(h=0,v=1441792,w=0,x=0,y=0,z=0,hh=0,vv=91) 
+184: eop 
+ 
+185: beginning of page 1 
+230: down3 655360 v:=0+655360=655360, vv:=42 
+234: push 
+level 0:(h=0,v=655360,w=0,x=0,y=0,z=0,hh=0,vv=42) 
+235: fntnum0 current font is cmr10 
+236: setchar114 h:=0+256683=256683, hh:=16 
+[r]
+237: pop 
+level 0:(h=0,v=655360,w=0,x=0,y=0,z=0,hh=0,vv=42) 
+238: down3 786432 v:=655360+786432=1441792, vv:=91 
+242: push 
+level 0:(h=0,v=1441792,w=0,x=0,y=0,z=0,hh=0,vv=91) 
+243: setchar115 h:=0+258503=258503, hh:=16 
+[s]
+244: pop 
+level 0:(h=0,v=1441792,w=0,x=0,y=0,z=0,hh=0,vv=91) 
+245: eop 
+ 
+246: beginning of page 1 
+291: down3 655360 v:=0+655360=655360, vv:=42 
+295: push 
+level 0:(h=0,v=655360,w=0,x=0,y=0,z=0,hh=0,vv=42) 
+296: fntnum0 current font is cmr10 
+297: setchar116 h:=0+254863=254863, hh:=16 
+[t]
+298: pop 
+level 0:(h=0,v=655360,w=0,x=0,y=0,z=0,hh=0,vv=42) 
+299: eop 
+ 
+300: beginning of page 1 
+345: eop 
