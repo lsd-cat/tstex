@@ -2,7 +2,7 @@
 // Token lists keep TeX's numeric pointers (info/link arrays, null=0) so that equiv, cur_chr,
 // loc and cur_val stay integers as in tex.web; box/glue nodes are objects.
 import type { Engine } from './engine.ts'
-import { print, print_char, print_esc, print_int, print_ln, print_current_string } from './print.ts'
+import { print, print_char, print_esc, print_int, print_ln, print_current_string, print_hex } from './print.ts'
 import { print_scaled } from './arith.ts'
 import { confusion } from './error.ts'
 import { show_token_list } from './tokens.ts'
@@ -146,7 +146,41 @@ export type GlueNode = Link & { type: typeof glue_node, subtype: number, glue_pt
 export type KernNode = Link & { type: typeof kern_node, subtype: number, width: number }
 export type PenaltyNode = Link & { type: typeof penalty_node, subtype: number, penalty: number }
 export type Node = CharNode | BoxNode | RuleNode | InsNode | MarkNode | AdjustNode | LigNode | DiscNode | WhatsitNode | MathNode
-  | GlueNode | KernNode | PenaltyNode
+  | GlueNode | KernNode | PenaltyNode | StyleNode | ChoiceNode | Noad
+
+// §681–688 noads. A noad field (nucleus, supscr, subscr, accent_chr) is an object so that scan_math and the
+// save stack can point at it; new_hlist, which TeX overlays on the nucleus word, is a field of its own.
+export const style_node = 14, choice_node = 15, ord_noad = 16, op_noad = 17, bin_noad = 18, rel_noad = 19, open_noad = 20,
+  close_noad = 21, punct_noad = 22, inner_noad = 23, radical_noad = 24, fraction_noad = 25, under_noad = 26, over_noad = 27,
+  accent_noad = 28, vcenter_noad = 29, left_noad = 30, right_noad = 31
+export const math_char = 1, sub_box = 2, sub_mlist = 3, math_text_char = 4 // §681 math_type; empty = 0
+export const limits = 1, no_limits = 2 // §682
+export const default_code = 0o10000000000 // §683
+export const display_style = 0, text_style = 2, script_style = 4, script_script_style = 6, cramped = 1 // §688
+export type Field = { math_type: number, fam: number, character: number, info: Node | null }
+export type Delim = { small_fam: number, small_char: number, large_fam: number, large_char: number }
+// numerator==supscr, denominator==subscr (§683); a left/right noad keeps delimiter(p) in left_delimiter
+type NoadType = typeof ord_noad | typeof op_noad | typeof bin_noad | typeof rel_noad | typeof open_noad | typeof close_noad
+  | typeof punct_noad | typeof inner_noad | typeof radical_noad | typeof fraction_noad | typeof under_noad | typeof over_noad
+  | typeof accent_noad | typeof vcenter_noad | typeof left_noad | typeof right_noad
+export type Noad = Link & { type: NoadType, subtype: number, nucleus: Field, supscr: Field, subscr: Field, new_hlist: Node | null,
+  left_delimiter: Delim, right_delimiter: Delim, accent_chr: Field, thickness: number }
+export type StyleNode = Link & { type: typeof style_node, subtype: number, width: number, depth: number }
+export type ChoiceNode = Link & { type: typeof choice_node, subtype: number, display_mlist: Node | null, text_mlist: Node | null,
+  script_mlist: Node | null, script_script_mlist: Node | null }
+export const empty_field = (): Field => ({ math_type: 0, fam: 0, character: 0, info: null }) // §684
+export const null_delimiter = (): Delim => ({ small_fam: 0, small_char: 0, large_fam: 0, large_char: 0 })
+
+// §686 new_noad (also the radical, fraction and accent noads of §1163, §1165, §1181)
+export function new_noad(): Noad {
+  return { type: ord_noad, link: null, subtype: normal, nucleus: empty_field(), supscr: empty_field(), subscr: empty_field(),
+    new_hlist: null, left_delimiter: null_delimiter(), right_delimiter: null_delimiter(), accent_chr: empty_field(), thickness: 0 }
+}
+// §688 new_style
+export const new_style = (s: number): StyleNode => ({ type: style_node, link: null, subtype: s, width: 0, depth: 0 })
+// §689 new_choice
+export const new_choice = (): ChoiceNode => ({ type: choice_node, link: null, subtype: 0, display_mlist: null, text_mlist: null,
+  script_mlist: null, script_script_mlist: null })
 
 export const is_char_node = (p: Node): p is CharNode => p.type === char_node
 
@@ -243,6 +277,19 @@ export function flush_node_list(e: Engine, p: Node | null): void {
       case mark_node: delete_token_ref(e, p.mark_ptr); break
       case disc_node: flush_node_list(e, p.pre_break); flush_node_list(e, p.post_break); break
       case adjust_node: flush_node_list(e, p.adjust_ptr); break
+      case style_node: break // §698
+      case choice_node:
+        flush_node_list(e, p.display_mlist); flush_node_list(e, p.text_mlist)
+        flush_node_list(e, p.script_mlist); flush_node_list(e, p.script_script_mlist)
+        break
+      case ord_noad: case op_noad: case bin_noad: case rel_noad: case open_noad: case close_noad: case punct_noad: case inner_noad:
+      case radical_noad: case over_noad: case under_noad: case vcenter_noad: case accent_noad:
+        if (p.nucleus.math_type >= sub_box) flush_node_list(e, p.nucleus.info)
+        if (p.supscr.math_type >= sub_box) flush_node_list(e, p.supscr.info)
+        if (p.subscr.math_type >= sub_box) flush_node_list(e, p.subscr.info)
+        break
+      case left_noad: case right_noad: break
+      case fraction_noad: flush_node_list(e, p.supscr.info); flush_node_list(e, p.subscr.info); break
       default: confusion(e, 'flushing')
     }
     p = q
@@ -475,9 +522,92 @@ export function show_node_list(e: Engine, p: Node | null): void {
         print_esc(e, 'vadjust'); if (p.subtype !== 0) print(e, ' pre ')
         node_list_display(e, p.adjust_ptr)
         break
+      case style_node: print_style(e, p.subtype); break // §690
+      case choice_node: // §695 Display choice node p
+        print_esc(e, 'mathchoice')
+        node_list_display(e, p.display_mlist, 68); node_list_display(e, p.text_mlist, 84)
+        node_list_display(e, p.script_mlist, 83); node_list_display(e, p.script_script_mlist, 115)
+        break
+      case fraction_noad: { // §697 Display fraction noad p
+        print_esc(e, 'fraction, thickness ')
+        if (p.thickness === default_code) print(e, '= default'); else print_scaled(e, p.thickness)
+        const l = p.left_delimiter, r = p.right_delimiter
+        if (l.small_fam !== 0 || l.small_char !== 0 || l.large_fam !== 0 || l.large_char !== 0) {
+          print(e, ', left-delimiter '); print_delimiter(e, l)
+        }
+        if (r.small_fam !== 0 || r.small_char !== 0 || r.large_fam !== 0 || r.large_char !== 0) {
+          print(e, ', right-delimiter '); print_delimiter(e, r)
+        }
+        print_subsidiary_data(e, p.supscr, 92); print_subsidiary_data(e, p.subscr, 47)
+        break
+      }
+      case ord_noad: case op_noad: case bin_noad: case rel_noad: case open_noad: case close_noad: case punct_noad: case inner_noad:
+      case radical_noad: case over_noad: case under_noad: case vcenter_noad: case accent_noad: case left_noad: case right_noad: // §696
+        switch (p.type) {
+          case ord_noad: print_esc(e, 'mathord'); break
+          case op_noad: print_esc(e, 'mathop'); break
+          case bin_noad: print_esc(e, 'mathbin'); break
+          case rel_noad: print_esc(e, 'mathrel'); break
+          case open_noad: print_esc(e, 'mathopen'); break
+          case close_noad: print_esc(e, 'mathclose'); break
+          case punct_noad: print_esc(e, 'mathpunct'); break
+          case inner_noad: print_esc(e, 'mathinner'); break
+          case over_noad: print_esc(e, 'overline'); break
+          case under_noad: print_esc(e, 'underline'); break
+          case vcenter_noad: print_esc(e, 'vcenter'); break
+          case radical_noad: print_esc(e, 'radical'); print_delimiter(e, p.left_delimiter); break
+          case accent_noad: print_esc(e, 'accent'); print_fam_and_char(e, p.accent_chr); break
+          case left_noad: print_esc(e, 'left'); print_delimiter(e, p.left_delimiter); break
+          case right_noad: print_esc(e, p.subtype === normal ? 'right' : 'middle'); print_delimiter(e, p.left_delimiter); break
+        }
+        if (p.type < left_noad) {
+          if (p.subtype !== normal) print_esc(e, p.subtype === limits ? 'limits' : 'nolimits')
+          print_subsidiary_data(e, p.nucleus, 46)
+        }
+        print_subsidiary_data(e, p.supscr, 94); print_subsidiary_data(e, p.subscr, 95)
+        break
       default: print(e, 'Unknown node type!')
     }
     p = p.link
+  }
+}
+
+// §691 print_fam_and_char, print_delimiter
+export function print_fam_and_char(e: Engine, p: Field): void {
+  print_esc(e, 'fam'); print_int(e, p.fam); print_char(e, 32); print(e, p.character)
+}
+export function print_delimiter(e: Engine, p: Delim): void {
+  let a = p.small_fam * 256 + p.small_char
+  a = a * 0x1000 + p.large_fam * 256 + p.large_char
+  if (a < 0) print_int(e, a); else print_hex(e, a)
+}
+
+// §692 print_subsidiary_data
+function print_subsidiary_data(e: Engine, p: Field, c: number): void {
+  if (e.cur_str.length >= e.depth_threshold) {
+    if (p.math_type !== 0) print(e, ' []')
+    return
+  }
+  e.cur_str.push(c)
+  switch (p.math_type) {
+    case math_char: print_ln(e); print_current_string(e); print_fam_and_char(e, p); break
+    case sub_box: show_node_list(e, p.info); break
+    case sub_mlist:
+      if (p.info === null) { print_ln(e); print_current_string(e); print(e, '{}') }
+      else show_node_list(e, p.info)
+      break
+  }
+  e.cur_str.pop()
+}
+
+// §694 print_style
+export function print_style(e: Engine, c: number): void {
+  switch (Math.trunc(c / 2)) {
+    case 0: print_esc(e, 'displaystyle'); break
+    case 1: print_esc(e, 'textstyle'); break
+    case 2: print_esc(e, 'scriptstyle'); break
+    case 3: print_esc(e, 'scriptscriptstyle'); break
+    default: print(e, 'Unknown style!')
   }
 }
 

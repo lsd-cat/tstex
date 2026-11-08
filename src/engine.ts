@@ -52,7 +52,7 @@ export class Engine {
   save_ptr = 0; cur_level = level_one; cur_group = 0; cur_boundary = 0; max_save_stack = 0
   // §213 semantic nest: the fields of cur_list live here, nest[] holds the levels below
   mode = vmode; shown_mode = 0; head: Node = contrib_head0; tail: Node = contrib_head0; prev_graf = 0; mode_line = 0
-  prev_depth = ignore_depth; space_factor = 0; clang = 0
+  prev_depth = ignore_depth; space_factor = 0; clang = 0; incompleat_noad: Node | null = null; eTeX_aux: Node | null = null
   nest: ListState[] = []; nest_ptr = 0; max_nest_stack = 0
   // §162, §980–982 fixed list heads and page builder state
   // type(page_head)=glue_node, so an initial glue node on the current page is not a legal breakpoint
@@ -81,6 +81,8 @@ export class Engine {
   pre_adjust_head: Node = new_char(0, 0); pre_adjust_tail: Node | null = null
   // §814 just_box, §892–965 hyphenation (hyphenate.ts), §1248 \parshape arrays [n, indent1, width1, ...] addressed by eqtb handles
   just_box: Node | null = null; hy = hyph_state(); shapes: (number[] | undefined)[] = [undefined]
+  // §719 mlist_to_hlist's implicit parameters, §724 fetch's results
+  cur_mlist: Node | null = null; cur_style = 0; cur_size = 0; cur_mu = 0; mlist_penalties = false; cur_f = 0; cur_c = 0; cur_i = 0
   // §1074 cur_box, §1241
   cur_box: Node | null = null; set_box_allowed = true
   // §1032 main loop

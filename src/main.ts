@@ -48,11 +48,13 @@ const pdf_ignored_dimen = (e: Engine) => e.equiv[dimen_base + 32]!
 const every_vbox_loc = local_base + 6, every_hbox_loc = local_base + 5, every_hbox_text = 10, every_vbox_text = 11
 
 // §212 list_state_record
+// TeX's aux word is three fields here (prev_depth, space_factor+clang, incompleat_noad); eTeX_aux is LR_box/delim_ptr
 export type ListState = { mode: number, head: Node, tail: Node, prev_graf: number, mode_line: number, prev_depth: number,
-  space_factor: number, clang: number }
+  space_factor: number, clang: number, incompleat_noad: Node | null, eTeX_aux: Node | null }
 const nest_size = 1000 // TeX Live texmf.cnf
 const cur_list = (e: Engine): ListState => ({ mode: e.mode, head: e.head, tail: e.tail, prev_graf: e.prev_graf,
-  mode_line: e.mode_line, prev_depth: e.prev_depth, space_factor: e.space_factor, clang: e.clang })
+  mode_line: e.mode_line, prev_depth: e.prev_depth, space_factor: e.space_factor, clang: e.clang, incompleat_noad: e.incompleat_noad,
+  eTeX_aux: e.eTeX_aux })
 
 // §214 tail_append
 export function tail_append(e: Engine, p: Node): void { e.tail.link = p; e.tail = p }
@@ -64,7 +66,7 @@ export function push_nest(e: Engine): void {
     if (e.nest_ptr === nest_size) overflow(e, 'semantic nest size', nest_size)
   }
   e.nest[e.nest_ptr] = cur_list(e); e.nest_ptr++
-  e.head = new_char(0, 0); e.tail = e.head; e.prev_graf = 0; e.mode_line = e.line
+  e.head = new_char(0, 0); e.tail = e.head; e.prev_graf = 0; e.mode_line = e.line; e.eTeX_aux = null
 }
 
 // §217 pop_nest
@@ -72,7 +74,8 @@ export function pop_nest(e: Engine): void {
   e.nest_ptr--
   const s = e.nest[e.nest_ptr]!
   e.mode = s.mode; e.head = s.head; e.tail = s.tail; e.prev_graf = s.prev_graf; e.mode_line = s.mode_line
-  e.prev_depth = s.prev_depth; e.space_factor = s.space_factor; e.clang = s.clang
+  e.prev_depth = s.prev_depth; e.space_factor = s.space_factor; e.clang = s.clang; e.incompleat_noad = s.incompleat_noad
+  e.eTeX_aux = s.eTeX_aux
 }
 
 // §218 show_activities
@@ -109,7 +112,7 @@ export function show_activities(e: Engine): void {
         print_nl(e, 'spacefactor '); print_int(e, n.space_factor)
         if (m > 0 && n.clang > 0) { print(e, ', current language '); print_int(e, n.clang) }
         break
-      case 2: break // incompleat_noad is always null until math (M3)
+      case 2: if (n.incompleat_noad !== null) { print(e, 'this will begin denominator of:'); show_box(e, n.incompleat_noad) } break
     }
   }
 }
