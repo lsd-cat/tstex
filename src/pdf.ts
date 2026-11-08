@@ -92,7 +92,7 @@ export function pdf_state() {
     cur_form: 0, xform_width: 0, xform_height: 0, xform_depth: 0, page_group_val: 0,
     obj_box: [] as (BoxNode | null | undefined)[], // obj_xform_box
     images: [] as Img[], // writeimg.c image_array; obj_ximage_data indexes it
-    fixed_image_hicolor: 0, fixed_image_apply_gamma: 0, warn_pdfpagebox: true,
+    fixed_image_hicolor: 0, fixed_image_apply_gamma: 0, warn_pdfpagebox: true, transparent_page_group: 0, transparent_page_group_written: false, // writepng.c
   }
 }
 export type PdfState = ReturnType<typeof pdf_state>
@@ -1369,6 +1369,8 @@ function out_image(e: Engine, p: WhatsitNode): void {
   pdf_end_text(e)
   pdf_print_ln(e, 'q')
   if (!s.ximage_list.includes(n)) s.ximage_list.push(n) // pdf_lookup_list
+  const img = s.images[s.mem[s.obj_aux[n]! + 4]!]!
+  if (img.type === 'png' && img.group_ref > 0 && s.page_group_val === 0) s.page_group_val = img.group_ref
   pdf_print_real(e, ext_xn_over_d(e, p.pdf_left, ten_pow[6]!, one_hundred_bp), 4); pdf_print(e, ' 0 0 ')
   pdf_print_real(e, ext_xn_over_d(e, (p.pdf_top + p.pdf_right) | 0, ten_pow[6]!, one_hundred_bp), 4); pdf_out(e, 32)
   pdf_print_bp(e, e.cur_h - s.origin_h); pdf_out(e, 32); pdf_print_bp(e, s.origin_v - e.cur_v)

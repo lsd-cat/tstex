@@ -1,0 +1,5 @@
+%! oracle: pdftex
+\pdfoutput=1 \pdfcompresslevel=0 \pdfobjcompresslevel=0 \pdfminorversion=5 \pdfimagehicolor=1 \input plain
+% 16-bit RGB+alpha with \pdfimagehicolor: 16-bit colour samples, the /SMask keeps the high byte of each alpha sample
+\pdfximage{images/rgba16.png}\shipout\hbox{\pdfrefximage\pdflastximage}
+\bye

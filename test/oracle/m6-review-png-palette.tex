@@ -1,0 +1,8 @@
+%! oracle: pdftex
+\pdfoutput=1 \pdfcompresslevel=0 \pdfobjcompresslevel=0 \input plain
+% write_png_palette creates and writes the palette object even with an explicit colorspace (unreferenced then);
+% decoded 4-bit rows have zero padding bits after the last pixel
+\immediate\pdfobj{/DeviceRGB}
+\pdfximage colorspace \pdflastobj {images/pal4.png}\setbox0\hbox{\pdfrefximage\pdflastximage}\box0
+\pdfximage{images/pal4.png}\setbox0\hbox{\pdfrefximage\pdflastximage}\box0
+\bye

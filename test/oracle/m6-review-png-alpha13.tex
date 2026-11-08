@@ -1,0 +1,6 @@
+%! oracle: pdftex
+\pdfoutput=1 \pdfcompresslevel=0 \pdfobjcompresslevel=0 \pdfminorversion=3 \input plain
+% below PDF 1.4 writepng.c strips the alpha channel (png_set_strip_alpha) and writes gray/RGB rows
+\pdfximage{images/ga.png}\setbox0\hbox{\pdfrefximage\pdflastximage}\box0
+\pdfximage{images/rgba.png}\setbox0\hbox{\pdfrefximage\pdflastximage}\box0
+\bye

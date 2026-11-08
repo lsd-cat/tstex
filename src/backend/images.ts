@@ -1,13 +1,14 @@
 // writeimg.c readimage/writeimage, pdftoepdf.cc read_pdf_info (page count, boxes, rotation; copying the page is unsupported),
-// writepng.c (read_png_info, write_png: the copy path and the decoded write_png_gray/rgb/palette
-// paths), writejpg.c (read_jpg_info incl. JFIF/Exif resolution, write_jpg). libpng's work is done here: chunks are parsed,
-// IDAT is inflated by the platform (TexFS.inflate) and the rows unfiltered. PDF/JBIG2 inclusion, interlaced, alpha, tRNS,
-// gamma-applied and 16-to-8-bit PNGs are unsupported.
+// writepng.c (read_png_info, write_png: the copy path and the decoded write_png_gray/rgb/palette/gray_alpha/rgb_alpha
+// paths), writejpg.c (read_jpg_info incl. JFIF/Exif resolution, write_jpg). libpng's work is done here: chunks are parsed and
+// CRC-checked, IDAT is inflated by the platform (TexFS.inflate), the rows unfiltered, alpha stripped below PDF 1.4.
+// PDF/JBIG2 inclusion, interlaced, tRNS, gamma-applied and 16-to-8-bit PNGs are unsupported.
 import type { Engine } from '../engine.ts'
 import { print } from '../print.ts'
 import { fatal_error } from '../error.ts'
 import { int_base } from '../types.ts'
-import { pdftex_fail, pdftex_warn, pdf_print, pdf_print_ln, pdf_begin_stream, pdf_end_stream, pdf_create_obj, pdf_begin_dict } from '../pdf.ts'
+import { pdftex_fail, pdftex_warn, pdf_print, pdf_print_ln, pdf_begin_stream, pdf_end_stream, pdf_create_obj, pdf_begin_dict, pdf_begin_obj, pdf_end_obj,
+  pdf_new_objnum } from '../pdf.ts'
 
 export const IMAGE_COLOR_B = 1, IMAGE_COLOR_C = 2, IMAGE_COLOR_I = 4
 type Png = { ct: number, bd: number, il: number, palette: Uint8Array, chunks: Set<string>, gamma: number }
@@ -144,14 +145,19 @@ function read_png_info(e: Engine, img: Img): void {
   img.png = png
   for (let i = 8; i + 8 <= d.length;) {
     const len = u32(d, i), t = tag(d, i + 4), b = i + 8
-    if (b + len > d.length) pdftex_fail(e, img.name, 'libpng: internal error')
+    if (t === 'IDAT') break // png_read_info stops here
+    if (b + len + 4 > d.length) pdftex_fail(e, img.name, 'libpng: internal error')
+    i = b + len + 4
+    if (crc32(d.subarray(b - 4, b + len)) !== u32(d, b + len)) { // png_crc_finish: an error for critical chunks, ancillary ones are dropped (silent warn)
+      if (t.charCodeAt(0) & 32) continue
+      pdftex_fail(e, img.name, 'libpng: internal error')
+    }
     png.chunks.add(t)
     if (t === 'IHDR') { img.width = u32(d, b); img.height = u32(d, b + 4); png.bd = d[b + 8]!; png.ct = d[b + 9]!; png.il = d[b + 12]! }
     else if (t === 'pHYs' && d[b + 8] === 1) { img.xres = cround(0.0254 * u32(d, b)); img.yres = cround(0.0254 * u32(d, b + 4)) } // png_get_x_pixels_per_meter is 0 unless the unit is the metre
     else if (t === 'PLTE') png.palette = d.subarray(b, b + len)
     else if (t === 'gAMA') png.gamma = u32(d, b)
     else if (t === 'IEND') break
-    i = b + len + 4
   }
   switch (png.ct) {
     case 3: img.color = IMAGE_COLOR_C | IMAGE_COLOR_I; break
@@ -159,7 +165,19 @@ function read_png_info(e: Engine, img: Img): void {
     case 2: case 6: img.color = IMAGE_COLOR_C; break
     default: pdftex_fail(e, img.name, `unsupported type of color_type <${png.ct}>`)
   }
-  if ((e.ps.fixed_major > 1 || e.ps.fixed_minor >= 4) && (png.ct === 4 || png.ct === 6)) fatal_error(e, `unsupported: PNG with alpha channel ${img.name}`)
+  if ((e.ps.fixed_major > 1 || e.ps.fixed_minor >= 4) && (png.ct === 4 || png.ct === 6)) { // a dummy page group for Adobe
+    if (e.ps.transparent_page_group === 0) e.ps.transparent_page_group = pdf_new_objnum(e)
+    if (e.ps.page_group_val === 0) e.ps.page_group_val = e.ps.transparent_page_group // whatever page (or none) is being shipped
+    img.group_ref = e.ps.page_group_val
+  }
+}
+
+// libpng's CRC-32 (ISO 3309) over a chunk's type and data
+const crc_table = Array.from({ length: 256 }, (_, n) => { let c = n; for (let k = 0; k < 8; k++) c = c & 1 ? 0xedb88320 ^ (c >>> 1) : c >>> 1; return c >>> 0 })
+function crc32(b: Uint8Array): number {
+  let c = 0xffffffff
+  for (const x of b) c = crc_table[(c ^ x) & 255]! ^ (c >>> 8)
+  return (c ^ 0xffffffff) >>> 0
 }
 
 // writejpg.c read_jpg_info (read_APP1_Exif for the Exif resolution)
@@ -277,25 +295,51 @@ function write_png(e: Engine, img: Img): void {
     pdf_end_stream(e)
     return
   }
+  // write_png_palette makes the palette object even when an explicit colorspace leaves it unreferenced
   let palette_objnum = 0
+  if (png.ct === 3) { pdf_create_obj(e, 0, 0); palette_objnum = ps.obj_ptr }
   if (img.colorspace_ref !== 0) pdf_print(e, `${img.colorspace_ref} 0 R\n`)
-  else if (png.ct === 3) { pdf_create_obj(e, 0, 0); palette_objnum = ps.obj_ptr; pdf_print(e, `[/Indexed /DeviceRGB ${n_pal - 1} ${palette_objnum} 0 R]\n`) }
-  else pdf_print_ln(e, png.ct === 0 ? '/DeviceGray' : '/DeviceRGB')
+  else if (png.ct === 3) pdf_print(e, `[/Indexed /DeviceRGB ${n_pal - 1} ${palette_objnum} 0 R]\n`)
+  else pdf_print_ln(e, png.ct === 0 || png.ct === 4 ? '/DeviceGray' : '/DeviceRGB')
+  // gray+alpha and RGB+alpha: below PDF 1.4 png_set_strip_alpha drops the alpha samples, from 1.4 on they become an /SMask
+  const alpha = png.ct === 4 || png.ct === 6, smask = alpha && (ps.fixed_major > 1 || ps.fixed_minor >= 4)
+  let smask_objnum = 0
+  if (smask) { pdf_create_obj(e, 0, 0); smask_objnum = ps.obj_ptr; pdf_print(e, `/SMask ${smask_objnum} 0 R\n`) }
+  const rows = png_rows(e, img), color: number[] = [], mask: number[] = []
+  if (alpha) {
+    const n = png.ct === 4 ? 1 : 3, sample = png.bd >> 3 // 8 or 16 bits (16 only with \pdfimagehicolor, PDF >= 1.5)
+    for (let j = 0; j < rows.length; j++) ((j / sample | 0) % (n + 1) < n ? color : mask).push(rows[j]!)
+  }
   pdf_begin_stream(e)
-  pdf_print(e, Array.from(png_rows(e, img)))
+  pdf_print(e, alpha ? color : Array.from(rows))
   pdf_end_stream(e)
+  if (smask_objnum > 0) {
+    pdf_begin_dict(e, smask_objnum, 0)
+    pdf_print(e, `/Type /XObject\n/Subtype /Image\n/Width ${img.width}\n/Height ${img.height}\n/BitsPerComponent ${png.bd === 16 ? 8 : png.bd}\n`)
+    pdf_print(e, '/ColorSpace /DeviceGray\n')
+    pdf_begin_stream(e)
+    pdf_print(e, png.bd === 16 ? mask.filter((_, i) => i % 2 === 0) : mask)
+    pdf_end_stream(e)
+  }
   if (palette_objnum > 0) {
     pdf_begin_dict(e, palette_objnum, 0)
     pdf_begin_stream(e)
     pdf_print(e, Array.from(png.palette.subarray(0, 3 * n_pal)))
     pdf_end_stream(e)
   }
+  if (smask && ps.transparent_page_group > 0 && !ps.transparent_page_group_written) { // write_additional_png_objects
+    ps.transparent_page_group_written = true
+    pdf_begin_obj(e, ps.transparent_page_group, 2)
+    if (e.equiv[int_base + 66] === 0) pdf_print(e, '%PTEX Group needed for transparent pngs\n')
+    pdf_print(e, '<</Type/Group /S/Transparency /CS/DeviceRGB /I true>>\n')
+    pdf_end_obj(e)
+  }
 }
 
 // libpng png_read_row for a non-interlaced image: inflate the IDAT data and undo the per-row filters
 function png_rows(e: Engine, img: Img): Uint8Array {
   const png = img.png!, d = img.data
-  const channels = png.ct === 2 ? 3 : 1, bpp = Math.max(1, (channels * png.bd) >> 3), rowbytes = Math.ceil(img.width * channels * png.bd / 8)
+  const channels = [1, 0, 3, 1, 2, 0, 4][png.ct]!, bpp = Math.max(1, (channels * png.bd) >> 3), rowbytes = Math.ceil(img.width * channels * png.bd / 8)
   const size = (rowbytes + 1) * img.height, z = new Uint8Array(d.length)
   let n = 0
   for (let i = 8; i + 8 <= d.length;) {
@@ -320,5 +364,8 @@ function png_rows(e: Engine, img: Img): Uint8Array {
       out[o + x] = v & 255
     }
   }
+  // png_combine_row copies a row into a fresh buffer: the padding bits are zero there (the filters saw the file's bits)
+  const used = (img.width * channels * png.bd) % 8
+  if (used !== 0) for (let o = rowbytes - 1; o < out.length; o += rowbytes) out[o]! &= 0xff00 >> used
   return out
 }

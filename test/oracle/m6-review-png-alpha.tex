@@ -1,0 +1,11 @@
+%! oracle: pdftex
+\pdfoutput=1 \pdfcompresslevel=0 \pdfobjcompresslevel=0 \input plain
+% PDF >= 1.4: alpha goes into an /SMask image; read_png_info allocates one transparency group object and stores
+% the current pdf_page_group_val as the image's group (a leftover of the last shipout when used outside one)
+\pdfximage{images/ga.png}\setbox0\hbox{\pdfrefximage\pdflastximage}\box0
+\pdfximage{images/rgba.png}\setbox0\hbox{\pdfrefximage\pdflastximage}\box0
+\shipout\hbox{\pdfrefximage\pdflastximage}
+\pdfximage{images/rgba.png}\setbox0\hbox{\pdfrefximage\pdflastximage}\box0
+\shipout\hbox{x}
+\pdfximage{images/ga.png}\shipout\hbox{\pdfrefximage\pdflastximage}
+\bye

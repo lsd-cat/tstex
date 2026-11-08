@@ -1,0 +1,5 @@
+%! oracle: pdftex
+\pdfoutput=1 \pdfcompresslevel=0 \pdfobjcompresslevel=0 \input plain
+% a critical chunk (IHDR) with a bad CRC: libpng errors, pdftex fails with `libpng: internal error'
+\pdfximage{images/crc.png}\setbox0\hbox{\pdfrefximage\pdflastximage}\box0
+\bye
