@@ -1,0 +1,17 @@
+entering extended mode
+(m8-review-dump-pdfmem.tex )
+Beginning to dump on file m8-review-dump-pdfmem.fmt
+ (preloaded format=m8-review-dump-pdfmem 2026.11.8)
+* strings of total length *
+* memory locations dumped; current usage is *&*
+551 multiletter control sequences
+\font\nullfont=nullfont
+\font\a=cmr10
+\font\a=cmr10+20
+\font\a=cmr10-20
+402 words of font info for 3 preloaded fonts
+0 hyphenation exceptions
+Hyphenation trie of length 256 has 0 ops out of 35111
+2048 words of pdfTeX memory
+0 indirect objects
+No pages of output.

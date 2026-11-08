@@ -83,8 +83,8 @@ export function store_fmt_file(e: Engine): void {
   for (let k = 255; k >= 0; k--) if (h.trie_used[k]! > 0) {
     print_nl(e, '  '); print_int(e, h.trie_used[k]!); print(e, ' for language '); print_int(e, k)
   }
-  // pdftex: Dump pdftex data (nothing PDF-related can exist yet)
-  print_ln(e); print_int(e, 0); print(e, ' words of pdfTeX memory')
+  // pdftex: Dump pdftex data (the font code tables live in pdf_mem; no PDF objects can exist yet)
+  print_ln(e); print_int(e, e.ps.mem_ptr - 1); print(e, ' words of pdfTeX memory')
   print_ln(e); print_int(e, 0); print(e, ' indirect objects')
   // §1326 Dump a couple more things and the closing check word
   e.equiv[int_base + 112] = 0; e.pseudo_files = [] // etex.ch Dump the eTeX state: eTeX_state(j):=0, flush pseudo files
