@@ -1,0 +1,10 @@
+\catcode`\{=1 \catcode`\}=2 \catcode`\#=6
+\immediate\openout1=m5-braced-sub.tex
+\immediate\write1{\noexpand\message{sub:\noexpand\jobname}}
+\immediate\closeout1
+\def\name{m5-braced-sub}
+\input{\name}
+\input{m5-braced-sub.tex}\relax
+\openin3={\name.tex} \message{\ifeof3 eof\else open\fi}\closein3
+\input { m5-braced-sub }
+\end

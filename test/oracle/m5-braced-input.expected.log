@@ -1,0 +1,16 @@
+(m5-braced-input.tex
+\openout1 = `m5-braced-sub.tex'.
+
+(m5-braced-sub.tex sub:m5-braced-input) (m5-braced-sub.tex sub:m5-braced-in
+put) open
+! I can't find file `" m5-braced-sub "'.
+l.9 \input { m5-braced-sub }
+
+(Press Enter to retry, or Control-D to exit)
+Please type another input file name
+! Emergency stop.
+l.9 \input { m5-braced-sub }
+
+*** (job aborted, file error in nonstop mode)
+
+No pages of output.

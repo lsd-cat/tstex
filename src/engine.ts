@@ -144,7 +144,7 @@ export class Engine {
   read_file: InputFile[] = []; read_open: number[] = new Array(17).fill(2)
   // §512–520 file names
   name_in_progress = false; cur_name = ''; cur_area = ''; cur_ext = ''
-  name_chars: number[] = []; area_delimiter = 0; ext_delimiter = 0; quoted_filename = false
+  name_chars: number[] = []; area_delimiter = 0; ext_delimiter = 0; quoted_filename = false; stop_at_space = true
   // etex.ch: compatibility (0) or extended (1) mode, pdftex.ch's -etex switch, scan_register_num's limit
   eTeX_mode = 0; etex_p = false; max_reg_num = 255; max_reg_help_line = 'A register number must be between 0 and 255.'
   is_in_csname = false // pdftex.web \ifincsname

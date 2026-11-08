@@ -5,7 +5,7 @@ import { print, print_char, print_esc, print_nl, print_ln, print_hex, print_mode
 import { print_cs } from './hash.ts'
 import { registry } from './primitives/index.ts'
 
-import { cs_token_flag, protected_token, int_base } from './types.ts'
+import { cs_token_flag, protected_token, int_base, new_string } from './types.ts'
 import { print_int } from './print.ts'
 import { print_if_line, tracing_ifs_code } from './etex.ts'
 export * from './types.ts'
@@ -116,4 +116,13 @@ export function show_cur_cmd_chr(e: Engine): void {
   }
   print_char(e, 125)
   end_diagnostic(e, false)
+}
+
+// pdftex.web tokens_to_string
+export function tokens_to_string(e: Engine, p: number): number[] {
+  const old_setting = e.selector; e.selector = new_string
+  const b = e.cur_str.length
+  show_token_list(e, e.link[p]!, 0, 0x7fffffff)
+  e.selector = old_setting
+  return e.cur_str.splice(b)
 }

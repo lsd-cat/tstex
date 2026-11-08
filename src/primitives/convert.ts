@@ -4,7 +4,7 @@ import { Cmd, new_string } from '../types.ts'
 import { print as print_str, print_esc, print_int, print_roman_int, print_char } from '../print.ts'
 import { sprint_cs } from '../hash.ts'
 import { garbage, temp_head } from '../nodes.ts'
-import { print_meaning, show_token_list } from '../tokens.ts'
+import { print_meaning, tokens_to_string } from '../tokens.ts'
 import { delete_token_ref, free_avail } from '../nodes.ts'
 import { get_token, ins_list } from '../input.ts'
 import { scan_int, str_toks, scan_toks, scan_keyword } from '../scan.ts'
@@ -25,15 +25,6 @@ export const cmd = Cmd.convert
 export const primitives: [string, number][] = Object.entries(names).filter(([k]) => k !== '5').map(([k, n]) => [n, +k])
 export const etex_primitives: [string, number][] = [['eTeXrevision', 5]]
 export function print(e: Engine, chr: number): void { print_esc(e, names[chr] ?? 'jobname') }
-// pdftex.web tokens_to_string
-function tokens_to_string(e: Engine, p: number): number[] {
-  const old_setting = e.selector; e.selector = new_string
-  const b = e.cur_str.length
-  show_token_list(e, e.link[p]!, 0, 0x7fffffff)
-  e.selector = old_setting
-  return e.cur_str.splice(b)
-}
-
 // pdftex.web conv_toks: scan_pdf_ext_toks and tokens_to_string with scanner_status, warning_index, def_ref saved
 function scan_ext_string(e: Engine): number[] {
   const ss = e.scanner_status, wi = e.warning_index, dr = e.def_ref

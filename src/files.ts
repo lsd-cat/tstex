@@ -6,6 +6,9 @@ import { fatal_error, print_err, show_context, token_list } from './error.ts'
 import { get_x_token } from './expand.ts'
 import { print, print_char, print_nl, print_ln, print_int, print_two, slow_print, begin_diagnostic, end_diagnostic } from './print.ts'
 import { int_par, end_line_char_code, tracing_stack_levels_code } from './eqtb.ts'
+import { scan_toks } from './scan.ts'
+import { tokens_to_string } from './tokens.ts'
+import { delete_token_ref } from './nodes.ts'
 import { begin_file_reading, end_file_reading, back_input, input_ln, firm_up_the_line, new_line } from './input.ts'
 
 // §480 read_open states
@@ -41,7 +44,7 @@ function begin_name(e: Engine): void {
 
 // §516 more_name (tex.ch: quotes, '/' separates the area, the last '.' starts the extension)
 export function more_name(e: Engine, c: number): boolean {
-  if (c === 32 && !e.quoted_filename) return false // stop_at_space is always true here
+  if (c === 32 && e.stop_at_space && !e.quoted_filename) return false
   if (c === 34) { e.quoted_filename = !e.quoted_filename; return true }
   e.name_chars.push(c)
   if (c === 47) { e.area_delimiter = e.name_chars.length; e.ext_delimiter = 0 }
@@ -63,17 +66,33 @@ export function scan_file_name(e: Engine): void {
   const save_warning_index = e.warning_index; e.warning_index = e.cur_cs
   do get_x_token(e); while (e.cur_cmd === Cmd.spacer) // §406
   back_input(e)
-  if (e.cur_cmd === Cmd.left_brace) fatal_error(e, 'unsupported: braced file name') // shortcut: scan_file_name_braced, port it when a test needs \input{...}
-  begin_name(e)
-  do get_x_token(e); while (e.cur_cmd === Cmd.spacer)
-  for (;;) {
-    if (e.cur_cmd > Cmd.other_char || e.cur_chr > 255) { back_input(e); break }
-    if (e.cur_chr === 32 && e.cur_input.state !== token_list && e.cur_input.loc > e.cur_input.limit) break
-    if (!more_name(e, e.cur_chr)) break
-    get_x_token(e)
+  if (e.cur_cmd === Cmd.left_brace) scan_file_name_braced(e)
+  else {
+    begin_name(e)
+    do get_x_token(e); while (e.cur_cmd === Cmd.spacer)
+    for (;;) {
+      if (e.cur_cmd > Cmd.other_char || e.cur_chr > 255) { back_input(e); break }
+      if (e.cur_chr === 32 && e.cur_input.state !== token_list && e.cur_input.loc > e.cur_input.limit) break
+      if (!more_name(e, e.cur_chr)) break
+      get_x_token(e)
+    }
   }
   end_name(e); e.name_in_progress = false
   e.warning_index = save_warning_index
+}
+
+// tex.ch scan_file_name_braced: the balanced text, expanded, as a string fed to more_name with spaces allowed
+function scan_file_name_braced(e: Engine): void {
+  const save_scanner_status = e.scanner_status, save_def_ref = e.def_ref, save_cur_cs = e.cur_cs
+  e.cur_cs = e.warning_index
+  scan_toks(e, false, true)
+  const s = tokens_to_string(e, e.def_ref)
+  delete_token_ref(e, e.def_ref)
+  e.def_ref = save_def_ref; e.cur_cs = save_cur_cs; e.scanner_status = save_scanner_status
+  const save_stop_at_space = e.stop_at_space; e.stop_at_space = false
+  begin_name(e)
+  for (const c of s) more_name(e, c)
+  e.stop_at_space = save_stop_at_space
 }
 
 // §519 pack_file_name and web2c's a_open_in with kpse_tex_format: try `name.tex' before `name'; returns the name found
