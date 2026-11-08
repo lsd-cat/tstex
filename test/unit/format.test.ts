@@ -24,3 +24,16 @@ test('format round trip and terminal dialogue', async () => {
   assert.match(e2.log, /! Undefined control sequence\.[^]*\? \n/)
   assert.strictEqual(e2.history, 2) // error_message_issued, not a fatal stop
 })
+
+// pdftex.web 37185: `if not no_new_control_sequence then … else' skips §1337's format load right after `*' enters
+// extended mode. `printf '*&x \message{hi}\end\n' | pdftex -ini' prints on the terminal:
+//   entering extended mode
+//   ! I can't find file `&x'.
+//   <*> *&x 
+//           \message{hi}\end
+test('* then &name: &name is a file name, not a format', async () => {
+  const e = new Engine({ fs })
+  await e.run({ mode: 'ini', terminal: ['*&x \\message{hi}\\end'], date })
+  assert.match(e.terminal, /entering extended mode\n! I can't find file `&x'\.\n<\*> \*&x \n {8}\\message\{hi\}\\end\n/)
+  assert.match(e.log, /unsupported: terminal input/) // the file-name prompt (AUDIT: prompt_file_name)
+})

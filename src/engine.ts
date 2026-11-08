@@ -185,12 +185,14 @@ export class Engine {
     }
     this.cur_input.limit = this.last; this.first = this.last + 1
     // etex.ch Enable eTeX, if requested (pdftex.ch: or -etex)
+    // `if not no_new_control_sequence then no_new_control_sequence:=true else' guards §1337's format load: `*&x' reads `&x' as a file name
+    let entered = false
     if ((this.etex_p || this.buffer[this.cur_input.loc] === 42) && this.format_ident === ' (INITEX)') {
       init_prim(this, true)
       if (this.buffer[this.cur_input.loc] === 42) this.cur_input.loc++
-      this.eTeX_mode = 1; etex_ext_vars(this)
+      this.eTeX_mode = 1; etex_ext_vars(this); entered = true
     }
-    if (this.buffer[this.cur_input.loc] === 38) { // §524 open_fmt_file: `&name' names the format
+    if (!entered && this.buffer[this.cur_input.loc] === 38) { // §524 open_fmt_file: `&name' names the format
       let j = ++this.cur_input.loc; this.buffer[this.last] = 32
       while (this.buffer[j] !== 32) j++
       const name = String.fromCharCode(...this.buffer.slice(this.cur_input.loc, j))
