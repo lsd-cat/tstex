@@ -37,15 +37,15 @@ for (const file of readdirSync(dir).filter(f => f.endsWith('.tex')).sort()) {
     const expected = readFileSync(`${dir}${name}.expected.log`, 'latin1')
     const oracle = (readFileSync(dir + file, 'utf8').split('\n')[0]!.match(/^%! oracle: *(\w+)/)?.[1] ?? 'ini') as 'ini' | 'etex' | 'latex' | 'pdflatex' | 'pdftex'
     const pdfMode = oracle === 'pdflatex' || oracle === 'pdftex'
-    const mode = oracle === 'pdflatex' ? 'latex' : oracle === 'pdftex' ? 'etex' : oracle
+    const mode = oracle === 'pdftex' ? 'etex' : oracle // 'pdflatex' is its own engine mode (format + PDF output)
     // string specifiers keep tsc quiet while the modules do not exist yet
     const [{ Engine }, { nodeFS }, { loadFormat }] = await Promise.all([
       import('../../src/engine' + '.ts').catch(() => assert.fail('src/engine.ts missing')),
       import('../../src/platform/node' + '.ts').catch(() => assert.fail('src/platform/node.ts missing')),
       import('../../src/format' + '.ts').catch(() => ({ loadFormat: undefined })),
     ])
-    let format, fs = nodeFS([dir, texmf, lvt]), runs = 1, limits = pdfMode ? { max_print_line: 9999 } : {}
-    if (mode === 'latex') {
+    let format, fs = pdfMode ? nodeFS([dir, texmf, lvt], [TEXMFVAR, TEXMFDIST]) : nodeFS([dir, texmf, lvt]), runs = 1, limits = pdfMode ? { max_print_line: 9999 } : {}
+    if (mode === 'latex' || mode === 'pdflatex') {
       if (!existsSync(fmtPath)) assert.fail('build/latex.fmt missing: run `node tools/build-format.ts --out build/latex.fmt` first')
       assert.ok(loadFormat, 'src/format.ts missing')
       format = loadFormat(readFileSync(fmtPath))
@@ -55,7 +55,7 @@ for (const file of readdirSync(dir).filter(f => f.endsWith('.tex')).sort()) {
     }
     const overlay = new Map<string, string | Uint8Array>() // files written by earlier runs (.aux ...)
     const base = fs
-    fs = { find: (n: string, k: string) => { const o = overlay.get(n); return o === undefined ? base.find(n, k) : typeof o === 'string' ? Buffer.from(o, 'latin1') : o } }
+    fs = { ...base, find: (n: string, k: string) => { const o = overlay.get(n); return o === undefined ? base.find(n, k) : typeof o === 'string' ? Buffer.from(o, 'latin1') : o } }
     let engine
     for (let i = 0; i < runs; i++) {
       engine = new Engine({ fs, format, limits })

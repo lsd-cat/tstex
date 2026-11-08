@@ -3312,7 +3312,7 @@ Package rerunfilecheck Info: File `m6-latex-beamer.out' has not changed.
 (rerunfilecheck)             Checksum: D41D8CD98F00B204E9800998ECF8427E;0.
  )
 <cmss10.pfb><cmss12.pfb><msam10.pfb>
-Output written on m6-latex-beamer.pdf (5 pages, 73292 bytes).
+Output written on m6-latex-beamer.pdf (5 pages, * bytes).
 PDF statistics:
  161 PDF objects out of 1000 (max. 8388607)
  140 compressed objects within 2 object streams

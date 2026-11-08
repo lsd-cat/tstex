@@ -39,7 +39,7 @@ output routines,
 hyphenation (hyphen.tex)) 1 2 [1{pdftex.map}] [2] )<cmr10.pfb>
 pdfTeX warning (thread): destination name{t} has been referenced but does not exist, replaced by a fixed one
 
-Output written on m6-pdf-annot-links.pdf (2 pages, 20097 bytes).
+Output written on m6-pdf-annot-links.pdf (2 pages, * bytes).
 PDF statistics:
  35 PDF objects out of 1000 (max. 8388607)
  6 named destinations out of 1000 (max. 500000)

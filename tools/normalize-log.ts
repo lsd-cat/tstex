@@ -13,6 +13,7 @@ export function normalizeLog(text: string): string {
     .map(l => l
       .replace(/\(\.\//g, '(')
       .replace(/(^|[ (<{])\/[^ ()<>{}]*\//g, '$1') // absolute path -> basename
+      .replace(/^(Output written on .*\.pdf \(\d+ pages?, )\d+ bytes\)\.$/, '$1* bytes).') // whole fonts: size can't match pdftex
       .trimEnd())
     .join('\n')
     .replace(/\n*$/, '\n')
