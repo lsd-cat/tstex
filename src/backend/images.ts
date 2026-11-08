@@ -10,12 +10,13 @@ import { int_base } from '../types.ts'
 import { int_par } from '../eqtb.ts'
 import { pdftex_fail, pdftex_warn, pdf_print, pdf_print_ln, pdf_begin_stream, pdf_end_stream, pdf_create_obj, pdf_begin_dict, pdf_begin_obj, pdf_end_obj,
   pdf_new_objnum } from '../pdf.ts'
-import { pdf_open, get_page, get_page_ref, page_group, page_resources, fetch, deref, lookup, lookup_nf, decode_stream, raw_bytes, fofi_type1_encoding,
+import { pdf_open, get_page, get_page_ref, page_group, page_resources, fetch, deref, lookup, lookup_nf, decode_stream, raw_bytes, fofi_type1_encoding, fofi_type1c_encoding, fofi_identify,
   type_name, is_name, is_dict, is_stream, is_ref, num } from './pdfread.ts'
 import type { PdfDoc, Page, Box, PObj, PDict, PRef, PStream, XRef } from './pdfread.ts'
 import { lookup_fontmap, epdf_create_fontdescriptor, epdf_mark_glyphs, get_fn_objnum, epdf_write_enc } from './fonts.ts'
 import type { FdEntry, FmEntry } from './fonts.ts'
 import { standard_glyph_names } from './type1.ts'
+import { base14_names, mac_roman_encoding, mac_expert_encoding, win_ansi_encoding, symbol_encoding, zapf_dingbats_encoding } from './xpdfenc.ts'
 
 export const IMAGE_COLOR_B = 1, IMAGE_COLOR_C = 2, IMAGE_COLOR_I = 4
 // gamma: the file gamma (×100000, 0: none); trns: a valid tRNS chunk's data; sbit: sBIT's significant bits
@@ -146,32 +147,47 @@ function num_to_pdf(n: number): string {
   return s + '.' + d
 }
 
-// GfxFont::makeFont, Gfx8BitFont: the font's encoding (base encoding, from the font file or the default, plus /Differences)
-function font_encoding(e: Engine, img: Img, x: XRef, fontdict: PDict): (string | null)[] {
-  const unsupported = (what: string): never => fatal_error(e, `unsupported: PDF inclusion of a replaced font with ${what} (${img.name})`)
+// GfxFont::makeFont: getFontType, then Gfx8BitFont's encoding (base encoding from the font dictionary, the font program or the
+// default, plus /Differences); null: xpdf makes a GfxCIDFont (a CID-keyed CFF program), which writeEncodings refuses
+function font_encoding(e: Engine, x: XRef, fontdict: PDict): (string | null)[] | null {
   const bn = lookup(fontdict, 'BaseFont'), name = is_name(bn) ? bn.v : tag_str(bn)
-  const desc = lookup(fontdict, 'FontDescriptor')
-  let emb: PObj = null, cff = false
-  if (is_dict(desc)) for (const k of ['FontFile3', 'FontFile2', 'FontFile']) { const r = lookup_nf(desc, k); if (is_ref(r)) { emb = r; if (k !== 'FontFile') cff = true; break } }
-  let file: Uint8Array | null = null
+  // getFontType for a /Type1 font: FontFile3 (by its /Subtype), else FontFile2, else FontFile; the program's kind decides
+  const df = lookup(fontdict, 'DescendantFonts'), d0 = Array.isArray(df) && df.length > 0 ? deref(x, df[0]!) : null
+  const desc = lookup(is_dict(d0) ? d0 : fontdict, 'FontDescriptor')
+  let expected = 'type1', emb: PRef | null = null
+  if (is_dict(desc)) {
+    const f3 = lookup_nf(desc, 'FontFile3'), f2 = lookup_nf(desc, 'FontFile2'), f1 = lookup_nf(desc, 'FontFile')
+    if (is_ref(f3)) {
+      emb = f3
+      const s = deref(x, f3), st = is_stream(s) ? lookup(s.d, 'Subtype') : null
+      if (is_name(st, 'Type1C') || is_name(st, 'CIDFontType0C')) expected = 'type1c'
+      else if (is_name(st, 'TrueType')) expected = 'truetype'
+      else if (is_name(st, 'OpenType')) expected = 'type1cot'
+    } else if (is_ref(f2)) emb = f2
+    else if (is_ref(f1)) emb = f1
+  }
+  let type = expected, prog: Uint8Array | null = null
   if (emb !== null) {
     const s = deref(x, emb)
-    if (is_stream(s)) {
-      const d = decode_stream(e, s), head = String.fromCharCode(...d.subarray(d[0] === 0x80 ? 6 : 0, (d[0] === 0x80 ? 6 : 0) + 16))
-      if (head.startsWith('%!PS-AdobeFont-1') || head.startsWith('%!FontType1')) file = d // FoFiIdentifier: Type 1 PFA/PFB
-      else if (cff || d[0] === 1) unsupported('a CFF (Type1C) font file')
-    }
+    const id = is_stream(s) ? fofi_identify(prog = decode_stream(e, s)) : null
+    if (id === 'cffcid' || id === 'otcid') return null
+    if (id === null) emb = null
+    else type = id === 'type1' ? 'type1' : id === 'cff8' ? 'type1c' : id === 'truetype' ? 'truetype' : 'type1cot'
   }
-  let base: (string | null)[] | null = null
-  const enc = lookup(fontdict, 'Encoding'), predefined = (o: PObj) => is_name(o, 'MacRomanEncoding') || is_name(o, 'MacExpertEncoding') || is_name(o, 'WinAnsiEncoding')
-  if (is_dict(enc) ? predefined(lookup(enc, 'BaseEncoding')) : predefined(enc)) unsupported('a Mac/WinAnsi base encoding')
-  if (file !== null) { const f = fofi_type1_encoding(file); if (f !== null) base = f === 'std' ? standard_glyph_names : f }
-  if (base === null) {
-    if (file === null && /^(Symbol(,Bold|,Italic|,BoldItalic)?|ZapfDingbats)$/.test(name.replace(/ /g, ''))) unsupported('a built-in symbol encoding')
-    base = standard_glyph_names
-  }
+  const n2 = name.replace(/ /g, ''), builtin = base14_names.has(n2)
+  const builtin_enc = !builtin ? standard_glyph_names : n2.startsWith('Symbol') ? symbol_encoding : n2 === 'ZapfDingbats' ? zapf_dingbats_encoding : standard_glyph_names
+  const enc = lookup(fontdict, 'Encoding'), be = is_dict(enc) ? lookup(enc, 'BaseEncoding') : enc
+  let base: (string | null)[] | null = is_name(be, 'MacRomanEncoding') ? mac_roman_encoding : is_name(be, 'MacExpertEncoding') ? mac_expert_encoding
+    : is_name(be, 'WinAnsiEncoding') ? win_ansi_encoding : null
+  // a non-embedded Symbol or ZapfDingbats never uses a non-symbol encoding
+  if (builtin && emb === null && builtin_enc !== standard_glyph_names && !is_dict(enc)) base = null
+  let from_file = false
+  if (base === null && emb !== null && type === 'type1') { const f = fofi_type1_encoding(prog!); base = f === 'std' ? standard_glyph_names : f; from_file = true }
+  else if (base === null && emb !== null && type === 'type1c') { const f = fofi_type1c_encoding(prog!); if (f !== null) { base = f; from_file = true } }
+  if (base === null) base = builtin && emb === null ? builtin_enc : type === 'truetype' ? win_ansi_encoding : standard_glyph_names
   const names = base.slice(0, 256)
-  while (names.length < 256) names.push(null)
+  // some Type 1C font files have empty encodings: the gaps are filled from StandardEncoding
+  if (type === 'type1c' && from_file) for (let i = 0; i < 256; i++) names[i] ??= standard_glyph_names[i] ?? null
   const diff = is_dict(enc) ? lookup(enc, 'Differences') : null
   if (Array.isArray(diff)) {
     let code = 0
@@ -190,7 +206,7 @@ function write_epdf(e: Engine, img: Img): void {
   const doc = img.doc!, pdf = doc.pdf, x = pdf.x, ps = e.ps
   const file = img.name, fail = (msg: string): never => pdftex_fail(e, file, msg)
   doc.occurences--
-  const objs = doc.objs, index = doc.index, find = (r: PRef) => index.get(r.num + ' ' + r.gen), encodings: { names: (string | null)[], objnum: number }[] = []
+  const objs = doc.objs, index = doc.index, find = (r: PRef) => index.get(r.num + ' ' + r.gen), encodings: { names: (string | null)[] | null, objnum: number }[] = []
   let last = 0 // pdflastbyte: the last byte of a pdf_puts (pdfout does not set it), for pdf_newline
   const puts = (s: string) => { pdf_print(e, s); if (s.length > 0) last = s.charCodeAt(s.length - 1) }
   const newline = () => { if (last !== 10) puts('\n') }
@@ -251,7 +267,7 @@ function write_epdf(e: Engine, img: Img): void {
       epdf_mark_glyphs(e, fm, fd, charset !== null && typeof charset === 'object' && !Array.isArray(charset) && charset.t === 'str' ? charset.v : null)
       add(OBJ_FONTDESC, descref, fd, 0)
       copy_name(tag)
-      const names = font_encoding(e, img, x, fontdict)
+      const names = font_encoding(e, x, fontdict)
       const enc = pdf_new_objnum(e) // addEncoding
       encodings.unshift({ names, objnum: enc })
       puts(` ${add(OBJ_FONT, r, fd, enc)} 0 R `)
@@ -344,7 +360,10 @@ function write_epdf(e: Engine, img: Img): void {
     })
     pdf_end_stream(e)
   } else { pdf_begin_stream(e); pdf_end_stream(e) } // the contents are optional, an empty stream is not
-  for (const r of encodings) epdf_write_enc(e, r.names, r.objnum) // writeEncodings
+  for (const r of encodings) { // writeEncodings
+    if (r.names === null) fail('PDF inclusion: CID fonts are not supported (try to disable font replacement to fix this)')
+    epdf_write_enc(e, r.names!, r.objnum)
+  }
   if (group !== null) { pdf_begin_obj(e, ps.page_group_val, 2); copy_object(group); puts('\n'); pdf_end_obj(e); ps.page_group_val = 0 }
   for (let i = 0; i < objs.length; i++) { // writeRefs: the list grows while it is written
     const r = objs[i]!

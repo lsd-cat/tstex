@@ -1,10 +1,12 @@
 // The little of xpdf (TeX Live's libs/xpdf: Lexer.cc, Parser.cc, XRef.cc, Stream.cc, PDFDoc.cc, Catalog.cc, Page.cc) that
-// pdftoepdf.cc needs, with xpdf's behaviour on well-formed and damaged files: the lexer and parser, xref tables with /Prev
+// pdftoepdf.cc needs (and of fofi: FoFiIdentifier, FoFiType1's and FoFiType1C's encodings), with xpdf's behaviour on well-formed and damaged files: the lexer and parser, xref tables with /Prev
 // chains and hybrid /XRefStm links, xref streams, object streams, reconstruction by scanning (constructXRef), the page tree with
 // inherited attributes and merged resources. Filters: FlateDecode with predictors (inflate is the platform's); xpdf's other
 // decoders are refused. Encrypted files are refused (xpdf would decrypt those with an empty user password).
 import type { Engine } from '../engine.ts'
 import { fatal_error } from '../error.ts'
+import { standard_glyph_names } from './type1.ts'
+import { type1_expert_encoding, cff_std_strings, cff_expert_charset, cff_expert_subset_charset } from './xpdfenc.ts'
 
 export type XRef = { e: Engine, b: Uint8Array, start: number, size: number, last: number, ent: Map<number, { off: number, gen: number, type: number }>,
   trailer: PDict | null, root_num: number, root_gen: number, stream_ends: number[] | null, ok: boolean, objstms: Map<number, ObjStm> }
@@ -787,4 +789,209 @@ export function fofi_type1_encoding(d: Uint8Array): (string | null)[] | 'std' | 
     // xpdf does not advance past the encoding here; the next round finds no further /Encoding line
   }
   return enc
+}
+
+// FoFiIdentifier identify (the type of an embedded font program; xpdf reads it forward from the decoded stream)
+export function fofi_identify(d: Uint8Array): 'type1' | 'cff8' | 'cffcid' | 'truetype' | 'ot8' | 'otcid' | null {
+  const len = d.length, byte = (p: number) => p >= 0 && p < len ? d[p]! : -1
+  const uvar = (p: number, n: number) => { if (p < 0 || p + n > len) return -1; let v = 0; for (let i = 0; i < n; i++) v = v * 256 + d[p + i]!; return v }
+  const cmp = (p: number, s: string) => p >= 0 && p + s.length <= len && String.fromCharCode(...d.subarray(p, p + s.length)) === s
+  const cff = (start: number): 'cff8' | 'cffcid' | null => { // identifyCFF
+    if (byte(start) !== 1 || byte(start + 1) !== 0) return null
+    const hdr = byte(start + 2), off0 = byte(start + 3)
+    if (hdr < 0 || off0 < 1 || off0 > 4) return null
+    let pos = start + hdr, n = uvar(pos, 2)
+    if (n < 0) return null
+    if (n === 0) pos += 2
+    else {
+      const o = byte(pos + 2), off1 = o < 1 || o > 4 ? -1 : uvar(pos + 3 + n * o, o)
+      if (off1 < 0 || off1 > 0x7fffffff) return null
+      pos = (pos + 3 + (n + 1) * o + off1 - 1) | 0
+    }
+    if (pos < 0) return null
+    n = uvar(pos, 2)
+    const o = byte(pos + 2)
+    if (n < 1 || o < 1 || o > 4) return null
+    const a = uvar(pos + 3, o), b = uvar(pos + 3 + o, o)
+    if (a < 0 || a > 0x7fffffff || b < 0 || b > 0x7fffffff || a > b) return null
+    pos = (pos + 3 + (n + 1) * o + a - 1) | 0
+    const end = (pos + 3 + (n + 1) * o + b - 1) | 0 // sic: counted from the new pos
+    if (pos < 0 || end < 0 || pos > end) return null
+    while (pos >= 0 && pos < end) {
+      const b0 = byte(pos)
+      if (b0 === 0x1c) pos += 3
+      else if (b0 === 0x1d) pos += 5
+      else if (b0 >= 0xf7 && b0 <= 0xfe) pos += 2
+      else if (b0 >= 0x20 && b0 <= 0xf6) pos += 1
+      else break
+    }
+    return pos + 1 < end && byte(pos) === 12 && byte(pos + 1) === 30 ? 'cffcid' : 'cff8' // ROS first: a CID font
+  }
+  if (cmp(0, '%!PS-AdobeFont-1') || cmp(0, '%!FontType1')) return 'type1'
+  if (byte(0) === 0x80 && byte(1) === 1 && len >= 6) {
+    const n = (d[2]! | d[3]! << 8 | d[4]! << 16 | d[5]! << 24) >>> 0
+    if ((n >= 16 && cmp(6, '%!PS-AdobeFont-1')) || (n >= 11 && cmp(6, '%!FontType1'))) return 'type1'
+  }
+  if ((byte(0) === 0 && byte(1) === 1 && byte(2) === 0 && byte(3) === 0) || cmp(0, 'true') || cmp(0, 'ttcf')) return 'truetype'
+  if (cmp(0, 'OTTO')) { // identifyOpenType
+    const n = uvar(4, 2)
+    for (let i = 0; i < n; i++) {
+      if (!cmp(12 + i * 16, 'CFF ')) continue
+      const off = uvar(12 + i * 16 + 8, 4)
+      if (off < 0 || off >= 0x7fffffff) return null
+      const t = cff(off)
+      return t === 'cff8' ? 'ot8' : t === 'cffcid' ? 'otcid' : null
+    }
+    return null
+  }
+  if (byte(0) === 1 && byte(1) === 0) return cff(0)
+  if (byte(1) === 1 && byte(2) === 0) return cff(1)
+  return null
+}
+
+// FoFiType1C::make + getEncoding: the built-in encoding of an 8-bit CFF font (null: the parse failed or there is none)
+export function fofi_type1c_encoding(d: Uint8Array): (string | null)[] | null {
+  if (d.length > 0 && d[0] !== 1) d = d.subarray(1) // some tools put a whitespace character first
+  const len = d.length
+  let ok = true
+  const u8 = (p: number) => { if (p < 0 || p >= len) { ok = false; return 0 } return d[p]! }
+  const u16 = (p: number) => { if (p < 0 || p + 1 >= len) { ok = false; return 0 } return d[p]! << 8 | d[p + 1]! }
+  const uvar = (p: number, n: number) => { if (p < 0 || p + n > len) { ok = false; return 0 } let v = 0; for (let i = 0; i < n; i++) v = v * 256 + d[p + i]!; return v }
+  type Index = { pos: number, len: number, off: number, start: number, end: number }
+  const index = (pos: number): Index => { // getIndex
+    const n = u16(pos)
+    if (n === 0) return { pos, len: 0, off: 0, start: pos + 2, end: pos + 2 }
+    const off = u8(pos + 2)
+    if (off < 1 || off > 4) ok = false
+    const start = (pos + 3 + (n + 1) * off - 1) | 0
+    if (start < 0 || start >= len) ok = false
+    const end = (start + uvar(pos + 3 + n * off, off)) | 0
+    if (end < start || end > len) ok = false
+    return { pos, len: n, off, start, end }
+  }
+  const index_val = (x: Index, i: number): [number, number] => { // getIndexVal
+    if (i < 0 || i >= x.len) { ok = false; return [0, 0] }
+    const p0 = (x.start + uvar(x.pos + 3 + i * x.off, x.off)) | 0, p1 = (x.start + uvar(x.pos + 3 + (i + 1) * x.off, x.off)) | 0
+    if (p0 < x.start || p0 > x.end || p1 <= x.start || p1 > x.end || p1 < p0) ok = false
+    return [p0, p1 - p0]
+  }
+  // getOp outside charstrings into ops[0..48]: operands as Type1COp::toInt, operators as 0x10000+op (toInt 0)
+  const ops: number[] = new Array(49).fill(0)
+  let n_ops = 0
+  const get_op = (pos: number) => {
+    const b0 = u8(pos++)
+    let v: number
+    if (b0 === 28) { v = u8(pos++) << 8; v |= u8(pos++); v = v << 16 >> 16 }
+    else if (b0 === 29) { v = 0; for (let i = 0; i < 4; i++) v = v << 8 | u8(pos++) }
+    else if (b0 === 30) {
+      let s = ''
+      for (;;) {
+        const b1 = u8(pos++), n0 = b1 >> 4, n1 = b1 & 15
+        if (n0 === 15) break
+        s += '0123456789.ee -'[n0]; if (s.length === 64) break
+        if (n0 === 12) s += '-'
+        if (s.length === 64 || n1 === 15) break
+        s += '0123456789.ee -'[n1]; if (s.length === 64) break
+        if (n1 === 12) s += '-'
+        if (s.length >= 64) break
+      }
+      const f = parseFloat(s) // atof
+      v = Number.isNaN(f) || f < -2e9 || f > 2e9 ? 0 : Math.trunc(f)
+    } else if (b0 >= 32 && b0 <= 246) v = b0 - 139
+    else if (b0 >= 247 && b0 <= 250) v = ((b0 - 247) << 8) + u8(pos++) + 108
+    else if (b0 >= 251 && b0 <= 254) v = -((b0 - 251) << 8) - u8(pos++) - 108
+    else if (b0 === 12) v = 0x10000 + 0x0c00 + u8(pos++)
+    else v = 0x10000 + b0
+    if (n_ops < 49) ops[n_ops++] = v
+    return pos
+  }
+  const arg = (i: number) => ops[i]! >= 0x10000 ? 0 : ops[i]! // a slot past the operands holds the operator or a stale value
+  const dict = (start: number, length: number, f: (op: number) => void) => { // readTopDict/readPrivateDict
+    n_ops = 0
+    for (let pos = start; pos < start + length;) {
+      pos = get_op(pos)
+      if (!ok) break
+      if (ops[n_ops - 1]! >= 0x10000) { n_ops--; f(ops[n_ops]! - 0x10000); n_ops = 0 }
+    }
+  }
+  const header = u8(2)
+  const name_idx = index(header), top_idx = index(name_idx.end), string_idx = index(top_idx.end)
+  index(string_idx.end) // the global subrs
+  if (!ok) return null
+  index_val(name_idx, 0)
+  if (!ok) return null
+  let first = -1, charset_off = 0, encoding_off = 0, charstrings_off = 0, private_size = 0, private_off = 0
+  const [tp, tl] = index_val(top_idx, 0)
+  dict(tp, tl, op => {
+    if (first < 0) first = op
+    if (op === 0x0f) charset_off = arg(0)
+    else if (op === 0x10) encoding_off = arg(0)
+    else if (op === 0x11) charstrings_off = arg(0)
+    else if (op === 0x12) { private_size = arg(0); private_off = arg(1) }
+  })
+  if (first === 0x0c1e || first === 0x0c14) return null // CID-keyed or synthetic: no encoding
+  if (private_off !== 0 && private_size !== 0) dict(private_off, private_size, () => {})
+  if (!ok || charstrings_off <= 0) return null
+  let n_glyphs = index(charstrings_off).len
+  if (!ok) return null
+  // readCharset
+  let charset: number[]
+  if (charset_off === 0) { n_glyphs = Math.min(n_glyphs, 229); charset = Array.from({ length: 229 }, (_, i) => i) }
+  else if (charset_off === 1) { n_glyphs = Math.min(n_glyphs, 166); charset = cff_expert_charset }
+  else if (charset_off === 2) { n_glyphs = Math.min(n_glyphs, 87); charset = cff_expert_subset_charset }
+  else {
+    charset = new Array(n_glyphs).fill(0)
+    let pos = charset_off
+    const format = u8(pos++)
+    if (format === 0) for (let i = 1; i < n_glyphs; i++) { charset[i] = u16(pos); pos += 2; if (!ok) break }
+    else if (format === 1 || format === 2) {
+      for (let i = 1; i < n_glyphs;) {
+        let c = u16(pos); pos += 2
+        const left = format === 1 ? u8(pos++) : u16(pos)
+        if (format === 2) pos += 2
+        if (!ok) break
+        for (let j = 0; j <= left && i < n_glyphs; j++) charset[i++] = c++ & 0xffff
+      }
+    }
+    if (!ok) return null
+  }
+  // buildEncoding
+  if (encoding_off === 0) return [...standard_glyph_names]
+  if (encoding_off === 1) return [...type1_expert_encoding]
+  const string = (sid: number) => { // getString: a name stops at its first NUL, 255 bytes at most
+    if (sid < 391) return cff_std_strings[sid]!
+    const [p, l] = index_val(string_idx, sid - 391)
+    return ok ? String.fromCharCode(...d.subarray(p, p + Math.min(l, 255))).split('\0')[0]! : ''
+  }
+  const enc: (string | null)[] = new Array(256).fill(null)
+  let pos = encoding_off
+  const format = u8(pos++)
+  if (!ok) return null
+  if ((format & 0x7f) === 0) {
+    const n = Math.min(1 + u8(pos++), n_glyphs)
+    if (!ok) return null
+    for (let i = 1; i < n; i++) { const c = u8(pos++); if (!ok) return null; enc[c] = string(charset[i]!) }
+  } else if ((format & 0x7f) === 1) {
+    const ranges = u8(pos++)
+    if (!ok) return null
+    let n = 1
+    for (let i = 0; i < ranges; i++) {
+      let c = u8(pos++)
+      const left = u8(pos++)
+      if (!ok) return null
+      for (let j = 0; j <= left && n < n_glyphs; j++, n++, c++) if (c < 256) enc[c] = string(charset[n]!)
+    }
+  }
+  if (format & 0x80) {
+    const sups = u8(pos++)
+    if (!ok) return null
+    for (let i = 0; i < sups; i++) {
+      const c = u8(pos++)
+      if (!ok) return null
+      const sid = u16(pos); pos += 2
+      if (!ok) return null
+      enc[c] = string(sid)
+    }
+  }
+  return ok ? enc : null
 }
