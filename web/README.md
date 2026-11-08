@@ -8,3 +8,6 @@ Static files only; no build step. Serve one root containing `web/`, `dist/` (`np
 `app.js` imports `../dist/index.js`; the texmf field defaults to `../build/texmf/` (relative to the page) and may be any
 CORS-enabled bundle URL. Projects (`article`, `beamer`) persist in localStorage (text) and IndexedDB (binary uploads).
 Ctrl/Cmd+S or Ctrl/Cmd+Enter compiles. Limit: the PDF iframe reloads at page 1 after each compile.
+SyncTeX (`web/synctex.js`, every compile asks for `synctex: -1`): Cmd/Ctrl+click an editor line shows its page
+(`#page=N`); the header's page field opens the smallest source line typeset on that page. Page-level only: the browser's
+PDF viewer takes no position and reports no clicks.

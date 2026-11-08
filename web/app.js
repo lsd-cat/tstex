@@ -1,5 +1,6 @@
 // tstex demo editor: plain ESM, no build. Layout and usage: web/README.md.
 import { createTeX } from '../dist/index.js'
+import { parseSynctex, pageOf, sourceOf } from './synctex.js'
 
 const ARTICLE = String.raw`\documentclass{article}
 \usepackage{graphicx}
@@ -37,7 +38,7 @@ const ed = $('ed'), gutter = $('gutter'), logEl = $('log'), state = $('state'), 
 const esc = s => s.replace(/[&<>]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;' })[c])
 const isText = n => /\.(tex|bib|sty|cls|bst|txt|cfg|def)$/i.test(n)
 let name = 'article', files = {}, cur = 'main.tex', errLine = 0, pdfBytes = null, pdfUrl = null
-let tex = null, texKey = '', ctl = null, timer = 0, total = 0
+let tex = null, texKey = '', ctl = null, timer = 0, total = 0, sx = null // sx: the last compile's SyncTeX (web/synctex.js)
 
 // persistence: text in localStorage, binary files in one IndexedDB record per project
 const db = new Promise((res, rej) => {
@@ -121,6 +122,18 @@ function renderLog(log) {
   errLine = /^!/m.test(log) && m ? +m[1] : 0
   renderGutter()
 }
+// SyncTeX. Cmd/Ctrl+click in the editor shows that line's page; the page field opens the first source line on a page.
+// shortcut: page-level only (the iframe's PDF viewer takes #page= but no position, and reports no clicks); a PDF.js
+// viewer would allow point-level sync both ways
+ed.onclick = e => {
+  if (!(e.ctrlKey || e.metaKey) || !sx || !pdfUrl) return
+  const n = pageOf(sx, cur, ed.value.slice(0, ed.selectionStart).split('\n').length)
+  if (n) { pdf.src = pdfUrl + '#page=' + n; $('syncpage').value = n }
+}
+$('syncpage').onchange = e => {
+  const s = sx && sourceOf(sx, +e.target.value, Object.keys(files).filter(isText))
+  if (s) { cur = s.file; saveText(); errLine = 0; show(); gotoLine(s.line) }
+}
 logEl.onclick = e => { const n = e.target.dataset?.line; if (n) gotoLine(+n) }
 logEl.onkeydown = e => { if (e.key === 'Enter') logEl.onclick(e) }
 
@@ -136,7 +149,7 @@ async function compile() {
   let nf = 0, nb = 0, run = 0; const t0 = performance.now()
   state.textContent = 'compiling'; state.className = ''
   try {
-    const r = await getTeX().compile({ files: { ...files }, main: 'main.tex', runs: 'auto', signal: mine.signal, onProgress: p => {
+    const r = await getTeX().compile({ files: { ...files }, main: 'main.tex', runs: 'auto', synctex: -1, signal: mine.signal, onProgress: p => {
       if (p.type === 'fetch' && !p.cached) { nf++; nb += p.bytes } else if (p.type === 'run') run = p.n
       stats.textContent = `run ${run} · fetched ${nf} files, ${kb(nb)}`
     } })
@@ -148,6 +161,7 @@ async function compile() {
     if (r.pdf) {
       pdfBytes = r.pdf; if (pdfUrl) URL.revokeObjectURL(pdfUrl)
       pdfUrl = URL.createObjectURL(new Blob([r.pdf], { type: 'application/pdf' }))
+      sx = r.synctex && parseSynctex(new TextDecoder().decode(r.synctex))
       pdf.src = pdfUrl; $('dlpdf').disabled = false // shortcut: viewer reloads at page 1, no #page= restore (can't read the viewer's page)
     }
   } catch (err) {
