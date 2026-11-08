@@ -34,6 +34,7 @@ export function nodeFS(roots: string[], texmfRoots: string[] = []): TexFS {
   // kpathsea order: path elements in order, each over the trees in order; within a subtree the ls-R order
   const locate = (name: string, kind: string): { file: string, shown: string } | null => {
     if (name.split(/[\\/]/).includes('..')) return null // no path escape from the roots
+    if (name === '/dev/null') return { file: name, shown: name } // kpathsea finds it (expl3 sets \c_sys_platform_str to unix); no other absolute path escapes
     const names = kind === 'tex' && !/\.[^/]*$/.test(name) ? [name, name + '.tex'] : [name]
     for (const root of roots) for (const n of names) {
       const file = join(root, n)

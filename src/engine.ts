@@ -52,7 +52,7 @@ export class Engine {
   // §73–96 errors
   interaction = batch_mode; deletions_allowed = true; history = fatal_error_stop; error_count = 0
   help_line: string[] = []; help_ptr = 0; OK_to_interrupt = true; use_err_help = false; long_help_seen = false
-  log_opened = false; job_name = ''; format_ident = ' (INITEX)'
+  log_opened = false; job_name = ''; c_job_name = ''; format_ident = ' (INITEX)'
   // §104 arithmetic
   arith_error = false; remainder = 0
   // §116 one-word token memory
@@ -172,7 +172,8 @@ export class Engine {
 
   // §1332 the main program. Without `terminal' it is `pdftex -ini -interaction=batchmode <jobname>.tex';
   // with it, the first line comes from `terminal' (init_terminal) and so does every later terminal read.
-  async run(opts: { jobname?: string, mode: 'ini' | 'etex' | 'latex', terminal?: string[], date?: Date }): Promise<void> {
+  // `file' is the first line (default `<jobname>.tex'); `jobname' with `file' is -jobname
+  async run(opts: { jobname?: string, file?: string, mode: 'ini' | 'etex' | 'latex', terminal?: string[], date?: Date }): Promise<void> {
     if (opts.mode === 'latex') throw new Error(`unsupported mode: ${opts.mode}`)
     this.date = opts.date; this.etex_p = opts.mode === 'etex'; this.format = await this.format // loadFormat's result may be passed unawaited
     init_specs(this); init_fonts(this); init_eqtb(this); init_prim(this); fix_date_and_time(this)
@@ -184,7 +185,8 @@ export class Engine {
       this.term_in = [...opts.terminal]; this.interaction = error_stop_mode
       if (!init_terminal(this)) return
     } else {
-      const name = opts.jobname + '.tex'
+      const name = opts.file ?? opts.jobname + '.tex'
+      if (opts.file !== undefined && opts.jobname !== undefined) this.c_job_name = opts.jobname
       for (let k = 0; k < name.length; k++) this.buffer[this.first + k] = name.charCodeAt(k)
       this.last = this.first + name.length; this.cur_input.loc = this.first
     }

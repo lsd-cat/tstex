@@ -14,7 +14,7 @@ export const just_open = 1, closed = 2
 // §534 open_log_file; the log lives in Engine.log
 export function open_log_file(e: Engine): void {
   const old_setting = e.selector
-  if (e.job_name === '') e.job_name = 'texput'
+  if (e.job_name === '') e.job_name = e.c_job_name || 'texput' // tex.ch get_job_name
   e.selector = log_only; e.log_opened = true
   // §536 Print the banner line, including the date and time
   e.log += 'This is tstex, Version 3.141592653'
@@ -80,7 +80,7 @@ export function scan_file_name(e: Engine): void {
 export function open_tex_file(e: Engine): { name: string, file: InputFile } | null {
   const full = e.cur_area + e.cur_name + e.cur_ext
   for (const name of e.cur_ext === '.tex' ? [full] : [full + '.tex', full]) {
-    const out = e.outputFiles.get(name) // a file this run has written (and flushed) is read back
+    const out = e.outputFiles.get(name.replace(/^\.\//, '')) // a file this run has written (and flushed) is read back
     const data = out !== undefined ? Uint8Array.from(out, c => c.charCodeAt(0)) : e.fs.find(name, 'tex')
     // the name as kpathsea prints it: `./name' for a hit in the current directory, else the path in the texmf tree
     if (data !== null) return { name: (out === undefined ? e.fs.path?.(name, 'tex') : null) ?? (name.startsWith('/') ? name : './' + name), file: { data, pos: 0 } }
@@ -126,7 +126,7 @@ export function start_input(e: Engine): void {
   e.cur_area = found.name.slice(0, sl)
   e.cur_name = found.name.slice(sl, dot >= sl ? dot : undefined); e.cur_ext = dot >= sl ? found.name.slice(dot) : ''
   e.cur_input.name = 20 // any string number >19 marks a file level
-  if (e.job_name === '') { e.job_name = e.cur_name; open_log_file(e) }
+  if (e.job_name === '') { e.job_name = e.c_job_name || e.cur_name; open_log_file(e) } // tex.ch get_job_name: -jobname wins
   if (e.term_offset + found.name.length > e.lim.max_print_line - 2) print_ln(e)
   else if (e.term_offset > 0 || e.file_offset > 0) print_char(e, 32)
   print_char(e, 40); e.open_parens++; slow_print(e, found.name)

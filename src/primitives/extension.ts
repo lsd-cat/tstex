@@ -3,7 +3,7 @@ import type { Engine } from '../engine.ts'
 import { Cmd, hmode } from '../types.ts'
 import { print_esc } from '../print.ts'
 import { int_par } from '../eqtb.ts'
-import { new_whatsit_node, flush_node_list, open_node, write_node, close_node, special_node, latespecial_node, language_node } from '../nodes.ts'
+import { delete_token_ref, new_whatsit_node, flush_node_list, open_node, write_node, close_node, special_node, latespecial_node, language_node } from '../nodes.ts'
 import type { WhatsitNode } from '../nodes.ts'
 import { scan_int, scan_four_bit_int, scan_optional_equals, scan_toks, scan_keyword } from '../scan.ts'
 import { scan_file_name } from '../files.ts'
@@ -12,7 +12,7 @@ import { back_input } from '../input.ts'
 import { out_what } from '../dvi.ts'
 import { unsupported, report_illegal_case, tail_append, norm_min } from '../main.ts'
 
-const immediate_code = 5, set_language_code = 6
+const immediate_code = 5, set_language_code = 6, pdf_glyph_to_unicode_code = 39
 const names: Record<number, string> = { 0: 'openout', 1: 'write', 2: 'closeout', 3: 'special', 5: 'immediate', 6: 'setlanguage',
   7: 'pdfliteral', 40: 'pdfcolorstack', 41: 'pdfsetmatrix', 42: 'pdfsave', 43: 'pdfrestore', 9: 'pdfobj', 10: 'pdfrefobj',
   11: 'pdfxform', 12: 'pdfrefxform', 13: 'pdfximage', 14: 'pdfrefximage', 15: 'pdfannot', 16: 'pdfstartlink', 17: 'pdfendlink',
@@ -78,6 +78,11 @@ export function run(e: Engine, chr: number): void {
       p.what_lhm = norm_min(int_par(e, 51)); p.what_rhm = norm_min(int_par(e, 52))
       return
     }
+    case pdf_glyph_to_unicode_code: // pdftex.web glyph_to_unicode
+      // shortcut: def_tounicode's table only feeds PDF ToUnicode CMaps (tounicode.c, not in the format), so it is dropped; keep it when PDF output lands (M6)
+      scan_toks(e, false, true); delete_token_ref(e, e.def_ref)
+      scan_toks(e, false, true); delete_token_ref(e, e.def_ref)
+      return
     default: unsupported(e)
   }
 }

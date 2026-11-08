@@ -13,7 +13,7 @@ import { open_log_file } from '../files.ts'
 import { scan_font_ident } from '../tfm.ts'
 import { print_scaled } from '../arith.ts'
 
-const number_code = 0, roman_numeral_code = 1, string_code = 2, meaning_code = 3, font_name_code = 4, eTeX_revision_code = 5, expanded_code = 6, pdf_strcmp_code = 18, job_name_code = 33
+const number_code = 0, roman_numeral_code = 1, string_code = 2, meaning_code = 3, font_name_code = 4, eTeX_revision_code = 5, expanded_code = 6, pdftex_revision_code = 7, pdftex_banner_code = 8, pdf_file_size_code = 24, pdf_strcmp_code = 18, job_name_code = 33
 const names: Record<number, string> = { 0: 'number', 1: 'romannumeral', 2: 'string', 3: 'meaning', 4: 'fontname', 5: 'eTeXrevision',
   6: 'expanded', 7: 'pdftexrevision', 8: 'pdftexbanner', 9: 'pdffontname', 10: 'pdffontobjnum', 11: 'pdffontsize', 12: 'pdfpageref',
   13: 'pdfxformname', 14: 'pdfescapestring', 15: 'pdfescapename', 16: 'leftmarginkern', 17: 'rightmarginkern', 18: 'pdfstrcmp',
@@ -33,6 +33,15 @@ function tokens_to_string(e: Engine, p: number): number[] {
   return e.cur_str.splice(b)
 }
 
+// pdftex.web conv_toks: scan_pdf_ext_toks and tokens_to_string with scanner_status, warning_index, def_ref saved
+function scan_ext_string(e: Engine): number[] {
+  const ss = e.scanner_status, wi = e.warning_index, dr = e.def_ref
+  scan_toks(e, false, true)
+  const s = tokens_to_string(e, e.def_ref); delete_token_ref(e, e.def_ref)
+  e.def_ref = dr; e.warning_index = wi; e.scanner_status = ss
+  return s
+}
+
 // pdftex.web compare_strings: \pdfstrcmp
 function compare_strings(e: Engine): void {
   const save_cur_cs = e.cur_cs; scan_toks(e, false, true)
@@ -47,7 +56,7 @@ function compare_strings(e: Engine): void {
 
 // §470 conv_toks
 export function run(e: Engine, chr: number): void {
-  const c = chr
+  const c = chr, old_setting = e.selector, b = e.cur_str.length
   // §471 Scan the argument for command c
   if (c === number_code || c === roman_numeral_code) scan_int(e)
   else if (c === string_code || c === meaning_code) {
@@ -67,9 +76,13 @@ export function run(e: Engine, chr: number): void {
     compare_strings(e)
     e.def_ref = dr; e.warning_index = wi; e.scanner_status = ss
   }
-  else if (c !== eTeX_revision_code) unsupported(e)
-  const old_setting = e.selector; e.selector = new_string
-  const b = e.cur_str.length
+  else if (c === pdf_file_size_code) { // pdftex.web; utils.c getfilesize: empty unless kpse_find_tex finds the file
+    const f = e.fs.find(String.fromCharCode(...scan_ext_string(e)).replaceAll('"', ''), 'tex') // makecfilename drops quotes
+    e.selector = new_string; if (f !== null) print_int(e, f.length)
+    e.selector = old_setting; e.link[garbage] = str_toks(e, b); ins_list(e, e.link[temp_head]!); return
+  }
+  else if (c !== eTeX_revision_code && c !== pdftex_revision_code && c !== pdftex_banner_code) unsupported(e)
+  e.selector = new_string
   // §472 Print the result of command c
   if (c === number_code) print_int(e, e.cur_val)
   else if (c === roman_numeral_code) print_roman_int(e, e.cur_val)
@@ -80,6 +93,8 @@ export function run(e: Engine, chr: number): void {
     if (e.font_size[e.cur_val] !== e.font_dsize[e.cur_val]) { print_str(e, ' at '); print_scaled(e, e.font_size[e.cur_val]!); print_str(e, 'pt') }
   }
   else if (c === eTeX_revision_code) print_str(e, '.6')
+  else if (c === pdftex_revision_code) print_str(e, '29') // pdftex.web pdftex_revision
+  else if (c === pdftex_banner_code) print_str(e, 'This is pdfTeX, Version 3.141592653-2.6-1.40.29 (TeX Live 2026) kpathsea version 6.4.2') // texmfmp.c; pdftex's own, for identical logs
   else if (c === pdf_strcmp_code) print_int(e, e.cur_val)
   else print_str(e, e.job_name)
   e.selector = old_setting; e.link[garbage] = str_toks(e, b); ins_list(e, e.link[temp_head]!)
