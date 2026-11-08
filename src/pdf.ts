@@ -1336,12 +1336,15 @@ export function scale_image(e: Engine, n: number): void {
   if (x <= 0 || y <= 0 || xr < 0 || yr < 0) pdf_error(e, 'ext1', 'invalid image dimensions')
   if (xr === 0 && yr === 0) { /* missing resolution: no warning */ }
   else if (x / 226 >= xr || y / 226 >= yr) { xr = 0; yr = 0; pdf_warning(e, 'ext1', 'too small image resolution ignored', true, true) }
-  const default_res = fix_int(int_par(e, pdf_image_resolution_code), 0, 65535)
-  if (default_res > 0 && (xr === 0 || yr === 0)) { xr = default_res; yr = default_res }
   const run = (k: number) => m[d + k] === null_flag
-  if (run(0) && run(1)) {
+  if (img.type === 'pdf') { w = x; h = y }
+  else {
+    const default_res = fix_int(int_par(e, pdf_image_resolution_code), 0, 65535)
+    if (default_res > 0 && (xr === 0 || yr === 0)) { xr = default_res; yr = default_res }
+    if (run(0) && run(1)) {
     if (xr > 0 && yr > 0) { w = ext_xn_over_d(e, one_hundred_inch, x, 100 * xr); h = ext_xn_over_d(e, one_hundred_inch, y, 100 * yr) }
     else { w = ext_xn_over_d(e, one_hundred_inch, x, 7200); h = ext_xn_over_d(e, one_hundred_inch, y, 7200) }
+    }
   }
   if (run(0) && run(1) && run(2)) { m[d] = w; m[d + 1] = h; m[d + 2] = 0 }
   else if (run(0)) {

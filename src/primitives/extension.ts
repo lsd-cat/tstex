@@ -396,11 +396,12 @@ export function run(e: Engine, chr: number): void {
       const r = new_whatsit_node(0); scan_alt_rule(e, r)
       ps.mem[d] = r.pdf_left; ps.mem[d + 1] = r.pdf_top; ps.mem[d + 2] = r.pdf_right
       if (scan_keyword(e, 'attr')) { scan_toks(e, false, true); ps.mem[d + 3] = e.def_ref } else ps.mem[d + 3] = 0
-      if (scan_keyword(e, 'named')) { scan_toks(e, false, true); delete_token_ref(e, e.def_ref) } // only PDF images use it
-      else if (scan_keyword(e, 'page')) scan_int(e)
-      let colorspace = 0
+      let named = false, page = 1, colorspace = 0, pagebox = 0
+      if (scan_keyword(e, 'named')) { scan_toks(e, false, true); delete_token_ref(e, e.def_ref); named = true }
+      else if (scan_keyword(e, 'page')) { scan_int(e); page = e.cur_val }
       if (scan_keyword(e, 'colorspace')) { scan_int(e); colorspace = e.cur_val }
-      for (const b of ['mediabox', 'cropbox', 'bleedbox', 'trimbox', 'artbox']) if (scan_keyword(e, b)) break // scan_pdf_box_spec
+      for (const [i, b] of ['mediabox', 'cropbox', 'bleedbox', 'trimbox', 'artbox'].entries()) if (scan_keyword(e, b)) { pagebox = i + 1; break } // scan_pdf_box_spec
+      if (pagebox === 0) pagebox = int_par(e, 77) // \pdfpagebox
       scan_toks(e, false, true); const s = str(tokens_to_string(e, e.def_ref)); delete_token_ref(e, e.def_ref)
       if (int_par(e, 72) !== 0) { // \pdfoptionalwaysusepdfpagebox
         pdf_warning(e, 'PDF inclusion', 'Primitive \\pdfoptionalwaysusepdfpagebox is obsolete; use \\pdfpagebox instead.', true, true)
@@ -414,10 +415,12 @@ export function run(e: Engine, chr: number): void {
         pdf_warning(e, 'PDF inclusion', 'Primitive \\pdfforcepagebox is obsolete; use \\pdfpagebox instead.', true, true)
         ps.warn_pdfpagebox = false
       }
-      ps.images.push(read_image(e, s, colorspace)); ps.mem[d + 4] = ps.images.length - 1
+      if (int_par(e, 76) > 0) pagebox = int_par(e, 76)
+      if (pagebox === 0) pagebox = 2 // pdf_box_spec_crop
+      ps.images.push(read_image(e, s, page, named, colorspace, pagebox)); ps.mem[d + 4] = ps.images.length - 1
       scale_image(e, k)
       const img = ps.images[ps.images.length - 1]!
-      ps.last_ximage = k; ps.last_ximage_pages = img.pages; ps.last_ximage_colordepth = img.type === 'png' ? img.png!.bd : img.bpc
+      ps.last_ximage = k; ps.last_ximage_pages = img.pages; ps.last_ximage_colordepth = img.type === 'png' ? img.png!.bd : img.type === 'jpg' ? img.bpc : 0
       return
     }
     case pdf_refxform_node: case pdf_refximage_node: { // pdftex.web Implement \pdfrefxform, \pdfrefximage

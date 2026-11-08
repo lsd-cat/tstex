@@ -1,6 +1,6 @@
 // Normalise an UNCOMPRESSED pdfTeX-style PDF (no object/xref streams) so pdftex and tstex output can be compared as text.
 // Masked: subset prefixes `ABCDEF+`, /CharSet, Type1 font program bodies (streams with /Length1) and their /Length* values.
-// Dropped: xref table, startxref offset. Everything else (incl. binary image bodies, as latin1) is kept verbatim.
+// Uncompressed object streams are split into their objects (masked the same way). Dropped: xref table or stream, startxref offset. Everything else (incl. binary image bodies, as latin1) is kept verbatim.
 import { readFileSync, writeFileSync, mkdtempSync } from 'node:fs'
 import { spawnSync } from 'node:child_process'
 import { tmpdir } from 'node:os'
@@ -35,11 +35,20 @@ export function normalizePdf(bytes: Uint8Array): string {
   const fontLen = new Set<string>() // objects holding the /Length of a font program
   for (const o of objs) if (o.body !== null && /\/Length1\b/.test(o.dict)) { const r = o.dict.match(/\/Length (\d+) 0 R/); if (r) fontLen.add(r[1]!) }
   const out = [header]
+  const mask = (d: string) => d.replace(/\/[A-Z]{6}\+/g, '/').replace(/\/CharSet\s*\([^)]*\)\s*/g, '')
   for (const o of objs) {
     let d = o.dict
+    if (o.body !== null && /\/Type\s*\/XRef/.test(d)) { out.push(`${o.n} obj\n${d.replace(/\/Length \d+/, '/Length *')}\nstream <<offsets>>\n`); continue } // like the xref table
+    // an uncompressed object stream: its objects are listed one by one (masked like top-level objects), its offsets dropped
+    if (o.body !== null && /\/Type\s*\/ObjStm/.test(d) && !/\/Filter/.test(d)) {
+      const first = Number(d.match(/\/First (\d+)/)![1]), nums = o.body.slice(0, first).trim().split(/\s+/).map(Number)
+      out.push(`${o.n} obj\n<<objstm>>\n`)
+      for (let k = 0; k < nums.length; k += 2) out.push(`  ${nums[k]} in objstm\n${mask(o.body.slice(first + nums[k + 1]!, k + 3 < nums.length ? first + nums[k + 3]! : undefined))}\n`)
+      continue
+    }
     const font = o.body !== null && /\/Length1\b/.test(d)
     if (fontLen.has(o.n)) d = '<<font length masked>>'
-    d = d.replace(/\/[A-Z]{6}\+/g, '/').replace(/\/CharSet\s*\([^)]*\)\s*/g, '')
+    d = mask(d)
     if (font) d = d.replace(/\/Length[123]? \d+( 0 R)? */g, m => m.slice(0, m.indexOf(" ")) + " *")
     out.push(`${o.n} obj\n${d}${o.body === null ? '' : `\nstream\n${font ? '<<font program masked>>' : o.body}\nendstream`}\nendobj\n`)
   }

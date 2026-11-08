@@ -1,15 +1,17 @@
-// writeimg.c readimage/writeimage, writepng.c (read_png_info, write_png: the copy path and the decoded write_png_gray/rgb/palette
+// writeimg.c readimage/writeimage, pdftoepdf.cc read_pdf_info (page count, boxes, rotation; copying the page is unsupported),
+// writepng.c (read_png_info, write_png: the copy path and the decoded write_png_gray/rgb/palette
 // paths), writejpg.c (read_jpg_info incl. JFIF/Exif resolution, write_jpg). libpng's work is done here: chunks are parsed,
 // IDAT is inflated by the platform (TexFS.inflate) and the rows unfiltered. PDF/JBIG2 inclusion, interlaced, alpha, tRNS,
 // gamma-applied and 16-to-8-bit PNGs are unsupported.
 import type { Engine } from '../engine.ts'
 import { print } from '../print.ts'
 import { fatal_error } from '../error.ts'
-import { pdftex_fail, pdf_print, pdf_print_ln, pdf_begin_stream, pdf_end_stream, pdf_create_obj, pdf_begin_dict } from '../pdf.ts'
+import { int_base } from '../types.ts'
+import { pdftex_fail, pdftex_warn, pdf_print, pdf_print_ln, pdf_begin_stream, pdf_end_stream, pdf_create_obj, pdf_begin_dict } from '../pdf.ts'
 
 export const IMAGE_COLOR_B = 1, IMAGE_COLOR_C = 2, IMAGE_COLOR_I = 4
 type Png = { ct: number, bd: number, il: number, palette: Uint8Array, chunks: Set<string>, gamma: number }
-export type Img = { name: string, data: Uint8Array, type: 'png' | 'jpg', color: number, width: number, height: number, xres: number, yres: number,
+export type Img = { name: string, data: Uint8Array, type: 'png' | 'jpg' | 'pdf', orig_x: number, orig_y: number, color: number, width: number, height: number, xres: number, yres: number,
   pages: number, colorspace_ref: number, group_ref: number, rotate: number, bpc: number, jpg_color_space: number, png: Png | null }
 
 const u16 = (d: Uint8Array, i: number) => (d[i]! << 8) | d[i + 1]!
@@ -18,22 +20,127 @@ const tag = (d: Uint8Array, i: number) => String.fromCharCode(d[i]!, d[i + 1]!, 
 const cround = (x: number) => x < 0 ? -Math.round(-x) : Math.round(x) // C round(): halves away from zero
 
 // writeimg.c readimage (checktypebyheader, then checktypebyextension)
-export function read_image(e: Engine, s: string, colorspace: number): Img {
+export function read_image(e: Engine, s: string, page: number, named: boolean, colorspace: number, pagebox: number): Img {
   const data = e.fs.find(s, 'tex'), name = e.fs.path?.(s, 'tex') ?? s
   if (data === null) pdftex_fail(e, null, `cannot find image file ${s}`)
-  const img: Img = { name, data, type: 'png', color: 0, width: 0, height: 0, xres: 0, yres: 0, pages: 1, colorspace_ref: colorspace,
+  const img: Img = { name, data, type: 'png', orig_x: 0, orig_y: 0, color: 0, width: 0, height: 0, xres: 0, yres: 0, pages: 1, colorspace_ref: colorspace,
     group_ref: 0, rotate: 0, bpc: 0, jpg_color_space: 0, png: null }
   if (data.length < 8) pdftex_fail(e, name, 'reading image file failed')
   const head = String.fromCharCode(...data.subarray(0, 8)), ext = /\.[^.]*$/.exec(s)?.[0].toLowerCase()
   const type = head.startsWith('\xFF\xD8') ? 'jpg' : head === '\x89PNG\r\n\x1A\n' ? 'png' : head === '\x97JB2\r\n\x1A\n' ? 'jbig2'
     : head.startsWith('%PDF-1.') ? 'pdf' : ext === '.png' ? 'png' : ext === '.jpg' || ext === '.jpeg' ? 'jpg'
     : ext === '.jbig2' || ext === '.jb2' ? 'jbig2' : ext === '.pdf' ? 'pdf' : 'none'
-  if (type === 'pdf') fatal_error(e, 'unsupported: PDF image inclusion')
+  if (type === 'pdf' && named) fatal_error(e, 'unsupported: \\pdfximage named (PDF destinations)')
   if (type === 'jbig2') fatal_error(e, 'unsupported: JBIG2 image inclusion')
   if (type === 'none') pdftex_fail(e, name, 'unknown type of image')
   img.type = type
-  if (type === 'png') read_png_info(e, img); else read_jpg_info(e, img)
+  if (type === 'png') read_png_info(e, img); else if (type === 'jpg') read_jpg_info(e, img); else read_pdf_info(e, img, page, pagebox)
   return img
+}
+
+// pdftoepdf.cc read_pdf_info with the little of xpdf it needs: objects are found by scanning for `n g obj' and inside object
+// streams (shortcut: no xref parsing, the last definition of a number wins; a damaged or encrypted file may be read where xpdf fails)
+type PdfVal = number | string | boolean | null | PdfVal[] | { [k: string]: PdfVal } | { ref: number }
+function read_pdf_info(e: Engine, img: Img, page_num: number, pagebox: number): void {
+  const d = img.data, src = String.fromCharCode(...d.subarray(0, Math.min(d.length, 1024)))
+  const fail = () => pdftex_fail(e, null, 'xpdf: reading PDF image failed')
+  const hv = /%PDF-(\d+)\.(\d+)/.exec(src)
+  if (hv === null) fail()
+  const text = Array.from(d, c => String.fromCharCode(c)).join('')
+  const offs = new Map<number, number | PdfVal>()
+  for (const m of text.matchAll(/(?<![0-9])(\d+)\s+\d+\s+obj\b/g)) offs.set(+m[1]!, m.index! + m[0].length)
+  const parse = (t: string, i: number): [PdfVal, number] => {
+    const ws = () => { for (;;) { while (i < t.length && /[\0\t\n\f\r ]/.test(t[i]!)) i++; if (t[i] === '%') { while (i < t.length && t[i] !== '\n' && t[i] !== '\r') i++ } else return } }
+    const val = (): PdfVal => {
+      ws()
+      const c = t[i]
+      if (c === '<' && t[i + 1] === '<') {
+        i += 2; const o: { [k: string]: PdfVal } = {}
+        for (;;) { ws(); if (t[i] === '>' || i >= t.length) { i += 2; return o } const k = val(); o[String(k)] = val() }
+      }
+      if (c === '[') { i++; const a: PdfVal[] = []; for (;;) { ws(); if (t[i] === ']' || i >= t.length) { i++; return a } a.push(val()) } }
+      if (c === '/') { const m = /^\/[^\0\t\n\f\r ()<>\[\]{}/%]*/.exec(t.slice(i, i + 256))!; i += m[0].length; return m[0].slice(1) }
+      if (c === '(') { let n = 0; do { if (t[i] === '\\') i++; else if (t[i] === '(') n++; else if (t[i] === ')') n--; i++ } while (n > 0 && i < t.length); return '' }
+      if (c === '<') { i = t.indexOf('>', i) + 1 || t.length; return '' }
+      const m = /^(?:([+-]?\d+)\s+(\d+)\s+R\b|[+-]?(?:\d+\.?\d*|\.\d+)|true|false|null)/.exec(t.slice(i, i + 64))
+      if (m === null) { i = t.length; return null }
+      i += m[0].length
+      return m[1] !== undefined ? { ref: +m[1] } : m[0] === 'true' ? true : m[0] === 'false' ? false : m[0] === 'null' ? null : +m[0]
+    }
+    const v = val(); return [v, i]
+  }
+  const obj = (n: number, depth = 0): PdfVal => {
+    const o = offs.get(n)
+    if (o === undefined || depth > 32) return null
+    if (typeof o !== 'number') return o
+    return parse(text, o)[0]
+  }
+  const deref = (v: PdfVal | undefined, depth = 0): PdfVal => v !== null && typeof v === 'object' && 'ref' in v && depth < 32 ? deref(obj(v.ref as number), depth + 1) : v ?? null
+  const dict = (v: PdfVal | undefined) => { const r = deref(v); return r !== null && typeof r === 'object' && !Array.isArray(r) && !('ref' in r) ? r as { [k: string]: PdfVal } : null }
+  // object streams: the objects inside a /Type /ObjStm stream
+  for (const [, o] of [...offs]) {
+    if (typeof o !== 'number') continue
+    const [h, j] = parse(text, o), hd = dict(h)
+    if (hd === null || hd.Type !== 'ObjStm') continue
+    const k = text.indexOf('stream', j), start = k + 6 + (text[k + 6] === '\r' ? 2 : 1), len = deref(hd.Length)
+    if (k < 0 || typeof len !== 'number' || e.fs.inflate === undefined) continue
+    const body = e.fs.inflate(d.subarray(start, start + len), 1 << 24), bt = Array.from(body, c => String.fromCharCode(c)).join('')
+    const first = deref(hd.First), nums = bt.slice(0, typeof first === 'number' ? first : 0).trim().split(/\s+/).map(Number)
+    for (let q = 0; q + 1 < nums.length; q += 2) if (!offs.has(nums[q]!) || typeof offs.get(nums[q]!) === 'number')
+      offs.set(nums[q]!, parse(bt, (first as number) + nums[q + 1]!)[0])
+  }
+  const roots = [...text.matchAll(/\/Root\s+(\d+)\s+\d+\s+R/g)], root = dict(roots.length > 0 ? { ref: +roots[roots.length - 1]![1]! } : null)
+  const pages = dict(root?.Pages)
+  if (pages === null) fail()
+  // PDF version check (xpdf getPDFVersion: the header's)
+  const found = +hv![1]! + +hv![2]! * 0.1, wanted = e.ps.fixed_major + e.ps.fixed_minor * 0.1, level = e.equiv[int_base + 78]!
+  if (Math.fround(found) > Math.fround(wanted) + 0.01) {
+    const msg = `PDF inclusion: found PDF version <${found.toFixed(1)}>, but at most version <${wanted.toFixed(1)}> allowed`
+    if (level > 0) pdftex_fail(e, null, msg); else if (level === 0) pdftex_warn(e, null, msg)
+  }
+  const count = deref(pages!.Count)
+  img.pages = typeof count === 'number' ? count : 0
+  if (page_num <= 0 || page_num > img.pages) pdftex_fail(e, null, `PDF inclusion: required page does not exist <${img.pages}>`)
+  // find the page, collecting the inherited attributes (xpdf PageAttrs)
+  let node = pages!, n = page_num, inh: { [k: string]: PdfVal } = {}
+  for (let guard = 0; ; guard++) {
+    for (const k of ['MediaBox', 'CropBox', 'Rotate']) if (node[k] !== undefined) inh[k] = deref(node[k])
+    if (node.Type === 'Page' || guard > 64) break
+    const kids = deref(node.Kids)
+    if (!Array.isArray(kids)) fail()
+    let next: { [k: string]: PdfVal } | null = null
+    for (const kid of kids as PdfVal[]) {
+      const kd = dict(kid)
+      if (kd === null) continue
+      const c = kd.Type === 'Pages' ? deref(kd.Count) as number : 1
+      if (n <= c) { next = kd; break }
+      n -= c
+    }
+    if (next === null) fail()
+    node = next!
+  }
+  const box = (v: PdfVal | undefined): number[] | null => {
+    const a = deref(v)
+    if (!Array.isArray(a) || a.length !== 4) return null
+    const [x1, y1, x2, y2] = a.map(x => Number(deref(x)))
+    return [Math.min(x1!, x2!), Math.min(y1!, y2!), Math.max(x1!, x2!), Math.max(y1!, y2!)]
+  }
+  const media = box(inh.MediaBox) ?? [0, 0, 612, 792]
+  let crop = box(inh.CropBox)
+  if (crop === null) crop = media.slice()
+  else {
+    if (crop[2]! - crop[0]! > media[2]! - media[0]!) { crop[0] = media[0]!; crop[2] = media[2]! }
+    if (crop[3]! - crop[1]! > media[3]! - media[1]!) { crop[1] = media[1]!; crop[3] = media[3]! }
+  }
+  const other = (k: string) => box(node[k]) ?? crop!.slice()
+  const clip = (b: number[]) => [Math.max(b[0]!, media[0]!), Math.max(b[1]!, media[1]!), Math.min(b[2]!, media[2]!), Math.min(b[3]!, media[3]!)]
+  const b = pagebox === 1 ? media : clip(pagebox === 2 ? crop : pagebox === 3 ? other('BleedBox') : pagebox === 4 ? other('TrimBox') : other('ArtBox'))
+  const f = Math.fround, bp2int = (p: number) => cround(p * (6578176 / 100.0)) // float epdf_* then bp2int
+  img.orig_x = bp2int(f(b[0]!)); img.orig_y = bp2int(f(b[1]!))
+  img.width = bp2int(f(b[2]! - b[0]!)); img.height = bp2int(f(b[3]! - b[1]!))
+  const rot = deref(inh.Rotate)
+  img.rotate = typeof rot === 'number' ? ((Math.trunc(rot) % 360) + 360) % 360 : 0
+  img.group_ref = node.Group !== undefined ? -1 : 0
 }
 
 // writepng.c read_png_info (libpng's png_read_info: the chunks before IDAT)
@@ -124,6 +231,7 @@ function read_APP1_Exif(b: Uint8Array): [number, number] {
 // writeimg.c writeimage
 export function write_image(e: Engine, img: Img): void {
   print(e, ' <' + img.name)
+  if (img.type === 'pdf') fatal_error(e, 'unsupported: PDF image inclusion (write_epdf)')
   if (img.type === 'png') write_png(e, img); else write_jpg(e, img)
   print(e, '>')
 }
