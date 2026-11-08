@@ -7,4 +7,3 @@ hyperref/test0: oracle: missing file lastpage.sty
 base/github-1092: needs piped input \input{|kpsewhich ...} (shell escape, deferred: no \write18)
 l3kernel/m3shell001: needs shell escape (\sys_shell_now:n, piped \input|cmd; deferred: no \write18)
 base/tlb2661: oracle depends on the case-insensitive macOS file system (TESTcmm.fd written, testcmm.fd found)
-base/sx172785: needs character protrusion (\pdfprotrudechars=2, \rpcode; microtype's engine feature, deferred with microtype)
