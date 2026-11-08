@@ -199,7 +199,7 @@ function read_jpg_info(e: Engine, img: Img): void {
       return
     }
     if (m === 0xd8 || m === 0xd9 || m === 0x01 || (m >= 0xd0 && m <= 0xd7)) continue
-    const c = getc(); i += (((c << 8) + getc()) & 0xffff) - 2; eof = false // read2bytes, then xfseek(SEEK_CUR)
+    const c = getc(), l = ((c << 8) + getc()) & 0xffff; i += l - 2; eof = false // read2bytes, then xfseek(SEEK_CUR)
   }
 }
 function read_APP1_Exif(b: Uint8Array): [number, number] {
