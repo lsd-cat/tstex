@@ -183,7 +183,7 @@ Findings from porting. The port reproduces TeX's behaviour, bugs included; entri
 
 - Active, passive and delta nodes of `line_break` are TS objects (a delta node keeps its six differences in `w[1..6]`); `temp_head`, `hold_head` and the active-list sentinel are per-call objects. `page_head` is a glue-typed object so an initial page glue is not a breakpoint (§988).
 - `\parshape` values live in `Engine.shapes[]` as `[n, i1, l1, …]`; `par_shape_loc` holds a handle (0 = null). Handles are not reused (`shortcut:` grows by one array per `\parshape` assignment; reuse freed slots if a document assigns it in a loop).
-- `\pdfadjustspacing` or `\pdfprotrudechars` non-zero at a paragraph end stops with `unsupported:`; `\pdfeachlineheight` and friends are honoured (§888). (The e‑TeX parts of line breaking are ported in M4.)
+- `\pdfeachlineheight` and friends are honoured (§888). (The e‑TeX parts of line breaking are ported in M4.)
 - Hyphenation exceptions are a `Map` keyed by the word plus language: tex.ch's `hyph_link` chaining only decides where an entry sits, so lookups and `hyph_count` (repeated words replace and do not count, tex.ch §940) are unaffected; the `hyph_size=8191` overflow is kept.
 - `\patterns`: `new_trie_op`'s and `trie_node`'s open-addressing hash tables are `Map`s (both return the first equal entry, so op codes and the compressed trie are identical); `first_fit`, `trie_pack`, `trie_fix` and the op sort are ported as is, with `trie_size=1000000`, `trie_op_size=35111`, 65535 ops per language and `max_op_used` (printed only by `\dump`, M5). web2c stores `trie_back` in `trie_op`; here it has its own array (holes are cleared before use, so this is invisible).
 - `\patterns` is always INITEX: pdftex's "Patterns can be loaded only by INITEX" path is unreachable; after the first paragraph that needs hyphenation it gives "Too late for \patterns".
@@ -206,7 +206,7 @@ Findings from porting. The port reproduces TeX's behaviour, bugs included; entri
 - `omit_template` is fixed token memory location 6 (after `null_list`), holding `\endtemplate`.
 - §812's `aux_save` restores `prev_depth`, `space_factor` and `clang` (TeX copies the whole `aux` word).
 - The primitives table of `\pdfprimitive`/`\ifpdfprimitive` is a `Map` by name with sequential indices instead of `prim_prime` hashing (indices are never printed). `prim_lookup_cs(null_cs)` answers undefined_primitive (`shortcut:`; pdftex looks up pool string 256).
-- `unsupported.ts` now holds only `\letterspacefont` and `\pdfcopyfont` (font expansion).
+- `unsupported.ts`'s table is empty since M8 (`\letterspacefont`, `\pdfcopyfont` and font expansion are ported).
 
 ### M4 e‑TeX
 
@@ -242,7 +242,7 @@ Findings from porting. The port reproduces TeX's behaviour, bugs included; entri
 - Type 1 fonts: `<<` map entries (whole font) are written exactly as pdftex's `t1_include` writes them: each line through `t1_getline`/`t1_putline` (tabs to spaces, spaces collapsed, CR to LF, empty lines dropped, a space before the line end removed), the eexec part decrypted, normalised the same way outside the charstrings and re-encrypted behind four zero bytes, cut at `mark currentfile closefile`, `/Length3 0`. `<` (subsetted) entries are subset as `writet1.c` does (M8, see below). PDFs are byte-identical (`test/unit/type1.test.ts`); `tools/pdf-normalize.ts` no longer masks font programs.
 - The PDF lives in one growable buffer (`src/pdf.ts`, `e.ps`), the `/Length` placeholder is patched in place; `ps.gone` records the offset at which `pdf_flush` would last have emptied pdftex's 16384-byte `pdf_op_buf` (a `pdf_room` overflow, the start of a compressed stream, the end of any stream), which is all `pdf_gone` is used for (`garbage_warning`). `\pdfcompresslevel>0` deflates a finished stream through `TexFS.compress` (Node `zlib.deflateSync`); object streams (`\pdfobjcompresslevel>0`, PDF ≥ 1.5) and the cross-reference stream are ported. Compressed bytes need not equal pdftex's zlib output.
 - `run({ mode: 'pdflatex' })` is `pdftex -fmt pdflatex` without `-output-format=dvi` (the format's `\pdfoutput=1`); `bin/tstex.ts --fmt FILE --pdf`. `run({ date })` stands for `SOURCE_DATE_EPOCH` + `FORCE_SOURCE_DATE=1` for the PDF dates and `/ID` (UTC); `\time`/`\day` still use the local time zone of `date` (shortcut: pdftex uses UTC there too).
-- `nodeFS` kinds: `map` (`fonts/map/pdftex/`, `fonts/map/dvips/`, `fonts/map/`), `enc`, `type1`, `vf` (only probed: a font with a `.vf` file is `unsupported: virtual font`).
+- `nodeFS` kinds: `map` (`fonts/map/pdftex/`, `fonts/map/dvips/`, `fonts/map/`), `enc`, `type1`, `vf` (read by `do_vf` since M8).
 - Map file (`mapfile.c`): `fm_scan_line`, `check_fm_entry`'s warnings and the duplicate rule of `avl_do_entry` for TFM names are ported; the PostScript-name tree (PDF inclusion) is not; subfont entries (`@sfd@`) are skipped (shortcut).
 - pdftex_fail (`!pdfTeX error: pdftex (file …): …` then exit) ends `run` without `close_files_and_terminate` (no PDF, no `Transcript written`).
 - Left unsupported in pass A and done in pass B (see below): forms, outlines, name tree, threads, `\pdfinfo`/`\pdfcatalog`/`\pdftrailer`/`\pdfnames`/`\pdftrailerid`, `\pdffontattr`, `\pdfmapfile`/`\pdfmapline`, color stacks, and the whatsits colorstack, setmatrix, save/restore, refxform, refximage, annot, start/end link, dest, thread, start/end thread.
@@ -271,7 +271,7 @@ Findings from porting. The port reproduces TeX's behaviour, bugs included; entri
 Deviations and unsupported (each `fatal_error("unsupported: …")`):
 - PDF image inclusion: superseded in M8 (see M8 below); `\pdfximage named` and JBIG2 remain unsupported.
 - PNG decoding needs `TexFS.inflate` (Node zlib). Interlaced, `tRNS`, 16-bit and gamma-corrected PNGs are ported in M8 (see M8 Type 1 subsetting and PNG below).
-- Still unsupported, none of them used by LaTeX, hyperref, graphicx, xcolor, geometry, TikZ or beamer: `\pdfuniqueresname` (needs the CRC32 of the job id string with TeX Live's version strings), `\pdfinterwordspaceon` spaces and `\pdffakespace`, `\pdfspacefont`, `\pdffontexpand`/font expansion, `\pdfsnaprefpoint`/`\pdfsnapy`/`\pdfsnapycomp`, SlantFont/ExtendFont, TrueType/OpenType/PK/Type 3 fonts, PFA files, virtual fonts, `\pdfobj … file`, map-file subfont (`@sfd@`) entries (so neither `cannot open SFD file for reading` nor the duplicate warning for such an entry).
+- Still unsupported, none of them used by LaTeX, hyperref, graphicx, xcolor, geometry, TikZ or beamer: `\pdfuniqueresname` (needs the CRC32 of the job id string with TeX Live's version strings), `\pdfinterwordspaceon` spaces and `\pdffakespace`, `\pdfspacefont`, `\pdfsnaprefpoint`/`\pdfsnapy`/`\pdfsnapycomp`, SlantFont/ExtendFont, TrueType/OpenType/PK/Type 3 fonts, PFA files, map-file subfont (`@sfd@`) entries (so neither `cannot open SFD file for reading` nor the duplicate warning for such an entry).
 
 ### M8 PDF inclusion
 
