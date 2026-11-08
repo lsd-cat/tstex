@@ -27,6 +27,12 @@ Findings from porting. The port reproduces TeX's behaviour, bugs included; entri
 - DVI font numbers above 256 use `fnt_def2`/`fnt2` (`fnt_def1+1`/`fnt1+1`) with a two-byte number (tex.ch [32.602], [32.621]). Oracle `m2-review-dvi-fonts`.
 - `\font\x=name scaled n` whose size would reach 2048pt (or overflow `xn_over_d`) gives "Font \x=name scaled n scaled to 2048pt or higher" and keeps the design size; the "already loaded" test treats an `arith_error` as no match (tex.ch [30.568], [49.1260]). Oracle `m2-review-font-2048` (uses `test/texmf/big100.tfm`).
 
+- `\pdfprimitive` of a non-expandable primitive backs up the token behind the frozen `\pdfprimitive` (an `ignore_spaces` command); inside `\edef` that frozen token is stored and the following control sequence is still expanded by its *current* meaning: `\def\relax{X}\edef\a{\pdfprimitive\relax}` gives `\a=macro:->\pdfprimitive X`. `\pdfprimitive` before a name that is not a primitive (or a character token) silently drops that token. (pdftex.web)
+- pdftex.web alone puts `prim_eqtb_base=frozen_primitive+1` past `frozen_null_font`, so the primitives' eqtb copies would overlap the font identifiers; pdftex.ch moves `frozen_null_font` to `frozen_control_sequence+12+prim_size` (tex.ch's `frozen_special` takes +10). The port had `frozen_primitive` on font 1's identifier slot until M3 pass B.
+- Test-author note: "Interwoven alignment preambles are not allowed" (§324, §782, §789, §791, §1131) is a fatal error that a clean file cannot reach without `\endtemplate` tricks; pinning it needs a deliberately broken alignment, so no oracle covers it.
+- Test-author note: `\everycr{\message{..}}` without `\noalign` loops forever: after each `\cr` the first token of `\everycr` starts a new row (§785 `init_row`), whose `\cr` reinserts `\everycr`. Use `\everycr{\noalign{…}}`.
+- A file whose `\par` typesets something loops forever at `\end` in horizontal mode (`head_for_vmode` keeps inserting `\par`); both pdftex and the port spin.
+
 ## Known bugs in the original
 
 - Signed 32-bit overflow in §100–108 is undefined behaviour in C; pdftex's binaries wrap, and we reproduce what they print (oracle `m1-review-int-wrap`, unit `arith.test.ts`). `xn_over_d`'s `u:=(x div @'100000)*n+…` wraps (`\count1=2147483647 \dimen0=0.99999\count1` gives `-0.5pt`, no error), and `x_over_n(-2^31, 2)` negates `-2^31` to itself (`\divide` gives `1073741824`). The compiler's UB optimisations are not uniform, so neither are we: in `xn_over_d` the negated `-2^31` behaves as unsigned `2^31`; in `mult_and_add` `-(-2^31)` does not wrap (`\multiply` by `-1` reports "Arithmetic overflow"); and §448's `abs(cur_val)>=@'10000000000` treats `abs(-2^31)` as large ("Dimension too large"). `half`'s `x+1` wraps (not observable yet). The same holds for the page builder, line breaker and shipout: `cur_height-h` (§975), `page_total-page_goal` (§1007), `height+r.height` and `dimen n-height` for insertions (§1008, §1010) and the huge-page sums `height+depth+v_offset`, `width+h_offset` (§641) wrap to 32 bits before the comparison (oracles `m2-review-page-wrap`, `m2-review-huge-page`). `abs` is again not uniform: `last_special_line:=abs(hang_after)` stores `-2^31` (§849, `\hangafter=-2^31` gives a full-width first line), while `abs(x)>=c` tests treat `abs(-2^31)` as large: `\penalty-2^31` in a paragraph is a forced break (§831), `\linepenalty=-2^31` gives `d=100000000` (§859), and `\adjdemerits=-2^31` takes the `awful_bad-1` branch (§836). Oracle `m2-review-abs-wrap`.
@@ -64,18 +70,17 @@ Findings from porting. The port reproduces TeX's behaviour, bugs included; entri
 - Token memory is numeric `info`/`link` arrays with a free list; `null = 0`, fixed heads `temp_head=1, hold_head=2, backup_head=3, garbage=4`. `get_avail` zeroes `info` (TeX does not; harmless).
 - No string pool. `print_cs` on an empty slot prints `^^@` as TeX's `text = 0` would. `new_string` selector writes into `Engine.cur_str`.
 - Glue specs are TS objects in `Engine.spec[]` addressed by integer; `zero_glue = 0 = null`, as in tex.web.
-- Interaction is always batch mode: no dialog, `term_input`, interrupts or `pause_for_instructions`.
+- No terminal: no dialog, `term_input`, interrupts or `pause_for_instructions`. `\batchmode`…`\errorstopmode` set `interaction` and `selector` (§1265), so scroll/nonstop mode send diagnostics and errors to `Engine.terminal` as TeX would; in `\errorstopmode` every `error` (§83) and every terminal read stops with `unsupported: terminal input`.
 - `jump_out` is a thrown exception caught by `run()`, which then calls `close_files_and_terminate` (as tex.ch).
 - `\pdftexversion` returns 140.
 - `scan_register_num` is `scan_eight_bit_int`; no sparse (e‑TeX) registers.
 - e‑TeX‑mode‑only machinery not ported yet: `group_warning`, `if_warning`, `grp_stack`/`if_stack`, `\tracingassigns`/`\tracinggroups`/`\tracingifs` hooks. Registered via `etex_primitives` only when `init_prim(e, true)` runs (M4).
-- `handle_right_brace` calls `confusion` for align, no_align, math, vcenter and math_choice groups (none can be opened before M3).
-- `ignore_spaces` with `chr = 1` (frozen `\pdfprimitive`) inside `scan_something_internal` is unsupported; pdftex resets the token and rescans.
+- `handle_right_brace` calls `confusion` only for groups that never reach it (TeX's `othercases`).
 - `nodeFS` refuses names containing `..` (no path escape from the roots).
 - File names (tex.ch): `scan_file_name` keeps `cur_name/cur_area/cur_ext` as JS strings; `"` toggles quoting and is dropped; area ends at the last `/`, extension starts at the last `.` after it. Braced names (`\input{...}`, `scan_file_name_braced`) are unsupported. Lookup tries `name.tex` then `name` unless the extension is `.tex` (kpathsea order); the name printed after `(` is `./` + the name found (`shortcut:` every `nodeFS` root is treated as the cwd, as kpathsea prints a cwd hit; an ls-R texmf root (M5) must report the real path, which changes the 79-column wrap positions). `in_name_ok` (openin_any) is not checked beyond `nodeFS`'s `..` rule.
 - `prompt_file_name` and terminal `\read` always end in `fatal_error`; in scroll/errorstop mode that would be a terminal prompt, which is `unsupported: terminal input`.
 - The command-line file goes through the real `start_input`/`scan_file_name` on the `**` line; a missing main file now gives TeX's "I can't find file" + fatal error instead of a JS exception.
-- `\csname` does not track `is_in_csname` (only `\ifincsname`, e‑TeX, reads it). `\pdfprimitive`, `\scantokens`, `\readline` remain unsupported.
+- `\csname` does not track `is_in_csname` (only `\ifincsname`, e‑TeX, reads it). `\scantokens`, `\readline` remain unsupported.
 - Expansion depth: the JS stack runs out after roughly 1500 nested `expand` calls (node's default stack), far below `expand_depth=10000`. Past depth 100 `expand` probes for JS stack headroom and reports `TeX capacity exceeded, sorry [expansion depth=10000]` in the same state pdftex would, so the log matches pdftex's for runaway recursion; legitimate nestings between ~1500 and 9999 levels (e.g. `\message{` + 2000×`\number` + `1}`) fail where pdftex succeeds. `Engine.run` also maps any stray `RangeError` stack overflow to that message.
 - `\tracingstats>0` at the end prints §1334's memory block (pdftex/tex.ch form, `15000+600000` hash) with this engine's own figures: 0 strings and string characters (no pool), token-memory high water for "words of memory", `cs_count`, and the real `max_in_stack`/`max_param_stack`/`max_buf_stack`/`max_save_stack` against TeX Live's sizes; nest is 0 until M2. `tools/normalize-log.ts` drops the block (from "Here is how much…" to "… stack positions out of …") on both sides since the figures depend on mem/pool sizes.
 - `\pdfoutput>0` at the end (pdftex `close_files_and_terminate`): after a fatal error `!  ==> Fatal error occurred, no output PDF file produced!`; otherwise "No pages of output." plus the four-line "PDF statistics" block, whose figures are constant while no page or PDF object can exist (not normalised). `fix_pdfoutput` is implicit: nothing can be shipped yet, so `\pdfoutput` is read at the end.
@@ -105,6 +110,28 @@ Findings from porting. The port reproduces TeX's behaviour, bugs included; entri
 - `\patterns`: `new_trie_op`'s and `trie_node`'s open-addressing hash tables are `Map`s (both return the first equal entry, so op codes and the compressed trie are identical); `first_fit`, `trie_pack`, `trie_fix` and the op sort are ported as is, with `trie_size=1000000`, `trie_op_size=35111`, 65535 ops per language and `max_op_used` (printed only by `\dump`, M5). web2c stores `trie_back` in `trie_op`; here it has its own array (holes are cleared before use, so this is invisible).
 - `\patterns` is always INITEX: pdftex's "Patterns can be loaded only by INITEX" path is unreachable; after the first paragraph that needs hyphenation it gives "Too late for \patterns".
 - `Engine.terminal` collects what TeX prints to the terminal; under the forced batch mode that is next to nothing (the log is complete).
+
+### M3 pass A (math)
+
+- Noad fields are objects `{math_type, fam, character, info}` (TeX overlays `info` on fam/character); `new_hlist` is its own field; left/right noads keep `delimiter` in `left_delimiter`.
+- The §1153 `saved(0)` noad-field pointer is a handle in `Engine.nodes`, released at §1186; `scan_delimiter`'s `garbage` is a throwaway object.
+- `mlist_to_hlist` returns the hlist instead of leaving it in `link(temp_head)`; `copy_node_list` calls `confusion` on noads as TeX does.
+- TeX's `aux` word is split into `prev_depth`/`space_factor`/`incompleat_noad` (so `vrule.ts` writing `space_factor` in math mode is harmless); e‑TeX's `eTeX_aux` is cleared by `push_nest`, `LR_box` is always null.
+- `app_display` ports only the `x=0` branch; a nonzero `\predisplaydirection` is unsupported. TeXXeT parts of §1145–1146 are not ported. `set_box_lr(dlist)` sets subtype 2 (shown only in e‑TeX mode).
+- `\middle` is registered as an e‑TeX primitive but its code path is ported.
+- `sub_sup`/`math_limit_switch` guard a char-node tail (never happens).
+- Quirks: §219 prints `this will begin denominator of:`; `var_delimiter` builds the extensible from the last probed `char_info` and follows `list_tag` chains without re-checking `font_bc`/`font_ec`; `clean_box` on a `math_text_char` field returns an empty box; a missing math char resets the field to empty after the warning; only pdftex's §1146–1148 form exists (no glue_set float arithmetic in `\predisplaysize`); `-\hangafter` in §1149 wraps at −2³¹.
+
+### M3 pass B (alignment, leftovers)
+
+- An alignrecord is a null box object with extra fields `info` (span list), `u_part`, `v_part`, `extra_info`; a span node is `{span_n, width, info}` (`span_n` is TeX's `link`). `end_span` is a module constant whose `info` is set to an alignrecord only inside §803's merge loop.
+- `align_ptr`'s stack nodes are an array of saved states (`Engine.align_stack`); `cur_head`/`cur_pre_head` are fresh list-head objects per alignment; `align_head` is an Engine object whose `link` is the preamble; §808 uses a local list head where TeX reuses `hold_head`.
+- `omit_template` is fixed token memory location 6 (after `null_list`), holding `\endtemplate`.
+- §812's `aux_save` restores `prev_depth`, `space_factor` and `clang` (TeX copies the whole `aux` word).
+- `get_x_or_protected` (etex.ch, used by `align_peek` and `fin_col`) has no `\protected` test: `\protected` exists only in e‑TeX mode (M4).
+- `\valign`'s TeXXeT siblings `\beginL`…`\endR` (e‑TeX mode only) are unsupported.
+- The primitives table of `\pdfprimitive`/`\ifpdfprimitive` is a `Map` by name with sequential indices instead of `prim_prime` hashing (indices are never printed). `prim_lookup_cs(null_cs)` answers undefined_primitive (`shortcut:`; pdftex looks up pool string 256).
+- `unsupported.ts` now holds only `\letterspacefont` and `\pdfcopyfont` (font expansion).
 
 ## Harness
 
