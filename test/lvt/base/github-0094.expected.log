@@ -21,7 +21,7 @@ File: size10.clo 2026-06-04 v1.4n Standard LaTeX file (size option)
 ) (test2e.tex
 OMIT
 TIMO
-{/Users/g/texlive/2026/texmf-var/fonts/map/pdftex/updmap/pdftex.map} (expl3.sty
+{pdftex.map} (expl3.sty
 Package: expl3 2026-09-09 L3 programming layer (loader)
  (l3backend-pdftex.def
 File: l3backend-pdftex.def 2026-09-09 L3 backend support: PDF output (pdfTeX)
@@ -55,7 +55,7 @@ Underfull \vbox (badness 10000) has occurred while \output is active
 .\glue(\baselineskip) 7.69446
 .\hbox(4.30554+1.94444)x229.5, glue set 0.20738
 ..\hbox(0.0+0.0)x10.00002
-..\pdfstartlink(*+*)x* attr{/Border[0 0 1]} action user{ URI(blkub)>>}
+..\pdfstartlink(*+*)x* attr{/Border[0 0 1]} action user{ A<<URI(blkub)>>}
 ..\OT1/cmr/m/n/10 v
 ..\kern-0.27779
 ..\OT1/cmr/m/n/10 e
@@ -132,8 +132,8 @@ Don't change this file in any respect.
 ] (github-0094.aux)
 END-TEST-LOG
  )
-</Users/g/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb>
-Output written on github-0094.pdf (2 pages, 14029 bytes).
+<cmr10.pfb>
+Output written on github-0094.pdf (2 pages, * bytes).
 PDF statistics:
  19 PDF objects out of 1000 (max. 8388607)
  12 compressed objects within 1 object stream

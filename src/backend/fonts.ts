@@ -27,7 +27,8 @@ type FoEntry = { fo_objnum: number, tex_font: number, fm: FmEntry, fd: FdEntry |
 // the C side's static state
 export function font_state() {
   return {
-    map_item: 'pdftex.map' as string | null, // mapfile.c mitem: the default map file, read at the first lookup
+    // mapfile.c mitem: the pending map file or line (at first the default map file, read at the first lookup)
+    map_item: { line: 'pdftex.map', mode: 0, type: 0 } as { line: string, mode: number, type: number } | null,
     tfm_tree: null as Map<string, FmEntry> | null, font_map: [] as (FmEntry | null | undefined)[], // pdf_font_map[f]; null: no entry
     fe_tree: new Map<string, FeEntry>(), fd_tree: new Map<string, FdEntry>(), fo_tree: new Map<string, FoEntry>(),
   }
@@ -49,7 +50,7 @@ const std_t1font_names = ['Courier', 'Courier-Bold', 'Courier-Oblique', 'Courier
 const check_std_t1font = (s: string) => std_t1font_names.indexOf(s)
 
 // mapfile.c check_fm_entry: nonzero means a bad line
-function check_fm_entry(e: Engine, fm: FmEntry, file: string): number {
+function check_fm_entry(e: Engine, fm: FmEntry, file: string | null): number {
   let a = 0
   const warn = (s: string) => pdftex_warn(e, file, s)
   if (is_fontfile(fm) && !is_included(fm)) {
@@ -75,7 +76,7 @@ function check_fm_entry(e: Engine, fm: FmEntry, file: string): number {
 const g = (x: number) => String(Number(x.toPrecision(6))) // printf %g for the values check_fm_entry prints
 
 // mapfile.c fm_scan_line
-function fm_scan_line(e: Engine, s: string, mode: number, file: string): void {
+function fm_scan_line(e: Engine, s: string, mode: number, file: string | null): void {
   if (s === '' || '\n*#;%'.includes(s[0]!)) return
   const fm: FmEntry = { tfm_name: '', ps_name: null, fd_flags: FD_FLAGS_NOT_SET_IN_MAPLINE, slant: 0, extend: 0, encname: null,
     ff_name: null, type: 0, pid: -1, in_use: false }
@@ -160,13 +161,15 @@ function fm_scan_line(e: Engine, s: string, mode: number, file: string): void {
   }
 }
 
-// mapfile.c fm_read_info: the pending map file, if any
+// mapfile.c fm_read_info: the pending map file or map line, if any
+const MAPFILE = 0, MAPLINE = 1
 function fm_read_info(e: Engine): void {
   const st = e.fm
   if (st.tfm_tree === null) st.tfm_tree = new Map()
   if (st.map_item === null) return
-  const name = st.map_item
+  const { line: name, mode, type } = st.map_item
   st.map_item = null
+  if (type === MAPLINE) { fm_scan_line(e, name, mode, null); return }
   const data = e.fs.find(name, 'map')
   if (data === null) { pdftex_warn(e, name, 'cannot open font map file'); return }
   const path = e.fs.path?.(name, 'map') ?? name
@@ -178,9 +181,24 @@ function fm_read_info(e: Engine): void {
   for (const raw of lines) {
     let l = ''
     for (let c of raw) { if (c === '\t') c = ' '; if (c !== ' ' || (l.length > 0 && l[l.length - 1] !== ' ')) l += c }
-    fm_scan_line(e, l, FM_DUPIGNORE, path)
+    fm_scan_line(e, l, mode, path)
   }
   print(e, '}')
+}
+
+// mapfile.c process_map_item (\pdfmapfile, \pdfmapline): [+=-] choose the mode; no prefix also drops the unread default map file
+export function process_map_item(e: Engine, s: string, type: number): void {
+  const st = e.fm
+  let mode = FM_DUPIGNORE
+  if (s[0] === ' ') s = s.slice(1)
+  if (s[0] === '+') s = s.slice(1)
+  else if (s[0] === '=') { mode = FM_REPLACE; s = s.slice(1) }
+  else if (s[0] === '-') { mode = FM_DELETE; s = s.slice(1) }
+  else st.map_item = null
+  if (s[0] === ' ') s = s.slice(1)
+  if (type === MAPFILE) s = s.split(' ')[0]!
+  if (st.map_item !== null) fm_read_info(e)
+  if (s !== '') { st.map_item = { line: s, mode, type }; fm_read_info(e) }
 }
 
 // mapfile.c hasfmentry, isscalable, hasspacechar

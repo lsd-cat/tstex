@@ -15,7 +15,7 @@ import { init_randoms } from '../arith.ts'
 import { unsupported, report_illegal_case, tail_append, norm_min } from '../main.ts'
 import { tokens_to_string } from '../tokens.ts'
 import { str } from '../utils.ts'
-import { def_tounicode } from '../backend/fonts.ts'
+import { def_tounicode, process_map_item } from '../backend/fonts.ts'
 import { pdf_error, pdf_warning, pdf_create_obj, pdf_get_mem, pdf_write_obj, obj_type_obj, obj_type_others, set_origin, direct_page, direct_always,
   pdf_new_obj, pdf_end_obj, write_action, pdf_check_obj, pdf_new_objnum, find_obj, warn_dest_dup, pdf_print_str_ln,
   obj_type_dest, obj_type_struct_dest, obj_type_outline, colorstackused, obj_type_xform, obj_type_ximage, pdf_ship_out, pdf_write_image, check_pdfversion, scale_image, pdf_check_vf, pdf_init_font, pdf_mark_char } from '../pdf.ts'
@@ -39,7 +39,7 @@ function check_pdfoutput(e: Engine, s: string, is_error: boolean): void {
   pdf_warning(e, s, 'not allowed in DVI mode (\\pdfoutput <= 0); ignoring it', true, true)
 }
 
-const pdf_font_attr_code = 27, pdf_nobuiltin_tounicode_code = 44, pdf_running_link_off_node = 48, pdf_running_link_on_node = 49
+const pdf_map_file_code = 29, pdf_map_line_code = 30, pdf_font_attr_code = 27, pdf_nobuiltin_tounicode_code = 44, pdf_running_link_off_node = 48, pdf_running_link_on_node = 49
 const max_halfword = 0xFFFFFFF, pdf_outline_code = 18, pdf_xform_code = 11, pdf_ximage_code = 13
 const pdf_info_code = 24, pdf_catalog_code = 25, pdf_names_code = 26, pdf_include_chars_code = 28, pdf_trailer_code = 31, pdf_trailer_id_code = 32
 const pdf_obj_code = 9, immediate_code = 5, set_language_code = 6, pdf_glyph_to_unicode_code = 39, set_random_seed_code = 35, reset_timer_code = 33
@@ -473,6 +473,12 @@ export function run(e: Engine, chr: number): void {
       { const k = e.cur_val
         if (k === null_font) pdf_error(e, 'font', 'invalid font identifier')
         scan_toks(e, false, true); e.ps.font_attr[k] = str(tokens_to_string(e, e.def_ref)) }
+      return
+    case pdf_map_file_code: case pdf_map_line_code: // pdftex.web Implement \pdfmapfile, \pdfmapline
+      check_pdfoutput(e, '\\' + names[chr], true)
+      scan_toks(e, false, true)
+      process_map_item(e, str(tokens_to_string(e, e.def_ref)), chr === pdf_map_file_code ? 0 : 1)
+      delete_token_ref(e, e.def_ref)
       return
     case pdf_end_thread_node: check_pdfoutput(e, '\\pdfendthread', true); tail_append(e, new_whatsit_node(pdf_end_thread_node)); return
     case reset_timer_code: e.start_ms = performance.now(); return // pdftex.web Implement \pdfresettimer

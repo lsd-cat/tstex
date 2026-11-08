@@ -4,7 +4,6 @@ hyperref/121-makeuppercase: oracle: missing file memoir.cls
 hyperref/gh234-ltugboat: oracle: missing file ltugboat.cls
 hyperref/gh236-beamer: oracle: missing file beamer.cls
 hyperref/test0: oracle: missing file lastpage.sty
-base/github-0094: needs PDF output (M6): \pdfoutput=1, \pdfmapfile, pdftex writes github-0094.pdf
 base/github-1092: needs piped input \input{|kpsewhich ...} (shell escape, deferred: no \write18)
 l3kernel/m3shell001: needs shell escape (\sys_shell_now:n, piped \input|cmd; deferred: no \write18)
 base/tlb2661: oracle depends on the case-insensitive macOS file system (TESTcmm.fd written, testcmm.fd found)
