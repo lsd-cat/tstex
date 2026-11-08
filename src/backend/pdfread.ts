@@ -233,7 +233,7 @@ export function decode_stream(e: Engine, s: PStream): Uint8Array {
     if (name === 'Crypt') return
     if (name !== 'FlateDecode' && name !== 'Fl') fatal_error(e, `unsupported: PDF stream filter /${name}`)
     if (e.fs.inflate === undefined) fatal_error(e, 'unsupported: PDF inclusion without an inflater')
-    data = e.fs.inflate(data, Math.min(1 << 28, Math.max(1 << 20, data.length * 1032)))
+    data = e.fs.inflate(data, Math.min(1 << 26, Math.max(1 << 20, data.length * 1032))) // shortcut: at most 64 MiB decoded (xpdf has a ratio-based bomb check); raise if a real stream needs more
     const pi = (k: string, v: number) => { if (!is_dict(p)) return v; const o = lookup(p, k); return typeof o === 'number' ? o : v }
     const pred = pi('Predictor', 1)
     if (pred !== 1) data = predict(e, data, pred, pi('Columns', 1), pi('Colors', 1), pi('BitsPerComponent', 8))
@@ -253,9 +253,10 @@ export function decode_stream(e: Engine, s: PStream): Uint8Array {
 function predict(e: Engine, d: Uint8Array, pred: number, width: number, ncomps: number, nbits: number): Uint8Array {
   const nvals = width * ncomps, pix = (ncomps * nbits + 7) >> 3, row = ((nvals * nbits + 7) >> 3) + pix
   if (width <= 0 || ncomps <= 0 || nbits <= 0 || ncomps > 32 || nbits > 16 || width >= 0x7fffffff / ncomps || nvals >= (0x7fffffff - 7) / nbits) return d
+  if (row > 1 << 26) return d // shortcut: rows over 64 MiB are left alone (xpdf allocates them); hostile input only
   if (pred === 2 && nbits !== 8) fatal_error(e, `unsupported: TIFF predictor with ${nbits} bits per component`)
-  const line = new Uint8Array(row), out: number[] = []
-  let q = 0
+  const line = new Uint8Array(row), out = new Uint8Array((Math.floor(d.length / (pred >= 10 ? row - pix + 1 : row - pix)) + 1) * (row - pix))
+  let q = 0, o = 0
   for (;;) {
     let cur = pred
     if (pred >= 10) { if (q >= d.length) break; cur = d[q++]! + 10 }
@@ -277,10 +278,10 @@ function predict(e: Engine, d: Uint8Array, pred: number, width: number, ncomps: 
     }
     if (i < row && i === pix) break // nothing of this line: end of data
     if (pred === 2) for (let k = pix; k < row; k++) line[k] = line[k]! + line[k - ncomps]!
-    for (let k = pix; k < row; k++) out.push(line[k]!) // a truncated last line keeps the previous line's bytes, as xpdf's does
+    for (let k = pix; k < row; k++) out[o++] = line[k]! // a truncated last line keeps the previous line's bytes, as xpdf's does
     if (i < row) break
   }
-  return Uint8Array.from(out)
+  return out.subarray(0, o)
 }
 
 // XRef.cc

@@ -51,7 +51,7 @@ export function read_image(e: Engine, s: string, page: number, named: boolean, c
 // objects (PdfDocument) while images of it are pending; epdf_delete forgets the list once the last one is written (never in -ini)
 type InObj = { num: number, gen: number, type: number, newnum: number, fd: FdEntry | null, enc_objnum: number, written: boolean }
 const OBJ_FONT = 0, OBJ_FONTDESC = 1, OBJ_OTHER = 2
-export type EpdfDoc = { pdf: PdfDoc, objs: InObj[], occurences: number, released: boolean }
+export type EpdfDoc = { pdf: PdfDoc, objs: InObj[], index: Map<string, InObj>, occurences: number, released: boolean }
 
 // find_add_document (an unchanged released document is reused; we cannot see a file change)
 function find_add_document(e: Engine, img: Img): EpdfDoc {
@@ -59,7 +59,7 @@ function find_add_document(e: Engine, img: Img): EpdfDoc {
   if (p !== undefined) { p.released = false; p.occurences++; return p }
   const pdf = pdf_open(e, img.data)
   if (pdf === null) pdftex_fail(e, img.name, 'xpdf: reading PDF image failed')
-  p = { pdf, objs: [], occurences: 0, released: false }
+  p = { pdf, objs: [], index: new Map(), occurences: 0, released: false }
   e.ps.epdf_docs.set(img.name, p)
   return p
 }
@@ -183,16 +183,16 @@ function write_epdf(e: Engine, img: Img): void {
   const doc = img.doc!, pdf = doc.pdf, x = pdf.x, ps = e.ps
   const file = img.name, fail = (msg: string): never => pdftex_fail(e, file, msg)
   doc.occurences--
-  const objs = doc.objs, encodings: { names: (string | null)[], objnum: number }[] = []
+  const objs = doc.objs, index = doc.index, find = (r: PRef) => index.get(r.num + ' ' + r.gen), encodings: { names: (string | null)[], objnum: number }[] = []
   let last = 0 // pdflastbyte: the last byte of a pdf_puts (pdfout does not set it), for pdf_newline
   const puts = (s: string) => { pdf_print(e, s); if (s.length > 0) last = s.charCodeAt(s.length - 1) }
   const newline = () => { if (last !== 10) puts('\n') }
   const add = (type: number, r: PRef, fd: FdEntry | null, enc: number): number => { // addInObj
     if (r.num === 0) fail('PDF inclusion: invalid reference')
-    const o = objs.find(p => p.num === r.num && p.gen === r.gen)
+    const o = find(r)
     if (o !== undefined) return o.newnum
     const n: InObj = { num: r.num, gen: r.gen, type, newnum: 0, fd, enc_objnum: enc, written: false }
-    objs.push(n)
+    objs.push(n); index.set(r.num + ' ' + r.gen, n)
     n.newnum = type === OBJ_FONTDESC ? fd!.fd_objnum : pdf_new_objnum(e)
     return n.newnum
   }
@@ -230,7 +230,7 @@ function write_epdf(e: Engine, img: Img): void {
     else fail(`PDF inclusion: type <${type_name(o)}> cannot be copied`)
   }
   const copy_font = (tag: string, r: PRef) => {
-    const p = objs.find(q => q.num === r.num && q.gen === r.gen)
+    const p = find(r)
     if (p !== undefined) { copy_name(tag); puts(` ${p.newnum} 0 R `); return }
     // only included Type1 (and Type1C) fonts named in the font map are replaced; anything else is copied
     let fontdict: PObj = null, basefont: PObj = null, descref: PObj = null, desc: PObj = null, ff: PObj, fm: FmEntry | null = null
@@ -360,7 +360,7 @@ function write_epdf(e: Engine, img: Img): void {
 export function delete_image(e: Engine, img: Img): void {
   if (e.ini_version || img.type !== 'pdf') return
   const doc = img.doc!
-  if (doc.occurences < 0 && !doc.released) { doc.objs = []; doc.released = true }
+  if (doc.occurences < 0 && !doc.released) { doc.objs = []; doc.index = new Map(); doc.released = true }
 }
 
 // writepng.c read_png_info (libpng's png_read_info: the chunks before IDAT)
