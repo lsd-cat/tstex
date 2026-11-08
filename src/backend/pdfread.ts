@@ -207,7 +207,7 @@ function make_stream(p: Parser, d: PDict, depth: number): PStream | null {
   const at = (s: string, i: number) => { for (let k = 0; k < s.length; k++) if (l.b[i + k] !== s.charCodeAt(k) || i + k >= l.end) return false; return true }
   if (!have) {
     let i = pos
-    for (; i < l.end; i++) if (l.b[i] === 101 && i + 9 <= l.end && at('ndstream', i + 1)) break
+    for (; i < l.end; i++) if (l.b[i] === 101) { if (i + 9 <= l.end && at('ndstream', i + 1)) break; i += 8 } // the 8 bytes getBlock read are consumed on a mismatch
     if (i >= l.end) return null
     len = i - pos
     l.p = i + 9
