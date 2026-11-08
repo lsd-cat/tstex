@@ -3,6 +3,7 @@
   "private": true,
   "type": "module",
   "scripts": {
+    "build": "tsc -p tsconfig.browser.json",
     "test": "node --test test/oracle/ test/unit/",
     "test:lvt": "node --test test/lvt/",
     "typecheck": "tsc --noEmit"
