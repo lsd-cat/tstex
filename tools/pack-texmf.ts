@@ -8,7 +8,7 @@ import { gzipSync } from 'node:zlib'
 import { createHash } from 'node:crypto'
 import { tree_matches } from '../src/platform/lookup.ts'
 
-const extra = ['pgf', 'beamer', 'hyperref', 'xcolor', 'geometry', 'cm-super', 'lm']
+const extra = ['pgf', 'beamer', 'hyperref', 'xcolor', 'geometry', 'cm-super', 'lm', 'extsizes', 'booktabs', 'textpos', 'psnfss']
 
 // the kind a file is looked up as, from its extension (to pick among same-basename files the way pdflatex would)
 const kind_of = (base: string) => ({ tfm: 'tfm', vf: 'vf', enc: 'enc', map: 'map', pfb: 'type1', cnf: 'cnf', tcx: 'tcx' } as Record<string, string>)[base.split('.').pop()!] ?? 'tex'
