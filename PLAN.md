@@ -131,8 +131,14 @@ Each has an exit test. Nothing moves to the next milestone until the test passes
 
 **M6 pdfTeX primitives and PDF.** First grep `latex.ltx`, `l3backend-pdftex.def`, `hyperref`'s `hpdftex.def`, `graphicx`'s `pdftex.def`, `geometry`, `microtype` (skip: error "unsupported") for `\pdf` primitives; implement exactly that set in `pdftex/`. `src/pdf.ts` (WEB) and `src/backend/{fonts,type1,images}.ts` (C). Exit: the M5 article plus `hyperref`, `graphicx` (PNG/JPEG images; PDF images are measured but not embedded, see AUDIT.md), `geometry`, `xcolor`, TikZ and beamer produce PDFs that open in Preview/Chrome and are byte-identical to pdftex's (uncompressed, after `tools/pdf-normalize.ts` masks the whole-font embedding), with identical logs.
 
-**M7 Distribution.** `platform/browser.ts`, `tools/pack-texmf.ts` (texmf subset + `name → path` index), `web/`. Exit: the M6 document compiles in Chrome and Safari from a static server with the fetched byte total logged; must be under 6 MB for the article, 0 on second compile.
-
+**M7 Distribution: a library with a static resource protocol.**
+- *Library* `src/index.ts` → npm package `tstex` (ESM + types, zero deps): `createTeX({ texmf, cache? })` → `compile({ files, main, runs: 'auto' | n, onProgress, signal })` → `{ pdf, log, outputs, fetched }`. The engine runs in a Web Worker (`src/worker.ts`, spawned via `new Worker(new URL('./worker.js', import.meta.url), { type: 'module' })`); the same `compile()` works in Node over a local TeX Live or the HTTP bundle.
+- *Resource protocol* (any static host): `<texmf>/index.json.gz` (name → { path, size }), `<texmf>/fmt/latex.fmt`, then the texmf tree layout; versioned URL prefix, served immutable with CORS. `tools/pack-texmf.ts --preset minimal|basic --out DIR` builds it from TeX Live (`minimal` = what the test corpus opens, ~5 MB; `basic` = scheme-basic + pgf/beamer/hyperref/cm-super/lm).
+- *Fetching*: `platform/browser.ts` implements `TexFS.find` with synchronous XHR inside the Worker (no cross-origin-isolation headers needed; one round trip per cold miss, none when cached). `shortcut:` restart-on-miss is not used; if sync XHR is ever removed from workers, switch to SharedArrayBuffer + Atomics.wait.
+- *Caching*: layer 1 the browser HTTP cache (immutable headers); layer 2 opt-in `cache: 'persistent'` = Cache Storage written by the main thread, `tex.cache.clear()`; Node caches under `~/.cache/tstex/`.
+- *Demo* `web/`: an Overleaf-style editor served statically — file list, textarea editor with line numbers, PDF in an iframe via blob URL, log pane, compile button and auto-recompile on idle, fetched-bytes counter. No dependencies.
+- *CLI*: `runs: auto` loop in `bin/tstex.ts`; `tstex pack` subcommand.
+- Exit: Playwright compiles `m6-latex-beamer` and `m6-latex-hyperref` through the library in Chromium, Firefox and WebKit from a static server with the `minimal` bundle: PDF hash equals the Node result, first-compile bytes < 6 MB, second compile 0; the demo app loads and compiles a document end to end.
 ## Verification
 
 Four layers; a change is good when all four are green for the §s it touches.
