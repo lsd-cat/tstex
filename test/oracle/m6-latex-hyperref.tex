@@ -1,0 +1,15 @@
+%! oracle: pdflatex
+%! runs: 2
+\documentclass{article}
+\pdfcompresslevel=0 \pdfobjcompresslevel=0
+\tracingonline=0 \showboxbreadth=10000 \showboxdepth=10000 \tracingoutput=1
+\usepackage[colorlinks]{hyperref}
+\hypersetup{pdftitle={A Title},pdfauthor={Me}}
+\begin{document}
+\tableofcontents
+\section{One}\label{a}
+Text with \url{http://example.org/a_b} and \href{http://example.com}{a link} and see \ref{b} and \autoref{a}.
+\subsection{Sub}\newpage
+\section{Two}\label{b}
+Back to section \ref{a} on page \pageref{a}.\footnote{Note.}
+\end{document}

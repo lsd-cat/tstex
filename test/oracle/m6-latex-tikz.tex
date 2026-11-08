@@ -1,0 +1,17 @@
+%! oracle: pdflatex
+%! runs: 1
+\documentclass{article}
+\pdfcompresslevel=0 \pdfobjcompresslevel=0
+\tracingonline=0 \showboxbreadth=10000 \showboxdepth=10000 \tracingoutput=1
+\usepackage{tikz}
+\begin{document}
+\begin{tikzpicture}
+\draw (0,0) -- (2,1) -- (3,0);
+\draw (1,1) circle (0.5);
+\filldraw[fill=blue!20,draw=blue] (0,-2) rectangle (1,-1);
+\node[draw] at (2,-1.5) {Node text};
+\draw[->,thick] (0,-3) -- (2,-3);
+\begin{scope}[rotate=30]\draw[red] (0,0) -- (1,0);\end{scope}
+\end{tikzpicture}
+Inline \tikz\draw[->](0,0)--(1,1); arrow.
+\end{document}

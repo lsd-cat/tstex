@@ -1,0 +1,13 @@
+%! oracle: pdflatex
+%! runs: 1
+\documentclass{article}
+\pdfcompresslevel=0 \pdfobjcompresslevel=0
+\tracingonline=0 \showboxbreadth=10000 \showboxdepth=10000 \tracingoutput=1
+\usepackage{graphicx}
+\begin{document}
+\includegraphics[width=2in]{images/fig.png}
+\includegraphics[width=2in]{images/fig.jpg}
+
+\scalebox{1.5}{Scaled} \rotatebox{30}{text} \resizebox{2in}{!}{Resized}
+\includegraphics[angle=90,height=1in]{images/fig-gray.png}
+\end{document}

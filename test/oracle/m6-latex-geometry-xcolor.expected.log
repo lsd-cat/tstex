@@ -1,0 +1,429 @@
+entering extended mode
+(m6-latex-geometry-xcolor.tex
+LaTeX2e <2026-11-01>
+L3 programming layer <2026-09-09>
+(article.cls
+Document Class: article 2026-06-04 v1.4n Standard LaTeX document class
+(size10.clo
+File: size10.clo 2026-06-04 v1.4n Standard LaTeX file (size option)
+)
+\c@part=\count276
+\c@section=\count277
+\c@subsection=\count278
+\c@subsubsection=\count279
+\c@paragraph=\count280
+\c@subparagraph=\count281
+\c@figure=\count282
+\c@table=\count283
+\abovecaptionskip=\skip49
+\belowcaptionskip=\skip50
+\bibindent=\dimen150
+) (geometry.sty
+Package: geometry 2026/03/07 v6.0 Page Geometry
+(keyval.sty
+Package: keyval 2026-06-01 v1.15 key=value parser (DPC)
+\KV@toks@=\toks17
+) (ifvtex.sty
+Package: ifvtex 2019/10/25 v1.7 ifvtex legacy package. Use iftex instead.
+(iftex.sty
+Package: iftex 2024/12/12 v1.0g TeX engine tests
+))
+\Gm@cnth=\count284
+\Gm@cntv=\count285
+\c@Gm@tempcnt=\count286
+\Gm@bindingoffset=\dimen151
+\Gm@wd@mp=\dimen152
+\Gm@odd@mp=\dimen153
+\Gm@even@mp=\dimen154
+\Gm@layoutwidth=\dimen155
+\Gm@layoutheight=\dimen156
+\Gm@layouthoffset=\dimen157
+\Gm@layoutvoffset=\dimen158
+\Gm@dimlist=\toks18
+) (xcolor.sty
+Package: xcolor 2024/09/29 v3.02 LaTeX color extensions (UK)
+(color.cfg
+File: color.cfg 2016/01/02 v1.6 sample color configuration
+)
+Package xcolor Info: Driver file: pdftex.def on input line 274.
+(pdftex.def
+File: pdftex.def 2025/09/29 v1.2d Graphics/color driver for pdftex
+) (mathcolor.ltx)
+Package xcolor Info: Model `cmy' substituted by `cmy0' on input line 1349.
+Package xcolor Info: Model `hsb' substituted by `rgb' on input line 1353.
+Package xcolor Info: Model `RGB' extended on input line 1365.
+Package xcolor Info: Model `HTML' substituted by `rgb' on input line 1367.
+Package xcolor Info: Model `Hsb' substituted by `hsb' on input line 1368.
+Package xcolor Info: Model `tHsb' substituted by `hsb' on input line 1369.
+Package xcolor Info: Model `HSB' substituted by `hsb' on input line 1370.
+Package xcolor Info: Model `Gray' substituted by `gray' on input line 1371.
+Package xcolor Info: Model `wave' substituted by `hsb' on input line 1372.
+) (l3backend-pdftex.def
+File: l3backend-pdftex.def 2026-09-09 L3 backend support: PDF output (pdfTeX)
+\l__color_backend_stack_int=\count287
+)
+No file m6-latex-geometry-xcolor.aux.
+\openout1 = `m6-latex-geometry-xcolor.aux'.
+
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 8.
+LaTeX Font Info:    ... okay on input line 8.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 8.
+LaTeX Font Info:    ... okay on input line 8.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 8.
+LaTeX Font Info:    ... okay on input line 8.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 8.
+LaTeX Font Info:    ... okay on input line 8.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 8.
+LaTeX Font Info:    ... okay on input line 8.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 8.
+LaTeX Font Info:    ... okay on input line 8.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 8.
+LaTeX Font Info:    ... okay on input line 8.
+*geometry* driver: auto-detecting
+*geometry* detected driver: pdftex
+*geometry* verbose mode - [ preamble ] result:
+* driver: pdftex
+* paper: a5paper
+* layout: <same size as paper>
+* layoutoffset:(h,v)=(0.0pt,0.0pt)
+* modes:
+* h-part:(L,W,R)=(72.26999pt, 276.5608pt, 72.26999pt)
+* v-part:(T,H,B)=(72.26999pt, 452.9679pt, 72.26999pt)
+* \paperwidth=421.10078pt
+* \paperheight=597.50787pt
+* \textwidth=276.5608pt
+* \textheight=452.9679pt
+* \oddsidemargin=0.0pt
+* \evensidemargin=0.0pt
+* \topmargin=-37.0pt
+* \headheight=12.0pt
+* \headsep=25.0pt
+* \topskip=10.0pt
+* \footskip=30.0pt
+* \marginparwidth=65.0pt
+* \marginparsep=11.0pt
+* \columnsep=10.0pt
+* \skip\footins=9.0pt plus 4.0pt minus 2.0pt
+* \hoffset=0.0pt
+* \voffset=0.0pt
+* \mag=1000
+* \@twocolumnfalse
+* \@twosidefalse
+* \@mparswitchfalse
+* \@reversemarginfalse
+* (1in=72.27pt=25.4mm, 1cm=28.453pt)
+
+(supp-pdf.mkii
+[Loading MPS to PDF converter (version 2006.09.02).]
+\scratchcounter=\count288
+\scratchdimen=\dimen159
+\scratchbox=\box53
+\nofMPsegments=\count289
+\nofMParguments=\count290
+\everyMPshowfont=\toks19
+\MPscratchCnt=\count291
+\MPscratchDim=\dimen160
+\MPnumerator=\count292
+\makeMPintoPDFobject=\count293
+\everyMPtoPDFconversion=\toks20
+)
+
+Completed box being shipped out [1]
+\vbox(482.9679+0.0)x276.5608
+.\hbox(0.0+0.0)x0.0
+..\kern -72.26999
+..\vbox(0.0+0.0)x0.0, glue set 72.26999fil
+...\kern -72.26999
+...\hbox(0.0+0.0)x0.0
+....\glue 0.0 plus 1.0fil minus 1.0fil
+...\glue 0.0 plus 1.0fil minus 1.0fil
+.\glue -37.0
+.\vbox(519.9679+0.0)x276.5608
+..\vbox(12.0+0.0)x276.5608, glue set 12.0fil
+...\glue 0.0 plus 1.0fil
+...\hbox(0.0+0.0)x276.5608
+....\pdfcolorstack 0 push {0 g 0 G}
+....\hbox(0.0+0.0)x276.5608
+....\pdfcolorstack 0 pop
+..\glue 25.0
+..\glue(\lineskip) 0.0
+..\vbox(452.9679+0.0)x276.5608, glue set 430.57747fil
+...\write-{}
+...\pdfcolorstack 0 push {0 g 0 G}
+...\glue(\topskip) 0.0
+...\hbox(10.34444+3.4)x276.5608, glue set 0.01479
+....\hbox(0.0+0.0)x15.0
+....\pdfcolorstack 0 push {1 0 0 rg 1 0 0 RG}
+....\OT1/cmr/m/n/10 R
+....\OT1/cmr/m/n/10 e
+....\OT1/cmr/m/n/10 d
+....\pdfcolorstack 0 pop
+....\glue 3.33333 plus 1.66666 minus 1.11111
+....\pdfcolorstack 0 push {0 0.5 0.2 rg 0 0.5 0.2 RG}
+....\OT1/cmr/m/n/10 G
+....\OT1/cmr/m/n/10 r
+....\OT1/cmr/m/n/10 e
+....\OT1/cmr/m/n/10 e
+....\OT1/cmr/m/n/10 n
+....\pdfcolorstack 0 pop
+....\glue 3.33333 plus 1.66666 minus 1.11111
+....\pdfcolorstack 0 push {0 0 1 0 k 0 0 1 0 K}
+....\pdfcolorstack 0 push {0 0 1 0 k 0 0 1 0 K}
+....\hbox(9.94444+3.0)x0.0, glue set - 33.0834fil
+.....\rule(9.94444+3.0)x33.0834
+.....\glue 0.0 plus 1.0fil minus 1.0fil
+....\pdfcolorstack 0 pop
+....\hbox(9.94444+3.0)x33.0834
+.....\kern 3.0
+.....\pdfcolorstack 0 push {0 g 0 G}
+.....\OT1/cmr/m/n/10 B
+.....\OT1/cmr/m/n/10 o
+.....\kern-0.27779
+.....\OT1/cmr/m/n/10 x
+.....\OT1/cmr/m/n/10 e
+.....\OT1/cmr/m/n/10 d
+.....\pdfcolorstack 0 pop
+.....\kern 3.0
+....\pdfcolorstack 0 pop
+....\glue 3.33333 plus 1.66666 minus 1.11111
+....\pdfcolorstack 0 push {0 0 1 rg 0 0 1 RG}
+....\hbox(10.34444+3.4)x39.7445
+.....\hbox(10.34444+3.4)x39.7445
+......\hbox(13.74443+0.0)x39.7445, shifted 3.4
+.......\vbox(13.74443+0.0)x39.7445
+........\kern 0.4
+........\hbox(12.94444+0.0)x39.7445
+.........\kern 0.4
+.........\vbox(12.94444+0.0)x38.94452
+..........\kern 0.0
+..........\hbox(9.94444+3.0)x38.94452
+...........\kern 0.0
+...........\pdfcolorstack 0 push {1 g 1 G}
+...........\pdfcolorstack 0 push {1 g 1 G}
+...........\hbox(9.94444+3.0)x0.0, glue set - 38.94452fil
+............\rule(9.94444+3.0)x38.94452
+............\glue 0.0 plus 1.0fil minus 1.0fil
+...........\pdfcolorstack 0 pop
+...........\hbox(9.94444+3.0)x38.94452
+............\kern 3.0
+............\pdfcolorstack 0 push {0 g 0 G}
+............\OT1/cmr/m/n/10 F
+............\kern-0.83334
+............\OT1/cmr/m/n/10 r
+............\OT1/cmr/m/n/10 a
+............\OT1/cmr/m/n/10 m
+............\OT1/cmr/m/n/10 e
+............\OT1/cmr/m/n/10 d
+............\pdfcolorstack 0 pop
+............\kern 3.0
+...........\pdfcolorstack 0 pop
+...........\kern 0.0
+..........\kern 0.0
+.........\kern 0.4
+........\kern 0.4
+.....\kern -39.7445
+.....\hbox(10.34444+3.4)x39.7445
+......\vbox(13.74443+0.0)x39.7445, shifted 3.4
+.......\rule(0.4+0.0)x*
+.......\kern -0.2
+.......\hbox(13.34444+0.0)x39.7445
+........\rule(13.34444+0.0)x0.4
+........\kern 38.94452
+........\rule(13.34444+0.0)x0.4
+.......\kern -0.2
+.......\rule(0.4+0.0)x*
+....\pdfcolorstack 0 pop
+....\glue 3.33333 plus 1.66666 minus 1.11111
+....\pdfcolorstack 0 push {0 0 1 rg 0 0 1 RG}
+....\OT1/cmr/m/n/10 B
+....\OT1/cmr/m/n/10 l
+....\OT1/cmr/m/n/10 u
+....\OT1/cmr/m/n/10 e
+....\glue 3.33333 plus 1.66666 minus 1.11111
+....\OT1/cmr/m/n/10 t
+....\OT1/cmr/m/n/10 e
+....\OT1/cmr/m/n/10 x
+....\OT1/cmr/m/n/10 t
+....\glue 3.33333 plus 1.66666 minus 1.11111
+....\OT1/cmr/m/n/10 t
+....\OT1/cmr/m/n/10 h
+....\OT1/cmr/m/n/10 a
+....\OT1/cmr/m/n/10 t
+....\glue 3.33333 plus 1.66666 minus 1.11111
+....\OT1/cmr/m/n/10 g
+....\OT1/cmr/m/n/10 o
+....\kern0.27779
+....\OT1/cmr/m/n/10 e
+....\OT1/cmr/m/n/10 s
+....\glue 3.33333 plus 1.66666 minus 1.11111
+....\OT1/cmr/m/n/10 o
+....\OT1/cmr/m/n/10 n
+....\glue 3.33333 plus 1.66666 minus 1.11111
+....\OT1/cmr/m/n/10 a
+....\OT1/cmr/m/n/10 n
+....\OT1/cmr/m/n/10 d
+....\glue 3.33333 plus 1.66666 minus 1.11111
+....\OT1/cmr/m/n/10 o
+....\OT1/cmr/m/n/10 n
+....\glue(\rightskip) 0.0
+...\penalty 300
+...\glue(\baselineskip) 1.65556
+...\hbox(6.94444+1.94444)x276.5608, glue set 92.72716fil
+....\OT1/cmr/m/n/10 a
+....\OT1/cmr/m/n/10 n
+....\OT1/cmr/m/n/10 d
+....\glue 3.33333 plus 1.66666 minus 1.11111
+....\OT1/cmr/m/n/10 o
+....\OT1/cmr/m/n/10 n
+....\glue 3.33333 plus 1.66666 minus 1.11111
+....\OT1/cmr/m/n/10 a
+....\OT1/cmr/m/n/10 c
+....\OT1/cmr/m/n/10 r
+....\OT1/cmr/m/n/10 o
+....\OT1/cmr/m/n/10 s
+....\OT1/cmr/m/n/10 s
+....\glue 3.33333 plus 1.66666 minus 1.11111
+....\OT1/cmr/m/n/10 l
+....\OT1/cmr/m/n/10 i
+....\OT1/cmr/m/n/10 n
+....\OT1/cmr/m/n/10 e
+....\OT1/cmr/m/n/10 s
+....\glue 3.33333 plus 1.66666 minus 1.11111
+....\OT1/cmr/m/n/10 a
+....\OT1/cmr/m/n/10 n
+....\OT1/cmr/m/n/10 d
+....\glue 3.33333 plus 1.66666 minus 1.11111
+....\OT1/cmr/m/n/10 t
+....\OT1/cmr/m/n/10 h
+....\OT1/cmr/m/n/10 e
+....\OT1/cmr/m/n/10 n
+....\glue 3.33333 plus 1.66666 minus 1.11111
+....\OT1/cmr/m/n/10 a
+....\glue 3.33333 plus 1.66666 minus 1.11111
+....\OT1/cmr/m/n/10 p
+....\OT1/cmr/m/n/10 a
+....\OT1/cmr/m/n/10 g
+....\OT1/cmr/m/n/10 e
+....\glue 3.33333 plus 1.66666 minus 1.11111
+....\OT1/cmr/m/n/10 b
+....\OT1/cmr/m/n/10 r
+....\OT1/cmr/m/n/10 e
+....\OT1/cmr/m/n/10 a
+....\OT1/cmr/m/n/10 k
+....\penalty 10000
+....\glue(\parfillskip) 0.0 plus 1.0fil
+....\glue(\rightskip) 0.0
+...\glue -1.94444
+...\glue 0.0 plus 1.0fil
+...\glue 0.0
+...\glue 0.0 plus 0.0001fil
+..\glue(\baselineskip) 23.55556
+..\hbox(6.44444+0.0)x276.5608
+...\pdfcolorstack 0 push {0 g 0 G}
+...\hbox(6.44444+0.0)x276.5608, glue set 135.7804fil
+....\glue 0.0 plus 1.0fil
+....\OT1/cmr/m/n/10 1
+....\glue 0.0 plus 1.0fil
+...\pdfcolorstack 0 pop
+.\kern 0.0
+
+
+{pdftex.map}
+
+Completed box being shipped out [2]
+\vbox(482.9679+0.0)x276.5608
+.\hbox(0.0+0.0)x0.0
+..\kern -72.26999
+..\vbox(0.0+0.0)x0.0, glue set 72.26999fil
+...\kern -72.26999
+...\hbox(0.0+0.0)x0.0
+....\glue 0.0 plus 1.0fil minus 1.0fil
+...\glue 0.0 plus 1.0fil minus 1.0fil
+.\glue -37.0
+.\vbox(519.9679+0.0)x276.5608
+..\vbox(12.0+0.0)x276.5608, glue set 12.0fil
+...\glue 0.0 plus 1.0fil
+...\hbox(0.0+0.0)x276.5608
+....\pdfcolorstack 0 push {0 g 0 G}
+....\hbox(0.0+0.0)x276.5608
+....\pdfcolorstack 0 pop
+..\glue 25.0
+..\glue(\lineskip) 0.0
+..\vbox(452.9679+0.0)x276.5608, glue set 442.9206fil
+...\glue(\topskip) 3.05556
+...\hbox(6.94444+1.94444)x276.5608, glue set 80.81047fil
+....\hbox(0.0+0.0)x15.0
+....\OT1/cmr/m/n/10 s
+....\OT1/cmr/m/n/10 t
+....\OT1/cmr/m/n/10 i
+....\OT1/cmr/m/n/10 l
+....\OT1/cmr/m/n/10 l
+....\glue 3.33333 plus 1.66666 minus 1.11111
+....\OT1/cmr/m/n/10 b
+....\OT1/cmr/m/n/10 l
+....\OT1/cmr/m/n/10 u
+....\OT1/cmr/m/n/10 e
+....\glue 3.33333 plus 1.66666 minus 1.11111
+....\OT1/cmr/m/n/10 o
+....\OT1/cmr/m/n/10 n
+....\glue 3.33333 plus 1.66666 minus 1.11111
+....\OT1/cmr/m/n/10 t
+....\OT1/cmr/m/n/10 h
+....\OT1/cmr/m/n/10 e
+....\glue 3.33333 plus 1.66666 minus 1.11111
+....\OT1/cmr/m/n/10 n
+....\OT1/cmr/m/n/10 e
+....\OT1/cmr/m/n/10 x
+....\OT1/cmr/m/n/10 t
+....\glue 3.33333 plus 1.66666 minus 1.11111
+....\OT1/cmr/m/n/10 p
+....\OT1/cmr/m/n/10 a
+....\OT1/cmr/m/n/10 g
+....\OT1/cmr/m/n/10 e
+....\pdfcolorstack 0 pop
+....\glue 3.33333 plus 1.66666 minus 1.11111
+....\OT1/cmr/m/n/10 B
+....\OT1/cmr/m/n/10 a
+....\OT1/cmr/m/n/10 c
+....\kern-0.27779
+....\OT1/cmr/m/n/10 k
+....\glue 3.33333 plus 1.66666 minus 1.11111
+....\OT1/cmr/m/n/10 t
+....\OT1/cmr/m/n/10 o
+....\glue 3.33333 plus 1.66666 minus 1.11111
+....\OT1/cmr/m/n/10 b
+....\OT1/cmr/m/n/10 l
+....\OT1/cmr/m/n/10 a
+....\OT1/cmr/m/n/10 c
+....\kern-0.27779
+....\OT1/cmr/m/n/10 k
+....\OT1/cmr/m/n/10 .
+....\penalty 10000
+....\glue(\parfillskip) 0.0 plus 1.0fil
+....\glue(\rightskip) 0.0
+...\glue -1.94444
+...\glue 0.0 plus 1.0fil
+...\glue 0.0
+...\glue 0.0 plus 0.0001fil
+..\glue(\baselineskip) 23.55556
+..\hbox(6.44444+0.0)x276.5608
+...\pdfcolorstack 0 push {0 g 0 G}
+...\hbox(6.44444+0.0)x276.5608, glue set 135.7804fil
+....\glue 0.0 plus 1.0fil
+....\OT1/cmr/m/n/10 2
+....\glue 0.0 plus 1.0fil
+...\pdfcolorstack 0 pop
+.\kern 0.0
+
+(m6-latex-geometry-xcolor.aux)
+ ***********
+LaTeX2e <2026-11-01>
+L3 programming layer <2026-09-09>
+ ***********
+ )
+<cmr10.pfb>
+Output written on m6-latex-geometry-xcolor.pdf (2 pages, 20179 bytes).
+PDF statistics:
+ 14 PDF objects out of 1000 (max. 8388607)
+ 0 named destinations out of 1000 (max. 500000)
+ 1 words of extra memory for PDF output out of 10000 (max. 10000000)

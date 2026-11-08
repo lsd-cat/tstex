@@ -1,0 +1,13 @@
+%! oracle: pdftex
+\pdfoutput=1 \input plain
+\pdfcompresslevel=0 \pdfobjcompresslevel=0
+\immediate\pdfobj{<</Foo (bar)>>}\message{\the\pdflastobj}
+\pdfobj{[1 2 3]}\edef\x{\the\pdflastobj}\pdfrefobj\x
+\immediate\pdfobj stream{raw data here}
+\immediate\pdfobj stream attr{/Type /Test /Foo 1}{stream with attr}
+\pdfobj reserveobjnum \edef\r{\the\pdflastobj}
+\immediate\pdfobj useobjnum\r{(reserved)}
+\pdfrefobj\r
+\pdfobj stream{deferred stream}\pdfrefobj\pdflastobj
+\pdfcatalog{/Foo \r\space 0 R}
+Page text.\bye

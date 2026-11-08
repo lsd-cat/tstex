@@ -1,0 +1,254 @@
+entering extended mode
+(m6-latex-graphicx.tex
+LaTeX2e <2026-11-01>
+L3 programming layer <2026-09-09>
+(article.cls
+Document Class: article 2026-06-04 v1.4n Standard LaTeX document class
+(size10.clo
+File: size10.clo 2026-06-04 v1.4n Standard LaTeX file (size option)
+)
+\c@part=\count276
+\c@section=\count277
+\c@subsection=\count278
+\c@subsubsection=\count279
+\c@paragraph=\count280
+\c@subparagraph=\count281
+\c@figure=\count282
+\c@table=\count283
+\abovecaptionskip=\skip49
+\belowcaptionskip=\skip50
+\bibindent=\dimen150
+) (graphicx.sty
+Package: graphicx 2026-06-26 v1.2e Enhanced LaTeX Graphics (DPC,SPQR)
+(keyval.sty
+Package: keyval 2026-06-01 v1.15 key=value parser (DPC)
+\KV@toks@=\toks17
+) (graphics.sty
+Package: graphics 2026-05-17 v1.4h Standard LaTeX Graphics (DPC,SPQR)
+(trig.sty
+Package: trig 2023/12/02 v1.11 sin cos tan (DPC)
+) (graphics.cfg
+File: graphics.cfg 2016/06/04 v1.11 sample graphics configuration
+)
+Package graphics Info: Driver file: pdftex.def on input line 106.
+(pdftex.def
+File: pdftex.def 2025/09/29 v1.2d Graphics/color driver for pdftex
+))
+\Gin@req@height=\dimen151
+\Gin@req@width=\dimen152
+) (l3backend-pdftex.def
+File: l3backend-pdftex.def 2026-09-09 L3 backend support: PDF output (pdfTeX)
+\l__color_backend_stack_int=\count284
+)
+No file m6-latex-graphicx.aux.
+\openout1 = `m6-latex-graphicx.aux'.
+
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 7.
+LaTeX Font Info:    ... okay on input line 7.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 7.
+LaTeX Font Info:    ... okay on input line 7.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 7.
+LaTeX Font Info:    ... okay on input line 7.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 7.
+LaTeX Font Info:    ... okay on input line 7.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 7.
+LaTeX Font Info:    ... okay on input line 7.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 7.
+LaTeX Font Info:    ... okay on input line 7.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 7.
+LaTeX Font Info:    ... okay on input line 7.
+(supp-pdf.mkii
+[Loading MPS to PDF converter (version 2006.09.02).]
+\scratchcounter=\count285
+\scratchdimen=\dimen153
+\scratchbox=\box53
+\nofMPsegments=\count286
+\nofMParguments=\count287
+\everyMPshowfont=\toks18
+\MPscratchCnt=\count288
+\MPscratchDim=\dimen154
+\MPnumerator=\count289
+\makeMPintoPDFobject=\count290
+\everyMPtoPDFconversion=\toks19
+) (epstopdf-base.sty
+Package: epstopdf-base 2020-01-24 v2.11 Base part for package epstopdf
+Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 485.
+(epstopdf-sys.cfg
+File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Live
+))
+<images/fig.png, id=1, 200.75pt x 120.45pt>
+File: images/fig.png Graphic file (type png)
+<use images/fig.png>
+Package pdftex.def Info: images/fig.png  used on input line 8.
+(pdftex.def)             Requested size: 144.54pt x 86.72943pt.
+<images/fig.jpg, id=2, 200.75pt x 120.45pt>
+File: images/fig.jpg Graphic file (type jpg)
+<use images/fig.jpg>
+Package pdftex.def Info: images/fig.jpg  used on input line 9.
+(pdftex.def)             Requested size: 144.54pt x 86.72943pt.
+<images/fig-gray.png, id=3, 200.75pt x 120.45pt>
+File: images/fig-gray.png Graphic file (type png)
+<use images/fig-gray.png>
+Package pdftex.def Info: images/fig-gray.png  used on input line 12.
+(pdftex.def)             Requested size: 200.7495pt x 120.44969pt.
+
+Completed box being shipped out [1]
+\vbox(633.0+0.0)x407.0
+.\hbox(0.0+0.0)x0.0
+..\kern -72.26999
+..\vbox(0.0+0.0)x0.0, glue set 72.26999fil
+...\kern -72.26999
+...\hbox(0.0+0.0)x0.0
+....\glue 0.0 plus 1.0fil minus 1.0fil
+...\glue 0.0 plus 1.0fil minus 1.0fil
+.\glue 16.0
+.\vbox(617.0+0.0)x345.0, shifted 62.0
+..\vbox(12.0+0.0)x345.0, glue set 12.0fil
+...\glue 0.0 plus 1.0fil
+...\hbox(0.0+0.0)x345.0
+....\hbox(0.0+0.0)x345.0
+..\glue 25.0
+..\glue(\lineskip) 0.0
+..\vbox(550.0+0.0)x345.0, glue set 389.95898fil
+...\write-{}
+...\glue(\topskip) 0.0
+...\hbox(86.72943+0.0)x345.0, glue set 37.58669fil
+....\hbox(0.0+0.0)x15.0
+....\hbox(86.72943+0.0)x144.54
+.....\hbox(86.72964+0.0)x144.54942
+......\hbox(86.72964+0.0)x144.54942
+.......\hbox(86.72964+0.0)x0.0
+........\pdfsave
+........\pdfsetmatrix{.72005 0 0 .72005}
+........\hbox(120.45+0.0)x0.0, glue set - 200.75fil
+.........\hbox(120.45+0.0)x200.75
+..........\pdfrefximage(120.45+0.0)x200.75
+.........\glue 0.0 plus 1.0fil minus 1.0fil
+........\pdfrestore
+.......\kern 144.54942
+.......\glue 0.0 plus 1.0fil minus 1.0fil
+....\glue 3.33333 plus 1.66666 minus 1.11111
+....\hbox(86.72943+0.0)x144.54
+.....\hbox(86.72964+0.0)x144.54942
+......\hbox(86.72964+0.0)x144.54942
+.......\hbox(86.72964+0.0)x0.0
+........\pdfsave
+........\pdfsetmatrix{.72005 0 0 .72005}
+........\hbox(120.45+0.0)x0.0, glue set - 200.75fil
+.........\hbox(120.45+0.0)x200.75
+..........\pdfrefximage(120.45+0.0)x200.75
+.........\glue 0.0 plus 1.0fil minus 1.0fil
+........\pdfrestore
+.......\kern 144.54942
+.......\glue 0.0 plus 1.0fil minus 1.0fil
+....\penalty 10000
+....\glue(\parfillskip) 0.0 plus 1.0fil
+....\glue(\rightskip) 0.0
+...\glue(\parskip) 0.0 plus 1.0
+...\glue(\parskip) 0.0
+...\glue(\lineskip) 1.0
+...\hbox(72.26993+0.0)x345.0, glue set 72.18584fil
+....\hbox(0.0+0.0)x15.0
+....\hbox(10.41666+0.0)x41.66675
+.....\hbox(10.41666+0.0)x0.0
+......\pdfsave
+......\pdfsetmatrix{1.5 0 0 1.5}
+......\hbox(6.94444+0.0)x0.0, glue set - 27.77783fil
+.......\hbox(6.94444+0.0)x27.77783
+........\OT1/cmr/m/n/10 S
+........\OT1/cmr/m/n/10 c
+........\OT1/cmr/m/n/10 a
+........\OT1/cmr/m/n/10 l
+........\OT1/cmr/m/n/10 e
+........\OT1/cmr/m/n/10 d
+.......\glue 0.0 plus 1.0fil minus 1.0fil
+......\pdfrestore
+.....\kern 41.66675
+.....\glue 0.0 plus 1.0fil minus 1.0fil
+....\glue 3.33333 plus 1.66666 minus 1.11111
+....\hbox(14.07639+0.0)x18.23055
+.....\kern 3.07529
+.....\hbox(6.15079+0.0)x0.0
+......\pdfsave
+......\pdfsetmatrix{.86601 .49998 -.49998 .86601}
+......\hbox(6.15079+0.0)x0.0
+.......\OT1/cmr/m/n/10 t
+.......\OT1/cmr/m/n/10 e
+.......\OT1/cmr/m/n/10 x
+.......\OT1/cmr/m/n/10 t
+......\pdfrestore
+....\glue 3.33333 plus 1.66666 minus 1.11111
+....\hbox(30.4454+0.0)x144.55493
+.....\hbox(30.4454+0.0)x0.0
+......\pdfsave
+......\pdfsetmatrix{4.38414 0 0 4.38414}
+......\hbox(6.94444+0.0)x0.0, glue set - 32.97224fil
+.......\hbox(6.94444+0.0)x32.97224
+........\hbox(6.94444+0.0)x32.97224
+.........\OT1/cmr/m/n/10 R
+.........\OT1/cmr/m/n/10 e
+.........\OT1/cmr/m/n/10 s
+.........\OT1/cmr/m/n/10 i
+.........\OT1/cmr/m/n/10 z
+.........\OT1/cmr/m/n/10 e
+.........\OT1/cmr/m/n/10 d
+.......\glue 0.0 plus 1.0fil minus 1.0fil
+......\pdfrestore
+.....\kern 144.55493
+.....\glue 0.0 plus 1.0fil minus 1.0fil
+....\glue 3.33333 plus 1.66666 minus 1.11111
+....\hbox(72.26993+0.0)x43.36195
+.....\hbox(72.26993+0.0)x0.0
+......\pdfsave
+......\pdfsetmatrix{.36 0 0 .36}
+......\hbox(200.7495+0.0)x0.0, glue set - 120.44969fil
+.......\hbox(200.7495+0.0)x120.44969
+........\hbox(200.7495+0.0)x120.44969
+.........\hbox(200.7495+0.0)x120.44969
+..........\kern 120.44969
+..........\hbox(120.44969+0.0)x0.0
+...........\pdfsave
+...........\pdfsetmatrix{0 1 -1 0}
+...........\hbox(120.44969+0.0)x0.0
+............\hbox(120.44969+0.0)x200.7495
+.............\hbox(120.45+0.0)x200.75
+..............\hbox(120.45+0.0)x200.75
+...............\hbox(120.45+0.0)x0.0
+................\hbox(120.45+0.0)x0.0, glue set - 200.75fil
+.................\hbox(120.45+0.0)x200.75
+..................\pdfrefximage(120.45+0.0)x200.75
+.................\glue 0.0 plus 1.0fil minus 1.0fil
+...............\kern 200.75
+...............\glue 0.0 plus 1.0fil minus 1.0fil
+...........\pdfrestore
+.......\glue 0.0 plus 1.0fil minus 1.0fil
+......\pdfrestore
+.....\kern 43.36195
+.....\glue 0.0 plus 1.0fil minus 1.0fil
+....\penalty 10000
+....\glue(\parfillskip) 0.0 plus 1.0fil
+....\glue(\rightskip) 0.0
+...\glue 0.0 plus 1.0fil
+...\glue 0.0
+...\glue 0.0 plus 0.0001fil
+..\glue(\baselineskip) 23.55556
+..\hbox(6.44444+0.0)x345.0
+...\hbox(6.44444+0.0)x345.0, glue set 170.0fil
+....\glue 0.0 plus 1.0fil
+....\OT1/cmr/m/n/10 1
+....\glue 0.0 plus 1.0fil
+.\kern 0.0
+
+
+{pdftex.map} <./images/fig.png> <./images/fig.jpg> <./images/fig-gray.png> (m6-latex-graphicx.aux)
+ ***********
+LaTeX2e <2026-11-01>
+L3 programming layer <2026-09-09>
+ ***********
+ )
+<cmr10.pfb>
+Output written on m6-latex-graphicx.pdf (1 page, 121476 bytes).
+PDF statistics:
+ 14 PDF objects out of 1000 (max. 8388607)
+ 0 named destinations out of 1000 (max. 500000)
+ 16 words of extra memory for PDF output out of 10000 (max. 10000000)

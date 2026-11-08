@@ -1,0 +1,8 @@
+%! oracle: pdftex
+\pdfoutput=1 \input plain
+\pdfcompresslevel=0 \pdfobjcompresslevel=0
+\font\x=ec-lmr10 \font\y=cmr10 at 14pt
+\x \char200 \char"E9 \char"FF a \y x\par
+\message{\pdffontname\x,\pdffontobjnum\x,\pdffontsize\x}
+\pdfincludechars\y{xyz}
+\bye

@@ -1,0 +1,13 @@
+%! oracle: pdflatex
+%! runs: 2
+\documentclass{beamer}
+\pdfcompresslevel=0 \pdfobjcompresslevel=0
+\tracingonline=0 \showboxbreadth=10000 \showboxdepth=10000 \tracingoutput=1
+\usepackage{tikz}
+\usetheme{default}
+\title{Title}\author{Me}
+\begin{document}
+\begin{frame}\titlepage\end{frame}
+\begin{frame}{Items}\begin{itemize}\item One\pause\item Two\pause\item Three\end{itemize}\end{frame}
+\begin{frame}{Picture}\begin{tikzpicture}\draw (0,0) circle (1);\draw[->] (0,0) -- (2,1);\end{tikzpicture}\end{frame}
+\end{document}

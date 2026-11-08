@@ -1,0 +1,16 @@
+%! oracle: pdftex
+\pdfoutput=1 \input plain
+\pdfcompresslevel=0 \pdfobjcompresslevel=0
+\pdfdest name{a} xyz \pdfdest num 1 fitb
+\pdfannot width 1in height 1in depth 0pt {/Subtype /Square}\message{\the\pdflastannot}
+\pdfdest name{b} fit \pdfdest name{c} fith \pdfdest name{d} fitv \pdfdest name{e} fitr width 10pt height 10pt depth 2pt \pdfdest name{f} xyz zoom 1500
+\hsize=3in \parindent=0pt \rightskip=0pt plus 1fil
+\noindent\pdfstartlink attr{/C [1 0 0]} goto name{a} link text that wraps over lines hopefully yes it does \pdfendlink\message{\the\pdflastlink}\par
+\pdflinkmargin=2pt \noindent\pdfstartlink user{/Subtype /Link /A << /S /URI /URI (http://x.org) >>} uri \pdfendlink
+\hfil\pdfstartlink goto num 1 Other \pdfendlink
+\pdfstartlink attr{/Border [0 0 2]} goto name{b} B\pdfendlink
+\pdfstartlink thread name{t} T\pdfendlink
+\pdfstartlink goto file{x.pdf} name{z} newwindow F\pdfendlink
+\pdfstartlink user{/Subtype /Link /Dest [0 /Fit]} U\pdfendlink
+\par\vfill\eject Page two \pdfstartlink goto page 1 {/Fit} P\pdfendlink
+\bye

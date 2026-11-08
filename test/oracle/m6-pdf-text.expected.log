@@ -1,0 +1,58 @@
+entering extended mode
+(m6-pdf-text.tex (plain.tex Preloading the plain format: codes, registers,
+\maxdimen=\dimen10
+\hideskip=\skip10
+\centering=\skip11
+\p@=\dimen11
+\z@=\dimen12
+\z@skip=\skip12
+\voidb@x=\box10
+parameters,
+\smallskipamount=\skip13
+\medskipamount=\skip14
+\bigskipamount=\skip15
+\normalbaselineskip=\skip16
+\normallineskip=\skip17
+\normallineskiplimit=\dimen13
+\jot=\dimen14
+\interdisplaylinepenalty=\count23
+\interfootnotelinepenalty=\count24
+fonts, more fonts,
+\itfam=\fam4
+\slfam=\fam5
+\bffam=\fam6
+\ttfam=\fam7
+macros,
+\strutbox=\box11
+\mscount=\count25
+\tabs=\box12
+\tabsyet=\box13
+\tabsdone=\box14
+math definitions,
+\rootbox=\box15
+\p@renwd=\dimen15
+output routines,
+\headline=\toks10
+\footline=\toks11
+\footins=\insert254
+\topins=\insert253
+hyphenation (hyphen.tex))
+Missing character: There is no ^^c8 in font cmtt10!
+[1{pdftex.map}]
+Underfull \vbox (badness 10000) has occurred while \output is active
+\vbox(643.20255+2.33333)x469.75499
+.\glue(\topskip) 1.66667
+.\hbox(8.33333+2.33333)x469.75499, glue set 336.98805fil
+..\hbox(0.0+0.0)x20.0
+..\a S
+..\a e
+..\a c
+..\a o
+..etc.
+
+[2] [3] )<cmbx10.pfb><cmr10.pfb><cmti10.pfb><cmtt10.pfb>
+Output written on m6-pdf-text.pdf (3 pages, 53835 bytes).
+PDF statistics:
+ 28 PDF objects out of 1000 (max. 8388607)
+ 0 named destinations out of 1000 (max. 500000)
+ 1 words of extra memory for PDF output out of 10000 (max. 10000000)

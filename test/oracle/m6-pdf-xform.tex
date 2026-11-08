@@ -1,0 +1,8 @@
+%! oracle: pdftex
+\pdfoutput=1 \input plain
+\pdfcompresslevel=0 \pdfobjcompresslevel=0
+\setbox0\hbox{Form \vrule width 10pt height 5pt}
+\immediate\pdfxform0 \edef\f{\the\pdflastxform}
+\hbox{\pdfrefxform\f\ and \pdfrefxform\f}\vfill\eject
+\setbox2\hbox{Second} \pdfxform attr{/Foo 1} resources{/ProcSet [/PDF /Text]}2
+\hbox{\pdfrefxform\f \pdfrefxform\pdflastxform}\bye

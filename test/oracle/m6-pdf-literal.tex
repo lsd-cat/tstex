@@ -1,0 +1,13 @@
+%! oracle: pdftex
+\pdfoutput=1 \input plain
+\pdfcompresslevel=0 \pdfobjcompresslevel=0
+\pdfdecimaldigits=4
+\hbox{A\pdfliteral{1 0 0 rg}B\pdfliteral direct{0 0 1 rg 10 10 20 20 re f}C\pdfliteral page{q Q}D}
+\hbox{\pdfsave\pdfsetmatrix{1 0.2 0 1}Sheared\pdfrestore\ Normal}
+\pdfdecimaldigits=2
+\hbox{\pdfsave\pdfsetmatrix{0.707107 0.707107 -0.707107 0.707107}Rot\pdfrestore}
+\pdfdecimaldigits=0 \hbox to 100.7pt{A\hfil B}
+\pdfdecimaldigits=4 \hrule width 33.33333pt height 1.23456pt
+\pdfliteral shipout{0 g}\pdfliteral{% inline
+ 0 0 m}
+\bye

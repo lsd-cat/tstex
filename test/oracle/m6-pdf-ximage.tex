@@ -1,0 +1,12 @@
+%! oracle: pdftex
+\pdfoutput=1 \input plain
+\pdfcompresslevel=0 \pdfobjcompresslevel=0
+\pdfximage width 2in {images/fig.png}\edef\i{\the\pdflastximage}\pdfrefximage\i
+\pdfximage height 1in {images/fig.jpg}\pdfrefximage\pdflastximage
+\pdfximage {images/fig-gray.png}\pdfrefximage\pdflastximage \message{\the\pdflastximagepages}
+\pdfximage depth 5pt width 1in height 0.5in {images/fig-pal.png}\pdfrefximage\pdflastximage
+\pdfximage width 1in {images/fig.png}\pdfrefximage\pdflastximage
+\pdfimageresolution=300 \pdfximage {images/fig.png}\pdfrefximage\pdflastximage
+\pdfximage attr{/Foo 1} {images/fig.jpg}\pdfrefximage\pdflastximage
+\pdfximage {images/fig.png}\pdfrefximage\pdflastximage
+\bye

@@ -1,0 +1,9 @@
+%! oracle: pdftex
+\pdfoutput=1 \input plain
+\pdfcompresslevel=0 \pdfobjcompresslevel=0
+\edef\ca{\pdfcolorstackinit page direct{0 g 0 G}}\message{\ca}
+\edef\cb{\pdfcolorstackinit {0 0 1 rg}}\message{\cb}
+\pdfcolorstack\ca push{1 0 0 rg} Red \pdfcolorstack\ca current \pdfcolorstack\ca push{0 1 0 rg} Green
+\pdfcolorstack\ca pop Back \pdfcolorstack\cb set{0.5 g} Set \pdfcolorstack\cb pop
+\vfill\eject Across page \pdfcolorstack\ca pop
+\pdfcolorstack\ca push{0 0 1 rg} Blue\vfill\eject Page three \pdfcolorstack\ca pop\bye

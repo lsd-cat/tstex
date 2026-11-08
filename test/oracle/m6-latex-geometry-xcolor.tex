@@ -1,0 +1,13 @@
+%! oracle: pdflatex
+%! runs: 1
+\documentclass{article}
+\pdfcompresslevel=0 \pdfobjcompresslevel=0
+\tracingonline=0 \showboxbreadth=10000 \showboxdepth=10000 \tracingoutput=1
+\usepackage[a5paper,margin=1in]{geometry}
+\usepackage{xcolor}
+\begin{document}
+\textcolor{red}{Red} \textcolor[rgb]{0,0.5,0.2}{Green} \colorbox{yellow}{Boxed} \fcolorbox{blue}{white}{Framed}
+{\color{blue} Blue text that goes on and on and on across lines and then a page break \par
+\newpage still blue on the next page}
+Back to black.
+\end{document}

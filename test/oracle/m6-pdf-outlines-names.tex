@@ -1,0 +1,17 @@
+%! oracle: pdftex
+\pdfoutput=1 \input plain
+\pdfcompresslevel=0 \pdfobjcompresslevel=0
+\pdfdest name{a} xyz \pdfdest name{b} fit
+\pdfoutline goto name{a} count 2 {Section}
+\pdfoutline goto name{b} {Sub one}
+\pdfoutline goto name{b} count -1 {Sub two}
+\pdfoutline goto name{a} {Hidden child}
+\pdfoutline goto page 1 {/Fit} {Section 2}
+\pdfnames{/Dests << /Names [(x) 1 0 R] >>}
+\pdfinfo{/Title (x) /Author (me)}
+\pdfcatalog{/PageMode /UseOutlines}
+\pdfcatalog{/OpenAction [1 0 R /Fit]}
+\pdfpageattr{/Rotate 90}
+\pdfpagesattr{/MediaBox [0 0 100 100]}
+\pdfpageresources{/ProcSet [/PDF]}
+Text\bye
