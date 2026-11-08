@@ -1,0 +1,234 @@
+entering extended mode
+(m8-interword-dvi.tex (plain.tex Preloading the plain format: codes, regist
+ers,
+\maxdimen=\dimen10
+\hideskip=\skip10
+\centering=\skip11
+\p@=\dimen11
+\z@=\dimen12
+\z@skip=\skip12
+\voidb@x=\box10
+parameters,
+\smallskipamount=\skip13
+\medskipamount=\skip14
+\bigskipamount=\skip15
+\normalbaselineskip=\skip16
+\normallineskip=\skip17
+\normallineskiplimit=\dimen13
+\jot=\dimen14
+\interdisplaylinepenalty=\count23
+\interfootnotelinepenalty=\count24
+fonts, more fonts,
+\itfam=\fam4
+\slfam=\fam5
+\bffam=\fam6
+\ttfam=\fam7
+macros,
+\strutbox=\box11
+\mscount=\count25
+\tabs=\box12
+\tabsyet=\box13
+\tabsdone=\box14
+math definitions,
+\rootbox=\box15
+\p@renwd=\dimen15
+output routines,
+\headline=\toks10
+\footline=\toks11
+\footins=\insert254
+\topins=\insert253
+hyphenation (hyphen.tex))
+> \box1=
+\hbox(6.94444+0.0)x162.88914
+.\kern 4.0 (for \pdfprependkern/\pdfappendkern)
+.\tenrm A
+.\kern 2.5 (for \pdfprependkern/\pdfappendkern)
+.\tenrm -
+.\kern 2.5 (for \pdfprependkern/\pdfappendkern)
+.\tenrm A
+.\glue 3.33333 plus 1.66666 minus 1.11111
+.\tenrm V
+.\kern 6.00002 (for \pdfprependkern/\pdfappendkern)
+.\glue 8.33334 plus -1.33334 minus 3.11111
+.\kern 4.0 (for \pdfprependkern/\pdfappendkern)
+.\tenrm A
+.\discretionary
+..\kern 2.5 (for \pdfprependkern/\pdfappendkern)
+..\tenrm -
+..\kern -1.5 (for \pdfprependkern/\pdfappendkern)
+.\tenrm V
+.\kern 6.00002 (for \pdfprependkern/\pdfappendkern)
+.\glue 8.33334 plus -1.33334 minus 3.11111
+.\kern 3.0 (for \pdfprependkern/\pdfappendkern)
+.\tenrm ^^L (ligature fi)
+.\tenrm l
+.\tenrm l
+.\glue 4.33333 plus 1.66666 minus 1.11111
+.\kern 3.0 (for \pdfprependkern/\pdfappendkern)
+.\tenrm ^^L (ligature fi)
+.\glue 3.33333 plus 1.66666 minus 1.11111
+.\tenrm V
+.\kern 6.00002 (for \pdfprependkern/\pdfappendkern)
+.\tenrm .
+.\glue 3.33333 plus 1.66666 minus 1.11111
+.\tenrm V
+.\kern 6.00002 (for \pdfprependkern/\pdfappendkern)
+.\glue 8.33334 plus -1.33334 minus 3.11111
+.\tenrm x
+
+! OK.
+l.8 ...ill fi\spacefactor3000{} V.\ V\ x}\showbox1
+
+
+> \box1=
+\vbox(30.94444+0.0)x216.81
+.\hbox(6.94444+1.94444)x216.81, glue set 0.10614
+..\hbox(0.0+0.0)x0.0
+..\kern 4.0 (for \pdfprependkern/\pdfappendkern)
+..\tenrm A
+..\kern-1.11113
+..\tenrm V
+..\kern 8.50002 (for \pdfprependkern/\pdfappendkern)
+..\tenrm -
+..\kern 2.5 (for \pdfprependkern/\pdfappendkern)
+..\discretionary
+..\tenrm A
+..\glue 3.33333 plus 1.66666 minus 1.11111
+..\kern 3.0 (for \pdfprependkern/\pdfappendkern)
+..\tenrm f
+..\kern 3.0 (for \pdfprependkern/\pdfappendkern)
+..\tenrm ^^L (ligature fi)
+..\glue 3.33333 plus 1.66666 minus 1.11111
+..\kern 4.0 (for \pdfprependkern/\pdfappendkern)
+..\tenrm A
+..\discretionary
+...\kern 2.5 (for \pdfprependkern/\pdfappendkern)
+...\tenrm -
+...\kern -1.5 (for \pdfprependkern/\pdfappendkern)
+..\kern 4.0 (for \pdfprependkern/\pdfappendkern)
+..\tenrm A
+..\tenrm ,
+..\glue 3.33333 plus 1.66666 minus 1.11111
+..\tenrm V
+..\kern 6.00002 (for \pdfprependkern/\pdfappendkern)
+..\tenrm e
+..\tenrm r
+..\tenrm y
+..\glue 3.33333 plus 1.66666 minus 1.11111
+..\tenrm l
+..\tenrm o
+..\tenrm n
+..\tenrm g
+..\glue 3.33333 plus 1.66666 minus 1.11111
+..\tenrm l
+..\tenrm i
+..\kern 0.7 (for \pdfprependkern/\pdfappendkern)
+..\tenrm n
+..\tenrm e
+..\glue 3.33333 plus 1.66666 minus 1.11111
+..\tenrm o
+..\kern 3.0 (for \pdfprependkern/\pdfappendkern)
+..\tenrm f
+..\glue 3.33333 plus 1.66666 minus 1.11111
+..\tenrm t
+..\tenrm e
+..\tenrm x
+..\tenrm t
+..\glue 3.33333 plus 1.66666 minus 1.11111
+..\tenrm t
+..\tenrm h
+..\tenrm a
+..\tenrm t
+..\glue(\rightskip) 0.0
+.\penalty 150
+.\glue(\baselineskip) 3.11111
+.\hbox(6.94444+0.0)x216.81, glue set - 0.01447
+..\tenrm w
+..\tenrm i
+..\kern 0.7 (for \pdfprependkern/\pdfappendkern)
+..\tenrm l
+..\tenrm l
+..\glue 4.33333 plus 1.66666 minus 1.11111
+..\tenrm n
+..\tenrm e
+..\tenrm e
+..\tenrm d
+..\glue 3.33333 plus 1.66666 minus 1.11111
+..\tenrm t
+..\tenrm o
+..\glue 3.33333 plus 1.66666 minus 1.11111
+..\tenrm b
+..\tenrm r
+..\tenrm e
+..\tenrm a
+..\tenrm k
+..\glue 3.33333 plus 1.66666 minus 1.11111
+..\tenrm s
+..\tenrm o
+..\tenrm m
+..\tenrm e
+..\tenrm w
+..\tenrm h
+..\tenrm e
+..\tenrm r
+..\tenrm e
+..\glue 3.33333 plus 1.66666 minus 1.11111
+..\tenrm a
+..\tenrm r
+..\tenrm o
+..\tenrm u
+..\tenrm n
+..\tenrm d
+..\glue 3.33333 plus 1.66666 minus 1.11111
+..\tenrm h
+..\tenrm e
+..\tenrm r
+..\tenrm e
+..\glue 3.33333 plus 1.66666 minus 1.11111
+..\tenrm V
+..\kern 6.00002 (for \pdfprependkern/\pdfappendkern)
+..\discretionary
+...\kern 2.5 (for \pdfprependkern/\pdfappendkern)
+...\tenrm -
+...\kern -1.5 (for \pdfprependkern/\pdfappendkern)
+..\tenrm V
+..\kern 6.00002 (for \pdfprependkern/\pdfappendkern)
+..\glue(\rightskip) 0.0
+.\penalty 150
+.\glue(\baselineskip) 5.05556
+.\hbox(6.94444+0.0)x216.81, glue set 165.25435fil
+..\tenrm a
+..\tenrm n
+..\tenrm d
+..\glue 3.33333 plus 1.66666 minus 1.11111
+..\kern 4.0 (for \pdfprependkern/\pdfappendkern)
+..\tenrm A
+..\kern 2.5 (for \pdfprependkern/\pdfappendkern)
+..\tenrm -
+..\kern -1.5 (for \pdfprependkern/\pdfappendkern)
+..\discretionary
+..\tenrm V
+..\kern 6.00002 (for \pdfprependkern/\pdfappendkern)
+..\tenrm .
+..\penalty 10000
+..\glue(\parfillskip) 0.0 plus 1.0fil
+..\glue(\rightskip) 0.0
+
+! OK.
+l.9 ...ere around here V\-V and A-V.\par}\showbox1
+
+
+> \box1=
+\hbox(6.83331+0.0)x30.33339
+.\tenrm V
+.\kern 6.00002 (for \pdfprependkern/\pdfappendkern)
+.\glue 3.33333 plus 1.66498 minus 1.11221
+.\tenrm V
+.\kern 6.00002 (for \pdfprependkern/\pdfappendkern)
+
+! OK.
+l.10 ...nterwordglue=0 \setbox1\hbox{V V}\showbox1
+
+
+[1] )
+Output written on m8-interword-dvi.dvi (1 page, 180 bytes).

@@ -1,0 +1,12 @@
+%! oracle: etex
+\input plain
+\tracingonline=1 \showboxbreadth=10000 \showboxdepth=10000
+\tenrm \pdfadjustinterwordglue=1 \pdfprependkern=1 \pdfappendkern=1
+\knbscode\tenrm`V=500 \stbscode\tenrm`V=-300 \shbscode\tenrm`V=200 \knbscode\tenrm`l=100
+\knbccode\tenrm`A=400 \knaccode\tenrm`V=600 \knbccode\tenrm`-=250 \knaccode\tenrm`-=-150 \knbccode\tenrm`f=300 \knaccode\tenrm`i=70
+\hsize=3in \parindent=0pt
+\setbox1\hbox{A-A V A\-V fill fi\spacefactor3000{} V.\ V\ x}\showbox1
+\setbox1\vbox{AV-A ffi A\-A, Very long line of text that will need to break somewhere around here V\-V and A-V.\par}\showbox1
+\pdfadjustinterwordglue=0 \setbox1\hbox{V V}\showbox1
+\shipout\copy1
+\end

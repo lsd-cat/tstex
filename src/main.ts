@@ -15,7 +15,7 @@ import { add_glue_ref, delete_glue_ref, new_spec, zero_glue, get_avail, free_ava
   a_leaders, mu_glue, explicit, acc_kern, language_node, fill_glue, new_math, new_noad, new_choice, null_delimiter, node_free,
   stretching, shrinking, L_code, before, after, inf_penalty, ord_noad, inner_noad, radical_noad, fraction_noad, accent_noad,
   vcenter_noad, left_noad, right_noad, math_char, sub_box, sub_mlist, default_code, text_style, display_style } from './nodes.ts'
-import { new_skip_param, pdf_refxform_node, pdf_refximage_node, whatsit_node, margin_kern_node } from './nodes.ts'
+import { new_skip_param, pdf_refxform_node, pdf_refximage_node, whatsit_node, margin_kern_node, auto_kern } from './nodes.ts'
 import type { KernNode } from './nodes.ts'
 import type { Node, CharNode, LigNode, BoxNode, InsNode, AdjustNode, MarkNode, GlueNode, Noad, Field, Delim, ChoiceNode } from './nodes.ts'
 import { mlist_to_hlist, flush_math, fam_fnt, math_quad, text_size, script_size, script_script_size, total_mathsy_params,
@@ -34,7 +34,9 @@ import { mult_integers, nx_plus_y, x_over_n } from './arith.ts'
 import { find_sa_element, sa, sa_def, sa_w_def, box_val } from './etex.ts'
 import { char_info, char_exists, char_width, char_italic, char_height, height_depth, char_tag, char_kern, lig_kern_start,
   lig_kern_restart, skip_byte, next_char, op_byte, rem_byte, stop_flag, kern_flag, lig_tag, non_char, non_address, char_warning,
-  new_character, param, space_code, x_height_code, slant_code, extra_space_code, quad_code } from './tfm.ts'
+  new_character, param, space_code, x_height_code, slant_code, extra_space_code, quad_code, get_font_code, quad, kn_ac_code_base,
+  kn_bc_code_base, kn_bs_code_base, st_bs_code_base, sh_bs_code_base } from './tfm.ts'
+import { round_xn_over_d } from './pdf.ts'
 import { hpack, vpack, vpackage, append_to_vlist, scan_spec, saved, set_saved, additional, exactly } from './pack.ts'
 import { ship_out } from './dvi.ts'
 import { line_break } from './linebreak.ts'
@@ -56,7 +58,7 @@ export const fil_code = 0, fill_code = 1, ss_code = 2, fil_neg_code = 3, skip_co
 const default_rule = 26214
 const left_skip_code = 7, right_skip_code = 8, space_skip_code = 12, xspace_skip_code = 13, par_skip_code = 2, split_top_skip_code = 10
 const language_code = 50, left_hyphen_min_code = 51, right_hyphen_min_code = 52, floating_penalty_code = 42
-const pdf_adjust_interword_glue_code = 87, par_indent_code = 0, split_max_depth_code = 6, box_max_depth_code = 7
+const pdf_adjust_interword_glue_code = 87, pdf_prepend_kern_code = 88, pdf_append_kern_code = 89, par_indent_code = 0, split_max_depth_code = 6, box_max_depth_code = 7
 const pdf_ignored_dimen = (e: Engine) => e.equiv[dimen_base + 32]!
 const every_vbox_loc = local_base + 6, every_hbox_loc = local_base + 5, every_hbox_text = 10, every_vbox_text = 11
 
@@ -69,7 +71,7 @@ const cur_list = (e: Engine): ListState => ({ mode: e.mode, head: e.head, tail: 
   eTeX_aux: e.eTeX_aux })
 
 // §214 tail_append
-export function tail_append(e: Engine, p: Node): void { e.tail.link = p; e.tail = p }
+export function tail_append(e: Engine, p: Node): void { e.prev_tail = e.tail; e.tail.link = p; e.tail = p }
 
 // §216 push_nest
 export function push_nest(e: Engine): void {
@@ -172,8 +174,7 @@ export function main_control(e: Engine): void {
         fetch = false; continue
       case Cmd.spacer:
         if (m === hmode) {
-          if (int_par(e, pdf_adjust_interword_glue_code) > 0) fatal_error(e, 'unsupported: \\pdfadjustinterwordglue')
-          if (e.space_factor === 1000) append_normal_space(e); else app_space(e)
+          if (e.space_factor === 1000 || int_par(e, pdf_adjust_interword_glue_code) > 0) append_normal_space(e); else app_space(e)
         }
         continue // §1045 vmode+spacer, mmode+spacer: do_nothing
       case Cmd.ex_space: append_normal_space(e); continue
@@ -241,18 +242,66 @@ function wrapup(e: Engine, rt: boolean): void {
 
 // §1034 Append character cur_chr and the following characters (if any) to the current hlist in the current font;
 // returns true for goto reswitch, false for goto big_switch.
-// pdftex's get_auto_kern always gives null: \knaccode/\knbccode are unsupported, so every kn code is 0.
+// pdftex.web get_auto_kern
+function get_auto_kern(e: Engine, f: number, l: number, r: number): KernNode | null {
+  if (int_par(e, pdf_append_kern_code) <= 0 && int_par(e, pdf_prepend_kern_code) <= 0) return null
+  let tmp_w = 0
+  if (int_par(e, pdf_append_kern_code) > 0 && l < non_char) {
+    const k = get_font_code(e, kn_ac_code_base, f, l)
+    if (k !== 0) tmp_w = round_xn_over_d(e, quad(e, f), k, 1000)
+  }
+  if (int_par(e, pdf_prepend_kern_code) > 0 && r < non_char) {
+    const k = get_font_code(e, kn_bc_code_base, f, r)
+    if (k !== 0) tmp_w = (tmp_w + round_xn_over_d(e, quad(e, f), k, 1000)) | 0
+  }
+  if (tmp_w === 0) return null
+  const p = new_kern(tmp_w); p.subtype = auto_kern
+  return p
+}
+// pdftex.web If tmp_k1 is not null then append that kern (an auto kern goes before a null discretionary that wrapup made)
+function append_auto_kern(e: Engine, k: KernNode): void {
+  wrapup(e, e.rt_hit)
+  e.save_tail = e.tail
+  const t = e.tail
+  if (t.type === disc_node && t.replace_count === 0 && t.pre_break === null && t.post_break === null && e.prev_tail.link === t) {
+    e.prev_tail.link = k; k.link = t; e.prev_tail = k // insert_before_tail
+  } else tail_append(e, k)
+}
+// pdftex.web adjust_interword_glue: \knbscode, \stbscode, \shbscode of the character before the space
+function adjust_interword_glue(e: Engine, p: Node, g: GlueNode): void {
+  let c = non_char, f = 0
+  if (is_char_node(p) || p.type === ligature_node) { c = p.character; f = p.font }
+  else if (p.type === kern_node && p.subtype === auto_kern && e.save_tail !== null) {
+    let r = e.save_tail
+    while (r.link !== null && r.link !== p) r = r.link
+    if (r.link === p && (is_char_node(r) || r.type === ligature_node)) { c = r.character; f = r.font }
+  }
+  if (c === non_char) return
+  const kn = get_font_code(e, kn_bs_code_base, f, c), st = get_font_code(e, st_bs_code_base, f, c), sh = get_font_code(e, sh_bs_code_base, f, c)
+  if (kn !== 0 || st !== 0 || sh !== 0) {
+    const q = new_spec(e, g.glue_ptr); delete_glue_ref(e, g.glue_ptr)
+    const s = e.spec[q]!
+    s.width = (s.width + round_xn_over_d(e, quad(e, f), kn, 1000)) | 0
+    s.stretch = (s.stretch + round_xn_over_d(e, quad(e, f), st, 1000)) | 0
+    s.shrink = (s.shrink + round_xn_over_d(e, quad(e, f), sh, 1000)) | 0
+    g.glue_ptr = q
+  }
+}
 const WRAPUP = 0, MOVE = 1, MOVE1 = 2, MOVE2 = 3, LOOKAHEAD = 4, LOOKAHEAD1 = 5, LIG = 6, LIG1 = 7, LIG2 = 8, MOVE_LIG = 9
 function main_loop(e: Engine): boolean {
   adjust_space_factor(e)
+  e.save_tail = null
   e.main_f = e.equiv[cur_font_loc]!
   e.bchar = e.font_bchar[e.main_f]!; e.false_bchar = e.font_false_bchar[e.main_f]!
   if (e.mode > 0 && int_par(e, language_code) !== e.clang) fix_language(e)
   e.lig_stack = new_char(e.main_f, e.cur_chr); e.cur_l = e.cur_chr
   e.cur_q = e.tail
-  let L: number
-  if (e.cancel_boundary) { e.cancel_boundary = false; e.main_k = non_address } else e.main_k = e.bchar_label[e.main_f]!
-  if (e.main_k === non_address) L = MOVE2
+  let L = MOVE
+  const k1 = get_auto_kern(e, e.main_f, non_char, e.cur_l)
+  if (k1 !== null) { append_auto_kern(e, k1); L = MOVE }
+  else if (e.cancel_boundary) { e.cancel_boundary = false; e.main_k = non_address } else e.main_k = e.bchar_label[e.main_f]!
+  if (k1 !== null) { /* goto main_loop_move */ }
+  else if (e.main_k === non_address) L = MOVE2
   else { e.cur_r = e.cur_l; e.cur_l = non_char; L = LIG1 }
   for (;;) switch (L) {
     case WRAPUP: wrapup(e, e.rt_hit); L = MOVE; continue
@@ -285,7 +334,10 @@ function main_loop(e: Engine): boolean {
       e.lig_stack = new_char(e.main_f, e.cur_chr); e.cur_r = e.cur_chr
       if (e.cur_r === e.false_bchar) e.cur_r = non_char
       L = LIG; continue
-    case LIG: // §1039
+    case LIG: { // §1039
+      const k1 = get_auto_kern(e, e.main_f, e.cur_l, e.cur_r)
+      if (k1 !== null) { append_auto_kern(e, k1); L = MOVE; continue }
+    }
       if (char_tag(e.main_i) !== lig_tag || e.cur_r === non_char) { L = WRAPUP; continue }
       e.main_k = lig_kern_start(e, e.main_f, e.main_i); e.main_j = e.font_info[e.main_k]!
       if (skip_byte(e.main_j) <= stop_flag) { L = LIG2; continue }
@@ -368,6 +420,7 @@ function font_glue_spec(e: Engine): number {
 // §1041 Append a normal inter-word space to the current list
 function append_normal_space(e: Engine): void {
   const p = e.equiv[glue_base + space_skip_code] === zero_glue ? new_glue(e, font_glue_spec(e)) : new_param_glue(e, space_skip_code)
+  if (int_par(e, pdf_adjust_interword_glue_code) > 0) adjust_interword_glue(e, e.tail, p)
   e.tail.link = p; e.tail = p
 }
 
@@ -776,7 +829,12 @@ export function append_discretionary(e: Engine): void {
   tail_append(e, d)
   if (e.cur_chr === 1) {
     const f = e.equiv[cur_font_loc]!, c = e.hyphen_char[f]!
-    if (c >= 0 && c < 256) d.pre_break = new_character(e, f, c)
+    if (c >= 0 && c < 256) { // pdftex.web: with the kerns of \pdfprependkern/\pdfappendkern around the hyphen
+      const pre_kern = get_auto_kern(e, f, non_char, c), app_kern = get_auto_kern(e, f, c, non_char), c_node = new_character(e, f, c)
+      if (pre_kern === null) d.pre_break = c_node
+      else { d.pre_break = pre_kern; pre_kern.link = c_node }
+      if (app_kern !== null && c_node !== null) c_node.link = app_kern
+    }
   } else {
     e.save_ptr++; set_saved(e, -1, 0); new_save_level(e, disc_group)
     scan_left_brace(e); push_nest(e); e.mode = -hmode; e.space_factor = 1000

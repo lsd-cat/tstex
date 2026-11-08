@@ -14,7 +14,7 @@ import type { BoxNode, Node, WhatsitNode, PdfAction } from './nodes.ts'
 import { colorstack_set, colorstack_push, colorstack_pop, colorstack_current, margin_kern_node } from './nodes.ts'
 import { pdf_action_user, pdf_action_page, pdf_action_goto, pdf_action_thread, copy_node_list, add_token_ref, new_whatsit_node, print_mark, print_font_identifier,
   pdf_dest_xyz, pdf_dest_fit, pdf_dest_fith, pdf_dest_fitv, pdf_dest_fitb, pdf_dest_fitbh, pdf_dest_fitbv, pdf_dest_fitr, pdf_null } from './nodes.ts'
-import { char_info, char_width, char_exists, null_font, param, space_code, space_shrink_code, new_font_type, real_font_type, virtual_font_type } from './tfm.ts'
+import { char_info, char_width, char_exists, null_font, param, space_code, space_shrink_code, new_font_type, real_font_type, virtual_font_type, store_scaled_f } from './tfm.ts'
 import { char_warning } from './tfm.ts'
 import { open_log_file, print_file_name } from './files.ts'
 import { out_what, expand_write_tokens } from './dvi.ts'
@@ -1067,9 +1067,20 @@ export function pdf_check_vf_cur_val(e: Engine, f: number): void {
 // [32e] output_one_char
 function output_one_char(e: Engine, f: number, c: number): void {
   pdf_check_vf(e, f)
+  if (e.pdf_font_type[f] === virtual_font_type) { do_vf_packet(e, f, c); return }
   pdf_begin_string(e, f); pdf_print_char(e, f, c)
   if (!isscalable(e, f)) fatal_error(e, `unsupported: bitmap (PK) font ${e.font_name[f]}`) // adv_char_width's get_pk_char_width
   adv_char_width(e, f, c)
+}
+
+// [32e] do_vf_packet for the only virtual fonts there are, \letterspacefont's: right4 w, set_char c, right4 w
+function do_vf_packet(e: Engine, vf_f: number, c: number): void {
+  const save_h = e.cur_h, save_v = e.cur_v, { f, sq } = e.vf_ls[vf_f]!, w = store_scaled_f(e, sq, e.font_size[vf_f]!)
+  e.cur_h = (e.cur_h + w) | 0
+  if (e.font_bc[f]! <= c && c <= e.font_ec[f]! && char_exists(char_info(e, f, c))) output_one_char(e, f, c)
+  else char_warning(e, f, c)
+  e.cur_h = (e.cur_h + char_width(e, f, char_info(e, f, c)) + w) | 0
+  e.cur_h = save_h; e.cur_v = save_v
 }
 
 // [32f] pdf_vlist_out
