@@ -210,7 +210,7 @@ export function run(e: Engine, chr: number): void {
       let k = -1
       if (scan_keyword(e, 'useobjnum')) {
         scan_int(e); k = e.cur_val
-        if (k <= 0 || k > s.obj_ptr || s.obj_aux[k] !== 0) {
+        if (k <= 0 || k > s.obj_ptr || s.obj_aux[k] !== 0 || s.obj_node[k]) { // obj_data_ptr shares obj_aux with obj_annot_ptr/obj_dest_ptr
           pdf_warning(e, '\\pdfobj', 'invalid object number being ignored', true, true); s.retval = -1; k = -1
         }
       }

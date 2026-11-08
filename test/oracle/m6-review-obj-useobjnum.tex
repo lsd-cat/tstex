@@ -1,0 +1,10 @@
+%! oracle: pdftex
+\pdfoutput=1 \pdfcompresslevel=0 \pdfobjcompresslevel=0 \input plain
+% an object number used by a shipped annotation is in use (obj_aux is shared): \pdfobj useobjnum ignores it
+\pdfannot reserveobjnum \edef\r{\the\pdflastannot}
+\shipout\hbox{\pdfannot width 1pt height 1pt depth 0pt {/Subtype/Text}\edef\s{\the\pdflastannot}\global\let\s\s}
+\immediate\pdfobj useobjnum \s {(hello)}\message{[\the\pdfretval]}
+\pdfannot useobjnum \r width 1pt height 1pt depth 0pt {/Subtype/Text}
+\immediate\pdfobj useobjnum \r {(x)}\message{[\the\pdfretval]}
+\shipout\hbox{a}
+\end
