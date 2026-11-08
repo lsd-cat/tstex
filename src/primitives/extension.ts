@@ -438,7 +438,7 @@ export function run(e: Engine, chr: number): void {
       scan_int(e)
       if (e.cur_val >= colorstackused(e)) {
         print_err(e, 'Unknown color stack number '); print_int(e, e.cur_val)
-        help(e, 'Allocate and initialize a color stack with \\pdfcolorstackinit.', "I'll use default color stack 0 here.", 'Proceed, with fingers crossed.')
+        help(e, 'Allocate and initialize a color stack with \\\\pdfcolorstackinit.', "I'll use default color stack 0 here.", 'Proceed, with fingers crossed.')
         error(e); e.cur_val = 0
       }
       if (e.cur_val < 0) {
