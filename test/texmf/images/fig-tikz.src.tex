@@ -1,0 +1,14 @@
+\documentclass{article}
+\usepackage{tikz}
+\pagestyle{empty}
+\begin{document}
+\begin{tikzpicture}
+\fill[red!70!blue] (0,0) rectangle (2,1);
+\draw[green!50!black,very thick] (0,0) circle (0.8);
+\begin{scope}[rotate=30,xshift=2cm,yscale=0.6]
+\draw[fill=orange] (0,0) rectangle (1.5,1.5);
+\node[blue] at (0.75,0.75) {scoped};
+\end{scope}
+\node at (1,-0.8) {TikZ text};
+\end{tikzpicture}
+\end{document}

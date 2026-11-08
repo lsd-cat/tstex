@@ -1,0 +1,14 @@
+%! oracle: pdftex
+\pdfoutput=1 \input plain
+\pdfcompresslevel=0 \pdfobjcompresslevel=0
+\pdffontexpand\tenrm 20 20 5 autoexpand
+\pdftracingfonts=1 \tracingonline=1 \showboxbreadth=10000 \showboxdepth=10000
+\tenrm \hsize=2.2in \parindent=0pt \tolerance=10000 \tracingparagraphs=1
+\pdfadjustspacing=2
+\setbox1\vbox{Mmmm mmm the quick brown fox jumps over the lazy dog and mumbles more.\par}
+\showbox1
+\pdfadjustspacing=1 \efcode\tenrm`m=500
+\setbox2\vbox{Mmmm mmm the quick brown fox jumps over the lazy dog and mumbles more.\par}
+\showbox2
+\shipout\vbox{\copy1\copy2}
+\bye

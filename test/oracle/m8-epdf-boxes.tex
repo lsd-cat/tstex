@@ -1,0 +1,10 @@
+%! oracle: pdftex
+\pdfoutput=1 \input plain
+\pdfcompresslevel=0 \pdfobjcompresslevel=0
+\def\bb{\message{[box \the\pdfpagebox: \pdfximagebbox\pdflastximage 1 \space \pdfximagebbox\pdflastximage 2 \space \pdfximagebbox\pdflastximage 3 \space \pdfximagebbox\pdflastximage 4]}}
+\def\try#1{\pdfpagebox=#1 \pdfximage{images/fig-boxes.pdf}\bb\pdfrefximage\pdflastximage\par}
+\try1 \try2 \try3 \try4 \try5
+\pdfpagebox=0 \pdfximage{images/fig-boxes.pdf}\bb\pdfrefximage\pdflastximage\par
+\pdfpagebox=2 \pdfximage page 2{images/boxes.pdf}\bb\pdfrefximage\pdflastximage\par
+\pdfpagebox=4 \pdfximage page 3{images/boxes.pdf}\bb\pdfrefximage\pdflastximage\par
+\bye

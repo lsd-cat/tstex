@@ -1,0 +1,11 @@
+%! oracle: pdftex
+\pdfoutput=1 \input plain
+\pdfcompresslevel=0 \pdfobjcompresslevel=0
+% level 0: warning only; level -1: silent
+\pdfminorversion=3
+\pdfinclusionerrorlevel=0
+\pdfximage{images/fig-compressed.pdf}\pdfrefximage\pdflastximage\par
+\pdfinclusionerrorlevel=-1
+\pdfximage{images/fig-tikz.pdf}\pdfrefximage\pdflastximage\par
+\message{[done]}
+\bye

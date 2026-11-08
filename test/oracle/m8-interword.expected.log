@@ -1,0 +1,159 @@
+entering extended mode
+(m8-interword.tex (plain.tex Preloading the plain format: codes, registers,
+\maxdimen=\dimen10
+\hideskip=\skip10
+\centering=\skip11
+\p@=\dimen11
+\z@=\dimen12
+\z@skip=\skip12
+\voidb@x=\box10
+parameters,
+\smallskipamount=\skip13
+\medskipamount=\skip14
+\bigskipamount=\skip15
+\normalbaselineskip=\skip16
+\normallineskip=\skip17
+\normallineskiplimit=\dimen13
+\jot=\dimen14
+\interdisplaylinepenalty=\count23
+\interfootnotelinepenalty=\count24
+fonts, more fonts,
+\itfam=\fam4
+\slfam=\fam5
+\bffam=\fam6
+\ttfam=\fam7
+macros,
+\strutbox=\box11
+\mscount=\count25
+\tabs=\box12
+\tabsyet=\box13
+\tabsdone=\box14
+math definitions,
+\rootbox=\box15
+\p@renwd=\dimen15
+output routines,
+\headline=\toks10
+\footline=\toks11
+\footins=\insert254
+\topins=\insert253
+hyphenation (hyphen.tex))
+> \box1=
+\vbox(6.94444+1.94444)x216.81
+.\hbox(6.94444+1.94444)x216.81, glue set 33.05974fil
+..\hbox(0.0+0.0)x0.0
+..\kern 4.0 (for \pdfprependkern/\pdfappendkern)
+..\tenrm A
+..\kern-1.11113
+..\tenrm V
+..\kern 6.00002 (for \pdfprependkern/\pdfappendkern)
+..\glue 3.33333 plus 1.66666 minus 1.11111
+..\kern 4.0 (for \pdfprependkern/\pdfappendkern)
+..\tenrm A
+..\tenrm v
+..\kern-0.27779
+..\tenrm e
+..\tenrm .
+..\glue 8.33334 plus 4.66666 minus 3.11111
+..\tenrm V
+..\kern 6.00002 (for \pdfprependkern/\pdfappendkern)
+..\tenrm e
+..\tenrm r
+..\tenrm y
+..\glue 3.33333 plus 1.66666 minus 1.11111
+..\kern 4.0 (for \pdfprependkern/\pdfappendkern)
+..\tenrm A
+..\tenrm ,
+..\glue 3.33333 plus 1.66666 minus 1.11111
+..\tenrm V
+..\kern 6.00002 (for \pdfprependkern/\pdfappendkern)
+..\tenrm .
+..\glue 8.33334 plus 4.66666 minus 3.11111
+..\tenrm w
+..\kern-0.27779
+..\tenrm e
+..\tenrm l
+..\tenrm l
+..\tenrm .
+..\glue 8.33334 plus 4.66666 minus 3.11111
+..\kern 4.0 (for \pdfprependkern/\pdfappendkern)
+..\tenrm A
+..\tenrm v
+..\kern-0.27779
+..\tenrm e
+..\tenrm .
+..\penalty 10000
+..\glue(\parfillskip) 0.0 plus 1.0fil
+..\glue(\rightskip) 0.0
+
+! OK.
+l.9 ...AV Ave. Very A, V. well. Ave.\par}\showbox1
+
+
+> \box2=
+\hbox(6.94444+0.0)x27.2223
+.\tenrm f
+.\tenrm i
+.\glue 3.33333 plus 1.66666 minus 1.11111
+.\tenrm f
+.\tenrm f
+.\tenrm l
+.\glue 3.33333 plus 1.66666 minus 1.11111
+.\tenrm f
+.\tenrm l
+
+! OK.
+l.10 ...es\tenrm \setbox2\hbox{fi ffl fl}\showbox2
+
+
+> \box2=
+\hbox(6.94444+0.0)x27.2223
+.\tenrm f
+.\tenrm i
+.\glue 3.33333 plus 1.66666 minus 1.11111
+.\tenrm f
+.\tenrm f
+.\tenrm l
+.\glue 3.33333 plus 1.66666 minus 1.11111
+.\tenrm f
+.\tenrm l
+
+! OK.
+l.11 \setbox2\hbox{\tenrm fi ffl fl}\showbox2
+
+
+> \box2=
+\hbox(6.94444+0.0)x24.16672
+.\x f
+.\x i
+.\glue 3.33333 plus 1.66666 minus 1.11111
+.\x A
+.\x V
+
+! OK.
+l.12 ...\x=\tenrm \setbox2\hbox{\x fi AV}\showbox2
+
+
+> \box2=
+\hbox(6.94444+0.0)x51.7778
+.\y ^^L (ligature fi)
+.\glue 3.33333 plus 1.66666 minus 1.11111
+.\y A
+.\kern-1.11113
+.\y V
+.\glue 3.33333 plus 1.66666 minus 1.11111
+.\y T
+.\kern-0.83334
+.\y e
+.\y s
+.\y t
+
+! OK.
+l.13 ... 100 \setbox2\hbox{\y fi AV Test}\showbox2
+
+
+[1{pdftex.map}] )<cmr10.pfb>
+Output written on m8-interword.pdf (1 page, * bytes).
+PDF statistics:
+ 10 PDF objects out of 1000 (max. 8388607)
+ 0 named destinations out of 1000 (max. 500000)
+ 1281 words of extra memory for PDF output out of 10000 (max. 10000000)

@@ -1,0 +1,7 @@
+%! oracle: pdftex
+\pdfoutput=1 \input plain
+\pdfcompresslevel=0 \pdfobjcompresslevel=0
+\pdfminorversion=5
+\def\inc#1{\pdfximage{images/#1}\pdfrefximage\pdflastximage\par}
+\inc{fig-fonts.pdf}\inc{fig-nested.pdf}\inc{fig-image.pdf}\inc{fig-tikz.pdf}\inc{fig-simple.pdf}\inc{fig-simple.pdf}
+\bye

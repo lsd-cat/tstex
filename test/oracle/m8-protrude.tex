@@ -1,0 +1,14 @@
+%! oracle: pdftex
+\pdfoutput=1 \input plain
+\pdfcompresslevel=0 \pdfobjcompresslevel=0
+\pdfprotrudechars=2
+\tenrm \rpcode\tenrm`.=1000 \rpcode\tenrm`,=700 \lpcode\tenrm`A=500 \lpcode\tenrm`T=300 \rpcode\tenrm`-=800
+\hsize=2in \parindent=0pt \tolerance=10000 \tracingparagraphs=1 \tracingonline=1
+\showboxbreadth=10000 \showboxdepth=10000
+\setbox1\vbox{A tiny test, Two ample towers. Tall apples ate Tom's tea. A-A a.\par}
+\showbox1
+\pdfprotrudechars=1
+\setbox1\vbox{A tiny test, Two ample towers. Tall apples ate Tom's tea. A-A a.\par}
+\showbox1
+\shipout\copy1
+\bye

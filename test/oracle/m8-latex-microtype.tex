@@ -1,0 +1,13 @@
+%! oracle: pdflatex
+%! runs: 1
+\documentclass{article}
+\pdfcompresslevel=0 \pdfobjcompresslevel=0
+\tracingonline=0 \showboxbreadth=10000 \showboxdepth=10000 \tracingoutput=1
+\usepackage{microtype}
+\begin{document}
+\section{Introduction}
+Typography is the art and technique of arranging type to make written language legible, readable and appealing when displayed. The arrangement of type involves selecting typefaces, point sizes, line lengths, line-spacing, and letter-spacing.
+
+\microtypesetup{expansion=false}
+Another paragraph, set without font expansion: Tall Trees, "quoted words" and (parenthesised) text -- with dashes, commas, and full stops. Typography is the art and technique of arranging type to make written language legible.
+\end{document}

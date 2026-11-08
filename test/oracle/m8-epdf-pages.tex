@@ -1,0 +1,10 @@
+%! oracle: pdftex
+\pdfoutput=1 \input plain
+\pdfcompresslevel=0 \pdfobjcompresslevel=0
+\pdfximage page 1{images/fig-multipage.pdf}\pdfrefximage\pdflastximage\par
+\pdfximage page 2{images/fig-multipage.pdf}\pdfrefximage\pdflastximage\par
+\pdfximage page 3{images/fig-multipage.pdf}\pdfrefximage\pdflastximage\par
+\message{[pages=\the\pdflastximagepages]}
+\pdfximage page 4{images/fig-multipage.pdf}
+\message{[after error]}
+\bye

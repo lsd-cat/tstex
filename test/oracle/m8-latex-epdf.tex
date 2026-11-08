@@ -1,0 +1,20 @@
+%! oracle: pdflatex
+%! runs: 1
+\documentclass{article}
+\pdfcompresslevel=0 \pdfobjcompresslevel=0
+\tracingonline=0 \showboxbreadth=10000 \showboxdepth=10000 \tracingoutput=1
+\usepackage{graphicx}
+\begin{document}
+\includegraphics[width=.5\textwidth]{images/fig-tikz.pdf}
+
+\includegraphics[page=2]{images/fig-multipage.pdf}
+\includegraphics[page=3,width=2in]{images/fig-multipage.pdf}
+
+\includegraphics[trim=10 5 20 5,clip]{images/fig-simple.pdf}
+\includegraphics[angle=45]{images/fig-simple.pdf}
+
+\begin{figure}[h]
+\includegraphics[height=1in]{images/fig-fonts.pdf}
+\caption{A figure.}
+\end{figure}
+\end{document}

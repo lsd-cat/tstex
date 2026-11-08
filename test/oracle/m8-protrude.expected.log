@@ -1,0 +1,484 @@
+entering extended mode
+(m8-protrude.tex (plain.tex Preloading the plain format: codes, registers,
+\maxdimen=\dimen10
+\hideskip=\skip10
+\centering=\skip11
+\p@=\dimen11
+\z@=\dimen12
+\z@skip=\skip12
+\voidb@x=\box10
+parameters,
+\smallskipamount=\skip13
+\medskipamount=\skip14
+\bigskipamount=\skip15
+\normalbaselineskip=\skip16
+\normallineskip=\skip17
+\normallineskiplimit=\dimen13
+\jot=\dimen14
+\interdisplaylinepenalty=\count23
+\interfootnotelinepenalty=\count24
+fonts, more fonts,
+\itfam=\fam4
+\slfam=\fam5
+\bffam=\fam6
+\ttfam=\fam7
+macros,
+\strutbox=\box11
+\mscount=\count25
+\tabs=\box12
+\tabsyet=\box13
+\tabsdone=\box14
+math definitions,
+\rootbox=\box15
+\p@renwd=\dimen15
+output routines,
+\headline=\toks10
+\footline=\toks11
+\footins=\insert254
+\topins=\insert253
+hyphenation (hyphen.tex))
+@firstpass
+@secondpass
+[]\tenrm A
+@ via @@0 b=10000 p=0 d=100010000
+@@1: line 1.0 t=100010000 -> @@0
+tiny
+@ via @@0 b=10000 p=0 d=100010000
+@ via @@1 b=10000 p=0 d=100000000
+@@2: line 1.0 t=100010000 -> @@0
+test,
+@ via @@0 b=10000 p=0 d=100010000
+@ via @@1 b=10000 p=0 d=100000000
+@ via @@2 b=10000 p=0 d=100000000
+@@3: line 1.0 t=100010000 -> @@0
+Two
+@ via @@0 b=10000 p=0 d=100010000
+@ via @@1 b=10000 p=0 d=100000000
+@ via @@2 b=10000 p=0 d=100000000
+@ via @@3 b=10000 p=0 d=100000000
+@@4: line 1.0 t=100010000 -> @@0
+am-
+@\discretionary via @@0 b=10000 p=50 d=100012500
+@\discretionary via @@1 b=10000 p=50 d=100002500
+@\discretionary via @@2 b=10000 p=50 d=100002500
+@\discretionary via @@3 b=10000 p=50 d=100002500
+@\discretionary via @@4 b=10000 p=50 d=100002500
+@@5: line 1.0- t=100012500 -> @@0
+ple
+@ via @@0 b=10000 p=0 d=100010000
+@ via @@1 b=10000 p=0 d=100000000
+@ via @@2 b=10000 p=0 d=100000000
+@ via @@3 b=10000 p=0 d=100000000
+@ via @@4 b=10000 p=0 d=100000000
+@ via @@5 b=10000 p=0 d=100000000
+@@6: line 1.0 t=100010000 -> @@0
+tow-
+@\discretionary via @@0 b=5245 p=50 d=27627525
+@\discretionary via @@1 b=10000 p=50 d=100002500
+@\discretionary via @@2 b=10000 p=50 d=100002500
+@\discretionary via @@3 b=10000 p=50 d=100002500
+@\discretionary via @@4 b=10000 p=50 d=100002500
+@\discretionary via @@5 b=10000 p=50 d=100012500
+@\discretionary via @@6 b=10000 p=50 d=100002500
+@@7: line 1.0- t=27627525 -> @@0
+ers.
+@ via @@0 b=1881 p=0 d=3585881
+@ via @@1 b=6944 p=0 d=48358116
+@ via @@2 b=10000 p=0 d=100000000
+@ via @@3 b=10000 p=0 d=100000000
+@ via @@4 b=10000 p=0 d=100000000
+@ via @@5 b=10000 p=0 d=100000000
+@ via @@6 b=10000 p=0 d=100000000
+@ via @@7 b=10000 p=0 d=100000000
+@@8: line 1.0 t=3585881 -> @@0
+Tall
+@ via @@1 b=12 p=0 d=10484
+@ via @@2 b=539 p=0 d=301401
+@ via @@3 b=10000 p=0 d=100000000
+@ via @@4 b=10000 p=0 d=100000000
+@ via @@5 b=10000 p=0 d=100000000
+@ via @@6 b=10000 p=0 d=100000000
+@ via @@7 b=10000 p=0 d=100000000
+@ via @@8 b=10000 p=0 d=100000000
+@@9: line 2.2 t=100020484 -> @@1
+ap-
+@\discretionary via @@2 b=42 p=50 d=5204
+@\discretionary via @@3 b=4048 p=50 d=16469864
+@\discretionary via @@4 b=10000 p=50 d=100002500
+@\discretionary via @@5 b=10000 p=50 d=100012500
+@\discretionary via @@6 b=10000 p=50 d=100002500
+@\discretionary via @@7 b=10000 p=50 d=100012500
+@\discretionary via @@8 b=10000 p=50 d=100002500
+@\discretionary via @@9 b=10000 p=50 d=100012500
+@@10: line 2.1- t=100015204 -> @@2
+ples
+@ via @@3 b=216 p=0 d=51076
+@ via @@4 b=5893 p=0 d=34845409
+@ via @@5 b=10000 p=0 d=100000000
+@ via @@6 b=10000 p=0 d=100000000
+@ via @@7 b=10000 p=0 d=100000000
+@ via @@8 b=10000 p=0 d=100000000
+@ via @@9 b=10000 p=0 d=100010000
+@ via @@10 b=10000 p=0 d=100000000
+@@11: line 2.0 t=100061076 -> @@3
+ate
+@ via @@3 b=45 p=0 d=13025
+@ via @@4 b=391 p=0 d=160801
+@ via @@5 b=2460 p=0 d=6100900
+@ via @@6 b=10000 p=0 d=100000000
+@ via @@7 b=10000 p=0 d=100000000
+@ via @@8 b=10000 p=0 d=100000000
+@ via @@9 b=10000 p=0 d=100010000
+@ via @@10 b=10000 p=0 d=100000000
+@ via @@11 b=10000 p=0 d=100000000
+@@12: line 2.3 t=100023025 -> @@3
+Tom's
+@ via @@5 b=0 p=0 d=10100
+@ via @@6 b=369 p=0 d=143641
+@ via @@7 b=2980 p=0 d=8940100
+@ via @@8 b=10000 p=0 d=100000000
+@ via @@9 b=10000 p=0 d=100010000
+@ via @@10 b=10000 p=0 d=100000000
+@ via @@11 b=10000 p=0 d=100000000
+@ via @@12 b=10000 p=0 d=100010000
+@@13: line 2.0 t=36567625 -> @@7
+tea.
+@ via @@6 b=14 p=0 d=576
+@ via @@7 b=631 p=0 d=410881
+@ via @@8 b=10000 p=0 d=100000000
+@ via @@9 b=10000 p=0 d=100010000
+@ via @@10 b=10000 p=0 d=100000000
+@ via @@11 b=10000 p=0 d=100000000
+@ via @@12 b=10000 p=0 d=100010000
+@ via @@13 b=10000 p=0 d=100000000
+@@14: line 2.0 t=28038406 -> @@7
+A-
+@\discretionary via @@7 b=2 p=50 d=22644
+@\discretionary via @@8 b=1210 p=50 d=1490900
+@\discretionary via @@9 b=10000 p=50 d=100012500
+@\discretionary via @@10 b=10000 p=50 d=100012500
+@\discretionary via @@11 b=10000 p=50 d=100002500
+@\discretionary via @@12 b=10000 p=50 d=100012500
+@\discretionary via @@13 b=10000 p=50 d=100002500
+@\discretionary via @@14 b=10000 p=50 d=100002500
+@@15: line 2.0- t=5076781 -> @@8
+A
+@ via @@8 b=91 p=0 d=10201
+@ via @@9 b=2334 p=0 d=5504336
+@ via @@10 b=5985 p=0 d=35940025
+@ via @@11 b=10000 p=0 d=100000000
+@ via @@12 b=10000 p=0 d=100010000
+@ via @@13 b=10000 p=0 d=100000000
+@ via @@14 b=10000 p=0 d=100000000
+@ via @@15 b=10000 p=0 d=100000000
+@@16: line 2.1 t=3596082 -> @@8
+a.
+@\par via @@8 b=0 p=-10000 d=10100
+@\par via @@9 b=0 p=-10000 d=100
+@\par via @@10 b=0 p=-10000 d=5100
+@\par via @@11 b=0 p=-10000 d=10100
+@\par via @@12 b=0 p=-10000 d=100
+@\par via @@13 b=0 p=-10000 d=10100
+@\par via @@14 b=0 p=-10000 d=10100
+@\par via @@15 b=0 p=-10000 d=15100
+@\par via @@16 b=0 p=-10000 d=100
+@@17: line 2.2- t=3595981 -> @@8
+
+
+Underfull \hbox (badness 1881) in paragraph at lines 8--8
+[]\tenrm A tiny test, Two am-ple tow-ers.
+
+\hbox(6.94444+1.94444)x144.54, glue set 2.66223
+.\kern-5.00002 (left margin)
+.\hbox(0.0+0.0)x0.0
+.\tenrm A
+.\glue 3.33333 plus 1.66498 minus 1.11221
+.\tenrm t
+.\tenrm i
+.\tenrm n
+.\kern-0.27779
+.\tenrm y
+.\glue 3.33333 plus 1.66666 minus 1.11111
+.\tenrm t
+.\tenrm e
+.\tenrm s
+.\tenrm t
+.\tenrm ,
+.\glue 3.33333 plus 2.08331 minus 0.88889
+.\tenrm T
+.\tenrm w
+.\kern-0.27779
+.\tenrm o
+.\glue 3.33333 plus 1.66666 minus 1.11111
+.\tenrm a
+.\tenrm m
+.\discretionary
+..\tenrm -
+.\tenrm p
+.\tenrm l
+.\tenrm e
+.\glue 3.33333 plus 1.66666 minus 1.11111
+.\tenrm t
+.\tenrm o
+.\kern-0.27779
+.\discretionary replacing 2
+..\tenrm w
+..\tenrm -
+.\tenrm w
+.\kern-0.27779
+.\tenrm e
+.\tenrm r
+.\tenrm s
+.\tenrm .
+.\kern-10.00002 (right margin)
+.\glue(\rightskip) 0.0
+
+> \box1=
+\vbox(18.94444+1.94444)x144.54
+.\hbox(6.94444+1.94444)x144.54, glue set 2.66223
+..\kern-5.00002 (left margin)
+..\hbox(0.0+0.0)x0.0
+..\tenrm A
+..\glue 3.33333 plus 1.66498 minus 1.11221
+..\tenrm t
+..\tenrm i
+..\tenrm n
+..\kern-0.27779
+..\tenrm y
+..\glue 3.33333 plus 1.66666 minus 1.11111
+..\tenrm t
+..\tenrm e
+..\tenrm s
+..\tenrm t
+..\tenrm ,
+..\glue 3.33333 plus 2.08331 minus 0.88889
+..\tenrm T
+..\tenrm w
+..\kern-0.27779
+..\tenrm o
+..\glue 3.33333 plus 1.66666 minus 1.11111
+..\tenrm a
+..\tenrm m
+..\discretionary
+...\tenrm -
+..\tenrm p
+..\tenrm l
+..\tenrm e
+..\glue 3.33333 plus 1.66666 minus 1.11111
+..\tenrm t
+..\tenrm o
+..\kern-0.27779
+..\discretionary replacing 2
+...\tenrm w
+...\tenrm -
+..\tenrm w
+..\kern-0.27779
+..\tenrm e
+..\tenrm r
+..\tenrm s
+..\tenrm .
+..\kern-10.00002 (right margin)
+..\glue(\rightskip) 0.0
+.\penalty 300
+.\glue(\baselineskip) 3.11111
+.\hbox(6.94444+1.94444)x144.54, glue set 10.20647fil
+..\kern-3.0 (left margin)
+..\tenrm T
+..\kern-0.83334
+..\tenrm a
+..\tenrm l
+..\tenrm l
+..\glue 3.33333 plus 1.66666 minus 1.11111
+..\tenrm a
+..\tenrm p
+..\discretionary
+...\tenrm -
+..\tenrm p
+..\tenrm l
+..\tenrm e
+..\tenrm s
+..\glue 3.33333 plus 1.66666 minus 1.11111
+..\tenrm a
+..\tenrm t
+..\tenrm e
+..\glue 3.33333 plus 1.66666 minus 1.11111
+..\tenrm T
+..\kern-0.83334
+..\tenrm o
+..\tenrm m
+..\tenrm '
+..\tenrm s
+..\glue 3.33333 plus 1.66666 minus 1.11111
+..\tenrm t
+..\tenrm e
+..\tenrm a
+..\tenrm .
+..\glue 4.44444 plus 4.99997 minus 0.37036
+..\tenrm A
+..\tenrm -
+..\discretionary
+..\tenrm A
+..\glue 3.33333 plus 1.66498 minus 1.11221
+..\tenrm a
+..\tenrm .
+..\penalty 10000
+..\kern-10.00002 (right margin)
+..\glue(\parfillskip) 0.0 plus 1.0fil
+..\glue(\rightskip) 0.0
+
+! OK.
+l.9 \showbox1
+
+
+@firstpass
+[]\tenrm A tiny test, Two ample towers.
+@ via @@0 b=85 p=0 d=9025
+@@1: line 1.1 t=9025 -> @@0
+Tall apples ate Tom's tea. A-A
+@ via @@1 b=36 p=0 d=2116
+@@2: line 2.1 t=11141 -> @@1
+a.
+@\par via @@1 b=10 p=-10000 d=400
+@\par via @@2 b=0 p=-10000 d=100
+@@3: line 2.2- t=9425 -> @@1
+
+
+Underfull \hbox (badness 1881) in paragraph at lines 11--11
+[]\tenrm A tiny test, Two ample towers.
+
+\hbox(6.94444+1.94444)x144.54, glue set 2.66223
+.\kern-5.00002 (left margin)
+.\hbox(0.0+0.0)x0.0
+.\tenrm A
+.\glue 3.33333 plus 1.66498 minus 1.11221
+.\tenrm t
+.\tenrm i
+.\tenrm n
+.\kern-0.27779
+.\tenrm y
+.\glue 3.33333 plus 1.66666 minus 1.11111
+.\tenrm t
+.\tenrm e
+.\tenrm s
+.\tenrm t
+.\tenrm ,
+.\glue 3.33333 plus 2.08331 minus 0.88889
+.\tenrm T
+.\tenrm w
+.\kern-0.27779
+.\tenrm o
+.\glue 3.33333 plus 1.66666 minus 1.11111
+.\tenrm a
+.\tenrm m
+.\tenrm p
+.\tenrm l
+.\tenrm e
+.\glue 3.33333 plus 1.66666 minus 1.11111
+.\tenrm t
+.\tenrm o
+.\kern-0.27779
+.\tenrm w
+.\kern-0.27779
+.\tenrm e
+.\tenrm r
+.\tenrm s
+.\tenrm .
+.\kern-10.00002 (right margin)
+.\glue(\rightskip) 0.0
+
+> \box1=
+\vbox(18.94444+1.94444)x144.54
+.\hbox(6.94444+1.94444)x144.54, glue set 2.66223
+..\kern-5.00002 (left margin)
+..\hbox(0.0+0.0)x0.0
+..\tenrm A
+..\glue 3.33333 plus 1.66498 minus 1.11221
+..\tenrm t
+..\tenrm i
+..\tenrm n
+..\kern-0.27779
+..\tenrm y
+..\glue 3.33333 plus 1.66666 minus 1.11111
+..\tenrm t
+..\tenrm e
+..\tenrm s
+..\tenrm t
+..\tenrm ,
+..\glue 3.33333 plus 2.08331 minus 0.88889
+..\tenrm T
+..\tenrm w
+..\kern-0.27779
+..\tenrm o
+..\glue 3.33333 plus 1.66666 minus 1.11111
+..\tenrm a
+..\tenrm m
+..\tenrm p
+..\tenrm l
+..\tenrm e
+..\glue 3.33333 plus 1.66666 minus 1.11111
+..\tenrm t
+..\tenrm o
+..\kern-0.27779
+..\tenrm w
+..\kern-0.27779
+..\tenrm e
+..\tenrm r
+..\tenrm s
+..\tenrm .
+..\kern-10.00002 (right margin)
+..\glue(\rightskip) 0.0
+.\penalty 300
+.\glue(\baselineskip) 3.11111
+.\hbox(6.94444+1.94444)x144.54, glue set 10.20647fil
+..\kern-3.0 (left margin)
+..\tenrm T
+..\kern-0.83334
+..\tenrm a
+..\tenrm l
+..\tenrm l
+..\glue 3.33333 plus 1.66666 minus 1.11111
+..\tenrm a
+..\tenrm p
+..\tenrm p
+..\tenrm l
+..\tenrm e
+..\tenrm s
+..\glue 3.33333 plus 1.66666 minus 1.11111
+..\tenrm a
+..\tenrm t
+..\tenrm e
+..\glue 3.33333 plus 1.66666 minus 1.11111
+..\tenrm T
+..\kern-0.83334
+..\tenrm o
+..\tenrm m
+..\tenrm '
+..\tenrm s
+..\glue 3.33333 plus 1.66666 minus 1.11111
+..\tenrm t
+..\tenrm e
+..\tenrm a
+..\tenrm .
+..\glue 4.44444 plus 4.99997 minus 0.37036
+..\tenrm A
+..\tenrm -
+..\discretionary
+..\tenrm A
+..\glue 3.33333 plus 1.66498 minus 1.11221
+..\tenrm a
+..\tenrm .
+..\penalty 10000
+..\kern-10.00002 (right margin)
+..\glue(\parfillskip) 0.0 plus 1.0fil
+..\glue(\rightskip) 0.0
+
+! OK.
+l.12 \showbox1
+
+
+[1{pdftex.map}] )<cmr10.pfb>
+Output written on m8-protrude.pdf (1 page, * bytes).
+PDF statistics:
+ 10 PDF objects out of 1000 (max. 8388607)
+ 0 named destinations out of 1000 (max. 500000)
+ 513 words of extra memory for PDF output out of 10000 (max. 10000000)

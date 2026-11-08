@@ -1,0 +1,60 @@
+entering extended mode
+(m8-epdf-boxes.tex (plain.tex Preloading the plain format: codes, registers,
+\maxdimen=\dimen10
+\hideskip=\skip10
+\centering=\skip11
+\p@=\dimen11
+\z@=\dimen12
+\z@skip=\skip12
+\voidb@x=\box10
+parameters,
+\smallskipamount=\skip13
+\medskipamount=\skip14
+\bigskipamount=\skip15
+\normalbaselineskip=\skip16
+\normallineskip=\skip17
+\normallineskiplimit=\dimen13
+\jot=\dimen14
+\interdisplaylinepenalty=\count23
+\interfootnotelinepenalty=\count24
+fonts, more fonts,
+\itfam=\fam4
+\slfam=\fam5
+\bffam=\fam6
+\ttfam=\fam7
+macros,
+\strutbox=\box11
+\mscount=\count25
+\tabs=\box12
+\tabsyet=\box13
+\tabsdone=\box14
+math definitions,
+\rootbox=\box15
+\p@renwd=\dimen15
+output routines,
+\headline=\toks10
+\footline=\toks11
+\footins=\insert254
+\topins=\insert253
+hyphenation (hyphen.tex)) [box 1: 0.0pt 0.0pt 289.08pt 216.81pt] [box 2: 10.0375pt 10.0375pt 250.9375pt 180.675pt] [box 3: 5.01875pt 5.01875pt 260.975pt 190.71251pt] [box 4: 20.075pt 20.075pt 240.9pt 170.6375pt] [box 5: 30.1125pt 30.1125pt 230.8625pt 160.6pt] [box 0: 10.0375pt 10.0375pt 250.9375pt 180.675pt] [box 2: 10.0375pt 20.075pt 50.1875pt 60.22499pt] [box 4: 5.01875pt 5.01875pt 100.375pt 100.375pt]
+Overfull \vbox (527.13245pt too high) has occurred while \output is active
+\vbox(643.20255+0.0)x469.75499
+.\pdfrefximage(216.81+0.0)x289.08
+.\pdfrefximage(170.6375+0.0)x240.9
+.\pdfrefximage(185.69376+0.0)x255.95625
+.\pdfrefximage(150.5625+0.0)x220.825
+.\pdfrefximage(130.4875+0.0)x200.75
+.etc.
+
+[1{pdftex.map} <./images/fig-boxes.pdf> <./images/fig-boxes.pdf> <./images/fig-boxes.pdf> <./images/fig-boxes.pdf> <./images/fig-boxes.pdf> <./images/fig-boxes.pdf> <./images/boxes.pdf, page is rotated 90 degrees
+
+pdfTeX warning: pdftex (file ./images/boxes.pdf): PDF inclusion: /Resources missing. 'This practice is not recommended' (PDF Ref)
+> <./images/boxes.pdf
+
+pdfTeX warning: pdftex (file ./images/boxes.pdf): PDF inclusion: /Resources missing. 'This practice is not recommended' (PDF Ref)
+>] )<cmr10.pfb>
+Output written on m8-epdf-boxes.pdf (1 page, * bytes).
+PDF statistics:
+ 24 PDF objects out of 1000 (max. 8388607)
+ 0 named destinations out of 1000 (max. 500000)
+ 41 words of extra memory for PDF output out of 10000 (max. 10000000)

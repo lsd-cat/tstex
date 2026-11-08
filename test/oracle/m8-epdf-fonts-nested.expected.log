@@ -1,0 +1,57 @@
+entering extended mode
+(m8-epdf-fonts-nested.tex (plain.tex Preloading the plain format: codes, registers,
+\maxdimen=\dimen10
+\hideskip=\skip10
+\centering=\skip11
+\p@=\dimen11
+\z@=\dimen12
+\z@skip=\skip12
+\voidb@x=\box10
+parameters,
+\smallskipamount=\skip13
+\medskipamount=\skip14
+\bigskipamount=\skip15
+\normalbaselineskip=\skip16
+\normallineskip=\skip17
+\normallineskiplimit=\dimen13
+\jot=\dimen14
+\interdisplaylinepenalty=\count23
+\interfootnotelinepenalty=\count24
+fonts, more fonts,
+\itfam=\fam4
+\slfam=\fam5
+\bffam=\fam6
+\ttfam=\fam7
+macros,
+\strutbox=\box11
+\mscount=\count25
+\tabs=\box12
+\tabsyet=\box13
+\tabsdone=\box14
+math definitions,
+\rootbox=\box15
+\p@renwd=\dimen15
+output routines,
+\headline=\toks10
+\footline=\toks11
+\footins=\insert254
+\topins=\insert253
+hyphenation (hyphen.tex))
+
+pdfTeX warning: pdftex (file ./images/fig-tikz.pdf): PDF inclusion: found PDF version <1.7>, but at most version <1.5> allowed
+
+Overfull \vbox (667.65746pt too high) has occurred while \output is active
+\vbox(643.20255+0.0)x614.295
+.\pdfrefximage(108.405+0.0)x216.81
+.\pdfrefximage(144.54+0.0)x289.08
+.\pdfrefximage(108.405+0.0)x144.54
+.\pdfrefximage(794.97+0.0)x614.295
+.\pdfrefximage(72.27+0.0)x216.81
+.etc.
+
+[1{pdftex.map} <./images/fig-fonts.pdf> <./images/fig-nested.pdf> <./images/fig-image.pdf> <./images/fig-tikz.pdf> <./images/fig-simple.pdf> <./images/fig-simple.pdf>] )<cmbx10.pfb><cmr10.pfb><cmti10.pfb>
+Output written on m8-epdf-fonts-nested.pdf (1 page, * bytes).
+PDF statistics:
+ 53 PDF objects out of 1000 (max. 8388607)
+ 0 named destinations out of 1000 (max. 500000)
+ 31 words of extra memory for PDF output out of 10000 (max. 10000000)

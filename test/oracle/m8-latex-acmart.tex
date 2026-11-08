@@ -1,0 +1,20 @@
+%! oracle: pdflatex
+%! runs: 2
+\documentclass[sigconf]{acmart}
+\pdfcompresslevel=0 \pdfobjcompresslevel=0
+\tracingonline=0 \showboxbreadth=10000 \showboxdepth=10000 \tracingoutput=1
+\settopmatter{printacmref=false}
+\setcopyright{none}
+\renewcommand\footnotetextcopyrightpermission[1]{}
+\pagestyle{plain}
+\begin{document}
+\title{A Minimal Paper}
+\author{Ada Lovelace}
+\affiliation{\institution{Analytical Engines}\city{London}\country{UK}}
+\begin{abstract}
+We show that a minimal paper can be typeset. This abstract is long enough to wrap over a few lines in the two-column layout of the template.
+\end{abstract}
+\maketitle
+\section{Introduction}
+Typesetting a paper with the ACM template exercises many packages, fonts and microtype features. This sentence has no citation, but it is long enough to need hyphenation and justification.
+\end{document}

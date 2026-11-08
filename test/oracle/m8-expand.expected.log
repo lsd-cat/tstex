@@ -1,0 +1,367 @@
+entering extended mode
+(m8-expand.tex (plain.tex Preloading the plain format: codes, registers,
+\maxdimen=\dimen10
+\hideskip=\skip10
+\centering=\skip11
+\p@=\dimen11
+\z@=\dimen12
+\z@skip=\skip12
+\voidb@x=\box10
+parameters,
+\smallskipamount=\skip13
+\medskipamount=\skip14
+\bigskipamount=\skip15
+\normalbaselineskip=\skip16
+\normallineskip=\skip17
+\normallineskiplimit=\dimen13
+\jot=\dimen14
+\interdisplaylinepenalty=\count23
+\interfootnotelinepenalty=\count24
+fonts, more fonts,
+\itfam=\fam4
+\slfam=\fam5
+\bffam=\fam6
+\ttfam=\fam7
+macros,
+\strutbox=\box11
+\mscount=\count25
+\tabs=\box12
+\tabsyet=\box13
+\tabsdone=\box14
+math definitions,
+\rootbox=\box15
+\p@renwd=\dimen15
+output routines,
+\headline=\toks10
+\footline=\toks11
+\footins=\insert254
+\topins=\insert253
+hyphenation (hyphen.tex))
+@firstpass
+[]\tenrm (cmr10) Mmmm mmm the quick brown fox
+@ via @@0 b=7 p=0 d=289
+@@1: line 1.2 t=289 -> @@0
+jumps over the lazy dog and mumbles
+@ via @@1 b=22 p=0 d=1024
+@@2: line 2.3 t=1313 -> @@1
+more.
+@\par via @@2 b=0 p=-10000 d=100
+@@3: line 3.2- t=1413 -> @@2
+
+> \box1=
+\vbox(30.94444+0.0)x158.99377
+.\hbox(6.94444+1.94444)x158.99377, glue set 0.4138
+..\hbox(0.0+0.0)x0.0
+..\tenrm (cmr10+20) M
+..\tenrm (cmr10+20) m
+..\tenrm (cmr10+20) m
+..\tenrm (cmr10+20) m
+..\glue 3.33333 plus 1.66666 minus 1.11111
+..\tenrm (cmr10+20) m
+..\tenrm (cmr10+20) m
+..\tenrm (cmr10+20) m
+..\glue 3.33333 plus 1.66666 minus 1.11111
+..\tenrm (cmr10+20) t
+..\tenrm (cmr10+20) h
+..\tenrm (cmr10+20) e
+..\glue 3.33333 plus 1.66666 minus 1.11111
+..\tenrm (cmr10+20) q
+..\tenrm (cmr10+20) u
+..\tenrm (cmr10+20) i
+..\tenrm (cmr10+20) c
+..\kern-0.27779
+..\tenrm (cmr10+20) k
+..\glue 3.33333 plus 1.66666 minus 1.11111
+..\tenrm (cmr10+20) b
+..\tenrm (cmr10+20) r
+..\tenrm (cmr10+20) o
+..\kern-0.27779
+..\tenrm (cmr10+20) w
+..\tenrm (cmr10+20) n
+..\glue 3.33333 plus 1.66666 minus 1.11111
+..\tenrm (cmr10+20) f
+..\tenrm (cmr10+20) o
+..\kern-0.27779
+..\tenrm (cmr10+20) x
+..\glue(\rightskip) 0.0
+.\penalty 150
+.\glue(\baselineskip) 3.11111
+.\hbox(6.94444+1.94444)x158.99377, glue set - 0.60556
+..\tenrm (cmr10-20) j
+..\tenrm (cmr10-20) u
+..\tenrm (cmr10-20) m
+..\tenrm (cmr10-20) p
+..\tenrm (cmr10-20) s
+..\glue 3.33333 plus 1.66666 minus 1.11111
+..\tenrm (cmr10-20) o
+..\kern-0.27779
+..\tenrm (cmr10-20) v
+..\kern-0.27779
+..\tenrm (cmr10-20) e
+..\tenrm (cmr10-20) r
+..\glue 3.33333 plus 1.66666 minus 1.11111
+..\tenrm (cmr10-20) t
+..\tenrm (cmr10-20) h
+..\tenrm (cmr10-20) e
+..\glue 3.33333 plus 1.66666 minus 1.11111
+..\tenrm (cmr10-20) l
+..\tenrm (cmr10-20) a
+..\tenrm (cmr10-20) z
+..\tenrm (cmr10-20) y
+..\glue 3.33333 plus 1.66666 minus 1.11111
+..\tenrm (cmr10-20) d
+..\tenrm (cmr10-20) o
+..\tenrm (cmr10-20) g
+..\glue 3.33333 plus 1.66666 minus 1.11111
+..\tenrm (cmr10-20) a
+..\tenrm (cmr10-20) n
+..\tenrm (cmr10-20) d
+..\glue 3.33333 plus 1.66666 minus 1.11111
+..\tenrm (cmr10-20) m
+..\kern-0.27779
+..\tenrm (cmr10-20) u
+..\tenrm (cmr10-20) m
+..\kern-0.27779
+..\tenrm (cmr10-20) b
+..\tenrm (cmr10-20) l
+..\tenrm (cmr10-20) e
+..\tenrm (cmr10-20) s
+..\glue(\rightskip) 0.0
+.\penalty 150
+.\glue(\baselineskip) 5.75002
+.\hbox(4.30554+0.0)x158.99377, glue set 134.5215fil
+..\tenrm (cmr10) m
+..\tenrm (cmr10) o
+..\tenrm (cmr10) r
+..\tenrm (cmr10) e
+..\tenrm (cmr10) .
+..\penalty 10000
+..\glue(\parfillskip) 0.0 plus 1.0fil
+..\glue(\rightskip) 0.0
+
+! OK.
+l.9 \showbox1
+
+
+@firstpass
+[]\tenrm (cmr10) Mmmm mmm the quick brown fox
+@ via @@0 b=41 p=0 d=2601
+@@1: line 1.1 t=2601 -> @@0
+@secondpass
+[]\tenrm (cmr10) Mmmm
+@ via @@0 b=10000 p=0 d=100010000
+@@1: line 1.0 t=100010000 -> @@0
+mmm
+@ via @@0 b=10000 p=0 d=100010000
+@ via @@1 b=10000 p=0 d=100000000
+@@2: line 1.0 t=100010000 -> @@0
+the
+@ via @@0 b=10000 p=0 d=100010000
+@ via @@1 b=10000 p=0 d=100000000
+@ via @@2 b=10000 p=0 d=100000000
+@@3: line 1.0 t=100010000 -> @@0
+quick
+@ via @@0 b=10000 p=0 d=100010000
+@ via @@1 b=10000 p=0 d=100000000
+@ via @@2 b=10000 p=0 d=100000000
+@ via @@3 b=10000 p=0 d=100000000
+@@4: line 1.0 t=100010000 -> @@0
+brown
+@ via @@0 b=3872 p=0 d=15079924
+@ via @@1 b=10000 p=0 d=100000000
+@ via @@2 b=10000 p=0 d=100000000
+@ via @@3 b=10000 p=0 d=100000000
+@ via @@4 b=10000 p=0 d=100000000
+@@5: line 1.0 t=15079924 -> @@0
+fox
+@ via @@0 b=41 p=0 d=2601
+@ via @@1 b=10000 p=0 d=100000000
+@ via @@2 b=10000 p=0 d=100000000
+@ via @@3 b=10000 p=0 d=100000000
+@ via @@4 b=10000 p=0 d=100000000
+@ via @@5 b=10000 p=0 d=100000000
+@@6: line 1.1 t=2601 -> @@0
+jumps
+@ via @@1 b=463 p=0 d=223729
+@ via @@2 b=10000 p=0 d=100000000
+@ via @@3 b=10000 p=0 d=100000000
+@ via @@4 b=10000 p=0 d=100000000
+@ via @@5 b=10000 p=0 d=100000000
+@ via @@6 b=10000 p=0 d=100000000
+@@7: line 2.0 t=100002601 -> @@6
+over
+@ via @@2 b=1558 p=0 d=2458624
+@ via @@3 b=10000 p=0 d=100000000
+@ via @@4 b=10000 p=0 d=100000000
+@ via @@5 b=10000 p=0 d=100000000
+@ via @@6 b=10000 p=0 d=100000000
+@ via @@7 b=10000 p=0 d=100000000
+@@8: line 2.0 t=100002601 -> @@6
+the
+@ via @@2 b=5 p=0 d=10225
+@ via @@3 b=1558 p=0 d=2458624
+@ via @@4 b=10000 p=0 d=100000000
+@ via @@5 b=10000 p=0 d=100000000
+@ via @@6 b=10000 p=0 d=100000000
+@ via @@7 b=10000 p=0 d=100000000
+@ via @@8 b=10000 p=0 d=100000000
+@@9: line 2.0 t=100002601 -> @@6
+lazy
+@ via @@3 b=0 p=0 d=10100
+@ via @@4 b=3168 p=0 d=10099684
+@ via @@5 b=10000 p=0 d=100000000
+@ via @@6 b=10000 p=0 d=100000000
+@ via @@7 b=10000 p=0 d=100000000
+@ via @@8 b=10000 p=0 d=100000000
+@ via @@9 b=10000 p=0 d=100000000
+@@10: line 2.0 t=100002601 -> @@6
+dog
+@ via @@4 b=42 p=0 d=2704
+@ via @@5 b=10000 p=0 d=100000000
+@ via @@6 b=10000 p=0 d=100000000
+@ via @@7 b=10000 p=0 d=100000000
+@ via @@8 b=10000 p=0 d=100000000
+@ via @@9 b=10000 p=0 d=100000000
+@ via @@10 b=10000 p=0 d=100000000
+@@11: line 2.0 t=100002601 -> @@6
+and
+@ via @@5 b=618 p=0 d=394384
+@ via @@6 b=7238 p=0 d=52533504
+@ via @@7 b=10000 p=0 d=100000000
+@ via @@8 b=10000 p=0 d=100000000
+@ via @@9 b=10000 p=0 d=100000000
+@ via @@10 b=10000 p=0 d=100000000
+@ via @@11 b=10000 p=0 d=100000000
+@@12: line 2.0 t=15474308 -> @@5
+mum-
+@\discretionary via @@6 b=23 p=50 d=3589
+@\discretionary via @@7 b=7981 p=50 d=63858581
+@\discretionary via @@8 b=10000 p=50 d=100002500
+@\discretionary via @@9 b=10000 p=50 d=100002500
+@\discretionary via @@10 b=10000 p=50 d=100002500
+@\discretionary via @@11 b=10000 p=50 d=100002500
+@\discretionary via @@12 b=10000 p=50 d=100002500
+@@13: line 2.1- t=6190 -> @@6
+bles
+@ via @@7 b=2042 p=0 d=4210704
+@ via @@8 b=10000 p=0 d=100000000
+@ via @@9 b=10000 p=0 d=100000000
+@ via @@10 b=10000 p=0 d=100000000
+@ via @@11 b=10000 p=0 d=100000000
+@ via @@12 b=10000 p=0 d=100000000
+@ via @@13 b=10000 p=0 d=100000000
+@@14: line 3.0 t=100006190 -> @@13
+more.
+@\par via @@7 b=42 p=-10000 d=12704
+@\par via @@8 b=0 p=-10000 d=10100
+@\par via @@9 b=0 p=-10000 d=10100
+@\par via @@10 b=0 p=-10000 d=10100
+@\par via @@11 b=0 p=-10000 d=10100
+@\par via @@12 b=0 p=-10000 d=10100
+@\par via @@13 b=0 p=-10000 d=5100
+@\par via @@14 b=0 p=-10000 d=10100
+@@15: line 3.2- t=11290 -> @@13
+
+> \box2=
+\vbox(30.94444+0.0)x158.99377
+.\hbox(6.94444+1.94444)x158.99377, glue set 0.47382
+..\hbox(0.0+0.0)x0.0
+..\tenrm (cmr10+20) M
+..\tenrm (cmr10+10) m
+..\tenrm (cmr10+10) m
+..\tenrm (cmr10+10) m
+..\glue 3.33333 plus 1.66666 minus 1.11111
+..\tenrm (cmr10+10) m
+..\tenrm (cmr10+10) m
+..\tenrm (cmr10+10) m
+..\glue 3.33333 plus 1.66666 minus 1.11111
+..\tenrm (cmr10+20) t
+..\tenrm (cmr10+20) h
+..\tenrm (cmr10+20) e
+..\glue 3.33333 plus 1.66666 minus 1.11111
+..\tenrm (cmr10+20) q
+..\tenrm (cmr10+20) u
+..\tenrm (cmr10+20) i
+..\tenrm (cmr10+20) c
+..\kern-0.27779
+..\tenrm (cmr10+20) k
+..\glue 3.33333 plus 1.66666 minus 1.11111
+..\tenrm (cmr10+20) b
+..\tenrm (cmr10+20) r
+..\tenrm (cmr10+20) o
+..\kern-0.27779
+..\tenrm (cmr10+20) w
+..\tenrm (cmr10+20) n
+..\glue 3.33333 plus 1.66666 minus 1.11111
+..\tenrm (cmr10+20) f
+..\tenrm (cmr10+20) o
+..\kern-0.27779
+..\tenrm (cmr10+20) x
+..\glue(\rightskip) 0.0
+.\penalty 150
+.\glue(\baselineskip) 3.11111
+.\hbox(6.94444+1.94444)x158.99377, glue set 0.37085
+..\tenrm (cmr10+20) j
+..\tenrm (cmr10+20) u
+..\tenrm (cmr10+10) m
+..\tenrm (cmr10+20) p
+..\tenrm (cmr10+20) s
+..\glue 3.33333 plus 1.66666 minus 1.11111
+..\tenrm (cmr10+20) o
+..\kern-0.27779
+..\tenrm (cmr10+20) v
+..\kern-0.27779
+..\tenrm (cmr10+20) e
+..\tenrm (cmr10+20) r
+..\glue 3.33333 plus 1.66666 minus 1.11111
+..\tenrm (cmr10+20) t
+..\tenrm (cmr10+20) h
+..\tenrm (cmr10+20) e
+..\glue 3.33333 plus 1.66666 minus 1.11111
+..\tenrm (cmr10+20) l
+..\tenrm (cmr10+20) a
+..\tenrm (cmr10+20) z
+..\tenrm (cmr10+20) y
+..\glue 3.33333 plus 1.66666 minus 1.11111
+..\tenrm (cmr10+20) d
+..\tenrm (cmr10+20) o
+..\tenrm (cmr10+20) g
+..\glue 3.33333 plus 1.66666 minus 1.11111
+..\tenrm (cmr10+20) a
+..\tenrm (cmr10+20) n
+..\tenrm (cmr10+20) d
+..\glue 3.33333 plus 1.66666 minus 1.11111
+..\tenrm (cmr10+10) m
+..\kern-0.27779
+..\tenrm (cmr10+20) u
+..\discretionary
+..\tenrm (cmr10+10) m
+..\tenrm (cmr10+20) -
+..\glue(\rightskip) 0.0
+.\penalty 250
+.\glue(\baselineskip) 3.11111
+.\hbox(6.94444+0.0)x158.99377, glue set 114.46593fil
+..\tenrm (cmr10) b
+..\tenrm (cmr10) l
+..\tenrm (cmr10) e
+..\tenrm (cmr10) s
+..\glue 3.33333 plus 1.66666 minus 1.11111
+..\tenrm (cmr10) m
+..\tenrm (cmr10) o
+..\tenrm (cmr10) r
+..\tenrm (cmr10) e
+..\tenrm (cmr10) .
+..\penalty 10000
+..\glue(\parfillskip) 0.0 plus 1.0fil
+..\glue(\rightskip) 0.0
+
+! OK.
+l.12 \showbox2
+
+
+[1{pdftex.map}] )<cmr10.pfb>
+Output written on m8-expand.pdf (1 page, * bytes).
+PDF statistics:
+ 10 PDF objects out of 1000 (max. 8388607)
+ 0 named destinations out of 1000 (max. 500000)
+ 2049 words of extra memory for PDF output out of 10000 (max. 10000000)

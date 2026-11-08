@@ -1,0 +1,15 @@
+%! oracle: pdftex
+\pdfoutput=1 \input plain
+\pdfcompresslevel=0 \pdfobjcompresslevel=0
+\tracingonline=1 \showboxbreadth=10000 \showboxdepth=10000
+\tenrm \pdfadjustinterwordglue=1 \pdfprependkern=1 \pdfappendkern=1
+\knbscode\tenrm`.=500 \stbscode\tenrm`.=300 \shbscode\tenrm`.=200
+\knbccode\tenrm`A=400 \knaccode\tenrm`V=600
+\hsize=3in \parindent=0pt
+\setbox1\vbox{AV Ave. Very A, V. well. Ave.\par}\showbox1
+\pdfnoligatures\tenrm \setbox2\hbox{fi ffl fl}\showbox2
+\setbox2\hbox{\tenrm fi ffl fl}\showbox2
+\pdfcopyfont\x=\tenrm \setbox2\hbox{\x fi AV}\showbox2
+\letterspacefont\y\tenrm 100 \setbox2\hbox{\y fi AV Test}\showbox2
+\shipout\vbox{\copy1\copy2}
+\bye

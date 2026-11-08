@@ -1,0 +1,11 @@
+%! oracle: pdftex
+\pdfoutput=1 \input plain
+\pdfcompresslevel=0 \pdfobjcompresslevel=0
+\def\inc#1{\pdfximage width 1in {images/#1}\pdfrefximage\pdflastximage\par}
+\inc{interlaced.png}\inc{trns-pal.png}\inc{trns-rgb.png}
+\pdfimagehicolor=0 \inc{rgb16.png}\inc{gray16.png}
+\pdfimagehicolor=1 \inc{rgb16.png}\inc{gray16.png}
+\pdfimageapplygamma=0 \inc{gamma.png}
+\pdfimageapplygamma=1 \inc{gamma.png}
+\pdfimagegamma=2000 \inc{gamma.png}
+\bye
