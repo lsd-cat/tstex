@@ -515,7 +515,8 @@ export function out_what(e: Engine, p: WhatsitNode): void {
       { // tex.ch: kpse_out_name_ok (openout_any=p) and log the file
         const name = e.cur_area + e.cur_name + e.cur_ext
         while (name.startsWith('/') || name.split('/').some(c => c === '..') || /(^|\/)\.[^/]/.test(name)) prompt_file_name(e, 'output file name', '.tex')
-        e.outputFiles.set(name, ''); e.write_name[j] = name; e.write_open[j] = true
+        const key = name.replace(/^\.\//, '') // `./x.aux' and `x.aux' are one file
+        e.outputFiles.set(key, ''); e.write_name[j] = key; e.write_open[j] = true
         if (e.log_opened) {
           const old_setting = e.selector
           e.selector = int_par(e, tracing_online_code) <= 0 ? log_only : term_and_log

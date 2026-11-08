@@ -1,0 +1,10 @@
+%! oracle: etex
+\catcode`\{=1 \catcode`\}=2 \catcode`\#=6
+\message{[\pdftexrevision][\pdftexbanner]}
+\message{[\pdffilesize{"plain.tex"}][\pdffilesize{nul:}][\pdffilesize{plain}]}
+\immediate\openout3=./x.aux \immediate\write3{\relax hello}\immediate\closeout3
+\openin5=./x.aux \ifeof5 \message{eof}\else \read5 to\x \show\x \fi \closein5
+\message{[\the\pdfshellescape][\ifnum\pdfelapsedtime>-1 ok\fi]}
+\def\checkD#1#2#3\relax{\message{[#1#2]}}\expandafter\checkD\pdfcreationdate\relax
+\pdfglyphtounicode{a}{0061}\message{done}
+\end

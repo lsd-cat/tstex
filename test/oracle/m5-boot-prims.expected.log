@@ -1,0 +1,13 @@
+entering extended mode
+(m5-boot-prims.tex
+[29][This is pdfTeX, Version 3.141592653-2.6-1.40.29 (TeX Live 2026) kpathsea v
+ersion 6.4.2] [44615][][44615]
+\openout3 = `./x.aux'.
+
+> \x=macro:
+->\relax hello .
+l.6 ...eof5 \message{eof}\else \read5 to\x \show\x
+                                                   \fi \closein5
+
+[2][ok] [D:] done )
+No pages of output.
