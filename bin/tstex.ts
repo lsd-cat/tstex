@@ -1,3 +1,4 @@
+#!/usr/bin/env node
 // CLI: node bin/tstex.ts [--ini|--etex|--fmt FILE [--pdf]] [--texmf DIR]... [--texmf-tree DIR]... [--tcx FILE] [--jobname NAME] [--runs N|auto] file
 //      node bin/tstex.ts pack ...   (tools/pack-texmf.ts)
 // --ini (default) and --etex run INITEX; --fmt loads a format from tools/build-format.ts (pdflatex -output-format=dvi; with --pdf, pdflatex).

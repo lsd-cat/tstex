@@ -14,7 +14,7 @@ Goal: a `pdflatex` replacement in TypeScript, zero runtime dependencies, running
 | Data model | Lists stay singly linked (`link`), as in tex.web, so every algorithm ports 1:1. Token lists live in numeric `info`/`link` arrays with a free list (pointer‑heavy, hot path, keeps `cur_chr`/`loc` integers). Box/glue/char nodes are TS objects with a `type` discriminant, no `mem` array for them. |
 | State | `eqtb`, save stack, registers as plain data so `\dump` is serialisation and `structuredClone` works. |
 | Unicode | 8‑bit input like pdftex. No XeTeX/LuaTeX. |
-| Runtime split | Only `src/platform/*` differs between Node/Bun/browser: file lookup and reading. `TexFS.find` is synchronous because TeX is; the browser implementation fetches on a miss and restarts the run (`shortcut:` restart cost grows with document size, switch to a Worker + sync XHR or a prefetch manifest if it hurts). Everything else is pure. |
+| Runtime split | Only `src/platform/*` differs between Node/Bun/browser: file lookup and reading. `TexFS.find` is synchronous because TeX is; the browser implementation reads with synchronous XHR inside a Worker (M7); Node over an HTTP bundle restarts the run on a miss. Everything else is pure. |
 | Tooling | Erasable‑syntax TS only (no `enum`, `namespace`, parameter properties) so Node/Bun run `.ts` directly. `typescript` and `@types/node` (types only) are the only devDependencies, used for `tsc --noEmit` and the browser build. Tests use `node:test`. |
 | Limits | Match TeX Live defaults where macros can observe them: `\maxdimen`, 32768 registers (e‑TeX), `max_print_line=79`, `error_line=79`, `half_error_line=50`. Do not replicate `mem` size limits. |
 
@@ -67,9 +67,14 @@ src/
   format.ts              §1299–1329 \dump / undump
   engine.ts              Engine class: owns all state, run(), the public API
   platform/
-    fs.ts                interface TexFS { find(name, kind): Promise<Uint8Array|null> }
+    fs.ts                interface TexFS { find(name, kind): Uint8Array|null, path?, stat?, writable?, compress?, inflate? }
+    lookup.ts            kpathsea search order per kind, name checks, ls‑R parsing (shared)
     node.ts              kpsewhich‑less lookup over a TEXMF tree + ls‑R index
-    browser.ts           fetch() against a texmf URL + Cache Storage
+    browser.ts           bundleFS over a packed bundle index; httpFS = synchronous XHR (Worker only)
+    deflate.ts           pure-TS zlib deflate/inflate for the browser (M7)
+  compile.ts             the runs loop ('auto': rerun while .aux/... change), shared by worker, node.ts, CLI (M7)
+  index.ts  worker.ts    browser library: createTeX → Worker (M7)
+  node.ts                the same API in Node, in-process (M7)
   pdf.ts                 pdftex.web [32b]–[32f]: PDF buffer, obj_tab, page description, pdf_ship_out, finishing the file (M6)
   backend/
     fonts.ts  type1.ts   pdfTeX's C back end: mapfile/writeenc/writefont/tounicode.c, writet1.c (whole PFB embedding) (M6)
@@ -183,4 +188,4 @@ XeTeX/LuaTeX, OpenType, Unicode input, Type1 subsetting, `\valign`, TeXXeT, `\ma
 - [x] M4 e‑TeX (2026-11-08; 147 tests, 1 skipped (m4-texxet); etrip: 0 bugs, identical to pdftex with `\TeXXeTstate=1`→0, see test/etrip-diffs.md; TeXXeT deferred)
 - [x] M5 LaTeX boots (2026-11-08; latex.fmt from pdflatex.ini; lvt corpus 892/903 pass, 11 skipped with reasons; m5-article 2 runs identical; security tests; trip/etrip done in M3/M4)
 - [x] M6 pdfTeX primitives, PDF output (2026-11-08; 249 oracle+unit tests, 43 m6 oracle tests incl. 22 from two cold back-end reviews; article, hyperref, graphicx PNG/JPEG, geometry, xcolor, TikZ, beamer PDFs identical after pdf-normalize, `<<` fonts byte-exact; PDF images measured, not embedded)
-- [ ] M7 browser distribution
+- [ ] M7 browser distribution (2026-11-08: library part of the exit passes; library + `tstex pack` + sync-XHR worker; Playwright exit test passes in Chromium, Firefox, WebKit: PDF hashes equal the Node CLI's, first beamer compile 5.55 MB, second compile 0 requests; open: the demo app in `web/` and its end-to-end check)

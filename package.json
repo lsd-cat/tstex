@@ -1,11 +1,33 @@
 {
   "name": "tstex",
-  "private": true,
+  "version": "0.7.0",
+  "description": "pdfLaTeX in pure TypeScript",
   "type": "module",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "node": "./dist-node/src/node.js",
+      "default": "./dist/index.js"
+    },
+    "./worker": "./dist/worker.js"
+  },
+  "bin": {
+    "tstex": "dist-node/bin/tstex.js"
+  },
+  "files": [
+    "dist",
+    "dist-node",
+    "README.md"
+  ],
+  "engines": {
+    "node": ">=22.18"
+  },
   "scripts": {
-    "build": "tsc -p tsconfig.browser.json",
+    "build": "tsc -p tsconfig.browser.json && tsc -p tsconfig.node.json && cp tools/minimal-files.txt dist-node/tools/",
     "test": "node --test test/oracle/ test/unit/",
     "test:lvt": "node --test test/lvt/",
+    "test:browser": "node --test test/browser/",
+    "pack": "node tools/pack-texmf.ts",
     "typecheck": "tsc --noEmit"
   },
   "devDependencies": {

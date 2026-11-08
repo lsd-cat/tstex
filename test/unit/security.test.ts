@@ -8,6 +8,7 @@ import { join } from 'node:path'
 import { tmpdir } from 'node:os'
 import { Engine } from '../../src/engine.ts'
 import { nodeFS } from '../../src/platform/node.ts'
+import { bundleFS } from '../../src/platform/browser.ts'
 
 const texmf = new URL('../texmf/', import.meta.url).pathname
 const tstex = new URL('../../bin/tstex.ts', import.meta.url).pathname
@@ -147,4 +148,18 @@ test('capacity: pattern memory', async () => {
   for (let i = 0; i < 400000; i++) { let w = '', n = i; for (let k = 0; k < 6; k++) { w += a[n % 26]! + (k === 2 ? '1' : ''); n = Math.floor(n / 26) + k * 7 } s += w + (i % 1000 ? ' ' : '\n') }
   const e = await run('\\count1=97 \\def\\l{\\lccode\\count1=\\count1 \\advance\\count1 1 \\ifnum\\count1<123 \\expandafter\\l\\fi}\\l \\patterns{' + s + '}')
   assert.ok(e.log.includes('! TeX capacity exceeded, sorry [pattern memory=1000000].'))
+})
+
+test('bundleFS (browser): no escape through names, no Object.prototype keys, user files before the bundle', () => {
+  const read: string[] = []
+  const fs = bundleFS({ version: 'x', files: { 'a.sty': { path: 'tex/latex/a/a.sty', size: 1 }, 'b.tex': { path: 'tex/generic/b.tex', size: 1 } } },
+    p => { read.push(p); return Uint8Array.of(1) }, new Map([['b.tex', Uint8Array.of(2)]]))
+  for (const n of ['../a.sty', '/etc/passwd', '/dev/null', 'a.sty\0', 'constructor', '__proto__', 'toString', 'x/../a.sty', 'tex/latex/a/../../../a.sty'])
+    assert.strictEqual(fs.find(n, 'tex'), null, n)
+  assert.deepStrictEqual(read, [])
+  assert.deepStrictEqual(fs.find('a.sty', 'tex'), Uint8Array.of(1))
+  assert.strictEqual(fs.find('a.sty', 'tfm'), null) // kind search path applies
+  assert.deepStrictEqual(fs.find('b', 'tex'), Uint8Array.of(2))
+  assert.strictEqual(fs.path!('b', 'tex'), './b.tex')
+  assert.strictEqual(fs.writable!('../x'), false)
 })
