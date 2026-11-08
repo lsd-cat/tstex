@@ -156,4 +156,6 @@ async function compile() {
   }
 }
 
+// prefer the full 'basic' bundle when it is served next to the minimal one (local use); CI only packs minimal
+if ((await fetch('../build/texmf-basic/index.json.gz', { method: 'HEAD' }).catch(() => ({ ok: false }))).ok) $('texmf').value = '../build/texmf-basic/'
 await load('article'); compile()
