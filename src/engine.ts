@@ -154,14 +154,18 @@ export class Engine {
   // etex.ch grp_stack, if_stack, eof_seen per input file; \scantokens pseudo files (lines still to be read); disc_ptr
   grp_stack: number[] = [0]; if_stack: (CondNode | null)[] = [null]; eof_seen: boolean[] = []; pseudo_files: number[][][] = []
   disc_ptr: (Node | null)[] = [null, null, null, null]
+  // tex.ch §20–24 xord/xchr identity, xprn printable ASCII; a TCX file (texmfmp.c readtcxfile) changes them
+  xord = Uint8Array.from({ length: 256 }, (_, i) => i); xchr = Uint8Array.from({ length: 256 }, (_, i) => i)
+  xprn = Uint8Array.from({ length: 256 }, (_, i) => +(i >= 32 && i <= 126)); translate_filename = ''
   // §246
   sys_time = 0; sys_day = 0; sys_month = 0; sys_year = 0
 
   // §71 lines the terminal will supply (null: no terminal); §1302 the format made by \dump, §1337 the one `&name' loads
   term_in: string[] | null = null; fmt_file: Format | null = null; format: Format | null; date: Date | undefined
 
-  constructor(opts: { fs: TexFS, limits?: Partial<Limits>, format?: Format }) {
+  constructor(opts: { fs: TexFS, limits?: Partial<Limits>, format?: Format, tcx?: string }) {
     this.fs = opts.fs; this.format = opts.format ?? null
+    if (opts.tcx !== undefined) read_tcx_file(this, opts.tcx)
     this.lim = { ...default_limits, ...opts.limits }; this.dvi_limit = this.lim.dvi_buf_size
     this.contrib_head = new_char(0, 0); this.head = this.tail = this.cur_q = this.contrib_head
   }
@@ -173,6 +177,7 @@ export class Engine {
     this.date = opts.date; this.etex_p = opts.mode === 'etex'
     init_specs(this); init_fonts(this); init_eqtb(this); init_prim(this); fix_date_and_time(this)
     this.terminal += 'This is tstex, Version 3.141592653' + this.format_ident + '\n' // §61
+    if (this.translate_filename !== '') this.terminal += ' (' + this.translate_filename + ')\n' // tex.ch
     // §1337 Get the first line of input and prepare to start; §331 Initialize the input routines
     this.first = 1
     if (opts.terminal) {
@@ -220,6 +225,30 @@ export class Engine {
       } else if (!(x instanceof JumpOut)) throw x
     }
     close_files_and_terminate(this)
+  }
+}
+
+// texmfmp.c readtcxfile: lines `first [second [printable]]', numbers as strtol base 0, `%' starts a comment
+function read_tcx_file(e: Engine, name: string): void {
+  if (!/\.[^/]*$/.test(name)) name += '.tcx'
+  const f = e.fs.find(name, 'tcx')
+  if (f === null) throw new Error(`Could not open char translation file \`${name}'`)
+  e.translate_filename = e.fs.path?.(name, 'tcx') ?? name
+  const num = (s: string, upb: number): [number, string] => { // tcx_get_num: -1 when absent or out of range
+    const m = /^\s*[+-]?(0[xX][0-9a-fA-F]+|0[0-7]*|[1-9][0-9]*)/.exec(s)
+    if (m === null) return [-1, s]
+    const n = parseInt(m[0], /0[xX]/.test(m[1]!) ? 16 : m[1]!.length > 1 && m[1]![0] === '0' ? 8 : 10)
+    return [n < 0 || n > upb ? -1 : n, s.slice(m[0].length)]
+  }
+  for (const raw of String.fromCharCode(...f).split('\n')) {
+    const [first, s2] = num(raw.split('%')[0]!, 255)
+    if (first < 0) continue
+    let [second, s3] = num(s2, 255), printable = 1
+    if (second >= 0) {
+      e.xord[first] = second; e.xchr[second] = first
+      printable = num(s3, 1)[0]; if (printable === -1 || (32 <= second && second <= 126)) printable = 1
+    } else second = first
+    e.xprn[second] = printable
   }
 }
 

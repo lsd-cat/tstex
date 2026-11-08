@@ -21,6 +21,7 @@ const fmt_keys = [
   'char_base', 'width_base', 'height_base', 'depth_base', 'italic_base', 'lig_kern_base', 'kern_base', 'exten_base', 'param_base',
   'hy', 'interaction', 'format_ident',
   'eTeX_mode', 'sa', 'sa_free', 'sa_root', // etex.ch Dump the eTeX state, sa_root
+  'xord', 'xchr', 'xprn', // tex.ch Dump xord, xchr, and xprn
 ] as const
 export type Format = Pick<Engine, typeof fmt_keys[number]>
 
@@ -33,7 +34,9 @@ export function dump_format(e: Engine): Format {
 
 // §1303 load_fmt_file (pdftex: prev_depth:=pdf_ignored_dimen afterwards)
 export function load_fmt_file(e: Engine, f: Format): void {
+  const { xord, xchr, xprn } = e
   Object.assign(e, structuredClone(f))
+  if (e.translate_filename !== '') Object.assign(e, { xord, xchr, xprn }) // tex.ch: a TCX file given now overrides the format's
   if (e.eTeX_ex) etex_ext_vars(e) // etex.ch Undump the eTeX state
   e.prev_depth = e.equiv[dimen_base + 32]! // \pdfignoreddimen
 }

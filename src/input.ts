@@ -28,7 +28,7 @@ export function input_ln(e: Engine, f: InputFile): boolean {
     if (c === 10) break
     if (c === 13) { if (f.data[f.pos] === 10) f.pos++; break }
     if (e.last >= e.lim.buf_size - 1) overflow(e, 'buffer size', e.lim.buf_size)
-    e.buffer[e.last++] = c
+    e.buffer[e.last++] = e.xord[c]!
   }
   if (e.last >= e.max_buf_stack) e.max_buf_stack = e.last // texmfmp.c input_line, before trailing spaces go
   while (e.last > e.first && e.buffer[e.last - 1] === 32) e.last--
@@ -45,7 +45,7 @@ export function term_line(e: Engine): boolean {
   e.last = e.first
   for (let k = 0; k < s.length; k++) {
     if (e.last >= e.lim.buf_size - 1) overflow(e, 'buffer size', e.lim.buf_size)
-    e.buffer[e.last++] = s.charCodeAt(k) & 255
+    e.buffer[e.last++] = e.xord[s.charCodeAt(k) & 255]!
   }
   if (e.last >= e.max_buf_stack) e.max_buf_stack = e.last
   while (e.last > e.first && e.buffer[e.last - 1] === 32) e.last--

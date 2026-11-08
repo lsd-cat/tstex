@@ -3,9 +3,9 @@ import type { Engine } from './engine.ts'
 import { no_print, term_only, log_only, term_and_log, pseudo, new_string, Cmd, spotless, warning_issued } from './types.ts'
 import { int_base, new_line_char_code, escape_char_code, tracing_online_code } from './eqtb.ts'
 
-// §48–49 the str_pool representation of character k (TeX Live -ini: printable is 32..126)
-function char_rep(k: number): string {
-  if (k >= 32 && k < 127) return String.fromCharCode(k)
+// §48–49 the str_pool representation of character k (tex.ch: printable means xprn[k], 32..126 unless a TCX file says more)
+function char_rep(e: Engine, k: number): string {
+  if (e.xprn[k]) return String.fromCharCode(k)
   if (k < 64) return '^^' + String.fromCharCode(k + 64)
   if (k < 128) return '^^' + String.fromCharCode(k - 64)
   return '^^' + k.toString(16).padStart(2, '0')
@@ -30,24 +30,25 @@ function write_file_out(e: Engine, s: string): void {
 // §58 print_char; terminal output is collected in Engine.terminal
 export function print_char(e: Engine, s: number): void {
   if (s === e.equiv[int_base + new_line_char_code] && e.selector < pseudo) { print_ln(e); return }
+  const x = String.fromCharCode(e.xchr[s]!) // §58 wterm(xchr[s])
   switch (e.selector) {
     case term_and_log:
-      e.log += String.fromCharCode(s); e.terminal += String.fromCharCode(s); e.term_offset++; e.file_offset++
+      e.log += x; e.terminal += x; e.term_offset++; e.file_offset++
       if (e.term_offset === e.lim.max_print_line) { e.terminal += '\n'; e.term_offset = 0 }
       if (e.file_offset === e.lim.max_print_line) { e.log += '\n'; e.file_offset = 0 }
       break
     case log_only:
-      e.log += String.fromCharCode(s); e.file_offset++
+      e.log += x; e.file_offset++
       if (e.file_offset === e.lim.max_print_line) print_ln(e)
       break
     case term_only:
-      e.terminal += String.fromCharCode(s); e.term_offset++
+      e.terminal += x; e.term_offset++
       if (e.term_offset === e.lim.max_print_line) print_ln(e)
       break
     case no_print: break
     case pseudo: if (e.tally < e.trick_count) e.trick_buf[e.tally % e.lim.error_line] = s; break
     case new_string: e.cur_str.push(s); break
-    default: write_file_out(e, String.fromCharCode(s)) // a \write stream 0..15
+    default: write_file_out(e, x) // a \write stream 0..15
   }
   e.tally++
 }
@@ -62,7 +63,7 @@ export function print(e: Engine, s: string | number): void {
       if (e.message_printing) { print_char(e, s); return }
     }
     const nl = e.equiv[int_base + new_line_char_code]!; e.equiv[int_base + new_line_char_code] = -1
-    const r = char_rep(s)
+    const r = char_rep(e, s)
     for (let j = 0; j < r.length; j++) print_char(e, r.charCodeAt(j))
     e.equiv[int_base + new_line_char_code] = nl
     return
