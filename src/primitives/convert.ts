@@ -75,7 +75,7 @@ export function run(e: Engine, chr: number): void {
     let r: number[] | string
     if (c === pdf_file_size_code) { const f = find_tex_file(e, name()); r = f === null ? '' : String(f.length) }
     else if (c === pdf_file_mod_date_code) { // a file this run wrote was modified now
-      const n = name(), written = [n, n + '.tex'].some(x => e.outputFiles.has(x.replace(/^\.\//, '')))
+      const n = name(), written = [n, n + '.tex'].some(x => e.outputFiles.has(x.replace(/^(\.\/)+/, '')))
       const t = written ? new Date() : e.fs.stat?.(n, 'tex')?.mtime; r = t ? makepdftime(t) : ''
     }
     else if (c === pdf_mdfive_sum_code) { const f = file ? find_tex_file(e, name()) : s; r = f === null ? '' : md5(f) }

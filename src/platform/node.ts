@@ -38,7 +38,7 @@ export function nodeFS(roots: string[], texmfRoots: string[] = []): TexFS {
     const names = kind === 'tex' && !/\.[^/]*$/.test(name) ? [name, name + '.tex'] : [name]
     for (const root of roots) for (const n of names) {
       const file = join(root, n)
-      if (statSync(file, { throwIfNoEntry: false })?.isFile()) return { file, shown: n.startsWith('/') ? n : './' + n }
+      if (statSync(file, { throwIfNoEntry: false })?.isFile()) return { file, shown: /^\.?\//.test(n) ? n : './' + n } // kpathsea prints an absolute or explicitly relative name as given
     }
     for (const n of names) {
       const sl = n.lastIndexOf('/'), base = n.slice(sl + 1), sub = n.slice(0, sl + 1) // `\input base/foo' matches a dir ending in base/

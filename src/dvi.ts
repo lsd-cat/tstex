@@ -515,7 +515,7 @@ export function out_what(e: Engine, p: WhatsitNode): void {
       { // tex.ch: kpse_out_name_ok (openout_any=p), a_open_out (the directory must exist), and log the file
         const name = e.cur_area + e.cur_name + e.cur_ext
         while (name.startsWith('/') || name.split('/').some(c => c === '..') || /(^|\/)\.[^/]/.test(name) || e.fs.writable?.(name) === false) prompt_file_name(e, 'output file name', '.tex')
-        const key = name.replace(/^\.\//, '') // `./x.aux' and `x.aux' are one file
+        const key = name.replace(/^(\.\/)+/, '') // `./x.aux' and `x.aux' are one file
         e.outputFiles.set(key, ''); e.write_name[j] = key; e.write_open[j] = true
         if (e.log_opened) {
           const old_setting = e.selector

@@ -100,10 +100,10 @@ function scan_file_name_braced(e: Engine): void {
 export function open_tex_file(e: Engine): { name: string, file: InputFile } | null {
   const full = e.cur_area + e.cur_name + e.cur_ext
   for (const name of e.cur_ext === '.tex' ? [full] : [full + '.tex', full]) {
-    const out = e.outputFiles.get(name.replace(/^\.\//, '')) // a file this run has written (and flushed) is read back
+    const out = e.outputFiles.get(name.replace(/^(\.\/)+/, '')) // a file this run has written (and flushed) is read back
     const data = out !== undefined ? Uint8Array.from(out, c => c.charCodeAt(0)) : e.fs.find(name, 'tex')
     // the name as kpathsea prints it: `./name' for a hit in the current directory, else the path in the texmf tree
-    if (data !== null) return { name: (out === undefined ? e.fs.path?.(name, 'tex') : null) ?? (name.startsWith('/') ? name : './' + name), file: { data, pos: 0 } }
+    if (data !== null) return { name: (out === undefined ? e.fs.path?.(name, 'tex') : null) ?? (/^\.?\//.test(name) ? name : './' + name), file: { data, pos: 0 } }
   }
   return null
 }
@@ -111,7 +111,7 @@ export function open_tex_file(e: Engine): { name: string, file: InputFile } | nu
 // utils.c kpse_find_tex for \pdffilesize, \pdfmdfivesum file, \pdffilemoddate: files this run wrote come first, as on disk
 export function find_tex_file(e: Engine, name: string): Uint8Array | null {
   for (const n of /\.tex$/.test(name) ? [name] : [name + '.tex', name]) {
-    const out = e.outputFiles.get(n.replace(/^\.\//, ''))
+    const out = e.outputFiles.get(n.replace(/^(\.\/)+/, ''))
     if (out !== undefined) return Uint8Array.from(out, c => c.charCodeAt(0))
   }
   return e.fs.find(name, 'tex')
