@@ -1,0 +1,9 @@
+%! oracle: pdftex
+\pdfoutput=1 \pdfcompresslevel=0 \pdfobjcompresslevel=0 \input plain
+% xpdf clips the CropBox to the MediaBox but never widens it (no poppler rule); the other boxes default to the CropBox
+\def\t#1#2{\pdfximage page #2 #1 {images/boxes.pdf}\message{[\the\pdflastximagepages]}\setbox0\hbox{\pdfrefximage\pdflastximage}\showbox0
+ \message{\pdfximagebbox\pdflastximage1,\pdfximagebbox\pdflastximage2,\pdfximagebbox\pdflastximage3,\pdfximagebbox\pdflastximage4}}
+\def\all#1{\t{mediabox}{#1}\t{cropbox}{#1}\t{bleedbox}{#1}\t{trimbox}{#1}\t{artbox}{#1}}
+\all1\all2\all3
+\shipout\hbox{}
+\end

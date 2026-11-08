@@ -43,7 +43,7 @@ export function read_image(e: Engine, s: string, page: number, named: boolean, c
 type PdfVal = number | string | boolean | null | PdfVal[] | { [k: string]: PdfVal } | { ref: number }
 function read_pdf_info(e: Engine, img: Img, page_num: number, pagebox: number): void {
   const d = img.data, src = String.fromCharCode(...d.subarray(0, Math.min(d.length, 1024)))
-  const fail = () => pdftex_fail(e, null, 'xpdf: reading PDF image failed')
+  const fail = () => pdftex_fail(e, img.name, 'xpdf: reading PDF image failed')
   const hv = /%PDF-(\d+)\.(\d+)/.exec(src)
   if (hv === null) fail()
   const text = Array.from(d, c => String.fromCharCode(c)).join('')
@@ -96,11 +96,11 @@ function read_pdf_info(e: Engine, img: Img, page_num: number, pagebox: number): 
   const found = +hv![1]! + +hv![2]! * 0.1, wanted = e.ps.fixed_major + e.ps.fixed_minor * 0.1, level = e.equiv[int_base + 78]!
   if (Math.fround(found) > Math.fround(wanted) + 0.01) {
     const msg = `PDF inclusion: found PDF version <${found.toFixed(1)}>, but at most version <${wanted.toFixed(1)}> allowed`
-    if (level > 0) pdftex_fail(e, null, msg); else if (level === 0) pdftex_warn(e, null, msg)
+    if (level > 0) pdftex_fail(e, img.name, msg); else if (level === 0) pdftex_warn(e, img.name, msg)
   }
   const count = deref(pages!.Count)
   img.pages = typeof count === 'number' ? count : 0
-  if (page_num <= 0 || page_num > img.pages) pdftex_fail(e, null, `PDF inclusion: required page does not exist <${img.pages}>`)
+  if (page_num <= 0 || page_num > img.pages) pdftex_fail(e, img.name, `PDF inclusion: required page does not exist <${img.pages}>`)
   // find the page, collecting the inherited attributes (xpdf PageAttrs)
   let node = pages!, n = page_num, inh: { [k: string]: PdfVal } = {}
   for (let guard = 0; ; guard++) {
@@ -126,12 +126,7 @@ function read_pdf_info(e: Engine, img: Img, page_num: number, pagebox: number): 
     return [Math.min(x1!, x2!), Math.min(y1!, y2!), Math.max(x1!, x2!), Math.max(y1!, y2!)]
   }
   const media = box(inh.MediaBox) ?? [0, 0, 612, 792]
-  let crop = box(inh.CropBox)
-  if (crop === null) crop = media.slice()
-  else {
-    if (crop[2]! - crop[0]! > media[2]! - media[0]!) { crop[0] = media[0]!; crop[2] = media[2]! }
-    if (crop[3]! - crop[1]! > media[3]! - media[1]!) { crop[1] = media[1]!; crop[3] = media[3]! }
-  }
+  const crop = box(inh.CropBox) ?? media.slice() // xpdf only clips it to the MediaBox (clipBoxes), no poppler-style widening
   const other = (k: string) => box(node[k]) ?? crop!.slice()
   const clip = (b: number[]) => [Math.max(b[0]!, media[0]!), Math.max(b[1]!, media[1]!), Math.min(b[2]!, media[2]!), Math.min(b[3]!, media[3]!)]
   const b = pagebox === 1 ? media : clip(pagebox === 2 ? crop : pagebox === 3 ? other('BleedBox') : pagebox === 4 ? other('TrimBox') : other('ArtBox'))

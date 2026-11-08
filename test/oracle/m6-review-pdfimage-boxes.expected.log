@@ -1,0 +1,233 @@
+entering extended mode
+(m6-review-pdfimage-boxes.tex (plain.tex Preloading the plain format: codes, registers,
+\maxdimen=\dimen10
+\hideskip=\skip10
+\centering=\skip11
+\p@=\dimen11
+\z@=\dimen12
+\z@skip=\skip12
+\voidb@x=\box10
+parameters,
+\smallskipamount=\skip13
+\medskipamount=\skip14
+\bigskipamount=\skip15
+\normalbaselineskip=\skip16
+\normallineskip=\skip17
+\normallineskiplimit=\dimen13
+\jot=\dimen14
+\interdisplaylinepenalty=\count23
+\interfootnotelinepenalty=\count24
+fonts, more fonts,
+\itfam=\fam4
+\slfam=\fam5
+\bffam=\fam6
+\ttfam=\fam7
+macros,
+\strutbox=\box11
+\mscount=\count25
+\tabs=\box12
+\tabsyet=\box13
+\tabsdone=\box14
+math definitions,
+\rootbox=\box15
+\p@renwd=\dimen15
+output routines,
+\headline=\toks10
+\footline=\toks11
+\footins=\insert254
+\topins=\insert253
+hyphenation (hyphen.tex)) [3]
+> \box0=
+\hbox(602.75188+0.0)x803.0
+.\pdfrefximage(602.75188+0.0)x803.0
+
+! OK.
+\t ...x {\pdfrefximage \pdflastximage }\showbox 0
+                                                  \message {\pdfximagebbox \...
+\all #1->\t {mediabox}{#1}
+                          \t {cropbox}{#1}\t {bleedbox}{#1}\t {trimbox}{#1}\...
+l.7 \all1
+         \all2\all3
+
+0.0pt,0.0pt,602.75188pt,803.0pt [3]
+> \box0=
+\hbox(592.71437+0.0)x281.30093
+.\pdfrefximage(592.71437+0.0)x281.30093
+
+! OK.
+\t ...x {\pdfrefximage \pdflastximage }\showbox 0
+                                                  \message {\pdfximagebbox \...
+\all #1->\t {mediabox}{#1}\t {cropbox}{#1}
+                                          \t {bleedbox}{#1}\t {trimbox}{#1}\...
+l.7 \all1
+         \all2\all3
+
+10.0375pt,20.075pt,602.75188pt,301.37593pt [3]
+> \box0=
+\hbox(592.71437+0.0)x281.30093
+.\pdfrefximage(592.71437+0.0)x281.30093
+
+! OK.
+\t ...x {\pdfrefximage \pdflastximage }\showbox 0
+                                                  \message {\pdfximagebbox \...
+\all ...abox}{#1}\t {cropbox}{#1}\t {bleedbox}{#1}
+                                                  \t {trimbox}{#1}\t {artbox...
+l.7 \all1
+         \all2\all3
+
+10.0375pt,20.075pt,602.75188pt,301.37593pt [3]
+> \box0=
+\hbox(592.71437+0.0)x281.30093
+.\pdfrefximage(592.71437+0.0)x281.30093
+
+! OK.
+\t ...x {\pdfrefximage \pdflastximage }\showbox 0
+                                                  \message {\pdfximagebbox \...
+\all ...pbox}{#1}\t {bleedbox}{#1}\t {trimbox}{#1}
+                                                  \t {artbox}{#1}
+l.7 \all1
+         \all2\all3
+
+10.0375pt,20.075pt,602.75188pt,301.37593pt [3]
+> \box0=
+\hbox(592.71437+0.0)x281.30093
+.\pdfrefximage(592.71437+0.0)x281.30093
+
+! OK.
+\t ...x {\pdfrefximage \pdflastximage }\showbox 0
+                                                  \message {\pdfximagebbox \...
+l.7 \all1
+         \all2\all3
+
+10.0375pt,20.075pt,602.75188pt,301.37593pt [3]
+> \box0=
+\hbox(40.15+0.0)x40.15
+.\pdfrefximage(40.15+0.0)x40.15
+
+! OK.
+\t ...x {\pdfrefximage \pdflastximage }\showbox 0
+                                                  \message {\pdfximagebbox \...
+\all #1->\t {mediabox}{#1}
+                          \t {cropbox}{#1}\t {bleedbox}{#1}\t {trimbox}{#1}\...
+l.7 \all1\all2
+              \all3
+
+10.0375pt,20.075pt,50.1875pt,60.22499pt [3]
+> \box0=
+\hbox(40.15+0.0)x40.15
+.\pdfrefximage(40.15+0.0)x40.15
+
+! OK.
+\t ...x {\pdfrefximage \pdflastximage }\showbox 0
+                                                  \message {\pdfximagebbox \...
+\all #1->\t {mediabox}{#1}\t {cropbox}{#1}
+                                          \t {bleedbox}{#1}\t {trimbox}{#1}\...
+l.7 \all1\all2
+              \all3
+
+10.0375pt,20.075pt,50.1875pt,60.22499pt [3]
+> \box0=
+\hbox(20.075+0.0)x10.0375
+.\pdfrefximage(20.075+0.0)x10.0375
+
+! OK.
+\t ...x {\pdfrefximage \pdflastximage }\showbox 0
+                                                  \message {\pdfximagebbox \...
+\all ...abox}{#1}\t {cropbox}{#1}\t {bleedbox}{#1}
+                                                  \t {trimbox}{#1}\t {artbox...
+l.7 \all1\all2
+              \all3
+
+10.0375pt,20.075pt,30.1125pt,30.1125pt [3]
+> \box0=
+\hbox(28.105+0.0)x28.105
+.\pdfrefximage(28.105+0.0)x28.105
+
+! OK.
+\t ...x {\pdfrefximage \pdflastximage }\showbox 0
+                                                  \message {\pdfximagebbox \...
+\all ...pbox}{#1}\t {bleedbox}{#1}\t {trimbox}{#1}
+                                                  \t {artbox}{#1}
+l.7 \all1\all2
+              \all3
+
+12.045pt,22.0825pt,40.15pt,50.1875pt [3]
+> \box0=
+\hbox(40.15+0.0)x40.15
+.\pdfrefximage(40.15+0.0)x40.15
+
+! OK.
+\t ...x {\pdfrefximage \pdflastximage }\showbox 0
+                                                  \message {\pdfximagebbox \...
+l.7 \all1\all2
+              \all3
+
+10.0375pt,20.075pt,50.1875pt,60.22499pt [3]
+> \box0=
+\hbox(803.0+0.0)x602.75188
+.\pdfrefximage(803.0+0.0)x602.75188
+
+! OK.
+\t ...x {\pdfrefximage \pdflastximage }\showbox 0
+                                                  \message {\pdfximagebbox \...
+\all #1->\t {mediabox}{#1}
+                          \t {cropbox}{#1}\t {bleedbox}{#1}\t {trimbox}{#1}\...
+l.7 \all1\all2\all3
+
+
+0.0pt,0.0pt,602.75188pt,803.0pt [3]
+> \box0=
+\hbox(95.35625+0.0)x95.35625
+.\pdfrefximage(95.35625+0.0)x95.35625
+
+! OK.
+\t ...x {\pdfrefximage \pdflastximage }\showbox 0
+                                                  \message {\pdfximagebbox \...
+\all #1->\t {mediabox}{#1}\t {cropbox}{#1}
+                                          \t {bleedbox}{#1}\t {trimbox}{#1}\...
+l.7 \all1\all2\all3
+
+
+5.01875pt,5.01875pt,100.375pt,100.375pt [3]
+> \box0=
+\hbox(95.35625+0.0)x95.35625
+.\pdfrefximage(95.35625+0.0)x95.35625
+
+! OK.
+\t ...x {\pdfrefximage \pdflastximage }\showbox 0
+                                                  \message {\pdfximagebbox \...
+\all ...abox}{#1}\t {cropbox}{#1}\t {bleedbox}{#1}
+                                                  \t {trimbox}{#1}\t {artbox...
+l.7 \all1\all2\all3
+
+
+5.01875pt,5.01875pt,100.375pt,100.375pt [3]
+> \box0=
+\hbox(95.35625+0.0)x95.35625
+.\pdfrefximage(95.35625+0.0)x95.35625
+
+! OK.
+\t ...x {\pdfrefximage \pdflastximage }\showbox 0
+                                                  \message {\pdfximagebbox \...
+\all ...pbox}{#1}\t {bleedbox}{#1}\t {trimbox}{#1}
+                                                  \t {artbox}{#1}
+l.7 \all1\all2\all3
+
+
+5.01875pt,5.01875pt,100.375pt,100.375pt [3]
+> \box0=
+\hbox(803.0+0.0)x602.75188
+.\pdfrefximage(803.0+0.0)x602.75188
+
+! OK.
+\t ...x {\pdfrefximage \pdflastximage }\showbox 0
+                                                  \message {\pdfximagebbox \...
+l.7 \all1\all2\all3
+
+
+0.0pt,0.0pt,602.75188pt,803.0pt [1] )
+Output written on m6-review-pdfimage-boxes.pdf (1 page, * bytes).
+PDF statistics:
+ 21 PDF objects out of 1000 (max. 8388607)
+ 0 named destinations out of 1000 (max. 500000)
+ 76 words of extra memory for PDF output out of 10000 (max. 10000000)

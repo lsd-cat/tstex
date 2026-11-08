@@ -9,3 +9,5 @@ etrip.tfm is built the same way from spec/etrip.pl (etripman step 6): `pltotf sp
 images/ (M6 image tests; fig.png etc. are one downscaled desktop picture, resolved as `images/NAME` relative to a root, oracle.sh copies the dir into the temp cwd): fig.png (8-bit RGB), fig.jpg (baseline JPEG, sips), fig-gray.png (8-bit grayscale, sips with the Generic Gray profile), fig-pal.png (8-bit palette, 64 colours, ImageMagick `magick fig.png -colors 64 PNG8:fig-pal.png`; sips cannot write palette PNGs).
 
 ec-lmr10.tfm (Latin Modern, TeX Live fonts/tfm/public/lm) is only for m6-pdf-fonts-enc (a font re-encoded via lm-ec.enc in pdftex.map).
+
+images/boxes.pdf (a hand-written 3-page PDF 1.4 with MediaBox/CropBox/BleedBox/TrimBox/ArtBox variations, incl. a CropBox wider than the MediaBox) and images/bad.pdf (8 bytes of garbage) come from the M6 backend review (/tmp/rv); used by the m6-review-pdfimage-* tests.
