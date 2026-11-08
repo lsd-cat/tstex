@@ -176,5 +176,5 @@ XeTeX/LuaTeX, OpenType, Unicode input, Type1 subsetting, `\valign`, TeXXeT, `\ma
 - [x] M3 math and alignment (2026-11-08; 116 tests; trip test: 0 engine diffs, tools/trip.ts; \dump/undump in-memory; configurable limits; scripted terminal)
 - [x] M4 e‑TeX (2026-11-08; 147 tests, 1 skipped (m4-texxet); etrip: 0 bugs, identical to pdftex with `\TeXXeTstate=1`→0, see test/etrip-diffs.md; TeXXeT deferred)
 - [x] M5 LaTeX boots (2026-11-08; latex.fmt from pdflatex.ini; lvt corpus 892/903 pass, 11 skipped with reasons; m5-article 2 runs identical; security tests; trip/etrip done in M3/M4)
-- [ ] M6 pdfTeX primitives, PDF output
+- [x] M6 pdfTeX primitives, PDF output (2026-11-08; 249 oracle+unit tests, 43 m6 oracle tests incl. 22 from two cold back-end reviews; article, hyperref, graphicx PNG/JPEG, geometry, xcolor, TikZ, beamer PDFs identical after pdf-normalize, `<<` fonts byte-exact; PDF images measured, not embedded)
 - [ ] M7 browser distribution
