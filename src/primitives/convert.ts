@@ -4,15 +4,16 @@ import { Cmd, new_string } from '../types.ts'
 import { print as print_str, print_esc, print_int, print_roman_int, print_char } from '../print.ts'
 import { sprint_cs } from '../hash.ts'
 import { garbage, temp_head } from '../nodes.ts'
-import { print_meaning } from '../tokens.ts'
+import { print_meaning, show_token_list } from '../tokens.ts'
+import { delete_token_ref } from '../nodes.ts'
 import { get_token, ins_list } from '../input.ts'
-import { scan_int, str_toks } from '../scan.ts'
+import { scan_int, str_toks, scan_toks } from '../scan.ts'
 import { unsupported } from '../main.ts'
 import { open_log_file } from '../files.ts'
 import { scan_font_ident } from '../tfm.ts'
 import { print_scaled } from '../arith.ts'
 
-const number_code = 0, roman_numeral_code = 1, string_code = 2, meaning_code = 3, font_name_code = 4, eTeX_revision_code = 5, job_name_code = 33
+const number_code = 0, roman_numeral_code = 1, string_code = 2, meaning_code = 3, font_name_code = 4, eTeX_revision_code = 5, pdf_strcmp_code = 18, job_name_code = 33
 const names: Record<number, string> = { 0: 'number', 1: 'romannumeral', 2: 'string', 3: 'meaning', 4: 'fontname', 5: 'eTeXrevision',
   6: 'expanded', 7: 'pdftexrevision', 8: 'pdftexbanner', 9: 'pdffontname', 10: 'pdffontobjnum', 11: 'pdffontsize', 12: 'pdfpageref',
   13: 'pdfxformname', 14: 'pdfescapestring', 15: 'pdfescapename', 16: 'leftmarginkern', 17: 'rightmarginkern', 18: 'pdfstrcmp',
@@ -23,6 +24,27 @@ export const cmd = Cmd.convert
 export const primitives: [string, number][] = Object.entries(names).filter(([k]) => k !== '5').map(([k, n]) => [n, +k])
 export const etex_primitives: [string, number][] = [['eTeXrevision', 5]]
 export function print(e: Engine, chr: number): void { print_esc(e, names[chr] ?? 'jobname') }
+// pdftex.web tokens_to_string
+function tokens_to_string(e: Engine, p: number): number[] {
+  const old_setting = e.selector; e.selector = new_string
+  const b = e.cur_str.length
+  show_token_list(e, e.link[p]!, 0, 0x7fffffff)
+  e.selector = old_setting
+  return e.cur_str.splice(b)
+}
+
+// pdftex.web compare_strings: \pdfstrcmp
+function compare_strings(e: Engine): void {
+  const save_cur_cs = e.cur_cs; scan_toks(e, false, true)
+  const s1 = tokens_to_string(e, e.def_ref); delete_token_ref(e, e.def_ref)
+  e.cur_cs = save_cur_cs; scan_toks(e, false, true)
+  const s2 = tokens_to_string(e, e.def_ref); delete_token_ref(e, e.def_ref)
+  let i = 0
+  while (i < s1.length && i < s2.length && s1[i] === s2[i]) i++
+  e.cur_val = i < s1.length && i < s2.length ? (s1[i]! < s2[i]! ? -1 : 1) : s1.length === s2.length ? 0 : i < s1.length ? 1 : -1
+  e.cur_val_level = 0
+}
+
 // §470 conv_toks
 export function run(e: Engine, chr: number): void {
   const c = chr
@@ -33,6 +55,11 @@ export function run(e: Engine, chr: number): void {
     e.scanner_status = 0; get_token(e); e.scanner_status = save_scanner_status
   } else if (c === font_name_code) scan_font_ident(e)
   else if (c === job_name_code) { if (e.job_name === '') open_log_file(e) }
+  else if (c === pdf_strcmp_code) { // pdftex.web (scanner_status, warning_index and def_ref are restored)
+    const ss = e.scanner_status, wi = e.warning_index, dr = e.def_ref
+    compare_strings(e)
+    e.def_ref = dr; e.warning_index = wi; e.scanner_status = ss
+  }
   else if (c !== eTeX_revision_code) unsupported(e)
   const old_setting = e.selector; e.selector = new_string
   const b = e.cur_str.length
@@ -46,6 +73,7 @@ export function run(e: Engine, chr: number): void {
     if (e.font_size[e.cur_val] !== e.font_dsize[e.cur_val]) { print_str(e, ' at '); print_scaled(e, e.font_size[e.cur_val]!); print_str(e, 'pt') }
   }
   else if (c === eTeX_revision_code) print_str(e, '.6')
+  else if (c === pdf_strcmp_code) print_int(e, e.cur_val)
   else print_str(e, e.job_name)
   e.selector = old_setting; e.link[garbage] = str_toks(e, b); ins_list(e, e.link[temp_head]!)
 }
