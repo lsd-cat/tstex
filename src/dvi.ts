@@ -1,16 +1,19 @@
 // §583–643 DVI output and ship_out, §1366–1375 \write, \special and \openout during shipping
 // The DVI bytes live in one growable buffer; dvi_ptr/dvi_limit/dvi_offset/dvi_gone are simulated exactly as with
 // TeX Live's 16384-byte half-buffered dvi_buf, since movement() and dvi_pop() depend on them.
+import { round_mixed_glue } from './etex.ts'
 import type { Engine } from './engine.ts'
 import { term_and_log, log_only, new_string } from './types.ts'
 import { print, print_char, print_nl, print_ln, print_int, print_two, slow_print, begin_diagnostic, end_diagnostic } from './print.ts'
 import { error, print_err, help, confusion, fatal_error, write_text } from './error.ts'
-import { int_par, prepare_mag, count_base, dimen_base, end_write, mag_code, synctex_code } from './eqtb.ts'
+import { int_par, prepare_mag, count_base, dimen_base, end_write, mag_code } from './eqtb.ts'
 import { show_token_list, token_show, cs_token_flag, right_brace_token, left_brace_token } from './tokens.ts'
 import { get_avail, flush_list, flush_node_list, show_box, zround, is_char_node, hlist_node, vlist_node, rule_node, whatsit_node,
   glue_node, kern_node, math_node, ligature_node, normal, stretching, a_leaders, c_leaders, null_flag, open_node, write_node,
   close_node, special_node, latespecial_node, language_node, pdf_save_pos_node, margin_kern_node } from './nodes.ts'
-import type { BoxNode, WhatsitNode } from './nodes.ts'
+import type { BoxNode, WhatsitNode, RuleNode, GlueNode } from './nodes.ts'
+import { synctex_sheet, synctex_teehs, synctex_hlist, synctex_tsilh, synctex_vlist, synctex_tsilv, synctex_void, synctex_current, synctex_kern,
+  synctex_math, synctex_horizontal_rule_or_glue } from './synctex.ts'
 import { char_info, char_width, null_font } from './tfm.ts'
 import { get_token, ins_list, begin_token_list, end_token_list } from './input.ts'
 import { scan_toks } from './scan.ts'
@@ -154,6 +157,7 @@ function hlist_out(e: Engine, this_box: BoxNode): void {
   if (e.cur_s > 0) dvi_out(e, push)
   if (e.cur_s > e.max_push) e.max_push = e.cur_s
   const save_loc = e.dvi_offset + e.dvi_ptr, base_line = e.cur_v, left_edge = e.cur_h
+  synctex_hlist(e, this_box)
   while (p !== null) {
     // §620 Output node p for hlist_out and move to the next node, maintaining the condition cur_v=base_line
     if (is_char_node(p) || p.type === ligature_node) { // §652: a ligature looks like a char_node
@@ -171,6 +175,7 @@ function hlist_out(e: Engine, this_box: BoxNode): void {
         dvi_out(e, c)
         e.cur_h = (e.cur_h + char_width(e, f, char_info(e, f, c))) | 0
         p = p.link
+        if (p === null || !is_char_node(p)) synctex_current(e) // synctex-rec.ch0: a ligature ends TeX's run of char nodes too
       } while (p !== null && (is_char_node(p) || p.type === ligature_node))
       e.dvi_h = e.cur_h
       continue
@@ -181,7 +186,7 @@ function hlist_out(e: Engine, this_box: BoxNode): void {
       move_past: {
         switch (p.type) {
           case hlist_node: case vlist_node: // §623 Output a box in an hlist
-            if (p.list_ptr === null) e.cur_h = (e.cur_h + p.width) | 0
+            if (p.list_ptr === null) { synctex_void(e, p); e.cur_h = (e.cur_h + p.width) | 0 }
             else {
               const save_h = e.dvi_h, save_v = e.dvi_v
               e.cur_v = (base_line + p.shift_amount) | 0
@@ -197,6 +202,7 @@ function hlist_out(e: Engine, this_box: BoxNode): void {
             rule_wd = (e.spec[p.glue_ptr]!.width - st.cur_g) | 0
             glue_amount(e, st, this_box, p.glue_ptr)
             rule_wd = (rule_wd + st.cur_g) | 0
+            if (e.eTeX_ex) round_mixed_glue(e, p, this_box, rule_wd)
             if (p.subtype >= a_leaders) { // §626 Output leaders in an hlist, goto fin_rule if a rule or to next_p if done
               const leader_box = p.leader_ptr!
               if (leader_box.type === rule_node) { rule_ht = leader_box.height; rule_dp = leader_box.depth; break fin_rule }
@@ -230,13 +236,15 @@ function hlist_out(e: Engine, this_box: BoxNode): void {
             }
             break move_past
           }
-          case kern_node: case margin_kern_node: e.cur_h = (e.cur_h + p.width) | 0; break
-          case math_node: e.cur_h = (e.cur_h + p.width) | 0; break // §1409 (no TeXXeT)
+          case margin_kern_node: e.cur_h = (e.cur_h + p.width) | 0; break
+          case kern_node: synctex_kern(e, p, this_box); e.cur_h = (e.cur_h + p.width) | 0; break
+          case math_node: synctex_math(e, p); e.cur_h = (e.cur_h + p.width) | 0; break // §1409 (no TeXXeT)
         }
         p = p.link; continue
       }
       // move_past:
       e.cur_h = (e.cur_h + rule_wd) | 0
+      synctex_horizontal_rule_or_glue(e, p as GlueNode, rule_wd, rule_ht, rule_dp)
       p = p.link; continue
     }
     // fin_rule: §624 Output a rule in an hlist
@@ -249,8 +257,10 @@ function hlist_out(e: Engine, this_box: BoxNode): void {
       e.cur_v = base_line; e.dvi_h = (e.dvi_h + rule_wd) | 0
     }
     e.cur_h = (e.cur_h + rule_wd) | 0 // move_past
+    synctex_horizontal_rule_or_glue(e, p as RuleNode | GlueNode, rule_wd, rule_ht, rule_dp)
     p = p.link
   }
+  synctex_tsilh(e, this_box)
   prune_movements(e, save_loc)
   if (e.cur_s > 0) dvi_pop(e, save_loc)
   e.cur_s--
@@ -264,6 +274,7 @@ function vlist_out(e: Engine, this_box: BoxNode): void {
   if (e.cur_s > 0) dvi_out(e, push)
   if (e.cur_s > e.max_push) e.max_push = e.cur_s
   const save_loc = e.dvi_offset + e.dvi_ptr, left_edge = e.cur_h
+  synctex_vlist(e, this_box)
   e.cur_v = (e.cur_v - this_box.height) | 0
   const top_edge = e.cur_v
   for (; p !== null; p = p.link) {
@@ -273,7 +284,7 @@ function vlist_out(e: Engine, this_box: BoxNode): void {
     fin_rule: {
       switch (p.type) { // §631
         case hlist_node: case vlist_node: // §632 Output a box in a vlist
-          if (p.list_ptr === null) e.cur_v = (e.cur_v + p.height + p.depth) | 0
+          if (p.list_ptr === null) { e.cur_v = (e.cur_v + p.height) | 0; synctex_void(e, p); e.cur_v = (e.cur_v + p.depth) | 0 } // synctex-rec.ch1
           else {
             e.cur_v = (e.cur_v + p.height) | 0; synch_v(e)
             const save_h = e.dvi_h, save_v = e.dvi_v
@@ -335,6 +346,7 @@ function vlist_out(e: Engine, this_box: BoxNode): void {
       dvi_out(e, put_rule); dvi_four(e, rule_ht); dvi_four(e, rule_wd)
     }
   }
+  synctex_tsilv(e, this_box)
   prune_movements(e, save_loc)
   if (e.cur_s > 0) dvi_pop(e, save_loc)
   e.cur_s--
@@ -343,12 +355,12 @@ function vlist_out(e: Engine, this_box: BoxNode): void {
 // pdftex.web ship_out: pdf_ship_out when \pdfoutput>0, else dvi_ship_out
 export function ship_out(e: Engine, p: BoxNode): void {
   fix_pdfoutput(e)
-  if (int_par(e, synctex_code) !== 0) fatal_error(e, 'unsupported: synctex') // synctex-rec.ch0 synctex_sheet would start recording
   if (int_par(e, pdf_output_code) > 0) pdf_ship_out(e, p, true); else dvi_ship_out(e, p)
 }
 
 // §638 dvi_ship_out
 function dvi_ship_out(e: Engine, p: BoxNode): void {
+  synctex_sheet(e, int_par(e, mag_code), false) // synctex-rec.ch0 Start sheet SyncTeX information record
   if (int_par(e, tracing_output_code) > 0) { print_nl(e, ''); print_ln(e); print(e, 'Completed box being shipped out') }
   if (e.term_offset > e.lim.max_print_line - 9) print_ln(e)
   else if (e.term_offset > 0 || e.file_offset > 0) print_char(e, 32)
@@ -411,6 +423,7 @@ function dvi_ship_out(e: Engine, p: BoxNode): void {
   if (int_par(e, tracing_stats_code) > 1) { print_nl(e, 'Memory usage before: '); print(e, '0&0;') }
   flush_node_list(e, p)
   if (int_par(e, tracing_stats_code) > 1) { print(e, ' after: 0&0; still untouched: 0'); print_ln(e) }
+  synctex_teehs(e) // synctex-rec.ch0 Finish sheet SyncTeX information record
 }
 
 // §642 Finish the DVI file

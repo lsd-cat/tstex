@@ -9,7 +9,8 @@ import { init_eqtb, fix_date_and_time, eqtb_size, int_base, new_line_char_code, 
 import { init_prim } from './primitives/index.ts'
 import { new_line, end_token_list, end_file_reading, normal, term_line } from './input.ts'
 import type { InputFile } from './input.ts'
-import { init_specs, new_char, glue_node, delete_token_ref, delete_glue_ref } from './nodes.ts'
+import { init_specs, new_char, glue_node, delete_token_ref, delete_glue_ref, set_sync_src } from './nodes.ts'
+import { synctex_state, synctex_init_command, synctex_terminate, synctex_abort } from './synctex.ts'
 import { store_fmt_file, load_fmt_file } from './format.ts'
 import type { Format } from './format.ts'
 import { new_page_ins_head } from './page.ts'
@@ -76,7 +77,7 @@ export class Engine {
   nest: ListState[] = []; nest_ptr = 0; max_nest_stack = 0
   // §162, §980–982 fixed list heads and page builder state
   // type(page_head)=glue_node, so an initial glue node on the current page is not a legal breakpoint
-  contrib_head: CharNode = contrib_head0; page_head: Node = { type: glue_node, subtype: 0, link: null, glue_ptr: 0, leader_ptr: null }
+  contrib_head: CharNode = contrib_head0; page_head: Node = { type: glue_node, subtype: 0, link: null, glue_ptr: 0, leader_ptr: null, sync_tag: 0, sync_line: 0 }
   page_tail: Node = this.page_head
   page_contents = 0; output_active = false; output_can_end = false; dead_cycles = 0; insert_penalties = 0
   last_glue = 0o17777777777; last_penalty = 0; last_kern = 0; last_node_type = -1
@@ -119,6 +120,8 @@ export class Engine {
   dvi_h = 0; dvi_v = 0; cur_h = 0; cur_v = 0; dvi_f = 0; cur_s = -1
   total_pages = 0; max_v = 0; max_h = 0; max_push = 0; last_bop = -1; doing_leaders = false
   output_file_name = ''; fixed_pdfoutput: number | null = null
+  // synctex.c: its context; the finished file and its name; the directory relative input names are shown against
+  stx = synctex_state(); synctex: Uint8Array | null = null; synctex_name = ''; cwd = ''
   // pdftex.web [32b]–[32f] PDF output (src/pdf.ts) and the C font back end (src/backend/fonts.ts); tounicode.c's table is dumped
   // pdftex.web font expansion, letterspacing and the \lpcode family: per-font arrays that pdftex.ch resets at every start (not
   // dumped); code_base[n][f] is pdf_font_lp_base…pdf_font_kn_ac_base for assign_font_int's chr n, an index into ps.mem or 0
@@ -141,7 +144,7 @@ export class Engine {
   cur_cmd = 0; cur_chr = 0; cur_cs = 0; cur_tok = 0
   // §301–310 input stacks
   input_stack: InState[] = []; input_ptr = 0; max_in_stack = 0
-  cur_input: InState = { state: new_line, index: 0, start: 1, loc: 0, limit: 0, name: 0 }
+  cur_input: InState = { state: new_line, index: 0, start: 1, loc: 0, limit: 0, name: 0, synctex_tag: 0 }
   in_open = 0; open_parens = 0; input_file: InputFile[] = []; line = 0; line_stack: number[] = []
   scanner_status = normal; warning_index = 0; def_ref = 0
   param_stack: number[] = []; param_ptr = 0; max_param_stack = 0; align_state = 1000000; base_ptr = 0
@@ -198,9 +201,13 @@ export class Engine {
   // with it, the first line comes from `terminal' (init_terminal) and so does every later terminal read.
   // `file' is the first line (default `<jobname>.tex'); `jobname' with `file' is -jobname
   // mode 'pdflatex' is 'latex' with the format's \pdfoutput (TeX Live's pdflatex); `date' is SOURCE_DATE_EPOCH with FORCE_SOURCE_DATE
-  async run(opts: { jobname?: string, file?: string, mode: 'ini' | 'etex' | 'latex' | 'pdflatex', terminal?: string[], date?: Date }): Promise<void> {
+  // `synctex' is -synctex=N, `cwd' the directory SyncTeX's Input lines resolve relative names against (default: left relative)
+  async run(opts: { jobname?: string, file?: string, mode: 'ini' | 'etex' | 'latex' | 'pdflatex', terminal?: string[], date?: Date, synctex?: number, cwd?: string }): Promise<void> {
     this.date = opts.date; this.etex_p = opts.mode === 'etex'; this.ini_version = opts.mode === 'ini' || opts.mode === 'etex' // pdftex -ini (the latex modes load a format)
     this.format = await this.format // loadFormat's result may be passed unawaited
+    set_sync_src(this) // nothing below awaits
+    if (opts.synctex !== undefined) this.stx.option = opts.synctex
+    this.cwd = opts.cwd ?? ''
     init_specs(this); init_fonts(this); init_eqtb(this); init_prim(this); fix_date_and_time(this)
     this.terminal += 'This is tstex, Version 3.141592653' + this.format_ident + '\n' // §61
     if (this.translate_filename !== '') this.terminal += ' (' + this.translate_filename + ')\n' // tex.ch
@@ -254,6 +261,7 @@ export class Engine {
         start_input(this)
       }
       this.history = spotless
+      synctex_init_command(this)
       main_control(this)
       final_cleanup(this)
     } catch (x) {
@@ -357,9 +365,10 @@ function close_files_and_terminate(e: Engine): void {
   }
   if (e.fixed_pdfoutput === null) e.fixed_pdfoutput = e.equiv[int_base + pdf_output_code]! // pdftex: fix_pdfoutput
   if (e.fixed_pdfoutput > 0) {
-    if (e.history === fatal_error_stop) print_err(e, ' ==> Fatal error occurred, no output PDF file produced!')
+    if (e.history === fatal_error_stop) { print_err(e, ' ==> Fatal error occurred, no output PDF file produced!'); synctex_abort(e) } // synctex-pdf-rec.ch2
     else finish_pdf_file(e) // Finish the PDF file, and the PDF statistics
   } else finish_dvi_file(e) // §642
+  synctex_terminate(e, e.log_opened) // synctex-rec.ch0 Close SyncTeX file and write status
   if (e.log_opened) {
     e.log += '\n'; e.selector -= 2
     if (e.selector === term_only) { print_nl(e, 'Transcript written on '); print_file_name(e, e.job_name + '.log', '', ''); print_char(e, 46) }

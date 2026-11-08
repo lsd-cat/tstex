@@ -1,0 +1,9 @@
+%! oracle: pdftex
+%! synctex: 1
+\pdfoutput=1 \input plain
+\pdfcompresslevel=0 \pdfobjcompresslevel=0
+\setbox0\hbox{A form \kern2pt with $m$ath\hskip 3pt plus 1fil}
+\immediate\pdfxform0
+\setbox2\hbox to 1in{Lazy form\hfil}\pdfxform2 \edef\lazy{\the\pdflastxform}
+Use \pdfrefxform\pdflastxform\ and \pdfrefxform\lazy\ inline.
+\bye

@@ -1,0 +1,11 @@
+%! oracle: pdftex
+%! synctex: -1
+\pdfoutput=1 \input plain
+\pdfcompresslevel=0 \pdfobjcompresslevel=0
+First line from the main file.
+\input m9-synctex-sub1
+Back in main.
+\input m9-synctex-sub2 \relax
+\scantokens{From a pseudo file.}
+Done.
+\bye

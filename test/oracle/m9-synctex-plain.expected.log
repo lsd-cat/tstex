@@ -1,0 +1,78 @@
+entering extended mode
+(m9-synctex-plain.tex (plain.tex Preloading the plain format: codes, registers,
+\maxdimen=\dimen10
+\hideskip=\skip10
+\centering=\skip11
+\p@=\dimen11
+\z@=\dimen12
+\z@skip=\skip12
+\voidb@x=\box10
+parameters,
+\smallskipamount=\skip13
+\medskipamount=\skip14
+\bigskipamount=\skip15
+\normalbaselineskip=\skip16
+\normallineskip=\skip17
+\normallineskiplimit=\dimen13
+\jot=\dimen14
+\interdisplaylinepenalty=\count23
+\interfootnotelinepenalty=\count24
+fonts, more fonts,
+\itfam=\fam4
+\slfam=\fam5
+\bffam=\fam6
+\ttfam=\fam7
+macros,
+\strutbox=\box11
+\mscount=\count25
+\tabs=\box12
+\tabsyet=\box13
+\tabsdone=\box14
+math definitions,
+\rootbox=\box15
+\p@renwd=\dimen15
+output routines,
+\headline=\toks10
+\footline=\toks11
+\footins=\insert254
+\topins=\insert253
+hyphenation (hyphen.tex))
+! You can't use `\moveright' in horizontal mode.
+l.13 \moveright
+                1in\vbox{\hrule width 1in\kern 3pt\hbox{moved}}
+Sorry, but I'm not programmed to handle this case;
+I'll just pretend that you didn't ask for it.
+If you're in the wrong mode, you might be able to
+return to the right one by typing `I}' or `I$' or `I\par'.
+
+
+Overfull \hbox (15.55559pt too wide) in paragraph at lines 12--14
+[] \tenrm 1in[] |
+
+\hbox(10.34444+0.0)x289.07999, glue set - 1.0
+.\hbox(4.30554+0.0)x216.81, glue set 105.7661fill
+..\leaders 0.0 plus 1.0fill
+...\rule(0.4+0.0)x*
+..\leaders 0.0 plus 1.0fill
+...\hbox(1.05554+0.0)x10.0, glue set 3.61111fil []
+..\tenrm x
+.\glue 3.33333 plus 1.66666 minus 1.11111
+.\tenrm 1
+.\tenrm i
+.\tenrm n
+.etc.
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 14--18
+
+
+\hbox(0.0+0.0)x289.07999
+.\penalty -10000
+.\glue(\rightskip) 0.0
+
+[1{pdftex.map}] )<cmex10.pfb><cmmi10.pfb><cmmi7.pfb><cmr10.pfb><cmr7.pfb><cmsy10.pfb><cmsy7.pfb>
+Output written on m9-synctex-plain.pdf (1 page, 72426 bytes).
+PDF statistics:
+ 34 PDF objects out of 1000 (max. 8388607)
+ 0 named destinations out of 1000 (max. 500000)
+ 1 words of extra memory for PDF output out of 10000 (max. 10000000)

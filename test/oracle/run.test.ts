@@ -12,6 +12,7 @@
 import { test } from 'node:test'
 import assert from 'node:assert'
 import { readdirSync, readFileSync, existsSync, appendFileSync } from 'node:fs'
+import { gunzipSync } from 'node:zlib'
 import { normalizeLog } from '../../tools/normalize-log.ts'
 import { normalizePdf } from '../../tools/pdf-normalize.ts'
 
@@ -59,14 +60,23 @@ for (const file of readdirSync(dir).filter(f => f.endsWith('.tex')).sort()) {
     const overlay = new Map<string, string | Uint8Array>() // files written by earlier runs (.aux ...)
     const base = fs
     fs = { ...base, find: (n: string, k: string) => { const o = overlay.get(n); return o === undefined ? base.find(n, k) : typeof o === 'string' ? Buffer.from(o, 'latin1') : o } }
+    // SyncTeX: -synctex=N from `%! synctex: N'; Input lines are absolute, so the engine gets pdftex's (temporary) cwd
+    const wantSynctex = existsSync(`${dir}${name}.expected.synctex`) ? readFileSync(`${dir}${name}.expected.synctex`, 'latin1') : null
+    const synctex = Number(readFileSync(dir + file, 'utf8').match(/^%! synctex: *(-?\d+)/m)?.[1] ?? NaN)
+    const cwd = wantSynctex?.match(/^Input:1:(.*)\/\.\/[^/]*$/m)?.[1]
     let engine
     for (let i = 0; i < runs; i++) {
       engine = new Engine({ fs, format, limits })
-      await engine.run({ jobname: name, mode, ...(pdfMode && { date: new Date(0) }) })
+      await engine.run({ jobname: name, mode, ...(pdfMode && { date: new Date(0) }), ...(!isNaN(synctex) && { synctex }), cwd })
       for (const [n, v] of engine.outputFiles) overlay.set(n, v)
     }
     assert.strictEqual(normalizeLog(engine!.log), expected)
     if (existsSync(`${dir}${name}.expected.out`)) assert.strictEqual(engine!.outputFiles.get(`${name}.out`), readFileSync(`${dir}${name}.expected.out`, 'utf8'))
+    if (wantSynctex !== null) {
+      assert.ok(engine!.synctex, 'no SyncTeX file produced')
+      const got = engine!.synctex[0] === 0x1f && engine!.synctex[1] === 0x8b ? gunzipSync(engine!.synctex) : engine!.synctex
+      assert.strictEqual(Buffer.from(got).toString('latin1'), wantSynctex)
+    } else assert.strictEqual(engine!.synctex, null, 'pdftex wrote no SyncTeX file')
     const wantPdf = `${dir}${name}.expected.pdf`
     if (pdfMode && !(existsSync(wantPdf) && readFileSync(wantPdf).length)) assert.strictEqual(engine!.pdf, null, 'pdftex wrote no PDF') // none or empty (no pages)
     else if (pdfMode) {

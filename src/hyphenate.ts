@@ -347,7 +347,7 @@ function reconstitute(e: Engine, j: number, n: number, bchar: number, hchar: num
     }
     // §910 Append a ligature and/or kern to the translation; goto continue if the stack of inserted ligatures is nonempty
     wrap_lig(e.rt_hit)
-    if (w !== 0) { t.link = new_kern(w); t = t.link; w = 0 }
+    if (w !== 0) { const k = new_kern(w); k.sync_tag = 0; t.link = k; t = k; w = 0 } // synctex-rec.ch0: do nothing, it is too late
     if (e.lig_stack !== null) {
       e.cur_q = t; e.cur_l = (e.lig_stack as LigNode).character; e.ligature_present = true
       pop_lig_stack(); continue

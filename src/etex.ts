@@ -676,3 +676,16 @@ export function no_TeXXeT(e: Engine): void {
 }
 import { fatal_error } from './error.ts'
 export { int_base, tok_val }
+
+// etex.ch Handle a glue node for mixed direction typesetting, in hlist_out after rule_wd is known: glue that stretches
+// or shrinks becomes a kern of width rule_wd (leaders get a rigid spec instead); SyncTeX then records it as a kern
+export function round_mixed_glue(e: Engine, p: GlueNode, b: BoxNode, rule_wd: number): void {
+  const g = e.spec[p.glue_ptr]!
+  if (!(b.glue_sign === stretching && g.stretch_order === b.glue_order || b.glue_sign === shrinking && g.shrink_order === b.glue_order)) return
+  delete_glue_ref(e, p.glue_ptr)
+  if (p.subtype < a_leaders) { const k = p as unknown as KernNode; k.type = kern_node; k.width = rule_wd; return }
+  const q = new_spec(e, zero_glue), s = e.spec[q]!
+  s.stretch_order = s.shrink_order = filll + 1; s.width = rule_wd; s.stretch = 0; s.shrink = 0; p.glue_ptr = q
+}
+import type { GlueNode, BoxNode, KernNode } from './nodes.ts'
+import { stretching, shrinking, a_leaders, kern_node, filll } from './nodes.ts'

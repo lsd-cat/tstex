@@ -1,6 +1,9 @@
 // pdftex.web [32b]–[32f], [53] PDF output: the output buffer, object table, page description, pdf_ship_out, finishing the file
 // The file lives in one growable buffer (nothing is flushed early), so the /Length placeholder is overwritten in place;
 // `gone' only records where pdf_flush would have flushed the pdf_op_buf_size buffer (pdf_gone, for garbage_warning); with \pdfcompresslevel>0 a stream's bytes are deflated by the platform when it ends.
+import { round_mixed_glue } from './etex.ts'
+import { synctex_sheet, synctex_teehs, synctex_pdfxform, synctex_mrofxfdp, synctex_pdfrefxform, synctex_hlist, synctex_tsilh, synctex_vlist,
+  synctex_tsilv, synctex_void, synctex_current, synctex_kern, synctex_math, synctex_horizontal_rule_or_glue } from './synctex.ts'
 import type { Engine } from './engine.ts'
 import { int_base, dimen_base, tex_toks, spotless, warning_issued, fatal_error_stop } from './types.ts'
 import { print, print_char, print_nl, print_ln, print_int, begin_diagnostic, end_diagnostic } from './print.ts'
@@ -10,7 +13,7 @@ import { tokens_to_string } from './tokens.ts'
 import { flush_node_list, show_box, zround, is_char_node, hlist_node, vlist_node, rule_node, whatsit_node, glue_node, kern_node,
   math_node, ligature_node, normal, stretching, a_leaders, c_leaders, null_flag, special_node, latespecial_node, pdf_save_pos_node,
   flush_list, delete_token_ref } from './nodes.ts'
-import type { BoxNode, Node, WhatsitNode, PdfAction } from './nodes.ts'
+import type { BoxNode, Node, WhatsitNode, PdfAction, RuleNode, GlueNode } from './nodes.ts'
 import { colorstack_set, colorstack_push, colorstack_pop, colorstack_current, margin_kern_node } from './nodes.ts'
 import { pdf_action_user, pdf_action_page, pdf_action_goto, pdf_action_thread, copy_node_list, add_token_ref, new_whatsit_node, print_mark, print_font_identifier,
   pdf_dest_xyz, pdf_dest_fit, pdf_dest_fith, pdf_dest_fitv, pdf_dest_fitb, pdf_dest_fitbh, pdf_dest_fitbv, pdf_dest_fitr, pdf_null } from './nodes.ts'
@@ -998,6 +1001,7 @@ function pdf_hlist_out(e: Engine, this_box: BoxNode): void {
   // Create link annotations for the current hbox if needed
   for (let i = 0; i < e.ps.link_stack.length; i++)
     if (e.ps.link_stack[i]!.nesting_level === e.cur_s && e.ps.gen_running_link) append_link(e, this_box, left_edge, base_line, i)
+  synctex_hlist(e, this_box)
   while (p !== null) {
     if (is_char_node(p) || p.type === ligature_node) { // a ligature looks like a char_node
       do {
@@ -1006,6 +1010,7 @@ function pdf_hlist_out(e: Engine, this_box: BoxNode): void {
         else char_warning(e, f, c)
         e.cur_h = (e.cur_h + char_width(e, f, char_info(e, f, c))) | 0
         p = p.link
+        if (p === null || !is_char_node(p)) synctex_current(e) // synctex-pdf-rec.ch2: a ligature ends TeX's run of char nodes too
       } while (p !== null && (is_char_node(p) || p.type === ligature_node))
       continue
     }
@@ -1014,7 +1019,7 @@ function pdf_hlist_out(e: Engine, this_box: BoxNode): void {
       move_past: {
         switch (p.type) {
           case hlist_node: case vlist_node: // (pdfTeX) Output a box in an hlist
-            if (p.list_ptr === null) e.cur_h = (e.cur_h + p.width) | 0
+            if (p.list_ptr === null) { synctex_void(e, p); e.cur_h = (e.cur_h + p.width) | 0 }
             else {
               e.cur_v = (base_line + p.shift_amount) | 0
               const edge = (e.cur_h + p.width) | 0
@@ -1028,6 +1033,7 @@ function pdf_hlist_out(e: Engine, this_box: BoxNode): void {
             rule_wd = (e.spec[p.glue_ptr]!.width - st.cur_g) | 0
             glue_amount(e, st, this_box, p.glue_ptr)
             rule_wd = (rule_wd + st.cur_g) | 0
+            if (e.eTeX_ex) round_mixed_glue(e, p, this_box, rule_wd)
             if (p.subtype >= a_leaders) {
               const leader_box = p.leader_ptr!
               if (leader_box.type === rule_node) { rule_ht = leader_box.height; rule_dp = leader_box.depth; break fin_rule }
@@ -1059,11 +1065,14 @@ function pdf_hlist_out(e: Engine, this_box: BoxNode): void {
             }
             break move_past
           }
-          case kern_node: case margin_kern_node: case math_node: e.cur_h = (e.cur_h + p.width) | 0; break
+          case margin_kern_node: e.cur_h = (e.cur_h + p.width) | 0; break
+          case kern_node: synctex_kern(e, p, this_box); e.cur_h = (e.cur_h + p.width) | 0; break
+          case math_node: synctex_math(e, p); e.cur_h = (e.cur_h + p.width) | 0; break
         }
         p = p.link; continue
       }
       e.cur_h = (e.cur_h + rule_wd) | 0 // move_past
+      synctex_horizontal_rule_or_glue(e, p as GlueNode, rule_wd, rule_ht, rule_dp)
       p = p.link; continue
     }
     // fin_rule: (pdfTeX) Output a rule in an hlist
@@ -1076,8 +1085,10 @@ function pdf_hlist_out(e: Engine, this_box: BoxNode): void {
       e.cur_v = base_line
     }
     e.cur_h = (e.cur_h + rule_wd) | 0 // move_past
+    synctex_horizontal_rule_or_glue(e, p as RuleNode | GlueNode, rule_wd, rule_ht, rule_dp)
     p = p.link
   }
+  synctex_tsilh(e, this_box)
   e.cur_s--
 }
 
@@ -1285,6 +1296,7 @@ function pdf_vlist_out(e: Engine, this_box: BoxNode): void {
   let p = this_box.list_ptr
   e.cur_s++
   const left_edge = e.cur_h
+  synctex_vlist(e, this_box)
   e.cur_v = (e.cur_v - this_box.height) | 0
   const top_edge = e.cur_v
   // Create thread for the current vbox if needed
@@ -1296,7 +1308,7 @@ function pdf_vlist_out(e: Engine, this_box: BoxNode): void {
     fin_rule: {
       switch (p.type) {
         case hlist_node: case vlist_node: // (pdfTeX) Output a box in a vlist
-          if (p.list_ptr === null) e.cur_v = (e.cur_v + p.height + p.depth) | 0
+          if (p.list_ptr === null) { e.cur_v = (e.cur_v + p.height) | 0; synctex_void(e, p); e.cur_v = (e.cur_v + p.depth) | 0 }
           else {
             e.cur_v = (e.cur_v + p.height) | 0; const save_v = e.cur_v
             e.cur_h = (left_edge + p.shift_amount) | 0
@@ -1352,6 +1364,7 @@ function pdf_vlist_out(e: Engine, this_box: BoxNode): void {
     e.cur_v = (e.cur_v + rule_ht) | 0
     if (rule_ht > 0 && rule_wd > 0) { pdf_set_rule(e, e.cur_h, e.cur_v, rule_wd, rule_ht); e.cur_h = left_edge }
   }
+  synctex_tsilv(e, this_box)
   e.cur_s--
 }
 
@@ -1379,6 +1392,8 @@ export function pdf_ship_out(e: Engine, p: BoxNode, shipping_page: boolean): voi
     for (let k = 0; k <= j; k++) { print_int(e, e.equiv[count_base + k]!); if (k < j) print_char(e, 46) }
   }
   if (int_par(e, tracing_output_code) > 0) { if (shipping_page) print_char(e, 93); begin_diagnostic(e); show_box(e, p); end_diagnostic(e, true) }
+  // synctex-pdf-rec.ch2: pdf_output_value:=pdf_output
+  if (shipping_page) synctex_sheet(e, int_par(e, mag_code), int_par(e, pdf_output_code) > 0); else synctex_pdfxform(e, s.cur_form)
   // (pdfTeX) Ship box p out
   const h_offset = e.equiv[dimen_base + h_offset_code]!, v_offset = e.equiv[dimen_base + v_offset_code]!
   done: {
@@ -1526,6 +1541,7 @@ export function pdf_ship_out(e: Engine, p: BoxNode, shipping_page: boolean): voi
     }
     pdf_end_dict(e)
   }
+  if (shipping_page) synctex_teehs(e); else synctex_mrofxfdp(e)
   if (int_par(e, tracing_output_code) <= 0 && shipping_page) print_char(e, 93)
   e.dead_cycles = 0
   // §639 Flush the box from memory, showing statistics if requested (see dvi.ts: no mem array)
@@ -1613,6 +1629,7 @@ function out_image(e: Engine, p: WhatsitNode): void {
 // [53] out_form
 function out_form(e: Engine, p: WhatsitNode): void {
   const s = e.ps, n = p.pdf_objnum
+  synctex_pdfrefxform(e, n)
   pdf_end_text(e)
   pdf_print_ln(e, 'q')
   if (!s.xform_list.includes(n)) s.xform_list.push(n) // pdf_lookup_list

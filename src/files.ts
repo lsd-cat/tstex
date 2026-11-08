@@ -1,4 +1,5 @@
 // §511–538 file names, the log file, \input
+import { synctex_start_input } from './synctex.ts'
 import type { Engine } from './engine.ts'
 import { log_only, Cmd, scroll_mode } from './types.ts'
 import type { InputFile } from './input.ts'
@@ -177,6 +178,7 @@ export function start_input(e: Engine): void {
     end_diagnostic(e, false)
   }
   e.cur_input.state = new_line
+  synctex_start_input(e, found.name) // synctex-rec.ch0 Prepare new file SyncTeX information
   // §538 Read the first line of the new file
   e.line = 1
   input_ln(e, found.file)

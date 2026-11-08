@@ -154,7 +154,7 @@ export function begin_file_reading(e: Engine): void {
   ci.index = e.in_open
   e.eof_seen[ci.index] = false; e.grp_stack[ci.index] = e.cur_boundary; e.if_stack[ci.index] = e.cond_ptr // etex.ch
   e.line_stack[ci.index] = e.line; ci.start = e.first; ci.state = mid_line
-  ci.name = 0
+  ci.name = 0; ci.synctex_tag = 0 // synctex-rec.ch0 Prepare terminal input SyncTeX information
 }
 
 // §329 end_file_reading

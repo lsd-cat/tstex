@@ -148,8 +148,8 @@ type Link = { link: Node | null }
 export type CharNode = Link & { type: typeof char_node, font: number, character: number }
 // §135 hlist/vlist; an unset node (§159) keeps glue_stretch in glue_set and glue_shrink in shift_amount
 export type BoxNode = Link & { type: typeof hlist_node | typeof vlist_node | typeof unset_node, subtype: number, width: number,
-  depth: number, height: number, shift_amount: number, list_ptr: Node | null, glue_order: number, glue_sign: number, glue_set: number }
-export type RuleNode = Link & { type: typeof rule_node, subtype: number, width: number, depth: number, height: number }
+  depth: number, height: number, shift_amount: number, list_ptr: Node | null, glue_order: number, glue_sign: number, glue_set: number, sync_tag: number, sync_line: number }
+export type RuleNode = Link & { type: typeof rule_node, subtype: number, width: number, depth: number, height: number, sync_tag: number, sync_line: number }
 export type InsNode = Link & { type: typeof ins_node, subtype: number, height: number, depth: number, split_top_ptr: number,
   float_cost: number, ins_ptr: Node | null }
 export type MarkNode = Link & { type: typeof mark_node, subtype: number, mark_ptr: number, mark_class: number }
@@ -165,9 +165,9 @@ export type WhatsitNode = Link & { type: typeof whatsit_node, subtype: number, w
   // pdf_right is pdf_depth; pdf_named_id/pdf_id the dest/thread identifier, pdf_zoom the xyz zoom (pdf_null when absent)
   pdf_data: number, pdf_mode: number, pdf_objnum: number, pdf_left: number, pdf_top: number, pdf_right: number, pdf_bottom: number,
   pdf_action: PdfAction | null, pdf_named_id: number, pdf_id: number, pdf_zoom: number, pdf_synthetic: boolean }
-export type MathNode = Link & { type: typeof math_node, subtype: number, width: number }
-export type GlueNode = Link & { type: typeof glue_node, subtype: number, glue_ptr: number, leader_ptr: Node | null }
-export type KernNode = Link & { type: typeof kern_node, subtype: number, width: number }
+export type MathNode = Link & { type: typeof math_node, subtype: number, width: number, sync_tag: number, sync_line: number }
+export type GlueNode = Link & { type: typeof glue_node, subtype: number, glue_ptr: number, leader_ptr: Node | null, sync_tag: number, sync_line: number }
+export type KernNode = Link & { type: typeof kern_node, subtype: number, width: number, sync_tag: number, sync_line: number }
 export type PenaltyNode = Link & { type: typeof penalty_node, subtype: number, penalty: number }
 // pdftex.web margin_kern_node: subtype left_side/right_side, margin_char the protruding character (a fresh char node)
 export type MarginKernNode = Link & { type: typeof margin_kern_node, subtype: number, width: number, margin_char: CharNode }
@@ -213,15 +213,22 @@ export const is_char_node = (p: Node): p is CharNode => p.type === char_node
 // §120 get_avail as a list head or char node
 export const new_char = (f: number, c: number): CharNode => ({ type: char_node, link: null, font: f, character: c })
 
+// synctex-rec.ch0 Initialize bigger nodes with SyncTeX information: get_node gives every node of medium size or more
+// the current tag and line (only boxes, rules, glue, kerns and math nodes are recorded, so only they carry them). Node
+// constructors take no engine, so the running one is kept here; Engine.run sets it and runs synchronously after its first await.
+let sync_src: { cur_input: { synctex_tag: number }, line: number } = { cur_input: { synctex_tag: 0 }, line: 0 }
+export function set_sync_src(e: Engine): void { sync_src = e }
+const sync = () => ({ sync_tag: sync_src.cur_input.synctex_tag, sync_line: sync_src.line })
+
 // §136 new_null_box
 export function new_null_box(): BoxNode {
   return { type: hlist_node, link: null, subtype: 0, width: 0, depth: 0, height: 0, shift_amount: 0, list_ptr: null,
-    glue_order: normal, glue_sign: normal, glue_set: 0 }
+    glue_order: normal, glue_sign: normal, glue_set: 0, ...sync() }
 }
 
 // §139 new_rule
 export function new_rule(): RuleNode {
-  return { type: rule_node, link: null, subtype: 0, width: null_flag, depth: null_flag, height: null_flag }
+  return { type: rule_node, link: null, subtype: 0, width: null_flag, depth: null_flag, height: null_flag, ...sync() }
 }
 
 // §144 new_ligature, new_lig_item
@@ -234,7 +241,7 @@ export const new_lig_item = (c: number): LigNode => new_ligature(0, c, null)
 export const new_disc = (): DiscNode => ({ type: disc_node, link: null, replace_count: 0, pre_break: null, post_break: null })
 
 // §147 new_math
-export const new_math = (w: number, s: number): MathNode => ({ type: math_node, link: null, subtype: s, width: w })
+export const new_math = (w: number, s: number): MathNode => ({ type: math_node, link: null, subtype: s, width: w, ...sync() })
 
 // §1341 a whatsit with every field present
 export function new_whatsit_node(s: number): WhatsitNode {
@@ -247,13 +254,13 @@ export function new_whatsit_node(s: number): WhatsitNode {
 export function new_param_glue(e: Engine, n: number): GlueNode {
   const q = e.equiv[glue_base + n]!
   e.spec[q]!.glue_ref_count++
-  return { type: glue_node, link: null, subtype: n + 1, glue_ptr: q, leader_ptr: null }
+  return { type: glue_node, link: null, subtype: n + 1, glue_ptr: q, leader_ptr: null, ...sync() }
 }
 
 // §153 new_glue
 export function new_glue(e: Engine, q: number): GlueNode {
   e.spec[q]!.glue_ref_count++
-  return { type: glue_node, link: null, subtype: normal, glue_ptr: q, leader_ptr: null }
+  return { type: glue_node, link: null, subtype: normal, glue_ptr: q, leader_ptr: null, ...sync() }
 }
 
 // §154 new_skip_param; e.temp_ptr is the new spec
@@ -264,7 +271,7 @@ export function new_skip_param(e: Engine, n: number): GlueNode {
 }
 
 // §156 new_kern
-export const new_kern = (w: number): KernNode => ({ type: kern_node, link: null, subtype: normal, width: w })
+export const new_kern = (w: number): KernNode => ({ type: kern_node, link: null, subtype: normal, width: w, ...sync() })
 
 // §158 new_penalty
 export const new_penalty = (m: number): PenaltyNode => ({ type: penalty_node, link: null, subtype: 0, penalty: m })
@@ -375,7 +382,8 @@ export function copy_node_list(e: Engine, p: Node | null): Node | null {
       case disc_node: r = { ...p, pre_break: copy_node_list(e, p.pre_break), post_break: copy_node_list(e, p.post_break) }; break
       case mark_node: add_token_ref(e, p.mark_ptr); r = { ...p }; break
       case adjust_node: r = { ...p, adjust_ptr: copy_node_list(e, p.adjust_ptr) }; break
-      case char_node: case rule_node: case kern_node: case math_node: case penalty_node: r = { ...p }; break
+      case rule_node: r = { ...p, ...sync() }; break // synctex-rec.ch0: a copied rule keeps get_node's tag and line
+      case char_node: case kern_node: case math_node: case penalty_node: r = { ...p }; break
       case margin_kern_node: r = { ...p, margin_char: { ...p.margin_char } }; break
       default: confusion(e, 'copying')
     }

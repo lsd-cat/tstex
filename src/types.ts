@@ -37,7 +37,8 @@ export const mmode = hmode + Cmd.max_command + 1
 
 // §300 in_state_record; |name| is a string number in TeX: 0..17 terminal/\read,
 // >17 a file (we store 20 and keep the file in |input_file[index]|), or an eqtb pointer for macros
-export type InState = { state: number, index: number, start: number, loc: number, limit: number, name: number }
+// synctex-def.ch0: synctex_tag, the SyncTeX tag of the file this level reads (0 for the terminal, \read and pseudo files)
+export type InState = { state: number, index: number, start: number, loc: number, limit: number, name: number, synctex_tag: number }
 
 // §410 value levels
 export const int_val = 0, dimen_val = 1, glue_val = 2, mu_val = 3, ident_val = 4, tok_val = 5

@@ -1,0 +1,18 @@
+%! oracle: pdftex
+\pdfoutput=1 \input plain
+\pdfcompresslevel=0 \pdfobjcompresslevel=0
+\synctex=1
+\hsize=4in \parindent=10pt
+Office affine fluffy AVATAR, with a ligature and a kern.\kern3pt Then
+math $x^2+\sqrt{y}=\alpha_1$ inline,
+and a rule \vrule width 2pt height 5pt depth 1pt\ here.
+
+\hbox to 2in{left\hss\hbox{}\vbox{}\kern-2pt right}
+\hbox{\vbox{\hbox{in a vbox}\hrule\vskip2pt\hbox{}}\vtop{\hbox{vtop}\hbox{two}}}
+\noindent\hbox to 3in{\leaders\hrule\hfill\leaders\hbox to 10pt{\hss.\hss}\hfill x}
+\moveright 1in\vbox{\hrule width 1in\kern 3pt\hbox{moved}}
+$$\int_0^1 f(x)\,dx = \sum_{n=1}^\infty {1\over n^2}$$
+\penalty-10000
+Second page, \raise2pt\hbox{raised} and \lower 2pt\hbox{lowered}.
+\setbox0\hbox{copied box}\copy0\ \box0
+\bye
