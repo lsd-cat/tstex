@@ -9,7 +9,7 @@ import { int_par, prepare_mag, count_base, dimen_base, end_write, mag_code, sync
 import { show_token_list, token_show, cs_token_flag, right_brace_token, left_brace_token } from './tokens.ts'
 import { get_avail, flush_list, flush_node_list, show_box, zround, is_char_node, hlist_node, vlist_node, rule_node, whatsit_node,
   glue_node, kern_node, math_node, ligature_node, normal, stretching, a_leaders, c_leaders, null_flag, open_node, write_node,
-  close_node, special_node, latespecial_node, language_node } from './nodes.ts'
+  close_node, special_node, latespecial_node, language_node, pdf_save_pos_node } from './nodes.ts'
 import type { BoxNode, WhatsitNode } from './nodes.ts'
 import { char_info, char_width, null_font } from './tfm.ts'
 import { get_token, ins_list, begin_token_list, end_token_list } from './input.ts'
@@ -20,7 +20,7 @@ import { open_log_file, print_file_name, prompt_file_name } from './files.ts'
 const set1 = 128, set_rule = 132, put_rule = 137, bop = 139, eop = 140, push = 141, pop = 142, right1 = 143,
   down1 = 157, y0 = 161, y1 = 162, z0 = 166, z1 = 167, fnt_num_0 = 171, fnt1 = 235, xxx1 = 239, xxx4 = 242,
   fnt_def1 = 243, pre = 247, post = 248, post_post = 249, id_byte = 2
-const tracing_output_code = 34, tracing_online_code = 29, tracing_stats_code = 31, h_offset_code = 18, v_offset_code = 19
+const tracing_output_code = 34, tracing_online_code = 29, tracing_stats_code = 31, h_offset_code = 18, v_offset_code = 19, pdf_page_height_code = 24
 const max_dimen = 0o7777777777
 
 // §598 dvi_out
@@ -377,6 +377,9 @@ export function ship_out(e: Engine, p: BoxNode): void {
     if (wh > e.max_h) e.max_h = wh
     // §617 Initialize variables as ship_out begins
     e.dvi_h = 0; e.dvi_v = 0; e.cur_h = h_offset; e.dvi_f = null_font
+    // pdftex.web Calculate DVI page dimensions and margins (only cur_page_height is read, by \pdfsavepos)
+    e.cur_page_height = e.equiv[dimen_base + pdf_page_height_code]! !== 0 ? e.equiv[dimen_base + pdf_page_height_code]!
+      : (p.height + p.depth + 2 * v_offset + 2 * 4736286) | 0
     if (e.output_file_name === '') { // ensure_dvi_open
       if (e.job_name === '') open_log_file(e)
       e.output_file_name = e.job_name + '.dvi'
@@ -524,6 +527,8 @@ export function out_what(e: Engine, p: WhatsitNode): void {
       return
     case special_node: case latespecial_node: special_out(e, p); return
     case language_node: return
+    case pdf_save_pos_node: // pdftex.web Save current position in DVI mode (4736286 = 1in, the DVI origin offset)
+      e.pdf_last_x_pos = (e.cur_h + 4736286) | 0; e.pdf_last_y_pos = (e.cur_page_height - e.cur_v - 4736286) | 0; return
     default: confusion(e, 'ext4')
   }
 }

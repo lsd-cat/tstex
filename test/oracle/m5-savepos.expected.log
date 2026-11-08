@@ -1,0 +1,15 @@
+(m5-savepos.tex
+> \box1=
+\hbox(0.0+0.0)x13.0
+.\kern 10.0
+.\pdfsavepos
+.\kern 3.0
+
+! OK.
+l.4 \showbox1
+
+
+0,0 [0] 4736286,6178078
+in: 4736286
+[0] 2770206,5457182 [0] 2770206,768738 )
+Output written on m5-savepos.dvi (3 pages, 236 bytes).

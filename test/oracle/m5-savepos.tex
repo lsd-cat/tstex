@@ -1,0 +1,14 @@
+\catcode`\{=1 \catcode`\}=2 \catcode`\#=6
+\showboxdepth=100 \showboxbreadth=100 \tracingonline1
+\setbox1\hbox{\kern 10pt\pdfsavepos\kern3pt}
+\showbox1
+\message{\the\pdflastxpos,\the\pdflastypos}
+\shipout\vbox{\kern 5pt\box1\kern7pt\pdfsavepos\hrule height 20pt depth 2pt width 1pt}
+\message{\the\pdflastxpos,\the\pdflastypos}
+\hoffset=-30pt \voffset=11pt
+\shipout\hbox{\raise5pt\hbox{\pdfsavepos}\copy1 \immediate\write-1{in: \the\pdflastxpos}\pdfsavepos}
+\message{\the\pdflastxpos,\the\pdflastypos}
+\pdfpageheight=100pt
+\shipout\hbox{\lower5pt\hbox{x\pdfsavepos}}
+\message{\the\pdflastxpos,\the\pdflastypos}
+\end

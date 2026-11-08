@@ -124,7 +124,7 @@ export const cond_math_glue = 98, mu_glue = 99, a_leaders = 100, c_leaders = 101
 export const explicit = 1, acc_kern = 2, auto_kern = 3 // §155 (pdftex)
 export const inf_penalty = 10000, eject_penalty = -10000 // §157
 // §1341 whatsit subtypes (pdftex numbering)
-export const open_node = 0, write_node = 1, close_node = 2, special_node = 3, latespecial_node = 4, language_node = 5
+export const open_node = 0, write_node = 1, close_node = 2, special_node = 3, latespecial_node = 4, language_node = 5, pdf_save_pos_node = 23
 
 type Link = { link: Node | null }
 // §134 a char_node; list heads are char nodes too (TeX's get_avail), so is_char_node(head) holds as in tex.web
@@ -274,7 +274,7 @@ export function flush_node_list(e: Engine, p: Node | null): void {
       case ins_node: flush_node_list(e, p.ins_ptr); delete_glue_ref(e, p.split_top_ptr); break
       case whatsit_node: // §1358
         if (p.subtype === write_node || p.subtype === special_node || p.subtype === latespecial_node) delete_token_ref(e, p.write_tokens)
-        else if (p.subtype > language_node) confusion(e, 'ext3')
+        else if (p.subtype > language_node && p.subtype !== pdf_save_pos_node) confusion(e, 'ext3')
         break
       case glue_node: delete_glue_ref(e, p.glue_ptr); flush_node_list(e, p.leader_ptr); break
       case ligature_node: flush_node_list(e, p.lig_ptr); break
@@ -312,7 +312,7 @@ export function copy_node_list(e: Engine, p: Node | null): Node | null {
       case ins_node: add_glue_ref(e, p.split_top_ptr); r = { ...p, ins_ptr: copy_node_list(e, p.ins_ptr) }; break
       case whatsit_node: // §1357
         if (p.subtype === write_node || p.subtype === special_node || p.subtype === latespecial_node) add_token_ref(e, p.write_tokens)
-        else if (p.subtype > language_node) confusion(e, 'ext2')
+        else if (p.subtype > language_node && p.subtype !== pdf_save_pos_node) confusion(e, 'ext2')
         r = { ...p }; break
       case glue_node: add_glue_ref(e, p.glue_ptr); r = { ...p, leader_ptr: copy_node_list(e, p.leader_ptr) }; break
       case ligature_node: r = { ...p, lig_ptr: copy_node_list(e, p.lig_ptr) }; break
@@ -461,6 +461,7 @@ export function show_node_list(e: Engine, p: Node | null): void {
             print_esc(e, 'setlanguage'); print_int(e, p.what_lang); print(e, ' (hyphenmin ')
             print_int(e, p.what_lhm); print_char(e, 44); print_int(e, p.what_rhm); print_char(e, 41)
             break
+          case pdf_save_pos_node: print_esc(e, 'pdfsavepos'); break
           default: print(e, 'whatsit?')
         }
         break

@@ -193,6 +193,7 @@ export function scan_something_internal(e: Engine, level: number, negative: bool
         else if (m < eTeX_int) { // pdftex.web: \pdflastobj … \pdflastlink stay 0 while every primitive that sets them is unsupported
           const us = Math.round((performance.now() - e.start_ms) * 1000) // get_microinterval: scaled seconds since the start
           e.cur_val = m === pdftex_version_code + 10 ? (us >= 32768e6 ? 0x7fffffff : Math.trunc(us / 1e6) * 65536 + Math.trunc(Math.trunc((us % 1e6) / 100) * 65536 / 10000))
+            : m === pdftex_version_code + 6 ? e.pdf_last_x_pos : m === pdftex_version_code + 7 ? e.pdf_last_y_pos
             : m === pdftex_version_code + 11 ? 2 : m === pdftex_version_code + 12 ? e.random_seed : 0 // \pdfshellescape: restricted
         }
         else if (m >= eTeX_glue) { // etex.ch Process an expression and return

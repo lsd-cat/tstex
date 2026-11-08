@@ -3,7 +3,7 @@ import type { Engine } from '../engine.ts'
 import { Cmd, hmode } from '../types.ts'
 import { print_esc } from '../print.ts'
 import { int_par } from '../eqtb.ts'
-import { delete_token_ref, new_whatsit_node, flush_node_list, open_node, write_node, close_node, special_node, latespecial_node, language_node } from '../nodes.ts'
+import { delete_token_ref, new_whatsit_node, flush_node_list, open_node, write_node, close_node, special_node, latespecial_node, language_node, pdf_save_pos_node } from '../nodes.ts'
 import type { WhatsitNode } from '../nodes.ts'
 import { scan_int, scan_four_bit_int, scan_optional_equals, scan_toks, scan_keyword } from '../scan.ts'
 import { scan_file_name } from '../files.ts'
@@ -88,6 +88,7 @@ export function run(e: Engine, chr: number): void {
       scan_int(e); if (e.cur_val < 0) e.cur_val = -e.cur_val
       e.random_seed = e.cur_val; init_randoms(e, e.random_seed)
       return
+    case pdf_save_pos_node: tail_append(e, new_whatsit_node(pdf_save_pos_node)); return // pdftex.web Implement \pdfsavepos
     case reset_timer_code: e.start_ms = performance.now(); return // pdftex.web Implement \pdfresettimer
     default: unsupported(e)
   }

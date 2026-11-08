@@ -116,6 +116,7 @@ export class Engine {
   dvi_h = 0; dvi_v = 0; cur_h = 0; cur_v = 0; dvi_f = 0; cur_s = -1
   total_pages = 0; max_v = 0; max_h = 0; max_push = 0; last_bop = -1; doing_leaders = false
   output_file_name = ''; fixed_pdfoutput: number | null = null
+  cur_page_height = 0; pdf_last_x_pos = 0; pdf_last_y_pos = 0 // pdftex.web \pdfsavepos
   // §1342 \write streams; written files are collected here (TexFS is read-only)
   write_open: boolean[] = new Array(18).fill(false); write_name: string[] = []
   outputFiles = new Map<string, string>()
