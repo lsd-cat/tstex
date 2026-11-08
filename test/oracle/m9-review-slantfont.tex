@@ -1,0 +1,11 @@
+%! oracle: pdftex
+\pdfoutput=1 \input plain
+\pdfcompresslevel=0 \pdfobjcompresslevel=0
+% SlantFont/ExtendFont (writet1.c t1_modify_fm, t1_modify_italic, the -Slant_/-Extend_ name suffixes), subset and whole font
+\pdfmapline{=cmr10 CMR10 " .167 SlantFont " <cmr10.pfb}
+\pdfmapline{=cmbx10 CMBX10 " 1.2 ExtendFont " <cmbx10.pfb}
+\pdfmapline{=cmti10 CMTI10 " -.25 SlantFont .9 ExtendFont " <<cmti10.pfb}
+\pdfmapline{=cmsl10 CMSL10 " .1 SlantFont " <cmsl10.pfb}
+\font\sl=cmsl10
+Slanted roman, {\bf extended bold}, {\it both, whole font}, {\sl slanted slant}.
+\bye

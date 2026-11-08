@@ -85,7 +85,16 @@ export const font_key: [string, string][] = [['Ascent', 'Ascender'], ['CapHeight
   ['ItalicAngle', 'ItalicAngle'], ['StemV', 'StdVW'], ['XHeight', 'XHeight'], ['FontBBox', 'FontBBox'], ['', ''], ['', ''], ['', ''],
   ['FontName', 'FontName']]
 export type T1Target = { fontname: string, font_dim: { val: number, set: boolean }[], builtin_glyph_names: Glyphs | null,
-  gl_tree: Set<string>, all_glyphs: boolean, subset_tag: string | null, tx_tree: Set<number> | null }
+  gl_tree: Set<string>, all_glyphs: boolean, subset_tag: string | null, tx_tree: Set<number> | null, fm: { slant: number, extend: number } }
+
+// C's printf %g of a double (6 significant digits, trailing zeros dropped, exponent at least two digits)
+function printf_g(x: number): string {
+  if (x === 0) return Object.is(x, -0) ? '-0' : '0'
+  const [m, ex] = Math.abs(x).toExponential(5).split('e'), exp = Number(ex), sign = x < 0 ? '-' : ''
+  const strip = (t: string) => t.includes('.') ? t.replace(/0+$/, '').replace(/\.$/, '') : t
+  if (exp < -4 || exp >= 6) return sign + strip(m!) + 'e' + (exp < 0 ? '-' : '+') + String(Math.abs(exp)).padStart(2, '0')
+  return sign + strip(Math.abs(x).toFixed(5 - exp))
+}
 // writet1.c's static state that outlives one font: the subset tags in use (utils.c make_subset_tag's st_tree), the charstring
 // operand stack (cc_stack, never reset between glyphs) and cs_mark's lastargOtherSubr3
 export const t1_state = () => ({ st_tree: new Set<string>(), cc_stack: [] as number[], last_arg_othersubr3: 3 })
@@ -219,11 +228,32 @@ function t1_write(e: Engine, fd: T1Target, b: Uint8Array, path: string, subsette
     encrypt = true; putline()
   }
   const stop_eexec = () => { length2 = out.length - length1; encrypt = false; check_block_len(true); t1_cs = false; in_eexec = 2 }
-  // t1_scan_param, t1_scan_keys (SlantFont/ExtendFont are refused before we get here)
+  // t1_scan_param, t1_scan_keys
   const scan_param = () => {
     if (!t1_scan || line[0] !== 47) return
     const s = str()
     if (s.startsWith('/lenIV')) { lenIV = Math.trunc(num(s.slice(6))[0]) << 16 >> 16; if (lenIV < 0) fail('negative value of lenIV is not supported'); return }
+    const { slant, extend } = fd.fm
+    if ((slant !== 0 || extend !== 0) && s.startsWith('/FontMatrix')) { // t1_modify_fm: slant, then extend; numbers are C floats
+      let b = s.indexOf('[')
+      if (b < 0 && (b = s.indexOf('{')) < 0) fail(`FontMatrix: an array expected: \`${s.replace(/\n$/, '')}'`)
+      const a: number[] = []
+      let p = s.slice(b + 1)
+      for (let i = 0; i < 6; i++) { const [v, r] = num(p); a.push(v); p = r }
+      if (slant !== 0) { const t = slant * 1E-3; a[0] = Math.fround(a[0]! + a[1]! * t); a[2] = Math.fround(a[2]! + a[3]! * t); a[4] = Math.fround(a[4]! + a[5]! * t) }
+      if (extend !== 0) { const t = extend * 1E-3; a[0] = Math.fround(a[0]! * t); a[2] = Math.fround(a[2]! * t); a[4] = Math.fround(a[4]! * t) }
+      const close = s[b] === '[' ? ']' : '}', c = p.indexOf(close)
+      if (c < 0) fail(`FontMatrix: cannot find the corresponding character to '${s[b]}': \`${s.replace(/\n$/, '')}'`)
+      line = bytes(s.slice(0, b + 1) + a.map(v => printf_g(v) + ' ').join('') + p.slice(c)); eol()
+      return
+    }
+    if ((slant !== 0 || extend !== 0) && s.startsWith('/ItalicAngle')) { // t1_modify_italic (extend alone: the angle is not even read)
+      if (slant === 0) return
+      const sp = s.indexOf(' '), [v, r] = num(s.slice(sp + 1)), a = Math.fround(v - Math.atan(slant * 1E-3) * (180 / Math.PI))
+      line = bytes(s.slice(0, sp + 1) + printf_g(a) + r); eol()
+      fd.font_dim[ITALIC_ANGLE_CODE] = { val: a < 0 ? -Math.round(-a) : Math.round(a), set: true }
+      return
+    }
     if (s.startsWith('/FontType')) {
       const i = Math.trunc(num(s.slice(9))[0])
       if (i !== 1) fail(`Type${i} fonts unsupported by pdfTeX`)
@@ -236,10 +266,11 @@ function t1_write(e: Engine, fd: T1Target, b: Uint8Array, path: string, subsette
     if (k === FONTNAME_CODE) {
       if (p[0] !== '/') fail(`a name expected: \`${s.replace(/\n$/, '')}'`)
       const r = s.length - p.length + 1 // after the slash
-      fd.fontname = p.slice(1).split(/[ \n]/)[0]!
+      const name = p.slice(1).split(/[ \n]/)[0]!
+      fd.fontname = name + (slant !== 0 ? `-Slant_${slant}` : '') + (extend !== 0 ? `-Extend_${extend}` : '')
       if (subsetted) { // the tag is written over ABCDEF once the glyphs are known
         fontname_offset = out.length + r
-        line = bytes(s.slice(0, r) + 'ABCDEF+' + fd.fontname + s.slice(r + fd.fontname.length)); eol()
+        line = bytes(s.slice(0, r) + 'ABCDEF+' + fd.fontname + s.slice(r + name.length)); eol()
       }
       return
     }

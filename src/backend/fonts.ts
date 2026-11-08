@@ -421,7 +421,6 @@ function create_fontdictionary(e: Engine, fm: FmEntry, font_objnum: number, f: n
   while (i >= e.font_bc[f]! && !pdf_char_marked(e, f, i)) i--
   fo.last_char = i
   if (fo.first_char > fo.last_char || !pdf_char_marked(e, f, fo.first_char)) { fo.last_char = 0; fo.first_char = 1 }
-  if (fm.slant !== 0 || fm.extend !== 0) pdftex_fail(e, fm.ff_name, 'unsupported: SlantFont/ExtendFont') // pass B: t1_modify_fm
   if (fm.encname !== null) {
     fo.fe = get_fe_entry(e, fm.encname)
     if (is_type1(fm)) {
