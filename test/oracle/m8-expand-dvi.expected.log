@@ -1,0 +1,204 @@
+entering extended mode
+(m8-expand-dvi.tex (plain.tex Preloading the plain format: codes, registers
+,
+\maxdimen=\dimen10
+\hideskip=\skip10
+\centering=\skip11
+\p@=\dimen11
+\z@=\dimen12
+\z@skip=\skip12
+\voidb@x=\box10
+parameters,
+\smallskipamount=\skip13
+\medskipamount=\skip14
+\bigskipamount=\skip15
+\normalbaselineskip=\skip16
+\normallineskip=\skip17
+\normallineskiplimit=\dimen13
+\jot=\dimen14
+\interdisplaylinepenalty=\count23
+\interfootnotelinepenalty=\count24
+fonts, more fonts,
+\itfam=\fam4
+\slfam=\fam5
+\bffam=\fam6
+\ttfam=\fam7
+macros,
+\strutbox=\box11
+\mscount=\count25
+\tabs=\box12
+\tabsyet=\box13
+\tabsdone=\box14
+math definitions,
+\rootbox=\box15
+\p@renwd=\dimen15
+output routines,
+\headline=\toks10
+\footline=\toks11
+\footins=\insert254
+\topins=\insert253
+hyphenation (hyphen.tex))
+> \box1=
+\vbox(30.94444+0.0)x158.99377
+.\hbox(6.94444+1.94444)x158.99377, glue set - 0.48447
+..\kern-2.0 (left margin)
+..\hbox(0.0+0.0)x0.0
+..\tenrm (cmr10-20) T
+..\kern-0.83334
+..\tenrm (cmr10) o
+..\glue 3.33333 plus 1.66666 minus 1.11111
+..\tenrm (cmr10-20) b
+..\kern0.27779
+..\tenrm (cmr10-20) e
+..\glue 3.33333 plus 1.66666 minus 1.11111
+..\tenrm (cmr10) o
+..\tenrm (cmr10-20) r
+..\glue 3.33333 plus 1.66666 minus 1.11111
+..\tenrm (cmr10-20) n
+..\tenrm (cmr10) o
+..\tenrm (cmr10-20) t
+..\glue 3.33333 plus 1.66666 minus 1.11111
+..\tenrm (cmr10-20) t
+..\tenrm (cmr10) o
+..\glue 3.33333 plus 1.66666 minus 1.11111
+..\tenrm (cmr10-20) b
+..\kern0.27779
+..\tenrm (cmr10-20) e
+..\tenrm (cmr10-20) ,
+..\glue 3.33333 plus 2.08331 minus 0.88889
+..\tenrm (cmr10-20) t
+..\tenrm (cmr10-20) h
+..\tenrm (cmr10-20) a
+..\tenrm (cmr10-20) t
+..\glue 3.33333 plus 1.66666 minus 1.11111
+..\tenrm (cmr10-20) i
+..\tenrm (cmr10-20) s
+..\glue 3.33333 plus 1.66666 minus 1.11111
+..\tenrm (cmr10-20) t
+..\tenrm (cmr10-20) h
+..\tenrm (cmr10-20) e
+..\glue 3.33333 plus 1.66666 minus 1.11111
+..\tenrm (cmr10-20) q
+..\tenrm (cmr10-20) u
+..\tenrm (cmr10-20) e
+..\tenrm (cmr10-20) s
+..\tenrm (cmr10-20) t
+..\tenrm (cmr10-20) i
+..\tenrm (cmr10) o
+..\tenrm (cmr10-20) n
+..\tenrm (cmr10-20) .
+..\kern-7.00002 (right margin)
+..\glue(\rightskip) 0.0
+.\penalty 150
+.\glue(\baselineskip) 3.11111
+.\hbox(6.94444+0.0)x158.99377, glue set 0.32764
+..\tenrm (cmr10+30) W
+..\tenrm (cmr10+30) h
+..\tenrm (cmr10+30) e
+..\tenrm (cmr10+30) t
+..\tenrm (cmr10+30) h
+..\tenrm (cmr10+30) e
+..\tenrm (cmr10+30) r
+..\glue 3.33333 plus 1.66666 minus 1.11111
+..\tenrm (cmr10+30) '
+..\tenrm (cmr10+30) t
+..\tenrm (cmr10+30) i
+..\tenrm (cmr10+30) s
+..\glue 3.33333 plus 1.66666 minus 1.11111
+..\tenrm (cmr10+30) n
+..\tenrm (cmr10) o
+..\tenrm (cmr10+30) b
+..\tenrm (cmr10+30) l
+..\tenrm (cmr10+30) e
+..\tenrm (cmr10+30) r
+..\glue 3.33333 plus 1.66666 minus 1.11111
+..\tenrm (cmr10+30) i
+..\tenrm (cmr10+30) n
+..\glue 3.33333 plus 1.66666 minus 1.11111
+..\tenrm (cmr10+30) t
+..\tenrm (cmr10+30) h
+..\tenrm (cmr10+30) e
+..\glue 3.33333 plus 1.66666 minus 1.11111
+..\tenrm (cmr10+30) m
+..\tenrm (cmr10+30) i
+..\tenrm (cmr10+30) n
+..\tenrm (cmr10+30) d
+..\glue 3.33333 plus 1.66666 minus 1.11111
+..\tenrm (cmr10+30) t
+..\tenrm (cmr10) o
+..\glue(\rightskip) 0.0
+.\penalty 150
+.\glue(\baselineskip) 5.05556
+.\hbox(6.94444+0.0)x158.99377, glue set 139.52151fil
+..\tenrm (cmr10) s
+..\tenrm (cmr10) u
+..\tenrm (cmr10) ^^K (ligature ff)
+..\tenrm (cmr10) e
+..\tenrm (cmr10) r
+..\tenrm (cmr10) .
+..\penalty 10000
+..\kern-7.00002 (right margin)
+..\glue(\parfillskip) 0.0 plus 1.0fil
+..\glue(\rightskip) 0.0
+
+! OK.
+l.8 \showbox1
+
+
+
+Underfull \hbox (badness 10000) detected at line 9
+\tenrm Test to be
+
+\hbox(6.94444+0.0)x80.0, glue set 10.65005
+.\tenrm T
+.\kern-0.83334
+.\tenrm e
+.\tenrm s
+.\tenrm t
+.\glue 3.33333 plus 1.66666 minus 1.11111
+.\tenrm t
+.\tenrm o
+.\glue 3.33333 plus 1.66666 minus 1.11111
+.\tenrm b
+.\kern0.27779
+.\tenrm e
+
+
+Underfull \hbox (badness 10000) detected at line 9
+\tenrm Test to be
+
+\hbox(6.94444+0.0)x80.0, glue set 10.65005
+.\tenrm T
+.\kern-0.83334
+.\tenrm e
+.\tenrm s
+.\tenrm t
+.\glue 3.33333 plus 1.66666 minus 1.11111
+.\tenrm t
+.\tenrm o
+.\glue 3.33333 plus 1.66666 minus 1.11111
+.\tenrm b
+.\kern0.27779
+.\tenrm e
+
+> \box3=
+\hbox(6.94444+0.0)x80.0, glue set 10.65005
+.\tenrm T
+.\kern-0.83334
+.\tenrm e
+.\tenrm s
+.\tenrm t
+.\glue 3.33333 plus 1.66666 minus 1.11111
+.\tenrm t
+.\tenrm o
+.\glue 3.33333 plus 1.66666 minus 1.11111
+.\tenrm b
+.\kern0.27779
+.\tenrm e
+
+! OK.
+l.9 ...x3\hbox to 80pt{\tenrm Test to be}\showbox3
+
+
+ )
+No pages of output.

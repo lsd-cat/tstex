@@ -1,0 +1,11 @@
+%! oracle: etex
+\input plain
+\pdffontexpand\tenrm 30 20 10 autoexpand
+\pdftracingfonts=1 \showboxbreadth=10000 \showboxdepth=10000
+\tenrm \hsize=2.2in \parindent=0pt \tolerance=10000 \pdfadjustspacing=2 \pdfprotrudechars=2
+\rpcode\tenrm`.=700 \lpcode\tenrm`T=200 \efcode\tenrm`o=0
+\setbox1\vbox{To be or not to be, that is the question. Whether 'tis nobler in the mind to suffer.\par}
+\showbox1
+\pdftracingfonts=0 \setbox2\hbox to 80pt{\tenrm Test to be}\setbox3\hbox to 80pt{\tenrm Test to be}\showbox3
+\setbox4\vbox{\unvcopy1}
+\end

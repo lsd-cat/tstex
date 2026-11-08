@@ -62,7 +62,7 @@ export function pdf_state() {
     gone: 0, fixed_draftmode: 0, draftmode_set: false, zip_start: -1, save_offset: 0, stream_length_offset: 0, seek_write_length: false,
     version_written: false, fixed_major: 0, fixed_minor: 0, fixed_objcompresslevel: 0, fixed_decimal_digits: 0, min_bp_val: 0,
     scaled_out: 0, init_output: false, output_file_name: '',
-    f: null_font, h: 0, v: 0, tj_start_h: 0, delta_h: 0, origin_h: 0, origin_v: 0, doing_string: false, doing_text: false,
+    f: null_font, h: 0, v: 0, tj_start_h: 0, cur_Tm_a: 0, delta_h: 0, origin_h: 0, origin_v: 0, doing_string: false, doing_text: false,
     last_f: null_font, last_fs: 0, gen_faked_interword_space: false, gen_running_link: true,
     // [32d] obj_tab
     obj_info: [0], obj_link: [0], obj_offset: [0], obj_os_idx: [0], obj_aux: [0], head_tab: new Array<number>(11).fill(0),
@@ -558,13 +558,23 @@ function pdf_set_origin_temp(e: Engine, h: number, v: number): void {
 function pdf_end_string(e: Engine): void { if (e.ps.doing_string) { pdf_print(e, ')]TJ'); e.ps.doing_string = false } }
 function pdf_end_string_nl(e: Engine): void { if (e.ps.doing_string) { pdf_print_ln(e, ')]TJ'); e.ps.doing_string = false } }
 
-// [32c] pdf_set_text_pos; font expansion is unsupported, so pdf_cur_Tm_a stays 0 and the Td branch is the only one
-function pdf_set_text_pos(e: Engine, v: number, v_out: number): void {
+// [32c] get_font_auto_expand_ratio, pdf_set_text_pos (an auto-expanded font is set with a scaled text matrix)
+const get_font_auto_expand_ratio = (e: Engine, f: number) => e.pdf_font_auto_expand[f] ? e.pdf_font_expand_ratio[f]! : 0
+function pdf_set_text_pos(e: Engine, v: number, v_out: number, f: number): void {
   const s = e.ps
   pdf_out(e, 32)
-  pdf_print_bp(e, e.cur_h - s.tj_start_h); s.h = (s.tj_start_h + s.scaled_out) | 0
-  pdf_out(e, 32); pdf_print_real(e, v, s.fixed_decimal_digits); s.v = (s.v - v_out) | 0
-  pdf_print(e, ' Td')
+  const pdf_new_Tm_a = get_font_auto_expand_ratio(e, f)
+  if (pdf_new_Tm_a !== 0 || s.cur_Tm_a !== 0) {
+    pdf_print_real(e, 1000 + pdf_new_Tm_a, 3); pdf_print(e, ' 0 0 1 ')
+    pdf_print_bp(e, e.cur_h - s.origin_h); s.h = (s.origin_h + s.scaled_out) | 0
+    pdf_out(e, 32); pdf_print_bp(e, s.origin_v - e.cur_v); s.v = (s.origin_v - s.scaled_out) | 0
+    pdf_print(e, ' Tm')
+    s.cur_Tm_a = pdf_new_Tm_a
+  } else {
+    pdf_print_bp(e, e.cur_h - s.tj_start_h); s.h = (s.tj_start_h + s.scaled_out) | 0
+    pdf_out(e, 32); pdf_print_real(e, v, s.fixed_decimal_digits); s.v = (s.v - v_out) | 0
+    pdf_print(e, ' Td')
+  }
   s.tj_start_h = s.h; s.delta_h = 0
 }
 
@@ -574,11 +584,16 @@ function pdf_use_font(e: Engine, f: number, fontnum: number): void {
   e.ps.font_size[f] = e.ps.scaled_out; e.font_used[f] = true; e.ps.font_num[f] = fontnum
 }
 export function pdf_init_font(e: Engine, f: number): void {
-  const s = e.ps
+  const s = e.ps, b = e.pdf_font_blink[f]!, auto = e.pdf_font_auto_expand[f] && b !== null_font
+  if (auto) { // an auto-expanded font shares its base font's object
+    if (!isscalable(e, b)) pdf_error(e, 'font expansion', 'auto expansion is only possible with scalable fonts')
+    if (!e.font_used[b]) pdf_init_font(e, b)
+    e.fm.font_map[f] = e.fm.font_map[b]
+  }
   if (isscalable(e, f)) {
     for (let i = s.head_tab[obj_type_font]!; i !== 0; i = s.obj_link[i]!) {
       const k = s.obj_info[i]!
-      if (isscalable(e, k) && e.fm.font_map[k] === e.fm.font_map[f] && e.font_name[k] === e.font_name[f]) {
+      if (isscalable(e, k) && e.fm.font_map[k] === e.fm.font_map[f] && (e.font_name[k] === e.font_name[f] || (auto && e.font_name[k] === e.font_name[b]))) {
         pdf_use_font(e, f, s.font_num[k]! < 0 ? s.font_num[k]! : -k); return
       }
     }
@@ -606,14 +621,20 @@ function pdf_begin_text(e: Engine): void {
   const s = e.ps
   pdf_set_origin(e, 0, e.cur_page_height)
   pdf_print_ln(e, 'BT')
-  s.doing_text = true; s.f = null_font; s.last_f = null_font; s.last_fs = 0; s.doing_string = false
+  s.doing_text = true; s.f = null_font; s.last_f = null_font; s.last_fs = 0; s.doing_string = false; s.cur_Tm_a = 0
 }
 
-// [32b] adv_char_width (pdf_cur_Tm_a = 0; PK fonts are unsupported)
+// [32b] adv_char_width (PK fonts are unsupported)
 function adv_char_width(e: Engine, f: number, c: number): number {
-  const w = char_width(e, f, char_info(e, f, c))
-  const s = divide_scaled(e, w, e.ps.font_size[f]!, 4)
-  e.ps.delta_h = (e.ps.delta_h + e.ps.scaled_out) | 0
+  const w = char_width(e, f, char_info(e, f, c)), st = e.ps
+  let s: number, s_out: number
+  if (st.cur_Tm_a === 0) { s = divide_scaled(e, w, st.font_size[f]!, 4); s_out = st.scaled_out }
+  else {
+    s = divide_scaled(e, round_xn_over_d(e, w, 1000, 1000 + st.cur_Tm_a), st.font_size[f]!, 4)
+    s_out = round_xn_over_d(e, round_xn_over_d(e, st.font_size[f]!, Math.abs(s), 10000), 1000 + st.cur_Tm_a, 1000)
+    if (s < 0) s_out = -s_out
+  }
+  st.delta_h = (st.delta_h + s_out) | 0
   return s
 }
 
@@ -624,16 +645,25 @@ function pdf_begin_string(e: Engine, f: number): void {
   if (!st.doing_text) { pdf_begin_text(e); must_set_text_pos = true }
   if ((!st.gen_faked_interword_space && st.f !== f) || (st.gen_faked_interword_space && !(e.font_used[f] && e.font_used[st.f])))
     { pdf_end_string(e); pdf_set_font(e, f) }
-  let s = divide_scaled(e, e.cur_h - (st.tj_start_h + st.delta_h), st.font_size[f]!, 3), s_out = st.scaled_out
+  let s: number, s_out = 0
+  if (st.cur_Tm_a === 0) { s = divide_scaled(e, e.cur_h - (st.tj_start_h + st.delta_h), st.font_size[f]!, 3); s_out = st.scaled_out }
+  else {
+    s = divide_scaled(e, round_xn_over_d(e, e.cur_h - (st.tj_start_h + st.delta_h), 1000, 1000 + st.cur_Tm_a), st.font_size[f]!, 3)
+    if (Math.abs(s) < 0o100000) {
+      s_out = round_xn_over_d(e, round_xn_over_d(e, st.font_size[f]!, Math.abs(s), 1000), 1000 + st.cur_Tm_a, 1000)
+      if (s < 0) s_out = -s_out
+    }
+  }
   let v = 0, v_out = 0
   if (Math.abs(e.cur_v - st.v) >= st.min_bp_val) { v = divide_scaled(e, st.v - e.cur_v, one_hundred_bp, st.fixed_decimal_digits + 2); v_out = st.scaled_out }
-  if (!must_set_text_pos) must_set_text_pos = v !== 0 || Math.abs(s) >= 0o100000
+  if (!must_set_text_pos) must_set_text_pos = v !== 0 || Math.abs(s) >= 0o100000 || get_font_auto_expand_ratio(e, f) !== st.cur_Tm_a
+    || get_font_auto_expand_ratio(e, f) !== get_font_auto_expand_ratio(e, st.f)
   if (must_set_text_pos) must_end_string = true
   const space = param(e, space_code, f)
   const move_looks_like_interword_space = space > one_bp && s_out > space - param(e, space_shrink_code, f) - Math.trunc(one_bp / 10) && v === 0
   if (st.gen_faked_interword_space && move_looks_like_interword_space) must_insert_space = true
   if (must_insert_space) fatal_error(e, 'unsupported: \\pdfinterwordspaceon') // pass B
-  if (must_end_string) { pdf_end_string(e); pdf_set_font(e, f); pdf_set_text_pos(e, v, v_out); s = 0 }
+  if (must_end_string) { pdf_end_string(e); pdf_set_font(e, f); pdf_set_text_pos(e, v, v_out, f); s = 0 }
   if (!st.doing_string) { pdf_print(e, ' ['); if (s === 0) pdf_out(e, 40) }
   if (s !== 0) {
     if (st.doing_string) pdf_out(e, 41)

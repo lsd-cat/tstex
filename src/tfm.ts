@@ -366,7 +366,7 @@ function expand_font_name(e: Engine, f: number, x: number): string { return e.fo
 function auto_expand_font(e: Engine, f: number, x: number): number {
   const k = ++e.font_ptr, fi = e.font_info
   if (e.font_ptr >= e.lim.font_max) overflow(e, 'maximum internal font number (font_max)', e.lim.font_max)
-  e.font_name[k] = expand_font_name(e, f, x); e.font_area[k] = e.font_area[f]!
+  e.font_name[k] = expand_font_name(e, f, x); e.font_area[k] = e.font_area[f]!; e.font_check[k] = 0 // pdftex leaves font_check unset (uninitialised memory in its DVI fnt_def)
   const t = e.text.get(font_id_base + f); if (t !== undefined) e.text.set(font_id_base + k, t)
   e.hyphen_char[k] = e.hyphen_char[f]!; e.skew_char[k] = e.skew_char[f]!
   e.font_bchar[k] = e.font_bchar[f]!; e.font_false_bchar[k] = e.font_false_bchar[f]!
@@ -521,7 +521,7 @@ function copy_font_info(e: Engine, f: number): number {
   if (is_letterspaced_font(e, f)) pdf_error(e, '\\pdfcopyfont', 'cannot copy a letterspaced font')
   const k = ++e.font_ptr, fi = e.font_info
   if (e.font_ptr >= e.lim.font_max) overflow(e, 'maximum internal font number (font_max)', e.lim.font_max)
-  e.font_name[k] = e.font_name[f]!; e.font_area[k] = non_existent_path
+  e.font_name[k] = e.font_name[f]!; e.font_area[k] = non_existent_path; e.font_check[k] = 0 // unset in pdftex
   e.hyphen_char[k] = e.hyphen_char[f]!; e.skew_char[k] = e.skew_char[f]!
   e.font_bchar[k] = e.font_bchar[f]!; e.font_false_bchar[k] = e.font_false_bchar[f]!
   const bc = e.font_bc[f]!, ec = e.font_ec[f]!
