@@ -190,6 +190,11 @@ export function scan_something_internal(e: Engine, level: number, negative: bool
         if (m === input_line_no_code) e.cur_val = e.line
         else if (m === badness_code) e.cur_val = e.last_badness
         else if (m === pdftex_version_code) e.cur_val = 140
+        else if (m < eTeX_int) { // pdftex.web: \pdflastobj … \pdflastlink stay 0 while every primitive that sets them is unsupported
+          const us = Math.round((performance.now() - e.start_ms) * 1000) // get_microinterval: scaled seconds since the start
+          e.cur_val = m === pdftex_version_code + 10 ? (us >= 32768e6 ? 0x7fffffff : Math.trunc(us / 1e6) * 65536 + Math.trunc(Math.trunc((us % 1e6) / 100) * 65536 / 10000))
+            : m === pdftex_version_code + 11 ? 2 : m === pdftex_version_code + 12 ? e.random_seed : 0 // \pdfshellescape: restricted
+        }
         else if (m >= eTeX_glue) { // etex.ch Process an expression and return
           if (m < eTeX_mu) { scan_glue(e, mu_val); e.cur_val_level = glue_val } // \mutoglue
           else if (m < eTeX_expr) { scan_glue(e, glue_val); e.cur_val_level = mu_val } // \gluetomu

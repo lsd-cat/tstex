@@ -159,6 +159,7 @@ export class Engine {
   xprn = Uint8Array.from({ length: 256 }, (_, i) => +(i >= 32 && i <= 126)); translate_filename = ''
   // §246
   sys_time = 0; sys_day = 0; sys_month = 0; sys_year = 0
+  start_ms = 0; random_seed = 0 // pdftex.web: the start time for \pdfelapsedtime, random_seed
 
   // §71 lines the terminal will supply (null: no terminal); §1302 the format made by \dump, §1337 the one `&name' loads
   term_in: string[] | null = null; fmt_file: Format | null = null; format: Format | Promise<Format> | null; date: Date | undefined
@@ -174,7 +175,6 @@ export class Engine {
   // with it, the first line comes from `terminal' (init_terminal) and so does every later terminal read.
   // `file' is the first line (default `<jobname>.tex'); `jobname' with `file' is -jobname
   async run(opts: { jobname?: string, file?: string, mode: 'ini' | 'etex' | 'latex', terminal?: string[], date?: Date }): Promise<void> {
-    if (opts.mode === 'latex') throw new Error(`unsupported mode: ${opts.mode}`)
     this.date = opts.date; this.etex_p = opts.mode === 'etex'; this.format = await this.format // loadFormat's result may be passed unawaited
     init_specs(this); init_fonts(this); init_eqtb(this); init_prim(this); fix_date_and_time(this)
     this.terminal += 'This is tstex, Version 3.141592653' + this.format_ident + '\n' // §61
@@ -199,19 +199,27 @@ export class Engine {
       if (this.buffer[this.cur_input.loc] === 42) this.cur_input.loc++
       this.eTeX_mode = 1; etex_ext_vars(this); entered = true
     }
-    if (!entered && this.buffer[this.cur_input.loc] === 38) { // §524 open_fmt_file: `&name' names the format
-      let j = ++this.cur_input.loc; this.buffer[this.last] = 32
-      while (this.buffer[j] !== 32) j++
-      const name = String.fromCharCode(...this.buffer.slice(this.cur_input.loc, j))
-      if (this.format === null) throw new Error(`format ${name} was not supplied`)
-      this.cur_input.loc = j
+    // mode 'latex' is `-fmt pdflatex': the format loads with no `&' (tex.ch dump_name)
+    if (!entered && (opts.mode === 'latex' || this.buffer[this.cur_input.loc] === 38)) { // §524 open_fmt_file: `&name' names the format
+      if (this.buffer[this.cur_input.loc] === 38) {
+        let j = ++this.cur_input.loc; this.buffer[this.last] = 32
+        while (this.buffer[j] !== 32) j++
+        if (this.format === null) throw new Error(`format ${String.fromCharCode(...this.buffer.slice(this.cur_input.loc, j))} was not supplied`)
+        this.cur_input.loc = j
+      }
+      if (this.format === null) throw new Error('mode latex needs a format')
       load_fmt_file(this, this.format)
       while (this.cur_input.loc < this.cur_input.limit && this.buffer[this.cur_input.loc] === 32) this.cur_input.loc++
       fix_date_and_time(this)
     }
+    if (opts.mode === 'latex') { // -interaction=batchmode (tex.ch interaction_option), -output-format=dvi (pdftex.web pdf_output_option)
+      this.interaction = opts.terminal ? error_stop_mode : batch_mode; this.equiv[int_base + pdf_output_code] = 0
+    }
     if (this.eTeX_ex) this.terminal += 'entering extended mode\n'
     if (this.equiv[int_base + end_line_char_code]! < 0 || this.equiv[int_base + end_line_char_code]! > 255) this.cur_input.limit--
     else this.buffer[this.cur_input.limit] = this.equiv[int_base + end_line_char_code]!
+    const t = (this.date ?? new Date()).getTime(); this.start_ms = performance.now() // pdftex.web: random_seed:=(microseconds*1000)+(epochseconds mod 1000000)
+    this.random_seed = (t % 1000) * 1000000 + Math.floor(t / 1000) % 1000000
     this.selector = this.interaction === batch_mode ? no_print : term_only
     try {
       if (this.cur_input.loc < this.cur_input.limit && this.equiv[cat_code_base + this.buffer[this.cur_input.loc]!] !== Cmd.escape) {

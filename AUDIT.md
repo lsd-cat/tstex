@@ -165,6 +165,9 @@ Findings from porting. The port reproduces TeX's behaviour, bugs included; entri
 - `\pdftexbanner` prints pdftex's banner (`This is pdfTeX, Version 3.141592653-2.6-1.40.29 (TeX Live 2026) kpathsea version 6.4.2`) so logs that show it compare equal. `\pdftexrevision` is `29`.
 - `\pdffilesize` (utils.c `getfilesize`): `makecfilename` drops every `"` from the name (expl3 quotes names with spaces); an unknown file gives the empty string. The lookup is `kpse_find_tex`, i.e. `find(name, 'tex')`.
 - `\pdfglyphtounicode` scans and drops its two arguments (the table lives in tounicode.c, is not dumped, and feeds only PDF ToUnicode maps; shortcut until M6).
+- pdftex's `last_item` codes 7–19 (`\pdflastobj` … `\pdflastlink`) fell through to e‑TeX's integer cases and ran `scan_glue` (`\gluestretchorder`'s branch): expl3's `\documentclass` code reads one and got "Missing number" / "Illegal unit". Now `\pdfelapsedtime` is `get_microinterval` from the run's start, `\pdfshellescape` is 2 (restricted, as TeX Live), `\pdfrandomseed` is `random_seed` from the start time (`opts.date` makes it reproducible), the others 0 (every primitive that sets them is unsupported).
+- `\pdfcreationdate` (utils.c `makepdftime`): `D:YYYYMMDDHHMMSS` plus `Z` or `+HH'MM'` from the local time zone of `opts.date` (or now).
+- `run({ mode: 'latex' })` is `pdftex -fmt pdflatex -output-format=dvi -interaction=batchmode`: the format loads with no `&` on the first line, then `\pdfoutput:=0` (pdftex.web `pdf_output_option`) and batch mode (tex.ch `interaction_option`; the format stores batch mode anyway since fmtutil builds it so).
 - Boot test: `node tools/build-format.ts` against `pdftex -ini -etex -jobname=pdflatex -translate-file=cp227.tcx '*pdflatex.ini'` (both with `max_print_line=9999`): the normalised logs differ only in `\dump`'s `strings of total length` (no string pool) and `memory locations dumped; current usage` lines.
 
 ## Harness
