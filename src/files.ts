@@ -55,7 +55,7 @@ export function more_name(e: Engine, c: number): boolean {
 
 // §517 end_name
 function end_name(e: Engine): void {
-  const s = String.fromCharCode(...e.name_chars)
+  const s = e.name_chars.map(c => String.fromCharCode(c)).join('') // no spread: a name may exceed the argument limit
   e.cur_area = s.slice(0, e.area_delimiter)
   if (e.ext_delimiter === 0) { e.cur_ext = ''; e.cur_name = s.slice(e.area_delimiter) }
   else { e.cur_name = s.slice(e.area_delimiter, e.ext_delimiter - 1); e.cur_ext = s.slice(e.ext_delimiter - 1) }

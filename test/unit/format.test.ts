@@ -37,3 +37,26 @@ test('* then &name: &name is a file name, not a format', async () => {
   assert.match(e.terminal, /entering extended mode\n! I can't find file `&x'\.\n<\*> \*&x \n {8}\\message\{hi\}\\end\n/)
   assert.match(e.log, /End of file on the terminal!/) // the file-name prompt reads the exhausted terminal
 })
+
+// loadFormat on hostile bytes: one clear error each, bounded memory (the decompressed size is capped)
+test('format bytes: round trip, then corrupt formats fail cleanly', async () => {
+  const { dumpFormat, loadFormat } = await import('../../src/format.ts')
+  const e1 = new Engine({ fs })
+  await e1.run({ mode: 'ini', terminal: ['a'], date })
+  const good = await dumpFormat(e1.fmt_file!)
+  assert.strictEqual((await loadFormat(good)).format_ident, e1.fmt_file!.format_ident)
+  const gz = async (s: string | Uint8Array<ArrayBuffer>) => new Uint8Array(await new Response(new Blob([s]).stream().pipeThrough(new CompressionStream('gzip'))).arrayBuffer())
+  const bad: [string, Uint8Array][] = [
+    ['truncated gzip', good.slice(0, good.length >> 1)],
+    ['not gzip', new TextEncoder().encode('hello')],
+    ['empty', new Uint8Array()],
+    ['gzip of non-JSON', await gz('\x00\x01 not json')],
+    ['wrong magic', await gz(JSON.stringify(['tstex format 0', {}]))],
+    ['bare object (old format)', await gz('{"$o":{}}')],
+    ['missing tables', await gz(JSON.stringify(['tstex format 1', { $o: { info: [] } }]))],
+    ['unknown typed array', await gz(JSON.stringify(['tstex format 1', { $t: 'Float64Array', d: [1] }]))],
+    ['deep nesting', await gz('["tstex format 1",' + '['.repeat(200000) + ']'.repeat(200000) + ']')],
+    ['gzip bomb', await gz(new Uint8Array(130 << 20).fill(32))],
+  ]
+  for (const [what, b] of bad) await assert.rejects(loadFormat(b), /^Error: Fatal format file error; I'm stymied/, what)
+})

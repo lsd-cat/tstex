@@ -121,9 +121,26 @@ function dec(j: J, refs: unknown[]): unknown {
   for (const [k, x] of Object.entries(j.$o as Record<string, J>)) o[k] = dec(x, refs)
   return o
 }
-const pipe = async (b: Uint8Array, s: CompressionStream | DecompressionStream) =>
-  new Uint8Array(await new Response(new Blob([b as Uint8Array<ArrayBuffer>]).stream().pipeThrough(s)).arrayBuffer())
+const fmt_magic = 'tstex format 1' // §1307 format_ident check: bump when fmt_keys or the encoding change
+const fmt_max = 128 << 20 // decompressed bytes accepted (latex.fmt: 15 MB); a gzip bomb stops here
+const pipe = async (b: Uint8Array, s: CompressionStream | DecompressionStream, max = Infinity) => {
+  const r = new Blob([b as Uint8Array<ArrayBuffer>]).stream().pipeThrough(s).getReader(), parts: Uint8Array[] = []
+  let n = 0
+  for (let c; !(c = await r.read()).done;) { n += c.value.length; if (n > max) { await r.cancel(); throw new Error(`more than ${max} bytes`) } parts.push(c.value) }
+  const out = new Uint8Array(n); n = 0
+  for (const p of parts) { out.set(p, n); n += p.length }
+  return out
+}
 export const dumpFormat = (f: Format): Promise<Uint8Array> =>
-  pipe(new TextEncoder().encode(JSON.stringify(enc(f, new Map()))), new CompressionStream('gzip'))
-export const loadFormat = async (b: Uint8Array): Promise<Format> =>
-  dec(JSON.parse(new TextDecoder().decode(await pipe(b, new DecompressionStream('gzip')))), []) as Format
+  pipe(new TextEncoder().encode(JSON.stringify([fmt_magic, enc(f, new Map())])), new CompressionStream('gzip'))
+// §1303 load_fmt_file's checks (`(Fatal format file error; I'm stymied)'): any bad byte is one clear JS error, never a hang
+export async function loadFormat(b: Uint8Array): Promise<Format> {
+  try {
+    const j = JSON.parse(new TextDecoder().decode(await pipe(b, new DecompressionStream('gzip'), fmt_max)))
+    if (!Array.isArray(j) || j[0] !== fmt_magic) throw new Error(`not a ${fmt_magic} file`)
+    const f = dec(j[1], []) as Record<string, unknown>
+    const missing = fmt_keys.find(k => typeof f !== 'object' || f === null || f[k] === undefined)
+    if (missing !== undefined) throw new Error(`no ${missing}`)
+    return f as Format
+  } catch (x) { throw new Error(`Fatal format file error; I'm stymied (${x instanceof Error ? x.message : x})`) }
+}

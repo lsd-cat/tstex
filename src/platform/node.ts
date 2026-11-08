@@ -1,6 +1,6 @@
 // TexFS over local directories, searched in order (printed as `./name'), then texmf trees through their ls-R databases
-import { readFileSync, statSync } from 'node:fs'
-import { join, dirname } from 'node:path'
+import { readFileSync, statSync, lstatSync, realpathSync } from 'node:fs'
+import { join, dirname, sep } from 'node:path'
 import type { TexFS } from './fs.ts'
 
 // kpathsea's search path per file kind, as directories relative to a texmf root (`progname=pdflatex' TEXINPUTS);
@@ -28,23 +28,30 @@ export function parse_ls_r(text: string): Map<string, string[]> {
   return db
 }
 
+// Security policy (AUDIT.md): a name is read only from inside a root or texmf tree after resolving symlinks; absolute
+// names (but /dev/null), `..' components, NUL bytes and names the OS rejects are not found; nothing here throws
+const real = (p: string) => { try { return realpathSync(p) } catch { return null } }
+const inside = (p: string, root: string | null) => { const r = real(p); return r !== null && root !== null && (r === root || r.startsWith(root + sep)) }
+const is_file = (p: string) => { try { return statSync(p, { throwIfNoEntry: false })?.isFile() === true } catch { return false } }
+
 export function nodeFS(roots: string[], texmfRoots: string[] = []): TexFS {
-  const trees = texmfRoots.map(root => ({ root, db: parse_ls_r(readFileSync(join(root, 'ls-R'), 'latin1')) }))
+  const trees = texmfRoots.map(root => ({ root, real_root: real(root), db: parse_ls_r(readFileSync(join(root, 'ls-R'), 'latin1')) }))
+  const real_roots = roots.map(real)
   const read = (p: string) => { try { return new Uint8Array(readFileSync(p)) } catch { return null } }
   // kpathsea order: path elements in order, each over the trees in order; within a subtree the ls-R order
   const locate = (name: string, kind: string): { file: string, shown: string } | null => {
-    if (name.split(/[\\/]/).includes('..')) return null // no path escape from the roots
     if (name === '/dev/null') return { file: name, shown: name } // kpathsea finds it (expl3 sets \c_sys_platform_str to unix); no other absolute path escapes
+    if (name.startsWith('/') || name.includes('\0') || name.split(/[\\/]/).includes('..')) return null // no path escape from the roots
     const names = kind === 'tex' && !/\.[^/]*$/.test(name) ? [name, name + '.tex'] : [name]
-    for (const root of roots) for (const n of names) {
+    for (const [i, root] of roots.entries()) for (const n of names) {
       const file = join(root, n)
-      if (statSync(file, { throwIfNoEntry: false })?.isFile()) return { file, shown: /^\.?\//.test(n) ? n : './' + n } // kpathsea prints an absolute or explicitly relative name as given
+      if (is_file(file) && inside(file, real_roots[i] ?? null)) return { file, shown: /^\.?\//.test(n) ? n : './' + n } // kpathsea prints an absolute or explicitly relative name as given
     }
     for (const n of names) {
       const sl = n.lastIndexOf('/'), base = n.slice(sl + 1), sub = n.slice(0, sl + 1) // `\input base/foo' matches a dir ending in base/
-      for (const d of kind_dirs[kind] ?? ['']) for (const { root, db } of trees) {
+      for (const d of kind_dirs[kind] ?? ['']) for (const { root, real_root, db } of trees) {
         const dir = db.get(base)?.find(x => (d.endsWith('/') ? x.startsWith(d) : x === d + '/') && x.endsWith(sub))
-        if (dir !== undefined) return { file: join(root, dir, base), shown: join(root, dir, base) }
+        if (dir !== undefined && inside(join(root, dir, base), real_root)) return { file: join(root, dir, base), shown: join(root, dir, base) }
       }
     }
     return null
@@ -52,7 +59,13 @@ export function nodeFS(roots: string[], texmfRoots: string[] = []): TexFS {
   return {
     find: (name, kind) => { const l = locate(name, kind); return l && read(l.file) },
     path: (name, kind) => locate(name, kind)?.shown ?? null,
-    writable: name => roots.length === 0 || statSync(dirname(join(roots[0]!, name)), { throwIfNoEntry: false })?.isDirectory() === true,
-    stat: (name, kind) => { const l = locate(name, kind), st = l && statSync(l.file, { throwIfNoEntry: false }); return st ? { size: st.size, mtime: st.mtime } : null },
+    // a_open_out: the directory exists inside the first root (after symlinks), the name is one the OS takes, and it is not a symlink
+    writable: name => {
+      if (roots.length === 0) return true
+      if (name.startsWith('/') || name.includes('\0') || name.split('/').some(c => c === '..' || c.length > 255)) return false
+      const file = join(roots[0]!, name)
+      try { return statSync(dirname(file)).isDirectory() && inside(dirname(file), real_roots[0] ?? null) && lstatSync(file, { throwIfNoEntry: false })?.isSymbolicLink() !== true } catch { return false }
+    },
+    stat: (name, kind) => { const l = locate(name, kind); try { const st = l && statSync(l.file); return st ? { size: st.size, mtime: st.mtime } : null } catch { return null } },
   }
 }

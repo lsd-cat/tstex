@@ -2,8 +2,8 @@
 // --ini (default) and --etex run INITEX; --fmt loads a format from tools/build-format.ts (pdflatex -output-format=dvi).
 // --texmf: plain directories searched first; --texmf-tree: texmf trees with an ls-R (default $TEXMFDIST, if set).
 // Writes <jobname>.log, .dvi and \openout files next to the input file.
-import { readFileSync, writeFileSync } from 'node:fs'
-import { dirname, basename, join, resolve } from 'node:path'
+import { readFileSync, writeFileSync, openSync, closeSync, realpathSync, constants } from 'node:fs'
+import { dirname, basename, join, resolve, sep } from 'node:path'
 import { Engine } from '../src/engine.ts'
 import { nodeFS } from '../src/platform/node.ts'
 import { loadFormat } from '../src/format.ts'
@@ -31,8 +31,19 @@ const format = fmt ? await loadFormat(readFileSync(fmt)) : undefined
 const limits = process.env.max_print_line ? { max_print_line: +process.env.max_print_line } : {} // texmf.cnf variables come from the environment
 const e = new Engine({ fs: nodeFS([dir, ...texmf, process.cwd()], trees), format, tcx, limits })
 await e.run({ file: basename(file), jobname, mode })
-writeFileSync(join(dir, e.job_name + '.log'), e.log, 'latin1')
-if (e.dvi) writeFileSync(join(dir, e.job_name + '.dvi'), e.dvi)
-for (const [name, text] of e.outputFiles) writeFileSync(join(dir, name), text, 'latin1')
+// Security: only inside the job directory (after symlinks), never through a symlink, never a name the engine should have refused
+const real_dir = realpathSync(dir)
+let refused = false
+const out = (name: string, data: string | Uint8Array) => {
+  try {
+    const p = join(dir, name), d = realpathSync(dirname(p))
+    if (name.startsWith('/') || name.split('/').includes('..') || (d !== real_dir && !d.startsWith(real_dir + sep))) throw new Error('outside the job directory')
+    const fd = openSync(p, constants.O_WRONLY | constants.O_CREAT | constants.O_TRUNC | constants.O_NOFOLLOW, 0o666)
+    try { writeFileSync(fd, data, 'latin1') } finally { closeSync(fd) }
+  } catch (x) { refused = true; process.stderr.write(`tstex: not writing ${JSON.stringify(name)}: ${x instanceof Error ? x.message : x}\n`) }
+}
+out(e.job_name + '.log', e.log)
+if (e.dvi) out(e.job_name + '.dvi', e.dvi)
+for (const [name, text] of e.outputFiles) out(name, text)
 process.stdout.write(Buffer.from(e.terminal, 'latin1'))
-process.exit(e.history <= 1 ? 0 : 1)
+process.exit(e.history <= 1 && !refused ? 0 : 1)
