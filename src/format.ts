@@ -22,6 +22,7 @@ const fmt_keys = [
   'hy', 'interaction', 'format_ident',
   'eTeX_mode', 'sa', 'sa_free', 'sa_root', // etex.ch Dump the eTeX state, sa_root
   'xord', 'xchr', 'xprn', // tex.ch Dump xord, xchr, and xprn
+  'glyph_unicode', // pdftex.web dumptounicode
 ] as const
 export type Format = Pick<Engine, typeof fmt_keys[number]>
 

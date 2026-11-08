@@ -70,8 +70,10 @@ src/
     fs.ts                interface TexFS { find(name, kind): Promise<Uint8Array|null> }
     node.ts              kpsewhich‑less lookup over a TEXMF tree + ls‑R index
     browser.ts           fetch() against a texmf URL + Cache Storage
-backend/
-  pdf.ts  type1.ts       M6: PDF writer, PFB embedding
+  pdf.ts                 pdftex.web [32b]–[32f]: PDF buffer, obj_tab, page description, pdf_ship_out, finishing the file (M6)
+  backend/
+    fonts.ts  type1.ts   pdfTeX's C back end: mapfile/writeenc/writefont/tounicode.c, writet1.c (whole PFB embedding) (M6)
+    images.ts            M6 pass B: PNG/JPEG/PDF inclusion
 tools/
   oracle.sh              run pdftex on a .tex, normalise log, store .expected.log
   build-format.ts        make latex.fmt for our engine
@@ -127,7 +129,7 @@ Each has an exit test. Nothing moves to the next milestone until the test passes
 
 **M5 LaTeX boots.** `format.ts`, `files.ts` complete, `tools/build-format.ts`. Exit: `pdftex -ini -etex latex.ltx \dump` equivalent produces a format; reloading it and compiling a 2‑page `article` with `\section`, footnotes, `\ref`/`\label` (two runs), a `tabular`, and `amsmath` gives identical `\showbox` dumps and DVI. Also run the `trip` test and diff `trip.log`; known differences are listed in `test/trip-diffs.md`.
 
-**M6 pdfTeX primitives and PDF.** First grep `latex.ltx`, `l3backend-pdftex.def`, `hyperref`'s `hpdftex.def`, `graphicx`'s `pdftex.def`, `geometry`, `microtype` (skip: error "unsupported") for `\pdf` primitives; implement exactly that set in `pdftex/`. `backend/pdf.ts` and `type1.ts`. Exit: the M5 article plus `hyperref`, `graphicx` (PDF/PNG/JPEG images), `geometry` produces a PDF that opens in Preview/Chrome and whose page content streams match pdftex's after decompression, modulo object numbering and font object names.
+**M6 pdfTeX primitives and PDF.** First grep `latex.ltx`, `l3backend-pdftex.def`, `hyperref`'s `hpdftex.def`, `graphicx`'s `pdftex.def`, `geometry`, `microtype` (skip: error "unsupported") for `\pdf` primitives; implement exactly that set in `pdftex/`. `src/pdf.ts` (WEB) and `src/backend/{fonts,type1,images}.ts` (C). Exit: the M5 article plus `hyperref`, `graphicx` (PDF/PNG/JPEG images), `geometry` produces a PDF that opens in Preview/Chrome and whose page content streams match pdftex's after decompression, modulo object numbering and font object names.
 
 **M7 Distribution.** `platform/browser.ts`, `tools/pack-texmf.ts` (texmf subset + `name → path` index), `web/`. Exit: the M6 document compiles in Chrome and Safari from a static server with the fetched byte total logged; must be under 6 MB for the article, 0 on second compile.
 

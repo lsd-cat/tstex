@@ -15,12 +15,13 @@ import { char_info, char_width, null_font } from './tfm.ts'
 import { get_token, ins_list, begin_token_list, end_token_list } from './input.ts'
 import { scan_toks } from './scan.ts'
 import { open_log_file, print_file_name, prompt_file_name } from './files.ts'
+import { fix_pdfoutput, pdf_ship_out } from './pdf.ts'
 
 // §586 DVI opcodes
 const set1 = 128, set_rule = 132, put_rule = 137, bop = 139, eop = 140, push = 141, pop = 142, right1 = 143,
   down1 = 157, y0 = 161, y1 = 162, z0 = 166, z1 = 167, fnt_num_0 = 171, fnt1 = 235, xxx1 = 239, xxx4 = 242,
   fnt_def1 = 243, pre = 247, post = 248, post_post = 249, id_byte = 2
-const tracing_output_code = 34, tracing_online_code = 29, tracing_stats_code = 31, h_offset_code = 18, v_offset_code = 19, pdf_page_height_code = 24
+const pdf_output_code = 65, tracing_output_code = 34, tracing_online_code = 29, tracing_stats_code = 31, h_offset_code = 18, v_offset_code = 19, pdf_page_height_code = 24
 const max_dimen = 0o7777777777
 
 // §598 dvi_out
@@ -339,18 +340,15 @@ function vlist_out(e: Engine, this_box: BoxNode): void {
   e.cur_s--
 }
 
-// pdftex: fix_pdfoutput; \pdfoutput is frozen at the first shipout
-export function fix_pdfoutput(e: Engine): void {
-  const v = int_par(e, 65)
-  if (e.fixed_pdfoutput === null) e.fixed_pdfoutput = v
-  else if (e.fixed_pdfoutput !== v) fatal_error(e, 'unsupported: \\pdfoutput changed after output began')
-}
-
-// §638 ship_out (pdftex: dvi_ship_out; PDF output is M6)
+// pdftex.web ship_out: pdf_ship_out when \pdfoutput>0, else dvi_ship_out
 export function ship_out(e: Engine, p: BoxNode): void {
   fix_pdfoutput(e)
-  if (e.fixed_pdfoutput! > 0) fatal_error(e, 'unsupported: PDF output')
   if (int_par(e, synctex_code) !== 0) fatal_error(e, 'unsupported: synctex') // synctex-rec.ch0 synctex_sheet would start recording
+  if (int_par(e, pdf_output_code) > 0) pdf_ship_out(e, p); else dvi_ship_out(e, p)
+}
+
+// §638 dvi_ship_out
+function dvi_ship_out(e: Engine, p: BoxNode): void {
   if (int_par(e, tracing_output_code) > 0) { print_nl(e, ''); print_ln(e); print(e, 'Completed box being shipped out') }
   if (e.term_offset > e.lim.max_print_line - 9) print_ln(e)
   else if (e.term_offset > 0 || e.file_offset > 0) print_char(e, 32)
@@ -441,10 +439,10 @@ export function finish_dvi_file(e: Engine): void {
 }
 
 // §1371 Expand macros in the token list and make link(def_ref) point to the result
-function expand_write_tokens(e: Engine, p: WhatsitNode): void {
+export function expand_write_tokens(e: Engine, p: WhatsitNode, toks: number): void {
   let q = get_avail(e); e.info[q] = right_brace_token + 125
   const r = get_avail(e); e.link[q] = r; e.info[r] = cs_token_flag + end_write; ins_list(e, q)
-  begin_token_list(e, p.write_tokens, write_text)
+  begin_token_list(e, toks, write_text)
   q = get_avail(e); e.info[q] = left_brace_token + 123; ins_list(e, q)
   const old_mode = e.mode; e.mode = 0
   e.cur_cs = e.write_loc; scan_toks(e, false, true)
@@ -463,7 +461,7 @@ function expand_write_tokens(e: Engine, p: WhatsitNode): void {
 function special_out(e: Engine, p: WhatsitNode): void {
   synch_h(e); synch_v(e)
   let h: number
-  if (p.subtype === latespecial_node) { expand_write_tokens(e, p); h = e.def_ref }
+  if (p.subtype === latespecial_node) { expand_write_tokens(e, p, p.write_tokens); h = e.def_ref }
   else h = p.write_tokens
   const old_setting = e.selector; e.selector = new_string
   const b = e.cur_str.length
@@ -478,7 +476,7 @@ function special_out(e: Engine, p: WhatsitNode): void {
 
 // §1370 write_out (tex.ch: \write18 reports a disabled shell escape)
 export function write_out(e: Engine, p: WhatsitNode): void {
-  expand_write_tokens(e, p)
+  expand_write_tokens(e, p, p.write_tokens)
   const old_setting = e.selector, j = p.write_stream
   const b = e.cur_str.length
   if (j === 18) e.selector = new_string

@@ -1,12 +1,13 @@
 // TexFS over local directories, searched in order (printed as `./name'), then texmf trees through their ls-R databases
 import { readFileSync, statSync, lstatSync, realpathSync } from 'node:fs'
 import { join, dirname, sep } from 'node:path'
+import { deflateSync } from 'node:zlib'
 import type { TexFS } from './fs.ts'
 
 // kpathsea's search path per file kind, as directories relative to a texmf root (`progname=pdflatex' TEXINPUTS);
 // a trailing `/' searches the subtree, `web2c' only the directory itself
 const kind_dirs: Record<string, string[]> = {
-  tex: ['tex/latex/', 'tex/generic/', 'tex/'], tfm: ['fonts/tfm/'], vf: ['fonts/vf/'], enc: ['fonts/enc/'], map: ['fonts/map/'],
+  tex: ['tex/latex/', 'tex/generic/', 'tex/'], tfm: ['fonts/tfm/'], vf: ['fonts/vf/'], enc: ['fonts/enc/'], map: ['fonts/map/pdftex/', 'fonts/map/dvips/', 'fonts/map/'],
   type1: ['fonts/type1/'], pfb: ['fonts/type1/'], cnf: ['web2c'], tcx: ['web2c'],
 }
 
@@ -66,6 +67,7 @@ export function nodeFS(roots: string[], texmfRoots: string[] = []): TexFS {
       const file = join(roots[0]!, name)
       try { return statSync(dirname(file)).isDirectory() && inside(dirname(file), real_roots[0] ?? null) && lstatSync(file, { throwIfNoEntry: false })?.isSymbolicLink() !== true } catch { return false }
     },
+    compress: (data, level) => new Uint8Array(deflateSync(data, { level })),
     stat: (name, kind) => { const l = locate(name, kind); try { const st = l && statSync(l.file); return st ? { size: st.size, mtime: st.mtime } : null } catch { return null } },
   }
 }

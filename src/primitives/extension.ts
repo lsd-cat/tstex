@@ -3,7 +3,8 @@ import type { Engine } from '../engine.ts'
 import { Cmd, hmode } from '../types.ts'
 import { print_esc } from '../print.ts'
 import { int_par } from '../eqtb.ts'
-import { delete_token_ref, new_whatsit_node, flush_node_list, open_node, write_node, close_node, special_node, latespecial_node, language_node, pdf_save_pos_node } from '../nodes.ts'
+import { delete_token_ref, new_whatsit_node, flush_node_list, open_node, write_node, close_node, special_node, latespecial_node, language_node, pdf_save_pos_node,
+  pdf_literal_node, pdf_lateliteral_node, pdf_refobj_node } from '../nodes.ts'
 import type { WhatsitNode } from '../nodes.ts'
 import { scan_int, scan_four_bit_int, scan_optional_equals, scan_toks, scan_keyword } from '../scan.ts'
 import { scan_file_name } from '../files.ts'
@@ -12,8 +13,19 @@ import { back_input } from '../input.ts'
 import { out_what } from '../dvi.ts'
 import { init_randoms } from '../arith.ts'
 import { unsupported, report_illegal_case, tail_append, norm_min } from '../main.ts'
+import { tokens_to_string } from '../tokens.ts'
+import { str } from '../utils.ts'
+import { def_tounicode } from '../backend/fonts.ts'
+import { pdf_error, pdf_warning, pdf_create_obj, pdf_get_mem, pdf_write_obj, obj_type_obj, set_origin, direct_page, direct_always } from '../pdf.ts'
 
-const immediate_code = 5, set_language_code = 6, pdf_glyph_to_unicode_code = 39, set_random_seed_code = 35, reset_timer_code = 33
+// pdftex.web check_pdfoutput
+function check_pdfoutput(e: Engine, s: string, is_error: boolean): void {
+  if (int_par(e, 65) > 0) return
+  if (is_error) pdf_error(e, s, 'not allowed in DVI mode (\\pdfoutput <= 0)')
+  pdf_warning(e, s, 'not allowed in DVI mode (\\pdfoutput <= 0); ignoring it', true, true)
+}
+
+const pdf_obj_code = 9, immediate_code = 5, set_language_code = 6, pdf_glyph_to_unicode_code = 39, set_random_seed_code = 35, reset_timer_code = 33
 const names: Record<number, string> = { 0: 'openout', 1: 'write', 2: 'closeout', 3: 'special', 5: 'immediate', 6: 'setlanguage',
   7: 'pdfliteral', 40: 'pdfcolorstack', 41: 'pdfsetmatrix', 42: 'pdfsave', 43: 'pdfrestore', 9: 'pdfobj', 10: 'pdfrefobj',
   11: 'pdfxform', 12: 'pdfrefxform', 13: 'pdfximage', 14: 'pdfrefximage', 15: 'pdfannot', 16: 'pdfstartlink', 17: 'pdfendlink',
@@ -67,7 +79,11 @@ export function run(e: Engine, chr: number): void {
         run(e, e.cur_chr)
         out_what(e, e.tail as WhatsitNode)
         flush_node_list(e, e.tail); e.tail = p; p.link = null
-      } else if (e.cur_cmd === Cmd.extension && (e.cur_chr === 9 || e.cur_chr === 11 || e.cur_chr === 13)) unsupported(e)
+      } else if (e.cur_cmd === Cmd.extension && e.cur_chr === pdf_obj_code) { // pdftex.web Implement \immediate
+        run(e, pdf_obj_code)
+        if (e.ps.obj_aux[e.ps.last_obj] === 0) pdf_error(e, 'ext1', "`\\pdfobj reserveobjnum' cannot be used with \\immediate")
+        pdf_write_obj(e, e.ps.last_obj)
+      } else if (e.cur_cmd === Cmd.extension && (e.cur_chr === 11 || e.cur_chr === 13)) unsupported(e)
       else back_input(e)
       return
     case set_language_code: { // §1377
@@ -79,16 +95,59 @@ export function run(e: Engine, chr: number): void {
       p.what_lhm = norm_min(int_par(e, 51)); p.what_rhm = norm_min(int_par(e, 52))
       return
     }
-    case pdf_glyph_to_unicode_code: // pdftex.web glyph_to_unicode
-      // shortcut: def_tounicode's table only feeds PDF ToUnicode CMaps (tounicode.c, not in the format), so it is dropped; keep it when PDF output lands (M6)
-      scan_toks(e, false, true); delete_token_ref(e, e.def_ref)
-      scan_toks(e, false, true); delete_token_ref(e, e.def_ref)
+    case pdf_glyph_to_unicode_code: { // pdftex.web glyph_to_unicode
+      scan_toks(e, false, true); const s1 = str(tokens_to_string(e, e.def_ref)); delete_token_ref(e, e.def_ref)
+      scan_toks(e, false, true); const s2 = str(tokens_to_string(e, e.def_ref)); delete_token_ref(e, e.def_ref)
+      def_tounicode(e, s1, s2)
       return
+    }
     case set_random_seed_code: // pdftex.web Implement \pdfsetrandomseed
       scan_int(e); if (e.cur_val < 0) e.cur_val = -e.cur_val
       e.random_seed = e.cur_val; init_randoms(e, e.random_seed)
       return
     case pdf_save_pos_node: tail_append(e, new_whatsit_node(pdf_save_pos_node)); return // pdftex.web Implement \pdfsavepos
+    case pdf_literal_node: { // pdftex.web Implement \pdfliteral
+      check_pdfoutput(e, '\\pdfliteral', true)
+      const p = new_whatsit_node(scan_keyword(e, 'shipout') ? pdf_lateliteral_node : pdf_literal_node); tail_append(e, p)
+      p.pdf_mode = scan_keyword(e, 'direct') ? direct_always : scan_keyword(e, 'page') ? direct_page : set_origin
+      scan_toks(e, false, p.subtype === pdf_literal_node); p.pdf_data = e.def_ref
+      return
+    }
+    case pdf_obj_code: { // pdftex.web Implement \pdfobj
+      check_pdfoutput(e, '\\pdfobj', true)
+      const s = e.ps
+      if (scan_keyword(e, 'reserveobjnum')) {
+        get_x_token(e); if (e.cur_cmd !== Cmd.spacer) back_input(e) // Scan an optional space
+        pdf_create_obj(e, obj_type_obj, ++s.obj_count); s.last_obj = s.obj_ptr
+        return
+      }
+      let k = -1
+      if (scan_keyword(e, 'useobjnum')) {
+        scan_int(e); k = e.cur_val
+        if (k <= 0 || k > s.obj_ptr || s.obj_aux[k] !== 0) {
+          pdf_warning(e, '\\pdfobj', 'invalid object number being ignored', true, true); s.retval = -1; k = -1
+        }
+      }
+      if (k < 0) { pdf_create_obj(e, obj_type_obj, ++s.obj_count); k = s.obj_ptr }
+      const d = s.obj_aux[k] = pdf_get_mem(e, 4) // obj_obj_data, obj_obj_is_stream, obj_obj_stream_attr, obj_obj_is_file
+      if (scan_keyword(e, 'stream')) {
+        s.mem[d + 1] = 1
+        if (scan_keyword(e, 'attr')) { scan_toks(e, false, true); s.mem[d + 2] = e.def_ref } else s.mem[d + 2] = 0
+      } else s.mem[d + 1] = 0
+      s.mem[d + 3] = scan_keyword(e, 'file') ? 1 : 0
+      scan_toks(e, false, true); s.mem[d] = e.def_ref
+      s.last_obj = k
+      return
+    }
+    case pdf_refobj_node: { // pdftex.web Implement \pdfrefobj
+      check_pdfoutput(e, '\\pdfrefobj', true)
+      scan_int(e)
+      let k = e.ps.head_tab[obj_type_obj]! // pdf_check_obj
+      while (k !== 0 && k !== e.cur_val) k = e.ps.obj_link[k]!
+      if (k === 0) pdf_error(e, 'ext1', 'cannot find referenced object')
+      const p = new_whatsit_node(pdf_refobj_node); tail_append(e, p); p.pdf_objnum = e.cur_val
+      return
+    }
     case reset_timer_code: e.start_ms = performance.now(); return // pdftex.web Implement \pdfresettimer
     default: unsupported(e)
   }

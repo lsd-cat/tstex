@@ -31,6 +31,8 @@ import { open_log_file, start_input, print_file_name } from './files.ts'
 import { print_cmd_chr } from './tokens.ts'
 import { main_control } from './main.ts'
 import { finish_dvi_file } from './dvi.ts'
+import { pdf_state, finish_pdf_file, PdftexFail } from './pdf.ts'
+import { font_state } from './backend/fonts.ts'
 
 // The capacities TeX checks (tex.web §11, tex.ch), as TeX Live's texmf.cnf sets them; tripman's trip run passes tex.web's.
 // eqtb's layout does not depend on them: hash_size only bounds how many control sequences may be made.
@@ -117,6 +119,9 @@ export class Engine {
   dvi_h = 0; dvi_v = 0; cur_h = 0; cur_v = 0; dvi_f = 0; cur_s = -1
   total_pages = 0; max_v = 0; max_h = 0; max_push = 0; last_bop = -1; doing_leaders = false
   output_file_name = ''; fixed_pdfoutput: number | null = null
+  // pdftex.web [32b]–[32f] PDF output (src/pdf.ts) and the C font back end (src/backend/fonts.ts); tounicode.c's table is dumped
+  ps = pdf_state(); fm = font_state(); glyph_unicode = new Map<string, number | string>(); start_time = 0
+  get pdf(): Uint8Array | null { return this.fixed_pdfoutput !== null && this.fixed_pdfoutput > 0 && this.total_pages > 0 && this.history !== fatal_error_stop ? this.ps.op_buf.slice(0, this.ps.os_mode ? this.ps.op_ptr : this.ps.ptr) : null }
   last_match: ([number, string] | null)[] = [] // utils.c pmatch for \pdflastmatch
   cur_page_height = 0; pdf_last_x_pos = 0; pdf_last_y_pos = 0 // pdftex.web \pdfsavepos
   // §1342 \write streams; written files are collected here (TexFS is read-only)
@@ -178,7 +183,8 @@ export class Engine {
   // §1332 the main program. Without `terminal' it is `pdftex -ini -interaction=batchmode <jobname>.tex';
   // with it, the first line comes from `terminal' (init_terminal) and so does every later terminal read.
   // `file' is the first line (default `<jobname>.tex'); `jobname' with `file' is -jobname
-  async run(opts: { jobname?: string, file?: string, mode: 'ini' | 'etex' | 'latex', terminal?: string[], date?: Date }): Promise<void> {
+  // mode 'pdflatex' is 'latex' with the format's \pdfoutput (TeX Live's pdflatex); `date' is SOURCE_DATE_EPOCH with FORCE_SOURCE_DATE
+  async run(opts: { jobname?: string, file?: string, mode: 'ini' | 'etex' | 'latex' | 'pdflatex', terminal?: string[], date?: Date }): Promise<void> {
     this.date = opts.date; this.etex_p = opts.mode === 'etex'; this.format = await this.format // loadFormat's result may be passed unawaited
     init_specs(this); init_fonts(this); init_eqtb(this); init_prim(this); fix_date_and_time(this)
     this.terminal += 'This is tstex, Version 3.141592653' + this.format_ident + '\n' // §61
@@ -204,7 +210,8 @@ export class Engine {
       this.eTeX_mode = 1; etex_ext_vars(this); entered = true
     }
     // mode 'latex' is `-fmt pdflatex': the format loads with no `&' (tex.ch dump_name)
-    if (!entered && (opts.mode === 'latex' || this.buffer[this.cur_input.loc] === 38)) { // §524 open_fmt_file: `&name' names the format
+    const latex = opts.mode === 'latex' || opts.mode === 'pdflatex'
+    if (!entered && (latex || this.buffer[this.cur_input.loc] === 38)) { // §524 open_fmt_file: `&name' names the format
       if (this.buffer[this.cur_input.loc] === 38) {
         let j = ++this.cur_input.loc; this.buffer[this.last] = 32
         while (this.buffer[j] !== 32) j++
@@ -216,13 +223,14 @@ export class Engine {
       while (this.cur_input.loc < this.cur_input.limit && this.buffer[this.cur_input.loc] === 32) this.cur_input.loc++
       fix_date_and_time(this)
     }
-    if (opts.mode === 'latex') { // -interaction=batchmode (tex.ch interaction_option), -output-format=dvi (pdftex.web pdf_output_option)
-      this.interaction = opts.terminal ? error_stop_mode : batch_mode; this.equiv[int_base + pdf_output_code] = 0
+    if (latex) { // -interaction=batchmode (tex.ch interaction_option), 'latex': -output-format=dvi (pdftex.web pdf_output_option)
+      this.interaction = opts.terminal ? error_stop_mode : batch_mode
+      if (opts.mode === 'latex') this.equiv[int_base + pdf_output_code] = 0
     }
     if (this.eTeX_ex) this.terminal += 'entering extended mode\n'
     if (this.equiv[int_base + end_line_char_code]! < 0 || this.equiv[int_base + end_line_char_code]! > 255) this.cur_input.limit--
     else this.buffer[this.cur_input.limit] = this.equiv[int_base + end_line_char_code]!
-    const t = (this.date ?? new Date()).getTime(); this.start_ms = performance.now() // pdftex.web: random_seed:=(microseconds*1000)+(epochseconds mod 1000000)
+    const t = (this.date ?? new Date()).getTime(); this.start_ms = performance.now(); this.start_time = t // pdftex.web: random_seed:=(microseconds*1000)+(epochseconds mod 1000000)
     this.random_seed = (t % 1000) * 1000000 + Math.floor(t / 1000) % 1000000
     init_randoms(this, this.random_seed)
     this.selector = this.interaction === batch_mode ? no_print : term_only
@@ -237,9 +245,10 @@ export class Engine {
       // shortcut: the JS stack runs out (~1500 nested expansions) before TeX's expand_depth=10000; report it as TeX does, upgrade by making expand iterative if documents need more
       if (x instanceof RangeError && /call stack/.test(x.message)) {
         try { overflow(this, 'expansion depth', this.lim.expand_depth) } catch (y) { if (!(y instanceof JumpOut)) throw y }
-      } else if (!(x instanceof JumpOut)) throw x
+      } else if (x instanceof PdftexFail) return // utils.c pdftex_fail exits
+      else if (!(x instanceof JumpOut)) throw x
     }
-    close_files_and_terminate(this)
+    try { close_files_and_terminate(this) } catch (x) { if (!(x instanceof PdftexFail)) throw x }
   }
 }
 
@@ -332,13 +341,9 @@ function close_files_and_terminate(e: Engine): void {
       + `${e.lim.stack_size}i,${e.lim.nest_size}n,${e.lim.param_size}p,${e.lim.buf_size}b,${e.lim.save_size}s\n`
   }
   if (e.fixed_pdfoutput === null) e.fixed_pdfoutput = e.equiv[int_base + pdf_output_code]! // pdftex: fix_pdfoutput
-  if (e.fixed_pdfoutput > 0) { // no page can be shipped in PDF mode yet
+  if (e.fixed_pdfoutput > 0) {
     if (e.history === fatal_error_stop) print_err(e, ' ==> Fatal error occurred, no output PDF file produced!')
-    else { // Finish the PDF file, total_pages=0
-      print_nl(e, 'No pages of output.')
-      if (e.log_opened) e.log += '\nPDF statistics:\n 0 PDF objects out of 1000 (max. 8388607)\n 0 named destinations out of 1000 (max. 500000)\n'
-        + ' 1 words of extra memory for PDF output out of 10000 (max. 10000000)\n'
-    }
+    else finish_pdf_file(e) // Finish the PDF file, and the PDF statistics
   } else finish_dvi_file(e) // §642
   if (e.log_opened) {
     e.log += '\n'; e.selector -= 2

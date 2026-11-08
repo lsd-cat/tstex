@@ -43,11 +43,13 @@ export function unescapehex(s: number[]): number[] {
   return out
 }
 
-// utils.c makepdftime: D:YYYYMMDDHHMMSS then Z or ±HH'MM' (local time)
-export function makepdftime(d: Date): string {
-  const p2 = (n: number) => String(n).padStart(2, '0'), off = -d.getTimezoneOffset()
+// utils.c makepdftime: D:YYYYMMDDHHMMSS then Z or ±HH'MM' (local time, or UTC as with SOURCE_DATE_EPOCH)
+export function makepdftime(d: Date, utc = false): string {
+  const p2 = (n: number) => String(n).padStart(2, '0'), off = utc ? 0 : -d.getTimezoneOffset()
   const z = off === 0 ? 'Z' : (off < 0 ? '-' : '+') + p2(Math.trunc(Math.abs(off) / 60)) + "'" + p2(Math.abs(off) % 60) + "'"
-  return `D:${d.getFullYear()}${p2(d.getMonth() + 1)}${p2(d.getDate())}${p2(d.getHours())}${p2(d.getMinutes())}${p2(d.getSeconds())}${z}`
+  const [y, mo, da, h, mi, se] = utc ? [d.getUTCFullYear(), d.getUTCMonth(), d.getUTCDate(), d.getUTCHours(), d.getUTCMinutes(), d.getUTCSeconds()]
+    : [d.getFullYear(), d.getMonth(), d.getDate(), d.getHours(), d.getMinutes(), d.getSeconds()]
+  return `D:${y}${p2(mo + 1)}${p2(da)}${p2(h)}${p2(mi)}${p2(se)}${z}`
 }
 
 // RFC 1321 MD5 (utils.c getmd5sum uses md5.c); returns 32 uppercase hex digits

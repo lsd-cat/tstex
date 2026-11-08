@@ -127,7 +127,8 @@ export const cond_math_glue = 98, mu_glue = 99, a_leaders = 100, c_leaders = 101
 export const explicit = 1, acc_kern = 2, auto_kern = 3 // §155 (pdftex)
 export const inf_penalty = 10000, eject_penalty = -10000 // §157
 // §1341 whatsit subtypes (pdftex numbering)
-export const open_node = 0, write_node = 1, close_node = 2, special_node = 3, latespecial_node = 4, language_node = 5, pdf_save_pos_node = 23
+export const open_node = 0, write_node = 1, close_node = 2, special_node = 3, latespecial_node = 4, language_node = 5, pdf_save_pos_node = 23,
+  pdf_literal_node = 7, pdf_lateliteral_node = 8, pdf_refobj_node = 10 // pdftex.web pdftex_first_extension_code = 7
 
 type Link = { link: Node | null }
 // §134 a char_node; list heads are char nodes too (TeX's get_avail), so is_char_node(head) holds as in tex.web
@@ -144,7 +145,8 @@ export type AdjustNode = Link & { type: typeof adjust_node, subtype: number, adj
 export type LigNode = Link & { type: typeof ligature_node, subtype: number, font: number, character: number, lig_ptr: Node | null }
 export type DiscNode = Link & { type: typeof disc_node, replace_count: number, pre_break: Node | null, post_break: Node | null }
 export type WhatsitNode = Link & { type: typeof whatsit_node, subtype: number, write_stream: number, write_tokens: number,
-  open_name: string, open_area: string, open_ext: string, what_lang: number, what_lhm: number, what_rhm: number }
+  open_name: string, open_area: string, open_ext: string, what_lang: number, what_lhm: number, what_rhm: number,
+  pdf_data: number, pdf_mode: number, pdf_objnum: number } // pdftex.web pdf_literal_data, pdf_literal_mode, pdf_obj_objnum
 export type MathNode = Link & { type: typeof math_node, subtype: number, width: number }
 export type GlueNode = Link & { type: typeof glue_node, subtype: number, glue_ptr: number, leader_ptr: Node | null }
 export type KernNode = Link & { type: typeof kern_node, subtype: number, width: number }
@@ -217,7 +219,7 @@ export const new_math = (w: number, s: number): MathNode => ({ type: math_node, 
 // §1341 a whatsit with every field present
 export function new_whatsit_node(s: number): WhatsitNode {
   return { type: whatsit_node, link: null, subtype: s, write_stream: 0, write_tokens: 0, open_name: '', open_area: '', open_ext: '',
-    what_lang: 0, what_lhm: 0, what_rhm: 0 }
+    what_lang: 0, what_lhm: 0, what_rhm: 0, pdf_data: 0, pdf_mode: 0, pdf_objnum: 0 }
 }
 
 // §152 new_param_glue
@@ -278,7 +280,8 @@ export function flush_node_list(e: Engine, p: Node | null): void {
       case ins_node: flush_node_list(e, p.ins_ptr); delete_glue_ref(e, p.split_top_ptr); break
       case whatsit_node: // §1358
         if (p.subtype === write_node || p.subtype === special_node || p.subtype === latespecial_node) delete_token_ref(e, p.write_tokens)
-        else if (p.subtype > language_node && p.subtype !== pdf_save_pos_node) confusion(e, 'ext3')
+        else if (p.subtype === pdf_literal_node || p.subtype === pdf_lateliteral_node) delete_token_ref(e, p.pdf_data)
+        else if (p.subtype > language_node && p.subtype !== pdf_save_pos_node && p.subtype !== pdf_refobj_node) confusion(e, 'ext3')
         break
       case glue_node: delete_glue_ref(e, p.glue_ptr); flush_node_list(e, p.leader_ptr); break
       case ligature_node: flush_node_list(e, p.lig_ptr); break
@@ -316,7 +319,8 @@ export function copy_node_list(e: Engine, p: Node | null): Node | null {
       case ins_node: add_glue_ref(e, p.split_top_ptr); r = { ...p, ins_ptr: copy_node_list(e, p.ins_ptr) }; break
       case whatsit_node: // §1357
         if (p.subtype === write_node || p.subtype === special_node || p.subtype === latespecial_node) add_token_ref(e, p.write_tokens)
-        else if (p.subtype > language_node && p.subtype !== pdf_save_pos_node) confusion(e, 'ext2')
+        else if (p.subtype === pdf_literal_node || p.subtype === pdf_lateliteral_node) add_token_ref(e, p.pdf_data)
+        else if (p.subtype > language_node && p.subtype !== pdf_save_pos_node && p.subtype !== pdf_refobj_node) confusion(e, 'ext2')
         r = { ...p }; break
       case glue_node: add_glue_ref(e, p.glue_ptr); r = { ...p, leader_ptr: copy_node_list(e, p.leader_ptr) }; break
       case ligature_node: r = { ...p, lig_ptr: copy_node_list(e, p.lig_ptr) }; break
@@ -466,6 +470,18 @@ export function show_node_list(e: Engine, p: Node | null): void {
             print_int(e, p.what_lhm); print_char(e, 44); print_int(e, p.what_rhm); print_char(e, 41)
             break
           case pdf_save_pos_node: print_esc(e, 'pdfsavepos'); break
+          case pdf_literal_node: case pdf_lateliteral_node: // pdftex.web
+            print_esc(e, 'pdfliteral')
+            if (p.subtype === pdf_lateliteral_node) print(e, ' shipout')
+            if (p.pdf_mode === 1) print(e, ' page'); else if (p.pdf_mode === 2) print(e, ' direct'); else if (p.pdf_mode !== 0) confusion(e, 'literal2')
+            print_mark(e, p.pdf_data); break
+          case pdf_refobj_node: { // pdftex.web; the object's data lives in pdf_mem
+            const d = e.ps.obj_aux[p.pdf_objnum]!, m = e.ps.mem
+            print_esc(e, 'pdfrefobj')
+            if (m[d + 1]! > 0) { if (m[d + 2]! !== 0) { print(e, ' attr'); print_mark(e, m[d + 2]!) } print(e, ' stream') }
+            if (m[d + 3]! > 0) print(e, ' file')
+            print_mark(e, m[d]!); break
+          }
           default: print(e, 'whatsit?')
         }
         break
