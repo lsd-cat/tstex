@@ -11,8 +11,8 @@ const root = resolve(dirname(fileURLToPath(import.meta.url)), '..')
 const TL = process.env.TL ?? '/Users/g/texlive/2026'
 const TEXMFDIST = process.env.TEXMFDIST ?? TL + '/texmf-dist', TEXMFVAR = process.env.TEXMFVAR ?? TL + '/texmf-var'
 const bindir = readdirSync(TL + '/bin').map(d => `${TL}/bin/${d}`).find(d => existsSync(d + '/pdftex')) ?? ''
-// shell_escape_commands empty: pdftex stays in restricted mode (\pdfshellescape=2, as the engine) but runs nothing (makeindex, repstopdf)
-const env = { ...process.env, PATH: `${bindir}:${process.env.PATH}`, SOURCE_DATE_EPOCH: '0', FORCE_SOURCE_DATE: '1', max_print_line: '9999', shell_escape_commands: '' }
+// shell_escape_commands `_none_' (kpathsea ignores an empty value): pdftex stays in restricted mode (\pdfshellescape=2, as the engine) but runs nothing (makeindex, repstopdf)
+const env = { ...process.env, PATH: `${bindir}:${process.env.PATH}`, SOURCE_DATE_EPOCH: '0', FORCE_SOURCE_DATE: '1', max_print_line: '9999', shell_escape_commands: '_none_' }
 const AUX = /\.(aux|out|toc|lof|lot|nav|snm)$/ // compile.ts's rerun_files
 // \pdfsetrandomseed: pdftex seeds \pdfuniformdeviate from the clock, not SOURCE_DATE_EPOCH (tagpdf's namespace UUID differed per run)
 const JOB = 'main', FIRST = (main: string) => `\\pdfsetrandomseed 1 \\pdfcompresslevel=0\\pdfobjcompresslevel=0\\input{${main}}`
