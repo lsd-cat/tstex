@@ -10,10 +10,10 @@ export const kind_dirs: Record<string, string[]> = {
 // Security policy (AUDIT.md): absolute names (but /dev/null), `..' components and NUL bytes are never found
 export const escapes = (name: string) => name.startsWith('/') || name.includes('\0') || name.split(/[\\/]/).includes('..')
 
-// kpathsea_find_file_generic's target names: a `tex' name not ending in a potential suffix (.tex, or ALT_TEX_SUFFIXES) is
-// tried as name.tex first, then as given (try_std_extension_first = t in texmf.cnf)
-const tex_suffix = /\.(tex|sty|cls|fd|aux|bbl|def|clo|ldf)$/
-export const candidates = (name: string, kind: string) => kind === 'tex' && !tex_suffix.test(name) ? [name + '.tex', name] : [name]
+// kpathsea_find_file_generic's target names: a name not ending in a potential suffix of its format (tex: .tex and
+// ALT_TEX_SUFFIXES; map: .map; enc: .enc) is tried with the suffix first, then as given (try_std_extension_first = t)
+const suffixes: Record<string, [string, RegExp]> = { tex: ['.tex', /\.(tex|sty|cls|fd|aux|bbl|def|clo|ldf)$/], map: ['.map', /\.map$/], enc: ['.enc', /\.enc$/] }
+export const candidates = (name: string, kind: string) => { const x = suffixes[kind]; return x !== undefined && !x[1].test(name) ? [name + x[0], name] : [name] }
 
 // kpathsea order: path elements in order, each over the trees in order; within one the target names in order
 // (kpathsea_db_search_list), each in the database order.

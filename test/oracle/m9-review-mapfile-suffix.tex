@@ -1,0 +1,8 @@
+%! oracle: pdftex
+\pdfoutput=1 \input plain
+\pdfcompresslevel=0 \pdfobjcompresslevel=0
+% kpathsea's fontmap format: `name' without .map is found as name.map (and printed so); a written map file too
+\immediate\openout1=m9-mapsuffix.map \immediate\write1{cmr10 CMR10 <cmr10.pfb}\immediate\closeout1
+\pdfmapfile{-dummy-space}\pdfmapfile{+dummy-space}\pdfmapfile{=m9-mapsuffix}
+Hello.
+\bye
