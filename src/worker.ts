@@ -39,9 +39,9 @@ async function compile(m: { files: Record<string, Uint8Array | string>, main: st
     if (p !== null && stored.delete(p)) post({ type: 'fetch', name: p, bytes: cache.get(p)!.length, cached: true })
     return read(n, k)
   }
-  const r = await compileRuns({ fs, format, main: m.main, runs: m.runs, date: m.date === undefined ? undefined : new Date(m.date), onRun: n => post({ type: 'run', n }) })
+  const { engine: e, runs } = await compileRuns({ fs, format, file: m.main, runs: m.runs, date: m.date === undefined ? undefined : new Date(m.date), onRun: n => post({ type: 'run', n }) })
   if (store) for (const p of fetched) await store.put(base + p, new Response(cache.get(p)! as Uint8Array<ArrayBuffer>))
-  post({ type: 'done', pdf: r.pdf, log: r.log, outputs: Object.fromEntries(r.outputs), runs: r.runs, ok: r.ok, fetched }, r.pdf ? [r.pdf.buffer] : [])
+  post({ type: 'done', pdf: e.pdf, log: e.log, outputs: Object.fromEntries(e.outputFiles), runs, ok: e.history <= 1, fetched }, e.pdf ? [e.pdf.buffer] : [])
 }
 
 let queue = Promise.resolve(), init_error: unknown = null

@@ -7,3 +7,4 @@ test/lvt/_src/
 !*.expected.dvi
 build/
 dist/
+dist-node/

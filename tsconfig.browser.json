@@ -12,5 +12,5 @@
     "types": []
   },
   "include": ["src"],
-  "exclude": ["src/platform/node.ts"]
+  "exclude": ["src/platform/node.ts", "src/node.ts"]
 }

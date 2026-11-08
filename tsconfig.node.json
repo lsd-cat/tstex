@@ -1,0 +1,11 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "noEmit": false,
+    "outDir": "dist-node",
+    "rootDir": ".",
+    "rewriteRelativeImportExtensions": true
+  },
+  "include": ["src", "bin/tstex.ts", "tools/pack-texmf.ts"],
+  "exclude": ["src/worker.ts", "src/index.ts"]
+}
