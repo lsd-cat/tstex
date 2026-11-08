@@ -13,7 +13,7 @@ import { pdftex_fail, pdftex_warn, pdf_print, pdf_print_ln, pdf_begin_stream, pd
 import { pdf_open, get_page, get_page_ref, page_group, page_resources, fetch, deref, lookup, lookup_nf, decode_stream, raw_bytes, fofi_type1_encoding,
   type_name, is_name, is_dict, is_stream, is_ref, num } from './pdfread.ts'
 import type { PdfDoc, Page, Box, PObj, PDict, PRef, PStream, XRef } from './pdfread.ts'
-import { lookup_fontmap, epdf_create_fontdescriptor, get_fn_objnum, epdf_write_enc } from './fonts.ts'
+import { lookup_fontmap, epdf_create_fontdescriptor, epdf_mark_glyphs, get_fn_objnum, epdf_write_enc } from './fonts.ts'
 import type { FdEntry, FmEntry } from './fonts.ts'
 import { standard_glyph_names } from './type1.ts'
 
@@ -240,6 +240,8 @@ function write_epdf(e: Engine, img: Img): void {
       && (fm = lookup_fontmap(e, basefont.v)) !== null) {
       const stemv = lookup(desc, 'StemV')
       const fd = epdf_create_fontdescriptor(e, fm, cround(num(stemv))) // zround: the PDF's /StemV may be a real
+      const charset = lookup(desc, 'CharSet')
+      epdf_mark_glyphs(e, fm, fd, charset !== null && typeof charset === 'object' && !Array.isArray(charset) && charset.t === 'str' ? charset.v : null)
       add(OBJ_FONTDESC, descref, fd, 0)
       copy_name(tag)
       const names = font_encoding(e, img, x, fontdict)

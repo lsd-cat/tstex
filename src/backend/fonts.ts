@@ -3,13 +3,14 @@
 // a tree in order, the keys are sorted with strcmp's byte order.
 import type { Engine } from '../engine.ts'
 import { int_base } from '../types.ts'
+import { int_par } from '../eqtb.ts'
 import { print } from '../print.ts'
 import { find_backend_file } from '../files.ts'
 import { char_info, char_width, char_height, char_depth, char_exists, height_depth, param, slant_code, x_height_code, quad_code } from '../tfm.ts'
 import { divide_scaled, pdf_new_objnum, pdf_begin_obj, pdf_end_obj, pdf_begin_dict, pdf_end_dict, pdf_print, pdf_char_marked,
   pdftex_fail, pdftex_warn, pdf_begin_stream, pdf_end_stream } from '../pdf.ts'
 import { writet1, load_enc_file, notdef, ASCENT_CODE, CAPHEIGHT_CODE, DESCENT_CODE, ITALIC_ANGLE_CODE, STEMV_CODE, XHEIGHT_CODE,
-  FONTBBOX1_CODE, FONTBBOX2_CODE, FONTBBOX3_CODE, FONTBBOX4_CODE, font_key } from './type1.ts'
+  FONTBBOX1_CODE, FONTBBOX2_CODE, FONTBBOX3_CODE, FONTBBOX4_CODE, font_key, t1_state } from './type1.ts'
 import type { Glyphs } from './type1.ts'
 
 // ptexmac.h fm_entry type flags
@@ -21,7 +22,7 @@ export type FmEntry = { tfm_name: string, ps_name: string | null, fd_flags: numb
   ff_name: string | null, type: number, pid: number, in_use: boolean }
 type FeEntry = { name: string, fe_objnum: number, glyph_names: Glyphs, tx_tree: Set<number> | null }
 export type FdEntry = { fd_objnum: number, fontname: string, ff_found: boolean, ff_objnum: number, fn_objnum: number, font_dim: { val: number, set: boolean }[],
-  builtin_glyph_names: Glyphs | null, fm: FmEntry, tx_tree: Set<number> | null }
+  builtin_glyph_names: Glyphs | null, fm: FmEntry, tx_tree: Set<number> | null, gl_tree: Set<string>, all_glyphs: boolean, subset_tag: string | null }
 type FoEntry = { fo_objnum: number, tex_font: number, fm: FmEntry, fd: FdEntry | null, fe: FeEntry | null, cw_objnum: number,
   width: number[], first_char: number, last_char: number, tounicode_objnum: number }
 
@@ -31,7 +32,7 @@ export function font_state() {
     // mapfile.c mitem: the pending map file or line (at first the default map file, read at the first lookup)
     map_item: { line: 'pdftex.map', mode: 0, type: 0 } as { line: string, mode: number, type: number } | null,
     tfm_tree: null as Map<string, FmEntry> | null, ps_tree: new Map<string, FmEntry>(), font_map: [] as (FmEntry | null | undefined)[], // pdf_font_map[f]; null: no entry
-    fe_tree: new Map<string, FeEntry>(), fd_tree: new Map<string, FdEntry>(), fo_tree: new Map<string, FoEntry>(),
+    fe_tree: new Map<string, FeEntry>(), fd_tree: new Map<string, FdEntry>(), fo_tree: new Map<string, FoEntry>(), t1: t1_state(),
   }
 }
 export type FontState = ReturnType<typeof font_state>
@@ -196,11 +197,17 @@ export function epdf_create_fontdescriptor(e: Engine, fm: FmEntry, stemv: number
   if (fd === undefined) {
     fm.in_use = true
     fd = { fd_objnum: pdf_new_objnum(e), fontname: fm.ps_name!, ff_found: false, ff_objnum: 0, fn_objnum: 0,
-      font_dim: Array.from({ length: 11 }, () => ({ val: 0, set: false })), builtin_glyph_names: null, fm, tx_tree: null }
+      font_dim: Array.from({ length: 11 }, () => ({ val: 0, set: false })), builtin_glyph_names: null, fm, tx_tree: null, gl_tree: new Set(), all_glyphs: false, subset_tag: null }
     fd.font_dim[STEMV_CODE] = { val: stemv, set: true }
     e.fm.fd_tree.set(fd_key(fm), fd)
   }
-  return fd // shortcut: epdf_mark_glyphs/embed_whole_font only feed subsetting and /CharSet, which we do not write
+  return fd
+}
+// epdf.c epdf_mark_glyphs (the included font's /CharSet, split at `/' after its first character) or embed_whole_font
+export function epdf_mark_glyphs(e: Engine, fm: FmEntry, fd: FdEntry, charset: string | null): void {
+  if (charset === null || !is_subsetted(fm)) { fd.all_glyphs = true; return }
+  charset = charset.split('\0')[0]! // getCString
+  for (const g of charset.slice(1).split('/')) fd.gl_tree.add(g)
 }
 export const get_fn_objnum = (e: Engine, fd: FdEntry) => fd.fn_objnum !== 0 ? fd.fn_objnum : (fd.fn_objnum = pdf_new_objnum(e))
 
@@ -325,8 +332,8 @@ function write_fontmetrics(e: Engine, fd: FdEntry): void {
   for (let i = 0; i <= XHEIGHT_CODE; i++) if (p[i]!.set) pdf_print(e, `/${font_key[i]![0]} ${p[i]!.val}\n`)
 }
 
-// writefont.c write_fontname: no subset tag, we embed whole fonts
-const write_fontname = (e: Engine, fd: FdEntry, key: string) => pdf_print(e, `/${key} /${fd.fontname}\n`)
+// writefont.c write_fontname
+const write_fontname = (e: Engine, fd: FdEntry, key: string | null) => pdf_print(e, `/${key === null ? '' : key + ' /'}${fd.subset_tag === null ? '' : fd.subset_tag + '+'}${fd.fontname}\n`)
 
 // writefont.c write_fontdescriptor (write_fontfile, writet1 for Type 1)
 function write_fontdescriptor(e: Engine, fd: FdEntry): void {
@@ -339,7 +346,7 @@ function write_fontdescriptor(e: Engine, fd: FdEntry): void {
     pdf_print(e, `/Length1 ${t1.length1}\n/Length2 ${t1.length2}\n/Length3 0\n`)
     pdf_begin_stream(e); pdf_print(e, Array.from(t1.data)); pdf_end_stream(e)
   }
-  if (fd.fn_objnum !== 0) { pdf_begin_obj(e, fd.fn_objnum, 1); pdf_print(e, `/${fd.fontname}\n`); pdf_end_obj(e) } // write_fontname_object
+  if (fd.fn_objnum !== 0) { pdf_begin_obj(e, fd.fn_objnum, 1); write_fontname(e, fd, null); pdf_end_obj(e) } // write_fontname_object
   if (fd.fd_objnum === 0) fd.fd_objnum = pdf_new_objnum(e)
   pdf_begin_dict(e, fd.fd_objnum, 1)
   pdf_print(e, '/Type /FontDescriptor\n')
@@ -356,8 +363,10 @@ function write_fontdescriptor(e: Engine, fd: FdEntry): void {
   }
   pdf_print(e, `/Flags ${fd_flags}\n`)
   write_fontmetrics(e, fd)
-  // shortcut: no /CharSet (pdfTeX writes it for subsetted fonts; a whole font has every glyph, and the oracle masks it)
-  if (fd.ff_found) pdf_print(e, `/FontFile ${fd.ff_objnum} 0 R\n`)
+  if (fd.ff_found) {
+    if (int_par(e, 98) === 0 && is_subsetted(fd.fm)) pdf_print(e, `/CharSet (${[...fd.gl_tree].sort().map(g => '/' + g).join('')})\n`) // \pdfomitcharset
+    pdf_print(e, `/FontFile ${fd.ff_objnum} 0 R\n`)
+  }
   pdf_end_dict(e)
 }
 
@@ -384,7 +393,7 @@ function mark_chars(e: Engine, fo: FoEntry, tx: Set<number> | null, f: number): 
 // writefont.c create_fontdescriptor
 function create_fontdescriptor(e: Engine, fo: FoEntry, f: number): FdEntry {
   const fd: FdEntry = { fd_objnum: 0, fontname: fo.fm.ps_name ?? fo.fm.tfm_name, ff_found: false, ff_objnum: 0, fn_objnum: 0,
-    font_dim: Array.from({ length: 11 }, () => ({ val: 0, set: false })), builtin_glyph_names: null, fm: fo.fm, tx_tree: null }
+    font_dim: Array.from({ length: 11 }, () => ({ val: 0, set: false })), builtin_glyph_names: null, fm: fo.fm, tx_tree: null, gl_tree: new Set(), all_glyphs: false, subset_tag: null }
   preset_fontmetrics(e, fd, f)
   return fd
 }
@@ -415,7 +424,9 @@ function create_fontdictionary(e: Engine, fm: FmEntry, font_objnum: number, f: n
     fo.fd = e.fm.fd_tree.get(fd_key(fm)) ?? null
     if (fo.fd === null) { fo.fd = create_fontdescriptor(e, fo, f); e.fm.fd_tree.set(fd_key(fm), fo.fd) }
     create_charwidth_array(); write_charwidth_array(e, fo)
-    if (fo.fe === null) fo.fd.tx_tree = mark_chars(e, fo, fo.fd.tx_tree, f) // mark_reenc_glyphs only feeds /CharSet
+    if (fo.fe !== null) { // mark_reenc_glyphs
+      if (is_subsetted(fm)) for (let c = fo.first_char; c <= fo.last_char; c++) { const g = fo.fe.glyph_names[c]; if (pdf_char_marked(e, f, c) && g != null) fo.fd.gl_tree.add(g) }
+    } else fo.fd.tx_tree = mark_chars(e, fo, fo.fd.tx_tree, f)
   } else { // builtin fonts still need the /Widths array and /FontDescriptor
     create_charwidth_array(); write_charwidth_array(e, fo)
     fo.fd = create_fontdescriptor(e, fo, f); write_fontdescriptor(e, fo.fd)

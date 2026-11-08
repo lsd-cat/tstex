@@ -1,0 +1,9 @@
+%! oracle: pdftex
+\pdfoutput=1 \input plain
+\pdfcompresslevel=0 \pdfobjcompresslevel=0
+% ecrm1000 on cmr10.pfb's builtin encoding: code "E9 has no glyph there, so /.notdef joins the shared descriptor's CharSet
+\pdfmapline{=ecrm1000 CMR10 <cmr10.pfb}
+\font\e=ecrm1000 \font\r=cmr10 \font\t=cmtt10
+\nopagenumbers
+\e A\char"E9 \r Az \t x \pdfincludechars\t{yq}
+\bye
