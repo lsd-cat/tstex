@@ -144,7 +144,7 @@ if (!args.some(a => ['--texlive-docs', '--samples', '--list'].includes(a))) { pr
 const skipFile = root + '/test/corpus/skip.txt', statusFile = root + '/test/corpus/status.md'
 const skip = new Map(readFileSync(skipFile, 'utf8').split('\n').filter(l => l && !l.startsWith('#')).map(l => [l.split(': ')[0]!, l.split(': ').slice(1).join(': ')]))
 const only = arg('--only') ? new RegExp(arg('--only')!) : null, jobs = +(arg('--jobs') ?? 8), timeout = +(arg('--timeout') ?? 120)
-const git = spawnSync('git', ['rev-parse', '--short', 'HEAD'], { cwd: root, encoding: 'utf8' }).stdout.trim()
+const git = spawnSync('git', ['log', '-1', '--format=%h', '--', 'src'], { cwd: root, encoding: 'utf8' }).stdout.trim() // the engine: last commit touching src/
 // the ledger so far: kept for --only (other documents) and --resume (same engine commit: documents with a final category)
 const lines = new Map<string, string[]>() // id -> [cat, detail]
 const prev = existsSync(statusFile) ? readFileSync(statusFile, 'utf8') : ''
