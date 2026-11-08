@@ -229,21 +229,24 @@ export function decode_stream(e: Engine, s: PStream): Uint8Array {
   let params = lookup(s.d, 'DecodeParms')
   if (params === null) params = lookup(s.d, 'DP')
   let data = raw_bytes(s)
-  const filter = (name: string, p: PObj) => {
-    if (name === 'Crypt') return
+  const known = ['ASCIIHexDecode', 'AHx', 'ASCII85Decode', 'A85', 'LZWDecode', 'LZW', 'RunLengthDecode', 'RL', 'CCITTFaxDecode', 'CCF', 'DCTDecode', 'DCT', 'JBIG2Decode', 'JPXDecode']
+  const filter = (name: string, p: PObj): boolean => {
+    if (name === 'Crypt') return true
+    if (name !== 'FlateDecode' && name !== 'Fl' && !known.includes(name)) { data = new Uint8Array(0); return false } // makeFilter "Unknown filter": an EOFStream
     if (name !== 'FlateDecode' && name !== 'Fl') fatal_error(e, `unsupported: PDF stream filter /${name}`)
     if (e.fs.inflate === undefined) fatal_error(e, 'unsupported: PDF inclusion without an inflater')
     data = e.fs.inflate(data, Math.min(1 << 26, Math.max(1 << 20, data.length * 1032))) // shortcut: at most 64 MiB decoded (xpdf has a ratio-based bomb check); raise if a real stream needs more
     const pi = (k: string, v: number) => { if (!is_dict(p)) return v; const o = lookup(p, k); return typeof o === 'number' ? o : v }
     const pred = pi('Predictor', 1)
     if (pred !== 1) data = predict(e, data, pred, pi('Columns', 1), pi('Colors', 1), pi('BitsPerComponent', 8))
+    return true
   }
   if (is_name(f)) filter(f.v, params)
   else if (Array.isArray(f)) {
     for (let i = 0; i < f.length; i++) {
       const o = deref(x, f[i]!), q = Array.isArray(params) && i < params.length ? deref(x, params[i]!) : null
       if (!is_name(o)) return new Uint8Array(0) // "Bad filter name": an EOFStream
-      filter(o.v, q)
+      if (!filter(o.v, q)) break
     }
   }
   return data
