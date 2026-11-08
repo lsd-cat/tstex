@@ -1,0 +1,15 @@
+%! oracle: pdftex
+\pdfoutput=1 \pdfcompresslevel=0 \pdfobjcompresslevel=0 \input plain
+% a used slot that the encoding leaves at .notdef appears as /.notdef in /Differences; files written to the cwd
+% are read without the ./ prefix (kpathsea open_input) for .enc and .map files
+\immediate\openout1=myt.enc
+\immediate\write1{/MyEnc [}
+\count1=0 \loop \immediate\write1{/.notdef}\advance\count1 1 \ifnum\count1<66 \repeat
+\immediate\write1{/B /a /C] def}
+\immediate\closeout1
+\immediate\openout1=myt.map
+\immediate\write1{cmr10 CMR10 <cmr10.pfb <myt.enc}
+\immediate\closeout1
+\pdfmapfile{=myt.map}
+\tenrm ABCD
+\bye

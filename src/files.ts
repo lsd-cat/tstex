@@ -117,6 +117,14 @@ export function find_tex_file(e: Engine, name: string): Uint8Array | null {
   return e.fs.find(name, 'tex')
 }
 
+// kpse_find_file for the back end's .map and .enc files: one this run has written is found first, in the cwd; kpathsea's
+// open_input names such a file without the `./' that \input shows
+export function find_backend_file(e: Engine, name: string, kind: string): { data: Uint8Array, path: string } | null {
+  const out = e.outputFiles.get(name.replace(/^(\.\/)+/, ''))
+  const data = out !== undefined ? Uint8Array.from(out, c => c.charCodeAt(0)) : e.fs.find(name, kind)
+  return data && { data, path: (out === undefined ? e.fs.path?.(name, kind) : null)?.replace(/^\.\//, '') ?? name }
+}
+
 // §518 print_file_name (tex.ch: quoted when a component contains a space; quotes inside are dropped)
 export function print_file_name(e: Engine, n: string, a: string, x: string): void {
   const s = a + n + x, must_quote = s.includes(' ')

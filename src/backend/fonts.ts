@@ -4,6 +4,7 @@
 import type { Engine } from '../engine.ts'
 import { int_base } from '../types.ts'
 import { print } from '../print.ts'
+import { find_backend_file } from '../files.ts'
 import { char_info, char_width, char_height, char_depth, char_exists, height_depth, param, slant_code, x_height_code, quad_code } from '../tfm.ts'
 import { divide_scaled, pdf_new_objnum, pdf_begin_obj, pdf_end_obj, pdf_begin_dict, pdf_end_dict, pdf_print, pdf_char_marked,
   pdftex_fail, pdftex_warn, pdf_begin_stream, pdf_end_stream } from '../pdf.ts'
@@ -170,9 +171,9 @@ function fm_read_info(e: Engine): void {
   const { line: name, mode, type } = st.map_item
   st.map_item = null
   if (type === MAPLINE) { fm_scan_line(e, name, mode, null); return }
-  const data = e.fs.find(name, 'map')
-  if (data === null) { pdftex_warn(e, name, 'cannot open font map file'); return }
-  const path = e.fs.path?.(name, 'map') ?? name
+  const found = find_backend_file(e, name, 'map')
+  if (found === null) { pdftex_warn(e, name, 'cannot open font map file'); return }
+  const { data, path } = found
   print(e, '{' + path)
   // fm_getchar lines: tab is a space, spaces collapse, no leading space, CR ends a line like LF
   const text = Array.from(data, c => String.fromCharCode(c)).join('')
@@ -381,8 +382,9 @@ function write_enc(e: Engine, fe: FeEntry): void {
   pdf_print(e, '/Type /Encoding\n/Differences [')
   let i_old = -2
   for (const p of [...fe.tx_tree!].sort((a, b) => a - b)) {
-    if (p === i_old + 1) pdf_print(e, `/${fe.glyph_names[p]}`)
-    else pdf_print(e, (i_old === -2 ? '' : ' ') + `${p}/${fe.glyph_names[p]}`)
+    const g = fe.glyph_names[p] ?? notdef
+    if (p === i_old + 1) pdf_print(e, `/${g}`)
+    else pdf_print(e, (i_old === -2 ? '' : ' ') + `${p}/${g}`)
     i_old = p
   }
   pdf_print(e, ']\n')

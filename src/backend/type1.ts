@@ -4,6 +4,7 @@
 import type { Engine } from '../engine.ts'
 import { print, print_char } from '../print.ts'
 import { pdftex_fail } from '../pdf.ts'
+import { find_backend_file } from '../files.ts'
 
 export type Glyphs = (string | null)[] // 256 glyph names; null is notdef
 export const notdef = '.notdef'
@@ -54,9 +55,9 @@ function scan_num(e: Engine, s: string, file: string): [number, string] {
 
 // writet1.c load_enc_file: the glyph names of an encoding vector; logs `{path}'
 export function load_enc_file(e: Engine, enc_name: string): Glyphs {
-  const data = e.fs.find(enc_name, 'enc')
-  if (data === null) pdftex_fail(e, enc_name, 'cannot open encoding file for reading')
-  const path = e.fs.path?.(enc_name, 'enc') ?? enc_name
+  const found = find_backend_file(e, enc_name, 'enc')
+  if (found === null) pdftex_fail(e, enc_name, 'cannot open encoding file for reading')
+  const { data, path } = found
   const glyph_names: Glyphs = new Array(256).fill(null)
   print(e, '{'); print(e, path)
   const lines = getlines(Array.from(data, c => String.fromCharCode(c)).join('')).filter(l => l[0] !== '%')
