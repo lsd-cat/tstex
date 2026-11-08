@@ -29,9 +29,9 @@ writeFileSync(join(root, 'lf.tfm'), Uint8Array.from({ length: 24 }, (_, i) => i 
 writeFileSync(join(root, 'garbage.tcx'), rand(4000))
 
 const pre = '\\catcode`\\{=1 \\catcode`\\}=2 \\catcode`\\#=6 \\catcode`\\^=7 \\catcode0=12 \\catcode`\\%=12 \\scrollmode '
-async function run(body: string, tcx?: string): Promise<Engine> {
+async function run(body: string, tcx?: string, limits?: { main_memory: number }): Promise<Engine> {
   writeFileSync(join(root, 't.tex'), pre + body.replaceAll('TOP', top) + '\n\\end\n')
-  const e = new Engine({ fs: nodeFS([root, texmf], [tree]), tcx })
+  const e = new Engine({ fs: nodeFS([root, texmf], [tree]), tcx, limits })
   await e.run({ file: 't', mode: 'etex' }) // must not throw
   assert.ok(!e.log.includes(secret), 'secret leaked into the log')
   return e
@@ -107,6 +107,20 @@ const capacity: [string, string][] = [
 for (const [body, what] of capacity) test(`capacity: ${what}`, async () => {
   const e = await run(body)
   assert.ok(e.log.includes(`! TeX capacity exceeded, sorry [${what}].`))
+})
+
+test('capacity: main memory', async () => {
+  for (const body of ['\\def\\a{x\\a}\\edef\\b{\\a}', '\\def\\a#1{\\a{#1#1}}\\a x']) {
+    const e = await run(body, undefined, { main_memory: 300000 })
+    assert.match(e.log, /Runaway (definition|argument)\?\n.*\\ETC\.\n! TeX capacity exceeded, sorry \[main memory size=300000\]\./)
+  }
+})
+
+test('capacity: 10^6-character strings in \\message, \\pdffilesize, \\pdfmatch', async () => {
+  const e = await run('\\def\\x{xxxxxxxxxx}' + '\\edef\\x{\\x\\x\\x\\x\\x\\x\\x\\x\\x\\x}'.repeat(5) +
+    '\\message{\\x}\\message{[\\pdffilesize{\\x}]\\pdfmatch{x+}{\\x}\\pdflastmatch0}')
+  const log = e.log.replaceAll('\n', '') // long lines wrap, and §1280's separating space becomes a line break
+  assert.match(log, /\(\.\/t\.tex ?x{1000000} ?\[\]10->x{1000000} \)/)
 })
 
 test('capacity: a 10^6-character braced file name is just not found', async () => {

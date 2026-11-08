@@ -2,6 +2,9 @@
 
 const hex = (n: number) => n.toString(16).toUpperCase().padStart(2, '0')
 const bytes = (s: string) => Array.from(s, c => c.charCodeAt(0))
+// bytes to a string, and appending, without a spread (`fromCharCode(...a)' overflows the JS stack past ~10^5 elements)
+export const str = (a: number[]) => a.map(c => String.fromCharCode(c)).join('')
+export function append(a: number[], b: number[] | string): void { for (let i = 0; i < b.length; i++) a.push(typeof b === 'string' ? b.charCodeAt(i) : b[i]!) }
 
 // utils.c escapestring: PDF literal-string escaping
 export function escapestring(s: number[]): number[] {

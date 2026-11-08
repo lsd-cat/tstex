@@ -7,6 +7,7 @@ import { flush_list } from '../nodes.ts'
 import { scan_toks } from '../scan.ts'
 import { print_err, help, error } from '../error.ts'
 import { err_help_loc } from '../eqtb.ts'
+import { str } from '../utils.ts'
 
 export const cmd = Cmd.message
 export const primitives: [string, number][] = [['message', 0], ['errmessage', 1]]
@@ -18,7 +19,7 @@ export function run(e: Engine, chr: number): void {
   const b = e.cur_str.length
   e.message_printing = true; token_show(e, e.def_ref); e.message_printing = false; e.selector = old_setting // enctex2.ch
   flush_list(e, e.def_ref)
-  const s = String.fromCharCode(...e.cur_str.splice(b))
+  const s = str(e.cur_str.splice(b))
   if (chr !== 0) { // §1283 Print string s as an error message
     print_err(e, ''); print_str(e, s)
     if (e.equiv[err_help_loc] !== 0) e.use_err_help = true

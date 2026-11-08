@@ -4,7 +4,8 @@
 import type { Engine } from './engine.ts'
 import { print, print_char, print_esc, print_int, print_ln, print_current_string, print_hex } from './print.ts'
 import { print_scaled } from './arith.ts'
-import { confusion } from './error.ts'
+import { confusion, overflow } from './error.ts'
+import { runaway } from './input.ts'
 import { show_token_list } from './tokens.ts'
 import { print_file_name } from './files.ts'
 import { print_skip_param } from './eqtb.ts'
@@ -19,10 +20,12 @@ export const temp_head = 1, hold_head = 2, backup_head = 3, garbage = 4, null_li
 export function get_avail(e: Engine): number {
   let p = e.avail
   if (p !== 0) e.avail = e.link[p]!
-  else p = ++e.mem_end
+  else if ((p = ++e.mem_end) + e.nodes.length > e.lim.main_memory) mem_overflow(e)
   e.link[p] = 0; e.info[p] = 0
   return p
 }
+
+function mem_overflow(e: Engine): never { e.mem_end--; runaway(e); overflow(e, 'main memory size', e.lim.main_memory) } // kept out of get_avail, which stays small enough to inline
 
 // §121 free_avail
 export function free_avail(e: Engine, p: number): void {
@@ -248,6 +251,7 @@ export const new_penalty = (m: number): PenaltyNode => ({ type: penalty_node, li
 export function node_ref(e: Engine, p: Node | null): number {
   if (p === null) return 0
   const h = e.nodes_free.pop() ?? e.nodes.length
+  if (h === e.nodes.length && e.mem_end + h >= e.lim.main_memory) overflow(e, 'main memory size', e.lim.main_memory)
   e.nodes[h] = p
   return h
 }

@@ -8,7 +8,7 @@ import { print_meaning, tokens_to_string } from '../tokens.ts'
 import { delete_token_ref, free_avail } from '../nodes.ts'
 import { get_token, ins_list } from '../input.ts'
 import { scan_int, str_toks, scan_toks, scan_keyword } from '../scan.ts'
-import { escapestring, escapename, escapehex, unescapehex, makepdftime, md5, matchstrings } from '../utils.ts'
+import { escapestring, escapename, escapehex, unescapehex, makepdftime, md5, matchstrings, str, append } from '../utils.ts'
 import { unsupported } from '../main.ts'
 import { open_log_file, find_tex_file } from '../files.ts'
 import { print_err, help, int_error, fatal_error } from '../error.ts'
@@ -72,7 +72,7 @@ export function run(e: Engine, chr: number): void {
   else if (c === pdf_file_size_code || c === pdf_file_mod_date_code || c === pdf_mdfive_sum_code || (c >= 14 && c <= 21 && c !== 16 && c !== 17 && c !== 18 && c !== 19)) {
     // pdftex.web: scan_pdf_ext_toks, then a utils.c conversion of the string (getfilesize, getfilemoddate, getmd5sum, escape…)
     const file = c === pdf_mdfive_sum_code && scan_keyword(e, 'file'), s = scan_ext_string(e)
-    const name = () => String.fromCharCode(...s).replaceAll('"', '') // makecfilename drops quotes; kpse_find_tex
+    const name = () => str(s).replaceAll('"', '') // makecfilename drops quotes; kpse_find_tex
     let r: number[] | string
     if (c === pdf_file_size_code) { const f = find_tex_file(e, name()); r = f === null ? '' : String(f.length) }
     else if (c === pdf_file_mod_date_code) { // a file this run wrote was modified now
@@ -81,7 +81,7 @@ export function run(e: Engine, chr: number): void {
     }
     else if (c === pdf_mdfive_sum_code) { const f = file ? find_tex_file(e, name()) : s; r = f === null ? '' : md5(f) }
     else r = (c === 14 ? escapestring : c === 15 ? escapename : c === 20 ? escapehex : unescapehex)(s)
-    e.cur_str.push(...(typeof r === 'string' ? Array.from(r, ch => ch.charCodeAt(0)) : r))
+    append(e.cur_str, r)
     e.link[garbage] = str_toks(e, b); ins_list(e, e.link[temp_head]!); return
   }
   else if (c === pdf_match_code) { // pdftex.web; utils.c matchstrings: 1, 0, or -1 for a bad pattern (the last match is kept)
@@ -89,7 +89,7 @@ export function run(e: Engine, chr: number): void {
     const icase = scan_keyword(e, 'icase')
     let n = -1
     if (scan_keyword(e, 'subcount')) { scan_int(e); n = e.cur_val }
-    const pat = String.fromCharCode(...scan_ext_string(e)), t = String.fromCharCode(...scan_ext_string(e))
+    const pat = str(scan_ext_string(e)), t = str(scan_ext_string(e))
     e.def_ref = dr; e.warning_index = wi; e.scanner_status = ss
     const m = matchstrings(pat, t, icase)
     if (m === null) fatal_error(e, 'unsupported: \\pdfmatch pattern ' + pat) // shortcut: pdftex warns with the C library's regerror text and returns -1
@@ -104,7 +104,7 @@ export function run(e: Engine, chr: number): void {
       int_error(e, e.cur_val); e.cur_val = 0
     }
     const m = e.last_match[e.cur_val]
-    e.cur_str.push(...Array.from(m ? m[0] + '->' + m[1] : '-1->', ch => ch.charCodeAt(0)))
+    append(e.cur_str, m ? m[0] + '->' + m[1] : '-1->')
     e.link[garbage] = str_toks(e, b); ins_list(e, e.link[temp_head]!); return
   }
   else if (c === pdf_creation_date_code) { // pdftex.web; utils.c makepdftime

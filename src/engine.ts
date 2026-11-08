@@ -38,6 +38,7 @@ export const default_limits = {
   error_line: 79, half_error_line: 50, max_print_line: 79, stack_size: 10000, max_in_open: 15, buf_size: 200000,
   param_size: 20000, nest_size: 1000, save_size: 200000, font_max: 9000, font_mem_size: 8000000, hash_size: 15000,
   hash_extra: 600000, hyph_size: 8191, trie_size: 1000000, trie_op_size: 35111, dvi_buf_size: 16384, expand_depth: 10000,
+  main_memory: 5000000, // shortcut: counts token words + node handles (e.nodes), not pdftex's mem words; node objects reachable only from lists are uncounted, count them if a runaway list OOMs
 }
 export type Limits = typeof default_limits
 
