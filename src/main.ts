@@ -1408,7 +1408,7 @@ export function after_math(e: Engine): void {
   // §1202 Determine the displacement, d, of the left edge of the equation
   b.subtype = dlist
   let d = half((z - w) | 0)
-  if (en > 0 && d < 2 * en) { // too close
+  if (en > 0 && d < Math.imul(2, en)) { // too close
     d = half((z - w - en) | 0)
     if (p !== null && !is_char_node(p) && p.type === glue_node) d = 0
   }
