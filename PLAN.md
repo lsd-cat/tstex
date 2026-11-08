@@ -164,6 +164,15 @@ The port reproduces TeX's behaviour, bugs included; compatibility is the product
 - **pdftex vs tex.web** — divergences (pdftex wins, plan rule 5).
 - **Security** — trust boundaries carried over: `openin_any`/`openout_any` paranoid defaults, no path escape from the texmf root or the browser virtual fs, no `\write18`. Each boundary has a test in `test/unit/security.test.ts` with a hostile `.tex`.
 
+**M8 Engine gaps (pdflatex parity).** Four pieces, each byte-exact against pdftex (fixed dates, `\pdfcompresslevel=0`), oracle tests first:
+1. *PDF figure embedding* (`pdftoepdf.cc` semantics): a PDF object reader (xref tables and streams, object streams, inflate via the platform), page selection (`page n`), box selection (`\pdfpagebox`, media/crop/bleed/trim/art), `/Rotate`, copying the page's content streams and `/Resources` with every dependent object (renumbered, deduplicated per included file as pdftex does), written as a Form XObject with `/BBox`/`/Matrix`; `\pdfinclusionerrorlevel`, version warnings, encrypted/JBIG2 inputs refused loudly.
+2. *microtype*: font expansion (`\pdfadjustspacing`, `\pdffontexpand`, `\efcode`, expanded font instances, the expansion-aware `line_break` and `post_line_break`), character protrusion (`\pdfprotrudechars`, `\lpcode`/`\rpcode`, margin-kern nodes in line breaking and shipout), interword adjustments (`\pdfadjustinterwordglue`, `\knbscode`/`\stbscode`/`\shbscode`, `\knbccode`/`\knaccode` with `\pdfprependkern`/`\pdfappendkern`), `\pdftracingfonts`, `\pdfnoligatures`, `\pdfcopyfont`/`\letterspacefont`.
+3. *Type1 subsetting* (`writet1.c`): charstring parsing, glyph closure incl. `seac`, Subrs kept as pdftex keeps them, eexec re-encryption, `/CharSet`, the 6-letter subset tag from pdftex's own hashing → `<` map entries byte-exact; the comparer stops masking font programs.
+4. *PNG variants* (`writepng.c`): Adam7 interlace, 16-bit with `\pdfimagehicolor`, `tRNS` → `/Mask` or `/SMask`, `\pdfimageapplygamma`.
+Exit: new tests `m8-*` byte-exact; `m6-*` comparisons no longer need the font mask; `acmart`-style and thesis-style documents with microtype compile; the `lvt` test `base/sx172785` leaves skip.txt.
+
+**M9 Distribution parity.** `tools/pack-texmf.ts --preset full` (TeX Live `scheme-full` minus doc/source, ~3 GB hosted) with a sharded index; SyncTeX output (`synctex-*.ch*` in `spec/`, `\synctex=1` → `.synctex.gz`) and the demo's click-to-source/source-to-PDF via it; Type1 font packages for common OpenType-only requests (lato, sourcesanspro, fira, libertinus, tex-gyre) in `basic`.
+
 ## Working rules for the implementing agent
 
 1. Open `spec/tex.web` at the § you're porting and port it. Do not reinvent, simplify, or "improve" an algorithm; TeX's quirks are the contract.
@@ -188,4 +197,6 @@ XeTeX/LuaTeX, OpenType, Unicode input, Type1 subsetting, `\valign`, TeXXeT, `\ma
 - [x] M4 e‑TeX (2026-11-08; 147 tests, 1 skipped (m4-texxet); etrip: 0 bugs, identical to pdftex with `\TeXXeTstate=1`→0, see test/etrip-diffs.md; TeXXeT deferred)
 - [x] M5 LaTeX boots (2026-11-08; latex.fmt from pdflatex.ini; lvt corpus 892/903 pass, 11 skipped with reasons; m5-article 2 runs identical; security tests; trip/etrip done in M3/M4)
 - [x] M6 pdfTeX primitives, PDF output (2026-11-08; 249 oracle+unit tests, 43 m6 oracle tests incl. 22 from two cold back-end reviews; article, hyperref, graphicx PNG/JPEG, geometry, xcolor, TikZ, beamer PDFs identical after pdf-normalize, `<<` fonts byte-exact; PDF images measured, not embedded)
+- [ ] M8 engine gaps (PDF embedding, microtype, subsetting, PNG variants)
+- [ ] M9 distribution parity (full bundle, SyncTeX)
 - [x] M7 browser distribution (2026-11-08; createTeX library + Worker, static texmf bundles (minimal/basic), sync-XHR fetch, HTTP + persistent cache; Chromium/Firefox/WebKit exit test; Overleaf-style static editor in web/)
