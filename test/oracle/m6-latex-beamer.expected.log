@@ -372,7 +372,15 @@ Package: amsfonts 2013/01/14 v3.01 Basic AMSFonts support
 LaTeX Font Info:    Redeclaring math symbol \hbar on input line 98.
 LaTeX Font Info:    Overwriting math alphabet `\mathfrak' in version `bold'
 (Font)                  U/euf/m/n --> U/euf/b/n on input line 106.
-))) (beamerbasetranslator.sty (translator.sty
+)) (sansmathaccent.sty
+Package: sansmathaccent 2020/01/31
+(scrlfile.sty
+Package: scrlfile 2026/10/19 v3.49.3 KOMA-Script package (file load hooks)
+(scrlfile-hook.sty
+Package: scrlfile-hook 2026/10/19 v3.49.3 KOMA-Script package (using LaTeX hooks)
+(scrlogo.sty
+Package: scrlogo 2026/10/19 v3.49.3 KOMA-Script package (logo)
+))))) (beamerbasetranslator.sty (translator.sty
 Package: translator 2021-05-31 v1.12d Easy translation of strings in LaTeX
 )) (beamerbasemisc.sty) (beamerbasetwoscreens.sty) (beamerbaseoverlay.sty
 \beamer@argscount=\count332
@@ -691,6 +699,13 @@ LaTeX Font Info:    Overwriting math alphabet `\mathit' in version `bold'
 (Font)                  OT1/cmss/m/it --> OT1/cmss/b/it on input line 9.
 LaTeX Font Info:    Overwriting math alphabet `\mathtt' in version `bold'
 (Font)                  OT1/cmtt/m/n --> OT1/cmtt/b/n on input line 9.
+LaTeX Font Info:    Redeclaring symbol font `pureletters' on input line 9.
+LaTeX Font Info:    Overwriting symbol font `pureletters' in version `normal'
+(Font)                  OT1/cmss/m/it --> OT1/mathkerncmss/m/sl on input line 9.
+LaTeX Font Info:    Overwriting symbol font `pureletters' in version `bold'
+(Font)                  OT1/cmss/b/it --> OT1/mathkerncmss/m/sl on input line 9.
+LaTeX Font Info:    Overwriting symbol font `pureletters' in version `bold'
+(Font)                  OT1/mathkerncmss/m/sl --> OT1/mathkerncmss/bx/sl on input line 9.
 (translator-basic-dictionary-English.dict
 Dictionary: translator-basic-dictionary, Language: English
 ) (translator-bibliography-dictionary-English.dict
@@ -1197,6 +1212,10 @@ File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 LaTeX Font Info:    Trying to load font information for U+msb on input line 11.
 (umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
+)
+LaTeX Font Info:    Trying to load font information for OT1+mathkerncmss on input line 11.
+(ot1mathkerncmss.fd
+File: ot1mathkerncmss.fd 2020/01/31 Fontinst v1.933 font definitions for OT1/mathkerncmss.
 )
 
 Completed box being shipped out [2]

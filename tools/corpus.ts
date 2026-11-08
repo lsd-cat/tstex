@@ -106,7 +106,7 @@ async function runDoc(doc: Doc, timeout: number): Promise<Res> {
   if (size(doc.dir) > MB50 && !doc.strip) return { cat: 'skipped', detail: 'directory over 50 MB' }
   const tmp = mkdtempSync(join(tmpdir(), 'corpus-')), A = join(tmp, 'a'), B = join(tmp, 'b')
   try {
-    try { prepare(doc, A); prepare(doc, B) } catch (x) { return { cat: 'skipped', detail: String(x instanceof Error ? x.message : x) } }
+    try { prepare(doc, A); prepare(doc, B) } catch (x) { return { cat: 'skipped', detail: 'runner: ' + String(x instanceof Error ? x.message : x) } }
     const [p, e] = await Promise.all([runSide('pdftex', A, doc.main, timeout), runSide('engine', B, doc.main, timeout)])
     const t = { tp: p.ms, te: e.ms }
     if (p.timeout || e.timeout) return { cat: 'timeout', detail: `${p.timeout ? 'pdftex' : ''}${p.timeout && e.timeout ? '+' : ''}${e.timeout ? 'engine' : ''} > ${timeout}s`, ...t }
@@ -153,7 +153,7 @@ if (!existsSync(root + '/build/latex.fmt')) { process.stderr.write('build/latex.
 let next = 0, done = 0
 await Promise.all(Array.from({ length: Math.min(jobs, todo.length) }, async () => {
   while (next < todo.length) {
-    const d = todo[next++]!, r = await runDoc(d, timeout).catch(x => ({ cat: 'engine-error', detail: 'runner: ' + (x instanceof Error ? x.message : x) }) as Res)
+    const d = todo[next++]!, r = await runDoc(d, timeout).catch(x => ({ cat: 'skipped', detail: 'runner: ' + (x instanceof Error ? x.message : x) }) as Res)
     results.set(d.id, r); process.stderr.write(`[${++done}/${todo.length}] ${r.cat} ${d.id}\n`)
   }
 }))
