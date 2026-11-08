@@ -10,7 +10,7 @@ import { get_token, ins_list } from '../input.ts'
 import { scan_int, str_toks, scan_toks, scan_keyword } from '../scan.ts'
 import { escapestring, escapename, escapehex, unescapehex, makepdftime, md5 } from '../utils.ts'
 import { unsupported } from '../main.ts'
-import { open_log_file } from '../files.ts'
+import { open_log_file, find_tex_file } from '../files.ts'
 import { scan_font_ident } from '../tfm.ts'
 import { print_scaled, unif_rand, norm_rand } from '../arith.ts'
 
@@ -73,9 +73,12 @@ export function run(e: Engine, chr: number): void {
     const file = c === pdf_mdfive_sum_code && scan_keyword(e, 'file'), s = scan_ext_string(e)
     const name = () => String.fromCharCode(...s).replaceAll('"', '') // makecfilename drops quotes; kpse_find_tex
     let r: number[] | string
-    if (c === pdf_file_size_code) { const f = e.fs.find(name(), 'tex'); r = f === null ? '' : String(f.length) }
-    else if (c === pdf_file_mod_date_code) { const st = e.fs.stat?.(name(), 'tex'); r = st ? makepdftime(st.mtime) : '' }
-    else if (c === pdf_mdfive_sum_code) { const f = file ? e.fs.find(name(), 'tex') : s; r = f === null ? '' : md5(f) }
+    if (c === pdf_file_size_code) { const f = find_tex_file(e, name()); r = f === null ? '' : String(f.length) }
+    else if (c === pdf_file_mod_date_code) { // a file this run wrote was modified now
+      const n = name(), written = [n, n + '.tex'].some(x => e.outputFiles.has(x.replace(/^\.\//, '')))
+      const t = written ? new Date() : e.fs.stat?.(n, 'tex')?.mtime; r = t ? makepdftime(t) : ''
+    }
+    else if (c === pdf_mdfive_sum_code) { const f = file ? find_tex_file(e, name()) : s; r = f === null ? '' : md5(f) }
     else r = (c === 14 ? escapestring : c === 15 ? escapename : c === 20 ? escapehex : unescapehex)(s)
     e.cur_str.push(...(typeof r === 'string' ? Array.from(r, ch => ch.charCodeAt(0)) : r))
     e.link[garbage] = str_toks(e, b); ins_list(e, e.link[temp_head]!); return

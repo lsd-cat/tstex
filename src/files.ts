@@ -108,6 +108,15 @@ export function open_tex_file(e: Engine): { name: string, file: InputFile } | nu
   return null
 }
 
+// utils.c kpse_find_tex for \pdffilesize, \pdfmdfivesum file, \pdffilemoddate: files this run wrote come first, as on disk
+export function find_tex_file(e: Engine, name: string): Uint8Array | null {
+  for (const n of /\.tex$/.test(name) ? [name] : [name + '.tex', name]) {
+    const out = e.outputFiles.get(n.replace(/^\.\//, ''))
+    if (out !== undefined) return Uint8Array.from(out, c => c.charCodeAt(0))
+  }
+  return e.fs.find(name, 'tex')
+}
+
 // §518 print_file_name (tex.ch: quoted when a component contains a space; quotes inside are dropped)
 export function print_file_name(e: Engine, n: string, a: string, x: string): void {
   const s = a + n + x, must_quote = s.includes(' ')
