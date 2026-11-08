@@ -15,6 +15,8 @@ import { add_glue_ref, delete_glue_ref, new_spec, zero_glue, get_avail, free_ava
   a_leaders, mu_glue, explicit, acc_kern, language_node, fill_glue, new_math, new_noad, new_choice, null_delimiter, node_free,
   stretching, shrinking, L_code, before, after, inf_penalty, ord_noad, inner_noad, radical_noad, fraction_noad, accent_noad,
   vcenter_noad, left_noad, right_noad, math_char, sub_box, sub_mlist, default_code, text_style, display_style } from './nodes.ts'
+import { new_skip_param } from './nodes.ts'
+import type { KernNode } from './nodes.ts'
 import type { Node, CharNode, LigNode, BoxNode, InsNode, AdjustNode, MarkNode, GlueNode, Noad, Field, Delim, ChoiceNode } from './nodes.ts'
 import { mlist_to_hlist, flush_math, fam_fnt, math_quad, text_size, script_size, script_script_size, total_mathsy_params,
   total_mathex_params } from './math.ts'
@@ -52,7 +54,7 @@ export const box_flag = 0o10000000000, global_box_flag = 0o10000100000, ship_out
   leader_flag = 0o10000200001, box_code = 0, copy_code = 1, last_box_code = 2, vsplit_code = 3, vtop_code = 4
 export const fil_code = 0, fill_code = 1, ss_code = 2, fil_neg_code = 3, skip_code = 4, mskip_code = 5
 const default_rule = 26214
-const space_skip_code = 12, xspace_skip_code = 13, par_skip_code = 2, split_top_skip_code = 10
+const left_skip_code = 7, right_skip_code = 8, space_skip_code = 12, xspace_skip_code = 13, par_skip_code = 2, split_top_skip_code = 10
 const language_code = 50, left_hyphen_min_code = 51, right_hyphen_min_code = 52, floating_penalty_code = 42
 const pdf_adjust_interword_glue_code = 87, par_indent_code = 0, split_max_depth_code = 6, box_max_depth_code = 7
 const pdf_ignored_dimen = (e: Engine) => e.equiv[dimen_base + 32]!
@@ -1201,12 +1203,18 @@ export function init_math(e: Engine): void {
   get_token(e) // get_x_token would fail on \ifmmode!
   if (e.cur_cmd !== Cmd.math_shift || e.mode <= 0) { back_input(e); go_into_ordinary_math(e); return }
   // §1145 Go into display math mode
-  let w = -max_dimen
+  let w = -max_dimen, j: BoxNode | null = null
   if (e.head === e.tail) pop_nest(e) // §1145 Prepare for display after an empty paragraph
   else {
     line_break(e, true)
     // §1146 Calculate the natural width, w, by which the characters of the final line extend to the right of the reference point
     const jb = e.just_box as BoxNode
+    if (e.eTeX_ex) { // etex.ch Let j be the prototype box for the display
+      const rs: Node = e.equiv[glue_base + right_skip_code] === zero_glue ? new_kern(0) : new_param_glue(e, right_skip_code)
+      const ls: Node = e.equiv[glue_base + left_skip_code] === zero_glue ? new_kern(0) : new_param_glue(e, left_skip_code)
+      ls.link = rs; j = new_null_box(); j.width = jb.width; j.shift_amount = jb.shift_amount; j.list_ptr = ls
+      j.glue_order = jb.glue_order; j.glue_sign = jb.glue_sign; j.glue_set = jb.glue_set
+    }
     let v = jb.shift_amount
     v = (v + Math.imul(2, param(e, quad_code, e.equiv[cur_font_loc]!))) | 0
     for (let p = jb.list_ptr; p !== null; p = p.link) {
@@ -1253,7 +1261,8 @@ export function init_math(e: Engine): void {
   push_math(e, math_shift_group); e.mode = mmode
   eq_word_define(e, int_base + cur_fam_code, -1)
   eq_word_define(e, dimen_base + pre_display_size_code, w)
-  e.eTeX_aux = null // LR_box:=j
+  e.eTeX_aux = j // LR_box:=j
+  if (e.eTeX_ex) eq_word_define(e, int_base + pre_display_direction_code, 0) // x: TeXXeT is not ported, so LR_save=null
   eq_word_define(e, dimen_base + display_width_code, l)
   eq_word_define(e, dimen_base + display_indent_code, s)
   if (e.equiv[every_display_loc] !== 0) begin_token_list(e, e.equiv[every_display_loc]!, every_display_text)
@@ -1510,9 +1519,46 @@ export function resume_after_display(e: Engine): void {
 }
 
 // etex.ch app_display (pre_display_direction=0 without e-TeX, so the TeXXeT branch is unreachable)
-function app_display(e: Engine, _j: Node | null, b: BoxNode, d: number): void {
-  if (int_par(e, pre_display_direction_code) !== 0) fatal_error(e, 'unsupported: \\predisplaydirection')
-  b.shift_amount = (e.equiv[dimen_base + display_indent_code]! + d) | 0
+function app_display(e: Engine, j: Node | null, b: BoxNode, d: number): void {
+  let s = e.equiv[dimen_base + display_indent_code]!
+  const x = int_par(e, pre_display_direction_code)
+  if (x === 0) b.shift_amount = (s + d) | 0
+  else {
+    const z = e.equiv[dimen_base + display_width_code]!
+    let p: Node | null = b, q: Node, ee: number
+    // Set up the hlist for the display line
+    if (x > 0) ee = (z - d - b.width) | 0
+    else { ee = d; d = (z - ee - b.width) | 0 }
+    if (j !== null) {
+      b = copy_node_list(e, j) as BoxNode; b.height = (p as BoxNode).height; b.depth = (p as BoxNode).depth
+      s = (s - b.shift_amount) | 0; d = (d + s) | 0; ee = (ee + b.width - z - s) | 0
+    }
+    if ((p as BoxNode).subtype === dlist) q = p // display or equation number
+    else { // display and equation number
+      let r: Node | null = (p as BoxNode).list_ptr
+      if (r === null) confusion(e, 'LR4')
+      if (x > 0) { p = r; do { q = r!; r = r!.link } while (r !== null) }
+      else { p = null; q = r!; do { const t: Node | null = r!.link; r!.link = p; p = r; r = t } while (r !== null) }
+    }
+    // Package the display line
+    let r: Node, t: Node
+    if (j === null) { r = new_kern(0); t = new_kern(0) } else { r = b.list_ptr!; t = r.link! }
+    const cancel_glue = (n: number, a: Node, c: Node | null, g: Node, w: number): void => {
+      const k = new_skip_param(e, n); a.link = k; k.link = c
+      const o = e.spec[(g as GlueNode).glue_ptr]!, sp = e.spec[e.temp_ptr]!
+      sp.stretch_order = o.stretch_order; sp.shrink_order = o.shrink_order; sp.width = (w - o.width) | 0
+      sp.stretch = -o.stretch | 0; sp.shrink = -o.shrink | 0
+    }
+    let u: Node = new_math(0, 3) // end_M_code
+    if (t.type === glue_node) { cancel_glue(right_skip_code, q, u, t, ee); u.link = t }
+    else { (t as KernNode).width = ee; t.link = u; q.link = t }
+    u = new_math(0, 2) // begin_M_code
+    if (r.type === glue_node) { cancel_glue(left_skip_code, u, p, r, d); r.link = u }
+    else {
+      (r as KernNode).width = d; r.link = p; u.link = r
+      if (j === null) { b = hpack(e, u, 0, additional); b.shift_amount = s } else b.list_ptr = u
+    }
+  }
   append_to_vlist(e, b)
 }
 
