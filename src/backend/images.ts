@@ -1,8 +1,8 @@
 // writeimg.c readimage/writeimage/deleteimage, pdftoepdf.cc (read_pdf_info, write_epdf: PDF pages as form XObjects),
 // writepng.c (read_png_info, write_png: the copy path and the decoded write_png_gray/rgb/palette/gray_alpha/rgb_alpha
 // paths), writejpg.c (read_jpg_info incl. JFIF/Exif resolution, write_jpg). libpng's work is done here: chunks are parsed and
-// CRC-checked, IDAT is inflated by the platform (TexFS.inflate), the rows unfiltered, alpha stripped below PDF 1.4.
-// JBIG2 inclusion, interlaced, tRNS, gamma-applied and 16-to-8-bit PNGs are unsupported.
+// CRC-checked, IDAT is inflated by the platform (TexFS.inflate), the rows unfiltered and deinterlaced, libpng's tRNS, alpha,
+// gamma and 16-bit transformations applied. JBIG2 inclusion is unsupported.
 import type { Engine } from '../engine.ts'
 import { print } from '../print.ts'
 import { fatal_error } from '../error.ts'
@@ -18,7 +18,8 @@ import type { FdEntry, FmEntry } from './fonts.ts'
 import { standard_glyph_names } from './type1.ts'
 
 export const IMAGE_COLOR_B = 1, IMAGE_COLOR_C = 2, IMAGE_COLOR_I = 4
-type Png = { ct: number, bd: number, il: number, palette: Uint8Array, chunks: Set<string>, gamma: number }
+// gamma: the file gamma (×100000, 0: none); trns: a valid tRNS chunk's data; sbit: sBIT's significant bits
+type Png = { ct: number, bd: number, il: number, palette: Uint8Array, chunks: Set<string>, gamma: number, trns: Uint8Array | null, sbit: Uint8Array }
 export type Img = { name: string, data: Uint8Array, type: 'png' | 'jpg' | 'pdf', orig_x: number, orig_y: number, color: number, width: number, height: number, xres: number, yres: number,
   pages: number, colorspace_ref: number, group_ref: number, rotate: number, bpc: number, jpg_color_space: number, png: Png | null,
   doc: EpdfDoc | null, selected_page: number, page_box: number }
@@ -367,7 +368,7 @@ export function delete_image(e: Engine, img: Img): void {
 
 // writepng.c read_png_info (libpng's png_read_info: the chunks before IDAT)
 function read_png_info(e: Engine, img: Img): void {
-  const d = img.data, png: Png = { ct: 0, bd: 0, il: 0, palette: new Uint8Array(0), chunks: new Set(), gamma: 0 }
+  const d = img.data, png: Png = { ct: 0, bd: 0, il: 0, palette: new Uint8Array(0), chunks: new Set(), gamma: 0, trns: null, sbit: new Uint8Array(0) }
   img.png = png
   for (let i = 8; i + 8 <= d.length;) {
     const len = u32(d, i), t = tag(d, i + 4), b = i + 8
@@ -378,11 +379,20 @@ function read_png_info(e: Engine, img: Img): void {
       if (t.charCodeAt(0) & 32) continue
       pdftex_fail(e, img.name, 'libpng: internal error')
     }
+    if (t === 'tRNS') { // png_handle_tRNS: a wrong length, a palette without PLTE, a colour type with alpha or a second tRNS: ignored
+      const ok = png.trns === null && (png.ct === 0 ? len === 2 : png.ct === 2 ? len === 6 : png.ct === 3 && len > 0 && len <= 256 && 3 * len <= png.palette.length)
+      if (!ok) continue
+      png.trns = d.subarray(b, b + len)
+    }
+    if (t === 'gAMA') { // png_colorspace_set_gamma: 16..625000000
+      if (len !== 4 || u32(d, b) < 16 || u32(d, b) > 625000000) continue
+      png.gamma = u32(d, b)
+    }
+    if (t === 'sBIT') png.sbit = d.subarray(b, b + Math.min(len, 4))
     png.chunks.add(t)
     if (t === 'IHDR') { img.width = u32(d, b); img.height = u32(d, b + 4); png.bd = d[b + 8]!; png.ct = d[b + 9]!; png.il = d[b + 12]! }
     else if (t === 'pHYs' && d[b + 8] === 1) { img.xres = cround(0.0254 * u32(d, b)); img.yres = cround(0.0254 * u32(d, b + 4)) } // png_get_x_pixels_per_meter is 0 unless the unit is the metre
     else if (t === 'PLTE') png.palette = d.subarray(b, b + len)
-    else if (t === 'gAMA') png.gamma = u32(d, b)
     else if (t === 'IEND') break
   }
   switch (png.ct) {
@@ -488,19 +498,37 @@ function write_jpg(e: Engine, img: Img): void {
   pdf_end_stream(e)
 }
 
-// writepng.c write_png
+// writepng.c write_png. libpng's transformations as pdfTeX requests them, in png_do_read_transformations' order: with a tRNS
+// chunk png_set_tRNS_to_alpha (palette to RGB plus alpha, gray below 8 bits to 8, the tRNS colour to alpha 0), below PDF 1.4
+// png_set_strip_alpha (decided on the file's colour type), png_set_gamma with \pdfimageapplygamma, png_set_strip_16 (the
+// high byte) without \pdfimagehicolor or below PDF 1.5; png_set_interlace_handling deinterlaces Adam7. The writer is chosen
+// by the colour type after them, so a tRNS image below PDF 1.4 writes its RGBA/gray-alpha rows as /DeviceRGB or /DeviceGray.
 function write_png(e: Engine, img: Img): void {
   const png = img.png!, ps = e.ps
+  if (ps.fixed_major === 1 && ps.fixed_minor < 5) ps.fixed_image_hicolor = 0 // fixedimagehicolor is a global: it stays 0
   pdf_print(e, '/Type /XObject\n/Subtype /Image\n')
-  if (png.chunks.has('tRNS')) fatal_error(e, `unsupported: PNG with tRNS ${img.name}`)
-  const hicolor = ps.fixed_major === 1 && ps.fixed_minor < 5 ? 0 : ps.fixed_image_hicolor
-  if (png.bd === 16 && hicolor === 0) fatal_error(e, `unsupported: 16-bit PNG without \\pdfimagehicolor ${img.name}`)
-  if (ps.fixed_image_apply_gamma) fatal_error(e, `unsupported: \\pdfimageapplygamma with PNG ${img.name}`)
-  if (png.il !== 0) fatal_error(e, `unsupported: interlaced PNG ${img.name}`)
-  pdf_print(e, `/Width ${img.width}\n/Height ${img.height}\n/BitsPerComponent ${png.bd}\n`)
+  const trns = png.trns !== null
+  const strip_alpha = ps.fixed_major === 1 && ps.fixed_minor < 4 && (png.ct & 4) !== 0
+  const strip16 = png.bd === 16 && ps.fixed_image_hicolor === 0
+  let copy = !trns && !strip_alpha && !strip16, g: Gamma | null = null
+  if (ps.fixed_image_apply_gamma) {
+    copy = false
+    // png_set_gamma(screen, file): convert_gamma; the transform is on only if screen*file is not within 5% of 1
+    const convert = (x: number) => { if (x > 0 && x < 128) x *= 100000; x = Math.floor(x + .5); if (!(x <= 0x7fffffff && x >= -0x80000000)) png_error(); return x }
+    const png_error = (): never => pdftex_fail(e, img.name, 'libpng: internal error') // pdfTeX's setjmp is gone by now: undefined there
+    const screen = convert(ps.fixed_gamma / 1000.0), file = convert(png.gamma !== 0 ? png.gamma * .00001 : 1000.0 / ps.fixed_image_gamma)
+    if (file <= 0 || screen <= 0) png_error()
+    const t = Math.floor(screen * file / 100000 + .5) // png_muldiv
+    if (!(t <= 0x7fffffff) || significant(t)) g = gamma_tables(png, screen, file, strip16)
+  }
+  let ct = png.ct, bd = png.bd // png_read_update_info
+  if (trns) { if (ct === 3) { ct = 6; bd = 8 } else { ct |= 4; if (bd < 8) bd = 8 } }
+  if (strip_alpha) ct &= 3
+  if (strip16) bd = 8
+  pdf_print(e, `/Width ${img.width}\n/Height ${img.height}\n/BitsPerComponent ${bd}\n`)
   pdf_print(e, '/ColorSpace ')
   const n_pal = Math.trunc(png.palette.length / 3)
-  if ((ps.fixed_major > 1 || ps.fixed_minor > 1) && (png.ct === 0 || png.ct === 2) && (!png.chunks.has('gAMA') || png.gamma === 100000)
+  if (copy && (ps.fixed_major > 1 || ps.fixed_minor > 1) && png.il === 0 && (png.ct === 0 || png.ct === 2) && (!png.chunks.has('gAMA') || png.gamma === 100000)
     && !['cHRM', 'iCCP', 'sBIT', 'sRGB', 'bKGD', 'hIST', 'tRNS', 'sPLT'].some(c => png.chunks.has(c))) {
     pdf_print(e, img.colorspace_ref !== 0 ? `${img.colorspace_ref} 0 R\n` : png.ct === 0 ? '/DeviceGray\n' : '/DeviceRGB\n')
     print(e, ' (PNG copy)')
@@ -520,36 +548,42 @@ function write_png(e: Engine, img: Img): void {
     pdf_end_stream(e)
     return
   }
+  // the palette (png_ptr's, shared with the info struct): png_init_read_transformations gamma-corrects it in place
+  const pal = new Uint8Array(768)
+  pal.set(png.palette.subarray(0, 3 * Math.min(n_pal, 256)))
+  if (g !== null && png.ct === 3) for (let i = 0; i < n_pal; i++) for (let k = 0; k < 3; k++) pal[3 * i + k] = g.t8![pal[3 * i + k]!]!
   // write_png_palette makes the palette object even when an explicit colorspace leaves it unreferenced
   let palette_objnum = 0
-  if (png.ct === 3) { pdf_create_obj(e, 0, 0); palette_objnum = ps.obj_ptr }
+  if (ct === 3) { pdf_create_obj(e, 0, 0); palette_objnum = ps.obj_ptr }
   if (img.colorspace_ref !== 0) pdf_print(e, `${img.colorspace_ref} 0 R\n`)
-  else if (png.ct === 3) pdf_print(e, `[/Indexed /DeviceRGB ${n_pal - 1} ${palette_objnum} 0 R]\n`)
-  else pdf_print_ln(e, png.ct === 0 || png.ct === 4 ? '/DeviceGray' : '/DeviceRGB')
-  // gray+alpha and RGB+alpha: below PDF 1.4 png_set_strip_alpha drops the alpha samples, from 1.4 on they become an /SMask
-  const alpha = png.ct === 4 || png.ct === 6, smask = alpha && (ps.fixed_major > 1 || ps.fixed_minor >= 4)
+  else if (ct === 3) pdf_print(e, `[/Indexed /DeviceRGB ${n_pal - 1} ${palette_objnum} 0 R]\n`)
+  else pdf_print_ln(e, ct === 0 || ct === 4 ? '/DeviceGray' : '/DeviceRGB')
+  // gray+alpha and RGB+alpha from PDF 1.4 on: the alpha samples become an /SMask
+  const smask = (ct === 4 || ct === 6) && (ps.fixed_minor >= 4 || ps.fixed_major > 1)
   let smask_objnum = 0
   if (smask) { pdf_create_obj(e, 0, 0); smask_objnum = ps.obj_ptr; pdf_print(e, `/SMask ${smask_objnum} 0 R\n`) }
-  const rows = png_rows(e, img), color: number[] = [], mask: number[] = []
-  if (alpha) {
-    const n = png.ct === 4 ? 1 : 3, sample = png.bd >> 3 // 8 or 16 bits (16 only with \pdfimagehicolor, PDF >= 1.5)
+  const rows = png_decode(e, img, trns, strip_alpha, g, strip16, pal), color: number[] = [], mask: number[] = []
+  if (png.il !== 0 && img.height * Math.ceil(img.width * [1, 0, 3, 1, 2, 0, 4][ct]! * bd / 8) >= 10240000)
+    pdftex_warn(e, null, 'large interlaced PNG might cause out of memory (use non-interlaced PNG to fix this)')
+  if (smask) {
+    const n = ct === 4 ? 1 : 3, sample = bd >> 3 // write_gray/rgb_pixel_8 or _16
     for (let j = 0; j < rows.length; j++) ((j / sample | 0) % (n + 1) < n ? color : mask).push(rows[j]!)
   }
   pdf_begin_stream(e)
-  pdf_print(e, alpha ? color : Array.from(rows))
+  pdf_print(e, smask ? color : Array.from(rows))
   pdf_end_stream(e)
   if (smask_objnum > 0) {
     pdf_begin_dict(e, smask_objnum, 0)
-    pdf_print(e, `/Type /XObject\n/Subtype /Image\n/Width ${img.width}\n/Height ${img.height}\n/BitsPerComponent ${png.bd === 16 ? 8 : png.bd}\n`)
+    pdf_print(e, `/Type /XObject\n/Subtype /Image\n/Width ${img.width}\n/Height ${img.height}\n/BitsPerComponent ${bd === 16 ? 8 : bd}\n`)
     pdf_print(e, '/ColorSpace /DeviceGray\n')
     pdf_begin_stream(e)
-    pdf_print(e, png.bd === 16 ? mask.filter((_, i) => i % 2 === 0) : mask)
+    pdf_print(e, bd === 16 ? mask.filter((_, i) => i % 2 === 0) : mask)
     pdf_end_stream(e)
   }
   if (palette_objnum > 0) {
     pdf_begin_dict(e, palette_objnum, 0)
     pdf_begin_stream(e)
-    pdf_print(e, Array.from(png.palette.subarray(0, 3 * n_pal)))
+    pdf_print(e, Array.from(pal.subarray(0, 3 * n_pal)))
     pdf_end_stream(e)
   }
   if (smask && ps.transparent_page_group > 0 && !ps.transparent_page_group_written) { // write_additional_png_objects
@@ -561,11 +595,53 @@ function write_png(e: Engine, img: Img): void {
   }
 }
 
-// libpng png_read_row for a non-interlaced image: inflate the IDAT data and undo the per-row filters
-function png_rows(e: Engine, img: Img): Uint8Array {
-  const png = img.png!, d = img.data
-  const channels = [1, 0, 3, 1, 2, 0, 4][png.ct]!, bpp = Math.max(1, (channels * png.bd) >> 3), rowbytes = Math.ceil(img.width * channels * png.bd / 8)
-  const size = (rowbytes + 1) * img.height, z = new Uint8Array(d.length)
+// libpng's gamma tables (png_build_gamma_table, floating-point arithmetic): an 8-bit table for files up to 8 bits; for 16-bit
+// files png_build_16bit_table, or png_build_16to8_table when they are stripped to 8 bits, indexed [low >> shift][high]. The
+// 16-to-8 table's exponent is the reciprocal of the 8-bit one (1/(1/(file·screen)), rounded twice), not png_product2:
+// that is what pdfTeX's libpng produces (measured: \pdfgamma=2200 on a 16-bit ramp needs 219998, not 220000)
+type Gamma = { t8: Uint8Array | null, t16: Uint16Array[] | null, shift: number }
+const significant = (g: number) => g < 100000 - 5000 || g > 100000 + 5000 // png_gamma_significant
+const fixed = (r: number) => r <= 2147483647 && r >= -2147483648 ? r : 0
+function gamma_tables(png: Png, screen: number, file: number, strip16: boolean): Gamma {
+  const gv = fixed(Math.floor(1e15 / file / screen + .5)) // png_reciprocal2
+  if (png.bd <= 8) {
+    const t8 = new Uint8Array(256)
+    for (let i = 0; i < 256; i++) t8[i] = significant(gv) && i > 0 && i < 255 ? Math.floor(255 * Math.pow(i / 255, gv * .00001) + .5) : i
+    return { t8, t16: null, shift: 0 }
+  }
+  const sig_bit = png.ct & 2 ? Math.max(png.sbit[0] ?? 0, png.sbit[1] ?? 0, png.sbit[2] ?? 0) : png.sbit[0] ?? 0
+  let shift = sig_bit > 0 && sig_bit < 16 ? 16 - sig_bit : 0
+  if (strip16 && shift < 16 - 11) shift = 16 - 11 // PNG_MAX_GAMMA_8
+  if (shift > 8) shift = 8
+  const num = 1 << (8 - shift), max = (1 << (16 - shift)) - 1
+  const t16 = Array.from({ length: num }, () => new Uint16Array(256))
+  if (strip16) { // png_build_16to8_table
+    const inv = gv === 0 ? 0 : fixed(Math.floor(1e10 / gv + .5)) // png_reciprocal
+    const correct = (v: number) => v > 0 && v < 65535 ? Math.floor(65535 * Math.pow(v / 65535, inv * .00001) + .5) : v // png_gamma_16bit_correct
+    let last = 0
+    for (let i = 0; i < 255; i++) {
+      const out = i * 257, bound = Math.floor((correct(out + 128) * max + 32768) / 65535) + 1
+      for (; last < bound; last++) t16[last & (0xff >> shift)]![last >> (8 - shift)] = out
+    }
+    for (; last < num << 8; last++) t16[last & (0xff >> shift)]![last >> (8 - shift)] = 65535
+  } else { // png_build_16bit_table
+    const fmax = 1.0 / max
+    for (let i = 0; i < num; i++) for (let j = 0; j < 256; j++) {
+      const ig = (j << (8 - shift)) + i
+      t16[i]![j] = significant(gv) ? Math.floor(65535 * Math.pow(ig * fmax, gv * .00001) + .5) : shift !== 0 ? Math.floor((ig * 65535 + (1 << (15 - shift))) / max) : ig
+    }
+  }
+  return { t8: null, t16, shift }
+}
+
+// libpng png_read_row/png_read_image: inflate the IDAT data, undo the per-row filters (per Adam7 pass, then deinterlace),
+// then the transformations write_png asked for; returns the rows as pdfTeX writes them
+function png_decode(e: Engine, img: Img, trns: boolean, strip_alpha: boolean, g: Gamma | null, strip16: boolean, pal: Uint8Array): Uint8Array {
+  const png = img.png!, d = img.data, W = img.width, H = img.height
+  const pd = [1, 0, 3, 1, 2, 0, 4][png.ct]! * png.bd, bpp = Math.max(1, pd >> 3), rowbytes = (w: number) => Math.ceil(w * pd / 8)
+  const passes = png.il === 0 ? [[0, 0, 1, 1]] : [[0, 0, 8, 8], [0, 4, 8, 8], [4, 0, 8, 4], [0, 2, 4, 4], [2, 0, 4, 2], [0, 1, 2, 2], [1, 0, 2, 1]]
+  const dims = passes.map(([r0, c0, ri, ci]) => W > c0! && H > r0! ? [Math.ceil((W - c0!) / ci!), Math.ceil((H - r0!) / ri!)] : [0, 0])
+  const size = dims.reduce((s, [pw, ph]) => s + (rowbytes(pw!) + 1) * ph!, 0), z = new Uint8Array(d.length)
   let n = 0
   for (let i = 8; i + 8 <= d.length;) {
     const len = u32(d, i), t = tag(d, i + 4)
@@ -575,22 +651,85 @@ function png_rows(e: Engine, img: Img): Uint8Array {
   if (e.fs.inflate === undefined) fatal_error(e, 'unsupported: PNG decoding without an inflater')
   const raw = e.fs.inflate(z.subarray(0, n), size)
   if (raw.length < size) pdftex_fail(e, img.name, 'libpng: internal error')
-  const out = new Uint8Array(rowbytes * img.height)
-  for (let y = 0; y < img.height; y++) {
-    const f = raw[y * (rowbytes + 1)]!, src = y * (rowbytes + 1) + 1, o = y * rowbytes, up = o - rowbytes
-    for (let x = 0; x < rowbytes; x++) {
-      const a = x >= bpp ? out[o + x - bpp]! : 0, b = y > 0 ? out[up + x]! : 0, c = x >= bpp && y > 0 ? out[up + x - bpp]! : 0
-      let v = raw[src + x]!
-      if (f === 1) v += a
-      else if (f === 2) v += b
-      else if (f === 3) v += (a + b) >> 1
-      else if (f === 4) { const p = a + b - c, pa = Math.abs(p - a), pb = Math.abs(p - b), pc = Math.abs(p - c); v += pa <= pb && pa <= pc ? a : pb <= pc ? b : c }
-      else if (f !== 0) pdftex_fail(e, img.name, 'libpng: internal error')
-      out[o + x] = v & 255
+  const RB = rowbytes(W)
+  let out = new Uint8Array(RB * H), src = 0
+  passes.forEach(([r0, c0, ri, ci], p) => {
+    const [pw, ph] = dims[p]!, rb = rowbytes(pw!)
+    let prev = new Uint8Array(rb)
+    for (let y = 0; y < ph!; y++, src += rb + 1) {
+      const f = raw[src]!, cur = new Uint8Array(rb)
+      for (let x = 0; x < rb; x++) {
+        const a = x >= bpp ? cur[x - bpp]! : 0, b = prev[x]!, c = x >= bpp ? prev[x - bpp]! : 0
+        let v = raw[src + 1 + x]!
+        if (f === 1) v += a
+        else if (f === 2) v += b
+        else if (f === 3) v += (a + b) >> 1
+        else if (f === 4) { const q = a + b - c, pa = Math.abs(q - a), pb = Math.abs(q - b), pc = Math.abs(q - c); v += pa <= pb && pa <= pc ? a : pb <= pc ? b : c }
+        else if (f !== 0) pdftex_fail(e, img.name, 'libpng: internal error')
+        cur[x] = v & 255
+      }
+      prev = cur
+      const Y = r0! + y * ri!
+      if (png.il === 0) out.set(cur, Y * RB)
+      else for (let x = 0; x < pw!; x++) { // png_combine_row: each pass writes only its own pixels
+        const X = c0! + x * ci!
+        if (pd >= 8) out.set(cur.subarray(x * bpp, x * bpp + bpp), Y * RB + X * bpp)
+        else { const v = (cur[(x * pd) >> 3]! >> (8 - pd - ((x * pd) & 7))) & ((1 << pd) - 1); out[Y * RB + ((X * pd) >> 3)]! |= v << (8 - pd - ((X * pd) & 7)) }
+      }
+    }
+  })
+  // png_combine_row restores the destination's padding bits after the last pixel: zero in pdfTeX's fresh row buffers (the
+  // filters saw the file's bits)
+  const used = (W * pd) % 8
+  if (used !== 0) for (let o = RB - 1; o < out.length; o += RB) out[o]! &= 0xff00 >> used
+  const px = W * H
+  let ct = png.ct, bd = png.bd
+  const sample = (y: number, x: number) => (out[y * RB + ((x * bd) >> 3)]! >> (8 - bd - ((x * bd) & 7))) & ((1 << bd) - 1) // a packed sample
+  if (trns) { // png_do_expand_palette / png_do_expand
+    const t = png.trns!
+    if (ct === 3) {
+      const r = new Uint8Array(px * 4)
+      for (let y = 0, o = 0; y < H; y++) for (let x = 0; x < W; x++, o += 4) {
+        const i = bd === 8 ? out[y * RB + x]! : sample(y, x)
+        r[o] = pal[3 * i]!; r[o + 1] = pal[3 * i + 1]!; r[o + 2] = pal[3 * i + 2]!; r[o + 3] = i < t.length ? t[i]! : 255
+      }
+      out = r; ct = 6; bd = 8
+    } else if (ct === 0) {
+      let gray = u16(t, 0)
+      if (bd < 8) gray = (gray & ((1 << bd) - 1)) * (255 / ((1 << bd) - 1))
+      const k = bd === 16 ? 2 : 1, r = new Uint8Array(px * 2 * k)
+      for (let y = 0, o = 0; y < H; y++) for (let x = 0; x < W; x++, o += 2 * k) {
+        if (k === 1) { const v = bd === 8 ? out[y * RB + x]! : sample(y, x) * (255 / ((1 << bd) - 1)); r[o] = v; r[o + 1] = v === (gray & 255) ? 0 : 255 }
+        else { const s = y * RB + 2 * x; r[o] = out[s]!; r[o + 1] = out[s + 1]!; r[o + 2] = r[o + 3] = out[s]! === gray >> 8 && out[s + 1]! === (gray & 255) ? 0 : 255 }
+      }
+      out = r; ct = 4; if (bd < 8) bd = 8
+    } else {
+      const k = bd >> 3, r = new Uint8Array(px * 4 * k)
+      for (let s = 0, o = 0; s < out.length; s += 3 * k, o += 4 * k) {
+        r.set(out.subarray(s, s + 3 * k), o)
+        const hit = k === 1 ? out[s] === t[1] && out[s + 1] === t[3] && out[s + 2] === t[5] : [0, 1, 2, 3, 4, 5].every(i => out[s + i] === t[i])
+        r.fill(hit ? 0 : 255, o + 3 * k, o + 4 * k)
+      }
+      out = r; ct = 6
     }
   }
-  // png_combine_row copies a row into a fresh buffer: the padding bits are zero there (the filters saw the file's bits)
-  const used = (img.width * channels * png.bd) % 8
-  if (used !== 0) for (let o = rowbytes - 1; o < out.length; o += rowbytes) out[o]! &= 0xff00 >> used
+  const k = bd >> 3, ch = [1, 0, 3, 1, 2, 0, 4][ct]!
+  if (strip_alpha) { // png_do_strip_channel: drop the last sample of each pixel
+    const r = new Uint8Array(out.length / ch * (ch - 1))
+    for (let s = 0, o = 0; s < out.length; s += ch * k, o += (ch - 1) * k) r.set(out.subarray(s, s + (ch - 1) * k), o)
+    out = r; ct &= 3
+  }
+  if (g !== null && png.ct !== 3) { // png_do_gamma (a palette was corrected instead); alpha samples are left alone
+    const n = [1, 0, 3, 1, 2, 0, 4][ct]!, colors = ct & 2 ? 3 : 1
+    if (bd === 8) { for (let i = 0; i < out.length; i++) if (i % n < colors) out[i] = g.t8![out[i]!]! }
+    else if (bd === 16) { for (let i = 0; i < out.length; i += 2) if ((i >> 1) % n < colors) { const v = g.t16![out[i + 1]! >> g.shift]![out[i]!]!; out[i] = v >> 8; out[i + 1] = v & 255 } }
+    else if (bd === 4) for (let i = 0; i < out.length; i++) { const m = out[i]! & 0xf0, l = out[i]! & 0x0f; out[i] = (g.t8![m | (m >> 4)]! & 0xf0) | (g.t8![(l << 4) | l]! >> 4) }
+    else if (bd === 2) for (let i = 0; i < out.length; i++) {
+      const a = out[i]! & 0xc0, b = out[i]! & 0x30, c = out[i]! & 0x0c, dd = out[i]! & 0x03, t = g.t8!
+      out[i] = (t[a | (a >> 2) | (a >> 4) | (a >> 6)]! & 0xc0) | ((t[(b << 2) | b | (b >> 2) | (b >> 4)]! >> 2) & 0x30)
+        | ((t[(c << 4) | (c << 2) | c | (c >> 2)]! >> 4) & 0x0c) | (t[(dd << 6) | (dd << 4) | (dd << 2) | dd]! >> 6)
+    }
+  }
+  if (strip16 && bd === 16) out = out.filter((_, i) => i % 2 === 0) // png_do_chop
   return out
 }

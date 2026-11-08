@@ -92,7 +92,7 @@ export function pdf_state() {
     cur_form: 0, xform_width: 0, xform_height: 0, xform_depth: 0, page_group_val: 0,
     obj_box: [] as (BoxNode | null | undefined)[], // obj_xform_box
     images: [] as Img[], // writeimg.c image_array; obj_ximage_data indexes it
-    fixed_image_hicolor: 0, fixed_image_apply_gamma: 0, warn_pdfpagebox: true, transparent_page_group: 0, transparent_page_group_written: false, // writepng.c
+    fixed_gamma: 0, fixed_image_gamma: 0, fixed_image_hicolor: 0, fixed_image_apply_gamma: 0, warn_pdfpagebox: true, transparent_page_group: 0, transparent_page_group_written: false, // writepng.c
     fixed_inclusion_copy_font: 0, epdf_docs: new Map<string, EpdfDoc>(), // pdftoepdf.cc pdfDocuments
   }
 }
@@ -289,6 +289,8 @@ export function check_pdfversion(e: Engine): void {
       int_error(e, int_par(e, pdf_minor_version_code)); e.equiv[int_base + pdf_minor_version_code] = 4
     }
     s.fixed_major = int_par(e, pdf_major_version_code); s.fixed_minor = int_par(e, pdf_minor_version_code)
+    s.fixed_gamma = fix_int(int_par(e, 79), 0, 1000000) // \pdfgamma
+    s.fixed_image_gamma = fix_int(int_par(e, 80), 0, 1000000) // \pdfimagegamma
     s.fixed_image_hicolor = fix_int(int_par(e, pdf_image_hicolor_code), 0, 1)
     s.fixed_image_apply_gamma = fix_int(int_par(e, pdf_image_apply_gamma_code), 0, 1)
     s.fixed_inclusion_copy_font = fix_int(int_par(e, 92), 0, 1) // \pdfinclusioncopyfonts

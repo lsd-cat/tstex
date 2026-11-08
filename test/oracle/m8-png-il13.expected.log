@@ -1,0 +1,54 @@
+entering extended mode
+(m8-png-il13.tex (plain.tex Preloading the plain format: codes, registers,
+\maxdimen=\dimen10
+\hideskip=\skip10
+\centering=\skip11
+\p@=\dimen11
+\z@=\dimen12
+\z@skip=\skip12
+\voidb@x=\box10
+parameters,
+\smallskipamount=\skip13
+\medskipamount=\skip14
+\bigskipamount=\skip15
+\normalbaselineskip=\skip16
+\normallineskip=\skip17
+\normallineskiplimit=\dimen13
+\jot=\dimen14
+\interdisplaylinepenalty=\count23
+\interfootnotelinepenalty=\count24
+fonts, more fonts,
+\itfam=\fam4
+\slfam=\fam5
+\bffam=\fam6
+\ttfam=\fam7
+macros,
+\strutbox=\box11
+\mscount=\count25
+\tabs=\box12
+\tabsyet=\box13
+\tabsdone=\box14
+math definitions,
+\rootbox=\box15
+\p@renwd=\dimen15
+output routines,
+\headline=\toks10
+\footline=\toks11
+\footins=\insert254
+\topins=\insert253
+hyphenation (hyphen.tex))
+Overfull \vbox (497.7047pt too high) has occurred while \output is active
+\vbox(643.20255+0.0)x469.75499
+.\pdfrefximage(54.2025+0.0)x72.26999
+.\pdfrefximage(54.2025+0.0)x72.26999
+.\pdfrefximage(54.2025+0.0)x72.26999
+.\pdfrefximage(54.2025+0.0)x72.26999
+.\pdfrefximage(54.2025+0.0)x72.26999
+.etc.
+
+[1{pdftex.map} <./images/gamma.png> <./images/interlaced.png> <./images/trns-pal.png> <./images/trns-rgb.png> <./images/rgb16.png> <./images/gray16.png> <./images/ga.png> <./images/pal4.png> <./images/rgba16.png> <./images/fig.png> <./images/m8-il-gray2.png> <./images/m8-il-pal-trns.png> <./images/m8-gray4-trns.png> <./images/m8-gray16-trns.png> <./images/m8-rgb16-il.png> <./images/m8-rgb-trns16.png> <./images/m8-il-rgba.png> <./images/m8-il-gray1.png> <./images/m8-ramp16.png> <./images/m8-ramp8.png (PNG copy)>] )<cmr10.pfb>
+Output written on m8-png-il13.pdf (1 page, * bytes).
+PDF statistics:
+ 31 PDF objects out of 1000 (max. 8388607)
+ 0 named destinations out of 1000 (max. 500000)
+ 101 words of extra memory for PDF output out of 10000 (max. 10000000)
