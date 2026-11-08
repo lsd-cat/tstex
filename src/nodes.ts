@@ -435,6 +435,7 @@ export function show_node_list(e: Engine, p: Node | null): void {
             } else print_glue(e, zround(0o200000 * g), p.glue_order, '')
           }
           if (p.shift_amount !== 0) { print(e, ', shifted '); print_scaled(e, p.shift_amount) }
+          if (e.eTeX_ex && p.type === hlist_node && p.subtype === 2) print(e, ', display') // etex.ch: box_lr(p)=dlist
         }
         node_list_display(e, p.list_ptr)
         break

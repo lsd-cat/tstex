@@ -5,7 +5,7 @@ import { Cmd, cur_font_loc } from './types.ts'
 import { print, print_char, print_int, print_nl, print_esc, print_hex, slow_print, begin_diagnostic, end_diagnostic } from './print.ts'
 import { print_scaled, xn_over_d, unity } from './arith.ts'
 import { error, print_err, help, overflow } from './error.ts'
-import { int_par, font_id_base } from './eqtb.ts'
+import { int_par, font_id_base, int_base, tracing_online_code } from './eqtb.ts'
 import { sprint_cs } from './hash.ts'
 import { print_file_name } from './files.ts'
 import { delete_glue_ref, new_char } from './nodes.ts'
@@ -283,12 +283,15 @@ export function find_font_dimen(e: Engine, writing: boolean): void {
 export function char_warning(e: Engine, f: number, c: number): void {
   const t = int_par(e, tracing_lost_chars_code)
   if (t <= 0) return
+  const old_setting = e.equiv[int_base + tracing_online_code]! // etex.ch: \tracinglostchars>1 shows it on the terminal
+  if (e.eTeX_ex && t > 1) e.equiv[int_base + tracing_online_code] = 1
   if (t > 2) print_err(e, 'Missing character: There is no ')
   else { begin_diagnostic(e); print_nl(e, 'Missing character: There is no ') }
   print(e, c)
   if (t > 2) { print(e, ' ('); print_hex(e, c); print(e, ')') }
   print(e, ' in font '); slow_print(e, e.font_name[f]!)
   if (t < 3) print_char(e, 33)
+  e.equiv[int_base + tracing_online_code] = old_setting
   if (t > 2) { help(e); error(e) } else end_diagnostic(e, false)
 }
 
