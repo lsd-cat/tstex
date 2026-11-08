@@ -18,11 +18,14 @@ import { str } from '../utils.ts'
 import { def_tounicode } from '../backend/fonts.ts'
 import { pdf_error, pdf_warning, pdf_create_obj, pdf_get_mem, pdf_write_obj, obj_type_obj, obj_type_others, set_origin, direct_page, direct_always,
   pdf_new_obj, pdf_end_obj, write_action, pdf_check_obj, pdf_new_objnum, find_obj, warn_dest_dup, pdf_print_str_ln,
-  obj_type_dest, obj_type_struct_dest, obj_type_outline, pdf_check_vf, pdf_init_font, pdf_mark_char } from '../pdf.ts'
+  obj_type_dest, obj_type_struct_dest, obj_type_outline, colorstackused, pdf_check_vf, pdf_init_font, pdf_mark_char } from '../pdf.ts'
 import type { PdfAction } from '../nodes.ts'
 import { pdf_action_user, pdf_action_goto, pdf_action_thread, pdf_action_page, free_avail, delete_action_ref, pdf_annot_node, pdf_start_link_node,
   pdf_end_link_node, pdf_dest_node, pdf_thread_node, pdf_start_thread_node, pdf_end_thread_node, null_flag, pdf_null, pdf_dest_xyz, pdf_dest_fit,
-  pdf_dest_fith, pdf_dest_fitv, pdf_dest_fitb, pdf_dest_fitbh, pdf_dest_fitbv, pdf_dest_fitr } from '../nodes.ts'
+  pdf_dest_fith, pdf_dest_fitv, pdf_dest_fitb, pdf_dest_fitbh, pdf_dest_fitbv, pdf_dest_fitr, pdf_colorstack_node, colorstack_set,
+  colorstack_push, colorstack_pop, colorstack_current, colorstack_data } from '../nodes.ts'
+import { print_err, help, error } from '../error.ts'
+import { print_int } from '../print.ts'
 import { scan_normal_dimen } from '../scan.ts'
 import { scan_font_ident, null_font } from '../tfm.ts'
 
@@ -358,6 +361,32 @@ export function run(e: Engine, chr: number): void {
         p.pdf_id = e.cur_val; p.pdf_named_id = 0
       } else if (scan_keyword(e, 'name')) { scan_toks(e, false, true); p.pdf_id = e.def_ref; p.pdf_named_id = 1 }
       else pdf_error(e, 'ext1', 'identifier type missing')
+      return
+    }
+    case pdf_colorstack_node: { // pdftex.web Implement \pdfcolorstack
+      check_pdfoutput(e, '\\pdfcolorstack', true)
+      scan_int(e)
+      if (e.cur_val >= colorstackused(e)) {
+        print_err(e, 'Unknown color stack number '); print_int(e, e.cur_val)
+        help(e, 'Allocate and initialize a color stack with \\pdfcolorstackinit.', "I'll use default color stack 0 here.", 'Proceed, with fingers crossed.')
+        error(e); e.cur_val = 0
+      }
+      if (e.cur_val < 0) {
+        print_err(e, 'Invalid negative color stack number')
+        help(e, "I'll use default color stack 0 here.", 'Proceed, with fingers crossed.')
+        error(e); e.cur_val = 0
+      }
+      const i = scan_keyword(e, 'set') ? colorstack_set : scan_keyword(e, 'push') ? colorstack_push : scan_keyword(e, 'pop') ? colorstack_pop
+        : scan_keyword(e, 'current') ? colorstack_current : -1
+      if (i >= 0) {
+        const p = new_whatsit_node(pdf_colorstack_node); tail_append(e, p)
+        p.pdf_objnum = e.cur_val; p.pdf_mode = i
+        if (i <= colorstack_data) { scan_toks(e, false, true); p.pdf_data = e.def_ref }
+      } else {
+        print_err(e, 'Color stack action is missing')
+        help(e, 'The expected actions for \\pdfcolorstack:', '    set, push, pop, current', "I'll ignore the color stack command.")
+        error(e)
+      }
       return
     }
     case pdf_end_thread_node: check_pdfoutput(e, '\\pdfendthread', true); tail_append(e, new_whatsit_node(pdf_end_thread_node)); return

@@ -11,6 +11,7 @@ import { flush_node_list, show_box, zround, is_char_node, hlist_node, vlist_node
   math_node, ligature_node, normal, stretching, a_leaders, c_leaders, null_flag, special_node, latespecial_node, pdf_save_pos_node,
   flush_list, delete_token_ref } from './nodes.ts'
 import type { BoxNode, Node, WhatsitNode, PdfAction } from './nodes.ts'
+import { colorstack_set, colorstack_push, colorstack_pop, colorstack_current } from './nodes.ts'
 import { pdf_action_user, pdf_action_page, pdf_action_goto, pdf_action_thread, copy_node_list, add_token_ref, new_whatsit_node, print_mark,
   pdf_dest_xyz, pdf_dest_fit, pdf_dest_fith, pdf_dest_fitv, pdf_dest_fitb, pdf_dest_fitbh, pdf_dest_fitbv, pdf_dest_fitr, pdf_null } from './nodes.ts'
 import { char_info, char_width, char_exists, null_font, param, space_code, space_shrink_code } from './tfm.ts'
@@ -84,9 +85,72 @@ export function pdf_state() {
     last_rect: [0, 0, 0, 0], // utils.c last_llx … last_ury for matrixrecalculate
     last_thread: null as WhatsitNode | null, thread_wd: 0, thread_ht: 0, thread_dp: 0, last_thread_id: 0, last_thread_named_id: false,
     thread_level: 0, first_outline: 0, last_outline: 0, parent_outline: 0,
+    colstacks: [] as Colstack[], // utils.c colstacks (created with stack 0 on first use)
   }
 }
 export type PdfState = ReturnType<typeof pdf_state>
+type Colstack = { page_stack: (string | null)[], form_stack: (string | null)[], page_current: string | null, form_current: string | null,
+  form_init: string | null, literal_mode: number, page_start: boolean }
+
+// utils.c colstacks_first_init, colorstackused, newcolorstack, colorstackset/current/push/pop, colorstackskippagestart; a null
+// string stands for C's NULL
+const COLOR_DEFAULT = '0 g 0 G'
+function colstacks(e: Engine): Colstack[] {
+  const c = e.ps.colstacks
+  if (c.length === 0) c.push({ page_stack: [], form_stack: [], page_current: COLOR_DEFAULT, form_current: COLOR_DEFAULT, form_init: COLOR_DEFAULT,
+    literal_mode: direct_always, page_start: true })
+  return c
+}
+export const colorstackused = (e: Engine) => colstacks(e).length
+export function newcolorstack(e: Engine, s: string, literal_mode: number, page_start: boolean): number {
+  const c = colstacks(e)
+  if (c.length === 32768) return -1 // MAX_COLORSTACKS
+  const v = s === '' ? null : s
+  c.push({ page_stack: [], form_stack: [], page_current: v, form_current: v, form_init: v, literal_mode, page_start })
+  return c.length - 1
+}
+// the result is the literal mode and the string the C code leaves on the pool (null: nothing)
+function colorstack_cmd(e: Engine, n: number, cmd: number, s: string): [number, string | null] {
+  const c = colstacks(e)[n]!, page = e.ps.page_mode, v = s === '' ? null : s
+  switch (cmd) {
+    case colorstack_set: if (page) c.page_current = s; else c.form_current = s; return [c.literal_mode, null]
+    case colorstack_push:
+      if (page) { c.page_stack.push(c.page_current); c.page_current = v } else { c.form_stack.push(c.form_current); c.form_current = v }
+      return [c.literal_mode, null]
+    case colorstack_pop:
+      if ((page ? c.page_stack : c.form_stack).length === 0) {
+        pdftex_warn(e, null, `pop empty color ${page ? 'page' : 'form'} stack ${n}`); return [c.literal_mode, null]
+      }
+      if (page) c.page_current = c.page_stack.pop()!; else c.form_current = c.form_stack.pop()!
+      return [c.literal_mode, page ? c.page_current : c.form_current]
+    default: return [c.literal_mode, page ? c.page_current : c.form_current] // colorstack_current
+  }
+}
+
+// [32f] pdf_out_colorstack, pdf_out_colorstack_startpage
+const to_bytes = (t: string) => Array.from(t, c => c.charCodeAt(0))
+function pdf_out_colorstack(e: Engine, p: WhatsitNode): void {
+  const cmd = p.pdf_mode, n = p.pdf_objnum
+  if (n >= colorstackused(e)) {
+    print_nl(e, ''); print(e, 'Color stack '); print_int(e, n); print(e, ' is not initialized for use!'); print_nl(e, ''); return
+  }
+  if (cmd === colorstack_set || cmd === colorstack_push) {
+    const s = tokens_to_string(e, p.pdf_data), [mode] = colorstack_cmd(e, n, cmd, str(s))
+    if (s.length > 0) literal(e, s, mode, false)
+    return
+  }
+  if (cmd !== colorstack_pop && cmd !== colorstack_current) confusion(e, 'pdfcolorstack')
+  const [mode, t] = colorstack_cmd(e, n, cmd, '')
+  if (t !== null && t !== '') literal(e, to_bytes(t), mode, false)
+}
+function pdf_out_colorstack_startpage(e: Engine): void {
+  const c = colstacks(e)
+  for (let i = 0; i < c.length; i++) {
+    const k = c[i]!
+    if (!k.page_start || k.page_current === null || k.page_current === COLOR_DEFAULT) continue // colorstackskippagestart <> 0
+    if (k.page_current !== '') literal(e, to_bytes(k.page_current), k.literal_mode, false)
+  }
+}
 
 // [32b] pdf_room, pdf_out: the buffer only grows
 function pdf_room(s: PdfState, n: number): void {
@@ -683,7 +747,8 @@ function pdf_out_whatsit(e: Engine, p: WhatsitNode, vlist: boolean, b: BoxNode, 
     case pdf_thread_node: do_thread(e, p, b, x, y); return
     case pdf_start_thread_node: if (!vlist) pdf_error(e, 'ext4', '\\pdfstartthread ended up in hlist'); do_thread(e, p, b, x, y); return
     case pdf_end_thread_node: if (!vlist) pdf_error(e, 'ext4', '\\pdfendthread ended up in hlist'); end_thread(e); return
-    case pdf_colorstack_node: case pdf_refxform_node: case pdf_refximage_node: case pdf_snap_ref_point_node: case pdf_fake_space_node:
+    case pdf_colorstack_node: pdf_out_colorstack(e, p); return
+    case pdf_refxform_node: case pdf_refximage_node: case pdf_snap_ref_point_node: case pdf_fake_space_node:
       break
     default: out_what(e, p); return
   }
@@ -1104,6 +1169,7 @@ export function pdf_ship_out(e: Engine, p: BoxNode): void {
       pdf_print_real(e, int_par(e, mag_code), 3); pdf_print(e, ' 0 0 '); pdf_print_real(e, int_par(e, mag_code), 3); pdf_print_ln(e, ' 0 0 cm')
     }
     s.pos_stack = []; s.page_mode = true // pdfshipoutbegin (colorstackpagestart returns at once in page mode)
+    pdf_out_colorstack_startpage(e)
     if (p.type === vlist_node) pdf_vlist_out(e, p); else pdf_hlist_out(e, p)
     e.total_pages++
     e.cur_s = -1
