@@ -19,8 +19,8 @@ import { char_warning } from './tfm.ts'
 import { open_log_file, print_file_name } from './files.ts'
 import { out_what, expand_write_tokens } from './dvi.ts'
 import { makepdftime, md5, str } from './utils.ts'
-import { write_image } from './backend/images.ts'
-import type { Img } from './backend/images.ts'
+import { write_image, delete_image } from './backend/images.ts'
+import type { Img, EpdfDoc } from './backend/images.ts'
 import { isscalable, hasspacechar, do_pdf_font, write_fontstuff, hasfmentry } from './backend/fonts.ts'
 
 // pdftex.web §236/§247 parameter codes (pdftex_first_integer_code = 65, pdftex_first_dimen_code = 21)
@@ -93,6 +93,7 @@ export function pdf_state() {
     obj_box: [] as (BoxNode | null | undefined)[], // obj_xform_box
     images: [] as Img[], // writeimg.c image_array; obj_ximage_data indexes it
     fixed_image_hicolor: 0, fixed_image_apply_gamma: 0, warn_pdfpagebox: true, transparent_page_group: 0, transparent_page_group_written: false, // writepng.c
+    fixed_inclusion_copy_font: 0, epdf_docs: new Map<string, EpdfDoc>(), // pdftoepdf.cc pdfDocuments
   }
 }
 export type PdfState = ReturnType<typeof pdf_state>
@@ -169,7 +170,7 @@ function pdf_room(s: PdfState, n: number): void {
 }
 export function pdf_out(e: Engine, c: number): void { const s = e.ps; pdf_room(s, 1); s.buf[s.ptr++] = c }
 const pdf_offset = (e: Engine) => e.ps.ptr // pdf_gone + pdf_ptr
-export function pdf_print(e: Engine, t: string | number[]): void {
+export function pdf_print(e: Engine, t: string | ArrayLike<number>): void {
   const s = e.ps; pdf_room(s, t.length)
   for (let i = 0; i < t.length; i++) s.buf[s.ptr++] = typeof t === 'string' ? t.charCodeAt(i) : t[i]!
 }
@@ -290,6 +291,7 @@ export function check_pdfversion(e: Engine): void {
     s.fixed_major = int_par(e, pdf_major_version_code); s.fixed_minor = int_par(e, pdf_minor_version_code)
     s.fixed_image_hicolor = fix_int(int_par(e, pdf_image_hicolor_code), 0, 1)
     s.fixed_image_apply_gamma = fix_int(int_par(e, pdf_image_apply_gamma_code), 0, 1)
+    s.fixed_inclusion_copy_font = fix_int(int_par(e, 92), 0, 1) // \pdfinclusioncopyfonts
     s.fixed_objcompresslevel = fix_int(int_par(e, pdf_objcompresslevel_code), 0, 3)
     s.fixed_draftmode = fix_int(int_par(e, pdf_draftmode_code), 0, 1) // fix_pdfoutput below then compares it with \pdfdraftmode
     if ((s.fixed_major > 1 || s.fixed_minor >= 5) && s.fixed_objcompresslevel > 0) s.os_enable = true
@@ -1322,6 +1324,7 @@ export function pdf_write_image(e: Engine, n: number): void {
   pdf_begin_dict(e, n, 0)
   if (s.mem[d + 3] !== 0) { pdf_print_toks_ln(e, s.mem[d + 3]!); delete_token(e, s.mem[d + 3]!); s.mem[d + 3] = 0 }
   if (s.fixed_draftmode === 0) write_image(e, s.images[s.mem[d + 4]!]!)
+  delete_image(e, s.images[s.mem[d + 4]!]!)
 }
 
 // utils.c extxnoverd
@@ -1363,17 +1366,29 @@ export function scale_image(e: Engine, n: number): void {
   }
 }
 
-// [53] out_image (PNG and JPEG only: no page group, no PDF images)
+// [53] out_image
 function out_image(e: Engine, p: WhatsitNode): void {
   const s = e.ps, n = p.pdf_objnum
+  const img = s.images[s.mem[s.obj_aux[n]! + 4]!]!, rot = img.rotate === 90 || img.rotate === 270
+  const img_w = rot ? img.height : img.width, img_h = rot ? img.width : img.height
   pdf_end_text(e)
   pdf_print_ln(e, 'q')
   if (!s.ximage_list.includes(n)) s.ximage_list.push(n) // pdf_lookup_list
-  const img = s.images[s.mem[s.obj_aux[n]! + 4]!]!
-  if (img.type === 'png' && img.group_ref > 0 && s.page_group_val === 0) s.page_group_val = img.group_ref
-  pdf_print_real(e, ext_xn_over_d(e, p.pdf_left, ten_pow[6]!, one_hundred_bp), 4); pdf_print(e, ' 0 0 ')
-  pdf_print_real(e, ext_xn_over_d(e, (p.pdf_top + p.pdf_right) | 0, ten_pow[6]!, one_hundred_bp), 4); pdf_out(e, 32)
-  pdf_print_bp(e, e.cur_h - s.origin_h); pdf_out(e, 32); pdf_print_bp(e, s.origin_v - e.cur_v)
+  if (img.type !== 'pdf') {
+    if (img.type === 'png' && img.group_ref > 0 && s.page_group_val === 0) s.page_group_val = img.group_ref
+    pdf_print_real(e, ext_xn_over_d(e, p.pdf_left, ten_pow[6]!, one_hundred_bp), 4); pdf_print(e, ' 0 0 ')
+    pdf_print_real(e, ext_xn_over_d(e, (p.pdf_top + p.pdf_right) | 0, ten_pow[6]!, one_hundred_bp), 4); pdf_out(e, 32)
+    pdf_print_bp(e, e.cur_h - s.origin_h); pdf_out(e, 32); pdf_print_bp(e, s.origin_v - e.cur_v)
+  } else { // for pdf images the page group object number is made here (-1: to be generated)
+    if (img.group_ref !== 0 && s.page_group_val === 0) {
+      if (img.group_ref === -1) img.group_ref = s.page_group_val = pdf_new_objnum(e)
+      else s.page_group_val = img.group_ref
+    }
+    pdf_print_real(e, ext_xn_over_d(e, p.pdf_left, ten_pow[6]!, img_w), 6); pdf_print(e, ' 0 0 ')
+    pdf_print_real(e, ext_xn_over_d(e, (p.pdf_top + p.pdf_right) | 0, ten_pow[6]!, img_h), 6); pdf_out(e, 32)
+    pdf_print_bp(e, e.cur_h - s.origin_h - ext_xn_over_d(e, p.pdf_left, img.orig_x, img_w)); pdf_out(e, 32)
+    pdf_print_bp(e, s.origin_v - e.cur_v - ext_xn_over_d(e, (p.pdf_top + p.pdf_right) | 0, img.orig_y, img_h))
+  }
   pdf_print_ln(e, ' cm')
   pdf_print(e, '/Im'); pdf_print_int(e, s.obj_info[n]!); pdf_print_ln(e, ' Do')
   pdf_print_ln(e, 'Q')

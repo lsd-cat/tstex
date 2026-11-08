@@ -11,7 +11,7 @@ export const notdef = '.notdef'
 
 // writet1.c standard_glyph_names (StandardEncoding)
 const std = (s: string) => s.split(' ').map(n => n === '-' ? null : n)
-const standard_glyph_names: Glyphs = [
+export const standard_glyph_names: Glyphs = [
   ...new Array<null>(32).fill(null),
   ...std('space exclam quotedbl numbersign dollar percent ampersand quoteright parenleft parenright asterisk plus comma hyphen period slash'),
   ...std('zero one two three four five six seven eight nine colon semicolon less equal greater question'),

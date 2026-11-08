@@ -1,19 +1,27 @@
-// writeimg.c readimage/writeimage, pdftoepdf.cc read_pdf_info (page count, boxes, rotation; copying the page is unsupported),
+// writeimg.c readimage/writeimage/deleteimage, pdftoepdf.cc (read_pdf_info, write_epdf: PDF pages as form XObjects),
 // writepng.c (read_png_info, write_png: the copy path and the decoded write_png_gray/rgb/palette/gray_alpha/rgb_alpha
 // paths), writejpg.c (read_jpg_info incl. JFIF/Exif resolution, write_jpg). libpng's work is done here: chunks are parsed and
 // CRC-checked, IDAT is inflated by the platform (TexFS.inflate), the rows unfiltered, alpha stripped below PDF 1.4.
-// PDF/JBIG2 inclusion, interlaced, tRNS, gamma-applied and 16-to-8-bit PNGs are unsupported.
+// JBIG2 inclusion, interlaced, tRNS, gamma-applied and 16-to-8-bit PNGs are unsupported.
 import type { Engine } from '../engine.ts'
 import { print } from '../print.ts'
 import { fatal_error } from '../error.ts'
 import { int_base } from '../types.ts'
+import { int_par } from '../eqtb.ts'
 import { pdftex_fail, pdftex_warn, pdf_print, pdf_print_ln, pdf_begin_stream, pdf_end_stream, pdf_create_obj, pdf_begin_dict, pdf_begin_obj, pdf_end_obj,
   pdf_new_objnum } from '../pdf.ts'
+import { pdf_open, get_page, get_page_ref, page_group, page_resources, fetch, deref, lookup, lookup_nf, decode_stream, raw_bytes, fofi_type1_encoding,
+  type_name, is_name, is_dict, is_stream, is_ref, num } from './pdfread.ts'
+import type { PdfDoc, Page, Box, PObj, PDict, PRef, PStream, XRef } from './pdfread.ts'
+import { lookup_fontmap, epdf_create_fontdescriptor, get_fn_objnum, epdf_write_enc } from './fonts.ts'
+import type { FdEntry, FmEntry } from './fonts.ts'
+import { standard_glyph_names } from './type1.ts'
 
 export const IMAGE_COLOR_B = 1, IMAGE_COLOR_C = 2, IMAGE_COLOR_I = 4
 type Png = { ct: number, bd: number, il: number, palette: Uint8Array, chunks: Set<string>, gamma: number }
 export type Img = { name: string, data: Uint8Array, type: 'png' | 'jpg' | 'pdf', orig_x: number, orig_y: number, color: number, width: number, height: number, xres: number, yres: number,
-  pages: number, colorspace_ref: number, group_ref: number, rotate: number, bpc: number, jpg_color_space: number, png: Png | null }
+  pages: number, colorspace_ref: number, group_ref: number, rotate: number, bpc: number, jpg_color_space: number, png: Png | null,
+  doc: EpdfDoc | null, selected_page: number, page_box: number }
 
 const u16 = (d: Uint8Array, i: number) => (d[i]! << 8) | d[i + 1]!
 const u32 = (d: Uint8Array, i: number) => ((d[i]! << 24) | (d[i + 1]! << 16) | (d[i + 2]! << 8) | d[i + 3]!) >>> 0
@@ -25,7 +33,7 @@ export function read_image(e: Engine, s: string, page: number, named: boolean, c
   const data = e.fs.find(s, 'tex'), name = e.fs.path?.(s, 'tex') ?? s
   if (data === null) pdftex_fail(e, null, `cannot find image file ${s}`)
   const img: Img = { name, data, type: 'png', orig_x: 0, orig_y: 0, color: 0, width: 0, height: 0, xres: 0, yres: 0, pages: 1, colorspace_ref: colorspace,
-    group_ref: 0, rotate: 0, bpc: 0, jpg_color_space: 0, png: null }
+    group_ref: 0, rotate: 0, bpc: 0, jpg_color_space: 0, png: null, doc: null, selected_page: 0, page_box: 0 }
   if (data.length < 8) pdftex_fail(e, name, 'reading image file failed')
   const head = String.fromCharCode(...data.subarray(0, 8)), ext = /\.[^.]*$/.exec(s)?.[0].toLowerCase()
   const type = head.startsWith('\xFF\xD8') ? 'jpg' : head === '\x89PNG\r\n\x1A\n' ? 'png' : head === '\x97JB2\r\n\x1A\n' ? 'jbig2'
@@ -39,104 +47,320 @@ export function read_image(e: Engine, s: string, page: number, named: boolean, c
   return img
 }
 
-// pdftoepdf.cc read_pdf_info with the little of xpdf it needs: objects are found by scanning for `n g obj' and inside object
-// streams (shortcut: no xref parsing, the last definition of a number wins; a damaged or encrypted file may be read where xpdf fails)
-type PdfVal = number | string | boolean | null | PdfVal[] | { [k: string]: PdfVal } | { ref: number }
-function read_pdf_info(e: Engine, img: Img, page_num: number, pagebox: number): void {
-  const d = img.data, src = String.fromCharCode(...d.subarray(0, Math.min(d.length, 1024)))
-  const fail = () => pdftex_fail(e, img.name, 'xpdf: reading PDF image failed')
-  const hv = /%PDF-(\d+)\.(\d+)/.exec(src)
-  if (hv === null) fail()
-  const text = Array.from(d, c => String.fromCharCode(c)).join('')
-  const offs = new Map<number, number | PdfVal>()
-  for (const m of text.matchAll(/(?<![0-9])(\d+)\s+\d+\s+obj\b/g)) offs.set(+m[1]!, m.index! + m[0].length)
-  const parse = (t: string, i: number): [PdfVal, number] => {
-    const ws = () => { for (;;) { while (i < t.length && /[\0\t\n\f\r ]/.test(t[i]!)) i++; if (t[i] === '%') { while (i < t.length && t[i] !== '\n' && t[i] !== '\r') i++ } else return } }
-    const val = (): PdfVal => {
-      ws()
-      const c = t[i]
-      if (c === '<' && t[i + 1] === '<') {
-        i += 2; const o: { [k: string]: PdfVal } = {}
-        for (;;) { ws(); if (t[i] === '>' || i >= t.length) { i += 2; return o } const k = val(); o[String(k)] = val() }
-      }
-      if (c === '[') { i++; const a: PdfVal[] = []; for (;;) { ws(); if (t[i] === ']' || i >= t.length) { i++; return a } a.push(val()) } }
-      if (c === '/') { const m = /^\/[^\0\t\n\f\r ()<>\[\]{}/%]*/.exec(t.slice(i, i + 256))!; i += m[0].length; return m[0].slice(1) }
-      if (c === '(') { let n = 0; do { if (t[i] === '\\') i++; else if (t[i] === '(') n++; else if (t[i] === ')') n--; i++ } while (n > 0 && i < t.length); return '' }
-      if (c === '<') { i = t.indexOf('>', i) + 1 || t.length; return '' }
-      const m = /^(?:([+-]?\d+)\s+(\d+)\s+R\b|[+-]?(?:\d+\.?\d*|\.\d+)|true|false|null)/.exec(t.slice(i, i + 64))
-      if (m === null) { i = t.length; return null }
-      i += m[0].length
-      return m[1] !== undefined ? { ref: +m[1] } : m[0] === 'true' ? true : m[0] === 'false' ? false : m[0] === 'null' ? null : +m[0]
-    }
-    const v = val(); return [v, i]
-  }
-  const obj = (n: number, depth = 0): PdfVal => {
-    const o = offs.get(n)
-    if (o === undefined || depth > 32) return null
-    if (typeof o !== 'number') return o
-    return parse(text, o)[0]
-  }
-  const deref = (v: PdfVal | undefined, depth = 0): PdfVal => v !== null && typeof v === 'object' && 'ref' in v && depth < 32 ? deref(obj(v.ref as number), depth + 1) : v ?? null
-  const dict = (v: PdfVal | undefined) => { const r = deref(v); return r !== null && typeof r === 'object' && !Array.isArray(r) && !('ref' in r) ? r as { [k: string]: PdfVal } : null }
-  // object streams: the objects inside a /Type /ObjStm stream
-  for (const [, o] of [...offs]) {
-    if (typeof o !== 'number') continue
-    const [h, j] = parse(text, o), hd = dict(h)
-    if (hd === null || hd.Type !== 'ObjStm') continue
-    const k = text.indexOf('stream', j), start = k + 6 + (text[k + 6] === '\r' ? 2 : 1), len = deref(hd.Length)
-    if (k < 0 || typeof len !== 'number' || e.fs.inflate === undefined) continue
-    const body = e.fs.inflate(d.subarray(start, start + len), 1 << 24), bt = Array.from(body, c => String.fromCharCode(c)).join('')
-    const first = deref(hd.First), nums = bt.slice(0, typeof first === 'number' ? first : 0).trim().split(/\s+/).map(Number)
-    for (let q = 0; q + 1 < nums.length; q += 2) if (!offs.has(nums[q]!) || typeof offs.get(nums[q]!) === 'number')
-      offs.set(nums[q]!, parse(bt, (first as number) + nums[q + 1]!)[0])
-  }
-  const roots = [...text.matchAll(/\/Root\s+(\d+)\s+\d+\s+R/g)], root = dict(roots.length > 0 ? { ref: +roots[roots.length - 1]![1]! } : null)
-  const pages = dict(root?.Pages)
-  if (pages === null) fail()
-  // PDF version check (xpdf getPDFVersion: the header's)
-  const found = +hv![1]! + +hv![2]! * 0.1, wanted = e.ps.fixed_major + e.ps.fixed_minor * 0.1, level = e.equiv[int_base + 78]!
-  if (Math.fround(found) > Math.fround(wanted) + 0.01) {
+// pdftoepdf.cc: read_pdf_info and write_epdf on the reader in pdfread.ts. A document stays open with its list of copied
+// objects (PdfDocument) while images of it are pending; epdf_delete forgets the list once the last one is written (never in -ini)
+type InObj = { num: number, gen: number, type: number, newnum: number, fd: FdEntry | null, enc_objnum: number, written: boolean }
+const OBJ_FONT = 0, OBJ_FONTDESC = 1, OBJ_OTHER = 2
+export type EpdfDoc = { pdf: PdfDoc, objs: InObj[], occurences: number, released: boolean }
+
+// find_add_document (an unchanged released document is reused; we cannot see a file change)
+function find_add_document(e: Engine, img: Img): EpdfDoc {
+  let p = e.ps.epdf_docs.get(img.name)
+  if (p !== undefined) { p.released = false; p.occurences++; return p }
+  const pdf = pdf_open(e, img.data)
+  if (pdf === null) pdftex_fail(e, img.name, 'xpdf: reading PDF image failed')
+  p = { pdf, objs: [], occurences: 0, released: false }
+  e.ps.epdf_docs.set(img.name, p)
+  return p
+}
+
+// get_pagebox
+function get_pagebox(e: Engine, img: Img, page: Page, spec: number): Box {
+  const a = page.attrs
+  if (spec < 1 || spec > 5) pdftex_fail(e, img.name, `PDF inclusion: unknown value of pagebox spec (${spec})`)
+  return [a.media, a.crop, a.bleed, a.trim, a.art][spec - 1]!
+}
+
+// read_pdf_info (`page_name', i.e. \pdfximage named, is refused by read_image)
+function read_pdf_info(e: Engine, img: Img, page_num: number, pagebox_spec: number): void {
+  const doc = find_add_document(e, img), pdf = doc.pdf
+  img.doc = doc
+  const found = Math.fround(pdf.version), wanted = Math.fround(e.ps.fixed_major + e.ps.fixed_minor * 0.1), level = e.equiv[int_base + 78]!
+  if (found > wanted + 0.01) {
     const msg = `PDF inclusion: found PDF version <${found.toFixed(1)}>, but at most version <${wanted.toFixed(1)}> allowed`
     if (level > 0) pdftex_fail(e, img.name, msg); else if (level === 0) pdftex_warn(e, img.name, msg)
   }
-  const count = deref(pages!.Count)
-  img.pages = typeof count === 'number' ? count : 0
-  if (page_num <= 0 || page_num > img.pages) pdftex_fail(e, img.name, `PDF inclusion: required page does not exist <${img.pages}>`)
-  // find the page, collecting the inherited attributes (xpdf PageAttrs)
-  let node = pages!, n = page_num, inh: { [k: string]: PdfVal } = {}
-  for (let guard = 0; ; guard++) {
-    for (const k of ['MediaBox', 'CropBox', 'Rotate']) if (node[k] !== undefined) inh[k] = deref(node[k])
-    if (node.Type === 'Page' || guard > 64) break
-    const kids = deref(node.Kids)
-    if (!Array.isArray(kids)) fail()
-    let next: { [k: string]: PdfVal } | null = null
-    for (const kid of kids as PdfVal[]) {
-      const kd = dict(kid)
-      if (kd === null) continue
-      const c = kd.Type === 'Pages' ? deref(kd.Count) as number : 1
-      if (n <= c) { next = kd; break }
-      n -= c
+  img.pages = pdf.num_pages
+  if (page_num <= 0 || page_num > pdf.num_pages) pdftex_fail(e, img.name, `PDF inclusion: required page does not exist <${pdf.num_pages}>`)
+  const page = get_page(pdf, page_num), b = get_pagebox(e, img, page, pagebox_spec), f = Math.fround
+  const bp2int = (p: number) => cround(p * (6578176 / 100.0)) // writeimg.c bp2int of the float epdf_* values
+  img.orig_x = bp2int(f(b.x2 > b.x1 ? b.x1 : b.x2)); img.width = bp2int(f(b.x2 > b.x1 ? b.x2 - b.x1 : b.x1 - b.x2))
+  img.orig_y = bp2int(f(b.y2 > b.y1 ? b.y1 : b.y2)); img.height = bp2int(f(b.y2 > b.y1 ? b.y2 - b.y1 : b.y1 - b.y2))
+  img.rotate = page.attrs.rotate
+  img.group_ref = page_group(page) !== null ? -1 : 0 // the object number is made by out_image
+  img.selected_page = page_num; img.page_box = pagebox_spec
+}
+
+// utils.c convertStringToPDFString, stripzeros; convertNumToPDF; sprintf's %.8f (exact decimal ties round to even)
+const pdf_string = (s: string) => Array.from(s, ch => { const c = ch.charCodeAt(0); return c < 33 || c > 126 ? '\\' + c.toString(8).padStart(3, '0') : ch === '(' || ch === ')' || ch === '\\' ? '\\' + ch : ch }).join('')
+function stripzeros(a: string): string {
+  const NONUM = 0, DOTNONUM = 1, INT = 2, DOT = 3, LEADDOT = 4, FRAC = 5
+  const b = Array.from(a)
+  let s = NONUM, t = NONUM, q = 0, r = 0
+  for (let p = 0; p < b.length;) {
+    const c = b[p]!, dig = c >= '0' && c <= '9'
+    switch (s) {
+      case NONUM: if (dig) s = INT; else if (c === '.') s = LEADDOT; break
+      case DOTNONUM: if (c !== '.' && !dig) s = NONUM; break
+      case INT: if (c === '.') s = DOT; else if (!dig) s = NONUM; break
+      case DOT: case LEADDOT: s = dig ? FRAC : c === '.' ? DOTNONUM : NONUM; break
+      case FRAC: if (c === '.') s = DOTNONUM; else if (!dig) s = NONUM; break
     }
-    if (next === null) fail()
-    node = next!
+    switch (s) {
+      case DOT: r = q; break
+      case LEADDOT: r = q + 1; break
+      case FRAC: if (c > '0') r = q + 1; break
+      case NONUM: if ((t === FRAC || t === DOT) && r !== 0) { q = r--; if (b[r] === '.') b[r] = '0'; r = 0 } break
+    }
+    b[q++] = b[p++]!; t = s
   }
-  const box = (v: PdfVal | undefined): number[] | null => {
-    const a = deref(v)
-    if (!Array.isArray(a) || a.length !== 4) return null
-    const [x1, y1, x2, y2] = a.map(x => Number(deref(x)))
-    return [Math.min(x1!, x2!), Math.min(y1!, y2!), Math.max(x1!, x2!), Math.max(y1!, y2!)]
+  return b.slice(0, q).join('')
+}
+function c_fixed(x: number, d: number): string {
+  const y = x * 2 ** (d + 1)
+  if (Number.isInteger(y) && Math.abs(y) % 2 === 1 && Math.abs(x) < 2 ** 40) { // a tie: toFixed would round away from zero
+    let n = Math.floor(Math.abs(x) * 10 ** d)
+    if (n % 2 === 1) n++
+    const t = String(n).padStart(d + 1, '0')
+    return (x < 0 ? '-' : '') + t.slice(0, -d) + '.' + t.slice(-d)
   }
-  const media = box(inh.MediaBox) ?? [0, 0, 612, 792]
-  const crop = box(inh.CropBox) ?? media.slice() // xpdf only clips it to the MediaBox (clipBoxes), no poppler-style widening
-  const other = (k: string) => box(node[k]) ?? crop!.slice()
-  const clip = (b: number[]) => [Math.max(b[0]!, media[0]!), Math.max(b[1]!, media[1]!), Math.min(b[2]!, media[2]!), Math.min(b[3]!, media[3]!)]
-  const b = pagebox === 1 ? media : clip(pagebox === 2 ? crop : pagebox === 3 ? other('BleedBox') : pagebox === 4 ? other('TrimBox') : other('ArtBox'))
-  const f = Math.fround, bp2int = (p: number) => cround(p * (6578176 / 100.0)) // float epdf_* then bp2int
-  img.orig_x = bp2int(f(b[0]!)); img.orig_y = bp2int(f(b[1]!))
-  img.width = bp2int(f(b[2]! - b[0]!)); img.height = bp2int(f(b[3]! - b[1]!))
-  const rot = deref(inh.Rotate)
-  img.rotate = typeof rot === 'number' ? ((Math.trunc(rot) % 360) + 360) % 360 : 0
-  img.group_ref = node.Group !== undefined ? -1 : 0
+  return Object.is(x, -0) ? '-' + x.toFixed(d) : x.toFixed(d)
+}
+const c_int = (v: number) => v >= 2 ** 31 || v < -(2 ** 31) || Number.isNaN(v) ? -2147483648 : Math.trunc(v) // x86 cvttsd2si
+function num_to_pdf(n: number): string {
+  if (Math.abs(n) < 0.5e-6) return '0'
+  let s = ''
+  if (n < 0) { s = '-'; n = -n }
+  n += 0.5e-6
+  const ival = c_int(Math.floor(n))
+  n -= ival
+  s += String(ival)
+  const fval = c_int(Math.floor(n * 1e6))
+  return fval !== 0 ? s + '.' + String(fval).padStart(6, '0').replace(/0+$/, '') : s
+}
+
+// GfxFont::makeFont, Gfx8BitFont: the font's encoding (base encoding, from the font file or the default, plus /Differences)
+function font_encoding(e: Engine, img: Img, x: XRef, fontdict: PDict): (string | null)[] {
+  const unsupported = (what: string): never => fatal_error(e, `unsupported: PDF inclusion of a replaced font with ${what} (${img.name})`)
+  const bn = lookup(fontdict, 'BaseFont'), name = is_name(bn) ? bn.v : tag_str(bn)
+  const desc = lookup(fontdict, 'FontDescriptor')
+  let emb: PObj = null, cff = false
+  if (is_dict(desc)) for (const k of ['FontFile3', 'FontFile2', 'FontFile']) { const r = lookup_nf(desc, k); if (is_ref(r)) { emb = r; if (k !== 'FontFile') cff = true; break } }
+  let file: Uint8Array | null = null
+  if (emb !== null) {
+    const s = deref(x, emb)
+    if (is_stream(s)) {
+      const d = decode_stream(s), head = String.fromCharCode(...d.subarray(d[0] === 0x80 ? 6 : 0, (d[0] === 0x80 ? 6 : 0) + 16))
+      if (head.startsWith('%!PS-AdobeFont-1') || head.startsWith('%!FontType1')) file = d // FoFiIdentifier: Type 1 PFA/PFB
+      else if (cff || d[0] === 1) unsupported('a CFF (Type1C) font file')
+    }
+  }
+  let base: (string | null)[] | null = null
+  const enc = lookup(fontdict, 'Encoding'), predefined = (o: PObj) => is_name(o, 'MacRomanEncoding') || is_name(o, 'MacExpertEncoding') || is_name(o, 'WinAnsiEncoding')
+  if (is_dict(enc) ? predefined(lookup(enc, 'BaseEncoding')) : predefined(enc)) unsupported('a Mac/WinAnsi base encoding')
+  if (file !== null) { const f = fofi_type1_encoding(file); if (f !== null) base = f === 'std' ? standard_glyph_names : f }
+  if (base === null) {
+    if (file === null && /^(Symbol(,Bold|,Italic|,BoldItalic)?|ZapfDingbats)$/.test(name.replace(/ /g, ''))) unsupported('a built-in symbol encoding')
+    base = standard_glyph_names
+  }
+  const names = base.slice(0, 256)
+  while (names.length < 256) names.push(null)
+  const diff = is_dict(enc) ? lookup(enc, 'Differences') : null
+  if (Array.isArray(diff)) {
+    let code = 0
+    for (const o of diff) {
+      const v = deref(x, o)
+      if (typeof v === 'number') code = v
+      else if (is_name(v)) { if (code >= 0 && code < 256) names[code] = v.v; code++ }
+    }
+  }
+  return names
+}
+const tag_str = (o: PObj) => o !== null && typeof o === 'object' && !Array.isArray(o) && o.t === 'str' ? o.v : ''
+
+// write_epdf
+function write_epdf(e: Engine, img: Img): void {
+  const doc = img.doc!, pdf = doc.pdf, x = pdf.x, ps = e.ps
+  const file = img.name, fail = (msg: string): never => pdftex_fail(e, file, msg)
+  doc.occurences--
+  const objs = doc.objs, encodings: { names: (string | null)[], objnum: number }[] = []
+  let last = 0 // pdflastbyte: the last byte of a pdf_puts (pdfout does not set it), for pdf_newline
+  const puts = (s: string) => { pdf_print(e, s); if (s.length > 0) last = s.charCodeAt(s.length - 1) }
+  const newline = () => { if (last !== 10) puts('\n') }
+  const add = (type: number, r: PRef, fd: FdEntry | null, enc: number): number => { // addInObj
+    if (r.num === 0) fail('PDF inclusion: invalid reference')
+    const o = objs.find(p => p.num === r.num && p.gen === r.gen)
+    if (o !== undefined) return o.newnum
+    const n: InObj = { num: r.num, gen: r.gen, type, newnum: 0, fd, enc_objnum: enc, written: false }
+    objs.push(n)
+    n.newnum = type === OBJ_FONTDESC ? fd!.fd_objnum : pdf_new_objnum(e)
+    return n.newnum
+  }
+  const copy_name = (s: string) => {
+    puts('/')
+    pdf_print(e, Array.from(s, ch => /[0-9A-Za-z_.+-]/.test(ch) ? ch : '#' + ch.charCodeAt(0).toString(16).toUpperCase().padStart(2, '0')).join(''))
+  }
+  const copy_dict_entry = (k: string, v: PObj) => { copy_name(k); puts(' '); copy_object(v); puts('\n') }
+  const copy_dict = (o: PObj) => {
+    if (!is_dict(o)) fail(`PDF inclusion: invalid dict type <${type_name(o)}>`)
+    for (const [k, v] of (o as PDict).m) copy_dict_entry(k, v)
+  }
+  const copy_stream = (b: Uint8Array) => { pdf_print(e, b); last = b.length > 0 ? b[b.length - 1]! : 0 }
+  const copy_object = (o: PObj): void => {
+    if (typeof o === 'boolean') puts(o ? 'true' : 'false')
+    else if (typeof o === 'number') puts(String(o))
+    else if (o === null) puts('null')
+    else if (Array.isArray(o)) { puts('['); for (const v of o) { if (!is_name(v)) puts(' '); copy_object(v) } puts(']') }
+    else if (o.t === 'real') puts(num_to_pdf(o.v))
+    else if (o.t === 'str') {
+      if (!o.v.includes('\0')) {
+        puts('(')
+        for (const ch of o.v) {
+          const c = ch.charCodeAt(0)
+          if (ch === '(' || ch === ')' || ch === '\\') puts('\\' + ch)
+          else if (c < 0x20 || c > 0x7f) puts('\\' + c.toString(8).padStart(3, '0'))
+          else pdf_print(e, ch)
+        }
+        puts(')')
+      } else puts('<' + Array.from(o.v, ch => ch.charCodeAt(0).toString(16).padStart(2, '0')).join('') + '>')
+    } else if (o.t === 'name') copy_name(o.v)
+    else if (o.t === 'dict') { puts('<<\n'); copy_dict(o); puts('>>') }
+    else if (o.t === 'stream') { puts('<<\n'); copy_dict(o.d); puts('>>\n'); puts('stream\n'); copy_stream(raw_bytes(o)); puts('\nendstream') }
+    else if (o.t === 'ref') { if (o.num === 0) fail('PDF inclusion: reference to invalid object (is the included pdf broken?)'); puts(`${add(OBJ_OTHER, o, null, 0)} 0 R`) }
+    else fail(`PDF inclusion: type <${type_name(o)}> cannot be copied`)
+  }
+  const copy_font = (tag: string, r: PRef) => {
+    const p = objs.find(q => q.num === r.num && q.gen === r.gen)
+    if (p !== undefined) { copy_name(tag); puts(` ${p.newnum} 0 R `); return }
+    // only included Type1 (and Type1C) fonts named in the font map are replaced; anything else is copied
+    let fontdict: PObj = null, basefont: PObj = null, descref: PObj = null, desc: PObj = null, ff: PObj, fm: FmEntry | null = null
+    if (ps.fixed_inclusion_copy_font === 0 && is_dict(fontdict = deref(x, r)) && is_name(lookup(fontdict, 'Subtype'), 'Type1')
+      && is_name(basefont = lookup(fontdict, 'BaseFont')) && is_ref(descref = lookup_nf(fontdict, 'FontDescriptor')) && is_dict(desc = deref(x, descref))
+      && (is_stream(lookup(desc, 'FontFile')) || (is_stream(ff = lookup(desc, 'FontFile3')) && is_name(lookup(ff.d, 'Subtype'), 'Type1C')))
+      && (fm = lookup_fontmap(e, basefont.v)) !== null) {
+      const stemv = lookup(desc, 'StemV')
+      const fd = epdf_create_fontdescriptor(e, fm, cround(num(stemv))) // zround: the PDF's /StemV may be a real
+      add(OBJ_FONTDESC, descref, fd, 0)
+      copy_name(tag)
+      const names = font_encoding(e, img, x, fontdict)
+      const enc = pdf_new_objnum(e) // addEncoding
+      encodings.unshift({ names, objnum: enc })
+      puts(` ${add(OBJ_FONT, r, fd, enc)} 0 R `)
+    } else { copy_name(tag); puts(' '); copy_object(r) }
+  }
+  const page = get_page(pdf, img.selected_page), page_ref = get_page_ref(pdf, img.selected_page)
+  const page_obj = page_ref === null ? null : fetch(x, page_ref.num, page_ref.gen)
+  if (!is_dict(page_obj)) fail('xpdf: reading PDF image failed') // pdftex dereferences a null page dictionary here
+  const page_dict = page_obj as PDict, rotate = page.attrs.rotate, suppress = int_par(e, 97), sep = int_par(e, 101) !== 0 ? '_' : '.'
+  puts('/Type /XObject\n'); puts('/Subtype /Form\n'); puts('/FormType 1\n')
+  if ((suppress & 2) === 0) puts(`/PTEX${sep}FileName (${pdf_string(file)})\n`)
+  if ((suppress & 4) === 0) puts(`/PTEX${sep}PageNumber ${img.selected_page}\n`)
+  if ((suppress & 8) === 0) {
+    const info = lookup_nf(x.trailer!, 'Info')
+    if (is_ref(info)) { puts(`/PTEX${sep}InfoDict `); puts(`${add(OBJ_OTHER, info, null, 0)} 0 R\n`) } // the info dict must be indirect
+  }
+  const b = get_pagebox(e, img, page, img.page_box)
+  if (rotate !== 0 && rotate % 90 === 0) { // the /Rotate key is clockwise, the matrix counterclockwise; the image turns about its centre
+    print(e, `, page is rotated ${rotate} degrees`)
+    const m = rotate === 90 ? [0, -1, 1, 0, b.x1 - b.y1, b.y1 + b.x2] : rotate === 180 ? [-1, 0, 0, -1, b.x1 + b.x2, b.y1 + b.y2] : [0, 1, -1, 0, b.x1 + b.y2, b.y1 - b.x1]
+    puts(stripzeros(`/Matrix [${m.map(v => c_fixed(v, 8)).join(' ')}]\n`))
+  }
+  puts(stripzeros(`/BBox [${[b.x1, b.y1, b.x2, b.y2].map(v => c_fixed(v, 8)).join(' ')}]\n`))
+  const meta = lookup_nf(page_dict, 'Metadata')
+  if (meta !== null && !is_ref(meta)) pdftex_warn(e, file, 'PDF inclusion: /Metadata must be indirect object')
+  for (const k of ['LastModified', 'Metadata', 'PieceInfo', 'SeparationInfo']) { // selected page dictionary items (indirection kept)
+    const o = lookup_nf(page_dict, k)
+    if (o !== null) { newline(); puts(`/${k} `); copy_object(o) }
+  }
+  let group: PDict | null = null
+  const g = lookup_nf(page_dict, 'Group')
+  if (g !== null) {
+    if (ps.page_group_val === 0) { // another pdf with a page group came earlier on this page: the Group entry is copied as it is
+      if (int_par(e, 95) === 0) pdftex_warn(e, file, 'PDF inclusion: multiple pdfs with page group included in a single page')
+      newline(); puts('/Group '); copy_object(g)
+    } else { // a separate object, since the page dictionary refers to it too
+      if (!is_dict(lookup(page_dict, 'Group'))) fail('PDF inclusion: /Group dict missing')
+      group = { t: 'dict', m: new Map(page_group(page)!.m), x }
+      puts(`/Group ${ps.page_group_val} 0 R\n`)
+    }
+  }
+  const res = page_resources(page)
+  if (res === null) pdftex_warn(e, file, "PDF inclusion: /Resources missing. 'This practice is not recommended' (PDF Ref)")
+  else {
+    newline(); puts('/Resources <<\n')
+    for (const [k, v] of res.m) {
+      const o = deref(x, v)
+      if (k === 'Font') {
+        if (!is_dict(o)) fail(`PDF inclusion: invalid font resources dict type <${type_name(o)}>`)
+        puts('/Font << ')
+        for (const [t, f] of (o as PDict).m) {
+          if (is_ref(f)) copy_font(t, f)
+          else if (is_dict(f)) { copy_name(t); puts(' '); copy_object(f) } // some programs write the font dictionary inline
+          else fail(`PDF inclusion: invalid font in reference type <${type_name(f)}>`)
+        }
+        puts('>>\n')
+      } else if (k === 'ProcSet') {
+        if (!Array.isArray(o)) fail(`PDF inclusion: invalid ProcSet array type <${type_name(o)}>`)
+        puts('/ProcSet [ ')
+        for (const n of o as PObj[]) { if (!is_name(n)) fail(`PDF inclusion: invalid ProcSet entry type <${type_name(n)}>`); copy_name((n as { v: string }).v); puts(' ') }
+        puts(']\n')
+      } else if (k === 'Subtype' ? !is_name(o) : !is_dict(o)) { // copyOtherResources
+        pdftex_warn(e, file, k === 'Subtype' ? `PDF inclusion: Subtype in Resources dict is not a name (key '${k}', type <${type_name(o)}>); ignored.`
+          : `PDF inclusion: invalid other resource which is no dict (key '${k}', type <${type_name(o)}>); ignored.`)
+      } else { copy_name(k); puts(' '); copy_object(o) }
+    }
+    puts('>>\n')
+  }
+  // the page contents: one stream is copied with its filters; the streams of an array are decoded and joined
+  const contents = deref(x, page.contents)
+  if (is_stream(contents)) {
+    if (lookup(contents.d, 'F') !== null) fail('PDF inclusion: Unsupported external stream')
+    puts('/Length '); copy_object(lookup(contents.d, 'Length')); puts('\n')
+    const f = lookup(contents.d, 'Filter')
+    if (f !== null) {
+      puts('/Filter '); copy_object(f); puts('\n')
+      const dp = lookup(contents.d, 'DecodeParms')
+      if (dp !== null) { puts('/DecodeParms '); copy_object(dp); puts('\n') }
+    }
+    puts('>>\nstream\n')
+    copy_stream(raw_bytes(contents))
+    pdf_end_stream(e)
+  } else if (Array.isArray(contents)) {
+    pdf_begin_stream(e); last = 0
+    contents.forEach((o, i) => {
+      const s = deref(x, o)
+      if (!is_stream(s)) fail(`PDF inclusion: type <${type_name(s)}> cannot be copied`) // pdftex reads a non-stream as one
+      copy_stream(decode_stream(s as PStream))
+      if (i < contents.length - 1) newline()
+    })
+    pdf_end_stream(e)
+  } else { pdf_begin_stream(e); pdf_end_stream(e) } // the contents are optional, an empty stream is not
+  for (const r of encodings) epdf_write_enc(e, r.names, r.objnum) // writeEncodings
+  if (group !== null) { pdf_begin_obj(e, ps.page_group_val, 2); copy_object(group); puts('\n'); pdf_end_obj(e); ps.page_group_val = 0 }
+  for (let i = 0; i < objs.length; i++) { // writeRefs: the list grows while it is written
+    const r = objs[i]!
+    if (r.written) continue
+    r.written = true
+    const o = fetch(x, r.num, r.gen)
+    if (r.type === OBJ_FONT) { // copyFontDict
+      pdf_begin_obj(e, r.newnum, 2)
+      if (!is_dict(o)) fail(`PDF inclusion: invalid dict type <${type_name(o)}>`)
+      puts('<<\n')
+      for (const [k, v] of (o as PDict).m) if (!k.startsWith('FontDescriptor') && !k.startsWith('BaseFont') && !k.startsWith('Encoding')) copy_dict_entry(k, v)
+      puts(`/FontDescriptor ${r.fd!.fd_objnum} 0 R\n/BaseFont ${get_fn_objnum(e, r.fd!)} 0 R\n/Encoding ${r.enc_objnum} 0 R\n>>`)
+      puts('\n'); pdf_end_obj(e)
+    } else if (r.type !== OBJ_FONTDESC) { // the descriptor is pdfTeX's own (write_fontdescriptor)
+      pdf_begin_obj(e, r.newnum, is_stream(o) ? 0 : 2)
+      copy_object(o); puts('\n'); pdf_end_obj(e)
+    }
+  }
+}
+
+// epdf_delete (deleteimage does nothing in -ini: the image may be dumped)
+export function delete_image(e: Engine, img: Img): void {
+  if (e.ini_version || img.type !== 'pdf') return
+  const doc = img.doc!
+  if (doc.occurences < 0 && !doc.released) { doc.objs = []; doc.released = true }
 }
 
 // writepng.c read_png_info (libpng's png_read_info: the chunks before IDAT)
@@ -247,8 +471,7 @@ function read_APP1_Exif(b: Uint8Array): [number, number] {
 // writeimg.c writeimage
 export function write_image(e: Engine, img: Img): void {
   print(e, ' <' + img.name)
-  if (img.type === 'pdf') fatal_error(e, 'unsupported: PDF image inclusion (write_epdf)')
-  if (img.type === 'png') write_png(e, img); else write_jpg(e, img)
+  if (img.type === 'png') write_png(e, img); else if (img.type === 'jpg') write_jpg(e, img); else write_epdf(e, img)
   print(e, '>')
 }
 

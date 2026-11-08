@@ -154,7 +154,7 @@ export class Engine {
   name_in_progress = false; cur_name = ''; cur_area = ''; cur_ext = ''
   name_chars: number[] = []; area_delimiter = 0; ext_delimiter = 0; quoted_filename = false; stop_at_space = true
   // etex.ch: compatibility (0) or extended (1) mode, pdftex.ch's -etex switch, scan_register_num's limit
-  eTeX_mode = 0; etex_p = false; max_reg_num = 255; max_reg_help_line = 'A register number must be between 0 and 255.'
+  eTeX_mode = 0; etex_p = false; ini_version = true; max_reg_num = 255; max_reg_help_line = 'A register number must be between 0 and 255.'
   is_in_csname = false // pdftex.web \ifincsname
   get eTeX_ex(): boolean { return this.eTeX_mode === 1 }
   // etex.ch sparse arrays (sa[0..3] unused so register chr codes 0..3 stay the primitives), sa_chain, sa_level
@@ -185,7 +185,8 @@ export class Engine {
   // `file' is the first line (default `<jobname>.tex'); `jobname' with `file' is -jobname
   // mode 'pdflatex' is 'latex' with the format's \pdfoutput (TeX Live's pdflatex); `date' is SOURCE_DATE_EPOCH with FORCE_SOURCE_DATE
   async run(opts: { jobname?: string, file?: string, mode: 'ini' | 'etex' | 'latex' | 'pdflatex', terminal?: string[], date?: Date }): Promise<void> {
-    this.date = opts.date; this.etex_p = opts.mode === 'etex'; this.format = await this.format // loadFormat's result may be passed unawaited
+    this.date = opts.date; this.etex_p = opts.mode === 'etex'; this.ini_version = opts.mode === 'ini' || opts.mode === 'etex' // pdftex -ini (the latex modes load a format)
+    this.format = await this.format // loadFormat's result may be passed unawaited
     init_specs(this); init_fonts(this); init_eqtb(this); init_prim(this); fix_date_and_time(this)
     this.terminal += 'This is tstex, Version 3.141592653' + this.format_ident + '\n' // §61
     if (this.translate_filename !== '') this.terminal += ' (' + this.translate_filename + ')\n' // tex.ch

@@ -20,7 +20,7 @@ const FM_DUPIGNORE = 0, FM_REPLACE = 1, FM_DELETE = 2
 export type FmEntry = { tfm_name: string, ps_name: string | null, fd_flags: number, slant: number, extend: number, encname: string | null,
   ff_name: string | null, type: number, pid: number, in_use: boolean }
 type FeEntry = { name: string, fe_objnum: number, glyph_names: Glyphs, tx_tree: Set<number> | null }
-type FdEntry = { fd_objnum: number, fontname: string, ff_found: boolean, ff_objnum: number, font_dim: { val: number, set: boolean }[],
+export type FdEntry = { fd_objnum: number, fontname: string, ff_found: boolean, ff_objnum: number, fn_objnum: number, font_dim: { val: number, set: boolean }[],
   builtin_glyph_names: Glyphs | null, fm: FmEntry, tx_tree: Set<number> | null }
 type FoEntry = { fo_objnum: number, tex_font: number, fm: FmEntry, fd: FdEntry | null, fe: FeEntry | null, cw_objnum: number,
   width: number[], first_char: number, last_char: number, tounicode_objnum: number }
@@ -30,7 +30,7 @@ export function font_state() {
   return {
     // mapfile.c mitem: the pending map file or line (at first the default map file, read at the first lookup)
     map_item: { line: 'pdftex.map', mode: 0, type: 0 } as { line: string, mode: number, type: number } | null,
-    tfm_tree: null as Map<string, FmEntry> | null, font_map: [] as (FmEntry | null | undefined)[], // pdf_font_map[f]; null: no entry
+    tfm_tree: null as Map<string, FmEntry> | null, ps_tree: new Map<string, FmEntry>(), font_map: [] as (FmEntry | null | undefined)[], // pdf_font_map[f]; null: no entry
     fe_tree: new Map<string, FeEntry>(), fd_tree: new Map<string, FdEntry>(), fo_tree: new Map<string, FoEntry>(),
   }
 }
@@ -145,7 +145,7 @@ function fm_scan_line(e: Engine, s: string, mode: number, file: string | null): 
   else fm.type |= F_TYPE1
   if (check_fm_entry(e, fm, file) !== 0) return
   if (fm.tfm_name.includes('@')) return // shortcut: subfont (`@sfd@') entries are not registered; port handle_subfont_fm for CJK subfonts
-  // avl_do_entry: the tfm_name link (the ps_name tree only serves PDF inclusion, pass B)
+  // avl_do_entry: the tfm_name link, then the ps_name link (lookup_fontmap, for PDF inclusion)
   const tree = e.fm.tfm_tree!
   if (fm.tfm_name !== '<nontfm>') {
     const p = tree.get(fm.tfm_name)
@@ -160,6 +160,63 @@ function fm_scan_line(e: Engine, s: string, mode: number, file: string | null): 
     }
     if (mode !== FM_DELETE) tree.set(fm.tfm_name, fm)
   }
+  if (fm.ps_name !== null) {
+    const ps = e.fm.ps_tree, k = ps_key(fm.ps_name, fm.slant, fm.extend), p = ps.get(k)
+    if (p !== undefined) { if (mode === FM_DUPIGNORE || p.in_use) return; ps.delete(k) }
+    if (mode !== FM_DELETE && is_t1fontfile(fm) && is_included(fm)) ps.set(k, fm)
+  }
+}
+const ps_key = (ps_name: string, slant: number, extend: number) => ps_name + '\0' + slant + '\0' + extend
+
+// mapfile.c lookup_fontmap: the map entry replacing an included PDF's Type 1 font (a subset tag and -Slant_/-Extend_ suffixes are
+// read off the name); fm_valid_for_font_replacement wants its font file to exist
+export function lookup_fontmap(e: Engine, ps_name: string): FmEntry | null {
+  if (e.fm.tfm_tree === null) fm_read_info(e)
+  let s = ps_name.length > 7 && /^[A-Z]{6}\+/.test(ps_name) ? ps_name.slice(7) : ps_name, slant = 0, extend = 0
+  const int = (t: string) => /^[ \t\n\v\f\r]*[+-]?\d+$/.test(t) ? parseInt(t, 10) : null // strtol consuming the whole rest
+  const a = s.indexOf('-Slant_')
+  if (a >= 0) {
+    const m = /^[ \t\n\v\f\r]*[+-]?\d+/.exec(s.slice(a + 7)), rest = m === null ? '' : s.slice(a + 7 + m[0].length)
+    if (m !== null && rest === '') { slant = parseInt(m[0], 10); s = s.slice(0, a) }
+    else if (m !== null) {
+      const c = rest.indexOf('-Extend_'), ex = c >= 0 ? int(rest.slice(c + 8)) : null
+      if (ex !== null) { slant = parseInt(m[0], 10); extend = ex; s = s.slice(0, a) }
+    }
+  } else {
+    const b = s.indexOf('-Extend_'), ex = b >= 0 ? int(s.slice(b + 8)) : null
+    if (ex !== null) { extend = ex; s = s.slice(0, b) }
+  }
+  const fm = e.fm.ps_tree.get(ps_key(s, slant, extend))
+  return fm !== undefined && e.fs.find(fm.ff_name!, 'type1') !== null ? fm : null
+}
+
+// epdf.c epdf_create_fontdescriptor (the descriptor shared with TeX's own use of the font file), get_fn_objnum
+export function epdf_create_fontdescriptor(e: Engine, fm: FmEntry, stemv: number): FdEntry {
+  let fd = e.fm.fd_tree.get(fd_key(fm))
+  if (fd === undefined) {
+    fm.in_use = true
+    fd = { fd_objnum: pdf_new_objnum(e), fontname: fm.ps_name!, ff_found: false, ff_objnum: 0, fn_objnum: 0,
+      font_dim: Array.from({ length: 11 }, () => ({ val: 0, set: false })), builtin_glyph_names: null, fm, tx_tree: null }
+    fd.font_dim[STEMV_CODE] = { val: stemv, set: true }
+    e.fm.fd_tree.set(fd_key(fm), fd)
+  }
+  return fd // shortcut: epdf_mark_glyphs/embed_whole_font only feed subsetting and /CharSet, which we do not write
+}
+export const get_fn_objnum = (e: Engine, fd: FdEntry) => fd.fn_objnum !== 0 ? fd.fn_objnum : (fd.fn_objnum = pdf_new_objnum(e))
+
+// writeenc.c epdf_write_enc: every slot that is not notdef (a pointer comparison: a `.notdef' name from the file is written)
+export function epdf_write_enc(e: Engine, glyph_names: (string | null)[], objnum: number): void {
+  pdf_begin_dict(e, objnum, 1)
+  pdf_print(e, '/Type /Encoding\n/Differences [')
+  let i_old = -2
+  for (let i = 0; i < 256; i++) {
+    const g = glyph_names[i]
+    if (g === null || g === undefined) continue
+    pdf_print(e, i === i_old + 1 ? `/${g}` : (i_old === -2 ? '' : ' ') + `${i}/${g}`)
+    i_old = i
+  }
+  pdf_print(e, ']\n')
+  pdf_end_dict(e)
 }
 
 // mapfile.c fm_read_info: the pending map file or map line, if any
@@ -282,6 +339,7 @@ function write_fontdescriptor(e: Engine, fd: FdEntry): void {
     pdf_print(e, `/Length1 ${t1.length1}\n/Length2 ${t1.length2}\n/Length3 0\n`)
     pdf_begin_stream(e); pdf_print(e, Array.from(t1.data)); pdf_end_stream(e)
   }
+  if (fd.fn_objnum !== 0) { pdf_begin_obj(e, fd.fn_objnum, 1); pdf_print(e, `/${fd.fontname}\n`); pdf_end_obj(e) } // write_fontname_object
   if (fd.fd_objnum === 0) fd.fd_objnum = pdf_new_objnum(e)
   pdf_begin_dict(e, fd.fd_objnum, 1)
   pdf_print(e, '/Type /FontDescriptor\n')
@@ -325,7 +383,7 @@ function mark_chars(e: Engine, fo: FoEntry, tx: Set<number> | null, f: number): 
 
 // writefont.c create_fontdescriptor
 function create_fontdescriptor(e: Engine, fo: FoEntry, f: number): FdEntry {
-  const fd: FdEntry = { fd_objnum: 0, fontname: fo.fm.ps_name ?? fo.fm.tfm_name, ff_found: false, ff_objnum: 0,
+  const fd: FdEntry = { fd_objnum: 0, fontname: fo.fm.ps_name ?? fo.fm.tfm_name, ff_found: false, ff_objnum: 0, fn_objnum: 0,
     font_dim: Array.from({ length: 11 }, () => ({ val: 0, set: false })), builtin_glyph_names: null, fm: fo.fm, tx_tree: null }
   preset_fontmetrics(e, fd, f)
   return fd
