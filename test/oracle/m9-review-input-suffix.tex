@@ -1,0 +1,13 @@
+\catcode`\{=1 \catcode`\}=2 \catcode`\#=6
+% kpathsea tries name.tex before name unless the name ends in .tex/.sty/.cls/.fd/.aux/.bbl/.def/.clo/.ldf
+\input{m9-x.ltd} \input m9-x.ltd \input{m9-x.ltd.tex}
+\immediate\openout1=m9-y.ltd \immediate\write1{\message{[y.ltd read]}}\immediate\closeout1
+\immediate\openout1=m9-y.ltd.tex \immediate\write1{\message{[y.ltd.tex read]}}\immediate\closeout1
+\immediate\openout1=m9-z.sty \immediate\write1{\message{[z.sty read]}}\immediate\closeout1
+\immediate\openout1=m9-z.sty.tex \immediate\write1{\message{[z.sty.tex read]}}\immediate\closeout1
+\immediate\openout1=m9-w \immediate\write1{\message{[w.tex read]}}\immediate\closeout1
+\input m9-y.ltd \input m9-z.sty \input m9-w
+\def\try#1{\openin3=#1 \ifeof3 \message{[#1: no]}\else\read3 to\x \message{[#1: \meaning\x]}\closein3 \fi
+  \message{[size \pdffilesize{#1}]}}
+\try{m9-y.ltd}\try{m9-z.sty}\try{m9-z.sty.tex}\try{m9-x.ltd}\try{m9-w}
+\end

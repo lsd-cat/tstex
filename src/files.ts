@@ -11,6 +11,7 @@ import { scan_toks } from './scan.ts'
 import { prompt_input } from './input.ts'
 import { tokens_to_string } from './tokens.ts'
 import { delete_token_ref } from './nodes.ts'
+import { candidates } from './platform/lookup.ts'
 import { begin_file_reading, end_file_reading, back_input, input_ln, firm_up_the_line, new_line } from './input.ts'
 
 // §480 read_open states
@@ -97,26 +98,26 @@ function scan_file_name_braced(e: Engine): void {
   e.stop_at_space = save_stop_at_space
 }
 
-// §519 pack_file_name and web2c's a_open_in with kpse_tex_format: try `name.tex' before `name'; returns the name found
-export function open_tex_file(e: Engine): { name: string, file: InputFile } | null {
-  const full = e.cur_area + e.cur_name + e.cur_ext
-  for (const name of e.cur_ext === '.tex' ? [full] : [full + '.tex', full]) {
-    const out = e.outputFiles.get(name.replace(/^(\.\/)+/, '')) // a file this run has written (and flushed) is read back
-    const data = out !== undefined ? Uint8Array.from(out, c => c.charCodeAt(0)) : e.fs.find(name, 'tex')
-    // the name as kpathsea prints it: `./name' for a hit in the current directory, else the path in the texmf tree
-    if (data !== null) return { name: (out === undefined ? e.fs.path?.(name, 'tex') : null) ?? (/^\.?\//.test(name) ? name : './' + name), file: { data, pos: 0 } }
+// §519 pack_file_name and web2c's a_open_in with kpse_tex_format (the TexFS applies kpathsea's name.tex-first rule); a file
+// this run has written (and flushed) is read back first.
+// shortcut: a written `name' wins over a `name.tex' already in the cwd (kpathsea would take the latter), never seen in practice
+function written(e: Engine, name: string): { name: string, data: Uint8Array } | null {
+  for (const n of candidates(name, 'tex')) {
+    const out = e.outputFiles.get(n.replace(/^(\.\/)+/, ''))
+    if (out !== undefined) return { name: n, data: Uint8Array.from(out, c => c.charCodeAt(0)) }
   }
   return null
 }
+// returns the name as kpathsea prints it: `./name' for a hit in the current directory, else the path in the texmf tree
+export function open_tex_file(e: Engine): { name: string, file: InputFile } | null {
+  const full = e.cur_area + e.cur_name + e.cur_ext, w = written(e, full)
+  if (w !== null) return { name: /^\.?\//.test(w.name) ? w.name : './' + w.name, file: { data: w.data, pos: 0 } }
+  const data = e.fs.find(full, 'tex')
+  return data && { name: e.fs.path?.(full, 'tex') ?? (/^\.?\//.test(full) ? full : './' + full), file: { data, pos: 0 } }
+}
 
 // utils.c kpse_find_tex for \pdffilesize, \pdfmdfivesum file, \pdffilemoddate: files this run wrote come first, as on disk
-export function find_tex_file(e: Engine, name: string): Uint8Array | null {
-  for (const n of /\.tex$/.test(name) ? [name] : [name + '.tex', name]) {
-    const out = e.outputFiles.get(n.replace(/^(\.\/)+/, ''))
-    if (out !== undefined) return Uint8Array.from(out, c => c.charCodeAt(0))
-  }
-  return e.fs.find(name, 'tex')
-}
+export const find_tex_file = (e: Engine, name: string): Uint8Array | null => written(e, name)?.data ?? e.fs.find(name, 'tex')
 
 // kpse_find_file for the back end's .map and .enc files: one this run has written is found first, in the cwd; kpathsea's
 // open_input names such a file without the `./' that \input shows

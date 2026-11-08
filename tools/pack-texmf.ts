@@ -70,7 +70,7 @@ export function pack(argv: string[]): void {
   const files: Record<string, { path: string, size: number }> = {}
   let raw = 0
   for (const [base, c] of [...by_base].sort((a, b) => a[0] < b[0] ? -1 : 1)) {
-    const dbs = Object.keys(trees).map(t => () => c.filter(x => x.tree === t).map(x => x.rel.slice(0, -base.length)))
+    const dbs = Object.keys(trees).map(t => (b: string) => b !== base ? undefined : c.filter(x => x.tree === t).map(x => x.rel.slice(0, -base.length)))
     const hit = tree_matches(base, kind_of(base), dbs).next().value
     const pick = hit ? c.find(x => x.tree === Object.keys(trees)[hit[0]] && x.rel === hit[1])! : c[0]!
     const src = join(trees[pick.tree]!, pick.rel), dst = join(opt.out, pick.rel)

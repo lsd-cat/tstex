@@ -3,12 +3,13 @@ import { test } from 'node:test'
 import assert from 'node:assert'
 import { Engine } from '../../src/engine.ts'
 import type { TexFS } from '../../src/platform/fs.ts'
+import { candidates } from '../../src/platform/lookup.ts'
 
 const files: Record<string, string> = {
   'a.tex': '\\catcode`\\{=1 \\catcode`\\}=2 \\def\\hello{Hi}\\count7=42 \\dump\n',
   'b.tex': '\\message{\\hello\\the\\count7}\\undefinedcs\\end\n',
 }
-const fs: TexFS = { find: n => n in files ? new TextEncoder().encode(files[n]) : null }
+const fs: TexFS = { find: n => { const c = candidates(n, 'tex').find(c => c in files); return c === undefined ? null : new TextEncoder().encode(files[c]) } }
 const date = new Date(2000, 0, 2, 3, 4)
 
 test('format round trip and terminal dialogue', async () => {

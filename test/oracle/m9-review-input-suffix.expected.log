@@ -1,0 +1,18 @@
+(m9-review-input-suffix.tex (m9-x.ltd.tex [x.ltd.tex read]) (m9-x.ltd.tex
+[x.ltd.tex read]) (m9-x.ltd.tex [x.ltd.tex read])
+\openout1 = `m9-y.ltd'.
+
+\openout1 = `m9-y.ltd.tex'.
+
+\openout1 = `m9-z.sty'.
+
+\openout1 = `m9-z.sty.tex'.
+
+\openout1 = `m9-w.tex'.
+
+(m9-y.ltd.tex [y.ltd.tex read]) (m9-z.sty [z.sty read]) (m9-w.tex [w.tex
+read]) [m9-y.ltd: macro:->\message {[y.ltd.tex read]} ] [size 28] [m9-z.sty: ma
+cro:->\message {[z.sty read]} ] [size 24] [m9-z.sty.tex: macro:->\message {[z.s
+ty.tex read]} ] [size 28] [m9-x.ltd: macro:->\message {[x.ltd.tex read]} ] [siz
+e 27] [m9-w: macro:->\message {[w.tex read]} ] [size 24] )
+No pages of output.

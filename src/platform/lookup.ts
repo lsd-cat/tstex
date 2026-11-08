@@ -10,17 +10,18 @@ export const kind_dirs: Record<string, string[]> = {
 // Security policy (AUDIT.md): absolute names (but /dev/null), `..' components and NUL bytes are never found
 export const escapes = (name: string) => name.startsWith('/') || name.includes('\0') || name.split(/[\\/]/).includes('..')
 
-// the names tried for `name': `tex' files without an extension also as name.tex
-export const candidates = (name: string, kind: string) => kind === 'tex' && !/\.[^/]*$/.test(name) ? [name, name + '.tex'] : [name]
+// kpathsea_find_file_generic's target names: a `tex' name not ending in a potential suffix (.tex, or ALT_TEX_SUFFIXES) is
+// tried as name.tex first, then as given (try_std_extension_first = t in texmf.cnf)
+const tex_suffix = /\.(tex|sty|cls|fd|aux|bbl|def|clo|ldf)$/
+export const candidates = (name: string, kind: string) => kind === 'tex' && !tex_suffix.test(name) ? [name + '.tex', name] : [name]
 
-// kpathsea order: path elements in order, each over the trees in order; within a subtree the database order.
+// kpathsea order: path elements in order, each over the trees in order; within one the target names in order
+// (kpathsea_db_search_list), each in the database order.
 // `dbs[i](base)' lists the directories (relative, ending in `/') of tree i holding `base'; yields [tree, dir + base]
 export function* tree_matches(name: string, kind: string, dbs: ((base: string) => string[] | undefined)[]): Generator<[number, string]> {
-  for (const n of candidates(name, kind)) {
+  for (const d of kind_dirs[kind] ?? ['']) for (const [i, db] of dbs.entries()) for (const n of candidates(name, kind)) {
     const sl = n.lastIndexOf('/'), base = n.slice(sl + 1), sub = n.slice(0, sl + 1) // `\input base/foo' matches a dir ending in base/
-    for (const d of kind_dirs[kind] ?? ['']) for (const [i, db] of dbs.entries()) {
-      for (const x of db(base) ?? []) if ((d.endsWith('/') ? x.startsWith(d) : x === d + '/') && x.endsWith(sub)) yield [i, x + base]
-    }
+    for (const x of db(base) ?? []) if ((d.endsWith('/') ? x.startsWith(d) : x === d + '/') && x.endsWith(sub)) yield [i, x + base]
   }
 }
 

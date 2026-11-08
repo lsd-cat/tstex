@@ -15,6 +15,7 @@ import { readdirSync, readFileSync, existsSync, appendFileSync } from 'node:fs'
 import { gunzipSync } from 'node:zlib'
 import { normalizeLog } from '../../tools/normalize-log.ts'
 import { normalizePdf } from '../../tools/pdf-normalize.ts'
+import { candidates } from '../../src/platform/lookup.ts'
 
 const dir = new URL('.', import.meta.url).pathname
 const lvt = new URL('../lvt/', import.meta.url).pathname
@@ -59,7 +60,7 @@ for (const file of readdirSync(dir).filter(f => f.endsWith('.tex')).sort()) {
     }
     const overlay = new Map<string, string | Uint8Array>() // files written by earlier runs (.aux ...)
     const base = fs
-    fs = { ...base, find: (n: string, k: string) => { const o = overlay.get(n); return o === undefined ? base.find(n, k) : typeof o === 'string' ? Buffer.from(o, 'latin1') : o } }
+    fs = { ...base, find: (n: string, k: string) => { const o = candidates(n, k).map(c => overlay.get(c)).find(o => o !== undefined); return o === undefined ? base.find(n, k) : typeof o === 'string' ? Buffer.from(o, 'latin1') : o } }
     // SyncTeX: -synctex=N from `%! synctex: N'; Input lines are absolute, so the engine gets pdftex's (temporary) cwd
     const wantSynctex = existsSync(`${dir}${name}.expected.synctex`) ? readFileSync(`${dir}${name}.expected.synctex`, 'latin1') : null
     const synctex = Number(readFileSync(dir + file, 'utf8').match(/^%! synctex: *(-?\d+)/m)?.[1] ?? NaN)
