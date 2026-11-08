@@ -62,6 +62,15 @@ export function get_x_token(e: Engine): void {
   e.cur_tok = e.cur_cs === 0 ? e.cur_cmd * 0o400 + e.cur_chr : cs_token_flag + e.cur_cs
 }
 
+// etex.ch get_x_or_protected; \protected macros exist only in e-TeX mode (not ported), so every macro expands
+export function get_x_or_protected(e: Engine): void {
+  for (;;) {
+    get_token(e)
+    if (e.cur_cmd <= Cmd.max_command) return
+    expand(e)
+  }
+}
+
 // §381 x_token
 export function x_token(e: Engine): void {
   while (e.cur_cmd > Cmd.max_command) { expand(e); get_next(e) }

@@ -13,6 +13,7 @@ import { init_specs, new_char, glue_node } from './nodes.ts'
 import { new_page_ins_head } from './page.ts'
 import type { GlueSpec, Node, CharNode } from './nodes.ts'
 import type { ListState } from './main.ts'
+import type { AlignState, AlignRecord } from './align.ts'
 import type { Movement } from './dvi.ts'
 import { dvi_buf_size } from './dvi.ts'
 import { init_fonts } from './tfm.ts'
@@ -41,7 +42,7 @@ export class Engine {
   // §104 arithmetic
   arith_error = false; remainder = 0
   // §116 one-word token memory
-  info: number[] = [0, 0, 0, 0, 0, 0]; link: number[] = [0, 0, 0, 0, 0, 0]; avail = 0; mem_end = 5
+  info: number[] = [0, 0, 0, 0, 0, 0, 0]; link: number[] = [0, 0, 0, 0, 0, 0, 0]; avail = 0; mem_end = 6
   // §253 eqtb, §256 hash
   eq_level = new Uint8Array(eqtb_size + 1); eq_type = new Uint8Array(eqtb_size + 1)
   equiv = new Int32Array(eqtb_size + 1); xeq_level = new Uint8Array(eqtb_size + 1)
@@ -83,6 +84,10 @@ export class Engine {
   just_box: Node | null = null; hy = hyph_state(); shapes: (number[] | undefined)[] = [undefined]
   // §719 mlist_to_hlist's implicit parameters, §724 fetch's results
   cur_mlist: Node | null = null; cur_style = 0; cur_size = 0; cur_mu = 0; mlist_penalties = false; cur_f = 0; cur_c = 0; cur_i = 0
+  // §770 alignment state; align_stack plays align_ptr's nodes, align_head.link is the preamble
+  align_stack: AlignState[] = []; align_head: Node = new_char(0, 0); cur_align: AlignRecord | null = null
+  cur_span: AlignRecord | null = null; cur_loop: Node | null = null
+  cur_head: Node | null = null; cur_tail: Node | null = null; cur_pre_head: Node | null = null; cur_pre_tail: Node | null = null
   // §1074 cur_box, §1241
   cur_box: Node | null = null; set_box_allowed = true
   // §1032 main loop

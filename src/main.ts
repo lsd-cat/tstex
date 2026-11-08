@@ -39,6 +39,7 @@ export const bottom_level = 0, simple_group = 1, hbox_group = 2, adjusted_hbox_g
   align_group = 6, no_align_group = 7, output_group = 8, math_group = 9, disc_group = 10, insert_group = 11, vcenter_group = 12,
   math_choice_group = 13, semi_simple_group = 14, math_shift_group = 15, math_left_group = 16
 import { registry } from './primitives/index.ts'
+import { do_endv, align_group_right_brace, no_align_group_right_brace } from './align.ts'
 
 // §1071 box context codes, §1055–1058
 export const box_flag = 0o10000000000, global_box_flag = 0o10000100000, ship_out_flag = 0o10000200000,
@@ -174,6 +175,11 @@ export function main_control(e: Engine): void {
       case Cmd.right_brace: handle_right_brace(e); continue // §1067
       case Cmd.mac_param: case Cmd.last_item: report_illegal_case(e); continue // §1045, §1048
       case Cmd.tab_mark: case Cmd.car_ret: align_error(e); continue // §1126
+      case Cmd.endv: // §1130, partoken.ch
+        if (int_par(e, partoken_context_code) > 1 && e.mode === hmode) {
+          back_input(e); e.cur_tok = e.par_token; back_input(e); e.cur_input.index = inserted
+        } else do_endv(e)
+        continue
       case Cmd.ignore_spaces: // §1045
         if (e.cur_chr !== 0) unsupported(e) // the frozen \pdfprimitive
         do get_x_token(e); while (e.cur_cmd === Cmd.spacer) // §406
@@ -1100,7 +1106,9 @@ function handle_right_brace(e: Engine): void {
     case vcenter_group: finish_vcenter(e); break // §1168
     case math_choice_group: build_choices(e); break // §1173
     case math_group: finish_math_group(e); break // §1186
-    default: confusion(e, 'rightbrace') // align, no_align groups: pass B
+    case align_group: align_group_right_brace(e); break // §1132
+    case no_align_group: no_align_group_right_brace(e); break // §1133
+    default: confusion(e, 'rightbrace')
   }
 }
 

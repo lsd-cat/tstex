@@ -4,7 +4,7 @@ import { Cmd } from '../types.ts'
 import { primitive } from '../hash.ts'
 import { frozen_relax, frozen_end_group, frozen_fi, frozen_null_font, frozen_cr, frozen_right, frozen_endv,
   frozen_end_template, end_write, level_one } from '../eqtb.ts'
-import { null_list } from '../nodes.ts'
+import { null_list, omit_template } from '../nodes.ts'
 import { cs_token_flag } from '../tokens.ts'
 import * as relax from './relax.ts'
 import * as par_end from './par_end.ts'
@@ -98,6 +98,12 @@ import * as limit_switch from './limit_switch.ts'
 import * as math_style from './math_style.ts'
 import * as above from './above.ts'
 import * as left_right from './left_right.ts'
+import * as halign from './halign.ts'
+import * as valign from './valign.ts'
+import * as no_align from './no_align.ts'
+import * as omit from './omit.ts'
+import * as tab_mark from './tab_mark.ts'
+import * as car_ret from './car_ret.ts'
 
 export type Prim = {
   cmd: number
@@ -114,7 +120,8 @@ const prims: Prim[] = [relax, par_end, stop, def, register, assign_int, assign_d
   set_box, set_box_dimen, set_aux, set_prev_graf, def_font, assign_font_dimen, assign_font_int, make_box, hmove, vmove, leader_ship,
   un_hbox, un_vbox, remove_item, hskip, vskip, kern, hrule, vrule, insert, vadjust, mark, break_penalty, start_par, ital_corr, accent,
   discretionary, ex_space, char_num, no_boundary, end_cs_name, extension, def_family, hyph_data, set_shape, set_page_dimen, set_page_int, top_bot_mark, partoken_name,
-  delim_num, math_char_num, math_accent, math_choice, non_script, radical, vcenter, mskip, mkern, eq_no, math_comp, limit_switch, math_style, above, left_right, ...unsupported.prims]
+  delim_num, math_char_num, math_accent, math_choice, non_script, radical, vcenter, mskip, mkern, eq_no, math_comp, limit_switch, math_style, above, left_right,
+  halign, valign, no_align, omit, tab_mark, car_ret, ...unsupported.prims]
 export const registry = new Map<number, Prim>() // filled by init_prim, after every module is evaluated
 
 // §1336 init_prim (with the frozen copies of §265, §334, §491, §553, §780, §1188, §1344)
@@ -136,6 +143,7 @@ export function init_prim(e: Engine, etex = false): void {
   e.text.set(frozen_end_template, 'endtemplate'); e.text.set(frozen_endv, 'endtemplate')
   e.eq_type[frozen_endv] = Cmd.endv; e.equiv[frozen_endv] = null_list; e.eq_level[frozen_endv] = level_one
   e.eq_type[frozen_end_template] = Cmd.end_template; e.equiv[frozen_end_template] = null_list; e.eq_level[frozen_end_template] = level_one
+  e.info[omit_template] = cs_token_flag + frozen_end_template // §790
   // §1369
   e.text.set(end_write, 'endwrite'); e.eq_level[end_write] = level_one; e.eq_type[end_write] = Cmd.outer_call; e.equiv[end_write] = 0
   e.no_new_control_sequence = true

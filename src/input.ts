@@ -3,9 +3,10 @@ import type { Engine } from './engine.ts'
 import { Cmd, log_only, nonstop_mode, error_line } from './types.ts'
 import { print, print_char, print_nl, print_ln, print_esc, print_int, begin_diagnostic, end_diagnostic } from './print.ts'
 import { error, print_err, help, fatal_error, overflow, token_list, parameter, u_template, v_template, backed_up, inserted, macro, output_text, mark_text, write_text } from './error.ts'
-import { int_par, tracing_macros_code, end_line_char_code, cat_code_base, null_cs, single_base, active_base, output_routine_loc, frozen_fi, end_write } from './eqtb.ts'
+import { int_par, tracing_macros_code, end_line_char_code, cat_code_base, null_cs, single_base, active_base, output_routine_loc, frozen_fi, frozen_cr, end_write } from './eqtb.ts'
 import { id_lookup, sprint_cs } from './hash.ts'
-import { get_avail, flush_list, add_token_ref, delete_token_ref, temp_head } from './nodes.ts'
+import { get_avail, flush_list, add_token_ref, delete_token_ref, temp_head, hold_head } from './nodes.ts'
+import { insert_v_template } from './align.ts'
 import { cs_token_flag, right_brace_token, right_brace_limit, left_brace_limit, show_token_list, token_show, print_cmd_chr } from './tokens.ts'
 import { open_log_file } from './files.ts'
 
@@ -137,7 +138,7 @@ export function runaway(e: Engine): void {
     switch (e.scanner_status) {
       case defining: print_nl(e, 'Runaway definition'); p = e.def_ref; break
       case matching: print_nl(e, 'Runaway argument'); p = temp_head; break
-      case aligning: fatal_error(e, 'unsupported: \\halign')
+      case aligning: print_nl(e, 'Runaway preamble'); p = hold_head; break
       case absorbing: print_nl(e, 'Runaway text'); p = e.def_ref; break
     }
     print_char(e, 63); print_ln(e); show_token_list(e, e.link[p]!, 0, error_line - 10)
@@ -166,6 +167,11 @@ export function check_outer_validity(e: Engine): void {
     switch (e.scanner_status) {
       case defining: print(e, ' while scanning definition'); e.info[p] = right_brace_token + 125; break
       case matching: print(e, ' while scanning use'); e.info[p] = e.par_token; e.long_state = Cmd.outer_call; break
+      case aligning: {
+        print(e, ' while scanning preamble'); e.info[p] = right_brace_token + 125; const q = p
+        p = get_avail(e); e.link[p] = q; e.info[p] = cs_token_flag + frozen_cr
+        e.align_state = -1000000; break
+      }
       case absorbing: print(e, ' while scanning text'); e.info[p] = right_brace_token + 125; break
     }
     ins_list(e, p)
@@ -346,7 +352,7 @@ export function get_next(e: Engine): void {
       } else { end_token_list(e); continue restart }
     }
     // §342 If an alignment entry has just ended, take appropriate action
-    if (e.cur_cmd <= Cmd.car_ret && e.cur_cmd >= Cmd.tab_mark && e.align_state === 0) fatal_error(e, 'unsupported: \\halign')
+    if (e.cur_cmd <= Cmd.car_ret && e.cur_cmd >= Cmd.tab_mark && e.align_state === 0) { insert_v_template(e); continue restart }
     return
   }
 }

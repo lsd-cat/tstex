@@ -12,7 +12,7 @@ import { glue_base, box_base, int_base, font_id_base, max_print_line } from './t
 
 const show_box_breadth_code = 24, show_box_depth_code = 25, pdf_tracing_fonts_code = 85
 
-export const temp_head = 1, hold_head = 2, backup_head = 3, garbage = 4, null_list = 5
+export const temp_head = 1, hold_head = 2, backup_head = 3, garbage = 4, null_list = 5, omit_template = 6
 
 // §120 get_avail
 export function get_avail(e: Engine): number {
