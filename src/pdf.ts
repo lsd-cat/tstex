@@ -69,6 +69,8 @@ export function pdf_state() {
     font_nobuiltin_tounicode: [] as boolean[], vf_checked: [] as boolean[],
     obj_count: 0, last_obj: 0, retval: 0, // \pdfobj's counters, \pdflastobj, \pdfretval
     cur_page_width: 0, cur_h_offset: 0, cur_v_offset: 0, is_shipping_page: false, fixed_gen_tounicode: 0,
+    // utils.c: the \pdfsetmatrix stack ([a, b, c, d, e, f] each), the \pdfsave positions, page_mode
+    matrix_stack: [] as number[][], pos_stack: [] as { h: number, v: number, m: number }[], page_mode: false,
   }
 }
 export type PdfState = ReturnType<typeof pdf_state>
@@ -535,6 +537,41 @@ function pdf_special(e: Engine, p: WhatsitNode): void {
   if (p.subtype === latespecial_node) flush_list(e, e.def_ref)
 }
 
+// utils.c pdfsetmatrix: parse `a b c d' as sscanf(" %lf %lf %lf %lf %c") == 4 and push the matrix (page mode only)
+function pdfsetmatrix(e: Engine, t: string, cur_h: number, cur_v: number): boolean {
+  const s = e.ps
+  if (!s.page_mode) return true
+  const m = /^\s*([+-]?(?:\d+\.?\d*|\.\d+)(?:[eE][+-]?\d+)?)\s*([+-]?(?:\d+\.?\d*|\.\d+)(?:[eE][+-]?\d+)?)\s*([+-]?(?:\d+\.?\d*|\.\d+)(?:[eE][+-]?\d+)?)\s*([+-]?(?:\d+\.?\d*|\.\d+)(?:[eE][+-]?\d+)?)\s*$/.exec(t)
+  if (m === null) return false // shortcut: strtod's inf/nan/hex forms are not recognised, upgrade if a package writes them
+  const [a, b, c, d] = [+m[1]!, +m[2]!, +m[3]!, +m[4]!]
+  const xe = cur_h * (1.0 - a) - cur_v * c, xf = cur_v * (1.0 - d) - cur_h * b
+  const y = s.matrix_stack[s.matrix_stack.length - 1]
+  s.matrix_stack.push(y === undefined ? [a, b, c, d, xe, xf]
+    : [a * y[0]! + b * y[2]!, a * y[1]! + b * y[3]!, c * y[0]! + d * y[2]!, c * y[1]! + d * y[3]!, xe * y[0]! + xf * y[2]! + y[4]!, xe * y[1]! + xf * y[3]! + y[5]!])
+  return true
+}
+// [32f] pdf_out_setmatrix, pdf_out_save, pdf_out_restore (utils.c checkpdfsave, checkpdfrestore)
+function pdf_out_setmatrix(e: Engine, p: WhatsitNode): void {
+  const t = tokens_to_string(e, p.pdf_data)
+  if (!pdfsetmatrix(e, str(t), e.cur_h, (e.cur_page_height - e.cur_v) | 0)) pdf_error(e, '\\pdfsetmatrix', 'Unrecognized format.')
+  literal(e, t.concat(Array.from(' 0 0 cm', c => c.charCodeAt(0))), set_origin, false)
+}
+function pdf_out_save(e: Engine): void {
+  const s = e.ps
+  s.pos_stack.push({ h: e.cur_h, v: e.cur_v, m: s.page_mode ? s.matrix_stack.length : 0 })
+  literal(e, [113], set_origin, false)
+}
+function pdf_out_restore(e: Engine): void {
+  const s = e.ps, q = s.pos_stack.pop()
+  if (q === undefined) pdftex_warn(e, null, '\\pdfrestore: missing \\pdfsave')
+  else {
+    const dh = (e.cur_h - q.h) | 0, dv = (e.cur_v - q.v) | 0
+    if (dh !== 0 || dv !== 0) pdftex_warn(e, null, `Misplaced \\pdfrestore by (${dh >>> 0}sp, ${dv >>> 0}sp)`) // C's %u
+    if (s.page_mode) s.matrix_stack.length = q.m
+  }
+  literal(e, [81], set_origin, false)
+}
+
 // [32f] the whatsit cases of pdf_hlist_out/pdf_vlist_out
 function pdf_out_whatsit(e: Engine, p: WhatsitNode, vlist: boolean): void {
   switch (p.subtype) {
@@ -548,7 +585,10 @@ function pdf_out_whatsit(e: Engine, p: WhatsitNode, vlist: boolean): void {
     case pdf_interword_space_off_node: e.ps.gen_faked_interword_space = false; return
     case pdf_running_link_off_node: e.ps.gen_running_link = false; return
     case pdf_running_link_on_node: e.ps.gen_running_link = true; return
-    case pdf_colorstack_node: case pdf_setmatrix_node: case pdf_save_node: case pdf_restore_node: case pdf_refxform_node:
+    case pdf_setmatrix_node: pdf_out_setmatrix(e, p); return
+    case pdf_save_node: pdf_out_save(e); return
+    case pdf_restore_node: pdf_out_restore(e); return
+    case pdf_colorstack_node: case pdf_refxform_node:
     case pdf_refximage_node: case pdf_annot_node: case pdf_start_link_node: case pdf_end_link_node: case pdf_dest_node:
     case pdf_thread_node: case pdf_start_thread_node: case pdf_end_thread_node: case pdf_snap_ref_point_node: case pdf_fake_space_node:
       break
@@ -801,12 +841,13 @@ export function pdf_ship_out(e: Engine, p: BoxNode): void {
     if (int_par(e, mag_code) !== 1000) {
       pdf_print_real(e, int_par(e, mag_code), 3); pdf_print(e, ' 0 0 '); pdf_print_real(e, int_par(e, mag_code), 3); pdf_print_ln(e, ' 0 0 cm')
     }
-    // pdfshipoutbegin and pdf_out_colorstack_startpage: no color stacks or \pdfsave yet (pass B)
+    s.pos_stack = []; s.page_mode = true // pdfshipoutbegin (colorstackpagestart returns at once in page mode)
     if (p.type === vlist_node) pdf_vlist_out(e, p); else pdf_hlist_out(e, p)
     e.total_pages++
     e.cur_s = -1
     // Finish shipping: Finish stream of page/form contents
     pdf_end_text(e)
+    if (s.pos_stack.length > 0) pdftex_fail(e, null, `${s.pos_stack.length} unmatched \\pdfsave after page shipout`) // pdfshipoutend
     pdf_end_stream(e)
     // Write out page object
     pdf_begin_dict(e, s.last_page, 1)

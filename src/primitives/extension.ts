@@ -4,7 +4,7 @@ import { Cmd, hmode } from '../types.ts'
 import { print_esc } from '../print.ts'
 import { int_par } from '../eqtb.ts'
 import { delete_token_ref, new_whatsit_node, flush_node_list, open_node, write_node, close_node, special_node, latespecial_node, language_node, pdf_save_pos_node,
-  pdf_literal_node, pdf_lateliteral_node, pdf_refobj_node } from '../nodes.ts'
+  pdf_literal_node, pdf_lateliteral_node, pdf_refobj_node, pdf_setmatrix_node, pdf_save_node, pdf_restore_node } from '../nodes.ts'
 import type { WhatsitNode } from '../nodes.ts'
 import { scan_int, scan_four_bit_int, scan_optional_equals, scan_toks, scan_keyword } from '../scan.ts'
 import { scan_file_name } from '../files.ts'
@@ -148,6 +148,12 @@ export function run(e: Engine, chr: number): void {
       const p = new_whatsit_node(pdf_refobj_node); tail_append(e, p); p.pdf_objnum = e.cur_val
       return
     }
+    case pdf_setmatrix_node: // pdftex.web Implement \pdfsetmatrix
+      check_pdfoutput(e, '\\pdfsetmatrix', true)
+      tail_append(e, new_whatsit_node(pdf_setmatrix_node)); scan_toks(e, false, true); (e.tail as WhatsitNode).pdf_data = e.def_ref
+      return
+    case pdf_save_node: check_pdfoutput(e, '\\pdfsave', true); tail_append(e, new_whatsit_node(pdf_save_node)); return
+    case pdf_restore_node: check_pdfoutput(e, '\\pdfrestore', true); tail_append(e, new_whatsit_node(pdf_restore_node)); return
     case reset_timer_code: e.start_ms = performance.now(); return // pdftex.web Implement \pdfresettimer
     default: unsupported(e)
   }

@@ -128,7 +128,18 @@ export const explicit = 1, acc_kern = 2, auto_kern = 3 // §155 (pdftex)
 export const inf_penalty = 10000, eject_penalty = -10000 // §157
 // §1341 whatsit subtypes (pdftex numbering)
 export const open_node = 0, write_node = 1, close_node = 2, special_node = 3, latespecial_node = 4, language_node = 5, pdf_save_pos_node = 23,
-  pdf_literal_node = 7, pdf_lateliteral_node = 8, pdf_refobj_node = 10 // pdftex.web pdftex_first_extension_code = 7
+  pdf_literal_node = 7, pdf_lateliteral_node = 8, pdf_refobj_node = 10, pdf_refxform_node = 12, pdf_refximage_node = 14, // pdftex.web pdftex_first_extension_code = 7
+  pdf_annot_node = 15, pdf_start_link_node = 16, pdf_end_link_node = 17, pdf_dest_node = 19, pdf_thread_node = 20, pdf_start_thread_node = 21,
+  pdf_end_thread_node = 22, pdf_colorstack_node = 40, pdf_setmatrix_node = 41, pdf_save_node = 42, pdf_restore_node = 43,
+  pdf_interword_space_on_node = 45, pdf_interword_space_off_node = 46, pdf_fake_space_node = 47, pdf_running_link_off_node = 48,
+  pdf_running_link_on_node = 49
+export const colorstack_set = 0, colorstack_push = 1, colorstack_data = 1, colorstack_pop = 2, colorstack_current = 3
+export const pdf_action_page = 0, pdf_action_goto = 1, pdf_action_thread = 2, pdf_action_user = 3
+export const pdf_dest_xyz = 0, pdf_dest_fit = 1, pdf_dest_fith = 2, pdf_dest_fitv = 3, pdf_dest_fitb = 4, pdf_dest_fitbh = 5,
+  pdf_dest_fitbv = 6, pdf_dest_fitr = 7
+// pdftex.web [32d] an action; `id' is a token list when named_id is odd, a number otherwise; `tokens' are the page or user tokens
+export type PdfAction = { type: number, named_id: number, id: number, file: number, new_window: number, tokens: number,
+  struct_id: number, refcount: number }
 
 type Link = { link: Node | null }
 // §134 a char_node; list heads are char nodes too (TeX's get_avail), so is_char_node(head) holds as in tex.web
@@ -146,7 +157,12 @@ export type LigNode = Link & { type: typeof ligature_node, subtype: number, font
 export type DiscNode = Link & { type: typeof disc_node, replace_count: number, pre_break: Node | null, post_break: Node | null }
 export type WhatsitNode = Link & { type: typeof whatsit_node, subtype: number, write_stream: number, write_tokens: number,
   open_name: string, open_area: string, open_ext: string, what_lang: number, what_lhm: number, what_rhm: number,
-  pdf_data: number, pdf_mode: number, pdf_objnum: number } // pdftex.web pdf_literal_data, pdf_literal_mode, pdf_obj_objnum
+  // pdftex.web: pdf_data = literal/colorstack/setmatrix data, annot data, link attr, thread attr; pdf_mode = literal mode, colorstack
+  // command, dest type; pdf_objnum = refobj/xform/ximage/annot/link/dest-struct object, colorstack stack number; pdf_left/top/right
+  // share words 1..3 with pdf_width/height/depth, so they are one field each here: pdf_left is pdf_width, pdf_top is pdf_height,
+  // pdf_right is pdf_depth; pdf_named_id/pdf_id the dest/thread identifier, pdf_zoom the xyz zoom (null_flag stands for null)
+  pdf_data: number, pdf_mode: number, pdf_objnum: number, pdf_left: number, pdf_top: number, pdf_right: number, pdf_bottom: number,
+  pdf_action: PdfAction | null, pdf_named_id: number, pdf_id: number, pdf_zoom: number, pdf_synthetic: boolean }
 export type MathNode = Link & { type: typeof math_node, subtype: number, width: number }
 export type GlueNode = Link & { type: typeof glue_node, subtype: number, glue_ptr: number, leader_ptr: Node | null }
 export type KernNode = Link & { type: typeof kern_node, subtype: number, width: number }
@@ -219,7 +235,8 @@ export const new_math = (w: number, s: number): MathNode => ({ type: math_node, 
 // §1341 a whatsit with every field present
 export function new_whatsit_node(s: number): WhatsitNode {
   return { type: whatsit_node, link: null, subtype: s, write_stream: 0, write_tokens: 0, open_name: '', open_area: '', open_ext: '',
-    what_lang: 0, what_lhm: 0, what_rhm: 0, pdf_data: 0, pdf_mode: 0, pdf_objnum: 0 }
+    what_lang: 0, what_lhm: 0, what_rhm: 0, pdf_data: 0, pdf_mode: 0, pdf_objnum: 0, pdf_left: 0, pdf_top: 0, pdf_right: 0, pdf_bottom: 0,
+    pdf_action: null, pdf_named_id: 0, pdf_id: 0, pdf_zoom: 0, pdf_synthetic: false }
 }
 
 // §152 new_param_glue
@@ -279,10 +296,7 @@ export function flush_node_list(e: Engine, p: Node | null): void {
       case hlist_node: case vlist_node: case unset_node: flush_node_list(e, p.list_ptr); break
       case ins_node: flush_node_list(e, p.ins_ptr); delete_glue_ref(e, p.split_top_ptr); break
       case whatsit_node: // §1358
-        if (p.subtype === write_node || p.subtype === special_node || p.subtype === latespecial_node) delete_token_ref(e, p.write_tokens)
-        else if (p.subtype === pdf_literal_node || p.subtype === pdf_lateliteral_node) delete_token_ref(e, p.pdf_data)
-        else if (p.subtype > language_node && p.subtype !== pdf_save_pos_node && p.subtype !== pdf_refobj_node) confusion(e, 'ext3')
-        break
+        whatsit_refs(e, p, -1); break
       case glue_node: delete_glue_ref(e, p.glue_ptr); flush_node_list(e, p.leader_ptr); break
       case ligature_node: flush_node_list(e, p.lig_ptr); break
       case mark_node: delete_token_ref(e, p.mark_ptr); break
@@ -307,6 +321,36 @@ export function flush_node_list(e: Engine, p: Node | null): void {
   }
 }
 
+// §1357/§1358 (pdftex.web) the token lists and actions a whatsit holds: d = 1 adds a reference (copy), d = -1 deletes one (flush)
+function whatsit_refs(e: Engine, p: WhatsitNode, d: number): void {
+  const ref = (t: number) => { if (t !== 0) { if (d > 0) add_token_ref(e, t); else delete_token_ref(e, t) } }
+  switch (p.subtype) {
+    case write_node: case special_node: case latespecial_node: ref(p.write_tokens); return
+    case pdf_literal_node: case pdf_lateliteral_node: case pdf_setmatrix_node: case pdf_annot_node: ref(p.pdf_data); return
+    case pdf_colorstack_node: if (p.pdf_mode <= colorstack_data) ref(p.pdf_data); return
+    case pdf_start_link_node: {
+      ref(p.pdf_data)
+      const a = p.pdf_action!
+      if (d > 0) a.refcount++
+      else if (a.refcount === 0) { // delete_action_ref
+        if (a.type === pdf_action_user) ref(a.tokens)
+        else {
+          ref(a.file)
+          if (a.type === pdf_action_page) ref(a.tokens); else if ((a.named_id & 1) === 1) ref(a.id)
+          if ((a.named_id & 2) === 2) ref(a.struct_id)
+        }
+      } else a.refcount--
+      return
+    }
+    case pdf_dest_node: if (p.pdf_named_id > 0) ref(p.pdf_id); return
+    case pdf_thread_node: case pdf_start_thread_node: if (p.pdf_named_id > 0) ref(p.pdf_id); ref(p.pdf_data); return
+    case open_node: case close_node: case language_node: case pdf_save_pos_node: case pdf_refobj_node: case pdf_save_node: case pdf_restore_node:
+    case pdf_refxform_node: case pdf_refximage_node: case pdf_end_link_node: case pdf_end_thread_node: case pdf_interword_space_on_node:
+    case pdf_interword_space_off_node: case pdf_fake_space_node: case pdf_running_link_off_node: case pdf_running_link_on_node: return
+    default: confusion(e, d > 0 ? 'ext2' : 'ext3')
+  }
+}
+
 // §204 copy_node_list
 export function copy_node_list(e: Engine, p: Node | null): Node | null {
   const h = new_char(0, 0)
@@ -318,10 +362,7 @@ export function copy_node_list(e: Engine, p: Node | null): Node | null {
       case hlist_node: case vlist_node: case unset_node: r = { ...p, list_ptr: copy_node_list(e, p.list_ptr) }; break
       case ins_node: add_glue_ref(e, p.split_top_ptr); r = { ...p, ins_ptr: copy_node_list(e, p.ins_ptr) }; break
       case whatsit_node: // §1357
-        if (p.subtype === write_node || p.subtype === special_node || p.subtype === latespecial_node) add_token_ref(e, p.write_tokens)
-        else if (p.subtype === pdf_literal_node || p.subtype === pdf_lateliteral_node) add_token_ref(e, p.pdf_data)
-        else if (p.subtype > language_node && p.subtype !== pdf_save_pos_node && p.subtype !== pdf_refobj_node) confusion(e, 'ext2')
-        r = { ...p }; break
+        whatsit_refs(e, p, 1); r = { ...p }; break
       case glue_node: add_glue_ref(e, p.glue_ptr); r = { ...p, leader_ptr: copy_node_list(e, p.leader_ptr) }; break
       case ligature_node: r = { ...p, lig_ptr: copy_node_list(e, p.lig_ptr) }; break
       case disc_node: r = { ...p, pre_break: copy_node_list(e, p.pre_break), post_break: copy_node_list(e, p.post_break) }; break
@@ -385,6 +426,11 @@ export function print_mark(e: Engine, p: number): void {
 }
 export function print_rule_dimen(e: Engine, d: number): void {
   if (d === null_flag) print_char(e, 42); else print_scaled(e, d)
+}
+
+// pdftex.web Display <rule spec> for whatsit node created by pdfTeX
+function print_rule_spec(e: Engine, p: WhatsitNode): void {
+  print(e, '('); print_rule_dimen(e, p.pdf_top); print_char(e, 43); print_rule_dimen(e, p.pdf_right); print(e, ')x'); print_rule_dimen(e, p.pdf_left)
 }
 
 // §1356 print_write_whatsit
@@ -482,6 +528,71 @@ export function show_node_list(e: Engine, p: Node | null): void {
             if (m[d + 3]! > 0) print(e, ' file')
             print_mark(e, m[d]!); break
           }
+          case pdf_colorstack_node:
+            print_esc(e, 'pdfcolorstack '); print_int(e, p.pdf_objnum)
+            switch (p.pdf_mode) {
+              case colorstack_set: print(e, ' set '); break
+              case colorstack_push: print(e, ' push '); break
+              case colorstack_pop: print(e, ' pop'); break
+              case colorstack_current: print(e, ' current'); break
+              default: confusion(e, 'pdfcolorstack')
+            }
+            if (p.pdf_mode <= colorstack_data) print_mark(e, p.pdf_data)
+            break
+          case pdf_setmatrix_node: print_esc(e, 'pdfsetmatrix'); print_mark(e, p.pdf_data); break
+          case pdf_save_node: print_esc(e, 'pdfsave'); break
+          case pdf_restore_node: print_esc(e, 'pdfrestore'); break
+          case pdf_refxform_node: case pdf_refximage_node: { // the form's/image's dimensions live in pdf_mem
+            const m = e.ps.mem, d = e.ps.obj_aux[p.pdf_objnum]!
+            print_esc(e, p.subtype === pdf_refxform_node ? 'pdfrefxform' : 'pdfrefximage')
+            print(e, '('); print_scaled(e, m[d + 1]!); print_char(e, 43); print_scaled(e, m[d + 2]!); print(e, ')x'); print_scaled(e, m[d]!)
+            break
+          }
+          case pdf_annot_node: print_esc(e, 'pdfannot'); print_rule_spec(e, p); print_mark(e, p.pdf_data); break
+          case pdf_start_link_node: {
+            print_esc(e, 'pdfstartlink'); print_rule_spec(e, p)
+            if (p.pdf_data !== 0) { print(e, ' attr'); print_mark(e, p.pdf_data) }
+            print(e, ' action')
+            const a = p.pdf_action!
+            if (a.type === pdf_action_user) { print(e, ' user'); print_mark(e, a.tokens) }
+            else {
+              if (a.file !== 0) { print(e, ' file'); print_mark(e, a.file) }
+              if (a.type === pdf_action_goto) {
+                if (a.named_id % 2 === 1) { print(e, ' goto name'); print_mark(e, a.id) } else { print(e, ' goto num'); print_int(e, a.id) }
+              } else if (a.type === pdf_action_page) { print(e, ' page'); print_int(e, a.id); print_mark(e, a.tokens) }
+              else if (a.named_id % 2 === 1) { print(e, ' thread name'); print_mark(e, a.id) } else { print(e, ' thread num'); print_int(e, a.id) }
+            }
+            break
+          }
+          case pdf_end_link_node: print_esc(e, 'pdfendlink'); break
+          case pdf_dest_node:
+            print_esc(e, 'pdfdest')
+            if (p.pdf_objnum !== 0) { print(e, ' struct'); print_int(e, p.pdf_objnum) }
+            if (p.pdf_named_id > 0) { print(e, ' name'); print_mark(e, p.pdf_id) } else { print(e, ' num'); print_int(e, p.pdf_id) }
+            print(e, ' ')
+            switch (p.pdf_mode) {
+              case pdf_dest_xyz: print(e, 'xyz'); if (p.pdf_zoom !== null_flag) { print(e, ' zoom'); print_int(e, p.pdf_zoom) } break
+              case pdf_dest_fitbh: print(e, 'fitbh'); break
+              case pdf_dest_fitbv: print(e, 'fitbv'); break
+              case pdf_dest_fitb: print(e, 'fitb'); break
+              case pdf_dest_fith: print(e, 'fith'); break
+              case pdf_dest_fitv: print(e, 'fitv'); break
+              case pdf_dest_fitr: print(e, 'fitr'); print_rule_spec(e, p); break
+              case pdf_dest_fit: print(e, 'fit'); break
+              default: print(e, 'unknown!')
+            }
+            break
+          case pdf_thread_node: case pdf_start_thread_node:
+            print_esc(e, p.subtype === pdf_thread_node ? 'pdfthread' : 'pdfstartthread'); print_rule_spec(e, p)
+            if (p.pdf_data !== 0) { print(e, ' attr'); print_mark(e, p.pdf_data) }
+            if (p.pdf_named_id > 0) { print(e, ' name'); print_mark(e, p.pdf_id) } else { print(e, ' num'); print_int(e, p.pdf_id) }
+            break
+          case pdf_end_thread_node: print_esc(e, 'pdfendthread'); break
+          case pdf_interword_space_on_node: print_esc(e, 'pdfinterwordspaceon'); break
+          case pdf_interword_space_off_node: print_esc(e, 'pdfinterwordspaceoff'); break
+          case pdf_fake_space_node: print_esc(e, 'pdffakespace'); break
+          case pdf_running_link_off_node: print_esc(e, 'pdfrunninglinkoff'); break
+          case pdf_running_link_on_node: print_esc(e, 'pdfrunninglinkon'); break
           default: print(e, 'whatsit?')
         }
         break
