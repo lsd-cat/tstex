@@ -29,7 +29,7 @@ export function normalizePdf(bytes: Uint8Array): string {
       if (!(len >= 0 && b0 + len <= s.length && /^\r?\n?endstream/.test(s.slice(b0 + len, b0 + len + 12)))) {
         const k = s.indexOf('endstream', b0)
         if (k < 0) throw new Error(`pdf-normalize: object ${m[1]}: stream without endstream`)
-        len = k - b0
+        len = k - b0 - (s[k - 1] === '\n' ? s[k - 2] === '\r' ? 2 : 1 : s[k - 1] === '\r' ? 1 : 0) // the line end before endstream
       }
       body = s.slice(b0, b0 + len)
       const k = s.indexOf('endobj', b0 + len)
