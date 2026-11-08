@@ -1,7 +1,8 @@
 // §211–219 the semantic nest, §1029–1054 main_control, §1055–1135 building boxes and lists,
 // §1211–1215 prefixed_command, §1236–1240 do_register_command
 import type { Engine } from './engine.ts'
-import { Cmd, vmode, hmode, mmode, int_val, dimen_val, glue_val, new_string } from './types.ts'
+import { etex_pen_base } from './types.ts'
+import { Cmd, vmode, hmode, mmode, int_val, dimen_val, glue_val, mu_val, tok_val, new_string } from './types.ts'
 import { print, print_char, print_esc, print_mode, print_nl, print_ln, print_int, begin_diagnostic, end_diagnostic } from './print.ts'
 import { print_scaled, xn_over_d, half } from './arith.ts'
 import { error, print_err, help, confusion, fatal_error, overflow, every_job_text, every_par_text, inserted } from './error.ts'
@@ -23,9 +24,10 @@ import { cs_token_flag, space_token, other_token, right_brace_token, left_brace_
   show_cur_cmd_chr } from './tokens.ts'
 import { get_token, get_next, back_input, back_error, ins_error, ins_list, begin_token_list } from './input.ts'
 import { get_x_token, x_token } from './expand.ts'
-import { scan_int, scan_eight_bit_int, scan_char_num, scan_optional_equals, scan_keyword, scan_normal_dimen, scan_dimen, scan_glue,
+import { scan_int, scan_eight_bit_int, scan_register_num, scan_char_num, scan_optional_equals, scan_keyword, scan_normal_dimen, scan_dimen, scan_glue,
   scan_toks, scan_left_brace, scan_fifteen_bit_int, scan_twenty_seven_bit_int, max_dimen } from './scan.ts'
 import { mult_integers, nx_plus_y, x_over_n } from './arith.ts'
+import { find_sa_element, sa, sa_def, sa_w_def, box_val } from './etex.ts'
 import { char_info, char_exists, char_width, char_italic, char_height, height_depth, char_tag, char_kern, lig_kern_start,
   lig_kern_restart, skip_byte, next_char, op_byte, rem_byte, stop_flag, kern_flag, lig_tag, non_char, non_address, char_warning,
   new_character, param, space_code, x_height_code, slant_code, extra_space_code, quad_code } from './tfm.ts'
@@ -443,12 +445,13 @@ export function append_kern(e: Engine): void {
   const k = new_kern(e.cur_val); k.subtype = s; tail_append(e, k)
 }
 
-// §1070 normal_paragraph (e-TeX's \interlinepenalties is always null)
+// §1070 normal_paragraph
 export function normal_paragraph(e: Engine): void {
   if (int_par(e, looseness_code) !== 0) eq_word_define(e, int_base + looseness_code, 0)
   if (e.equiv[dimen_base + hang_indent_code] !== 0) eq_word_define(e, dimen_base + hang_indent_code, 0)
   if (int_par(e, hang_after_code) !== 1) eq_word_define(e, int_base + hang_after_code, 1)
   if (e.equiv[par_shape_loc] !== 0) eq_define(e, par_shape_loc, Cmd.shape_ref, 0)
+  if (e.equiv[etex_pen_base] !== 0) eq_define(e, etex_pen_base, Cmd.shape_ref, 0) // etex.ch
 }
 
 // §1075 box_end
@@ -478,7 +481,8 @@ export function box_end(e: Engine, box_context: number): void {
     let a: number
     if (box_context < global_box_flag) { e.cur_val = box_context - box_flag; a = 0 }
     else { e.cur_val = box_context - global_box_flag; a = 4 }
-    define(e, a, box_base + e.cur_val, Cmd.box_ref, node_ref(e, e.cur_box))
+    if (e.cur_val < 256) define(e, a, box_base + e.cur_val, Cmd.box_ref, node_ref(e, e.cur_box))
+    else sa_def(e, find_sa_element(e, box_val, e.cur_val, true), 0, e.cur_box, a >= 4) // etex.ch sa_def_box
   } else if (e.cur_box !== null) {
     if (box_context > ship_out_flag) { // §1078 Append a new leader node that uses cur_box
       do get_x_token(e); while (e.cur_cmd === Cmd.spacer || e.cur_cmd === Cmd.relax) // §404
@@ -499,8 +503,8 @@ export function box_end(e: Engine, box_context: number): void {
 // §1079 begin_box
 export function begin_box(e: Engine, box_context: number): void {
   switch (e.cur_chr) {
-    case box_code: scan_eight_bit_int(e); e.cur_box = box(e, e.cur_val); change_box(e, e.cur_val, null); break
-    case copy_code: scan_eight_bit_int(e); e.cur_box = copy_node_list(e, box(e, e.cur_val)); break
+    case box_code: scan_register_num(e); e.cur_box = box(e, e.cur_val); change_box(e, e.cur_val, null); break
+    case copy_code: scan_register_num(e); e.cur_box = copy_node_list(e, box(e, e.cur_val)); break
     case last_box_code: // §1080 If the current list ends with a box node, delete it from the list and make cur_box point to it
       e.cur_box = null
       if (Math.abs(e.mode) === mmode) {
@@ -517,7 +521,7 @@ export function begin_box(e: Engine, box_context: number): void {
       }
       break
     case vsplit_code: { // §1082 Split off part of a vertical box, make cur_box point to it
-      scan_eight_bit_int(e); const n = e.cur_val
+      scan_register_num(e); const n = e.cur_val
       if (!scan_keyword(e, 'to')) {
         print_err(e, "Missing `to' inserted")
         help(e, "I'm working on `\\vsplit<box number> to <dimen>';", 'will look for the <dimen> next.')
@@ -695,7 +699,7 @@ export function begin_insert_or_adjust(e: Engine): void {
 // §1101 make_mark
 export function make_mark(e: Engine): void {
   let c = 0
-  if (e.cur_chr !== 0) { scan_eight_bit_int(e); c = e.cur_val }
+  if (e.cur_chr !== 0) { scan_register_num(e); c = e.cur_val }
   scan_toks(e, false, true)
   const p: MarkNode = { type: mark_node, link: null, subtype: 0, mark_ptr: e.def_ref, mark_class: c }
   e.tail.link = p; e.tail = p
@@ -725,9 +729,12 @@ export function delete_last(e: Engine): void {
 
 // §1110 unpackage
 export function unpackage(e: Engine): void {
-  if (e.cur_chr > copy_code) unsupported(e) // \pagediscards, \splitdiscards (e-TeX)
+  done: {
+  if (e.cur_chr > copy_code) { // etex.ch Handle saved items and goto done
+    e.tail.link = e.disc_ptr[e.cur_chr]!; e.disc_ptr[e.cur_chr] = null; break done
+  }
   const c = e.cur_chr
-  scan_eight_bit_int(e)
+  scan_register_num(e)
   const p = box(e, e.cur_val)
   if (p === null) return
   const m = Math.abs(e.mode)
@@ -739,6 +746,7 @@ export function unpackage(e: Engine): void {
   }
   if (c === copy_code) e.tail.link = copy_node_list(e, p.list_ptr)
   else { e.tail.link = p.list_ptr; change_box(e, e.cur_val, null) }
+  }
   while (e.tail.link !== null) e.tail = e.tail.link // no margin kern nodes exist (\pdfprotrudechars is unsupported)
 }
 
@@ -939,30 +947,42 @@ export function get_r_token(e: Engine): void {
 
 // §1226 toks_register,assign_toks: the assignment
 export function assign_toks(e: Engine, a: number): void {
-  let q = e.cur_cs
-  if (e.cur_cmd === Cmd.toks_register) { scan_eight_bit_int(e); e.cur_chr = toks_base + e.cur_val }
+  let q = e.cur_cs, sp = false // etex.ch: does p refer to a sparse array element?
+  if (e.cur_cmd === Cmd.toks_register) {
+    if (e.cur_chr === 0) {
+      scan_register_num(e)
+      if (e.cur_val > 255) { e.cur_chr = find_sa_element(e, tok_val, e.cur_val, true); sp = true }
+      else e.cur_chr = toks_base + e.cur_val
+    } else sp = true
+  }
   const p = e.cur_chr
+  const sa_define = (v: number, t: number) => { if (sp) sa_def(e, p, v, null, a >= 4); else define(e, a, p, t, v) }
   scan_optional_equals(e)
   do get_x_token(e); while (e.cur_cmd === Cmd.spacer || e.cur_cmd === Cmd.relax) // §404
   if (e.cur_cmd !== Cmd.left_brace) {
     // §1227 If the right-hand side is a token parameter or token register, finish the assignment and goto done
     if (e.cur_cmd === Cmd.toks_register || e.cur_cmd === Cmd.assign_toks) {
-      if (e.cur_cmd === Cmd.toks_register) { scan_eight_bit_int(e); q = e.equiv[toks_base + e.cur_val]! }
-      else q = e.equiv[e.cur_chr]!
-      if (q === 0) define(e, a, p, Cmd.undefined_cs, 0)
-      else { add_token_ref(e, q); define(e, a, p, Cmd.call, q) }
+      if (e.cur_cmd === Cmd.toks_register) {
+        if (e.cur_chr === 0) {
+          scan_register_num(e)
+          if (e.cur_val < 256) q = e.equiv[toks_base + e.cur_val]!
+          else { const x = find_sa_element(e, tok_val, e.cur_val, false); q = x === 0 ? 0 : sa(e, x).ptr }
+        } else q = sa(e, e.cur_chr).ptr
+      } else q = e.equiv[e.cur_chr]!
+      if (q === 0) sa_define(0, Cmd.undefined_cs)
+      else { add_token_ref(e, q); sa_define(q, Cmd.call) }
       return
     }
   }
   back_input(e); e.cur_cs = q; q = scan_toks(e, false, false)
-  if (e.link[e.def_ref] === 0) { define(e, a, p, Cmd.undefined_cs, 0); free_avail(e, e.def_ref) }
+  if (e.link[e.def_ref] === 0) { sa_define(0, Cmd.undefined_cs); free_avail(e, e.def_ref) }
   else {
-    if (p === output_routine_loc) { // enclose in curlies
+    if (p === output_routine_loc && !sp) { // enclose in curlies
       e.link[q] = get_avail(e); q = e.link[q]!; e.info[q] = right_brace_token + 125
       q = get_avail(e); e.info[q] = left_brace_token + 123
       e.link[q] = e.link[e.def_ref]!; e.link[e.def_ref] = q
     }
-    define(e, a, p, Cmd.call, e.def_ref)
+    sa_define(e.def_ref, Cmd.call)
   }
 }
 
@@ -975,7 +995,7 @@ export function trap_zero_glue(e: Engine): void {
 // §1236 do_register_command
 export function do_register_command(e: Engine, a: number): void {
   const q = e.cur_cmd
-  let l = 0, p: number
+  let l = 0, p: number, sp = false // etex.ch: does l refer to a sparse array element?
   // §1237 Compute the register location l and its type p; but return if invalid
   found: {
     if (q !== Cmd.register) {
@@ -990,10 +1010,14 @@ export function do_register_command(e: Engine, a: number): void {
         error(e); return
       }
     }
-    p = e.cur_chr; scan_eight_bit_int(e) // scan_register_num outside e-TeX mode
-    l = e.cur_val + (p === int_val ? count_base : p === dimen_val ? scaled_base : p === glue_val ? skip_base : mu_skip_base)
+    if (e.cur_chr > mu_val) { l = e.cur_chr; p = sa(e, l).t; sp = true }
+    else {
+      p = e.cur_chr; scan_register_num(e)
+      if (e.cur_val > 255) { l = find_sa_element(e, p, e.cur_val, true); sp = true }
+      else l = e.cur_val + (p === int_val ? count_base : p === dimen_val ? scaled_base : p === glue_val ? skip_base : mu_skip_base)
+    }
   }
-  const w = e.equiv[l]!, s = w // eqtb[l].int for p<glue_val, equiv(l) otherwise
+  const w = sp ? (p < glue_val ? sa(e, l).int : sa(e, l).ptr) : e.equiv[l]!, s = w // eqtb[l].int for p<glue_val, equiv(l) otherwise
   if (q === Cmd.register) scan_optional_equals(e)
   else scan_keyword(e, 'by')
   e.arith_error = false
@@ -1039,8 +1063,8 @@ export function do_register_command(e: Engine, a: number): void {
     if (p >= glue_val) delete_glue_ref(e, e.cur_val)
     error(e); return
   }
-  if (p < glue_val) word_define(e, a, l, e.cur_val)
-  else { trap_zero_glue(e); define(e, a, l, Cmd.glue_ref, e.cur_val) }
+  if (p < glue_val) { if (sp) sa_w_def(e, l, e.cur_val, a >= 4); else word_define(e, a, l, e.cur_val) }
+  else { trap_zero_glue(e); if (sp) sa_def(e, l, e.cur_val, null, a >= 4); else define(e, a, l, Cmd.glue_ref, e.cur_val) }
 }
 
 // §1064 off_save

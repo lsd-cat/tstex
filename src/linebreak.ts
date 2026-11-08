@@ -1,4 +1,5 @@
 // §813–890 breaking paragraphs into lines (pdftex.web; \pdfadjustspacing, \pdfprotrudechars and e-TeX's \lastlinefit,
+import { etex_pen_base } from './types.ts'
 // \interlinepenalties etc. are inactive in this engine)
 import type { Engine } from './engine.ts'
 import { print, print_char, print_esc, print_int, print_nl, begin_diagnostic, end_diagnostic } from './print.ts'
@@ -571,9 +572,15 @@ function post_line_break(e: Engine, d: boolean, temp_head: Node, last: Passive, 
     e.adjust_tail = null
     // §890 Append a penalty node, if a nonzero penalty is appropriate (e-TeX's penalty arrays are always null)
     if (cur_line + 1 !== best_line) {
-      let pen = int_par(e, inter_line_penalty_code)
-      if (cur_line === e.prev_graf + 1) pen = (pen + int_par(e, club_penalty_code)) | 0
-      if (cur_line + 2 === best_line) pen = (pen + int_par(e, d ? display_widow_penalty_code : widow_penalty_code)) | 0
+      let pen: number, q = e.shapes[e.equiv[etex_pen_base]!] // etex.ch: the e-TeX penalty arrays
+      if (q !== undefined) pen = q[Math.min(cur_line, q[0]!)]!
+      else pen = int_par(e, inter_line_penalty_code)
+      q = e.shapes[e.equiv[etex_pen_base + 1]!]
+      if (q !== undefined) pen = (pen + q[Math.min(cur_line - e.prev_graf, q[0]!)]!) | 0
+      else if (cur_line === e.prev_graf + 1) pen = (pen + int_par(e, club_penalty_code)) | 0
+      q = e.shapes[e.equiv[etex_pen_base + (d ? 3 : 2)]!]
+      if (q !== undefined) pen = (pen + q[Math.min(best_line - cur_line - 1, q[0]!)]!) | 0
+      else if (cur_line + 2 === best_line) pen = (pen + int_par(e, d ? display_widow_penalty_code : widow_penalty_code)) | 0
       if (disc_break) pen = (pen + int_par(e, broken_penalty_code)) | 0
       if (pen !== 0) { const p = new_penalty(pen); e.tail.link = p; e.tail = p }
     }

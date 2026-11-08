@@ -4,6 +4,7 @@ import { Cmd } from '../types.ts'
 import { print_esc } from '../print.ts'
 import { add_token_ref } from '../nodes.ts'
 import { other_token } from '../tokens.ts'
+import { add_sa_ref } from '../etex.ts'
 import { get_token, back_input } from '../input.ts'
 import { get_r_token, define } from '../main.ts'
 
@@ -21,5 +22,6 @@ export function assign(e: Engine, a: number): void {
     e.cur_tok = q; back_input(e) // look ahead, then back up; back_input doesn't affect cur_cmd, cur_chr
   }
   if (e.cur_cmd >= Cmd.call) add_token_ref(e, e.cur_chr)
+  else if ((e.cur_cmd === Cmd.register || e.cur_cmd === Cmd.toks_register) && e.cur_chr > 3) add_sa_ref(e, e.cur_chr) // etex.ch
   define(e, a, p, e.cur_cmd, e.cur_chr)
 }

@@ -7,6 +7,7 @@ import { print_err, help, succumb } from './error.ts'
 import { int_par, year_code, month_code, day_code, tracing_stats_code, int_base, dimen_base, font_id_base } from './eqtb.ts'
 import { print_file_name } from './files.ts'
 import { init_trie } from './hyphenate.ts'
+import { etex_ext_vars } from './engine.ts'
 
 // What §1307–1327 dump: dynamic memory (token lists, nodes, glue specs, \parshape arrays), eqtb (xeq_level is constant
 // at level one), par_loc/write_loc, the hash and primitive tables, the fonts, the hyphenation tables, interaction, format_ident.
@@ -19,6 +20,7 @@ const fmt_keys = [
   'font_bc', 'font_ec', 'font_glue', 'hyphen_char', 'skew_char', 'bchar_label', 'font_bchar', 'font_false_bchar',
   'char_base', 'width_base', 'height_base', 'depth_base', 'italic_base', 'lig_kern_base', 'kern_base', 'exten_base', 'param_base',
   'hy', 'interaction', 'format_ident',
+  'eTeX_mode', 'sa', 'sa_free', 'sa_root', // etex.ch Dump the eTeX state, sa_root
 ] as const
 export type Format = Pick<Engine, typeof fmt_keys[number]>
 
@@ -32,6 +34,7 @@ export function dump_format(e: Engine): Format {
 // §1303 load_fmt_file (pdftex: prev_depth:=pdf_ignored_dimen afterwards)
 export function load_fmt_file(e: Engine, f: Format): void {
   Object.assign(e, structuredClone(f))
+  if (e.eTeX_ex) etex_ext_vars(e) // etex.ch Undump the eTeX state
   e.prev_depth = e.equiv[dimen_base + 32]! // \pdfignoreddimen
 }
 
@@ -80,6 +83,7 @@ export function store_fmt_file(e: Engine): void {
   print_ln(e); print_int(e, 0); print(e, ' words of pdfTeX memory')
   print_ln(e); print_int(e, 0); print(e, ' indirect objects')
   // §1326 Dump a couple more things and the closing check word
+  e.equiv[int_base + 112] = 0; e.pseudo_files = [] // etex.ch Dump the eTeX state: eTeX_state(j):=0, flush pseudo files
   e.fmt_file = dump_format(e)
   e.equiv[int_base + tracing_stats_code] = 0
 }

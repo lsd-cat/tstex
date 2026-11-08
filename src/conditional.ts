@@ -9,7 +9,7 @@ import { get_next, back_error, skipping } from './input.ts'
 import { prim_lookup_cs } from './hash.ts'
 import { prim_eqtb_base } from './types.ts'
 import { get_x_token, insert_relax } from './expand.ts'
-import { scan_int, scan_dimen, scan_eight_bit_int, scan_four_bit_int_or_18 } from './scan.ts'
+import { scan_int, scan_dimen, scan_register_num, scan_four_bit_int_or_18 } from './scan.ts'
 import { closed } from './files.ts'
 import { unsupported } from './main.ts'
 import { box, hlist_node, vlist_node } from './nodes.ts'
@@ -141,7 +141,7 @@ export function conditional(e: Engine): void {
       return
     }
     case if_void_code: case if_hbox_code: case if_vbox_code: // §505 Test box register status
-      scan_eight_bit_int(e)
+      scan_register_num(e)
       const p = box(e, e.cur_val)
       if (this_if === if_void_code) b = p === null
       else if (p === null) b = false

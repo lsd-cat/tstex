@@ -7,6 +7,10 @@ import { sprint_cs } from './hash.ts'
 import { print_cmd_chr, show_token_list } from './tokens.ts'
 import { delete_token_ref, delete_glue_ref, print_spec, zero_glue, flush_node_list, node_at, node_free, show_node_list } from './nodes.ts'
 import { back_input } from './input.ts'
+import { delete_sa_ref, sa_restore, restore_sa, group_trace, group_warning, tracing_assigns_code, tracing_groups_code } from './etex.ts'
+import { get_avail } from './nodes.ts'
+import { right_brace_limit, left_brace_limit } from './types.ts'
+import { mu_val } from './types.ts'
 import { overflow, confusion, print_err, help, int_error } from './error.ts'
 import { level_zero, level_one, active_base, glue_base, local_base, par_shape_loc, output_routine_loc, toks_base, box_base, cur_font_loc,
   cat_code_base, lc_code_base, uc_code_base, sf_code_base, math_code_base, int_base, count_base, del_code_base, dimen_base,
@@ -120,9 +124,14 @@ export function show_eqtb(e: Engine, n: number): void {
     else { print_esc(e, 'muskip'); print_int(e, n - mu_skip_base); print_char(e, 61); print_spec(e, e.equiv[n]!, 'mu') }
   }
   else if (n < int_base) { // §233
-    if (n === par_shape_loc || (n >= etex_pen_base && n < box_base)) { // e-TeX's penalty arrays are always null
+    if (n === par_shape_loc || (n >= etex_pen_base && n < box_base)) { 
       print_cmd_chr(e, Cmd.set_shape, n); print_char(e, 61)
-      if (e.equiv[n] === 0) print_char(e, 48); else print_int(e, e.shapes[e.equiv[n]!]![0]!)
+      if (e.equiv[n] === 0) print_char(e, 48)
+      else if (n > par_shape_loc) { // etex.ch
+        const q = e.shapes[e.equiv[n]!]!
+        print_int(e, q[0]!); print_char(e, 32); print_int(e, q[1]!)
+        if (q[0]! > 1) print_esc(e, 'ETC.')
+      } else print_int(e, e.shapes[e.equiv[n]!]![0]!)
     }
     else if (n < toks_base) {
       print_cmd_chr(e, Cmd.assign_toks, n); print_char(e, 61)
@@ -175,9 +184,12 @@ function check_full_save_stack(e: Engine): void {
 // §274 new_save_level
 export function new_save_level(e: Engine, c: number): void {
   check_full_save_stack(e)
+  if (e.eTeX_ex) { e.save_b0[e.save_ptr] = 0; e.save_rh[e.save_ptr] = e.line; e.save_ptr++ } // etex.ch: saved(0):=line
   e.save_b0[e.save_ptr] = level_boundary; e.save_b1[e.save_ptr] = e.cur_group; e.save_rh[e.save_ptr] = e.cur_boundary
   if (e.cur_level === 255) overflow(e, 'grouping levels', 255)
-  e.cur_boundary = e.save_ptr; e.cur_level++; e.save_ptr++; e.cur_group = c
+  e.cur_boundary = e.save_ptr; e.cur_group = c
+  if (int_par(e, tracing_groups_code) > 0) group_trace(e, false)
+  e.cur_level++; e.save_ptr++
 }
 
 // §275 eq_destroy
@@ -186,6 +198,7 @@ function eq_destroy(e: Engine, type: number, equiv: number): void {
   if (type >= Cmd.call && type <= Cmd.long_outer_call) delete_token_ref(e, equiv)
   else if (type === Cmd.glue_ref) delete_glue_ref(e, equiv)
   else if (type === Cmd.box_ref) { flush_node_list(e, node_at(e, equiv)); node_free(e, equiv) }
+  else if ((type === Cmd.register || type === Cmd.toks_register) && equiv > mu_val) delete_sa_ref(e, equiv) // etex.ch
 }
 
 // §276 eq_save
@@ -202,26 +215,43 @@ function eq_save(e: Engine, p: number, l: number): void {
 
 // §277 eq_define
 export function eq_define(e: Engine, p: number, t: number, q: number): void {
+  if (e.eTeX_ex && e.eq_type[p] === t && e.equiv[p] === q) { // etex.ch
+    assign_trace(e, p, 'reassigning'); eq_destroy(e, t, q); return
+  }
+  assign_trace(e, p, 'changing')
   if (e.eq_level[p] === e.cur_level) eq_destroy(e, e.eq_type[p]!, e.equiv[p]!)
   else if (e.cur_level > level_one) eq_save(e, p, e.eq_level[p]!)
   e.eq_level[p] = e.cur_level; e.eq_type[p] = t; e.equiv[p] = q
+  assign_trace(e, p, 'into')
+}
+
+// etex.ch assign_trace
+function assign_trace(e: Engine, p: number, s: string): void {
+  if (int_par(e, tracing_assigns_code) > 0) restore_trace(e, p, s)
 }
 
 // §278 eq_word_define
 export function eq_word_define(e: Engine, p: number, w: number): void {
+  if (e.eTeX_ex && e.equiv[p] === w) { assign_trace(e, p, 'reassigning'); return } // etex.ch
+  assign_trace(e, p, 'changing')
   if (e.xeq_level[p] !== e.cur_level) { eq_save(e, p, e.xeq_level[p]!); e.xeq_level[p] = e.cur_level }
   e.equiv[p] = w
+  assign_trace(e, p, 'into')
 }
 
 // §279 geq_define
 export function geq_define(e: Engine, p: number, t: number, q: number): void {
+  assign_trace(e, p, 'globally changing')
   eq_destroy(e, e.eq_type[p]!, e.equiv[p]!)
   e.eq_level[p] = level_one; e.eq_type[p] = t; e.equiv[p] = q
+  assign_trace(e, p, 'into')
 }
 
 // §279 geq_word_define
 export function geq_word_define(e: Engine, p: number, w: number): void {
+  assign_trace(e, p, 'globally changing')
   e.equiv[p] = w; e.xeq_level[p] = level_one
+  assign_trace(e, p, 'into')
 }
 
 // §280 save_for_after
@@ -235,14 +265,24 @@ export function save_for_after(e: Engine, t: number): void {
 // §281 unsave
 export function unsave(e: Engine): void {
   if (e.cur_level <= level_one) { confusion(e, 'curlevel'); return }
+  let a = false // etex.ch: have we already processed an \aftergroup?
   e.cur_level--
   // §282 Clear off top level from save_stack
   for (;;) {
     e.save_ptr--
     if (e.save_b0[e.save_ptr] === level_boundary) break
     const p = e.save_rh[e.save_ptr]!
-    if (e.save_b0[e.save_ptr] === insert_token) { // §326
-      const t = e.cur_tok; e.cur_tok = p; back_input(e); e.cur_tok = t
+    if (e.save_b0[e.save_ptr] === insert_token) { // §326 (etex.ch: later tokens join the first one's list)
+      const t = e.cur_tok; e.cur_tok = p
+      if (a) {
+        const q = get_avail(e); e.info[q] = e.cur_tok; e.link[q] = e.cur_input.loc; e.cur_input.loc = q; e.cur_input.start = q
+        if (e.cur_tok < right_brace_limit) { if (e.cur_tok < left_brace_limit) e.align_state--; else e.align_state++ }
+      } else { back_input(e); a = e.eTeX_ex }
+      e.cur_tok = t
+      continue
+    }
+    if (e.save_b0[e.save_ptr] === restore_sa) { // etex.ch
+      sa_restore(e); e.sa_chain = e.sa_chain_stack.pop() ?? null; e.sa_level = e.save_b1[e.save_ptr]!
       continue
     }
     let l = 0
@@ -264,7 +304,10 @@ export function unsave(e: Engine): void {
       if (int_par(e, tracing_restores_code) > 0) restore_trace(e, p, 'restoring')
     } else if (int_par(e, tracing_restores_code) > 0) restore_trace(e, p, 'retaining')
   }
+  if (int_par(e, tracing_groups_code) > 0) group_trace(e, true) // etex.ch
+  if (e.grp_stack[e.in_open] === e.cur_boundary) group_warning(e)
   e.cur_group = e.save_b1[e.save_ptr]!; e.cur_boundary = e.save_rh[e.save_ptr]!
+  if (e.eTeX_ex) e.save_ptr--
 }
 
 // §288 prepare_mag

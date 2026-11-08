@@ -4,7 +4,9 @@ import { Cmd } from '../types.ts'
 import { print_esc } from '../print.ts'
 import { count_base, scaled_base, skip_base, mu_skip_base, toks_base } from '../eqtb.ts'
 import { get_r_token, define } from '../main.ts'
-import { scan_optional_equals, scan_char_num, scan_fifteen_bit_int, scan_eight_bit_int } from '../scan.ts'
+import { scan_optional_equals, scan_char_num, scan_fifteen_bit_int, scan_register_num } from '../scan.ts'
+import { find_sa_element, add_sa_ref } from '../etex.ts'
+import { mu_val, tok_val } from '../types.ts'
 
 const char_def_code = 0, math_char_def_code = 1, count_def_code = 2, dimen_def_code = 3, skip_def_code = 4, mu_skip_def_code = 5
 const names = ['chardef', 'mathchardef', 'countdef', 'dimendef', 'skipdef', 'muskipdef', 'toksdef']
@@ -19,8 +21,14 @@ export function assign(e: Engine, a: number): void {
   if (n === char_def_code) { scan_char_num(e); define(e, a, p, Cmd.char_given, e.cur_val) }
   else if (n === math_char_def_code) { scan_fifteen_bit_int(e); define(e, a, p, Cmd.math_given, e.cur_val) }
   else {
-    scan_eight_bit_int(e) // scan_register_num outside e-TeX mode
-    if (n === count_def_code) define(e, a, p, Cmd.assign_int, count_base + e.cur_val)
+    scan_register_num(e)
+    if (e.cur_val > 255) { // etex.ch
+      let j = n - count_def_code
+      if (j > mu_val) j = tok_val
+      const q = find_sa_element(e, j, e.cur_val, true); add_sa_ref(e, q)
+      define(e, a, p, j === tok_val ? Cmd.toks_register : Cmd.register, q)
+    }
+    else if (n === count_def_code) define(e, a, p, Cmd.assign_int, count_base + e.cur_val)
     else if (n === dimen_def_code) define(e, a, p, Cmd.assign_dimen, scaled_base + e.cur_val)
     else if (n === skip_def_code) define(e, a, p, Cmd.assign_glue, skip_base + e.cur_val)
     else if (n === mu_skip_def_code) define(e, a, p, Cmd.assign_mu_glue, mu_skip_base + e.cur_val)

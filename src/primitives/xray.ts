@@ -11,7 +11,7 @@ import { the_toks } from '../scan.ts'
 import { int_par, tracing_online_code, show_stream_code } from '../eqtb.ts'
 import { unsupported, show_activities } from '../main.ts'
 import { box, show_box } from '../nodes.ts'
-import { scan_eight_bit_int } from '../scan.ts'
+import { scan_register_num } from '../scan.ts'
 
 const show_code = 0, show_box_code = 1, show_the_code = 2, show_lists_code = 3
 export const cmd = Cmd.xray
@@ -31,7 +31,7 @@ export function run(e: Engine, chr: number): void {
   if (chr === show_lists_code || chr === show_box_code) {
     if (chr === show_lists_code) { adjust_selector(e); begin_diagnostic(e); show_activities(e) }
     else { // §1296 Show the current contents of a box
-      scan_eight_bit_int(e); const p = box(e, e.cur_val); adjust_selector(e); begin_diagnostic(e)
+      scan_register_num(e); const p = box(e, e.cur_val); adjust_selector(e); begin_diagnostic(e)
       print_nl(e, '> \\box'); print_int(e, e.cur_val); print_char(e, 61)
       if (p === null) print_str(e, 'void'); else show_box(e, p)
     }

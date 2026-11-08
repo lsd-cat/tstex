@@ -17,7 +17,7 @@ import { cs_token_flag, left_brace_token, left_brace_limit, right_brace_limit, o
 import { get_token, get_next, back_input, back_error, back_list, defining, absorbing, normal, begin_file_reading, end_file_reading, input_ln, runaway, new_line, prompt_input } from './input.ts'
 import { closed, just_open } from './files.ts'
 import { get_x_token, x_token, expand } from './expand.ts'
-import { scan_expr, the_unexpanded, current_if_type, current_if_branch } from './etex.ts'
+import { scan_expr, the_unexpanded, find_sa_element, sa, current_if_type, current_if_branch } from './etex.ts'
 import { char_info, char_width, char_height, char_depth, char_italic, height_depth } from './tfm.ts'
 import { level_one } from './types.ts'
 
@@ -105,8 +105,13 @@ export function scan_something_internal(e: Engine, level: number, negative: bool
           "look up `weird error' in the index to The TeXbook.)")
         back_error(e); e.cur_val = 0; e.cur_val_level = dimen_val
       } else if (e.cur_cmd <= Cmd.assign_toks) {
-        if (e.cur_cmd < Cmd.assign_toks) { scan_eight_bit_int(e); e.cur_val = e.equiv[toks_base + e.cur_val]! }
-        else e.cur_val = e.equiv[m]!
+        if (e.cur_cmd < Cmd.assign_toks) { // etex.ch
+          if (m === 0) {
+            scan_register_num(e)
+            if (e.cur_val < 256) e.cur_val = e.equiv[toks_base + e.cur_val]!
+            else { const q = find_sa_element(e, tok_val, e.cur_val, false); e.cur_val = q === 0 ? 0 : sa(e, q).ptr }
+          } else e.cur_val = sa(e, m).ptr
+        } else e.cur_val = e.equiv[m]!
         e.cur_val_level = tok_val
       } else { back_input(e); scan_font_ident(e); e.cur_val = font_id_base + e.cur_val; e.cur_val_level = ident_val }
       break
@@ -139,12 +144,16 @@ export function scan_something_internal(e: Engine, level: number, negative: bool
       e.cur_val_level = dimen_val
       break
     case Cmd.set_shape: // §423 Fetch the par_shape size (e-TeX's penalty arrays are unsupported)
-      if (m > par_shape_loc) unsupported(e)
-      e.cur_val = e.equiv[par_shape_loc] === 0 ? 0 : e.shapes[e.equiv[par_shape_loc]!]![0]!
+      if (m > par_shape_loc) { // etex.ch Fetch a penalties array element
+        scan_int(e)
+        const q = e.shapes[e.equiv[m]!]
+        if (q === undefined || e.cur_val < 0) e.cur_val = 0
+        else e.cur_val = q[Math.min(e.cur_val, q[0]!)]!
+      } else e.cur_val = e.equiv[par_shape_loc] === 0 ? 0 : e.shapes[e.equiv[par_shape_loc]!]![0]!
       e.cur_val_level = int_val
       break
     case Cmd.set_box_dimen: { // §420 Fetch a box dimension
-      scan_eight_bit_int(e)
+      scan_register_num(e)
       const q = box(e, e.cur_val)
       e.cur_val = q === null ? 0 : m === 1 ? q.width : m === 2 ? q.depth : q.height
       e.cur_val_level = dimen_val
@@ -164,9 +173,15 @@ export function scan_something_internal(e: Engine, level: number, negative: bool
     case Cmd.assign_glue: e.cur_val = e.equiv[m]!; e.cur_val_level = glue_val; break
     case Cmd.assign_mu_glue: e.cur_val = e.equiv[m]!; e.cur_val_level = mu_val; break
     case Cmd.char_given: case Cmd.math_given: e.cur_val = e.cur_chr; e.cur_val_level = int_val; break
-    case Cmd.register: // §420 Fetch a register (scan_register_num is scan_eight_bit_int outside e-TeX mode)
-      scan_eight_bit_int(e); e.cur_val_level = m
-      e.cur_val = e.equiv[(m === int_val ? count_base : m === dimen_val ? scaled_base : m === glue_val ? skip_base : mu_skip_base) + e.cur_val]!
+    case Cmd.register: // §427 Fetch a register (etex.ch: sparse array elements)
+      if (m > mu_val) { const x = sa(e, m); e.cur_val_level = x.t; e.cur_val = x.t < glue_val ? x.int : x.ptr }
+      else {
+        scan_register_num(e); e.cur_val_level = m
+        if (e.cur_val > 255) {
+          const q = find_sa_element(e, m, e.cur_val, false)
+          e.cur_val = q === 0 ? (m < glue_val ? 0 : zero_glue) : m < glue_val ? sa(e, q).int : sa(e, q).ptr
+        } else e.cur_val = e.equiv[(m === int_val ? count_base : m === dimen_val ? scaled_base : m === glue_val ? skip_base : mu_skip_base) + e.cur_val]!
+      }
       break
     case Cmd.last_item: // §424 Fetch an item in the current node, if appropriate
       if (m >= input_line_no_code) {
@@ -281,6 +296,15 @@ export function scan_eight_bit_int(e: Engine): void {
   if (e.cur_val < 0 || e.cur_val > 255) {
     print_err(e, 'Bad register code')
     help(e, 'A register number must be between 0 and 255.', 'I changed this one to zero.'); int_error(e, e.cur_val); e.cur_val = 0
+  }
+}
+
+// etex.ch scan_register_num: 0..255 in compatibility mode, 0..32767 in extended mode
+export function scan_register_num(e: Engine): void {
+  scan_int(e)
+  if (e.cur_val < 0 || e.cur_val > e.max_reg_num) {
+    print_err(e, 'Bad register code')
+    help(e, e.max_reg_help_line, 'I changed this one to zero.'); int_error(e, e.cur_val); e.cur_val = 0
   }
 }
 

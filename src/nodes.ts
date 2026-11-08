@@ -9,6 +9,7 @@ import { show_token_list } from './tokens.ts'
 import { print_file_name } from './files.ts'
 import { print_skip_param } from './eqtb.ts'
 import { glue_base, box_base, int_base, font_id_base } from './types.ts'
+import { sa_box, set_sa_box } from './etex.ts'
 
 const show_box_breadth_code = 24, show_box_depth_code = 25, pdf_tracing_fonts_code = 85
 
@@ -255,8 +256,11 @@ export function node_free(e: Engine, h: number): void {
   if (h !== 0) { e.nodes[h] = null; e.nodes_free.push(h) }
 }
 // §230 box(n), and change_box (etex.ch) which sets box(n) at the same level without saving
-export const box = (e: Engine, n: number): BoxNode | null => node_at(e, e.equiv[box_base + n]!) as BoxNode | null
+// (etex.ch fetch_box: registers above 255 are sparse array elements)
+export const box = (e: Engine, n: number): BoxNode | null =>
+  (n > 255 ? sa_box(e, n) : node_at(e, e.equiv[box_base + n]!)) as BoxNode | null
 export function change_box(e: Engine, n: number, p: Node | null): void {
+  if (n > 255) { set_sa_box(e, n, p); return }
   node_free(e, e.equiv[box_base + n]!); e.equiv[box_base + n] = node_ref(e, p)
 }
 
