@@ -1,7 +1,7 @@
 // The engine's Web Worker (spawned by index.ts). Messages in: { type: 'init', texmf, persistent }, { type: 'compile', files,
 // main, runs, date }, { type: 'prefetch', names }, { type: 'clear' }; out: progress ({ type: 'fetch' | 'run' }), then one
 // { type: 'done', ... } or { type: 'error', message } per request but init (whose error is every later request's).
-import { httpFS, type Index } from './platform/browser.ts'
+import { httpFS, indexLookup, syncGet, type Index } from './platform/browser.ts'
 import { loadFormat, type Format } from './format.ts'
 import { compileRuns } from './compile.ts'
 
@@ -53,7 +53,8 @@ self.onmessage = (ev: MessageEvent) => {
       if (init_error !== null) throw init_error
       if (m.type === 'compile') await compile(m)
       else if (m.type === 'prefetch') { // async, in parallel: later synchronous reads hit memory
-        const paths = (m.names as string[]).filter(n => Object.hasOwn(index.files, n)).map(n => index.files[n]!.path).filter(p => !cache.has(p))
+        const entry = indexLookup(index, p => cache.get(p) ?? syncGet(base, p)) // shards by sync XHR, as lookups do
+        const paths = (m.names as string[]).map(n => entry(n)?.path).filter((p): p is string => p !== undefined && !cache.has(p))
         await Promise.all(paths.map(async p => {
           const d = await bytes(await fetch(base + p))
           cache.set(p, d); post({ type: 'fetch', name: p, bytes: d.length })

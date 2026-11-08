@@ -41,3 +41,6 @@ export function parse_ls_r(text: string): Map<string, string[]> {
   }
   return db
 }
+
+// the index shard (index/<shard>.json.gz) holding `base': its first two characters lowercased, anything but a-z0-9 as `_'
+export const shard_of = (base: string) => base.slice(0, 2).toLowerCase().replace(/[^a-z0-9]/g, '_')

@@ -1,0 +1,35 @@
+# Curated corpus samples: one path per line, relative to texmf-dist (or to the repo root for test/...). Suffix ' slow' = only with --slow.
+# Refresh with: (cd texmf-dist && find doc -name PATTERN) once the doc/ reinstall is complete.
+doc/latex/amscls/amsart-template.tex
+doc/latex/amscls/amsbook-template.tex
+doc/latex/amscls/amsproc-template.tex
+doc/latex/asmeconf/asmeconf-template.tex
+doc/latex/asmejour/asmejour-template.tex
+doc/latex/acmart/samples/acmcp.tex
+doc/latex/acmart/samples/acmengage.tex
+doc/latex/acmart/samples/acmlarge.tex
+doc/latex/acmart/samples/acmmanuscript.tex
+doc/latex/acmart/samples/acmsmall-biblatex.tex
+doc/latex/acmart/samples/acmsmall-conf.tex
+doc/latex/acmart/samples/acmsmall-submission.tex
+doc/latex/acmart/samples/acmsmall.tex
+doc/latex/acmart/samples/acmtog-conf.tex
+doc/latex/acmart/samples/acmtog.tex
+doc/latex/acmart/samples/sigconf-authordraft.tex
+doc/latex/acmart/samples/sigconf-biblatex.tex
+doc/latex/acmart/samples/sigconf-i13n.tex
+doc/latex/acmart/samples/sigconf.tex
+doc/latex/acmart/samples/sigplan.tex
+tex/latex/base/sample2e.tex
+test/oracle/m5-article.tex
+test/oracle/m6-latex-article.tex
+test/oracle/m6-latex-beamer.tex
+test/oracle/m6-latex-geometry-xcolor.tex
+test/oracle/m6-latex-graphicx.tex
+test/oracle/m6-latex-hyperref.tex
+test/oracle/m6-latex-minimal.tex
+test/oracle/m6-latex-tikz.tex
+test/oracle/m8-latex-acmart.tex
+test/oracle/m8-latex-epdf.tex
+test/oracle/m8-latex-microtype.tex
+# doc/generic/pgf/pgfmanual.tex slow   (not on disk yet)

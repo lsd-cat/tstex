@@ -57,9 +57,9 @@ export function deflate(data: Uint8Array, level: number): Uint8Array {
 }
 
 // zlib inflate of at most max bytes; throws on bad or truncated data, a bad checksum, or more than max bytes
-export function inflate(z: Uint8Array, max: number): Uint8Array {
-  if (z.length < 2 || (z[0]! & 15) !== 8 || ((z[0]! << 8) | z[1]!) % 31 !== 0 || (z[1]! & 32) !== 0) throw new Error('bad zlib header')
-  let pos = 2, bit = 0, n = 0
+export function inflate(z: Uint8Array, max: number, raw = false): Uint8Array { // raw: bare deflate stream, no zlib header or checksum
+  if (!raw && (z.length < 2 || (z[0]! & 15) !== 8 || ((z[0]! << 8) | z[1]!) % 31 !== 0 || (z[1]! & 32) !== 0)) throw new Error('bad zlib header')
+  let pos = raw ? 0 : 2, bit = 0, n = 0
   let out = new Uint8Array(Math.min(max, Math.max(1024, z.length * 4)))
   const get = (k: number) => { // k bits, LSB first
     let v = 0
@@ -142,6 +142,7 @@ export function inflate(z: Uint8Array, max: number): Uint8Array {
     }
   }
   if (bit > 0) pos++
+  if (raw) return out.subarray(0, n)
   if (pos + 4 > z.length) throw new Error('unexpected end of data')
   const want = ((z[pos]! << 24) | (z[pos + 1]! << 16) | (z[pos + 2]! << 8) | z[pos + 3]!) >>> 0
   const got = out.subarray(0, n)

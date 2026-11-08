@@ -1,14 +1,18 @@
 // Build a static texmf bundle (the M7 resource protocol, see README.md):
-//   node tools/pack-texmf.ts --preset minimal|basic [--texmf-dist DIR] [--texmf-var DIR] [--fmt build/latex.fmt] --out DIR
-// DIR/index.json.gz = { version, files: { basename: { path, size } } }, DIR/fmt/latex.fmt, DIR/<path> for every file.
-// minimal = tools/minimal-files.txt (what the test corpus opens); basic = scheme-basic + the packages below, tex/ and fonts/ only.
+//   node tools/pack-texmf.ts --preset minimal|basic|full [--shard] [--texmf-dist DIR] [--texmf-var DIR] [--fmt build/latex.fmt] --out DIR
+// DIR/index.json.gz = { version, files: { basename: { path, size } } }, or { version, sharded: true } with the same map split
+// into DIR/index/<shard>.json.gz (shard_of in lookup.ts) when there are more than 20000 files or with --shard; DIR/fmt/latex.fmt,
+// DIR/<path> for every file.
+// minimal = tools/minimal-files.txt (what the test corpus opens); basic = scheme-basic + the packages below, tex/ and fonts/ only;
+// full = everything the engine can read in texmf-dist (tex/, fonts/{tfm,vf,type1,enc,map}, bibtex/{bst,bib}, cp227.tcx; no doc/source).
 import { readFileSync, writeFileSync, mkdirSync, copyFileSync, statSync, existsSync } from 'node:fs'
 import { dirname, join } from 'node:path'
 import { gzipSync } from 'node:zlib'
 import { createHash } from 'node:crypto'
-import { tree_matches } from '../src/platform/lookup.ts'
+import { tree_matches, shard_of, parse_ls_r } from '../src/platform/lookup.ts'
 
-const extra = ['pgf', 'beamer', 'hyperref', 'xcolor', 'geometry', 'cm-super', 'lm', 'extsizes', 'booktabs', 'textpos', 'psnfss', 'lato']
+const extra = ['pgf', 'beamer', 'hyperref', 'xcolor', 'geometry', 'cm-super', 'lm', 'extsizes', 'booktabs', 'textpos', 'psnfss', 'lato',
+  'sourcesans', 'fira', 'libertinus', 'libertinus-type1', 'tex-gyre', 'libertine', 'inconsolata']
 
 // the kind a file is looked up as, from its extension (to pick among same-basename files the way pdflatex would)
 const kind_of = (base: string) => ({ tfm: 'tfm', vf: 'vf', enc: 'enc', map: 'map', pfb: 'type1', cnf: 'cnf', tcx: 'tcx' } as Record<string, string>)[base.split('.').pop()!] ?? 'tex'
@@ -40,13 +44,18 @@ export function pack(argv: string[]): void {
     'texmf-dist': process.env.TEXMFDIST ?? '/Users/g/texlive/2026/texmf-dist', 'texmf-var': process.env.TEXMFVAR ?? '/Users/g/texlive/2026/texmf-var',
     fmt: 'build/latex.fmt',
   }
-  for (let i = 0; i < argv.length; i++) if (argv[i]!.startsWith('--')) opt[argv[i]!.slice(2)] = argv[++i] ?? ''
-  if (!opt.out || !['minimal', 'basic'].includes(opt.preset!)) throw new Error('usage: pack-texmf --preset minimal|basic [--texmf-dist DIR] [--texmf-var DIR] [--fmt FILE] --out DIR')
+  for (let i = 0; i < argv.length; i++) if (argv[i]!.startsWith('--')) opt[argv[i]!.slice(2)] = argv[i] === '--shard' ? '1' : argv[++i] ?? ''
+  if (!opt.out || !['minimal', 'basic', 'full'].includes(opt.preset!)) throw new Error('usage: pack-texmf --preset minimal|basic|full [--shard] [--texmf-dist DIR] [--texmf-var DIR] [--fmt FILE] --out DIR')
   const trees: Record<string, string> = { 'texmf-var': opt['texmf-var']!, 'texmf-dist': opt['texmf-dist']! }
   // tree-qualified paths `texmf-dist/tex/...'
   let list: string[]
   if (opt.preset === 'minimal') list = readFileSync(new URL('minimal-files.txt', import.meta.url), 'utf8').split('\n').filter(l => l !== '' && !l.startsWith('#'))
-  else {
+  else if (opt.preset === 'full') { // in ls-R order, which is kpathsea's order among same-basename files
+    const keep = /^(tex\/|fonts\/(tfm|vf|type1|enc|map)\/|bibtex\/(bst|bib)\/|web2c\/cp227\.tcx$)/
+    list = []
+    for (const [base, dirs] of parse_ls_r(readFileSync(join(opt['texmf-dist']!, 'ls-R'), 'latin1'))) for (const d of dirs) if (keep.test(d + base)) list.push('texmf-dist/' + d + base)
+    list.push('texmf-var/fonts/map/pdftex/updmap/pdftex.map', 'texmf-var/tex/generic/config/language.dat', 'texmf-var/tex/generic/config/language.def')
+  } else {
     list = tlpdb_files(join(opt['texmf-dist']!, '../tlpkg/texlive.tlpdb'), ['scheme-basic', ...extra])
       .filter(f => /^texmf-dist\/(tex|fonts)\//.test(f) && existsSync(join(trees['texmf-dist']!, f.slice(11))))
     list.push('texmf-var/fonts/map/pdftex/updmap/pdftex.map') // updmap's output for the installed fonts
@@ -64,15 +73,25 @@ export function pack(argv: string[]): void {
     const dbs = Object.keys(trees).map(t => () => c.filter(x => x.tree === t).map(x => x.rel.slice(0, -base.length)))
     const hit = tree_matches(base, kind_of(base), dbs).next().value
     const pick = hit ? c.find(x => x.tree === Object.keys(trees)[hit[0]] && x.rel === hit[1])! : c[0]!
-    const src = join(trees[pick.tree]!, pick.rel), dst = join(opt.out, pick.rel), size = statSync(src).size
+    const src = join(trees[pick.tree]!, pick.rel), dst = join(opt.out, pick.rel)
+    let size: number
+    try { size = statSync(src).size } catch { continue } // a dangling symlink
     mkdirSync(dirname(dst), { recursive: true }); copyFileSync(src, dst)
     files[base] = { path: pick.rel, size }; raw += size
   }
   mkdirSync(join(opt.out, 'fmt'), { recursive: true }); copyFileSync(opt.fmt!, join(opt.out, 'fmt/latex.fmt'))
   const fmt = readFileSync(opt.fmt!)
   const version = createHash('sha256').update(JSON.stringify(files)).update(fmt).digest('hex').slice(0, 12)
-  writeFileSync(join(opt.out, 'index.json.gz'), gzipSync(JSON.stringify({ version, files })))
-  process.stdout.write(`${opt.preset}: ${Object.keys(files).length} files, ${raw} bytes + format ${fmt.length} bytes -> ${opt.out} (version ${version})\n`)
+  const sharded = opt.shard === '1' || Object.keys(files).length > 20000
+  if (!sharded) writeFileSync(join(opt.out, 'index.json.gz'), gzipSync(JSON.stringify({ version, files })))
+  else {
+    const by_shard: Record<string, typeof files> = {}
+    for (const [b, e] of Object.entries(files)) (by_shard[shard_of(b)] ??= {})[b] = e
+    mkdirSync(join(opt.out, 'index'), { recursive: true })
+    for (const [k, m] of Object.entries(by_shard)) writeFileSync(join(opt.out, 'index', k + '.json.gz'), gzipSync(JSON.stringify(m)))
+    writeFileSync(join(opt.out, 'index.json.gz'), gzipSync(JSON.stringify({ version, sharded: true })))
+  }
+  process.stdout.write(`${opt.preset}${sharded ? ' (sharded)' : ''}: ${Object.keys(files).length} files, ${raw} bytes + format ${fmt.length} bytes -> ${opt.out} (version ${version})\n`)
 }
 
 if (import.meta.url === `file://${process.argv[1]}`) pack(process.argv.slice(2))

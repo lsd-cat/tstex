@@ -6,7 +6,7 @@ import { readFileSync, writeFileSync, mkdirSync, existsSync, rmSync } from 'node
 import { join, dirname } from 'node:path'
 import { homedir } from 'node:os'
 import { gunzipSync, deflateSync, inflateSync } from 'node:zlib'
-import { bundleFS, type Index } from './platform/browser.ts'
+import { bundleFS, indexLookup, type Index } from './platform/browser.ts'
 import { escapes } from './platform/lookup.ts'
 import { loadFormat, type Format } from './format.ts'
 import { compileRuns } from './compile.ts'
@@ -59,7 +59,9 @@ export function createTeX(opts: { texmf: string, cache?: 'http' | 'persistent', 
     async prefetch(names) {
       const { index } = await ready
       if (!remote) return
-      await Promise.all(names.filter(n => Object.hasOwn(index.files, n) && !existsSync(join(dir, index.files[n]!.path))).map(n => fetchToCache(index.files[n]!.path)))
+      const entry = indexLookup(index, read), paths: string[] = []
+      for (const n of names) for (;;) try { const e = entry(n); if (e && !existsSync(join(dir, e.path))) paths.push(e.path); break } catch (x) { if (!(x instanceof Miss)) throw x; await fetchToCache(x.path) } // a missing shard
+      await Promise.all(paths.map(fetchToCache))
     },
     cache: { async clear() { await ready; if (remote) rmSync(dir, { recursive: true, force: true }) } },
     dispose() {},
