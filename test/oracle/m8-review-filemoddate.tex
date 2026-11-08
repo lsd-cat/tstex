@@ -1,0 +1,8 @@
+%! oracle: pdftex
+\pdfoutput=1 \input plain
+% \pdffilemoddate under SOURCE_DATE_EPOCH+FORCE_SOURCE_DATE is in UTC (texmfmp.c use_utc): the date ends in Z
+\immediate\openout1=x.txt \immediate\write1{x}\immediate\closeout1
+\edef\d{\pdffilemoddate{x.txt}}
+\def\last#1#2\end{\if\relax\detokenize{#2}\relax\message{[#1]}\else\last#2\end\fi}
+\expandafter\last\d\end
+\bye
