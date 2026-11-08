@@ -18,6 +18,7 @@ import type { ListState } from './main.ts'
 import type { AlignState, AlignRecord } from './align.ts'
 import type { Movement } from './dvi.ts'
 import { init_fonts } from './tfm.ts'
+import { init_randoms } from './arith.ts'
 import { hyph_state } from './hyphenate.ts'
 
 const contrib_head0 = new_char(0, 0) // replaced per Engine in the constructor
@@ -159,7 +160,7 @@ export class Engine {
   xprn = Uint8Array.from({ length: 256 }, (_, i) => +(i >= 32 && i <= 126)); translate_filename = ''
   // §246
   sys_time = 0; sys_day = 0; sys_month = 0; sys_year = 0
-  start_ms = 0; random_seed = 0 // pdftex.web: the start time for \pdfelapsedtime, random_seed
+  start_ms = 0; random_seed = 0; randoms: number[] = new Array(55).fill(0); j_random = 0 // pdftex.web: the start time for \pdfelapsedtime, random_seed, [7b]
 
   // §71 lines the terminal will supply (null: no terminal); §1302 the format made by \dump, §1337 the one `&name' loads
   term_in: string[] | null = null; fmt_file: Format | null = null; format: Format | Promise<Format> | null; date: Date | undefined
@@ -220,6 +221,7 @@ export class Engine {
     else this.buffer[this.cur_input.limit] = this.equiv[int_base + end_line_char_code]!
     const t = (this.date ?? new Date()).getTime(); this.start_ms = performance.now() // pdftex.web: random_seed:=(microseconds*1000)+(epochseconds mod 1000000)
     this.random_seed = (t % 1000) * 1000000 + Math.floor(t / 1000) % 1000000
+    init_randoms(this, this.random_seed)
     this.selector = this.interaction === batch_mode ? no_print : term_only
     try {
       if (this.cur_input.loc < this.cur_input.limit && this.equiv[cat_code_base + this.buffer[this.cur_input.loc]!] !== Cmd.escape) {

@@ -11,9 +11,9 @@ import { scan_int, str_toks, scan_toks } from '../scan.ts'
 import { unsupported } from '../main.ts'
 import { open_log_file } from '../files.ts'
 import { scan_font_ident } from '../tfm.ts'
-import { print_scaled } from '../arith.ts'
+import { print_scaled, unif_rand, norm_rand } from '../arith.ts'
 
-const number_code = 0, roman_numeral_code = 1, string_code = 2, meaning_code = 3, font_name_code = 4, eTeX_revision_code = 5, expanded_code = 6, pdftex_revision_code = 7, pdftex_banner_code = 8, pdf_creation_date_code = 22, pdf_file_size_code = 24, pdf_strcmp_code = 18, job_name_code = 33
+const number_code = 0, roman_numeral_code = 1, string_code = 2, meaning_code = 3, font_name_code = 4, eTeX_revision_code = 5, expanded_code = 6, pdftex_revision_code = 7, pdftex_banner_code = 8, pdf_creation_date_code = 22, pdf_file_size_code = 24, pdf_strcmp_code = 18, job_name_code = 33, uniform_deviate_code = 29, normal_deviate_code = 30
 const names: Record<number, string> = { 0: 'number', 1: 'romannumeral', 2: 'string', 3: 'meaning', 4: 'fontname', 5: 'eTeXrevision',
   6: 'expanded', 7: 'pdftexrevision', 8: 'pdftexbanner', 9: 'pdffontname', 10: 'pdffontobjnum', 11: 'pdffontsize', 12: 'pdfpageref',
   13: 'pdfxformname', 14: 'pdfescapestring', 15: 'pdfescapename', 16: 'leftmarginkern', 17: 'rightmarginkern', 18: 'pdfstrcmp',
@@ -88,7 +88,8 @@ export function run(e: Engine, chr: number): void {
     print_str(e, `D:${d.getFullYear()}${p2(d.getMonth() + 1)}${p2(d.getDate())}${p2(d.getHours())}${p2(d.getMinutes())}${p2(d.getSeconds())}${z}`)
     e.selector = old_setting; e.link[garbage] = str_toks(e, b); ins_list(e, e.link[temp_head]!); return
   }
-  else if (c !== eTeX_revision_code && c !== pdftex_revision_code && c !== pdftex_banner_code) unsupported(e)
+  else if (c === uniform_deviate_code) scan_int(e)
+  else if (c !== normal_deviate_code && c !== eTeX_revision_code && c !== pdftex_revision_code && c !== pdftex_banner_code) unsupported(e)
   e.selector = new_string
   // §472 Print the result of command c
   if (c === number_code) print_int(e, e.cur_val)
@@ -103,6 +104,8 @@ export function run(e: Engine, chr: number): void {
   else if (c === pdftex_revision_code) print_str(e, '29') // pdftex.web pdftex_revision
   else if (c === pdftex_banner_code) print_str(e, 'This is pdfTeX, Version 3.141592653-2.6-1.40.29 (TeX Live 2026) kpathsea version 6.4.2') // texmfmp.c; pdftex's own, for identical logs
   else if (c === pdf_strcmp_code) print_int(e, e.cur_val)
+  else if (c === uniform_deviate_code) print_int(e, unif_rand(e, e.cur_val))
+  else if (c === normal_deviate_code) print_int(e, norm_rand(e))
   else print_str(e, e.job_name)
   e.selector = old_setting; e.link[garbage] = str_toks(e, b); ins_list(e, e.link[temp_head]!)
 }

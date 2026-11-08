@@ -10,9 +10,10 @@ import { scan_file_name } from '../files.ts'
 import { get_x_token } from '../expand.ts'
 import { back_input } from '../input.ts'
 import { out_what } from '../dvi.ts'
+import { init_randoms } from '../arith.ts'
 import { unsupported, report_illegal_case, tail_append, norm_min } from '../main.ts'
 
-const immediate_code = 5, set_language_code = 6, pdf_glyph_to_unicode_code = 39
+const immediate_code = 5, set_language_code = 6, pdf_glyph_to_unicode_code = 39, set_random_seed_code = 35, reset_timer_code = 33
 const names: Record<number, string> = { 0: 'openout', 1: 'write', 2: 'closeout', 3: 'special', 5: 'immediate', 6: 'setlanguage',
   7: 'pdfliteral', 40: 'pdfcolorstack', 41: 'pdfsetmatrix', 42: 'pdfsave', 43: 'pdfrestore', 9: 'pdfobj', 10: 'pdfrefobj',
   11: 'pdfxform', 12: 'pdfrefxform', 13: 'pdfximage', 14: 'pdfrefximage', 15: 'pdfannot', 16: 'pdfstartlink', 17: 'pdfendlink',
@@ -83,6 +84,11 @@ export function run(e: Engine, chr: number): void {
       scan_toks(e, false, true); delete_token_ref(e, e.def_ref)
       scan_toks(e, false, true); delete_token_ref(e, e.def_ref)
       return
+    case set_random_seed_code: // pdftex.web Implement \pdfsetrandomseed
+      scan_int(e); if (e.cur_val < 0) e.cur_val = -e.cur_val
+      e.random_seed = e.cur_val; init_randoms(e, e.random_seed)
+      return
+    case reset_timer_code: e.start_ms = performance.now(); return // pdftex.web Implement \pdfresettimer
     default: unsupported(e)
   }
 }

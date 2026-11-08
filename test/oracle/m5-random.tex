@@ -1,0 +1,11 @@
+\catcode`\{=1 \catcode`\}=2 \catcode`\#=6
+\pdfsetrandomseed 12345
+\message{\the\pdfrandomseed}
+\count1=0
+\def\loop{\message{\pdfuniformdeviate 1000 \pdfuniformdeviate -77777 \pdfuniformdeviate 0 \pdfnormaldeviate}%
+  \advance\count1 1 \ifnum\count1<40 \expandafter\loop\fi}
+\loop
+\pdfsetrandomseed -2147483647
+\message{\the\pdfrandomseed\space\pdfuniformdeviate 2147483647 \pdfnormaldeviate}
+\count1=0 \loop
+\end
