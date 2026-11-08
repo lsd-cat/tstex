@@ -18,7 +18,7 @@ import { str } from '../utils.ts'
 import { def_tounicode, process_map_item } from '../backend/fonts.ts'
 import { pdf_error, pdf_warning, pdf_create_obj, pdf_get_mem, pdf_write_obj, obj_type_obj, obj_type_others, set_origin, direct_page, direct_always,
   pdf_new_obj, pdf_end_obj, write_action, pdf_check_obj, pdf_new_objnum, find_obj, warn_dest_dup, pdf_print_str_ln,
-  obj_type_dest, obj_type_struct_dest, obj_type_outline, colorstackused, obj_type_xform, obj_type_ximage, pdf_ship_out, pdf_write_image, check_pdfversion, scale_image, pdf_check_vf, pdf_init_font, pdf_mark_char } from '../pdf.ts'
+  obj_type_dest, obj_type_struct_dest, obj_type_outline, colorstackused, obj_type_xform, obj_type_ximage, pdf_ship_out, pdf_write_image, check_pdfversion, scale_image, pdf_check_vf_cur_val, pdf_init_font, pdf_mark_char } from '../pdf.ts'
 import type { PdfAction } from '../nodes.ts'
 import { pdf_action_user, pdf_action_goto, pdf_action_thread, pdf_action_page, free_avail, delete_action_ref, pdf_annot_node, pdf_start_link_node,
   pdf_end_link_node, pdf_dest_node, pdf_thread_node, pdf_start_thread_node, pdf_end_thread_node, null_flag, pdf_null, pdf_dest_xyz, pdf_dest_fit,
@@ -28,7 +28,7 @@ import { print_err, help, error } from '../error.ts'
 import { print_int } from '../print.ts'
 import { scan_normal_dimen, scan_register_num } from '../scan.ts'
 import { box, change_box, pdf_refxform_node, pdf_refximage_node } from '../nodes.ts'
-import { scan_font_ident, null_font } from '../tfm.ts'
+import { scan_font_ident, null_font, read_expand_font } from '../tfm.ts'
 import { read_image } from '../backend/images.ts'
 import { int_base } from '../types.ts'
 
@@ -256,7 +256,7 @@ export function run(e: Engine, chr: number): void {
       check_pdfoutput(e, '\\pdfincludechars', true)
       scan_font_ident(e); const f = e.cur_val
       if (f === null_font) pdf_error(e, 'font', 'invalid font identifier')
-      pdf_check_vf(e, f)
+      pdf_check_vf_cur_val(e, f)
       if (!e.font_used[f]) pdf_init_font(e, f)
       scan_toks(e, false, true); const t = tokens_to_string(e, e.def_ref); delete_token_ref(e, e.def_ref)
       for (const c of t) pdf_mark_char(e, f, c)
@@ -481,6 +481,7 @@ export function run(e: Engine, chr: number): void {
       delete_token_ref(e, e.def_ref)
       return
     case pdf_end_thread_node: check_pdfoutput(e, '\\pdfendthread', true); tail_append(e, new_whatsit_node(pdf_end_thread_node)); return
+    case 34: read_expand_font(e); return // pdf_font_expand_code: Implement \pdffontexpand
     case reset_timer_code: e.start_ms = performance.now(); return // pdftex.web Implement \pdfresettimer
     default: unsupported(e)
   }

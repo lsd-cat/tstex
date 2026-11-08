@@ -14,7 +14,7 @@ import type { BoxNode, Node, WhatsitNode, PdfAction } from './nodes.ts'
 import { colorstack_set, colorstack_push, colorstack_pop, colorstack_current } from './nodes.ts'
 import { pdf_action_user, pdf_action_page, pdf_action_goto, pdf_action_thread, copy_node_list, add_token_ref, new_whatsit_node, print_mark, print_font_identifier,
   pdf_dest_xyz, pdf_dest_fit, pdf_dest_fith, pdf_dest_fitv, pdf_dest_fitb, pdf_dest_fitbh, pdf_dest_fitbv, pdf_dest_fitr, pdf_null } from './nodes.ts'
-import { char_info, char_width, char_exists, null_font, param, space_code, space_shrink_code } from './tfm.ts'
+import { char_info, char_width, char_exists, null_font, param, space_code, space_shrink_code, new_font_type, real_font_type, virtual_font_type } from './tfm.ts'
 import { char_warning } from './tfm.ts'
 import { open_log_file, print_file_name } from './files.ts'
 import { out_what, expand_write_tokens } from './dvi.ts'
@@ -72,7 +72,7 @@ export function pdf_state() {
     font_list: [] as number[], obj_list: [] as number[], xform_list: [] as number[], ximage_list: [] as number[],
     text_procset: false, image_procset: 0,
     char_used: [] as (Uint8Array | undefined)[], font_size: [] as number[], font_num: [] as number[], font_has_space_char: [] as boolean[],
-    font_nobuiltin_tounicode: [] as boolean[], vf_checked: [] as boolean[], font_attr: [] as (string | undefined)[],
+    font_nobuiltin_tounicode: [] as boolean[], font_attr: [] as (string | undefined)[],
     obj_count: 0, last_obj: 0, retval: 0, // \pdfobj's counters, \pdflastobj, \pdfretval
     xform_count: 0, ximage_count: 0, last_xform: 0, last_ximage: 0, last_ximage_pages: 0, last_ximage_colordepth: 0, last_annot: 0, last_link: 0,
     cur_page_width: 0, cur_h_offset: 0, cur_v_offset: 0, is_shipping_page: false, fixed_gen_tounicode: 0,
@@ -273,7 +273,7 @@ export function pdf_print_mag_bp(e: Engine, s: number): void {
 }
 
 // [32b] fix_int, check_pdfversion, ensure_pdf_open
-const fix_int = (v: number, min: number, max: number) => v < min ? min : v > max ? max : v
+export const fix_int = (v: number, min: number, max: number) => v < min ? min : v > max ? max : v
 export function check_pdfversion(e: Engine): void {
   const s = e.ps
   if (!s.version_written) {
@@ -1050,12 +1050,19 @@ function pdf_hlist_out(e: Engine, this_box: BoxNode): void {
   e.cur_s--
 }
 
-// [32e] do_vf: a virtual font is refused (pdf_check_vf_cur_val's error would follow it)
+// [32e] do_vf: a virtual font is refused (pdf_check_vf_cur_val's error would follow it); auto_expand_vf finds no virtual base font
 export function pdf_check_vf(e: Engine, f: number): void {
-  if (!e.ps.vf_checked[f]) {
-    e.ps.vf_checked[f] = true
+  if (e.pdf_font_type[f] === new_font_type) {
+    e.pdf_font_type[f] = real_font_type
+    const b = e.pdf_font_blink[f]!
+    if (e.pdf_font_auto_expand[f] && b !== null_font) pdf_check_vf(e, b)
     if (e.fs.find(e.font_name[f] + '.vf', 'vf') !== null) fatal_error(e, `unsupported: virtual font ${e.font_name[f]}`)
   }
+}
+// pdftex.web pdf_check_vf_cur_val
+export function pdf_check_vf_cur_val(e: Engine, f: number): void {
+  pdf_check_vf(e, f)
+  if (e.pdf_font_type[f] === virtual_font_type) pdf_error(e, 'font', 'command cannot be used with virtual font')
 }
 // [32e] output_one_char
 function output_one_char(e: Engine, f: number, c: number): void {

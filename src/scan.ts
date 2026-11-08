@@ -8,7 +8,7 @@ import { count_base, scaled_base, skip_base, mu_skip_base, toks_base, active_bas
 import { vmode, par_shape_loc } from './types.ts'
 import { box, is_char_node, math_node, penalty_node, kern_node, glue_node, mu_glue, unset_node } from './nodes.ts'
 import type { Node } from './nodes.ts'
-import { scan_font_ident, find_font_dimen, param, quad_code, x_height_code } from './tfm.ts'
+import { scan_font_ident, find_font_dimen, param, quad_code, x_height_code, test_no_ligatures, get_tag_code, get_font_code, no_lig_code, tag_code } from './tfm.ts'
 import { sprint_cs, prim_lookup_cs } from './hash.ts'
 import { prim_eqtb_base, frozen_primitive, frozen_relax } from './types.ts'
 import { get_avail, free_avail, flush_list, temp_head, backup_head, new_spec, add_glue_ref, delete_glue_ref, print_spec, zero_glue, fil, filll } from './nodes.ts'
@@ -166,9 +166,12 @@ export function scan_something_internal(e: Engine, level: number, negative: bool
       e.cur_val = e.font_info[e.cur_val]!; e.cur_val_level = dimen_val
       break
     case Cmd.assign_font_int: // §426 Fetch a font integer
-      if (m > 1) unsupported(e) // pdftex's \lpcode etc.
       scan_font_ident(e)
-      e.cur_val = m === 0 ? e.hyphen_char[e.cur_val]! : e.skew_char[e.cur_val]!; e.cur_val_level = int_val
+      if (m === 0) e.cur_val = e.hyphen_char[e.cur_val]!
+      else if (m === 1) e.cur_val = e.skew_char[e.cur_val]!
+      else if (m === no_lig_code) e.cur_val = test_no_ligatures(e, e.cur_val)
+      else { const n = e.cur_val; scan_char_num(e); e.cur_val = m === tag_code ? get_tag_code(e, n, e.cur_val) : get_font_code(e, m, n, e.cur_val) }
+      e.cur_val_level = int_val
       break
     case Cmd.assign_int: e.cur_val = e.equiv[m]!; e.cur_val_level = int_val; break
     case Cmd.assign_dimen: e.cur_val = e.equiv[m]!; e.cur_val_level = dimen_val; break

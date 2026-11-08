@@ -120,6 +120,13 @@ export class Engine {
   total_pages = 0; max_v = 0; max_h = 0; max_push = 0; last_bop = -1; doing_leaders = false
   output_file_name = ''; fixed_pdfoutput: number | null = null
   // pdftex.web [32b]–[32f] PDF output (src/pdf.ts) and the C font back end (src/backend/fonts.ts); tounicode.c's table is dumped
+  // pdftex.web font expansion, letterspacing and the \lpcode family: per-font arrays that pdftex.ch resets at every start (not
+  // dumped); code_base[n][f] is pdf_font_lp_base…pdf_font_kn_ac_base for assign_font_int's chr n, an index into ps.mem or 0
+  pdf_font_type!: Uint8Array; pdf_font_blink!: Int32Array; pdf_font_elink!: Int32Array; pdf_font_stretch!: Int32Array
+  pdf_font_shrink!: Int32Array; pdf_font_step!: Int32Array; pdf_font_expand_ratio!: Int32Array; pdf_font_auto_expand!: Uint8Array
+  pdf_font_code_base!: Int32Array[]; vf_ls: { f: number, sq: number }[] = [] // letter_space_font's packet: base font, right4 amount
+  font_expand_ratio = 0; prev_char_p: Node | null = null; last_leftmost_char: Node | null = null; last_rightmost_char: Node | null = null
+  cur_font_step = 0; max_stretch_ratio = 0; max_shrink_ratio = 0; save_tail: Node | null = null; prev_tail: Node = contrib_head0
   ps = pdf_state(); fm = font_state(); glyph_unicode = new Map<string, number | string>(); start_time = 0
   get pdf(): Uint8Array | null { return this.fixed_pdfoutput !== null && this.fixed_pdfoutput > 0 && this.total_pages > 0 && this.history !== fatal_error_stop && this.ps.fixed_draftmode === 0 ? this.ps.op_buf.slice(0, this.ps.os_mode ? this.ps.op_ptr : this.ps.ptr) : null }
   last_match: ([number, string] | null)[] = [] // utils.c pmatch for \pdflastmatch
@@ -177,6 +184,11 @@ export class Engine {
     this.fs = opts.fs; this.format = opts.format ?? null
     if (opts.tcx !== undefined) read_tcx_file(this, opts.tcx)
     this.lim = { ...default_limits, ...opts.limits }; this.dvi_limit = this.lim.dvi_buf_size
+    const n = this.lim.font_max + 1
+    this.pdf_font_type = new Uint8Array(n); this.pdf_font_auto_expand = new Uint8Array(n)
+    this.pdf_font_blink = new Int32Array(n); this.pdf_font_elink = new Int32Array(n); this.pdf_font_stretch = new Int32Array(n)
+    this.pdf_font_shrink = new Int32Array(n); this.pdf_font_step = new Int32Array(n); this.pdf_font_expand_ratio = new Int32Array(n)
+    this.pdf_font_code_base = Array.from({ length: 12 }, () => new Int32Array(n))
     this.contrib_head = new_char(0, 0); this.head = this.tail = this.cur_q = this.contrib_head
   }
 

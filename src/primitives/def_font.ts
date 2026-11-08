@@ -48,7 +48,7 @@ export function assign(e: Engine, a: number): void {
   // §1260 If this font has already been loaded, set f to the internal font number and goto common_ending
   let f = -1
   for (let g = 1; g <= e.font_ptr && f < 0; g++) {
-    if (e.font_name[g] === e.cur_name && e.font_area[g] === e.cur_area) {
+    if (e.font_name[g] === e.cur_name && e.font_area[g] === e.cur_area && e.pdf_font_step[g] === 0) { // pdftex.ch: never an expandable font
       if (s > 0) { if (s === e.font_size[g]) f = g }
       else { // tex.ch [49.1260]
         e.arith_error = false

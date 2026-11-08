@@ -1,0 +1,179 @@
+entering extended mode
+(m8-fontcodes.tex
+> 0.
+l.4 \showthe\lpcode\a`A
+                        \showthe\efcode\a`A \showthe\knbscode\a`.
+
+> 1000.
+l.4 \showthe\lpcode\a`A \showthe\efcode\a`A
+                                            \showthe\knbscode\a`.
+
+> 0.
+l.4 ...A \showthe\efcode\a`A \showthe\knbscode\a`.
+
+
+> 1000.
+l.6 \showthe\lpcode\a`A
+                        \showthe\rpcode\a`A \showthe\efcode\a`A \showthe\efc...
+
+
+> -300.
+l.6 \showthe\lpcode\a`A \showthe\rpcode\a`A
+                                            \showthe\efcode\a`A \showthe\efc...
+
+
+> 1000.
+l.6 ...`A \showthe\rpcode\a`A \showthe\efcode\a`A
+                                                  \showthe\efcode\a`B \showt...
+
+
+> 0.
+l.6 ...`A \showthe\efcode\a`A \showthe\efcode\a`B
+                                                  \showthe\knbscode\a`. \sho...
+
+
+> 77.
+l.6 ... \showthe\efcode\a`B \showthe\knbscode\a`.
+                                                  \showthe\stbscode\a`.
+
+> 0.
+l.6 ...\showthe\knbscode\a`. \showthe\stbscode\a`.
+
+
+> 0.
+l.7 \showthe\lpcode\b`A
+
+
+> 1.
+l.8 \showthe\tagcode\a`f
+                         \showthe\tagcode\a`A \showthe\tagcode\a 200
+
+> 1.
+l.8 \showthe\tagcode\a`f \showthe\tagcode\a`A
+                                              \showthe\tagcode\a 200
+
+> -1.
+l.8 ...\showthe\tagcode\a`A \showthe\tagcode\a 200
+
+
+> 0.
+l.9 \showthe\pdfnoligatures\a
+
+
+> 0.
+l.10 \pdfcopyfont\c=\a \showthe\pdfnoligatures\c
+                                                 \show\c \showthe\lpcode\c`A...
+
+
+> \c=select font cmr10.
+l.10 ...ont\c=\a \showthe\pdfnoligatures\c \show\c
+                                                   \showthe\lpcode\c`A \mess...
+
+
+> 0.
+l.10 ...noligatures\c \show\c \showthe\lpcode\c`A
+                                                  \message{\fontname\c}
+
+cmr10
+> 1.
+l.11 \pdfnoligatures\c \showthe\pdfnoligatures\c
+                                                 \showthe\pdfnoligatures\a \...
+
+
+> 0.
+l.11 ...pdfnoligatures\c \showthe\pdfnoligatures\a
+                                                   \showthe\tagcode\c`f
+
+> 0.
+l.11 ...wthe\pdfnoligatures\a \showthe\tagcode\c`f
+
+
+> 0.
+l.12 \tagcode\a`f=-1 \showthe\tagcode\a`f
+
+
+> \d=select font cmr10+50ls.
+l.13 \letterspacefont\d\a 50 \show\d
+                                     \message{\fontname\d}\showthe\fontdimen...
+
+
+cmr10+50ls
+> 10.00002pt.
+<recently read> \d
+
+l.13 ...\message{\fontname\d}\showthe\fontdimen6\d
+                                                   \showthe\pdfnoligatures\d
+
+> 0.
+l.13 ...the\fontdimen6\d \showthe\pdfnoligatures\d
+
+
+> \e=select font cmr10-20ls at 12.0pt.
+l.14 \letterspacefont\e=\b -20 nolig \show\e
+                                             \message{\fontname\e}\showthe\p...
+
+
+cmr10-20ls at 12.0pt
+> 1.
+l.14 ...sage{\fontname\e}\showthe\pdfnoligatures\e
+
+
+> \lpcode=\lpcode.
+l.15 \show\lpcode
+                  \show\knaccode \show\pdfnoligatures \show\letterspacefont ...
+
+
+> \knaccode=\knaccode.
+l.15 \show\lpcode \show\knaccode
+                                 \show\pdfnoligatures \show\letterspacefont ...
+
+
+> \pdfnoligatures=\pdfnoligatures.
+l.15 ...lpcode \show\knaccode \show\pdfnoligatures
+                                                   \show\letterspacefont \sh...
+
+
+> \letterspacefont=\letterspacefont.
+l.15 ...\show\pdfnoligatures \show\letterspacefont
+                                                   \show\pdfcopyfont \show\t...
+
+
+> \pdfcopyfont=\pdfcopyfont.
+l.15 ...es \show\letterspacefont \show\pdfcopyfont
+                                                   \show\tagcode
+
+> \tagcode=\tagcode.
+l.15 ...rspacefont \show\pdfcopyfont \show\tagcode
+
+
+! Font \csname\endcsname=cmr10+28 at 12.0pt not loadable: Metric (TFM) file not
+ found.
+<to be read again>
+                   \message
+l.16 \pdffontexpand\b 30 20 7 \message
+                                      {[\the\pdfadjustspacing]}
+I wasn't able to read the size data for this font,
+so I will ignore the font specification.
+[Wizards can fix TFM files using TFtoPL/PLtoTF.]
+You might try inserting a different font spec;
+e.g., type `I\font<same font id>=<substitute font name>'.
+
+! Font \csname\endcsname=cmr10-14 at 12.0pt not loadable: Metric (TFM) file not
+ found.
+<to be read again>
+                   \message
+l.16 \pdffontexpand\b 30 20 7 \message
+                                      {[\the\pdfadjustspacing]}
+I wasn't able to read the size data for this font,
+so I will ignore the font specification.
+[Wizards can fix TFM files using TFtoPL/PLtoTF.]
+You might try inserting a different font spec;
+e.g., type `I\font<same font id>=<substitute font name>'.
+
+[0]
+> \f=select font cmr10 at 12.0pt.
+l.17 \font\f=cmr10 at 12pt \show\f
+
+
+ )
+No pages of output.

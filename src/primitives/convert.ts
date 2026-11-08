@@ -13,7 +13,7 @@ import { unsupported } from '../main.ts'
 import { open_log_file, find_tex_file } from '../files.ts'
 import { print_err, help, int_error, fatal_error, error } from '../error.ts'
 import { scan_font_ident, null_font } from '../tfm.ts'
-import { pdf_error, pdf_check_vf, pdf_init_font, pdf_check_obj, get_obj, obj_type_page, obj_type_xform, obj_type_ximage, newcolorstack } from '../pdf.ts'
+import { pdf_error, pdf_check_vf_cur_val, pdf_init_font, pdf_check_obj, get_obj, obj_type_page, obj_type_xform, obj_type_ximage, newcolorstack } from '../pdf.ts'
 import { print_scaled, unif_rand, norm_rand } from '../arith.ts'
 
 const pdf_ximage_bbox_code = 32, pdf_colorstack_init_code = 19, pdf_font_name_code = 9, pdf_font_objnum_code = 10, pdf_font_size_code = 11, pdf_page_ref_code = 12, pdf_xform_name_code = 13
@@ -116,7 +116,7 @@ export function run(e: Engine, chr: number): void {
   else if (c === pdf_font_name_code || c === pdf_font_objnum_code || c === pdf_font_size_code) { // pdftex.web
     scan_font_ident(e)
     if (e.cur_val === null_font) pdf_error(e, 'font', 'invalid font identifier')
-    if (c !== pdf_font_size_code) { pdf_check_vf(e, e.cur_val); if (!e.font_used[e.cur_val]) pdf_init_font(e, e.cur_val) }
+    if (c !== pdf_font_size_code) { pdf_check_vf_cur_val(e, e.cur_val); if (!e.font_used[e.cur_val]) pdf_init_font(e, e.cur_val) }
   }
   else if (c === pdf_page_ref_code) { scan_int(e); if (e.cur_val <= 0) pdf_error(e, 'pageref', 'invalid page number') }
   else if (c === pdf_xform_name_code) { scan_int(e); pdf_check_obj(e, obj_type_xform, e.cur_val) }

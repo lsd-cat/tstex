@@ -381,13 +381,15 @@ export function copy_node_list(e: Engine, p: Node | null): Node | null {
   return h.link
 }
 
-// §174 print_font_identifier (pdftex; pdf_font_blink is always null_font, expansion ratios are 0)
+// §174 print_font_identifier (pdftex.web: an expanded font shows its base font's name, and its ratio unless \pdftracingfonts>0)
 export function print_font_identifier(e: Engine, f: number): void {
-  print_esc(e, e.text.get(font_id_base + f) ?? 0)
+  print_esc(e, e.text.get(font_id_base + (e.pdf_font_blink[f] === 0 ? f : e.pdf_font_blink[f]!)) ?? 0)
   if (e.equiv[int_base + pdf_tracing_fonts_code]! > 0) {
     print(e, ' ('); print(e, e.font_name[f]!)
     if (e.font_size[f] !== e.font_dsize[f]) { print(e, '@'); print_scaled(e, e.font_size[f]!); print(e, 'pt') }
     print(e, ')')
+  } else if (e.pdf_font_expand_ratio[f] !== 0) {
+    print(e, ' ('); if (e.pdf_font_expand_ratio[f]! > 0) print(e, '+'); print_int(e, e.pdf_font_expand_ratio[f]!); print(e, ')')
   }
 }
 

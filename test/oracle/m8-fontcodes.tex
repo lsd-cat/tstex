@@ -1,0 +1,18 @@
+%! oracle: etex
+\catcode`\{=1 \catcode`\}=2 \catcode`\#=6
+\font\a=cmr10 \font\b=cmr10 at 12pt
+\showthe\lpcode\a`A \showthe\efcode\a`A \showthe\knbscode\a`.
+\lpcode\a`A=2000 \rpcode\a`A=-300 \efcode\a`A=1500 \efcode\a`B=-5 \knbscode\a`.=77
+\showthe\lpcode\a`A \showthe\rpcode\a`A \showthe\efcode\a`A \showthe\efcode\a`B \showthe\knbscode\a`. \showthe\stbscode\a`.
+\showthe\lpcode\b`A
+\showthe\tagcode\a`f \showthe\tagcode\a`A \showthe\tagcode\a 200
+\showthe\pdfnoligatures\a
+\pdfcopyfont\c=\a \showthe\pdfnoligatures\c \show\c \showthe\lpcode\c`A \message{\fontname\c}
+\pdfnoligatures\c \showthe\pdfnoligatures\c \showthe\pdfnoligatures\a \showthe\tagcode\c`f
+\tagcode\a`f=-1 \showthe\tagcode\a`f
+\letterspacefont\d\a 50 \show\d \message{\fontname\d}\showthe\fontdimen6\d \showthe\pdfnoligatures\d
+\letterspacefont\e=\b -20 nolig \show\e \message{\fontname\e}\showthe\pdfnoligatures\e
+\show\lpcode \show\knaccode \show\pdfnoligatures \show\letterspacefont \show\pdfcopyfont \show\tagcode
+\pdffontexpand\b 30 20 7 \message{[\the\pdfadjustspacing]}
+\font\f=cmr10 at 12pt \show\f
+\end

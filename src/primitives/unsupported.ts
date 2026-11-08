@@ -6,9 +6,7 @@ import { Cmd, par_shape_loc, etex_pen_base } from '../types.ts'
 import { print_esc } from '../print.ts'
 import type { Prim } from './index.ts'
 // [name, cmd, chr, 1 if e-TeX mode only, 2 if print-only]
-const table: [string, number, number, number?][] = [
-  ['letterspacefont', Cmd.letterspace_font, 0], ['pdfcopyfont', Cmd.pdf_copy_font, 0],
-]
+const table: [string, number, number, number?][] = []
 export const prims: Prim[] = []
 const names = new Map<number, string>()
 for (const [name, cmd, chr, flag] of table) {
