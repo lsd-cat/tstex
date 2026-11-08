@@ -121,7 +121,7 @@ export class Engine {
   output_file_name = ''; fixed_pdfoutput: number | null = null
   // pdftex.web [32b]–[32f] PDF output (src/pdf.ts) and the C font back end (src/backend/fonts.ts); tounicode.c's table is dumped
   ps = pdf_state(); fm = font_state(); glyph_unicode = new Map<string, number | string>(); start_time = 0
-  get pdf(): Uint8Array | null { return this.fixed_pdfoutput !== null && this.fixed_pdfoutput > 0 && this.total_pages > 0 && this.history !== fatal_error_stop ? this.ps.op_buf.slice(0, this.ps.os_mode ? this.ps.op_ptr : this.ps.ptr) : null }
+  get pdf(): Uint8Array | null { return this.fixed_pdfoutput !== null && this.fixed_pdfoutput > 0 && this.total_pages > 0 && this.history !== fatal_error_stop && this.ps.fixed_draftmode === 0 ? this.ps.op_buf.slice(0, this.ps.os_mode ? this.ps.op_ptr : this.ps.ptr) : null }
   last_match: ([number, string] | null)[] = [] // utils.c pmatch for \pdflastmatch
   cur_page_height = 0; pdf_last_x_pos = 0; pdf_last_y_pos = 0 // pdftex.web \pdfsavepos
   // §1342 \write streams; written files are collected here (TexFS is read-only)

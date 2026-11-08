@@ -1,0 +1,5 @@
+%! oracle: pdftex
+\pdfoutput=1 \pdfcompresslevel=0 \pdfobjcompresslevel=0 \input plain
+% fix_pdf_draftmode: \pdfdraftmode is frozen at the first shipout
+\shipout\hbox{x}\pdfdraftmode=1 \shipout\hbox{y}
+\end

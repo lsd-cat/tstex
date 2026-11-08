@@ -1,0 +1,5 @@
+%! oracle: pdftex
+\pdfoutput=1 \pdfcompresslevel=0 \pdfobjcompresslevel=0 \input plain
+% check_pdfversion freezes fix_int(\pdfdraftmode,0,1), then fix_pdf_draftmode compares it with \pdfdraftmode=2
+\pdfdraftmode=2 \shipout\hbox{x}
+\end

@@ -1,0 +1,6 @@
+%! oracle: pdftex
+\pdfoutput=1 \pdfcompresslevel=0 \pdfobjcompresslevel=0 \input plain
+% \pdfdraftmode=1: no images or fonts written, no PDF; \pdfdraftmode=2 would be an error (check_pdfversion clamps it to 1)
+\pdfdraftmode=1 \pdfcompresslevel=9
+\pdfximage{images/fig.png}\shipout\hbox{x\pdfrefximage\pdflastximage}\message{[\the\pdfcompresslevel]}
+\end

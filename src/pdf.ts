@@ -59,7 +59,7 @@ export function pdf_state() {
   return {
     op_buf, buf: op_buf, ptr: 0, op_ptr: 0, os_buf: new Uint8Array(1 << 12), os_ptr: 0,
     os_mode: false, os_enable: false, os_cur_objnum: 0, os_cntr: 0, os_objidx: 0, os_objnum: [] as number[], os_objoff: [] as number[],
-    gone: 0, zip_start: -1, save_offset: 0, stream_length_offset: 0, seek_write_length: false,
+    gone: 0, fixed_draftmode: 0, draftmode_set: false, zip_start: -1, save_offset: 0, stream_length_offset: 0, seek_write_length: false,
     version_written: false, fixed_major: 0, fixed_minor: 0, fixed_objcompresslevel: 0, fixed_decimal_digits: 0, min_bp_val: 0,
     scaled_out: 0, init_output: false, output_file_name: '',
     f: null_font, h: 0, v: 0, tj_start_h: 0, delta_h: 0, origin_h: 0, origin_v: 0, doing_string: false, doing_text: false,
@@ -291,7 +291,7 @@ export function check_pdfversion(e: Engine): void {
     s.fixed_image_hicolor = fix_int(int_par(e, pdf_image_hicolor_code), 0, 1)
     s.fixed_image_apply_gamma = fix_int(int_par(e, pdf_image_apply_gamma_code), 0, 1)
     s.fixed_objcompresslevel = fix_int(int_par(e, pdf_objcompresslevel_code), 0, 3)
-    if (int_par(e, pdf_draftmode_code) > 0) fatal_error(e, 'unsupported: \\pdfdraftmode') // pass B
+    s.fixed_draftmode = fix_int(int_par(e, pdf_draftmode_code), 0, 1) // fix_pdfoutput below then compares it with \pdfdraftmode
     if ((s.fixed_major > 1 || s.fixed_minor >= 5) && s.fixed_objcompresslevel > 0) s.os_enable = true
     else {
       if (s.fixed_objcompresslevel > 0) {
@@ -313,11 +313,14 @@ function ensure_pdf_open(e: Engine): void {
   e.ps.output_file_name = e.job_name + '.pdf'
 }
 
-// [32f] fix_pdfoutput (fix_pdf_draftmode: \pdfdraftmode is unsupported)
+// [32f] fix_pdfoutput, fix_pdf_draftmode
 export function fix_pdfoutput(e: Engine): void {
-  const v = int_par(e, pdf_output_code - 0)
+  const v = int_par(e, pdf_output_code - 0), s = e.ps
   if (e.fixed_pdfoutput === null) e.fixed_pdfoutput = v
   else if (e.fixed_pdfoutput !== v) pdf_error(e, 'setup', '\\pdfoutput can only be changed before anything is written to the output')
+  if (!s.draftmode_set) { s.fixed_draftmode = int_par(e, pdf_draftmode_code); s.draftmode_set = true }
+  else if (s.fixed_draftmode !== int_par(e, pdf_draftmode_code)) pdf_error(e, 'setup', '\\pdfdraftmode can only be changed before anything is written to the output')
+  if (s.fixed_draftmode > 0) { e.equiv[int_base + pdf_compress_level_code] = 0; s.fixed_objcompresslevel = 0 }
 }
 
 // [32b] pdf_begin_stream, pdf_end_stream; the zip states become one deflate of the stream's bytes
@@ -1318,7 +1321,7 @@ export function pdf_write_image(e: Engine, n: number): void {
   const s = e.ps, d = s.obj_aux[n]!
   pdf_begin_dict(e, n, 0)
   if (s.mem[d + 3] !== 0) { pdf_print_toks_ln(e, s.mem[d + 3]!); delete_token(e, s.mem[d + 3]!); s.mem[d + 3] = 0 }
-  write_image(e, s.images[s.mem[d + 4]!]!) // fixed_pdf_draftmode is 0: \pdfdraftmode is unsupported
+  if (s.fixed_draftmode === 0) write_image(e, s.images[s.mem[d + 4]!]!)
 }
 
 // utils.c extxnoverd
@@ -1495,7 +1498,8 @@ export function finish_pdf_file(e: Engine): void {
       print_ln(e); print_ln(e); print(e, 'pdfTeX warning: pdftex: dangling objects discarded, no output file produced.'); print_ln(e)
       s.ptr = 0
     }
-  } else {
+  } else if (s.fixed_draftmode !== 0) pdf_warning(e, '', '\\pdfdraftmode enabled, not changing output pdf', true, true)
+  else {
     if (e.total_pages % pages_tree_kids_max !== 0) s.obj_info[s.last_pages] = e.total_pages % pages_tree_kids_max
     // Check for non-existing pages
     let k = s.head_tab[obj_type_page]!
