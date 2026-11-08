@@ -15,7 +15,6 @@ import { back_error } from './input.ts'
 import { scan_int, scan_four_bit_int } from './scan.ts'
 
 export const null_font = 0, non_char = 256, non_address = 0
-export const font_max = 9000, font_mem_size = 8000000 // TeX Live texmf.cnf
 export const no_tag = 0, lig_tag = 1, list_tag = 2, ext_tag = 3 // §544
 export const stop_flag = 128, kern_flag = 128 // §545
 const kern_base_offset = 256 * 128
@@ -103,7 +102,7 @@ export function read_font_info(e: Engine, u: number, nom: string, aire: string, 
         // §566 Use size fields to allocate font information
         lf = lf - 6 - lh
         if (np < 7) lf = lf + 7 - np
-        if (e.font_ptr === font_max || e.fmem_ptr + lf > font_mem_size) { // §567
+        if (e.font_ptr === e.lim.font_max || e.fmem_ptr + lf > e.lim.font_mem_size) { // §567
           start_font_error_message(); print(e, ' not loaded: Not enough room left')
           help(e, "I'm afraid I won't be able to make use of this font,", 'because my memory for character-size data is too small.',
             "If you're really stuck, ask a wizard to enlarge me.", "Or maybe try `I\\font<same font id>=<name of loaded font>'.")
@@ -265,7 +264,7 @@ export function find_font_dimen(e: Engine, writing: boolean): void {
       if (f < e.font_ptr) e.cur_val = e.fmem_ptr
       else { // §580 Increase the number of parameters in the last font
         do {
-          if (e.fmem_ptr === font_mem_size) overflow(e, 'font memory', font_mem_size)
+          if (e.fmem_ptr === e.lim.font_mem_size) overflow(e, 'font memory', e.lim.font_mem_size)
           e.font_info[e.fmem_ptr] = 0; e.fmem_ptr++; e.font_params[f]!++
         } while (n !== e.font_params[f])
         e.cur_val = e.fmem_ptr - 1

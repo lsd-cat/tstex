@@ -1,6 +1,6 @@
 // §54–71 on-line and off-line printing; §245 begin/end_diagnostic; §211 print_mode
 import type { Engine } from './engine.ts'
-import { no_print, term_only, log_only, term_and_log, pseudo, new_string, max_print_line, error_line, Cmd, spotless, warning_issued } from './types.ts'
+import { no_print, term_only, log_only, term_and_log, pseudo, new_string, Cmd, spotless, warning_issued } from './types.ts'
 import { int_base, new_line_char_code, escape_char_code, tracing_online_code } from './eqtb.ts'
 
 // §48–49 the str_pool representation of character k (TeX Live -ini: printable is 32..126)
@@ -33,19 +33,19 @@ export function print_char(e: Engine, s: number): void {
   switch (e.selector) {
     case term_and_log:
       e.log += String.fromCharCode(s); e.terminal += String.fromCharCode(s); e.term_offset++; e.file_offset++
-      if (e.term_offset === max_print_line) { e.terminal += '\n'; e.term_offset = 0 }
-      if (e.file_offset === max_print_line) { e.log += '\n'; e.file_offset = 0 }
+      if (e.term_offset === e.lim.max_print_line) { e.terminal += '\n'; e.term_offset = 0 }
+      if (e.file_offset === e.lim.max_print_line) { e.log += '\n'; e.file_offset = 0 }
       break
     case log_only:
       e.log += String.fromCharCode(s); e.file_offset++
-      if (e.file_offset === max_print_line) print_ln(e)
+      if (e.file_offset === e.lim.max_print_line) print_ln(e)
       break
     case term_only:
       e.terminal += String.fromCharCode(s); e.term_offset++
-      if (e.term_offset === max_print_line) print_ln(e)
+      if (e.term_offset === e.lim.max_print_line) print_ln(e)
       break
     case no_print: break
-    case pseudo: if (e.tally < e.trick_count) e.trick_buf[e.tally % error_line] = s; break
+    case pseudo: if (e.tally < e.trick_count) e.trick_buf[e.tally % e.lim.error_line] = s; break
     case new_string: e.cur_str.push(s); break
     default: write_file_out(e, String.fromCharCode(s)) // a \write stream 0..15
   }

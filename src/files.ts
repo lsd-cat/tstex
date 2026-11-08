@@ -7,7 +7,6 @@ import { get_x_token } from './expand.ts'
 import { print, print_char, print_nl, print_ln, print_int, print_two, slow_print, begin_diagnostic, end_diagnostic } from './print.ts'
 import { int_par, end_line_char_code, tracing_stack_levels_code } from './eqtb.ts'
 import { begin_file_reading, end_file_reading, back_input, input_ln, firm_up_the_line, new_line } from './input.ts'
-import { max_print_line } from './types.ts'
 
 // §480 read_open states
 export const just_open = 1, closed = 2
@@ -125,7 +124,7 @@ export function start_input(e: Engine): void {
   e.cur_name = found.name.slice(sl, dot >= sl ? dot : undefined); e.cur_ext = dot >= sl ? found.name.slice(dot) : ''
   e.cur_input.name = 20 // any string number >19 marks a file level
   if (e.job_name === '') { e.job_name = e.cur_name; open_log_file(e) }
-  if (e.term_offset + found.name.length > max_print_line - 2) print_ln(e)
+  if (e.term_offset + found.name.length > e.lim.max_print_line - 2) print_ln(e)
   else if (e.term_offset > 0 || e.file_offset > 0) print_char(e, 32)
   print_char(e, 40); e.open_parens++; slow_print(e, found.name)
   if (int_par(e, tracing_stack_levels_code) > 0) { // tracingstacklevels.ch

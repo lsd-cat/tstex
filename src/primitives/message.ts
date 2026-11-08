@@ -1,6 +1,6 @@
 // §1277–1284 \message \errmessage
 import type { Engine } from '../engine.ts'
-import { Cmd, new_string, max_print_line, error_stop_mode } from '../types.ts'
+import { Cmd, new_string, error_stop_mode } from '../types.ts'
 import { print_esc, print_ln, print_char, slow_print } from '../print.ts'
 import { token_show } from '../tokens.ts'
 import { flush_list } from '../nodes.ts'
@@ -32,7 +32,7 @@ export function run(e: Engine, chr: number): void {
     return
   }
   // §1280 Print string s on the terminal
-  if (e.term_offset + s.length > max_print_line - 2) print_ln(e)
+  if (e.term_offset + s.length > e.lim.max_print_line - 2) print_ln(e)
   else if (e.term_offset > 0 || e.file_offset > 0) print_char(e, 32)
   slow_print(e, s)
 }

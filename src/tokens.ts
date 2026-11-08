@@ -1,6 +1,6 @@
 // §289–299 token lists: representation, show_token_list, print_meaning, print_cmd_chr
 import type { Engine } from './engine.ts'
-import { Cmd, error_line, half_error_line } from './types.ts'
+import { Cmd } from './types.ts'
 import { print, print_char, print_esc, print_nl, print_ln, print_hex, print_mode, begin_diagnostic, end_diagnostic } from './print.ts'
 import { print_cs } from './hash.ts'
 import { registry } from './primitives/index.ts'
@@ -46,8 +46,8 @@ export function show_token_list(e: Engine, p: number, q: number, l: number): voi
 // §316 set_trick_count
 export function set_trick_count(e: Engine): void {
   e.first_count = e.tally
-  e.trick_count = e.tally + 1 + error_line - half_error_line
-  if (e.trick_count < error_line) e.trick_count = error_line
+  e.trick_count = e.tally + 1 + e.lim.error_line - e.lim.half_error_line
+  if (e.trick_count < e.lim.error_line) e.trick_count = e.lim.error_line
 }
 
 // §295 token_show

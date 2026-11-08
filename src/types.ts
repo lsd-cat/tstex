@@ -50,7 +50,6 @@ export const spotless = 0, warning_issued = 1, error_message_issued = 2, fatal_e
 export const no_print = 16, term_only = 17, log_only = 18, term_and_log = 19, pseudo = 20, new_string = 21
 
 // §11 (pdftex/TeX Live values)
-export const max_print_line = 79, error_line = 79, half_error_line = 50
 
 // §289 token constants
 export const cs_token_flag = 0o7777

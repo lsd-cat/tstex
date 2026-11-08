@@ -1,6 +1,6 @@
 // §72–98 reporting errors (no interactive dialog: error_stop_mode's prompt is a fatal error), §311–320 show_context
 import type { Engine } from './engine.ts'
-import { batch_mode, error_stop_mode, scroll_mode, error_message_issued, fatal_error_stop, term_and_log, term_only, pseudo, error_line, half_error_line } from './types.ts'
+import { batch_mode, error_stop_mode, scroll_mode, error_message_issued, fatal_error_stop, term_and_log, term_only, pseudo } from './types.ts'
 import { print, print_char, print_nl, print_ln, print_int } from './print.ts'
 import { int_par, error_context_lines_code, end_line_char_code, err_help_loc } from './eqtb.ts'
 import { print_cs } from './hash.ts'
@@ -143,14 +143,14 @@ export function show_context(e: Engine): void {
         if (e.trick_count === 1000000) set_trick_count(e)
         const m = e.tally < e.trick_count ? e.tally - e.first_count : e.trick_count - e.first_count
         let p: number, n: number
-        if (l + e.first_count <= half_error_line) { p = 0; n = l + e.first_count }
-        else { print(e, '...'); p = l + e.first_count - half_error_line + 3; n = half_error_line }
-        for (let q = p; q < e.first_count; q++) print_char(e, e.trick_buf[q % error_line]!)
+        if (l + e.first_count <= e.lim.half_error_line) { p = 0; n = l + e.first_count }
+        else { print(e, '...'); p = l + e.first_count - e.lim.half_error_line + 3; n = e.lim.half_error_line }
+        for (let q = p; q < e.first_count; q++) print_char(e, e.trick_buf[q % e.lim.error_line]!)
         print_ln(e)
         for (let q = 1; q <= n; q++) print_char(e, 32)
-        p = m + n <= error_line ? e.first_count + m : e.first_count + (error_line - n - 3)
-        for (let q = e.first_count; q < p; q++) print_char(e, e.trick_buf[q % error_line]!)
-        if (m + n > error_line) print(e, '...')
+        p = m + n <= e.lim.error_line ? e.first_count + m : e.first_count + (e.lim.error_line - n - 3)
+        for (let q = e.first_count; q < p; q++) print_char(e, e.trick_buf[q % e.lim.error_line]!)
+        if (m + n > e.lim.error_line) print(e, '...')
         nn++
       }
     } else if (nn === int_par(e, error_context_lines_code)) { print_nl(e, '...'); nn++ }

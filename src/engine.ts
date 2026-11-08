@@ -2,12 +2,12 @@
 import type { TexFS } from './platform/fs.ts'
 import { Cmd, vmode, batch_mode, fatal_error_stop, spotless, no_print, term_only, int_val, warning_issued, error_stop_mode, term_and_log } from './types.ts'
 import type { InState } from './types.ts'
-import { hash_size, hash_extra, tracing_stats_code, pdf_output_code } from './types.ts'
+import { tracing_stats_code, pdf_output_code } from './types.ts'
 import { print, print_nl, print_char, print_esc, print_int } from './print.ts'
 import { JumpOut, fatal_error, overflow, print_err, token_list } from './error.ts'
-import { init_eqtb, fix_date_and_time, eqtb_size, save_size, int_base, new_line_char_code, end_line_char_code, cat_code_base, level_one } from './eqtb.ts'
+import { init_eqtb, fix_date_and_time, eqtb_size, int_base, new_line_char_code, end_line_char_code, cat_code_base, level_one } from './eqtb.ts'
 import { init_prim } from './primitives/index.ts'
-import { new_line, end_token_list, end_file_reading, normal, stack_size, buf_size } from './input.ts'
+import { new_line, end_token_list, end_file_reading, normal } from './input.ts'
 import type { InputFile } from './input.ts'
 import { init_specs, new_char, glue_node } from './nodes.ts'
 import { new_page_ins_head } from './page.ts'
@@ -15,7 +15,6 @@ import type { GlueSpec, Node, CharNode } from './nodes.ts'
 import type { ListState } from './main.ts'
 import type { AlignState, AlignRecord } from './align.ts'
 import type { Movement } from './dvi.ts'
-import { dvi_buf_size } from './dvi.ts'
 import { init_fonts } from './tfm.ts'
 import { hyph_state } from './hyphenate.ts'
 
@@ -26,10 +25,19 @@ import { open_log_file, start_input } from './files.ts'
 import { print_cmd_chr } from './tokens.ts'
 import { main_control } from './main.ts'
 import { finish_dvi_file } from './dvi.ts'
-import { expand_depth, param_size } from './expand.ts'
+
+// The capacities TeX checks (tex.web §11, tex.ch), as TeX Live's texmf.cnf sets them; tripman's trip run passes tex.web's.
+// eqtb's layout does not depend on them: hash_size only bounds how many control sequences may be made.
+export const default_limits = {
+  error_line: 79, half_error_line: 50, max_print_line: 79, stack_size: 10000, max_in_open: 15, buf_size: 200000,
+  param_size: 20000, nest_size: 1000, save_size: 200000, font_max: 9000, font_mem_size: 8000000, hash_size: 15000,
+  hash_extra: 600000, hyph_size: 8191, trie_size: 1000000, trie_op_size: 35111, dvi_buf_size: 16384, expand_depth: 10000,
+}
+export type Limits = typeof default_limits
 
 export class Engine {
   fs: TexFS
+  lim: Limits
   log = ''; terminal = ''
   // §54 printing
   selector = term_only; tally = 0; term_offset = 0; file_offset = 0
@@ -96,7 +104,7 @@ export class Engine {
   cancel_boundary = false; ins_disc = false; cur_l = 0; cur_r = 0; cur_q: Node = contrib_head0; lig_stack: Node | null = null
   ligature_present = false; lft_hit = false; rt_hit = false
   // §595, §605, §616, §646 DVI output
-  dvi_buf = new Uint8Array(1 << 16); dvi_ptr = 0; dvi_limit = dvi_buf_size; dvi_offset = 0; dvi_gone = 0
+  dvi_buf = new Uint8Array(1 << 16); dvi_ptr = 0; dvi_limit = 0; dvi_offset = 0; dvi_gone = 0
   down_ptr: Movement | null = null; right_ptr: Movement | null = null
   dvi_h = 0; dvi_v = 0; cur_h = 0; cur_v = 0; dvi_f = 0; cur_s = -1
   total_pages = 0; max_v = 0; max_h = 0; max_push = 0; last_bop = -1; doing_leaders = false
@@ -133,8 +141,9 @@ export class Engine {
   // §246
   sys_time = 0; sys_day = 0; sys_month = 0; sys_year = 0
 
-  constructor(opts: { fs: TexFS }) {
+  constructor(opts: { fs: TexFS, limits?: Partial<Limits> }) {
     this.fs = opts.fs
+    this.lim = { ...default_limits, ...opts.limits }; this.dvi_limit = this.lim.dvi_buf_size
     this.contrib_head = new_char(0, 0); this.head = this.tail = this.cur_q = this.contrib_head
   }
 
@@ -160,7 +169,7 @@ export class Engine {
     } catch (x) {
       // shortcut: the JS stack runs out (~1500 nested expansions) before TeX's expand_depth=10000; report it as TeX does, upgrade by making expand iterative if documents need more
       if (x instanceof RangeError && /call stack/.test(x.message)) {
-        try { overflow(this, 'expansion depth', expand_depth) } catch (y) { if (!(y instanceof JumpOut)) throw y }
+        try { overflow(this, 'expansion depth', this.lim.expand_depth) } catch (y) { if (!(y instanceof JumpOut)) throw y }
       } else if (!(x instanceof JumpOut)) throw x
     }
     close_files_and_terminate(this)
@@ -202,10 +211,10 @@ function close_files_and_terminate(e: Engine): void {
   if (e.equiv[int_base + tracing_stats_code]! > 0 && e.log_opened) { // §1334 Output statistics about this job
     // shortcut: no string pool, mem or font arrays, so strings/pool/memory are this engine's own counts against TeX Live's sizes
     e.log += ` \nHere is how much of TeX's memory you used:\n 0 strings out of 500000\n 0 string characters out of 6250000\n`
-      + ` ${e.mem_end + 1} words of memory out of 5000000\n ${e.cs_count} multiletter control sequences out of ${hash_size - hash_extra}+${hash_extra}\n`
-      + ` ${e.fmem_ptr} words of font info for ${e.font_ptr} font${e.font_ptr !== 1 ? 's' : ''}, out of 8000000 for 9000\n 0 hyphenation exceptions out of 8191\n`
+      + ` ${e.mem_end + 1} words of memory out of 5000000\n ${e.cs_count} multiletter control sequences out of ${e.lim.hash_size}+${e.lim.hash_extra}\n`
+      + ` ${e.fmem_ptr} words of font info for ${e.font_ptr} font${e.font_ptr !== 1 ? 's' : ''}, out of ${e.lim.font_mem_size} for ${e.lim.font_max}\n ${e.hy.hyph_count} hyphenation exception${e.hy.hyph_count !== 1 ? "s" : ""} out of ${e.lim.hyph_size}\n`
       + ` ${e.max_in_stack}i,${e.max_nest_stack}n,${e.max_param_stack}p,${e.max_buf_stack + 1}b,${e.max_save_stack + 6}s stack positions out of `
-      + `${stack_size}i,1000n,${param_size}p,${buf_size}b,${save_size}s\n`
+      + `${e.lim.stack_size}i,${e.lim.nest_size}n,${e.lim.param_size}p,${e.lim.buf_size}b,${e.lim.save_size}s\n`
   }
   if (e.fixed_pdfoutput === null) e.fixed_pdfoutput = e.equiv[int_base + pdf_output_code]! // pdftex: fix_pdfoutput
   if (e.fixed_pdfoutput > 0) { // no page can be shipped in PDF mode yet

@@ -15,7 +15,6 @@ import { get_x_token } from './expand.ts'
 import { scan_left_brace, scan_char_num, scan_toks } from './scan.ts'
 
 const uc_hyph_code = 38, language_code = 50
-export const trie_size = 1000000, trie_op_size = 35111, hyph_size = 8191 // TeX Live texmf.cnf, tex.ch
 const max_trie_op = 65535
 
 // §892, §900, §905, §921, §926, §943, §947, §950 the hyphenation globals
@@ -370,7 +369,7 @@ export function new_hyph_exceptions(e: Engine): void {
             n++; h.hc[n] = h.cur_lang
             const key = String.fromCharCode(...h.hc.slice(1, n + 1))
             // §940 tex.ch: a repeated word replaces the old entry without counting
-            if (h.hyph_count === hyph_size) overflow(e, 'exception dictionary', hyph_size)
+            if (h.hyph_count === e.lim.hyph_size) overflow(e, 'exception dictionary', e.lim.hyph_size)
             if (!h.hyph_word.has(key)) h.hyph_count++
             h.hyph_word.set(key, p)
           }
@@ -392,7 +391,7 @@ function new_trie_op(e: Engine, d: number, n: number, v: number): number {
   const h = e.hy, key = `${d},${n},${v},${h.cur_lang}`
   const l = h.trie_op_hash.get(key)
   if (l !== undefined) return h.trie_op_val[l]!
-  if (h.trie_op_ptr === trie_op_size) overflow(e, 'pattern memory ops', trie_op_size)
+  if (h.trie_op_ptr === e.lim.trie_op_size) overflow(e, 'pattern memory ops', e.lim.trie_op_size)
   let u = h.trie_used[h.cur_lang]!
   if (u === max_trie_op) overflow(e, 'pattern memory ops per language', max_trie_op)
   h.trie_op_ptr++; u++; h.trie_used[h.cur_lang] = u
@@ -428,7 +427,7 @@ function first_fit(e: Engine, p: number): void {
   for (;;) {
     h = z - c
     if (t.trie_max < h + 256) { // §954 Ensure that trie_max>=h+256
-      if (trie_size <= h + 256) overflow(e, 'pattern memory', trie_size)
+      if (e.lim.trie_size <= h + 256) overflow(e, 'pattern memory', e.lim.trie_size)
       do {
         t.trie_max++; t.trie_taken[t.trie_max] = false
         t.trie_link[t.trie_max] = t.trie_max + 1; t.trie_back[t.trie_max] = t.trie_max - 1
@@ -521,7 +520,7 @@ export function new_patterns(e: Engine): void {
             let p = h.trie_l[q]!, first_child = true
             while (p > 0 && c > h.trie_c[p]!) { q = p; p = h.trie_r[q]!; first_child = false }
             if (p === 0 || c < h.trie_c[p]!) { // §964 Insert a new trie node between q and p, and make p point to it
-              if (h.trie_ptr === trie_size) overflow(e, 'pattern memory', trie_size)
+              if (h.trie_ptr === e.lim.trie_size) overflow(e, 'pattern memory', e.lim.trie_size)
               h.trie_ptr++; h.trie_r[h.trie_ptr] = p; p = h.trie_ptr; h.trie_l[p] = 0
               if (first_child) h.trie_l[q] = p; else h.trie_r[q] = p
               h.trie_c[p] = c; h.trie_o[p] = 0

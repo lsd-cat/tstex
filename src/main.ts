@@ -58,7 +58,6 @@ const every_vbox_loc = local_base + 6, every_hbox_loc = local_base + 5, every_hb
 // TeX's aux word is three fields here (prev_depth, space_factor+clang, incompleat_noad); eTeX_aux is LR_box/delim_ptr
 export type ListState = { mode: number, head: Node, tail: Node, prev_graf: number, mode_line: number, prev_depth: number,
   space_factor: number, clang: number, incompleat_noad: Node | null, eTeX_aux: Node | null }
-const nest_size = 1000 // TeX Live texmf.cnf
 const cur_list = (e: Engine): ListState => ({ mode: e.mode, head: e.head, tail: e.tail, prev_graf: e.prev_graf,
   mode_line: e.mode_line, prev_depth: e.prev_depth, space_factor: e.space_factor, clang: e.clang, incompleat_noad: e.incompleat_noad,
   eTeX_aux: e.eTeX_aux })
@@ -70,7 +69,7 @@ export function tail_append(e: Engine, p: Node): void { e.tail.link = p; e.tail 
 export function push_nest(e: Engine): void {
   if (e.nest_ptr > e.max_nest_stack) {
     e.max_nest_stack = e.nest_ptr
-    if (e.nest_ptr === nest_size) overflow(e, 'semantic nest size', nest_size)
+    if (e.nest_ptr === e.lim.nest_size) overflow(e, 'semantic nest size', e.lim.nest_size)
   }
   e.nest[e.nest_ptr] = cur_list(e); e.nest_ptr++
   e.head = new_char(0, 0); e.tail = e.head; e.prev_graf = 0; e.mode_line = e.line; e.eTeX_aux = null

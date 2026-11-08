@@ -8,7 +8,7 @@ import { confusion } from './error.ts'
 import { show_token_list } from './tokens.ts'
 import { print_file_name } from './files.ts'
 import { print_skip_param } from './eqtb.ts'
-import { glue_base, box_base, int_base, font_id_base, max_print_line } from './types.ts'
+import { glue_base, box_base, int_base, font_id_base } from './types.ts'
 
 const show_box_breadth_code = 24, show_box_depth_code = 25, pdf_tracing_fonts_code = 85
 
@@ -369,7 +369,7 @@ export function print_font_and_char(e: Engine, f: number, c: number): void {
   print_char(e, 32); print(e, c)
 }
 export function print_mark(e: Engine, p: number): void {
-  print_char(e, 123); show_token_list(e, e.link[p]!, 0, max_print_line - 10); print_char(e, 125)
+  print_char(e, 123); show_token_list(e, e.link[p]!, 0, e.lim.max_print_line - 10); print_char(e, 125)
 }
 export function print_rule_dimen(e: Engine, d: number): void {
   if (d === null_flag) print_char(e, 42); else print_scaled(e, d)

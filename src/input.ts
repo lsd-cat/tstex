@@ -1,6 +1,6 @@
 // §31 input_ln, §300–365 input stacks and get_next
 import type { Engine } from './engine.ts'
-import { Cmd, log_only, nonstop_mode, error_line } from './types.ts'
+import { Cmd, log_only, nonstop_mode } from './types.ts'
 import { print, print_char, print_nl, print_ln, print_esc, print_int, begin_diagnostic, end_diagnostic } from './print.ts'
 import { error, print_err, help, fatal_error, overflow, token_list, parameter, u_template, v_template, backed_up, inserted, macro, output_text, mark_text, write_text } from './error.ts'
 import { int_par, tracing_macros_code, end_line_char_code, cat_code_base, null_cs, single_base, active_base, output_routine_loc, frozen_fi, frozen_cr, end_write } from './eqtb.ts'
@@ -14,7 +14,6 @@ import { open_log_file } from './files.ts'
 export const mid_line = 1, skip_blanks = 2 + Cmd.max_char_code, new_line = 3 + 2 * Cmd.max_char_code
 // §305
 export const normal = 0, skipping = 1, defining = 2, matching = 3, aligning = 4, absorbing = 5
-export const stack_size = 10000, max_in_open = 15, buf_size = 200000 // TeX Live texmf.cnf
 
 // §31 input_ln: web2c ends a line at LF, CR or CR LF and drops trailing spaces
 export type InputFile = { data: Uint8Array, pos: number }
@@ -25,7 +24,7 @@ export function input_ln(e: Engine, f: InputFile): boolean {
     const c = f.data[f.pos++]!
     if (c === 10) break
     if (c === 13) { if (f.data[f.pos] === 10) f.pos++; break }
-    if (e.last >= buf_size - 1) overflow(e, 'buffer size', buf_size)
+    if (e.last >= e.lim.buf_size - 1) overflow(e, 'buffer size', e.lim.buf_size)
     e.buffer[e.last++] = c
   }
   if (e.last >= e.max_buf_stack) e.max_buf_stack = e.last // texmfmp.c input_line, before trailing spaces go
@@ -37,7 +36,7 @@ export function input_ln(e: Engine, f: InputFile): boolean {
 export function push_input(e: Engine): void {
   if (e.input_ptr > e.max_in_stack) {
     e.max_in_stack = e.input_ptr
-    if (e.input_ptr === stack_size) overflow(e, 'input stack size', stack_size)
+    if (e.input_ptr === e.lim.stack_size) overflow(e, 'input stack size', e.lim.stack_size)
   }
   e.input_stack[e.input_ptr] = e.cur_input
   e.cur_input = { ...e.cur_input }
@@ -115,8 +114,8 @@ export function ins_error(e: Engine): void {
 
 // §328 begin_file_reading
 export function begin_file_reading(e: Engine): void {
-  if (e.in_open === max_in_open) overflow(e, 'text input levels', max_in_open)
-  if (e.first === buf_size) overflow(e, 'buffer size', buf_size)
+  if (e.in_open === e.lim.max_in_open) overflow(e, 'text input levels', e.lim.max_in_open)
+  if (e.first === e.lim.buf_size) overflow(e, 'buffer size', e.lim.buf_size)
   e.in_open++; push_input(e)
   const ci = e.cur_input
   ci.index = e.in_open
@@ -141,7 +140,7 @@ export function runaway(e: Engine): void {
       case aligning: print_nl(e, 'Runaway preamble'); p = hold_head; break
       case absorbing: print_nl(e, 'Runaway text'); p = e.def_ref; break
     }
-    print_char(e, 63); print_ln(e); show_token_list(e, e.link[p]!, 0, error_line - 10)
+    print_char(e, 63); print_ln(e); show_token_list(e, e.link[p]!, 0, e.lim.error_line - 10)
   }
 }
 

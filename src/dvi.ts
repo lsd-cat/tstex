@@ -2,7 +2,7 @@
 // The DVI bytes live in one growable buffer; dvi_ptr/dvi_limit/dvi_offset/dvi_gone are simulated exactly as with
 // TeX Live's 16384-byte half-buffered dvi_buf, since movement() and dvi_pop() depend on them.
 import type { Engine } from './engine.ts'
-import { term_and_log, log_only, new_string, max_print_line } from './types.ts'
+import { term_and_log, log_only, new_string } from './types.ts'
 import { print, print_char, print_nl, print_ln, print_int, print_two, slow_print, begin_diagnostic, end_diagnostic } from './print.ts'
 import { error, print_err, help, confusion, fatal_error, write_text } from './error.ts'
 import { int_par, prepare_mag, count_base, dimen_base, end_write, mag_code, synctex_code } from './eqtb.ts'
@@ -16,8 +16,6 @@ import { get_token, ins_list, begin_token_list, end_token_list } from './input.t
 import { scan_toks } from './scan.ts'
 import { open_log_file, print_file_name, prompt_file_name } from './files.ts'
 
-export const dvi_buf_size = 16384 // TeX Live texmf.cnf
-const half_buf = dvi_buf_size / 2
 // §586 DVI opcodes
 const set1 = 128, set_rule = 132, put_rule = 137, bop = 139, eop = 140, push = 141, pop = 142, right1 = 143,
   down1 = 157, y0 = 161, y1 = 162, z0 = 166, z1 = 167, fnt_num_0 = 171, fnt1 = 235, xxx1 = 239, xxx4 = 242,
@@ -34,9 +32,9 @@ function dvi_out(e: Engine, b: number): void {
 }
 // §598 dvi_swap: only the bookkeeping, the bytes stay in place
 function dvi_swap(e: Engine): void {
-  if (e.dvi_limit === dvi_buf_size) { e.dvi_limit = half_buf; e.dvi_offset += dvi_buf_size; e.dvi_ptr = 0 }
-  else e.dvi_limit = dvi_buf_size
-  e.dvi_gone += half_buf
+  if (e.dvi_limit === e.lim.dvi_buf_size) { e.dvi_limit = (e.lim.dvi_buf_size >> 1); e.dvi_offset += e.lim.dvi_buf_size; e.dvi_ptr = 0 }
+  else e.dvi_limit = e.lim.dvi_buf_size
+  e.dvi_gone += (e.lim.dvi_buf_size >> 1)
 }
 
 // §600 dvi_four
@@ -354,7 +352,7 @@ export function ship_out(e: Engine, p: BoxNode): void {
   if (e.fixed_pdfoutput! > 0) fatal_error(e, 'unsupported: PDF output')
   if (int_par(e, synctex_code) !== 0) fatal_error(e, 'unsupported: synctex') // synctex-rec.ch0 synctex_sheet would start recording
   if (int_par(e, tracing_output_code) > 0) { print_nl(e, ''); print_ln(e); print(e, 'Completed box being shipped out') }
-  if (e.term_offset > max_print_line - 9) print_ln(e)
+  if (e.term_offset > e.lim.max_print_line - 9) print_ln(e)
   else if (e.term_offset > 0 || e.file_offset > 0) print_char(e, 32)
   print_char(e, 91)
   let j = 9
@@ -431,7 +429,7 @@ export function finish_dvi_file(e: Engine): void {
   dvi_out(e, (e.total_pages >> 8) & 255); dvi_out(e, e.total_pages & 255)
   for (let f = e.font_ptr; f > 0; f--) if (e.font_used[f]) dvi_font_def(e, f) // §643
   dvi_out(e, post_post); dvi_four(e, e.last_bop); dvi_out(e, id_byte)
-  let k = 4 + ((dvi_buf_size - e.dvi_ptr) % 4)
+  let k = 4 + ((e.lim.dvi_buf_size - e.dvi_ptr) % 4)
   while (k > 0) { dvi_out(e, 223); k-- }
   print_nl(e, 'Output written on '); slow_print(e, e.output_file_name)
   print(e, ' ('); print_int(e, e.total_pages); print(e, ' page')

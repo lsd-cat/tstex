@@ -163,13 +163,12 @@ export function show_eqtb(e: Engine, n: number): void {
 
 // §268 save_type values
 const restore_old_value = 0, restore_zero = 1, insert_token = 2, level_boundary = 3
-export const save_size = 200000 // TeX Live texmf.cnf
 
 // §273 check_full_save_stack
 function check_full_save_stack(e: Engine): void {
   if (e.save_ptr > e.max_save_stack) {
     e.max_save_stack = e.save_ptr
-    if (e.max_save_stack > save_size - 7) overflow(e, 'save size', save_size)
+    if (e.max_save_stack > e.lim.save_size - 7) overflow(e, 'save size', e.lim.save_size)
   }
 }
 
