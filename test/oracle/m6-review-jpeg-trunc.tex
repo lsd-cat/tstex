@@ -1,0 +1,5 @@
+%! oracle: pdftex
+\pdfoutput=1 \pdfcompresslevel=0 \pdfobjcompresslevel=0 \input plain
+% a JPEG that ends after its APP0 segment: the next getc hits EOF, so `no marker found' (feof is only checked before it)
+\pdfximage{images/j_trunc.jpg}
+\end

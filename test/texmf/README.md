@@ -11,3 +11,5 @@ images/ (M6 image tests; fig.png etc. are one downscaled desktop picture, resolv
 ec-lmr10.tfm (Latin Modern, TeX Live fonts/tfm/public/lm) is only for m6-pdf-fonts-enc (a font re-encoded via lm-ec.enc in pdftex.map).
 
 images/boxes.pdf (a hand-written 3-page PDF 1.4 with MediaBox/CropBox/BleedBox/TrimBox/ArtBox variations, incl. a CropBox wider than the MediaBox) and images/bad.pdf (8 bytes of garbage) come from the M6 backend review (/tmp/rv); used by the m6-review-pdfimage-* tests.
+
+images/j_trunc.jpg (20 bytes: SOI and a JFIF APP0 segment, nothing after it; M6 backend review) is for m6-review-jpeg-trunc.

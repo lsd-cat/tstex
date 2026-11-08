@@ -182,10 +182,13 @@ function read_jpg_info(e: Engine, img: Img): void {
     if (length > 5 && String.fromCharCode(...d.subarray(6, 11)) === 'Exif\0') [xx, yy] = read_APP1_Exif(d.subarray(11, 11 + length - 5))
     img.xres = xx; img.yres = yy
   }
-  for (let i = 0; ;) {
-    if (!(i < d.length)) pdftex_fail(e, img.name, 'reading JPEG image failed (premature file end)')
-    if (d[i++] !== 0xFF) pdftex_fail(e, img.name, 'reading JPEG image failed (no marker found)')
-    const m = d[i++]!
+  // a C stream: getc at the end sets the EOF flag and returns -1; fseek clears the flag (and may go past the end)
+  let i = 0, eof = false
+  const getc = () => { if (i < d.length) return d[i++]!; eof = true; return -1 }
+  for (;;) {
+    if (eof) pdftex_fail(e, img.name, 'reading JPEG image failed (premature file end)')
+    if (getc() !== 0xFF) pdftex_fail(e, img.name, 'reading JPEG image failed (no marker found)')
+    const m = getc()
     if ([0xc5, 0xc6, 0xc7, 0xc9, 0xca, 0xcb, 0xcd, 0xce, 0xcf].includes(m)) pdftex_fail(e, img.name, 'unsupported type of compression')
     if (m === 0xc2 && e.ps.fixed_major === 1 && e.ps.fixed_minor <= 2) pdftex_fail(e, img.name, 'cannot use progressive DCT with PDF-1.2')
     if (m === 0xc0 || m === 0xc1 || m === 0xc2 || m === 0xc3) {
@@ -196,7 +199,7 @@ function read_jpg_info(e: Engine, img: Img): void {
       return
     }
     if (m === 0xd8 || m === 0xd9 || m === 0x01 || (m >= 0xd0 && m <= 0xd7)) continue
-    i += u16(d, i)
+    const c = getc(); i += (((c << 8) + getc()) & 0xffff) - 2; eof = false // read2bytes, then xfseek(SEEK_CUR)
   }
 }
 function read_APP1_Exif(b: Uint8Array): [number, number] {
