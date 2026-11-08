@@ -3,7 +3,7 @@
 import type { Engine } from '../engine.ts'
 import { print, print_char } from '../print.ts'
 import { pdftex_fail, pdftex_warn } from '../pdf.ts'
-import { md5 } from '../utils.ts'
+import { md5, str as latin1 } from '../utils.ts'
 import { find_backend_file } from '../files.ts'
 
 export type Glyphs = (string | null)[] // 256 glyph names; null is notdef
@@ -50,7 +50,7 @@ export function load_enc_file(e: Engine, enc_name: string): Glyphs {
   const { data, path } = found
   const glyph_names: Glyphs = new Array(256).fill(null)
   print(e, '{'); print(e, path)
-  const lines = getlines(Array.from(data, c => String.fromCharCode(c)).join('')).filter(l => l[0] !== '%')
+  const lines = getlines(latin1(data)).filter(l => l[0] !== '%')
   let li = 0
   const next = () => { if (li >= lines.length) pdftex_fail(e, path, 'unexpected end of file'); return lines[li++]! }
   let line = next()
@@ -98,7 +98,6 @@ function scan_i(s: string): [number, string] | null {
   return [m[1] === '-' ? -v : v, s.slice(m[0].length)]
 }
 const valid_code = (c: number) => c >= 0 && c < 256
-const latin1 = (a: ArrayLike<number>) => { let s = ''; for (let i = 0; i < a.length; i += 8192) s += String.fromCharCode(...Array.prototype.slice.call(a, i, i + 8192)); return s }
 const bytes = (s: string) => Array.from(s, c => c.charCodeAt(0))
 // str_suffix: s ends the buffer, a final LF ignored
 const str_suffix = (a: number[], s: string) => { let n = a.length; if (a[n - 1] === 10) n--; return n >= s.length && latin1(a.slice(n - s.length, n)) === s }

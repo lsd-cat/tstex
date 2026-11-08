@@ -6,6 +6,7 @@ import { int_base } from '../types.ts'
 import { int_par } from '../eqtb.ts'
 import { print } from '../print.ts'
 import { find_backend_file } from '../files.ts'
+import { str } from '../utils.ts'
 import { char_info, char_width, char_height, char_depth, char_exists, height_depth, param, slant_code, x_height_code, quad_code } from '../tfm.ts'
 import { divide_scaled, pdf_new_objnum, pdf_begin_obj, pdf_end_obj, pdf_begin_dict, pdf_end_dict, pdf_print, pdf_char_marked,
   pdftex_fail, pdftex_warn, pdf_begin_stream, pdf_end_stream } from '../pdf.ts'
@@ -250,7 +251,7 @@ function fm_read_info(e: Engine): void {
   const { data, path } = found
   print(e, '{' + path)
   // fm_getchar lines: tab is a space, spaces collapse, no leading space, CR ends a line like LF
-  const text = Array.from(data, c => String.fromCharCode(c)).join('')
+  const text = str(data)
   const lines = text.split(/\r|\n/)
   if (lines[lines.length - 1] === '') lines.pop()
   for (const raw of lines) {
