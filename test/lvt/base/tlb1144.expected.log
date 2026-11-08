@@ -1,0 +1,562 @@
+entering extended mode
+(tlb1144.lvt
+LaTeX2e <2026-11-01>
+L3 programming layer <2026-09-09>
+(article.cls
+Document Class: article 2026-06-04 v1.4n Standard LaTeX document class
+(size10.clo
+File: size10.clo 2026-06-04 v1.4n Standard LaTeX file (size option)
+)
+\c@part=\count276
+\c@section=\count277
+\c@subsection=\count278
+\c@subsubsection=\count279
+\c@paragraph=\count280
+\c@subparagraph=\count281
+\c@figure=\count282
+\c@table=\count283
+\abovecaptionskip=\skip49
+\belowcaptionskip=\skip50
+\bibindent=\dimen150
+) (tracefnt.sty
+Package: tracefnt 2020/12/22 v3.0n Standard LaTeX package (font tracing)
+\tracingfonts=\count284
+LaTeX Info: Redefining \selectfont on input line 107.
+Applying: [2021/06/01] Add hook to \selectfont  on input line 142.
+Already applied: [0000/00/00] Add hook to \selectfont  on input line 145.
+) (test2e.tex
+OMIT
+TIMO
+(expl3.sty
+Package: expl3 2026-09-09 L3 programming layer (loader)
+ (l3backend-dvips.def
+File: l3backend-dvips.def 2026-09-09 L3 backend support: dvips
+\l__pdfannot_backend_content_box=\box53
+\l__pdfannot_backend_model_box=\box54
+\g__pdfannot_backend_int=\count285
+\g__pdfannot_backend_link_int=\count286
+\g__pdfannot_backend_link_sf_int=\count287
+)))
+Author: Alan + Frank
+Format: LaTeX2e<1994/12/01>
+OMIT
+
+LaTeX Warning: Declared format LaTeX2e<1994/12/01>,
+Actual format LaTeX2e<2026-11-01> on input line 15.
+
+TIMO
+Now handling font encoding FOO ...
+... no UTF-8 mapping file for font encoding FOO
+
+LaTeX Font Info:    Switching to \OT1/cmr/m/n/10  on input line 26.
+
+
+LaTeX Font Info:    Changing size to 10/12.0pt on input line 26.
+
+
+LaTeX Font Info:    Switching to \OT1/cmr/m/n/10  on input line 26.
+
+No file tlb1144.aux.
+\openout1 = `tlb1144.aux'.
+
+
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 26.
+
+
+LaTeX Font Info:    ... okay on input line 26.
+
+
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 26.
+
+
+LaTeX Font Info:    ... okay on input line 26.
+
+
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 26.
+
+
+LaTeX Font Info:    ... okay on input line 26.
+
+
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 26.
+
+
+LaTeX Font Info:    ... okay on input line 26.
+
+
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 26.
+
+
+LaTeX Font Info:    ... okay on input line 26.
+
+
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 26.
+
+
+LaTeX Font Info:    ... okay on input line 26.
+
+
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 26.
+
+
+LaTeX Font Info:    ... okay on input line 26.
+
+
+LaTeX Font Info:    Checking defaults for FOO/cmr/m/n on input line 26.
+
+
+LaTeX Font Info:    ... okay on input line 26.
+
+
+LaTeX Font Info:    Switching to \OT1/cmr/m/n/10  on input line 26.
+
+
+LaTeX Font Info:    Changing size to 10/12.0pt on input line 26.
+
+START-TEST-LOG
+
+This is a generated file for the LaTeX2e validation system.
+
+Don't change this file in any respect.
+
+
+LaTeX Font Info:    Switching to \OT1/cmr/m/n/10  on input line 32.
+
+
+LaTeX Font Info:    External font `cmr12 at14.4pt' loaded as
+(Font)              OT1/cmr/m/n/14.4  on input line 32.
+
+
+LaTeX Font Info:    Switching to \OT1/cmr/m/n/14.4  on input line 32.
+
+
+LaTeX Font Info:    Changing size to 14.4/18.0pt on input line 32.
+
+
+LaTeX Font Info:    External font `cmbx12 at14.4pt' loaded as
+(Font)              OT1/cmr/bx/n/14.4  on input line 32.
+
+
+LaTeX Font Info:    Switching to \OT1/cmr/bx/n/14.4  on input line 32.
+
+
+LaTeX Font Info:    Restoring size to 10/12.0pt on input line 32.
+
+No file tlb1144.toc.
+\tf@toc=\write3
+\openout3 = `tlb1144.toc'.
+
+\i \ \`i \`\i \ \'i \'\i
+
+LaTeX Font Info:    Switching to \OT1/cmr/m/n/10  on input line 36.
+
+
+LaTeX Font Info:    Switching to \OT1/cmr/m/n/14.4  on input line 36.
+
+
+LaTeX Font Info:    Changing size to 14.4/18.0pt on input line 36.
+
+
+LaTeX Font Info:    Switching to \OT1/cmr/bx/n/14.4  on input line 36.
+
+
+LaTeX Font Info:    Restoring size to 10/12.0pt on input line 36.
+
+
+LaTeX Font Info:    Setting up math fonts for 10/12.0pt on input line 38.
+
+
+LaTeX Font Info:    mathgroup (0) symoperators  :=
+(Font)              OT1/cmr/m/n 10/7/5 on input line 38.
+
+
+LaTeX Font Info:    External font `cmr7 at7.0pt' loaded as
+(Font)              OT1/cmr/m/n/7  on input line 38.
+
+
+LaTeX Font Info:    External font `cmr5 at5.0pt' loaded as
+(Font)              OT1/cmr/m/n/5  on input line 38.
+
+
+LaTeX Font Info:    mathgroup (1) symletters  :=
+(Font)              OML/cmm/m/it 10/7/5 on input line 38.
+
+
+LaTeX Font Info:    External font `cmmi10 at10.0pt' loaded as
+(Font)              OML/cmm/m/it/10  on input line 38.
+
+
+LaTeX Font Info:    External font `cmmi7 at7.0pt' loaded as
+(Font)              OML/cmm/m/it/7  on input line 38.
+
+
+LaTeX Font Info:    External font `cmmi5 at5.0pt' loaded as
+(Font)              OML/cmm/m/it/5  on input line 38.
+
+
+LaTeX Font Info:    mathgroup (2) symsymbols  :=
+(Font)              OMS/cmsy/m/n 10/7/5 on input line 38.
+
+
+LaTeX Font Info:    External font `cmsy10 at10.0pt' loaded as
+(Font)              OMS/cmsy/m/n/10  on input line 38.
+
+
+LaTeX Font Info:    External font `cmsy7 at7.0pt' loaded as
+(Font)              OMS/cmsy/m/n/7  on input line 38.
+
+
+LaTeX Font Info:    External font `cmsy5 at5.0pt' loaded as
+(Font)              OMS/cmsy/m/n/5  on input line 38.
+
+
+LaTeX Font Info:    mathgroup (3) symlargesymbols  :=
+(Font)              OMX/cmex/m/n 10/7/5 on input line 38.
+
+
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <7> on input line 38.
+
+
+LaTeX Font Info:    External font `cmex10' loaded as
+(Font)              OMX/cmex/m/n/7  on input line 38.
+
+
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <5> on input line 38.
+
+
+LaTeX Font Info:    External font `cmex10' loaded as
+(Font)              OMX/cmex/m/n/5  on input line 38.
+
+
+LaTeX Font Info:    Switching to \OT1/cmr/m/n/7  on input line 38.
+
+
+LaTeX Font Info:    Changing size to 7/7.0pt on input line 38.
+
+
+LaTeX Font Info:    Restoring size to 10/12.0pt on input line 38.
+
+
+LaTeX Font Info:    Switching to \OT1/cmr/m/n/10  on input line 38.
+
+
+LaTeX Font Info:    External font `cmr8 at8.0pt' loaded as
+(Font)              OT1/cmr/m/n/8  on input line 38.
+
+
+LaTeX Font Info:    Switching to \OT1/cmr/m/n/8  on input line 38.
+
+
+LaTeX Font Info:    Changing size to 8/9.5pt on input line 38.
+
+
+LaTeX Font Info:    Setting up math fonts for 8/9.5pt on input line 38.
+
+
+LaTeX Font Info:    mathgroup (0) symoperators  :=
+(Font)              OT1/cmr/m/n 8/6/5 on input line 38.
+
+
+LaTeX Font Info:    External font `cmr6 at6.0pt' loaded as
+(Font)              OT1/cmr/m/n/6  on input line 38.
+
+
+LaTeX Font Info:    mathgroup (1) symletters  :=
+(Font)              OML/cmm/m/it 8/6/5 on input line 38.
+
+
+LaTeX Font Info:    External font `cmmi8 at8.0pt' loaded as
+(Font)              OML/cmm/m/it/8  on input line 38.
+
+
+LaTeX Font Info:    External font `cmmi6 at6.0pt' loaded as
+(Font)              OML/cmm/m/it/6  on input line 38.
+
+
+LaTeX Font Info:    mathgroup (2) symsymbols  :=
+(Font)              OMS/cmsy/m/n 8/6/5 on input line 38.
+
+
+LaTeX Font Info:    External font `cmsy8 at8.0pt' loaded as
+(Font)              OMS/cmsy/m/n/8  on input line 38.
+
+
+LaTeX Font Info:    External font `cmsy6 at6.0pt' loaded as
+(Font)              OMS/cmsy/m/n/6  on input line 38.
+
+
+LaTeX Font Info:    mathgroup (3) symlargesymbols  :=
+(Font)              OMX/cmex/m/n 8/6/5 on input line 38.
+
+
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <8> on input line 38.
+
+
+LaTeX Font Info:    External font `cmex10' loaded as
+(Font)              OMX/cmex/m/n/8  on input line 38.
+
+
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <6> on input line 38.
+
+
+LaTeX Font Info:    External font `cmex10' loaded as
+(Font)              OMX/cmex/m/n/6  on input line 38.
+
+
+LaTeX Font Info:    Switching to \OT1/cmr/m/n/6  on input line 38.
+
+
+LaTeX Font Info:    Changing size to 6/6.0pt on input line 38.
+
+
+LaTeX Font Info:    Restoring size to 8/9.5pt on input line 38.
+
+
+LaTeX Font Info:    Restoring size to 10/12.0pt on input line 38.
+
+
+LaTeX Font Info:    External font `cmbx10 at10.0pt' loaded as
+(Font)              FOO/cmr/m/n/10  on input line 40.
+
+
+LaTeX Font Info:    Switching to \FOO/cmr/m/n/10  on input line 40.
+
+
+LaTeX Font Info:    Setting up math fonts for 10/12.0pt on input line 41.
+
+
+LaTeX Font Info:    mathgroup (0) symoperators  :=
+(Font)              OT1/cmr/m/n 10/7/5 on input line 41.
+
+
+LaTeX Font Info:    mathgroup (1) symletters  :=
+(Font)              OML/cmm/m/it 10/7/5 on input line 41.
+
+
+LaTeX Font Info:    mathgroup (2) symsymbols  :=
+(Font)              OMS/cmsy/m/n 10/7/5 on input line 41.
+
+
+LaTeX Font Info:    mathgroup (3) symlargesymbols  :=
+(Font)              OMX/cmex/m/n 10/7/5 on input line 41.
+
+
+LaTeX Font Info:    External font `cmbx10 at7.0pt' loaded as
+(Font)              FOO/cmr/m/n/7  on input line 41.
+
+
+LaTeX Font Info:    Switching to \FOO/cmr/m/n/7  on input line 41.
+
+
+LaTeX Font Info:    Changing size to 7/7.0pt on input line 41.
+
+
+LaTeX Font Info:    Restoring size to 10/12.0pt on input line 41.
+
+
+LaTeX Font Info:    Switching to \FOO/cmr/m/n/10  on input line 41.
+
+
+LaTeX Font Info:    External font `cmbx10 at8.0pt' loaded as
+(Font)              FOO/cmr/m/n/8  on input line 41.
+
+
+LaTeX Font Info:    Switching to \FOO/cmr/m/n/8  on input line 41.
+
+
+LaTeX Font Info:    Changing size to 8/9.5pt on input line 41.
+
+
+LaTeX Font Info:    Setting up math fonts for 8/9.5pt on input line 41.
+
+
+LaTeX Font Info:    mathgroup (0) symoperators  :=
+(Font)              OT1/cmr/m/n 8/6/5 on input line 41.
+
+
+LaTeX Font Info:    mathgroup (1) symletters  :=
+(Font)              OML/cmm/m/it 8/6/5 on input line 41.
+
+
+LaTeX Font Info:    mathgroup (2) symsymbols  :=
+(Font)              OMS/cmsy/m/n 8/6/5 on input line 41.
+
+
+LaTeX Font Info:    mathgroup (3) symlargesymbols  :=
+(Font)              OMX/cmex/m/n 8/6/5 on input line 41.
+
+
+LaTeX Font Info:    External font `cmbx10 at6.0pt' loaded as
+(Font)              FOO/cmr/m/n/6  on input line 41.
+
+
+LaTeX Font Info:    Switching to \FOO/cmr/m/n/6  on input line 41.
+
+
+LaTeX Font Info:    Changing size to 6/6.0pt on input line 41.
+
+
+LaTeX Font Info:    Restoring size to 8/9.5pt on input line 41.
+
+
+LaTeX Font Info:    Restoring size to 10/12.0pt on input line 41.
+
+
+LaTeX Font Info:    External font `ecrm1000 at10.0pt' loaded as
+(Font)              T1/cmr/m/n/10  on input line 43.
+
+
+LaTeX Font Info:    Switching to \T1/cmr/m/n/10  on input line 43.
+
+
+LaTeX Font Info:    Setting up math fonts for 10/12.0pt on input line 44.
+
+
+LaTeX Font Info:    mathgroup (0) symoperators  :=
+(Font)              OT1/cmr/m/n 10/7/5 on input line 44.
+
+
+LaTeX Font Info:    mathgroup (1) symletters  :=
+(Font)              OML/cmm/m/it 10/7/5 on input line 44.
+
+
+LaTeX Font Info:    mathgroup (2) symsymbols  :=
+(Font)              OMS/cmsy/m/n 10/7/5 on input line 44.
+
+
+LaTeX Font Info:    mathgroup (3) symlargesymbols  :=
+(Font)              OMX/cmex/m/n 10/7/5 on input line 44.
+
+
+LaTeX Font Info:    External font `ecrm0700 at7.0pt' loaded as
+(Font)              T1/cmr/m/n/7  on input line 44.
+
+
+LaTeX Font Info:    Switching to \T1/cmr/m/n/7  on input line 44.
+
+
+LaTeX Font Info:    Changing size to 7/7.0pt on input line 44.
+
+
+LaTeX Font Info:    Restoring size to 10/12.0pt on input line 44.
+
+
+LaTeX Font Info:    Switching to \T1/cmr/m/n/10  on input line 44.
+
+
+LaTeX Font Info:    External font `ecrm0800 at8.0pt' loaded as
+(Font)              T1/cmr/m/n/8  on input line 44.
+
+
+LaTeX Font Info:    Switching to \T1/cmr/m/n/8  on input line 44.
+
+
+LaTeX Font Info:    Changing size to 8/9.5pt on input line 44.
+
+
+LaTeX Font Info:    Setting up math fonts for 8/9.5pt on input line 44.
+
+
+LaTeX Font Info:    mathgroup (0) symoperators  :=
+(Font)              OT1/cmr/m/n 8/6/5 on input line 44.
+
+
+LaTeX Font Info:    mathgroup (1) symletters  :=
+(Font)              OML/cmm/m/it 8/6/5 on input line 44.
+
+
+LaTeX Font Info:    mathgroup (2) symsymbols  :=
+(Font)              OMS/cmsy/m/n 8/6/5 on input line 44.
+
+
+LaTeX Font Info:    mathgroup (3) symlargesymbols  :=
+(Font)              OMX/cmex/m/n 8/6/5 on input line 44.
+
+
+LaTeX Font Info:    External font `ecrm0600 at6.0pt' loaded as
+(Font)              T1/cmr/m/n/6  on input line 44.
+
+
+LaTeX Font Info:    Switching to \T1/cmr/m/n/6  on input line 44.
+
+
+LaTeX Font Info:    Changing size to 6/6.0pt on input line 44.
+
+
+LaTeX Font Info:    Restoring size to 8/9.5pt on input line 44.
+
+
+LaTeX Font Info:    Restoring size to 10/12.0pt on input line 44.
+
+
+LaTeX Font Info:    External font `cmr10 at10.0pt' loaded as
+(Font)              U/cmr/m/n/10  on input line 48.
+
+
+LaTeX Font Info:    Switching to \U/cmr/m/n/10  on input line 48.
+
+
+LaTeX Font Info:    Switching to \FOO/cmr/m/n/10  on input line 50.
+
+
+LaTeX Font Info:    Switching to \T1/cmr/m/n/10  on input line 52.
+
+
+LaTeX Font Info:    Switching to \T1/cmr/m/n/10  on input line 54.
+
+
+LaTeX Font Info:    External font `ecrm2488 at24.88pt' loaded as
+(Font)              T1/cmr/m/n/24.88  on input line 58.
+
+
+LaTeX Font Info:    Switching to \T1/cmr/m/n/24.88  on input line 58.
+
+
+LaTeX Font Info:    Changing size to 24.88/30.0pt on input line 58.
+
+
+! LaTeX Error: Invalid UTF-8 byte sequence (�\par\showoutput).
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...
+
+l.69 \showoutput
+
+The document does not appear to be in UTF-8 encoding.
+Try adding \UseRawInputEncoding as the first line of the file
+or specify an encoding such as \usepackage [latin1]{inputenc}
+in the document preamble.
+Alternatively, save the file in UTF-8 using your editor or another tool
+
+
+LaTeX Font Info:    External font `cmr17 at24.88pt' loaded as
+(Font)              OT1/cmr/m/n/24.88  on input line 72.
+
+
+LaTeX Font Info:    Switching to \OT1/cmr/m/n/24.88  on input line 72.
+
+
+LaTeX Font Info:    Switching to \OT1/cmr/m/n/10  on input line 72.
+
+
+LaTeX Font Info:    Changing size to 10/12.0pt on input line 72.
+
+
+LaTeX Font Info:    Switching to \OT1/cmr/m/n/10  on input line 72.
+
+[1
+
+]
+
+LaTeX Font Info:    Restoring size to 24.88/30.0pt on input line 72.
+
+(tlb1144.aux)
+END-TEST-LOG
+ )
+
+Output written on tlb1144.dvi (1 page, 1452 bytes).

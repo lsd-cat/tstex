@@ -1,0 +1,36 @@
+entering extended mode
+(github-0414.lvt
+LaTeX2e <2026-11-01>
+L3 programming layer <2026-09-09>
+(expl3.sty
+Package: expl3 2026-09-09 L3 programming layer (loader)
+(l3backend-dvips.def
+File: l3backend-dvips.def 2026-09-09 L3 backend support: dvips
+\l__pdfannot_backend_content_box=\box53
+\l__pdfannot_backend_model_box=\box54
+\g__pdfannot_backend_int=\count276
+\g__pdfannot_backend_link_int=\count277
+\g__pdfannot_backend_link_sf_int=\count278
+)) (test2e.tex
+OMIT
+TIMO
+)
+
+LaTeX Info: Writing file `./testpath/testcls.cls'.
+
+! I can't write on file `testpath/testcls.cls'.
+<to be read again>
+                   \relax
+l.5 ...econtents}[overwrite]{testpath/testcls.cls}
+
+(Press Enter to retry, or Control-D to exit; default file extension is `.tex')
+Please type another output file name:
+! Emergency stop.
+<to be read again>
+                   \relax
+l.5 ...econtents}[overwrite]{testpath/testcls.cls}
+
+End of file on the terminal!
+
+
+No pages of output.

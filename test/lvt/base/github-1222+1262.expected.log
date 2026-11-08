@@ -1,0 +1,74 @@
+entering extended mode
+(github-1222+1262.lvt
+LaTeX2e <2026-11-01>
+L3 programming layer <2026-09-09>
+(article.cls
+Document Class: article 2026-06-04 v1.4n Standard LaTeX document class
+(size10.clo
+File: size10.clo 2026-06-04 v1.4n Standard LaTeX file (size option)
+)
+\c@part=\count276
+\c@section=\count277
+\c@subsection=\count278
+\c@subsubsection=\count279
+\c@paragraph=\count280
+\c@subparagraph=\count281
+\c@figure=\count282
+\c@table=\count283
+\abovecaptionskip=\skip49
+\belowcaptionskip=\skip50
+\bibindent=\dimen150
+) (doc.sty
+Package: doc 2026-11-01 v3.0r Standard LaTeX documentation package V3 (FMi)
+\c@StandardModuleDepth=\count284
+\guard@level=\count285
+\MacrocodeTopsep=\skip51
+\MacroIndent=\dimen151
+\macro@cnt=\count286
+\MacroTopsep=\skip52
+\IndexMin=\dimen152
+\c@IndexColumns=\count287
+\GlossaryMin=\dimen153
+\c@GlossaryColumns=\count288
+\check@sum=\count289
+\bslash@cnt=\count290
+\wrong@table=\toks17
+\c@CodelineNo=\count291
+\@temptokenb=\toks18
+) (test2e.tex
+OMIT
+TIMO
+(expl3.sty
+Package: expl3 2026-09-09 L3 programming layer (loader)
+ (l3backend-dvips.def
+File: l3backend-dvips.def 2026-09-09 L3 backend support: dvips
+\l__pdfannot_backend_content_box=\box53
+\l__pdfannot_backend_model_box=\box54
+\g__pdfannot_backend_int=\count292
+\g__pdfannot_backend_link_int=\count293
+\g__pdfannot_backend_link_sf_int=\count294
+)))
+START-TEST-LOG
+
+This is a generated file for the LaTeX2e validation system.
+
+Don't change this file in any respect.
+
+size10.clo - yes
+array.sty - no
+article - yes
+11pt - no
+10pt - not recognized
+draft - yes
+array - no
+doc - yes
+array date - no
+article date - yes
+article date - no
+report date - no
+format date - yes
+format date - no
+END-TEST-LOG
+ )
+
+No pages of output.

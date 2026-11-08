@@ -1,0 +1,241 @@
+entering extended mode
+(utf8-filenames-001.lvt
+LaTeX2e <2026-11-01>
+L3 programming layer <2026-09-09>
+(article.cls
+Document Class: article 2026-06-04 v1.4n Standard LaTeX document class
+(size10.clo
+File: size10.clo 2026-06-04 v1.4n Standard LaTeX file (size option)
+)
+\c@part=\count276
+\c@section=\count277
+\c@subsection=\count278
+\c@subsubsection=\count279
+\c@paragraph=\count280
+\c@subparagraph=\count281
+\c@figure=\count282
+\c@table=\count283
+\abovecaptionskip=\skip49
+\belowcaptionskip=\skip50
+\bibindent=\dimen150
+) (test2e.tex
+OMIT
+TIMO
+(expl3.sty
+Package: expl3 2026-09-09 L3 programming layer (loader)
+ (l3backend-dvips.def
+File: l3backend-dvips.def 2026-09-09 L3 backend support: dvips
+\l__pdfannot_backend_content_box=\box53
+\l__pdfannot_backend_model_box=\box54
+\g__pdfannot_backend_int=\count284
+\g__pdfannot_backend_link_int=\count285
+\g__pdfannot_backend_link_sf_int=\count286
+)))
+START-TEST-LOG
+
+This is a generated file for the LaTeX2e validation system.
+
+Don't change this file in any respect.
+
+(graphicx.sty
+Package: graphicx 2026-06-26 v1.2e Enhanced LaTeX Graphics (DPC,SPQR)
+ (keyval.sty
+Package: keyval 2026-06-01 v1.15 key=value parser (DPC)
+\KV@toks@=\toks17
+) (graphics.sty
+Package: graphics 2026-05-17 v1.4h Standard LaTeX Graphics (DPC,SPQR)
+ (trig.sty
+Package: trig 2023/12/02 v1.11 sin cos tan (DPC)
+) (graphics.cfg
+File: graphics.cfg 2016/06/04 v1.11 sample graphics configuration
+)
+Package graphics Info: Driver file: dvips.def on input line 106.
+ (dvips.def
+File: dvips.def 2025/01/21 v3.2a Graphics/color driver for dvips
+))
+\Gin@req@height=\dimen151
+\Gin@req@width=\dimen152
+)
+
+LaTeX Info: Writing file `./one two three'.
+
+\openout15 = `"one two three.tex"'.
+
+
+OMIT
+No file utf8-filenames-001.aux.
+\openout1 = `utf8-filenames-001.aux'.
+
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 20.
+LaTeX Font Info:    ... okay on input line 20.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 20.
+LaTeX Font Info:    ... okay on input line 20.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 20.
+LaTeX Font Info:    ... okay on input line 20.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 20.
+LaTeX Font Info:    ... okay on input line 20.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 20.
+LaTeX Font Info:    ... okay on input line 20.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 20.
+LaTeX Font Info:    ... okay on input line 20.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 20.
+LaTeX Font Info:    ... okay on input line 20.
+TIMO
+(one two three.tex)
+
+! LaTeX Error: File `foo€€€' not found.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...
+
+l.26 \includegraphics{foo€€€}
+                                      % file is testfiles/support
+I could not locate the file with any of these extensions:
+.eps,.ps,.eps.gz,.ps.gz,.eps.Z,.mps
+Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+Missing character: There is no � in font cmtt10!
+Missing character: There is no � in font cmtt10!
+Missing character: There is no � in font cmtt10!
+Missing character: There is no � in font cmtt10!
+Missing character: There is no � in font cmtt10!
+Missing character: There is no � in font cmtt10!
+Missing character: There is no � in font cmtt10!
+Missing character: There is no � in font cmtt10!
+Missing character: There is no � in font cmtt10!
+
+! LaTeX Error: File `foo bar' not found.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...
+
+l.28 \includegraphics{foo bar}
+                                 % file is testfiles/support
+I could not locate the file with any of these extensions:
+.eps,.ps,.eps.gz,.ps.gz,.eps.Z,.mps
+Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+
+! LaTeX Error: File `"foo bar"' not found.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...
+
+l.30 \includegraphics{"foo bar"}
+                                   % file is testfiles/support
+I could not locate the file with any of these extensions:
+.eps,.ps,.eps.gz,.ps.gz,.eps.Z,.mps
+Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+
+LaTeX Warning: File `foo bar.eps' not found on input line 32.
+
+
+! LaTeX Error: File `foo bar.eps' not found.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...
+
+l.32 \includegraphics[scale=2]{foo bar.eps}
+
+Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+
+! LaTeX Error: Cannot determine size of graphic in foo bar.eps (no BoundingBox).
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...
+
+l.32 \includegraphics[scale=2]{foo bar.eps}
+
+Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+File: foo bar.eps Graphic file (type eps)
+<foo bar.eps>
+
+LaTeX Warning: File `"foo bar".eps' not found on input line 34.
+
+
+! LaTeX Error: File `foo bar.eps' not found.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...
+
+l.34 \includegraphics[scale=2]{"foo bar".eps}
+
+Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+
+! LaTeX Error: Cannot determine size of graphic in foo bar.eps (no BoundingBox).
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...
+
+l.34 \includegraphics[scale=2]{"foo bar".eps}
+
+Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+File: foo bar.eps Graphic file (type eps)
+<foo bar.eps>
+
+! LaTeX Error: File `foo €€€' not found.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...
+
+l.36 \includegraphics{foo €€€}
+
+I could not locate the file with any of these extensions:
+.eps,.ps,.eps.gz,.ps.gz,.eps.Z,.mps
+Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+Missing character: There is no � in font cmtt10!
+Missing character: There is no � in font cmtt10!
+Missing character: There is no � in font cmtt10!
+Missing character: There is no � in font cmtt10!
+Missing character: There is no � in font cmtt10!
+Missing character: There is no � in font cmtt10!
+Missing character: There is no � in font cmtt10!
+Missing character: There is no � in font cmtt10!
+Missing character: There is no � in font cmtt10!
+[1
+
+] [2] (utf8-filenames-001.aux)
+
+ *File List*
+ article.cls    2026-06-04 v1.4n Standard LaTeX document class
+  size10.clo    2026-06-04 v1.4n Standard LaTeX file (size option)
+  test2e.tex
+   expl3.sty    2026-09-09 L3 programming layer (loader)
+l3backend-dvips.def    2026-09-09 L3 backend support: dvips
+graphicx.sty    2026-06-26 v1.2e Enhanced LaTeX Graphics (DPC,SPQR)
+  keyval.sty    2026-06-01 v1.15 key=value parser (DPC)
+graphics.sty    2026-05-17 v1.4h Standard LaTeX Graphics (DPC,SPQR)
+    trig.sty    2023/12/02 v1.11 sin cos tan (DPC)
+graphics.cfg    2016/06/04 v1.11 sample graphics configuration
+   dvips.def    2025/01/21 v3.2a Graphics/color driver for dvips
+one two three.tex
+  foo bar.eps    Graphic file (type eps)
+  foo bar.eps    Graphic file (type eps)
+ ***********
+
+END-TEST-LOG
+ )
+
+Output written on utf8-filenames-001.dvi (2 pages, 816 bytes).

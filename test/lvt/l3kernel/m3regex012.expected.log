@@ -1,0 +1,247 @@
+entering extended mode
+(m3regex012.lvt
+LaTeX2e <2026-11-01>
+L3 programming layer <2026-09-09>
+(minimal.cls
+Document Class: minimal 2001/05/25 Standard LaTeX minimal class
+) (regression-test.tex
+\gTESTint=\count276
+) (l3debug.def
+File: l3debug.def 2026-09-09 L3 Debugging support
+)
+
+START-TEST-LOG
+
+
+This is a generated file for the l3build validation system.
+
+Don't change this file in any respect.
+
+
+! Undefined control sequence.
+l.13 \AUTHOR
+            {Bruno Le Floch}
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+
+! LaTeX Error: Missing \begin{document}.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...
+
+l.13 \AUTHOR{B
+              runo Le Floch}
+You're in trouble here.  Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+Missing character: There is no B in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no u in font nullfont!
+Missing character: There is no n in font nullfont!
+Missing character: There is no o in font nullfont!
+Missing character: There is no L in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no F in font nullfont!
+Missing character: There is no l in font nullfont!
+Missing character: There is no o in font nullfont!
+Missing character: There is no c in font nullfont!
+Missing character: There is no h in font nullfont!
+============================================================
+TEST 1: regex_match_case:nn
+============================================================
+:
+FALSE
+abc:
+abc
+TRUE
+Yabc:
+Y
+TRUE
+yabc:
+Y
+TRUE
+ybc:
+abc
+TRUE
+y;bc:
+FALSE
+y;bcz:
+Z
+TRUE
+============================================================
+
+============================================================
+TEST 2: regex_replace_case_once:nN
+============================================================
+: FALSE
+abc => (abc,abc,)
+Yabc => [Y,Ya,a]bc
+yabc => [Y,ya,a]bc
+ybc => (abc,ybc,)
+y;bc: FALSE
+y;bcz => y;bc<z,zZ>
+============================================================
+
+============================================================
+TEST 3: regex_replace_case_all:nN
+============================================================
+: FALSE
+ybc => (abc,ybc,)
+y;bc: FALSE
+y;bcz => y;bc<z,zZ>
+abcbcybcyabc => (abc,abc,)bc(abc,ybc,)[Y,ya,a]bc
+YabcYYYz => [Y,Ya,a]bc[Y,YY,Y][Y,Yz,z]
+yabcbc => [Y,ya,a]b(abc,cbc,)
+``Hello''---[,][ ]``world''---[!]
+---``Hello''---[,][ ]---``world''---[!]
+The token list \l_tmpa_tl contains the tokens:
+>  a (the letter a)
+>  { (begin-group character {)
+>  b (the letter b)
+>  { (begin-group character {)
+>  c (the letter c)
+>  } (end-group character })
+>  d (the letter d)
+>  { (begin-group character {)
+>  } (end-group character })
+>  } (end-group character })
+>  e (the letter e).
+
+! LaTeX Error: Missing brace inserted when replacing.
+
+For immediate help type H <return>.
+ ...
+
+l.133   }
+
+
+LaTeX was asked to do some regular expression operation, and the resulting token list would not have the same number of begin-group and end-group tokens. Braces were inserted: 2 left, 0 right.
+
+
+The token list \l_tmpa_tl contains the tokens:
+>  { (begin-group character {)
+>  { (begin-group character {)
+>  a (the letter a)
+>  { (begin-group character {)
+>  { (begin-group character {)
+>  } (end-group character })
+>  b (the letter b)
+>  b (the letter b)
+>  } (end-group character })
+>  { (begin-group character {)
+>  | (the character |)
+>  | (the character |)
+>  } (end-group character })
+>  } (end-group character })
+>  | (the character |)
+>  | (the character |)
+>  } (end-group character })
+>  e (the letter e).
+A
+============================================================
+
+============================================================
+TEST 4: regex_case errors
+============================================================
+
+! LaTeX Error: \regex_match_case:nn(TF) with odd number of items
+
+For immediate help type H <return>.
+ ...
+
+l.145   }
+
+
+There must be a code part for each regex: found odd number of items (13) in
+    Something odd.
+
+
+FALSE
+
+! LaTeX Error: \regex_match_case:nn(TF) with odd number of items
+
+For immediate help type H <return>.
+ ...
+
+l.145   }
+
+
+There must be a code part for each regex: found odd number of items (1) in
+    *
+
+
+
+! LaTeX Error: \regex_replace_case_once:nN(TF) with odd number of items
+
+For immediate help type H <return>.
+ ...
+
+l.145   }
+
+
+There must be a code part for each regex: found odd number of items (13) in
+    Something odd.
+
+
+FALSE
+
+! LaTeX Error: \regex_replace_case_once:nN(TF) with odd number of items
+
+For immediate help type H <return>.
+ ...
+
+l.145   }
+
+
+There must be a code part for each regex: found odd number of items (1) in
+    *
+
+
+
+! LaTeX Error: \regex_replace_case_all:nN(TF) with odd number of items
+
+For immediate help type H <return>.
+ ...
+
+l.145   }
+
+
+There must be a code part for each regex: found odd number of items (13) in
+    Something odd.
+
+
+FALSE
+
+! LaTeX Error: \regex_replace_case_all:nN(TF) with odd number of items
+
+For immediate help type H <return>.
+ ...
+
+l.145   }
+
+
+There must be a code part for each regex: found odd number of items (1) in
+    *
+
+
+============================================================
+
+
+END-TEST-LOG
+
+
+Overfull \hbox (20.0pt too wide) in paragraph at lines 13--148
+[]
+
+\hbox(0.0+0.0)x0.0
+.\hbox(0.0+0.0)x20.0
+.\glue(\rightskip) 0.0
+
+ )
+
+No pages of output.

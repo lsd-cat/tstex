@@ -1,0 +1,364 @@
+entering extended mode
+(m3coffins002.lvt
+LaTeX2e <2026-11-01>
+L3 programming layer <2026-09-09>
+(minimal.cls
+Document Class: minimal 2001/05/25 Standard LaTeX minimal class
+) (regression-test.tex
+\gTESTint=\count276
+)
+\test_temp_coffin=\box53
+\l_list_coffin=\box54
+\l_temp_item_coffin=\box55
+(l3backend-dvips.def
+File: l3backend-dvips.def 2026-09-09 L3 backend support: dvips
+\l__pdfannot_backend_content_box=\box56
+\l__pdfannot_backend_model_box=\box57
+\g__pdfannot_backend_int=\count277
+\g__pdfannot_backend_link_int=\count278
+\g__pdfannot_backend_link_sf_int=\count279
+)
+No file m3coffins002.aux.
+\openout1 = `m3coffins002.aux'.
+
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 43.
+LaTeX Font Info:    ... okay on input line 43.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 43.
+LaTeX Font Info:    ... okay on input line 43.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 43.
+LaTeX Font Info:    ... okay on input line 43.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 43.
+LaTeX Font Info:    ... okay on input line 43.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 43.
+LaTeX Font Info:    ... okay on input line 43.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 43.
+LaTeX Font Info:    ... okay on input line 43.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 43.
+LaTeX Font Info:    ... okay on input line 43.
+
+START-TEST-LOG
+
+
+This is a generated file for the l3build validation system.
+
+Don't change this file in any respect.
+
+
+! Undefined control sequence.
+l.47 \AUTHOR
+            {peaR}
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+Size of coffin \l_list_coffin:
+> ht = 6.83331pt
+> dp = 12.0pt
+> wd = 142.26378pt
+Poles of coffin \l_list_coffin:
+>  l  =>  {0pt}{0pt}{0pt}{1000pt}
+>  hc  =>  {71.13188pt}{0pt}{0pt}{1000pt}
+>  r  =>  {142.26378pt}{0pt}{0pt}{1000pt}
+>  b  =>  {0pt}{-12.0pt}{1000pt}{0pt}
+>  vc  =>  {0pt}{-2.58334pt}{1000pt}{0pt}
+>  t  =>  {0pt}{6.83331pt}{1000pt}{0pt}
+>  B  =>  {0pt}{-12.0pt}{1000pt}{0pt}
+>  H  =>  {0pt}{0pt}{1000pt}{0pt}
+>  T  =>  {0pt}{0.0pt}{1000pt}{0pt}
+>  \l_temp_item_coffin -l  =>  {0.0pt}{0.0pt}{0pt}{1000pt}
+>  \l_temp_item_coffin -hc  =>  {71.13188pt}{0.0pt}{0pt}{1000pt}
+>  \l_temp_item_coffin -r  =>  {142.26378pt}{0.0pt}{0pt}{1000pt}
+>  \l_temp_item_coffin -b  =>  {0.0pt}{0.0pt}{1000pt}{0pt}
+>  \l_temp_item_coffin -vc  =>  {0.0pt}{3.41666pt}{1000pt}{0pt}
+>  \l_temp_item_coffin -t  =>  {0.0pt}{6.83331pt}{1000pt}{0pt}
+>  \l_temp_item_coffin -B  =>  {0.0pt}{0.0pt}{1000pt}{0pt}
+>  \l_temp_item_coffin -H  =>  {0.0pt}{0.0pt}{1000pt}{0pt}
+>  \l_temp_item_coffin -T  =>  {0.0pt}{0.0pt}{1000pt}{0pt}
+>  \l_tmpa_coffin -l  =>  {0.0pt}{-12.0pt}{0pt}{1000pt}
+>  \l_tmpa_coffin -hc  =>  {71.13188pt}{-12.0pt}{0pt}{1000pt}
+>  \l_tmpa_coffin -r  =>  {142.26378pt}{-12.0pt}{0pt}{1000pt}
+>  \l_tmpa_coffin -b  =>  {0.0pt}{-12.0pt}{1000pt}{0pt}
+>  \l_tmpa_coffin -vc  =>  {0.0pt}{-8.58334pt}{1000pt}{0pt}
+>  \l_tmpa_coffin -t  =>  {0.0pt}{-5.16669pt}{1000pt}{0pt}
+>  \l_tmpa_coffin -B  =>  {0.0pt}{-12.0pt}{1000pt}{0pt}
+>  \l_tmpa_coffin -H  =>  {0.0pt}{-12.0pt}{1000pt}{0pt}
+>  \l_tmpa_coffin -T  =>  {0.0pt}{-12.0pt}{1000pt}{0pt}.
+<recently read> }
+
+l.50 \test_make_item:nn { Foo. } { Bar. }
+
+
+Size of coffin \l_list_coffin:
+> ht = 6.83331pt
+> dp = 12.0pt
+> wd = 142.26378pt
+Poles of coffin \l_list_coffin:
+>  l  =>  {0pt}{0pt}{0pt}{1000pt}
+>  hc  =>  {71.13188pt}{0pt}{0pt}{1000pt}
+>  r  =>  {142.26378pt}{0pt}{0pt}{1000pt}
+>  b  =>  {0pt}{-12.0pt}{1000pt}{0pt}
+>  vc  =>  {0pt}{-2.58334pt}{1000pt}{0pt}
+>  t  =>  {0pt}{6.83331pt}{1000pt}{0pt}
+>  B  =>  {0pt}{-12.0pt}{1000pt}{0pt}
+>  H  =>  {0pt}{0pt}{1000pt}{0pt}
+>  T  =>  {0pt}{0.0pt}{1000pt}{0pt}
+>  \l_temp_item_coffin -l  =>  {0.0pt}{0.0pt}{0pt}{1000pt}
+>  \l_temp_item_coffin -hc  =>  {71.13188pt}{0.0pt}{0pt}{1000pt}
+>  \l_temp_item_coffin -r  =>  {142.26378pt}{0.0pt}{0pt}{1000pt}
+>  \l_temp_item_coffin -b  =>  {0.0pt}{0.0pt}{1000pt}{0pt}
+>  \l_temp_item_coffin -vc  =>  {0.0pt}{3.41666pt}{1000pt}{0pt}
+>  \l_temp_item_coffin -t  =>  {0.0pt}{6.83331pt}{1000pt}{0pt}
+>  \l_temp_item_coffin -B  =>  {0.0pt}{0.0pt}{1000pt}{0pt}
+>  \l_temp_item_coffin -H  =>  {0.0pt}{0.0pt}{1000pt}{0pt}
+>  \l_temp_item_coffin -T  =>  {0.0pt}{0.0pt}{1000pt}{0pt}
+>  \l_tmpa_coffin -l  =>  {0.0pt}{-12.0pt}{0pt}{1000pt}
+>  \l_tmpa_coffin -hc  =>  {71.13188pt}{-12.0pt}{0pt}{1000pt}
+>  \l_tmpa_coffin -r  =>  {142.26378pt}{-12.0pt}{0pt}{1000pt}
+>  \l_tmpa_coffin -b  =>  {0.0pt}{-12.0pt}{1000pt}{0pt}
+>  \l_tmpa_coffin -vc  =>  {0.0pt}{-8.58334pt}{1000pt}{0pt}
+>  \l_tmpa_coffin -t  =>  {0.0pt}{-5.16669pt}{1000pt}{0pt}
+>  \l_tmpa_coffin -B  =>  {0.0pt}{-12.0pt}{1000pt}{0pt}
+>  \l_tmpa_coffin -H  =>  {0.0pt}{-12.0pt}{1000pt}{0pt}
+>  \l_tmpa_coffin -T  =>  {0.0pt}{-12.0pt}{1000pt}{0pt}.
+> \box54=
+\hbox(6.83331+12.0)x142.26378
+.\vbox(6.83331+0.0)x142.26378
+..\hbox(6.83331+0.0)x142.26378, glue set 103.51372fil []
+.\kern -142.26378
+.\kern 0.0
+.\vbox(6.83331+0.0)x142.26378, shifted 12.0
+..\hbox(6.83331+0.0)x142.26378, glue set 103.48595fil []
+
+! OK.
+<argument> \l_list_coffin
+
+l.50 \test_make_item:nn { Foo. } { Bar. }
+
+
+
+Size of coffin \l_list_coffin:
+> ht = 6.83331pt
+> dp = 37.94444pt
+> wd = 142.26378pt
+Poles of coffin \l_list_coffin:
+>  l  =>  {0pt}{0pt}{0pt}{1000pt}
+>  hc  =>  {71.13188pt}{0pt}{0pt}{1000pt}
+>  r  =>  {142.26378pt}{0pt}{0pt}{1000pt}
+>  b  =>  {0pt}{-37.94444pt}{1000pt}{0pt}
+>  vc  =>  {0pt}{-15.55557pt}{1000pt}{0pt}
+>  t  =>  {0pt}{6.83331pt}{1000pt}{0pt}
+>  B  =>  {0pt}{-36.0pt}{1000pt}{0pt}
+>  H  =>  {0pt}{0pt}{1000pt}{0pt}
+>  T  =>  {0pt}{0.0pt}{1000pt}{0pt}
+>  \l_list_coffin -l  =>  {0.0pt}{0.0pt}{0pt}{1000pt}
+>  \l_list_coffin -hc  =>  {71.13188pt}{0.0pt}{0pt}{1000pt}
+>  \l_list_coffin -r  =>  {142.26378pt}{0.0pt}{0pt}{1000pt}
+>  \l_list_coffin -b  =>  {0.0pt}{-12.0pt}{1000pt}{0pt}
+>  \l_list_coffin -vc  =>  {0.0pt}{-2.58334pt}{1000pt}{0pt}
+>  \l_list_coffin -t  =>  {0.0pt}{6.83331pt}{1000pt}{0pt}
+>  \l_list_coffin -B  =>  {0.0pt}{-12.0pt}{1000pt}{0pt}
+>  \l_list_coffin -H  =>  {0.0pt}{0.0pt}{1000pt}{0pt}
+>  \l_list_coffin -T  =>  {0.0pt}{0.0pt}{1000pt}{0pt}
+>  \l_temp_item_coffin -l  =>  {0.0pt}{-24.0pt}{0pt}{1000pt}
+>  \l_temp_item_coffin -hc  =>  {71.13188pt}{-24.0pt}{0pt}{1000pt}
+>  \l_temp_item_coffin -r  =>  {142.26378pt}{-24.0pt}{0pt}{1000pt}
+>  \l_temp_item_coffin -b  =>  {0.0pt}{-25.94444pt}{1000pt}{0pt}
+>  \l_temp_item_coffin -vc  =>  {0.0pt}{-21.55556pt}{1000pt}{0pt}
+>  \l_temp_item_coffin -t  =>  {0.0pt}{-17.16669pt}{1000pt}{0pt}
+>  \l_temp_item_coffin -B  =>  {0.0pt}{-24.0pt}{1000pt}{0pt}
+>  \l_temp_item_coffin -H  =>  {0.0pt}{-24.0pt}{1000pt}{0pt}
+>  \l_temp_item_coffin -T  =>  {0.0pt}{-24.0pt}{1000pt}{0pt}
+>  \l_tmpa_coffin -l  =>  {0.0pt}{-36.0pt}{0pt}{1000pt}
+>  \l_tmpa_coffin -hc  =>  {71.13188pt}{-36.0pt}{0pt}{1000pt}
+>  \l_tmpa_coffin -r  =>  {142.26378pt}{-36.0pt}{0pt}{1000pt}
+>  \l_tmpa_coffin -b  =>  {0.0pt}{-37.94444pt}{1000pt}{0pt}
+>  \l_tmpa_coffin -vc  =>  {0.0pt}{-33.55556pt}{1000pt}{0pt}
+>  \l_tmpa_coffin -t  =>  {0.0pt}{-29.16669pt}{1000pt}{0pt}
+>  \l_tmpa_coffin -B  =>  {0.0pt}{-36.0pt}{1000pt}{0pt}
+>  \l_tmpa_coffin -H  =>  {0.0pt}{-36.0pt}{1000pt}{0pt}
+>  \l_tmpa_coffin -T  =>  {0.0pt}{-36.0pt}{1000pt}{0pt}.
+<recently read> }
+
+l.51 \test_make_item:nn { Spam. } { Eggs. }
+
+
+Size of coffin \l_list_coffin:
+> ht = 6.83331pt
+> dp = 37.94444pt
+> wd = 142.26378pt
+Poles of coffin \l_list_coffin:
+>  l  =>  {0pt}{0pt}{0pt}{1000pt}
+>  hc  =>  {71.13188pt}{0pt}{0pt}{1000pt}
+>  r  =>  {142.26378pt}{0pt}{0pt}{1000pt}
+>  b  =>  {0pt}{-37.94444pt}{1000pt}{0pt}
+>  vc  =>  {0pt}{-15.55557pt}{1000pt}{0pt}
+>  t  =>  {0pt}{6.83331pt}{1000pt}{0pt}
+>  B  =>  {0pt}{-36.0pt}{1000pt}{0pt}
+>  H  =>  {0pt}{0pt}{1000pt}{0pt}
+>  T  =>  {0pt}{0.0pt}{1000pt}{0pt}
+>  \l_list_coffin -l  =>  {0.0pt}{0.0pt}{0pt}{1000pt}
+>  \l_list_coffin -hc  =>  {71.13188pt}{0.0pt}{0pt}{1000pt}
+>  \l_list_coffin -r  =>  {142.26378pt}{0.0pt}{0pt}{1000pt}
+>  \l_list_coffin -b  =>  {0.0pt}{-12.0pt}{1000pt}{0pt}
+>  \l_list_coffin -vc  =>  {0.0pt}{-2.58334pt}{1000pt}{0pt}
+>  \l_list_coffin -t  =>  {0.0pt}{6.83331pt}{1000pt}{0pt}
+>  \l_list_coffin -B  =>  {0.0pt}{-12.0pt}{1000pt}{0pt}
+>  \l_list_coffin -H  =>  {0.0pt}{0.0pt}{1000pt}{0pt}
+>  \l_list_coffin -T  =>  {0.0pt}{0.0pt}{1000pt}{0pt}
+>  \l_temp_item_coffin -l  =>  {0.0pt}{-24.0pt}{0pt}{1000pt}
+>  \l_temp_item_coffin -hc  =>  {71.13188pt}{-24.0pt}{0pt}{1000pt}
+>  \l_temp_item_coffin -r  =>  {142.26378pt}{-24.0pt}{0pt}{1000pt}
+>  \l_temp_item_coffin -b  =>  {0.0pt}{-25.94444pt}{1000pt}{0pt}
+>  \l_temp_item_coffin -vc  =>  {0.0pt}{-21.55556pt}{1000pt}{0pt}
+>  \l_temp_item_coffin -t  =>  {0.0pt}{-17.16669pt}{1000pt}{0pt}
+>  \l_temp_item_coffin -B  =>  {0.0pt}{-24.0pt}{1000pt}{0pt}
+>  \l_temp_item_coffin -H  =>  {0.0pt}{-24.0pt}{1000pt}{0pt}
+>  \l_temp_item_coffin -T  =>  {0.0pt}{-24.0pt}{1000pt}{0pt}
+>  \l_tmpa_coffin -l  =>  {0.0pt}{-36.0pt}{0pt}{1000pt}
+>  \l_tmpa_coffin -hc  =>  {71.13188pt}{-36.0pt}{0pt}{1000pt}
+>  \l_tmpa_coffin -r  =>  {142.26378pt}{-36.0pt}{0pt}{1000pt}
+>  \l_tmpa_coffin -b  =>  {0.0pt}{-37.94444pt}{1000pt}{0pt}
+>  \l_tmpa_coffin -vc  =>  {0.0pt}{-33.55556pt}{1000pt}{0pt}
+>  \l_tmpa_coffin -t  =>  {0.0pt}{-29.16669pt}{1000pt}{0pt}
+>  \l_tmpa_coffin -B  =>  {0.0pt}{-36.0pt}{1000pt}{0pt}
+>  \l_tmpa_coffin -H  =>  {0.0pt}{-36.0pt}{1000pt}{0pt}
+>  \l_tmpa_coffin -T  =>  {0.0pt}{-36.0pt}{1000pt}{0pt}.
+> \box54=
+\hbox(6.83331+37.94444)x142.26378
+.\hbox(6.83331+12.0)x142.26378
+..\vbox(6.83331+0.0)x142.26378 []
+..\kern -142.26378
+..\kern 0.0
+..\vbox(6.83331+0.0)x142.26378, shifted 12.0 []
+.\kern -142.26378
+.\kern 0.0
+.\hbox(6.83331+13.94444)x142.26378, shifted 24.0
+..\vbox(6.83331+1.94444)x142.26378 []
+..\kern -142.26378
+..\kern 0.0
+..\vbox(6.83331+1.94444)x142.26378, shifted 12.0 []
+
+! OK.
+<argument> \l_list_coffin
+
+l.51 \test_make_item:nn { Spam. } { Eggs. }
+
+
+
+Size of coffin \l_list_coffin:
+> ht = 6.83331pt
+> dp = 84.0pt
+> wd = 142.26378pt
+Poles of coffin \l_list_coffin:
+>  l  =>  {0pt}{0pt}{0pt}{1000pt}
+>  hc  =>  {71.13188pt}{0pt}{0pt}{1000pt}
+>  r  =>  {142.26378pt}{0pt}{0pt}{1000pt}
+>  b  =>  {0pt}{-84.0pt}{1000pt}{0pt}
+>  vc  =>  {0pt}{-38.58334pt}{1000pt}{0pt}
+>  t  =>  {0pt}{6.83331pt}{1000pt}{0pt}
+>  B  =>  {0pt}{-84.0pt}{1000pt}{0pt}
+>  H  =>  {0pt}{0pt}{1000pt}{0pt}
+>  T  =>  {0pt}{0.0pt}{1000pt}{0pt}
+>  \l_list_coffin -l  =>  {0.0pt}{0.0pt}{0pt}{1000pt}
+>  \l_list_coffin -hc  =>  {71.13188pt}{0.0pt}{0pt}{1000pt}
+>  \l_list_coffin -r  =>  {142.26378pt}{0.0pt}{0pt}{1000pt}
+>  \l_list_coffin -b  =>  {0.0pt}{-12.0pt}{1000pt}{0pt}
+>  \l_list_coffin -vc  =>  {0.0pt}{-2.58334pt}{1000pt}{0pt}
+>  \l_list_coffin -t  =>  {0.0pt}{6.83331pt}{1000pt}{0pt}
+>  \l_list_coffin -B  =>  {0.0pt}{-12.0pt}{1000pt}{0pt}
+>  \l_list_coffin -H  =>  {0.0pt}{0.0pt}{1000pt}{0pt}
+>  \l_list_coffin -T  =>  {0.0pt}{0.0pt}{1000pt}{0pt}
+>  \l_temp_item_coffin -l  =>  {0.0pt}{-48.0pt}{0pt}{1000pt}
+>  \l_temp_item_coffin -hc  =>  {71.13188pt}{-48.0pt}{0pt}{1000pt}
+>  \l_temp_item_coffin -r  =>  {142.26378pt}{-48.0pt}{0pt}{1000pt}
+>  \l_temp_item_coffin -b  =>  {0.0pt}{-48.0pt}{1000pt}{0pt}
+>  \l_temp_item_coffin -vc  =>  {0.0pt}{-44.58334pt}{1000pt}{0pt}
+>  \l_temp_item_coffin -t  =>  {0.0pt}{-41.16669pt}{1000pt}{0pt}
+>  \l_temp_item_coffin -B  =>  {0.0pt}{-48.0pt}{1000pt}{0pt}
+>  \l_temp_item_coffin -H  =>  {0.0pt}{-48.0pt}{1000pt}{0pt}
+>  \l_temp_item_coffin -T  =>  {0.0pt}{-48.0pt}{1000pt}{0pt}
+>  \l_tmpa_coffin -l  =>  {0.0pt}{-84.0pt}{0pt}{1000pt}
+>  \l_tmpa_coffin -hc  =>  {71.13188pt}{-84.0pt}{0pt}{1000pt}
+>  \l_tmpa_coffin -r  =>  {142.26378pt}{-84.0pt}{0pt}{1000pt}
+>  \l_tmpa_coffin -b  =>  {0.0pt}{-84.0pt}{1000pt}{0pt}
+>  \l_tmpa_coffin -vc  =>  {0.0pt}{-68.52777pt}{1000pt}{0pt}
+>  \l_tmpa_coffin -t  =>  {0.0pt}{-53.05556pt}{1000pt}{0pt}
+>  \l_tmpa_coffin -B  =>  {0.0pt}{-84.0pt}{1000pt}{0pt}
+>  \l_tmpa_coffin -H  =>  {0.0pt}{-84.0pt}{1000pt}{0pt}
+>  \l_tmpa_coffin -T  =>  {0.0pt}{-60.0pt}{1000pt}{0pt}.
+<recently read> }
+
+l.52 ...em:nn { Baz. } { Three \\ more \\ lines. }
+
+
+Size of coffin \l_list_coffin:
+> ht = 6.83331pt
+> dp = 84.0pt
+> wd = 142.26378pt
+Poles of coffin \l_list_coffin:
+>  l  =>  {0pt}{0pt}{0pt}{1000pt}
+>  hc  =>  {71.13188pt}{0pt}{0pt}{1000pt}
+>  r  =>  {142.26378pt}{0pt}{0pt}{1000pt}
+>  b  =>  {0pt}{-84.0pt}{1000pt}{0pt}
+>  vc  =>  {0pt}{-38.58334pt}{1000pt}{0pt}
+>  t  =>  {0pt}{6.83331pt}{1000pt}{0pt}
+>  B  =>  {0pt}{-84.0pt}{1000pt}{0pt}
+>  H  =>  {0pt}{0pt}{1000pt}{0pt}
+>  T  =>  {0pt}{0.0pt}{1000pt}{0pt}
+>  \l_list_coffin -l  =>  {0.0pt}{0.0pt}{0pt}{1000pt}
+>  \l_list_coffin -hc  =>  {71.13188pt}{0.0pt}{0pt}{1000pt}
+>  \l_list_coffin -r  =>  {142.26378pt}{0.0pt}{0pt}{1000pt}
+>  \l_list_coffin -b  =>  {0.0pt}{-12.0pt}{1000pt}{0pt}
+>  \l_list_coffin -vc  =>  {0.0pt}{-2.58334pt}{1000pt}{0pt}
+>  \l_list_coffin -t  =>  {0.0pt}{6.83331pt}{1000pt}{0pt}
+>  \l_list_coffin -B  =>  {0.0pt}{-12.0pt}{1000pt}{0pt}
+>  \l_list_coffin -H  =>  {0.0pt}{0.0pt}{1000pt}{0pt}
+>  \l_list_coffin -T  =>  {0.0pt}{0.0pt}{1000pt}{0pt}
+>  \l_temp_item_coffin -l  =>  {0.0pt}{-48.0pt}{0pt}{1000pt}
+>  \l_temp_item_coffin -hc  =>  {71.13188pt}{-48.0pt}{0pt}{1000pt}
+>  \l_temp_item_coffin -r  =>  {142.26378pt}{-48.0pt}{0pt}{1000pt}
+>  \l_temp_item_coffin -b  =>  {0.0pt}{-48.0pt}{1000pt}{0pt}
+>  \l_temp_item_coffin -vc  =>  {0.0pt}{-44.58334pt}{1000pt}{0pt}
+>  \l_temp_item_coffin -t  =>  {0.0pt}{-41.16669pt}{1000pt}{0pt}
+>  \l_temp_item_coffin -B  =>  {0.0pt}{-48.0pt}{1000pt}{0pt}
+>  \l_temp_item_coffin -H  =>  {0.0pt}{-48.0pt}{1000pt}{0pt}
+>  \l_temp_item_coffin -T  =>  {0.0pt}{-48.0pt}{1000pt}{0pt}
+>  \l_tmpa_coffin -l  =>  {0.0pt}{-84.0pt}{0pt}{1000pt}
+>  \l_tmpa_coffin -hc  =>  {71.13188pt}{-84.0pt}{0pt}{1000pt}
+>  \l_tmpa_coffin -r  =>  {142.26378pt}{-84.0pt}{0pt}{1000pt}
+>  \l_tmpa_coffin -b  =>  {0.0pt}{-84.0pt}{1000pt}{0pt}
+>  \l_tmpa_coffin -vc  =>  {0.0pt}{-68.52777pt}{1000pt}{0pt}
+>  \l_tmpa_coffin -t  =>  {0.0pt}{-53.05556pt}{1000pt}{0pt}
+>  \l_tmpa_coffin -B  =>  {0.0pt}{-84.0pt}{1000pt}{0pt}
+>  \l_tmpa_coffin -H  =>  {0.0pt}{-84.0pt}{1000pt}{0pt}
+>  \l_tmpa_coffin -T  =>  {0.0pt}{-60.0pt}{1000pt}{0pt}.
+> \box54=
+\hbox(6.83331+84.0)x142.26378
+.\hbox(6.83331+37.94444)x142.26378
+..\hbox(6.83331+12.0)x142.26378 []
+..\kern -142.26378
+..\kern 0.0
+..\hbox(6.83331+13.94444)x142.26378, shifted 24.0 []
+.\kern -142.26378
+.\kern 0.0
+.\hbox(6.83331+36.0)x142.26378, shifted 48.0
+..\vbox(6.83331+0.0)x142.26378 []
+..\kern -142.26378
+..\kern 0.0
+..\vbox(30.94444+0.0)x142.26378, shifted 36.0 []
+
+! OK.
+<argument> \l_list_coffin
+
+l.52 ...em:nn { Baz. } { Three \\ more \\ lines. }
+
+
+
+
+END-TEST-LOG
+
+ )
+
+No pages of output.

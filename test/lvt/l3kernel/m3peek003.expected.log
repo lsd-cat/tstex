@@ -1,0 +1,112 @@
+entering extended mode
+(m3peek003.lvt
+LaTeX2e <2026-11-01>
+L3 programming layer <2026-09-09>
+(minimal.cls
+Document Class: minimal 2001/05/25 Standard LaTeX minimal class
+) (regression-test.tex
+\gTESTint=\count276
+) (l3debug.def
+File: l3debug.def 2026-09-09 L3 Debugging support
+)
+
+START-TEST-LOG
+
+
+This is a generated file for the l3build validation system.
+
+Don't change this file in any respect.
+
+
+! Undefined control sequence.
+l.15 \AUTHOR
+            {Bruno Le Floch}
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+
+! LaTeX Error: Missing \begin{document}.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...
+
+l.15 \AUTHOR{B
+              runo Le Floch}
+You're in trouble here.  Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+Missing character: There is no B in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no u in font nullfont!
+Missing character: There is no n in font nullfont!
+Missing character: There is no o in font nullfont!
+Missing character: There is no L in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no F in font nullfont!
+Missing character: There is no l in font nullfont!
+Missing character: There is no o in font nullfont!
+Missing character: There is no c in font nullfont!
+Missing character: There is no h in font nullfont!
+============================================================
+TEST 1: Peek analysis map inline
+============================================================
+a,97,B
+\exp_after:w {\if_false: }\fi: ,123,1
+ ,32,A
+\exp_after:w {\if_false: }\fi: ,123,1
+\if_false: {\fi: },125,2
+\exp_not:n {\c_group_begin_token },-1,0
+\exp_not:n {\c_space_token },-1,0
+\if_false: {\fi: },125,2
+\__kernel_exp_not:w \exp_after:w {\exp_not:N X},88,D
+TRUE
+============================================================
+
+macro parameter character #,35,6
+\expandafter,-1,0
+blank space  ,-1,0
+macro parameter character #,-1,0
+\outer macro:->!,33,D
+\outer macro:->,-1,0
+TRUE
+\exp_not:n {\c_group_begin_token },-1,0
+\exp_not:n {\prg_do_nothing: },-1,0
+*,42,C
+ ,32,A
+> \scan_stop: .
+<recently read> }
+
+l.82 \test: * ~ \scan_stop: .
+
+
+============================================================
+TEST 2: Testing a very rare branch: github-1461
+============================================================
+\exp_not:n {\csname\endcsname },-1,0
+\exp_not:n {\},92,D
+\exp_not:n {{},123,D
+\exp_not:n { },32,D
+\exp_not:n {}},125,D
+X,88,B
+============================================================
+
+Defining \prro on line 110
+TRUE
+
+Overfull \hbox (20.0pt too wide) in paragraph at lines 15--113
+[]
+
+\hbox(0.0+0.0)x0.0
+.\hbox(0.0+0.0)x20.0
+.\glue(\rightskip) 0.0
+
+
+END-TEST-LOG
+
+ )
+
+No pages of output.

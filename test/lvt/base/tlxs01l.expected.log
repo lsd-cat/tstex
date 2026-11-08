@@ -1,0 +1,199 @@
+entering extended mode
+(tlxs01l.lvt
+LaTeX2e <2026-11-01>
+L3 programming layer <2026-09-09>
+(letter.cls
+Document Class: letter 2024/08/12 v1.3c Standard LaTeX document class
+(size10.clo
+File: size10.clo 2026-06-04 v1.4n Standard LaTeX file (size option)
+)
+\longindentation=\dimen150
+\indentedwidth=\dimen151
+\labelcount=\count276
+) (l3backend-dvips.def
+File: l3backend-dvips.def 2026-09-09 L3 backend support: dvips
+\l__pdfannot_backend_content_box=\box53
+\l__pdfannot_backend_model_box=\box54
+\g__pdfannot_backend_int=\count277
+\g__pdfannot_backend_link_int=\count278
+\g__pdfannot_backend_link_sf_int=\count279
+)
+No file tlxs01l.aux.
+\openout1 = `tlxs01l.aux'.
+
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 36.
+LaTeX Font Info:    ... okay on input line 36.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 36.
+LaTeX Font Info:    ... okay on input line 36.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 36.
+LaTeX Font Info:    ... okay on input line 36.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 36.
+LaTeX Font Info:    ... okay on input line 36.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 36.
+LaTeX Font Info:    ... okay on input line 36.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 36.
+LaTeX Font Info:    ... okay on input line 36.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 36.
+LaTeX Font Info:    ... okay on input line 36.
+(test2e.tex
+OMIT
+TIMO
+)
+START-TEST-LOG
+
+This is a generated file for the LaTeX2e validation system.
+
+Don't change this file in any respect.
+
+Author: Chris Martin
+Format: LaTeX2e<1993/12/24>
+OMIT
+
+LaTeX Warning: Declared format LaTeX2e<1993/12/24>,
+Actual format LaTeX2e<2026-11-01> on input line 49.
+
+TIMO
+Main Class: letter
+Defined   \ccname
+Defined   \enclname
+Defined   \pagename
+Defined   \headtoname
+OMIT
+\c@ccname=\count280
+\c@enclname=\count281
+\c@pagename=\count282
+\c@headtoname=\count283
+TIMO
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <7> on input line 88.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <5> on input line 88.
+\unhbox \voidb@x \ignorespaces  Gill Cameo
+\labelenumi\ is K.
+\labelenumii\ is (xii)
+\labelenumiii\ is m.
+\labelenumiv\ is 14.
+[1
+
+]
+Overfull \hbox (9.47269pt too wide) in paragraph at lines 208--213
+[]\OT1/cmr/m/n/10 The [][]\OT1/cmtt/m/n/10 \ps []\OT1/cmr/m/n/10 com-mand re-sumes nor-mal for-mat-ting in case you want to add a postscript.
+
+\hbox(6.94444+2.22223)x345.0, glue set - 1.0
+.\hbox(0.0+0.0)x0.0
+.\OT1/cmr/m/n/10 T
+.\OT1/cmr/m/n/10 h
+.\OT1/cmr/m/n/10 e
+.\glue 3.33333 plus 1.66666 minus 1.11111
+.\hbox(0.0+0.0)x0.0
+.\setlanguage2 (hyphenmin 2,3)
+.\OT1/cmtt/m/n/10 \
+.\OT1/cmtt/m/n/10 p
+.\OT1/cmtt/m/n/10 s
+.\glue 3.33333 plus 1.66666 minus 1.11111
+.\setlanguage0 (hyphenmin 2,3)
+.\OT1/cmr/m/n/10 c
+.\OT1/cmr/m/n/10 o
+.\OT1/cmr/m/n/10 m
+.\discretionary
+..\OT1/cmr/m/n/10 -
+.\OT1/cmr/m/n/10 m
+.\OT1/cmr/m/n/10 a
+.\OT1/cmr/m/n/10 n
+.\OT1/cmr/m/n/10 d
+.\glue 3.33333 plus 1.66666 minus 1.11111
+.\OT1/cmr/m/n/10 r
+.\OT1/cmr/m/n/10 e
+.\discretionary
+..\OT1/cmr/m/n/10 -
+.\OT1/cmr/m/n/10 s
+.\OT1/cmr/m/n/10 u
+.\OT1/cmr/m/n/10 m
+.\OT1/cmr/m/n/10 e
+.\OT1/cmr/m/n/10 s
+.\glue 3.33333 plus 1.66666 minus 1.11111
+.\OT1/cmr/m/n/10 n
+.\OT1/cmr/m/n/10 o
+.\OT1/cmr/m/n/10 r
+.\discretionary
+..\OT1/cmr/m/n/10 -
+.\OT1/cmr/m/n/10 m
+.\OT1/cmr/m/n/10 a
+.\OT1/cmr/m/n/10 l
+.\glue 3.33333 plus 1.66666 minus 1.11111
+.\OT1/cmr/m/n/10 f
+.\OT1/cmr/m/n/10 o
+.\OT1/cmr/m/n/10 r
+.\discretionary
+..\OT1/cmr/m/n/10 -
+.\OT1/cmr/m/n/10 m
+.\OT1/cmr/m/n/10 a
+.\OT1/cmr/m/n/10 t
+.\discretionary
+..\OT1/cmr/m/n/10 -
+.\OT1/cmr/m/n/10 t
+.\OT1/cmr/m/n/10 i
+.\OT1/cmr/m/n/10 n
+.\OT1/cmr/m/n/10 g
+.\glue 3.33333 plus 1.66666 minus 1.11111
+.\OT1/cmr/m/n/10 i
+.\OT1/cmr/m/n/10 n
+.\glue 3.33333 plus 1.66666 minus 1.11111
+.\OT1/cmr/m/n/10 c
+.\OT1/cmr/m/n/10 a
+.\OT1/cmr/m/n/10 s
+.\OT1/cmr/m/n/10 e
+.\glue 3.33333 plus 1.66666 minus 1.11111
+.\OT1/cmr/m/n/10 y
+.\kern-0.27779
+.\OT1/cmr/m/n/10 o
+.\OT1/cmr/m/n/10 u
+.\glue 3.33333 plus 1.66666 minus 1.11111
+.\OT1/cmr/m/n/10 w
+.\kern-0.27779
+.\OT1/cmr/m/n/10 a
+.\OT1/cmr/m/n/10 n
+.\kern-0.27779
+.\OT1/cmr/m/n/10 t
+.\glue 3.33333 plus 1.66666 minus 1.11111
+.\OT1/cmr/m/n/10 t
+.\OT1/cmr/m/n/10 o
+.\glue 3.33333 plus 1.66666 minus 1.11111
+.\OT1/cmr/m/n/10 a
+.\OT1/cmr/m/n/10 d
+.\OT1/cmr/m/n/10 d
+.\glue 3.33333 plus 1.66666 minus 1.11111
+.\OT1/cmr/m/n/10 a
+.\glue 3.33333 plus 1.66666 minus 1.11111
+.\OT1/cmr/m/n/10 p
+.\kern0.27779
+.\OT1/cmr/m/n/10 o
+.\OT1/cmr/m/n/10 s
+.\OT1/cmr/m/n/10 t
+.\OT1/cmr/m/n/10 s
+.\OT1/cmr/m/n/10 c
+.\OT1/cmr/m/n/10 r
+.\OT1/cmr/m/n/10 i
+.\OT1/cmr/m/n/10 p
+.\OT1/cmr/m/n/10 t
+.\OT1/cmr/m/n/10 .
+.\glue(\rightskip) 0.0
+
+To name changed to XTo
+Page name changed to XPage
+[2]
+cc name changed to Xcc
+encl name changed to Xencl
+To name changed to XTo
+Page name changed to XPage
+[3]
+Each counter should have a non-zero value to show that the name has been changed
+Counter ccname is 1
+Counter enclname is 1
+Counter pagename is 2
+Counter headtoname is 2
+(tlxs01l.aux)
+END-TEST-LOG
+ )
+
+Output written on tlxs01l.dvi (3 pages, 6984 bytes).

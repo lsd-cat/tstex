@@ -1,0 +1,46 @@
+entering extended mode
+(github-0776.lvt
+LaTeX2e <2026-11-01>
+L3 programming layer <2026-09-09>
+(regression-test.tex
+\gTESTint=\count276
+) (graphics.sty
+Package: graphics 2026-05-17 v1.4h Standard LaTeX Graphics (DPC,SPQR)
+(trig.sty
+Package: trig 2023/12/02 v1.11 sin cos tan (DPC)
+) (graphics.cfg
+File: graphics.cfg 2016/06/04 v1.11 sample graphics configuration
+)
+Package graphics Info: Driver file: dvips.def on input line 106.
+(dvips.def
+File: dvips.def 2025/01/21 v3.2a Graphics/color driver for dvips
+))
+
+START-TEST-LOG
+
+
+This is a generated file for the l3build validation system.
+
+Don't change this file in any respect.
+
+
+
+! LaTeX Error: File `meow' not found.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...
+
+l.16 \sbox0{\includegraphics{meow}}
+
+I could not locate the file with any of these extensions:
+.eps,.ps,.eps.gz,.ps.gz,.eps.Z,.mps
+Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+
+END-TEST-LOG
+
+ )
+
+No pages of output.

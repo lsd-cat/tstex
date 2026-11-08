@@ -1,0 +1,150 @@
+entering extended mode
+(tlcs07a1.lvt
+LaTeX2e <2026-11-01>
+L3 programming layer <2026-09-09>
+(latex209.def
+File: latex209.def 2020/11/26 v0.55 Standard LaTeX file
+
+          Entering LaTeX 2.09 COMPATIBILITY MODE
+ *************************************************************
+    !!WARNING!!    !!WARNING!!    !!WARNING!!    !!WARNING!!
+
+ This mode attempts to provide an emulation of the LaTeX 2.09
+ author environment so that OLD documents can be successfully
+ processed. It should NOT be used for NEW documents!
+
+ New documents should use Standard LaTeX conventions and start
+ with the \documentclass command.
+
+ Compatibility mode is UNLIKELY TO WORK with LaTeX 2.09 style
+ files that change any internal macros, especially not with
+ those that change the FONT SELECTION or OUTPUT ROUTINES.
+
+ Therefore such style files MUST BE UPDATED to use
+          Current Standard LaTeX: LaTeX2e.
+ If you suspect that you may be using such a style file, which
+ is probably very, very old by now, then you should attempt to
+ get it updated by sending a copy of this error message to the
+ author of that file.
+ *************************************************************
+
+\footheight=\dimen150
+\@maxsep=\dimen151
+\@dblmaxsep=\dimen152
+\@cla=\count276
+\@clb=\count277
+\mscount=\count278
+(tracefnt.sty
+Package: tracefnt 2020/12/22 v3.0n Standard LaTeX package (font tracing)
+\tracingfonts=\count279
+LaTeX Info: Redefining \selectfont on input line 107.
+Applying: [2021/06/01] Add hook to \selectfont  on input line 142.
+Already applied: [0000/00/00] Add hook to \selectfont  on input line 145.
+)
+\symbold=\mathgroup4
+\symsans=\mathgroup5
+\symtypewriter=\mathgroup6
+\symitalic=\mathgroup7
+\symsmallcaps=\mathgroup8
+\symslanted=\mathgroup9
+LaTeX Font Info:    Redeclaring math alphabet \mathbf on input line 280.
+LaTeX Font Info:    Redeclaring math alphabet \mathsf on input line 281.
+LaTeX Font Info:    Redeclaring math alphabet \mathtt on input line 282.
+LaTeX Font Info:    Redeclaring math alphabet \mathit on input line 288.
+LaTeX Info: Redefining \em on input line 298.
+(latexsym.sty
+Package: latexsym 1998/08/17 v2.2e Standard LaTeX package (lasy symbols)
+\symlasy=\mathgroup10
+LaTeX Font Info:    Overwriting symbol font `lasy' in version `bold'
+(Font)                  U/lasy/m/n --> U/lasy/b/n on input line 52.
+)
+LaTeX Font Info:    Redeclaring math delimiter \lgroup on input line 344.
+LaTeX Font Info:    Redeclaring math delimiter \rgroup on input line 346.
+LaTeX Font Info:    Redeclaring math delimiter \bracevert on input line 348.
+) (article.cls
+Document Class: article 2026-06-04 v1.4n Standard LaTeX document class
+(size11.clo
+File: size11.clo 2026-06-04 v1.4n Standard LaTeX file (size option)
+)
+\c@part=\count280
+\c@section=\count281
+\c@subsection=\count282
+\c@subsubsection=\count283
+\c@paragraph=\count284
+\c@subparagraph=\count285
+\c@figure=\count286
+\c@table=\count287
+\abovecaptionskip=\skip49
+\belowcaptionskip=\skip50
+Compatibility mode: definition of \rm ignored.
+Compatibility mode: definition of \sf ignored.
+Compatibility mode: definition of \tt ignored.
+Compatibility mode: definition of \bf ignored.
+Compatibility mode: definition of \it ignored.
+Compatibility mode: definition of \sl ignored.
+Compatibility mode: definition of \sc ignored.
+LaTeX Info: Redefining \cal on input line 497.
+LaTeX Info: Redefining \mit on input line 498.
+\bibindent=\dimen153
+) (l3backend-dvips.def
+File: l3backend-dvips.def 2026-09-09 L3 backend support: dvips
+\l__pdfannot_backend_content_box=\box53
+\l__pdfannot_backend_model_box=\box54
+\g__pdfannot_backend_int=\count288
+\g__pdfannot_backend_link_int=\count289
+\g__pdfannot_backend_link_sf_int=\count290
+)
+No file tlcs07a1.aux.
+\openout1 = `tlcs07a1.aux'.
+
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 21.
+LaTeX Font Info:    ... okay on input line 21.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 21.
+LaTeX Font Info:    ... okay on input line 21.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 21.
+LaTeX Font Info:    ... okay on input line 21.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 21.
+LaTeX Font Info:    ... okay on input line 21.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 21.
+LaTeX Font Info:    ... okay on input line 21.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 21.
+LaTeX Font Info:    ... okay on input line 21.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 21.
+LaTeX Font Info:    ... okay on input line 21.
+(test2e.tex
+OMIT
+TIMO
+)
+START-TEST-LOG
+
+This is a generated file for the LaTeX2e validation system.
+
+Don't change this file in any respect.
+
+Author: Chris Martin
+Format: LaTeX2e<1993/12/24>
+OMIT
+
+LaTeX Warning: Declared format LaTeX2e<1993/12/24>,
+Actual format LaTeX2e<2026-11-01> on input line 34.
+
+TIMO
+Main Style: article <14 Jan 92>
+Style Options: 11pt
+Defined   \section
+Defined   \subsection
+Defined   \subsubsection
+Defined   \paragraph
+Defined   \subparagraph
+The \section\ font is \OT1/cmr/bx/n/14.4
+The \subsection\ font is \OT1/cmr/bx/n/12
+The \subsubsection\ font is \OT1/cmr/bx/n/10.95
+The \paragraph\ font is \OT1/cmr/bx/n/10.95
+The \subparagraph\ font is \OT1/cmr/bx/n/10.95
+[1
+
+] (tlcs07a1.aux)
+END-TEST-LOG
+ )
+
+Output written on tlcs07a1.dvi (1 page, 548 bytes).

@@ -1,0 +1,126 @@
+entering extended mode
+(m3text004.lvt
+LaTeX2e <2026-11-01>
+L3 programming layer <2026-09-09>
+(regression-test.tex
+\gTESTint=\count276
+) (l3debug.def
+File: l3debug.def 2026-09-09 L3 Debugging support
+)
+
+START-TEST-LOG
+
+
+This is a generated file for the l3build validation system.
+
+Don't change this file in any respect.
+
+
+! Undefined control sequence.
+l.11 \AUTHOR
+            {Joseph Wright}
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+
+! LaTeX Error: Missing \begin{document}.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...
+
+l.11 \AUTHOR{J
+              oseph Wright}
+You're in trouble here.  Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+Missing character: There is no J in font nullfont!
+Missing character: There is no o in font nullfont!
+Missing character: There is no s in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no p in font nullfont!
+Missing character: There is no h in font nullfont!
+Missing character: There is no W in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no i in font nullfont!
+Missing character: There is no g in font nullfont!
+Missing character: There is no h in font nullfont!
+Missing character: There is no t in font nullfont!
+OMIT
+TIMO
+============================================================
+TEST 1: Purify content
+============================================================
+Some text Hello
+Hello sometext
+============================================================
+
+============================================================
+TEST 2: Purify in braces
+============================================================
+Hello world with &##
+============================================================
+
+============================================================
+TEST 3: Purification exclusions
+============================================================
+FOO Hello BAZ
+ BAZ
+============================================================
+
+============================================================
+TEST 4: Math-mode escape
+============================================================
+Some text $y = \sin \theta $
+Oops not close token in $y = \sin \theta
+$y=mx+c$ is an equation
+============================================================
+
+OMIT
+TIMO
+============================================================
+TEST 5: Implicit tokens
+============================================================
+{}$&^^M#^_^^@ a*~%
+============================================================
+
+OMIT
+Defining \l__text_purify_\numberline_tl on line 88
+TIMO
+============================================================
+TEST 6: Removing commands after \protect
+============================================================
+ab
+d
+============================================================
+
+============================================================
+TEST 7: Letter-like commands
+============================================================
+ÅåæðßłØ
+============================================================
+
+============================================================
+TEST 8: Accents
+============================================================
+äĕi̋ǒu̇
+ñr̨
+============================================================
+
+
+END-TEST-LOG
+
+
+Overfull \hbox (20.0pt too wide) in paragraph at lines 11--110
+[]
+
+\hbox(0.0+0.0)x0.0
+.\hbox(0.0+0.0)x20.0
+.\glue(\rightskip) 0.0
+
+ )
+
+No pages of output.

@@ -1,0 +1,56 @@
+entering extended mode
+(tlb3635.lvt
+LaTeX2e <2026-11-01>
+L3 programming layer <2026-09-09>
+(article.cls
+Document Class: article 2026-06-04 v1.4n Standard LaTeX document class
+(size10.clo
+File: size10.clo 2026-06-04 v1.4n Standard LaTeX file (size option)
+)
+\c@part=\count276
+\c@section=\count277
+\c@subsection=\count278
+\c@subsubsection=\count279
+\c@paragraph=\count280
+\c@subparagraph=\count281
+\c@figure=\count282
+\c@table=\count283
+\abovecaptionskip=\skip49
+\belowcaptionskip=\skip50
+\bibindent=\dimen150
+) (color.sty
+Package: color 2026-05-17 v1.3f Standard LaTeX Color (DPC)
+(color.cfg
+File: color.cfg 2016/01/02 v1.6 sample color configuration
+)
+Package color Info: Driver file: dvips.def on input line 149.
+(dvips.def
+File: dvips.def 2025/01/21 v3.2a Graphics/color driver for dvips
+) (dvipsnam.def
+File: dvipsnam.def 2026-06-26 v3.0m Driver-dependent file (DPC,SPQR)
+) (mathcolor.ltx)) (test2e.tex
+OMIT
+TIMO
+(expl3.sty
+Package: expl3 2026-09-09 L3 programming layer (loader)
+ (l3backend-dvips.def
+File: l3backend-dvips.def 2026-09-09 L3 backend support: dvips
+\l__pdfannot_backend_content_box=\box53
+\l__pdfannot_backend_model_box=\box54
+\g__pdfannot_backend_int=\count284
+\g__pdfannot_backend_link_int=\count285
+\g__pdfannot_backend_link_sf_int=\count286
+)))
+START-TEST-LOG
+
+This is a generated file for the LaTeX2e validation system.
+
+Don't change this file in any respect.
+
+Author: Ulrike Fischer
+Package: color
+Package color Info: Redefining color GreenYellowXXX in named color model on input line 10.
+END-TEST-LOG
+ )
+
+No pages of output.

@@ -1,0 +1,78 @@
+entering extended mode
+(m3tl014.lvt
+LaTeX2e <2026-11-01>
+L3 programming layer <2026-09-09>
+(regression-test.tex
+\gTESTint=\count276
+) (l3debug.def
+File: l3debug.def 2026-09-09 L3 Debugging support
+)
+
+START-TEST-LOG
+
+
+This is a generated file for the l3build validation system.
+
+Don't change this file in any respect.
+
+
+! Undefined control sequence.
+l.11 \AUTHOR
+            {Bruno Le Floch}
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+
+! LaTeX Error: Missing \begin{document}.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...
+
+l.11 \AUTHOR{B
+              runo Le Floch}
+You're in trouble here.  Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+Missing character: There is no B in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no u in font nullfont!
+Missing character: There is no n in font nullfont!
+Missing character: There is no o in font nullfont!
+Missing character: There is no L in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no F in font nullfont!
+Missing character: There is no l in font nullfont!
+Missing character: There is no o in font nullfont!
+Missing character: There is no c in font nullfont!
+Missing character: There is no h in font nullfont!
+============================================================
+TEST 1: tl range
+============================================================
+||
+|\A |
+|\A {\B \C } \D {}|
+||
+|\D {} {\E }|
+|\A {\B \C } \D {} {\E }|
+|\A {\B \C } \D |
+||
+============================================================
+
+
+END-TEST-LOG
+
+
+Overfull \hbox (20.0pt too wide) in paragraph at lines 11--26
+[]
+
+\hbox(0.0+0.0)x0.0
+.\hbox(0.0+0.0)x20.0
+.\glue(\rightskip) 0.0
+
+ )
+
+No pages of output.

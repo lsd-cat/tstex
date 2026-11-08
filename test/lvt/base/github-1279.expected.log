@@ -1,0 +1,82 @@
+entering extended mode
+(github-1279.lvt
+LaTeX2e <2026-11-01>
+L3 programming layer <2026-09-09>
+
+LaTeX Info: Writing file `./github-1279.cls'.
+
+\openout15 = `github-1279.cls'.
+
+
+
+LaTeX Info: Writing file `./github-1279.sty'.
+
+\openout15 = `github-1279.sty'.
+
+
+(test2e.tex
+OMIT
+TIMO
+(expl3.sty
+Package: expl3 2026-09-09 L3 programming layer (loader)
+ (l3backend-dvips.def
+File: l3backend-dvips.def 2026-09-09 L3 backend support: dvips
+\l__pdfannot_backend_content_box=\box53
+\l__pdfannot_backend_model_box=\box54
+\g__pdfannot_backend_int=\count276
+\g__pdfannot_backend_link_int=\count277
+\g__pdfannot_backend_link_sf_int=\count278
+)))
+START-TEST-LOG
+
+This is a generated file for the LaTeX2e validation system.
+
+Don't change this file in any respect.
+
+(github-1279.cls
+> \l@cls@a@tl=macro:
+->AAA.
+l.17 \show\l@cls@a@tl
+
+
+> \l@cls@b@tl=macro:
+->BBB.
+l.18 \show\l@cls@b@tl
+
+
+> \l@cls@c@tl=macro:
+->CCC.
+l.19 \show\l@cls@c@tl
+
+
+> \l@cls@d@tl=macro:
+->DDD.
+l.20 \show\l@cls@d@tl
+
+
+) (github-1279.sty
+> \l@pkg@a@tl=macro:
+->AAA.
+l.16 \show\l@pkg@a@tl
+
+
+> \l@pkg@b@tl=macro:
+->BBB.
+l.17 \show\l@pkg@b@tl
+
+
+> \l@pkg@c@tl=macro:
+->.
+l.18 \show\l@pkg@c@tl
+
+
+> \l@pkg@d@tl=macro:
+->.
+l.19 \show\l@pkg@d@tl
+
+
+)
+END-TEST-LOG
+ )
+
+No pages of output.

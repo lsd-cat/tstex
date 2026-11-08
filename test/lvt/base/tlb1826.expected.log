@@ -1,0 +1,111 @@
+entering extended mode
+(tlb1826.lvt
+LaTeX2e <2026-11-01>
+L3 programming layer <2026-09-09>
+(test2e.tex
+OMIT
+TIMO
+(expl3.sty
+Package: expl3 2026-09-09 L3 programming layer (loader)
+ (l3backend-dvips.def
+File: l3backend-dvips.def 2026-09-09 L3 backend support: dvips
+\l__pdfannot_backend_content_box=\box53
+\l__pdfannot_backend_model_box=\box54
+\g__pdfannot_backend_int=\count276
+\g__pdfannot_backend_link_int=\count277
+\g__pdfannot_backend_link_sf_int=\count278
+)))
+START-TEST-LOG
+
+This is a generated file for the LaTeX2e validation system.
+
+Don't change this file in any respect.
+
+Author: Marcin Woli\'nski
+Format: LaTeX2e<1995/06/01>
+OMIT
+
+LaTeX Warning: Declared format LaTeX2e<1995/06/01>,
+Actual format LaTeX2e<2026-11-01> on input line 30.
+
+TIMO
+Main Class: article
+OMIT
+
+LaTeX Info: Writing file `./fooenc.def'.
+
+\openout15 = `fooenc.def'.
+
+
+
+LaTeX Info: Writing file `./foocmr.fd'.
+
+\openout15 = `foocmr.fd'.
+
+
+
+LaTeX Info: Writing file `./foocmtt.fd'.
+
+\openout15 = `foocmtt.fd'.
+
+
+(article.cls
+Document Class: article 2026-06-04 v1.4n Standard LaTeX document class
+(size10.clo
+File: size10.clo 2026-06-04 v1.4n Standard LaTeX file (size option)
+)
+\c@part=\count279
+\c@section=\count280
+\c@subsection=\count281
+\c@subsubsection=\count282
+\c@paragraph=\count283
+\c@subparagraph=\count284
+\c@figure=\count285
+\c@table=\count286
+\abovecaptionskip=\skip49
+\belowcaptionskip=\skip50
+\bibindent=\dimen150
+) (fontenc.sty
+Package: fontenc 2026-07-31 v2.2a Standard LaTeX package
+ (fooenc.def
+File: fooenc.def 1995/08/09 `foo' encoding defs
+Now handling font encoding foo ...
+... no UTF-8 mapping file for font encoding foo
+)
+LaTeX Font Info:    Trying to load font information for foo+cmr on input line 116.
+ (foocmr.fd
+File: foocmr.fd 1995/08/09 Font defs for `foo' fonts.
+))
+No file tlb1826.aux.
+\openout1 = `tlb1826.aux'.
+
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 66.
+LaTeX Font Info:    ... okay on input line 66.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 66.
+LaTeX Font Info:    ... okay on input line 66.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 66.
+LaTeX Font Info:    ... okay on input line 66.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 66.
+LaTeX Font Info:    ... okay on input line 66.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 66.
+LaTeX Font Info:    ... okay on input line 66.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 66.
+LaTeX Font Info:    ... okay on input line 66.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 66.
+LaTeX Font Info:    ... okay on input line 66.
+LaTeX Font Info:    Checking defaults for foo/cmr/m/n on input line 66.
+LaTeX Font Info:    ... okay on input line 66.
+TIMO
+LaTeX Font Info:    Trying to load font information for foo+cmtt on input line 70.
+(foocmtt.fd
+File: foocmtt.fd 1995/08/09 Font defs for `foo' fonts.
+LaTeX Font Info:     on input line 6.
+LaTeX Font Info:    `foo' on input line 7.
+LaTeX Font Info:     on input line 8.
+) [1
+
+] (tlb1826.aux)
+END-TEST-LOG
+ )
+
+Output written on tlb1826.dvi (1 page, 264 bytes).

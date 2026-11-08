@@ -1,0 +1,23 @@
+entering extended mode
+(gh234-ltugboat.lvt
+LaTeX2e <2026-11-01>
+L3 programming layer <2026-09-09>
+(regression-test.tex
+\gTESTint=\count276
+)
+
+! LaTeX Error: File `ltugboat.cls' not found.
+
+Type X to quit or <RETURN> to proceed,
+or enter new name. (Default extension: cls)
+
+Enter file name:
+! Emergency stop.
+<read *>
+
+l.3 \usepackage
+               {nameref}^^M
+*** (cannot \read from terminal in nonstop modes)
+
+
+No pages of output.

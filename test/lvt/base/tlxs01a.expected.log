@@ -1,0 +1,143 @@
+entering extended mode
+(tlxs01a.lvt
+LaTeX2e <2026-11-01>
+L3 programming layer <2026-09-09>
+(article.cls
+Document Class: article 2026-06-04 v1.4n Standard LaTeX document class
+(size10.clo
+File: size10.clo 2026-06-04 v1.4n Standard LaTeX file (size option)
+)
+\c@part=\count276
+\c@section=\count277
+\c@subsection=\count278
+\c@subsubsection=\count279
+\c@paragraph=\count280
+\c@subparagraph=\count281
+\c@figure=\count282
+\c@table=\count283
+\abovecaptionskip=\skip49
+\belowcaptionskip=\skip50
+\bibindent=\dimen150
+) (l3backend-dvips.def
+File: l3backend-dvips.def 2026-09-09 L3 backend support: dvips
+\l__pdfannot_backend_content_box=\box53
+\l__pdfannot_backend_model_box=\box54
+\g__pdfannot_backend_int=\count284
+\g__pdfannot_backend_link_int=\count285
+\g__pdfannot_backend_link_sf_int=\count286
+)
+No file tlxs01a.aux.
+\openout1 = `tlxs01a.aux'.
+
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 24.
+LaTeX Font Info:    ... okay on input line 24.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 24.
+LaTeX Font Info:    ... okay on input line 24.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 24.
+LaTeX Font Info:    ... okay on input line 24.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 24.
+LaTeX Font Info:    ... okay on input line 24.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 24.
+LaTeX Font Info:    ... okay on input line 24.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 24.
+LaTeX Font Info:    ... okay on input line 24.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 24.
+LaTeX Font Info:    ... okay on input line 24.
+(test2e.tex
+OMIT
+TIMO
+)
+START-TEST-LOG
+
+This is a generated file for the LaTeX2e validation system.
+
+Don't change this file in any respect.
+
+Author: Chris Martin
+Format: LaTeX2e<1993/12/24>
+OMIT
+
+LaTeX Warning: Declared format LaTeX2e<1993/12/24>,
+Actual format LaTeX2e<2026-11-01> on input line 37.
+
+TIMO
+Main Class: article <14 Jan 92>
+Defined   \partname
+Defined   \contentsname
+Defined   \listfigurename
+Defined   \listtablename
+Defined   \refname
+Defined   \indexname
+Defined   \figurename
+Defined   \tablename
+Defined   \abstractname
+OMIT
+\c@contentsname=\count287
+\c@listfigurename=\count288
+\c@listtablename=\count289
+\c@refname=\count290
+\c@indexname=\count291
+\c@figurename=\count292
+\c@tablename=\count293
+\c@chaptername=\count294
+\c@partname=\count295
+\c@abstractname=\count296
+TIMO
+List of Tables name changed to XList of Tables
+No file tlxs01a.lot.
+\tf@lot=\write3
+\openout3 = `tlxs01a.lot'.
+
+List of Figures name changed to XList of Figures
+No file tlxs01a.lof.
+\tf@lof=\write4
+\openout4 = `tlxs01a.lof'.
+
+Contents name changed to XContents
+No file tlxs01a.toc.
+\tf@toc=\write5
+\openout5 = `tlxs01a.toc'.
+
+Part name changed to XPart
+Abstract name changed to XAbstract
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <9> on input line 93.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <6> on input line 93.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <5> on input line 93.
+Table name changed to XTable
+Figure name changed to XFigure
+
+LaTeX Warning: Citation `bitmap' on page 1 undefined on input line 108.
+
+References name changed to XReferences
+[1
+
+]
+Index name changed to XIndex
+[2
+
+
+]
+Each counter should have a non-zero value to show that the name has been changed
+Counter contentsname is 1
+Counter listfigurename is 1
+Counter listtablename is 1
+Counter refname is 1
+Counter indexname is 1
+Counter figurename is 1
+Counter tablename is 1
+Counter partname is 1
+Counter abstractname is 1
+(tlxs01a.aux)
+
+LaTeX Warning: There were undefined references.
+
+
+LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
+
+END-TEST-LOG
+ )
+
+Output written on tlxs01a.dvi (2 pages, 1776 bytes).

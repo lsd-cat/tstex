@@ -1,0 +1,66 @@
+entering extended mode
+(tlb1578a.lvt
+LaTeX2e <2026-11-01>
+L3 programming layer <2026-09-09>
+(letter.cls
+Document Class: letter 2024/08/12 v1.3c Standard LaTeX document class
+(size10.clo
+File: size10.clo 2026-06-04 v1.4n Standard LaTeX file (size option)
+)
+\longindentation=\dimen150
+\indentedwidth=\dimen151
+\labelcount=\count276
+) (test2e.tex
+OMIT
+TIMO
+(expl3.sty
+Package: expl3 2026-09-09 L3 programming layer (loader)
+ (l3backend-dvips.def
+File: l3backend-dvips.def 2026-09-09 L3 backend support: dvips
+\l__pdfannot_backend_content_box=\box53
+\l__pdfannot_backend_model_box=\box54
+\g__pdfannot_backend_int=\count277
+\g__pdfannot_backend_link_int=\count278
+\g__pdfannot_backend_link_sf_int=\count279
+)))
+Author: Johannes Braams
+Format: LaTeX2e<1994/12/01>
+OMIT
+
+LaTeX Warning: Declared format LaTeX2e<1994/12/01>,
+Actual format LaTeX2e<2026-11-01> on input line 8.
+
+TIMO
+Main Class: letter
+No file tlb1578a.aux.
+\openout1 = `tlb1578a.aux'.
+
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 19.
+LaTeX Font Info:    ... okay on input line 19.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 19.
+LaTeX Font Info:    ... okay on input line 19.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 19.
+LaTeX Font Info:    ... okay on input line 19.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 19.
+LaTeX Font Info:    ... okay on input line 19.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 19.
+LaTeX Font Info:    ... okay on input line 19.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 19.
+LaTeX Font Info:    ... okay on input line 19.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 19.
+LaTeX Font Info:    ... okay on input line 19.
+START-TEST-LOG
+
+This is a generated file for the LaTeX2e validation system.
+
+Don't change this file in any respect.
+
+body font: \OT1/cmss/m/n/10
+head font: \OT1/cmss/m/n/10
+[1
+
+] (tlb1578a.aux)
+END-TEST-LOG
+ )
+
+Output written on tlb1578a.dvi (1 page, 220 bytes).

@@ -3,7 +3,8 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "test": "node --test test/",
+    "test": "node --test test/oracle/ test/unit/",
+    "test:lvt": "node --test test/lvt/",
     "typecheck": "tsc --noEmit"
   },
   "devDependencies": {

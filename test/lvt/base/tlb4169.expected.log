@@ -1,0 +1,121 @@
+entering extended mode
+(tlb4169.lvt
+LaTeX2e <2026-11-01>
+L3 programming layer <2026-09-09>
+(test2e.tex
+OMIT
+TIMO
+(expl3.sty
+Package: expl3 2026-09-09 L3 programming layer (loader)
+ (l3backend-dvips.def
+File: l3backend-dvips.def 2026-09-09 L3 backend support: dvips
+\l__pdfannot_backend_content_box=\box53
+\l__pdfannot_backend_model_box=\box54
+\g__pdfannot_backend_int=\count276
+\g__pdfannot_backend_link_int=\count277
+\g__pdfannot_backend_link_sf_int=\count278
+)))
+START-TEST-LOG
+
+This is a generated file for the LaTeX2e validation system.
+
+Don't change this file in any respect.
+
+Format: LaTeX2e <2009/09/24>
+OMIT
+
+LaTeX Warning: Declared format LaTeX2e <2009/09/24>,
+Actual format LaTeX2e<2026-11-01> on input line 8.
+
+TIMO
+Main Class: article
+
+OMIT
+(article.cls
+Document Class: article 2026-06-04 v1.4n Standard LaTeX document class
+(size10.clo
+File: size10.clo 2026-06-04 v1.4n Standard LaTeX file (size option)
+)
+\c@part=\count279
+\c@section=\count280
+\c@subsection=\count281
+\c@subsubsection=\count282
+\c@paragraph=\count283
+\c@subparagraph=\count284
+\c@figure=\count285
+\c@table=\count286
+\abovecaptionskip=\skip49
+\belowcaptionskip=\skip50
+\bibindent=\dimen150
+)
+TIMO
+> \ifin@=\iffalse.
+l.22 \in@{a}{}       \show\ifin@
+
+
+> \ifin@=\iftrue.
+l.23 \in@{a}{a}      \show\ifin@
+
+
+> \ifin@=\iffalse.
+l.24 \in@{a}{{a}}    \show\ifin@
+
+
+> \ifin@=\iftrue.
+l.25 \in@{a }{a {a}} \show\ifin@
+
+
+> \ifin@=\iftrue.
+l.30 \in@{ }{ab } \show\ifin@
+
+
+> \ifin@=\iftrue.
+l.31 \in@{}{a} \show\ifin@
+
+
+> \ifin@=\iftrue.
+l.32 \in@{}{} \show\ifin@
+
+
+> \ifin@=\iffalse.
+l.34 \in@{the width}{crop the wid} \show\ifin@
+
+
+> \ifin@=\iffalse.
+l.35 \in@{bonobo}{bono} \show\ifin@
+
+
+> \ifin@=\iftrue.
+l.40 ...@@}{\in@\in@@\in@\in@@\in@@}   \show\ifin@
+
+
+> \ifin@=\iftrue.
+l.42 \in@{\iffalse}{\iffalse {a\fi}} \show\ifin@
+
+
+> \ifin@=\iftrue.
+l.44 \in@{a}{aa\in@@} \show\ifin@
+
+
+No file tlb4169.aux.
+\openout1 = `tlb4169.aux'.
+
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 46.
+LaTeX Font Info:    ... okay on input line 46.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 46.
+LaTeX Font Info:    ... okay on input line 46.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 46.
+LaTeX Font Info:    ... okay on input line 46.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 46.
+LaTeX Font Info:    ... okay on input line 46.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 46.
+LaTeX Font Info:    ... okay on input line 46.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 46.
+LaTeX Font Info:    ... okay on input line 46.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 46.
+LaTeX Font Info:    ... okay on input line 46.
+(tlb4169.aux)
+END-TEST-LOG
+ )
+
+No pages of output.

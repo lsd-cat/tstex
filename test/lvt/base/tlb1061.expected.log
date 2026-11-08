@@ -1,0 +1,146 @@
+entering extended mode
+(tlb1061.lvt
+LaTeX2e <2026-11-01>
+L3 programming layer <2026-09-09>
+(test2e.tex
+OMIT
+TIMO
+(expl3.sty
+Package: expl3 2026-09-09 L3 programming layer (loader)
+ (l3backend-dvips.def
+File: l3backend-dvips.def 2026-09-09 L3 backend support: dvips
+\l__pdfannot_backend_content_box=\box53
+\l__pdfannot_backend_model_box=\box54
+\g__pdfannot_backend_int=\count276
+\g__pdfannot_backend_link_int=\count277
+\g__pdfannot_backend_link_sf_int=\count278
+))) (article.cls
+Document Class: article 2026-06-04 v1.4n Standard LaTeX document class
+(size10.clo
+File: size10.clo 2026-06-04 v1.4n Standard LaTeX file (size option)
+)
+\c@part=\count279
+\c@section=\count280
+\c@subsection=\count281
+\c@subsubsection=\count282
+\c@paragraph=\count283
+\c@subparagraph=\count284
+\c@figure=\count285
+\c@table=\count286
+\abovecaptionskip=\skip49
+\belowcaptionskip=\skip50
+\bibindent=\dimen150
+)
+No file tlb1061.aux.
+\openout1 = `tlb1061.aux'.
+
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 7.
+LaTeX Font Info:    ... okay on input line 7.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 7.
+LaTeX Font Info:    ... okay on input line 7.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 7.
+LaTeX Font Info:    ... okay on input line 7.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 7.
+LaTeX Font Info:    ... okay on input line 7.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 7.
+LaTeX Font Info:    ... okay on input line 7.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 7.
+LaTeX Font Info:    ... okay on input line 7.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 7.
+LaTeX Font Info:    ... okay on input line 7.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <7> on input line 10.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <5> on input line 10.
+START-TEST-LOG
+
+This is a generated file for the LaTeX2e validation system.
+
+Don't change this file in any respect.
+
+Author: Christian ROLLAND
+Address: Christian.Rolland@irisa.fr
+Main Class: article
+
+Completed box being shipped out [1]
+\vbox(633.0+0.0)x407.0
+.\glue 16.0
+.\vbox(617.0+0.0)x345.0, shifted 62.0
+..\vbox(12.0+0.0)x345.0, glue set 12.0fil
+...\glue 0.0 plus 1.0fil
+...\hbox(0.0+0.0)x345.0
+....\hbox(0.0+0.0)x345.0
+..\glue 25.0
+..\glue(\lineskip) 0.0
+..\vbox(550.0+0.0)x345.0, glue set 487.29518fil
+...\write-{}
+...\glue(\topskip) 5.69446
+...\hbox(4.30554+0.0)x345.0, glue set 309.71407fil
+....\hbox(0.0+0.0)x15.0
+....\OT1/cmr/m/n/10 a
+....\OT1/cmr/m/n/10 a
+....\OT1/cmr/m/n/10 a
+....\mathon
+....\OML/cmm/m/it/10 a
+....\mathoff
+....\penalty 10000
+....\glue(\parfillskip) 0.0 plus 1.0fil
+....\glue(\rightskip) 0.0
+...\glue(\lineskip) 1.0
+...\hbox(30.65277+26.0)x345.0, glue set 46.91536fil
+....\glue 0.0 plus 1.0fil minus 1.0fil
+....\hbox(30.65277+26.0)x251.16928
+.....\hbox(56.65277+0.0)x251.16928, shifted 26.0
+......\vbox(56.65277+0.0)x251.16928
+.......\rule(3.0+0.0)x*
+.......\hbox(50.65277+0.0)x251.16928
+........\rule(*+*)x3.0
+........\vbox(50.65277+0.0)x245.16928
+.........\glue 2.0
+.........\hbox(25.65277+21.0)x245.16928
+..........\kern 2.0
+..........\hbox(25.65277+21.0)x241.16928
+...........\hbox(46.65277+0.0)x241.16928, shifted 21.0
+............\vbox(46.65277+0.0)x241.16928
+.............\rule(1.0+0.0)x*
+.............\hbox(44.65277+0.0)x241.16928
+..............\rule(*+*)x1.0
+..............\vbox(44.65277+0.0)x239.16928
+...............\glue 20.0
+...............\hbox(4.65277+0.0)x239.16928
+................\kern 20.0
+................\vbox(4.65277+-0.34723)x199.16928
+.................\hbox(4.30554+0.0)x199.16928, glue set 184.16924fil
+..................\hbox(0.0+0.0)x0.0
+..................\OT1/cmr/m/n/10 a
+..................\OT1/cmr/m/n/10 a
+..................\OT1/cmr/m/n/10 a
+..................\penalty 10000
+..................\glue(\parfillskip) 0.0 plus 1.0fil
+..................\glue(\rightskip) 0.0
+................\kern 20.0
+...............\glue 20.0
+..............\rule(*+*)x1.0
+.............\rule(1.0+0.0)x*
+..........\kern 2.0
+.........\glue 2.0
+........\rule(*+*)x3.0
+.......\rule(3.0+0.0)x*
+....\glue 0.0 plus 1.0fil minus 1.0fil
+...\glue -5.0
+...\glue 0.0 plus 1.0fil
+...\glue 0.0
+...\glue 0.0 plus 0.0001fil
+..\glue(\baselineskip) 23.55556
+..\hbox(6.44444+0.0)x345.0
+...\hbox(6.44444+0.0)x345.0, glue set 170.0fil
+....\glue 0.0 plus 1.0fil
+....\OT1/cmr/m/n/10 1
+....\glue 0.0 plus 1.0fil
+
+
+(tlb1061.aux)
+END-TEST-LOG
+ )
+
+Output written on tlb1061.dvi (1 page, 432 bytes).

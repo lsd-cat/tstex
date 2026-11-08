@@ -1,0 +1,351 @@
+entering extended mode
+(m3tl004.lvt
+LaTeX2e <2026-11-01>
+L3 programming layer <2026-09-09>
+(minimal.cls
+Document Class: minimal 2001/05/25 Standard LaTeX minimal class
+) (regression-test.tex
+\gTESTint=\count276
+) (l3debug.def
+File: l3debug.def 2026-09-09 L3 Debugging support
+)
+Defining \l__hook_label_calc-noop_seq on line 10
+Defining \l__hook_label_kernel/filelist_seq on line 10
+Defining \l__hook_label_kernel/warnings_seq on line 10
+Defining \l__hook_label_kernel/release_seq on line 10
+Defining \l__hook_label_kernel/testmode_seq on line 10
+Defining \l__hook_label_firstaid_seq on line 10
+Defining \l__hook_label_firstaid/aliascounter_seq on line 10
+Defining \c_sys_output_str on line 10
+Defining \sys_if_output_dvi:T on line 10
+Defining \sys_if_output_dvi:F on line 10
+Defining \sys_if_output_dvi:TF on line 10
+Defining \sys_if_output_dvi_p: on line 10
+Defining \sys_if_output_hnt:T on line 10
+Defining \sys_if_output_hnt:F on line 10
+Defining \sys_if_output_hnt:TF on line 10
+Defining \sys_if_output_hnt_p: on line 10
+Defining \sys_if_output_pdf:T on line 10
+Defining \sys_if_output_pdf:F on line 10
+Defining \sys_if_output_pdf:TF on line 10
+Defining \sys_if_output_pdf_p: on line 10
+Defining \c_sys_backend_str on line 10
+(l3backend-dvips.def
+File: l3backend-dvips.def 2026-09-09 L3 backend support: dvips
+Defining \__kernel_backend_literal:e on line 46
+Defining \__kernel_backend_literal:n on line 47
+Defining \__kernel_backend_first_shipout:n on line 58
+Defining \__kernel_backend_literal_postscript:n on line 59
+Defining \__kernel_backend_literal_postscript:e on line 61
+Defining \__kernel_backend_postscript:n on line 62
+Defining \__kernel_backend_postscript:e on line 64
+Defining \l__hook_label_l3backend_seq on line 69
+Defining \__kernel_backend_align_begin: on line 70
+Defining \__kernel_backend_align_end: on line 76
+Defining \__kernel_backend_scope_begin: on line 81
+Defining \__kernel_backend_scope_end: on line 83
+Defining \__color_backend_raw_cmyk:n on line 86
+Defining \__color_backend_raw_gray:n on line 87
+Defining \__color_backend_raw_rgb:n on line 88
+Defining \__color_backend_current_cmyk:n on line 89
+Defining \__color_backend_current_gray:n on line 90
+Defining \__color_backend_current_rgb:n on line 91
+Defining \__color_backend_select_cmyk:n on line 92
+Defining \__color_backend_select_gray:n on line 94
+Defining \__color_backend_select_rgb:n on line 96
+Defining \__color_backend_select:nn on line 98
+Defining \__color_backend_reset: on line 104
+Defining \g__color_backend_colorant_prop on line 106
+Defining \__color_backend_devicen_colorants:n on line 107
+Defining \__color_backend_devicen_colorants:w on line 122
+Defining \__color_backend_raw_separation:nn on line 132
+Defining \__color_backend_raw_devicen:nn on line 133
+Defining \__color_backend_raw_iccbased:nn on line 134
+Defining \__color_backend_current_separation:nn on line 135
+Defining \__color_backend_current_devicen:nn on line 136
+Defining \__color_backend_current_iccbased:nn on line 137
+Defining \__color_backend_select_separation:nn on line 138
+Defining \__color_backend_select_devicen:nn on line 140
+Defining \__color_backend_select_iccbased:nn on line 141
+Defining \__color_backend_separation_init:nnnnn on line 142
+Defining \__color_backend_separation_init:neenn on line 163
+Defining \__color_backend_separation_init_aux:nnnnnn on line 164
+Defining \__color_backend_separation_init_/DeviceCMYK:nnn on line 185
+Defining \__color_backend_separation_init_/DeviceGray:nnn on line 187
+Defining \__color_backend_separation_init_/DeviceRGB:nnn on line 189
+Defining \__color_backend_separation_init_Device:Nn on line 191
+Defining \__color_backend_separation_init:nnn on line 198
+Defining \__color_backend_separation_init_count:n on line 204
+Defining \__color_backend_separation_init_count:w on line 206
+Defining \__color_backend_separation_init:nnnn on line 212
+Defining \__color_backend_separation_init:w on line 229
+Defining \__color_backend_separation_init:n on line 236
+Defining \__color_backend_separation_init:nw on line 238
+Defining \__color_backend_separation_init_CIELAB:nnn on line 254
+Defining \__color_backend_devicen_init:nnn on line 300
+Defining \__color_backend_iccbased_init:nnn on line 319
+Defining \__color_backend_fill_cmyk:n on line 320
+Defining \__color_backend_fill_gray:n on line 322
+Defining \__color_backend_fill_rgb:n on line 324
+Defining \__color_backend_fill:n on line 326
+Defining \__color_backend_stroke_cmyk:n on line 328
+Defining \__color_backend_stroke_gray:n on line 330
+Defining \__color_backend_stroke_rgb:n on line 332
+Defining \__color_backend_stroke:n on line 334
+Defining \__color_backend_fill_separation:nn on line 336
+Defining \__color_backend_stroke_separation:nn on line 338
+Defining \__color_backend_fill_devicen:nn on line 340
+Defining \__color_backend_stroke_devicen:nn on line 341
+Defining \__color_backend_fill_reset: on line 342
+Defining \__color_backend_stroke_reset: on line 343
+Defining \__box_backend_clip:N on line 345
+Defining \__box_backend_rotate:Nn on line 367
+Defining \__box_backend_rotate_aux:Nn on line 369
+Defining \__box_backend_scale:Nnn on line 384
+Defining \__draw_backend_literal:n on line 399
+Defining \__draw_backend_literal:e on line 400
+Defining \__draw_backend_begin: on line 401
+Defining \__draw_backend_end: on line 407
+Defining \__draw_backend_scope_begin: on line 412
+Defining \__draw_backend_scope_end: on line 414
+Defining \__draw_backend_moveto:nn on line 416
+Defining \__draw_backend_lineto:nn on line 424
+Defining \__draw_backend_rectangle:nnnn on line 432
+Defining \__draw_backend_curveto:nnnnnn on line 441
+Defining \__draw_backend_evenodd_rule: on line 451
+Defining \__draw_backend_nonzero_rule: on line 453
+Defining \g__draw_draw_eor_bool on line 455
+Defining \__draw_backend_closepath: on line 456
+Defining \__draw_backend_stroke: on line 458
+Defining \__draw_backend_closestroke: on line 475
+Defining \__draw_backend_fill: on line 480
+Defining \__draw_backend_fillstroke: on line 498
+Defining \__draw_backend_clip: on line 520
+Defining \g__draw_draw_clip_bool on line 522
+Defining \__draw_backend_discardpath: on line 523
+Defining \__draw_backend_dash_pattern:nn on line 536
+Defining \__draw_backend_dash:n on line 547
+Defining \__draw_backend_linewidth:n on line 549
+Defining \__draw_backend_miterlimit:n on line 554
+Defining \__draw_backend_cap_butt: on line 556
+Defining \__draw_backend_cap_round: on line 558
+Defining \__draw_backend_cap_rectangle: on line 560
+Defining \__draw_backend_join_miter: on line 562
+Defining \__draw_backend_join_round: on line 564
+Defining \__draw_backend_join_bevel: on line 566
+Defining \__draw_backend_transform:nnnn on line 568
+Defining \__draw_backend_shift:nn on line 573
+Defining \__draw_backend_box_use:Nnnnn on line 578
+Defining \__graphics_backend_getbb_eps:n on line 603
+Defining \__graphics_backend_getbb_ps:n on line 604
+Defining \__graphics_backend_include_eps:n on line 605
+Defining \__graphics_backend_include_ps:n on line 616
+Defining \__graphics_backend_get_pagecount:n on line 617
+Defining \__pdf_backend_pdfmark:n on line 619
+Defining \__pdf_backend_pdfmark:e on line 621
+Defining \__pdf_backend_catalog_gput:nn on line 622
+Defining \__pdf_backend_info_gput:nn on line 624
+Defining \__pdf_backend_object_new: on line 626
+Defining \__pdf_backend_object_ref:n on line 628
+Defining \__pdf_backend_object_id:n on line 629
+Defining \__pdf_backend_object_write:nnn on line 630
+Defining \__pdf_backend_object_write:nne on line 636
+Defining \__pdf_backend_object_write_aux:nnn on line 637
+Defining \__pdf_backend_object_write_array:nn on line 654
+Defining \__pdf_backend_object_write_dict:nn on line 659
+Defining \__pdf_backend_object_write_fstream:nn on line 664
+Defining \__pdf_backend_object_write_fstream:nnn on line 669
+Defining \__pdf_backend_object_write_stream:nn on line 679
+Defining \__pdf_backend_object_write_stream:nnn on line 684
+Defining \__pdf_backend_object_now:nn on line 692
+Defining \__pdf_backend_object_now:ne on line 699
+Defining \__pdf_backend_object_last: on line 700
+Defining \__pdf_backend_pageobject_ref:n on line 702
+Defining \__pdf_backend_destination:nn on line 704
+Defining \__pdf_backend_destination:nnnn on line 730
+Defining \__pdf_backend_destination_aux:nnnn on line 735
+Defining \__pdf_backend_compresslevel:n on line 763
+Defining \__pdf_backend_compress_objects:n on line 775
+Defining \__pdf_backend_version_major_gset:n on line 787
+Defining \__pdf_backend_version_minor_gset:n on line 791
+Defining \__pdf_backend_version_major: on line 795
+Defining \__pdf_backend_version_minor: on line 796
+Defining \__pdf_backend_bdc:nn on line 797
+Defining \__pdf_backend_emc: on line 799
+Defining \__pdf_backend_pagesize_gset:nn on line 801
+Defining \l__pdfannot_backend_content_box on line 812
+\l__pdfannot_backend_content_box=\box53
+Defining \l__pdfannot_backend_model_box on line 813
+\l__pdfannot_backend_model_box=\box54
+Defining \g__pdfannot_backend_int on line 814
+\g__pdfannot_backend_int=\count277
+Defining \__pdfannot_backend_generic:nnnn on line 815
+Defining \__pdfannot_backend_generic_aux:nnnn on line 820
+Defining \__pdfannot_backend_last: on line 844
+Defining \g__pdfannot_backend_link_int on line 846
+\g__pdfannot_backend_link_int=\count278
+Defining \g__pdfannot_backend_link_dict_tl on line 847
+Defining \g__pdfannot_backend_link_sf_int on line 848
+\g__pdfannot_backend_link_sf_int=\count279
+Defining \g__pdfannot_backend_link_math_bool on line 849
+Defining \g__pdfannot_backend_link_bool on line 850
+Defining \l__pdfannot_backend_breaklink_pdfmark_tl on line 851
+Defining \__pdfannot_backend_breaklink_postscript:n on line 853
+Defining \__pdfannot_backend_breaklink_usebox:N on line 854
+Defining \__pdfannot_backend_link_begin_goto:nnw on line 855
+Defining \__pdfannot_backend_link_begin_user:nnw on line 860
+Defining \__pdfannot_backend_link_begin:nw on line 862
+Defining \__pdfannot_backend_link_begin_aux:nw on line 867
+Defining \__pdfannot_backend_link_end: on line 882
+Defining \__pdfannot_backend_link_end_aux: on line 887
+Defining \__pdfannot_backend_link_minima: on line 924
+Defining \__pdfannot_backend_link_outerbox:n on line 953
+Defining \__pdfannot_backend_link_sf_save: on line 972
+Defining \__pdfannot_backend_link_sf_restore: on line 981
+Defining \__pdfannot_backend_link_last: on line 1015
+Defining \__pdfannot_backend_link_margin:n on line 1017
+Defining \__pdfannot_backend_link_on: on line 1024
+Defining \__pdfannot_backend_link_off: on line 1025
+Defining \__pdf_backend_annotation:nnnn on line 1026
+Defining \__pdf_backend_annotation_last: on line 1027
+Defining \__pdf_backend_link_begin_goto:nnw on line 1037
+Defining \__pdf_backend_link_begin_user:nnw on line 1037
+Defining \__pdf_backend_link_begin:nnnw on line 1037
+Defining \__pdf_backend_link_end: on line 1037
+Defining \__pdf_backend_link_last: on line 1037
+Defining \__pdf_backend_link_margin:n on line 1037
+Defining \__opacity_backend_select:n on line 1039
+Defining \__opacity_backend_fill:n on line 1044
+Defining \__opacity_backend_stroke:n on line 1051
+Defining \__opacity_backend:nnn on line 1058
+Defining \__opacity_backend_reset: on line 1077
+Defining \__opacity_backend_reset_fill: on line 1082
+Defining \__opacity_backend_reset_stroke: on line 1089
+)
+No file m3tl004.aux.
+\openout1 = `m3tl004.aux'.
+
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 10.
+LaTeX Font Info:    ... okay on input line 10.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 10.
+LaTeX Font Info:    ... okay on input line 10.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 10.
+LaTeX Font Info:    ... okay on input line 10.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 10.
+LaTeX Font Info:    ... okay on input line 10.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 10.
+LaTeX Font Info:    ... okay on input line 10.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 10.
+LaTeX Font Info:    ... okay on input line 10.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 10.
+LaTeX Font Info:    ... okay on input line 10.
+
+START-TEST-LOG
+
+
+This is a generated file for the l3build validation system.
+
+Don't change this file in any respect.
+
+
+! Undefined control sequence.
+l.13 \AUTHOR
+            {Will Robertson}
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+============================================================
+TEST 1: tl_if_single
+============================================================
+FTTTTTTTTTTTT
+FFFFFFF
+============================================================
+
+============================================================
+TEST 2: bug fixes for tl_replace
+============================================================
+Defining \g_my_tl on line 53
+> \g_my_tl=aabono.
+> \g_my_tl=aabono\x \x \x \x \x \x \x \x \x \x .
+============================================================
+
+OMIT
+TIMO
+============================================================
+TEST 3: tl_trim_spaces:n
+============================================================
+[ab c]
+[\use:n {ab c }]
+[{a}]
+[{ a }]
+[\c_space_token a\c_space_token ]
+[\c_space_token  a \c_space_token ]
+[!aA]
+[! a A]
+[a]
+[\use:n {\ERROR }]
+============================================================
+
+============================================================
+TEST 4: tl_trim_left_spaces:n
+============================================================
+[ab c ]
+[\use:n {ab c } ]
+[{a} ]
+[{ a } ]
+[\c_space_token a\c_space_token ]
+[\c_space_token  a \c_space_token  ]
+[!aA]
+[! a A ]
+[a   ]
+[\use:n {\ERROR } ]
+============================================================
+
+============================================================
+TEST 5: tl_trim_right_spaces:n
+============================================================
+[ ab c]
+[ \use:n {ab c }]
+[ {a}]
+[ { a }]
+[\c_space_token a\c_space_token ]
+[ \c_space_token  a \c_space_token ]
+[!aA]
+[ ! a A]
+[   a]
+[ \use:n {\ERROR }]
+============================================================
+
+OMIT
+TIMO
+============================================================
+TEST 6: tl_trim_spaces_apply:nN and friends
+============================================================
+[\ERROR ]
+[\ERROR  ]
+[ \ERROR ]
+
+============================================================
+
+OMIT
+TIMO
+============================================================
+TEST 7: tl_(g)trim_spaces:N and friends
+============================================================
+[{\abc ##}]
+[{\abc ##}]
+[{\abc ##}     ]
+[{\abc ##}     ]
+[     {\abc ##}]
+[     {\abc ##}]
+============================================================
+
+
+END-TEST-LOG
+
+ )
+
+No pages of output.

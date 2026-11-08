@@ -1,0 +1,198 @@
+entering extended mode
+(tlb2649.lvt
+LaTeX2e <2026-11-01>
+L3 programming layer <2026-09-09>
+(test2e.tex
+OMIT
+TIMO
+(expl3.sty
+Package: expl3 2026-09-09 L3 programming layer (loader)
+ (l3backend-dvips.def
+File: l3backend-dvips.def 2026-09-09 L3 backend support: dvips
+\l__pdfannot_backend_content_box=\box53
+\l__pdfannot_backend_model_box=\box54
+\g__pdfannot_backend_int=\count276
+\g__pdfannot_backend_link_int=\count277
+\g__pdfannot_backend_link_sf_int=\count278
+))) (minimal.cls
+Document Class: minimal 2001/05/25 Standard LaTeX minimal class
+)
+Author: asnd@triumf.ca (Donald Arseneau)
+Format: LaTeX2e<1997/12/01>
+OMIT
+
+LaTeX Warning: Declared format LaTeX2e<1997/12/01>,
+Actual format LaTeX2e<2026-11-01> on input line 28.
+
+TIMO
+Main Class: minimal
+LaTeX Font Info:    Redeclaring font encoding TS1 on input line 33.
+No file tlb2649.aux.
+\openout1 = `tlb2649.aux'.
+
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 45.
+LaTeX Font Info:    ... okay on input line 45.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 45.
+LaTeX Font Info:    ... okay on input line 45.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 45.
+LaTeX Font Info:    ... okay on input line 45.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 45.
+LaTeX Font Info:    ... okay on input line 45.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 45.
+LaTeX Font Info:    ... okay on input line 45.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 45.
+LaTeX Font Info:    ... okay on input line 45.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 45.
+LaTeX Font Info:    ... okay on input line 45.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <7> on input line 46.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <5> on input line 46.
+Testing omlcmm.fd
+(omlcmm.fd
+File: omlcmm.fd 2024/11/19 v2.5n Standard LaTeX font definitions
+)
+Testing omlcmr.fd
+(omlcmr.fd
+File: omlcmr.fd 2024/11/19 v2.5n Standard LaTeX font definitions
+)
+Testing omllcmm.fd
+(omllcmm.fd
+File: omllcmm.fd 2023/12/02 v2.2f Standard LaTeX slide font definitions
+)
+Testing omscmr.fd
+(omscmr.fd
+File: omscmr.fd 2024/11/19 v2.5n Standard LaTeX font definitions
+)
+Testing omscmsy.fd
+(omscmsy.fd
+File: omscmsy.fd 2024/11/19 v2.5n Standard LaTeX font definitions
+)
+Testing omslcmsy.fd
+(omslcmsy.fd
+File: omslcmsy.fd 2023/12/02 v2.2f Standard LaTeX slide font definitions
+)
+Testing omxcmex.fd
+(omxcmex.fd
+File: omxcmex.fd 2024/11/19 v2.5n Standard LaTeX font definitions
+)
+Testing omxlcmex.fd
+(omxlcmex.fd
+File: omxlcmex.fd 2023/12/02 v2.2f Standard LaTeX slide font definitions
+)
+Testing ot1cmdh.fd
+(ot1cmdh.fd
+File: ot1cmdh.fd 2024/11/19 v2.5n Standard LaTeX font definitions
+)
+Testing ot1cmfib.fd
+(ot1cmfib.fd
+File: ot1cmfib.fd 2024/11/19 v2.5n Standard LaTeX font definitions
+)
+Testing ot1cmfr.fd
+(ot1cmfr.fd
+File: ot1cmfr.fd 2024/11/19 v2.5n Standard LaTeX font definitions
+)
+Testing ot1cmr.fd
+(ot1cmr.fd
+File: ot1cmr.fd 2024/11/19 v2.5n Standard LaTeX font definitions
+)
+Testing ot1cmss.fd
+(ot1cmss.fd
+File: ot1cmss.fd 2024/11/19 v2.5n Standard LaTeX font definitions
+)
+Testing ot1cmtt.fd
+(ot1cmtt.fd
+File: ot1cmtt.fd 2024/11/19 v2.5n Standard LaTeX font definitions
+)
+Testing ot1cmvtt.fd
+(ot1cmvtt.fd
+File: ot1cmvtt.fd 2024/11/19 v2.5n Standard LaTeX font definitions
+)
+Testing ot1lcmss.fd
+(ot1lcmss.fd
+File: ot1lcmss.fd 2023/12/02 v2.2f Standard LaTeX slide font definitions
+)
+Testing ot1lcmtt.fd
+(ot1lcmtt.fd
+File: ot1lcmtt.fd 2023/12/02 v2.2f Standard LaTeX slide font definitions
+)
+Testing t1cmdh.fd
+(t1cmdh.fd
+File: t1cmdh.fd 2024/11/19 v2.5n Standard LaTeX font definitions
+)
+Testing t1cmfib.fd
+(t1cmfib.fd
+File: t1cmfib.fd 2024/11/19 v2.5n Standard LaTeX font definitions
+)
+Testing t1cmfr.fd
+(t1cmfr.fd
+File: t1cmfr.fd 2024/11/19 v2.5n Standard LaTeX font definitions
+)
+Testing t1cmr.fd
+(t1cmr.fd
+File: t1cmr.fd 2024/11/19 v2.5n Standard LaTeX font definitions
+)
+Testing t1cmss.fd
+(t1cmss.fd
+File: t1cmss.fd 2024/11/19 v2.5n Standard LaTeX font definitions
+)
+Testing t1cmtt.fd
+(t1cmtt.fd
+File: t1cmtt.fd 2024/11/19 v2.5n Standard LaTeX font definitions
+)
+Testing t1cmvtt.fd
+(t1cmvtt.fd
+File: t1cmvtt.fd 2024/11/19 v2.5n Standard LaTeX font definitions
+)
+Testing t1lcmss.fd
+(t1lcmss.fd
+File: t1lcmss.fd 2023/12/02 v2.2f Standard LaTeX slide font definitions
+)
+Testing t1lcmtt.fd
+(t1lcmtt.fd
+File: t1lcmtt.fd 2023/12/02 v2.2f Standard LaTeX slide font definitions
+)
+Testing ts1cmr.fd
+(ts1cmr.fd
+File: ts1cmr.fd 2024/11/19 v2.5n Standard LaTeX font definitions
+LaTeX Font Info:    Changing cmr sub-encoding to TS1/0 on input line 63.
+)
+Testing ts1cmss.fd
+(ts1cmss.fd
+File: ts1cmss.fd 2024/11/19 v2.5n Standard LaTeX font definitions
+LaTeX Font Info:    Changing cmss sub-encoding to TS1/0 on input line 61.
+)
+Testing ts1cmtt.fd
+(ts1cmtt.fd
+File: ts1cmtt.fd 2024/11/19 v2.5n Standard LaTeX font definitions
+LaTeX Font Info:    Changing cmtt sub-encoding to TS1/0 on input line 59.
+)
+Testing ts1cmvtt.fd
+(ts1cmvtt.fd
+File: ts1cmvtt.fd 2024/11/19 v2.5n Standard LaTeX font definitions
+LaTeX Font Info:    Setting cmvtt sub-encoding to TS1/0 on input line 58.
+)
+Testing ucmr.fd
+(ucmr.fd
+File: ucmr.fd 2024/11/19 v2.5n Standard LaTeX font definitions
+)
+Testing ucmss.fd
+(ucmss.fd
+File: ucmss.fd 2024/11/19 v2.5n Standard LaTeX font definitions
+)
+Testing ucmtt.fd
+(ucmtt.fd
+File: ucmtt.fd 2024/11/19 v2.5n Standard LaTeX font definitions
+)
+Testing ulasy.fd
+(ulasy.fd
+File: ulasy.fd 1998/08/17 v2.2e LaTeX symbol font definitions
+)
+Testing ullasy.fd
+(ullasy.fd
+File: ullasy.fd 2023/12/02 v2.2f Standard LaTeX slide font definitions
+) [1] (tlb2649.aux)
+END-TEST-LOG
+ )
+
+Output written on tlb2649.dvi (1 page, 148 bytes).

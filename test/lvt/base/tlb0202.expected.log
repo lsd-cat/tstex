@@ -1,0 +1,172 @@
+entering extended mode
+(tlb0202.lvt
+LaTeX2e <2026-11-01>
+L3 programming layer <2026-09-09>
+(letter.cls
+Document Class: letter 2024/08/12 v1.3c Standard LaTeX document class
+(size10.clo
+File: size10.clo 2026-06-04 v1.4n Standard LaTeX file (size option)
+)
+\longindentation=\dimen150
+\indentedwidth=\dimen151
+\labelcount=\count276
+) (test2e.tex
+OMIT
+TIMO
+(expl3.sty
+Package: expl3 2026-09-09 L3 programming layer (loader)
+ (l3backend-dvips.def
+File: l3backend-dvips.def 2026-09-09 L3 backend support: dvips
+\l__pdfannot_backend_content_box=\box53
+\l__pdfannot_backend_model_box=\box54
+\g__pdfannot_backend_int=\count277
+\g__pdfannot_backend_link_int=\count278
+\g__pdfannot_backend_link_sf_int=\count279
+)))
+START-TEST-LOG
+
+This is a generated file for the LaTeX2e validation system.
+
+Don't change this file in any respect.
+
+Author: Rainer Sch\"opf
+Format: LaTeX2e
+OMIT
+
+LaTeX Warning: Declared format LaTeX2e,
+Actual format LaTeX2e<2026-11-01> on input line 31.
+
+TIMO
+Main Class: letter
+    Options: twocolumn
+
+LaTeX Warning: Unused global option(s):
+    [twocolumn].
+
+No file tlb0202.aux.
+\openout1 = `tlb0202.aux'.
+
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 39.
+LaTeX Font Info:    ... okay on input line 39.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 39.
+LaTeX Font Info:    ... okay on input line 39.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 39.
+LaTeX Font Info:    ... okay on input line 39.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 39.
+LaTeX Font Info:    ... okay on input line 39.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 39.
+LaTeX Font Info:    ... okay on input line 39.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 39.
+LaTeX Font Info:    ... okay on input line 39.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 39.
+LaTeX Font Info:    ... okay on input line 39.
+
+Completed box being shipped out [1]
+\vbox(659.0+0.0)x407.3775
+.\glue 27.0
+.\vbox(632.0+0.0)x345.0, shifted 62.3775
+..\vbox(12.0+0.0)x345.0, glue set 12.0fil
+...\glue 0.0 plus 1.0fil
+...\hbox(0.0+0.0)x345.0
+....\hbox(0.0+0.0)x345.0
+..\glue 45.0
+..\glue(\lineskip) 0.0
+..\vbox(550.0+0.0)x345.0, glue set >20000.0fil
+...\glue 0.0 plus 0.00006fil
+...\write-{}
+...\glue(\topskip) 3.05556
+...\hbox(6.94444+0.0)x345.0, glue set 331.66663fil
+....\hbox(0.0+0.0)x0.0
+....\OT1/cmr/m/n/10 b
+....\OT1/cmr/m/n/10 l
+....\OT1/cmr/m/n/10 a
+....\penalty 10000
+....\glue(\parfillskip) 0.0 plus 1.0fil
+....\glue(\rightskip) 0.0
+...\glue 0.0
+...\glue 0.0 plus 0.0001fil
+..\glue(\baselineskip) 18.55556
+..\hbox(6.44444+0.0)x345.0
+...\hbox(6.44444+0.0)x345.0, glue set 170.0fil
+....\glue 0.0 plus 1.0fil
+....\OT1/cmr/m/n/10 1
+....\glue 0.0 plus 1.0fil
+
+
+(tlb0202.aux
+Underfull \hbox (badness 10000) in paragraph at lines 3--3
+
+
+\hbox(0.0+0.0)x262.0
+.\glue(\rightskip) 0.0
+
+
+Completed box being shipped out [2]
+\vbox(709.7+0.0)x515.0
+.\glue -50.0
+.\vbox(759.7+0.0)x550.0, shifted -35.0
+..\vbox(12.0+0.0)x550.0, glue set 12.0fil
+...\glue 0.0 plus 1.0fil
+...\hbox(0.0+0.0)x550.0
+....\hbox(0.0+0.0)x550.0
+..\glue 0.0
+..\glue(\lineskip) 0.0
+..\vbox(722.7+0.0)x550.0
+...\hbox(722.7+0.0)x550.0, glue set 13.0fil
+....\hbox(722.7+0.0)x262.0
+.....\vbox(722.7+0.0)x262.0, glue set 578.09825fil
+......\write-{}
+......\write-{}
+......\glue(\topskip) 0.0
+......\hbox(144.54+0.0)x262.0
+.......\hbox(0.0+0.0)x0.0
+.......\vbox(144.54+0.0)x262.0, glue set 62.07002fil
+........\glue 0.0 plus 1.0fil minus 1.0fil
+........\hbox(8.39996+3.60004)x262.0, glue set 241.16661fil
+.........\hbox(0.0+0.0)x0.0
+.........\rule(8.39996+3.60004)x0.0
+.........\OT1/cmr/m/n/10 h
+.........\kern-0.27779
+.........\OT1/cmr/m/n/10 u
+.........\OT1/cmr/m/n/10 g
+.........\OT1/cmr/m/n/10 o
+.........\penalty 10000
+.........\glue 0.0 plus 1.0fil
+.........\penalty -10000
+.........\glue(\rightskip) 0.0
+........\penalty 300
+........\glue(\baselineskip) 8.39996
+........\hbox(0.0+0.0)x262.0
+.........\glue(\rightskip) 0.0
+........\glue 0.0 plus 1.0fil minus 1.0fil
+.......\penalty 10000
+.......\glue(\parfillskip) 0.0 plus 1.0fil
+.......\glue(\rightskip) 0.0
+......\glue 0.0 plus 1.0fil
+......\glue 0.0
+......\glue 0.0 plus 0.0001fil
+.....\glue 0.0 plus 1.0fil minus 1.0fil
+....\glue 0.0 plus 1.0fil
+....\rule(*+*)x0.0
+....\glue 0.0 plus 1.0fil
+....\hbox(722.7+0.0)x262.0, glue set 262.0fil
+.....\vbox(722.7+0.0)x0.0, glue set 712.62389fil
+......\write-{}
+......\glue(\topskip) 10.0
+......\vbox(0.0+0.0)x0.0
+......\glue 0.0 plus 1.0fil
+......\glue 0.0
+......\glue 0.0 plus 0.0001fil
+.....\glue 0.0 plus 1.0fil minus 1.0fil
+..\glue(\baselineskip) 25.0
+..\hbox(0.0+0.0)x550.0
+...\hbox(0.0+0.0)x550.0
+
+
+
+
+)
+END-TEST-LOG
+ )
+
+Output written on tlb0202.dvi (2 pages, 324 bytes).

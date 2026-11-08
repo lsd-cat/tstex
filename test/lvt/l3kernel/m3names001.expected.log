@@ -1,0 +1,43 @@
+entering extended mode
+(m3names001.lvt
+LaTeX2e <2026-11-01>
+L3 programming layer <2026-09-09>
+(minimal.cls
+Document Class: minimal 2001/05/25 Standard LaTeX minimal class
+) (regression-test.tex
+\gTESTint=\count276
+) (expl3.sty
+Package: expl3 2026-09-09 L3 programming layer (loader)
+(l3backend-dvips.def
+File: l3backend-dvips.def 2026-09-09 L3 backend support: dvips
+\l__pdfannot_backend_content_box=\box53
+\l__pdfannot_backend_model_box=\box54
+\g__pdfannot_backend_int=\count277
+\g__pdfannot_backend_link_int=\count278
+\g__pdfannot_backend_link_sf_int=\count279
+))
+
+START-TEST-LOG
+
+
+This is a generated file for the l3build validation system.
+
+Don't change this file in any respect.
+
+
+\tex_undefined:D=undefined
+\tex_space:D=\
+\tex_italiccorrection:D=\/
+\tex_hyphen:D=\-
+\tex_botmark:D=\botmark:
+\tex_firstmark:D=\firstmark:
+\tex_nullfont:D=select font nullfont
+\tex_splitbotmark:D=\splitbotmark:
+\tex_splitfirstmark:D=\splitfirstmark:
+\tex_topmark:D=\topmark:
+
+END-TEST-LOG
+
+ )
+
+No pages of output.

@@ -1,0 +1,108 @@
+entering extended mode
+(tlb0878a.lvt
+LaTeX2e <2026-11-01>
+L3 programming layer <2026-09-09>
+(slides.cls
+Document Class: slides 2025-12-31 v2.4c Standard LaTeX document class
+(slides.def
+File: slides.def 2025-12-31 v2.4c SLiTeX definitions
+hacks, slides,
+\c@page=\count276
+picture, mods,
+\@smashboxa=\box53
+\@smashboxb=\box54
+\@smashboxc=\box55
+output, init) (sfonts.def
+File: sfonts.def 2023/12/02 v2.2f Standard LaTeX slide font definitions
+(ot1lcmss.fd
+File: ot1lcmss.fd 2023/12/02 v2.2f Standard LaTeX slide font definitions
+))
+\c@minutes=\count277
+\c@seconds=\count278
+\c@mv@invisible=\count279
+LaTeX Font Info:    Overwriting symbol font `operators' in version `normal'
+(Font)                  OT1/cmr/m/n --> OT1/lcmss/m/n on input line 360.
+LaTeX Font Info:    Overwriting symbol font `letters' in version `normal'
+(Font)                  OML/cmm/m/it --> OML/lcmm/m/it on input line 363.
+LaTeX Font Info:    Overwriting symbol font `symbols' in version `normal'
+(Font)                  OMS/cmsy/m/n --> OMS/lcmsy/m/n on input line 365.
+LaTeX Font Info:    Overwriting symbol font `largesymbols' in version `normal'
+(Font)                  OMX/cmex/m/n --> OMX/lcmex/m/n on input line 367.
+LaTeX Font Info:    Overwriting symbol font `operators' in version `invisible'
+(Font)                  OT1/cmr/m/n --> OT1/lcmss/m/In on input line 370.
+LaTeX Font Info:    Overwriting symbol font `letters' in version `invisible'
+(Font)                  OML/cmm/m/it --> OML/lcmm/m/Iit on input line 372.
+LaTeX Font Info:    Overwriting symbol font `symbols' in version `invisible'
+(Font)                  OMS/cmsy/m/n --> OMS/lcmsy/m/In on input line 374.
+LaTeX Font Info:    Overwriting symbol font `largesymbols' in version `invisible'
+(Font)                  OMX/cmex/m/n --> OMX/lcmex/m/In on input line 376.
+) (latexsym.sty
+Package: latexsym 1998/08/17 v2.2e Standard LaTeX package (lasy symbols)
+\symlasy=\mathgroup4
+LaTeX Font Info:    Overwriting symbol font `lasy' in version `bold'
+(Font)                  U/lasy/m/n --> U/lasy/b/n on input line 52.
+) (test2e.tex
+OMIT
+TIMO
+(expl3.sty
+Package: expl3 2026-09-09 L3 programming layer (loader)
+ (l3backend-dvips.def
+File: l3backend-dvips.def 2026-09-09 L3 backend support: dvips
+\l__pdfannot_backend_content_box=\box56
+\l__pdfannot_backend_model_box=\box57
+\g__pdfannot_backend_int=\count280
+\g__pdfannot_backend_link_int=\count281
+\g__pdfannot_backend_link_sf_int=\count282
+)))
+No file tlb0878a.aux.
+\openout1 = `tlb0878a.aux'.
+
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 10.
+LaTeX Font Info:    ... okay on input line 10.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 10.
+LaTeX Font Info:    ... okay on input line 10.
+LaTeX Font Info:    Checking defaults for OT1/lcmss/m/n on input line 10.
+LaTeX Font Info:    ... okay on input line 10.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 10.
+LaTeX Font Info:    ... okay on input line 10.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 10.
+LaTeX Font Info:    ... okay on input line 10.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 10.
+LaTeX Font Info:    ... okay on input line 10.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 10.
+LaTeX Font Info:    ... okay on input line 10.
+Author: Johannes Braams
+Address: J.L.Braams@research.ptt.nl
+Main Class: slides
+Package: latexsym
+START-TEST-LOG
+
+This is a generated file for the LaTeX2e validation system.
+
+Don't change this file in any respect.
+
+LaTeX Font Info:    Trying to load font information for OML+lcmm on input line 18.
+(omllcmm.fd
+File: omllcmm.fd 2023/12/02 v2.2f Standard LaTeX slide font definitions
+)
+LaTeX Font Info:    Trying to load font information for OMS+lcmsy on input line 18.
+ (omslcmsy.fd
+File: omslcmsy.fd 2023/12/02 v2.2f Standard LaTeX slide font definitions
+)
+LaTeX Font Info:    Trying to load font information for OMX+lcmex on input line 18.
+ (omxlcmex.fd
+File: omxlcmex.fd 2023/12/02 v2.2f Standard LaTeX slide font definitions
+)
+LaTeX Font Info:    External font `cmex10 at17.28pt' loaded for size
+(Font)              <19.907> on input line 18.
+LaTeX Font Info:    External font `cmex10 at17.28pt' loaded for size
+(Font)              <16.59> on input line 18.
+LaTeX Font Info:    External font `cmex10 at17.28pt' loaded for size
+(Font)              <13.82> on input line 18.
+ [0
+
+] (tlb0878a.aux)
+END-TEST-LOG
+ )
+
+Output written on tlb0878a.dvi (1 page, 204 bytes).

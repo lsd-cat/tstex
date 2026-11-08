@@ -1,0 +1,170 @@
+entering extended mode
+(tlxs06a.lvt
+LaTeX2e <2026-11-01>
+L3 programming layer <2026-09-09>
+(article.cls
+Document Class: article 2026-06-04 v1.4n Standard LaTeX document class
+(size10.clo
+File: size10.clo 2026-06-04 v1.4n Standard LaTeX file (size option)
+)
+\c@part=\count276
+\c@section=\count277
+\c@subsection=\count278
+\c@subsubsection=\count279
+\c@paragraph=\count280
+\c@subparagraph=\count281
+\c@figure=\count282
+\c@table=\count283
+\abovecaptionskip=\skip49
+\belowcaptionskip=\skip50
+\bibindent=\dimen150
+) (l3backend-dvips.def
+File: l3backend-dvips.def 2026-09-09 L3 backend support: dvips
+\l__pdfannot_backend_content_box=\box53
+\l__pdfannot_backend_model_box=\box54
+\g__pdfannot_backend_int=\count284
+\g__pdfannot_backend_link_int=\count285
+\g__pdfannot_backend_link_sf_int=\count286
+)
+No file tlxs06a.aux.
+\openout1 = `tlxs06a.aux'.
+
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 22.
+LaTeX Font Info:    ... okay on input line 22.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 22.
+LaTeX Font Info:    ... okay on input line 22.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 22.
+LaTeX Font Info:    ... okay on input line 22.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 22.
+LaTeX Font Info:    ... okay on input line 22.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 22.
+LaTeX Font Info:    ... okay on input line 22.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 22.
+LaTeX Font Info:    ... okay on input line 22.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 22.
+LaTeX Font Info:    ... okay on input line 22.
+(test2e.tex
+OMIT
+TIMO
+)
+START-TEST-LOG
+
+This is a generated file for the LaTeX2e validation system.
+
+Don't change this file in any respect.
+
+Author: Chris Martin
+Format: LaTeX2e<1993/12/24>
+OMIT
+
+LaTeX Warning: Declared format LaTeX2e<1993/12/24>,
+Actual format LaTeX2e<2026-11-01> on input line 35.
+
+TIMO
+Main Class: article
+
+LaTeX Warning: Citation `aa' on page 1 undefined on input line 58.
+
+
+LaTeX Warning: Citation `ab' on page 1 undefined on input line 58.
+
+
+LaTeX Warning: Citation `ac' on page 1 undefined on input line 58.
+
+
+LaTeX Warning: Citation `ad' on page 1 undefined on input line 58.
+
+
+LaTeX Warning: Citation `ae' on page 1 undefined on input line 58.
+
+
+LaTeX Warning: Citation `af' on page 1 undefined on input line 58.
+
+
+LaTeX Warning: Citation `ag' on page 1 undefined on input line 58.
+
+
+LaTeX Warning: Citation `ah' on page 1 undefined on input line 58.
+
+
+LaTeX Warning: Citation `ai' on page 1 undefined on input line 58.
+
+
+LaTeX Warning: Citation `aj' on page 1 undefined on input line 58.
+
+
+LaTeX Warning: Citation `ak' on page 1 undefined on input line 58.
+
+
+LaTeX Warning: Citation `al' on page 1 undefined on input line 58.
+
+
+LaTeX Warning: Citation `am' on page 1 undefined on input line 58.
+
+
+LaTeX Warning: Citation `an' on page 1 undefined on input line 58.
+
+
+LaTeX Warning: Citation `ao' on page 1 undefined on input line 58.
+
+
+LaTeX Warning: Citation `ap' on page 1 undefined on input line 58.
+
+
+LaTeX Warning: Citation `aq' on page 1 undefined on input line 58.
+
+
+LaTeX Warning: Citation `ar' on page 1 undefined on input line 58.
+
+
+LaTeX Warning: Citation `as' on page 1 undefined on input line 58.
+
+
+LaTeX Warning: Citation `at' on page 1 undefined on input line 58.
+
+
+LaTeX Warning: Citation `au' on page 1 undefined on input line 58.
+
+
+LaTeX Warning: Citation `av' on page 1 undefined on input line 58.
+
+
+LaTeX Warning: Citation `aw' on page 1 undefined on input line 58.
+
+
+LaTeX Warning: Citation `ax' on page 1 undefined on input line 58.
+
+
+LaTeX Warning: Citation `ay' on page 1 undefined on input line 58.
+
+
+LaTeX Warning: Citation `az' on page 1 undefined on input line 58.
+
+
+LaTeX Warning: Citation `ba' on page 1 undefined on input line 58.
+
+
+LaTeX Warning: Citation `bb' on page 1 undefined on input line 58.
+
+
+LaTeX Warning: Citation `bc' on page 1 undefined on input line 58.
+
+
+LaTeX Warning: Citation `bd' on page 1 undefined on input line 58.
+
+
+LaTeX Warning: Citation `be' on page 1 undefined on input line 63.
+
+[1
+
+] [2] (tlxs06a.aux)
+
+LaTeX Warning: There were undefined references.
+
+
+LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
+
+END-TEST-LOG
+ )
+
+Output written on tlxs06a.dvi (2 pages, 4908 bytes).

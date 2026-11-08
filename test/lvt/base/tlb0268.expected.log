@@ -1,0 +1,122 @@
+entering extended mode
+(tlb0268.lvt
+LaTeX2e <2026-11-01>
+L3 programming layer <2026-09-09>
+(test2e.tex
+OMIT
+TIMO
+(expl3.sty
+Package: expl3 2026-09-09 L3 programming layer (loader)
+ (l3backend-dvips.def
+File: l3backend-dvips.def 2026-09-09 L3 backend support: dvips
+\l__pdfannot_backend_content_box=\box53
+\l__pdfannot_backend_model_box=\box54
+\g__pdfannot_backend_int=\count276
+\g__pdfannot_backend_link_int=\count277
+\g__pdfannot_backend_link_sf_int=\count278
+)))
+START-TEST-LOG
+
+This is a generated file for the LaTeX2e validation system.
+
+Don't change this file in any respect.
+
+Author: Ryszard Tanas
+Main Class: slides
+OMIT
+(slides.cls
+Document Class: slides 2025-12-31 v2.4c Standard LaTeX document class
+(slides.def
+File: slides.def 2025-12-31 v2.4c SLiTeX definitions
+ hacks, slides,
+\c@page=\count279
+ picture, mods,
+\@smashboxa=\box55
+\@smashboxb=\box56
+\@smashboxc=\box57
+ output, init) (sfonts.def
+File: sfonts.def 2023/12/02 v2.2f Standard LaTeX slide font definitions
+ (ot1lcmss.fd
+File: ot1lcmss.fd 2023/12/02 v2.2f Standard LaTeX slide font definitions
+))
+\c@minutes=\count280
+\c@seconds=\count281
+\c@mv@invisible=\count282
+LaTeX Font Info:    Overwriting symbol font `operators' in version `normal'
+(Font)                  OT1/cmr/m/n --> OT1/lcmss/m/n on input line 360.
+LaTeX Font Info:    Overwriting symbol font `letters' in version `normal'
+(Font)                  OML/cmm/m/it --> OML/lcmm/m/it on input line 363.
+LaTeX Font Info:    Overwriting symbol font `symbols' in version `normal'
+(Font)                  OMS/cmsy/m/n --> OMS/lcmsy/m/n on input line 365.
+LaTeX Font Info:    Overwriting symbol font `largesymbols' in version `normal'
+(Font)                  OMX/cmex/m/n --> OMX/lcmex/m/n on input line 367.
+LaTeX Font Info:    Overwriting symbol font `operators' in version `invisible'
+(Font)                  OT1/cmr/m/n --> OT1/lcmss/m/In on input line 370.
+LaTeX Font Info:    Overwriting symbol font `letters' in version `invisible'
+(Font)                  OML/cmm/m/it --> OML/lcmm/m/Iit on input line 372.
+LaTeX Font Info:    Overwriting symbol font `symbols' in version `invisible'
+(Font)                  OMS/cmsy/m/n --> OMS/lcmsy/m/In on input line 374.
+LaTeX Font Info:    Overwriting symbol font `largesymbols' in version `invisible'
+(Font)                  OMX/cmex/m/n --> OMX/lcmex/m/In on input line 376.
+)
+No file tlb0268.aux.
+\openout1 = `tlb0268.aux'.
+
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 38.
+LaTeX Font Info:    ... okay on input line 38.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 38.
+LaTeX Font Info:    ... okay on input line 38.
+LaTeX Font Info:    Checking defaults for OT1/lcmss/m/n on input line 38.
+LaTeX Font Info:    ... okay on input line 38.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 38.
+LaTeX Font Info:    ... okay on input line 38.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 38.
+LaTeX Font Info:    ... okay on input line 38.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 38.
+LaTeX Font Info:    ... okay on input line 38.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 38.
+LaTeX Font Info:    ... okay on input line 38.
+TIMO
+LaTeX Font Info:    Trying to load font information for OML+lcmm on input line 45.
+(omllcmm.fd
+File: omllcmm.fd 2023/12/02 v2.2f Standard LaTeX slide font definitions
+)
+LaTeX Font Info:    Trying to load font information for OMS+lcmsy on input line 45.
+ (omslcmsy.fd
+File: omslcmsy.fd 2023/12/02 v2.2f Standard LaTeX slide font definitions
+)
+LaTeX Font Info:    Trying to load font information for OMX+lcmex on input line 45.
+ (omxlcmex.fd
+File: omxlcmex.fd 2023/12/02 v2.2f Standard LaTeX slide font definitions
+)
+LaTeX Font Info:    External font `cmex10 at17.28pt' loaded for size
+(Font)              <19.907> on input line 45.
+LaTeX Font Info:    External font `cmex10 at17.28pt' loaded for size
+(Font)              <16.59> on input line 45.
+LaTeX Font Info:    External font `cmex10 at17.28pt' loaded for size
+(Font)              <13.82> on input line 45.
+
+Overfull \hbox (57.8648pt too wide) in alignment at lines 45--53
+ [][][] []
+
+\hbox(0.0+0.0)x469.0
+.\glue(\tabskip) 0.0 plus 1000.0
+.\unsetbox(0.0+0.0)x25.54904
+.\glue(\tabskip) 0.0
+.\unsetbox(0.0+0.0)x35.35408
+.\glue(\tabskip) 0.0
+.\unsetbox(0.0+0.0)x465.96169
+.\glue(\tabskip) 0.0 plus 1000.0
+.\unsetbox(0.0+0.0)x0.0
+.\glue(\tabskip) 0.0
+
+[0
+
+] (tlb0268.aux)
+
+LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
+
+END-TEST-LOG
+ )
+
+Output written on tlb0268.dvi (1 page, 1372 bytes).

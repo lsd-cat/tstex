@@ -1,0 +1,1010 @@
+entering extended mode
+(m3regex005.lvt
+LaTeX2e <2026-11-01>
+L3 programming layer <2026-09-09>
+(minimal.cls
+Document Class: minimal 2001/05/25 Standard LaTeX minimal class
+) (regression-test.tex
+\gTESTint=\count276
+) (l3debug.def
+File: l3debug.def 2026-09-09 L3 Debugging support
+)
+Defining \l__hook_label_calc-noop_seq on line 12
+Defining \l__hook_label_kernel/filelist_seq on line 12
+Defining \l__hook_label_kernel/warnings_seq on line 12
+Defining \l__hook_label_kernel/release_seq on line 12
+Defining \l__hook_label_kernel/testmode_seq on line 12
+Defining \l__hook_label_firstaid_seq on line 12
+Defining \l__hook_label_firstaid/aliascounter_seq on line 12
+Defining \c_sys_output_str on line 12
+Defining \sys_if_output_dvi:T on line 12
+Defining \sys_if_output_dvi:F on line 12
+Defining \sys_if_output_dvi:TF on line 12
+Defining \sys_if_output_dvi_p: on line 12
+Defining \sys_if_output_hnt:T on line 12
+Defining \sys_if_output_hnt:F on line 12
+Defining \sys_if_output_hnt:TF on line 12
+Defining \sys_if_output_hnt_p: on line 12
+Defining \sys_if_output_pdf:T on line 12
+Defining \sys_if_output_pdf:F on line 12
+Defining \sys_if_output_pdf:TF on line 12
+Defining \sys_if_output_pdf_p: on line 12
+Defining \c_sys_backend_str on line 12
+(l3backend-dvips.def
+File: l3backend-dvips.def 2026-09-09 L3 backend support: dvips
+Defining \__kernel_backend_literal:e on line 46
+Defining \__kernel_backend_literal:n on line 47
+Defining \__kernel_backend_first_shipout:n on line 58
+Defining \__kernel_backend_literal_postscript:n on line 59
+Defining \__kernel_backend_literal_postscript:e on line 61
+Defining \__kernel_backend_postscript:n on line 62
+Defining \__kernel_backend_postscript:e on line 64
+Defining \l__hook_label_l3backend_seq on line 69
+Defining \__kernel_backend_align_begin: on line 70
+Defining \__kernel_backend_align_end: on line 76
+Defining \__kernel_backend_scope_begin: on line 81
+Defining \__kernel_backend_scope_end: on line 83
+Defining \__color_backend_raw_cmyk:n on line 86
+Defining \__color_backend_raw_gray:n on line 87
+Defining \__color_backend_raw_rgb:n on line 88
+Defining \__color_backend_current_cmyk:n on line 89
+Defining \__color_backend_current_gray:n on line 90
+Defining \__color_backend_current_rgb:n on line 91
+Defining \__color_backend_select_cmyk:n on line 92
+Defining \__color_backend_select_gray:n on line 94
+Defining \__color_backend_select_rgb:n on line 96
+Defining \__color_backend_select:nn on line 98
+Defining \__color_backend_reset: on line 104
+Defining \g__color_backend_colorant_prop on line 106
+Defining \__color_backend_devicen_colorants:n on line 107
+Defining \__color_backend_devicen_colorants:w on line 122
+Defining \__color_backend_raw_separation:nn on line 132
+Defining \__color_backend_raw_devicen:nn on line 133
+Defining \__color_backend_raw_iccbased:nn on line 134
+Defining \__color_backend_current_separation:nn on line 135
+Defining \__color_backend_current_devicen:nn on line 136
+Defining \__color_backend_current_iccbased:nn on line 137
+Defining \__color_backend_select_separation:nn on line 138
+Defining \__color_backend_select_devicen:nn on line 140
+Defining \__color_backend_select_iccbased:nn on line 141
+Defining \__color_backend_separation_init:nnnnn on line 142
+Defining \__color_backend_separation_init:neenn on line 163
+Defining \__color_backend_separation_init_aux:nnnnnn on line 164
+Defining \__color_backend_separation_init_/DeviceCMYK:nnn on line 185
+Defining \__color_backend_separation_init_/DeviceGray:nnn on line 187
+Defining \__color_backend_separation_init_/DeviceRGB:nnn on line 189
+Defining \__color_backend_separation_init_Device:Nn on line 191
+Defining \__color_backend_separation_init:nnn on line 198
+Defining \__color_backend_separation_init_count:n on line 204
+Defining \__color_backend_separation_init_count:w on line 206
+Defining \__color_backend_separation_init:nnnn on line 212
+Defining \__color_backend_separation_init:w on line 229
+Defining \__color_backend_separation_init:n on line 236
+Defining \__color_backend_separation_init:nw on line 238
+Defining \__color_backend_separation_init_CIELAB:nnn on line 254
+Defining \__color_backend_devicen_init:nnn on line 300
+Defining \__color_backend_iccbased_init:nnn on line 319
+Defining \__color_backend_fill_cmyk:n on line 320
+Defining \__color_backend_fill_gray:n on line 322
+Defining \__color_backend_fill_rgb:n on line 324
+Defining \__color_backend_fill:n on line 326
+Defining \__color_backend_stroke_cmyk:n on line 328
+Defining \__color_backend_stroke_gray:n on line 330
+Defining \__color_backend_stroke_rgb:n on line 332
+Defining \__color_backend_stroke:n on line 334
+Defining \__color_backend_fill_separation:nn on line 336
+Defining \__color_backend_stroke_separation:nn on line 338
+Defining \__color_backend_fill_devicen:nn on line 340
+Defining \__color_backend_stroke_devicen:nn on line 341
+Defining \__color_backend_fill_reset: on line 342
+Defining \__color_backend_stroke_reset: on line 343
+Defining \__box_backend_clip:N on line 345
+Defining \__box_backend_rotate:Nn on line 367
+Defining \__box_backend_rotate_aux:Nn on line 369
+Defining \__box_backend_scale:Nnn on line 384
+Defining \__draw_backend_literal:n on line 399
+Defining \__draw_backend_literal:e on line 400
+Defining \__draw_backend_begin: on line 401
+Defining \__draw_backend_end: on line 407
+Defining \__draw_backend_scope_begin: on line 412
+Defining \__draw_backend_scope_end: on line 414
+Defining \__draw_backend_moveto:nn on line 416
+Defining \__draw_backend_lineto:nn on line 424
+Defining \__draw_backend_rectangle:nnnn on line 432
+Defining \__draw_backend_curveto:nnnnnn on line 441
+Defining \__draw_backend_evenodd_rule: on line 451
+Defining \__draw_backend_nonzero_rule: on line 453
+Defining \g__draw_draw_eor_bool on line 455
+Defining \__draw_backend_closepath: on line 456
+Defining \__draw_backend_stroke: on line 458
+Defining \__draw_backend_closestroke: on line 475
+Defining \__draw_backend_fill: on line 480
+Defining \__draw_backend_fillstroke: on line 498
+Defining \__draw_backend_clip: on line 520
+Defining \g__draw_draw_clip_bool on line 522
+Defining \__draw_backend_discardpath: on line 523
+Defining \__draw_backend_dash_pattern:nn on line 536
+Defining \__draw_backend_dash:n on line 547
+Defining \__draw_backend_linewidth:n on line 549
+Defining \__draw_backend_miterlimit:n on line 554
+Defining \__draw_backend_cap_butt: on line 556
+Defining \__draw_backend_cap_round: on line 558
+Defining \__draw_backend_cap_rectangle: on line 560
+Defining \__draw_backend_join_miter: on line 562
+Defining \__draw_backend_join_round: on line 564
+Defining \__draw_backend_join_bevel: on line 566
+Defining \__draw_backend_transform:nnnn on line 568
+Defining \__draw_backend_shift:nn on line 573
+Defining \__draw_backend_box_use:Nnnnn on line 578
+Defining \__graphics_backend_getbb_eps:n on line 603
+Defining \__graphics_backend_getbb_ps:n on line 604
+Defining \__graphics_backend_include_eps:n on line 605
+Defining \__graphics_backend_include_ps:n on line 616
+Defining \__graphics_backend_get_pagecount:n on line 617
+Defining \__pdf_backend_pdfmark:n on line 619
+Defining \__pdf_backend_pdfmark:e on line 621
+Defining \__pdf_backend_catalog_gput:nn on line 622
+Defining \__pdf_backend_info_gput:nn on line 624
+Defining \__pdf_backend_object_new: on line 626
+Defining \__pdf_backend_object_ref:n on line 628
+Defining \__pdf_backend_object_id:n on line 629
+Defining \__pdf_backend_object_write:nnn on line 630
+Defining \__pdf_backend_object_write:nne on line 636
+Defining \__pdf_backend_object_write_aux:nnn on line 637
+Defining \__pdf_backend_object_write_array:nn on line 654
+Defining \__pdf_backend_object_write_dict:nn on line 659
+Defining \__pdf_backend_object_write_fstream:nn on line 664
+Defining \__pdf_backend_object_write_fstream:nnn on line 669
+Defining \__pdf_backend_object_write_stream:nn on line 679
+Defining \__pdf_backend_object_write_stream:nnn on line 684
+Defining \__pdf_backend_object_now:nn on line 692
+Defining \__pdf_backend_object_now:ne on line 699
+Defining \__pdf_backend_object_last: on line 700
+Defining \__pdf_backend_pageobject_ref:n on line 702
+Defining \__pdf_backend_destination:nn on line 704
+Defining \__pdf_backend_destination:nnnn on line 730
+Defining \__pdf_backend_destination_aux:nnnn on line 735
+Defining \__pdf_backend_compresslevel:n on line 763
+Defining \__pdf_backend_compress_objects:n on line 775
+Defining \__pdf_backend_version_major_gset:n on line 787
+Defining \__pdf_backend_version_minor_gset:n on line 791
+Defining \__pdf_backend_version_major: on line 795
+Defining \__pdf_backend_version_minor: on line 796
+Defining \__pdf_backend_bdc:nn on line 797
+Defining \__pdf_backend_emc: on line 799
+Defining \__pdf_backend_pagesize_gset:nn on line 801
+Defining \l__pdfannot_backend_content_box on line 812
+\l__pdfannot_backend_content_box=\box53
+Defining \l__pdfannot_backend_model_box on line 813
+\l__pdfannot_backend_model_box=\box54
+Defining \g__pdfannot_backend_int on line 814
+\g__pdfannot_backend_int=\count277
+Defining \__pdfannot_backend_generic:nnnn on line 815
+Defining \__pdfannot_backend_generic_aux:nnnn on line 820
+Defining \__pdfannot_backend_last: on line 844
+Defining \g__pdfannot_backend_link_int on line 846
+\g__pdfannot_backend_link_int=\count278
+Defining \g__pdfannot_backend_link_dict_tl on line 847
+Defining \g__pdfannot_backend_link_sf_int on line 848
+\g__pdfannot_backend_link_sf_int=\count279
+Defining \g__pdfannot_backend_link_math_bool on line 849
+Defining \g__pdfannot_backend_link_bool on line 850
+Defining \l__pdfannot_backend_breaklink_pdfmark_tl on line 851
+Defining \__pdfannot_backend_breaklink_postscript:n on line 853
+Defining \__pdfannot_backend_breaklink_usebox:N on line 854
+Defining \__pdfannot_backend_link_begin_goto:nnw on line 855
+Defining \__pdfannot_backend_link_begin_user:nnw on line 860
+Defining \__pdfannot_backend_link_begin:nw on line 862
+Defining \__pdfannot_backend_link_begin_aux:nw on line 867
+Defining \__pdfannot_backend_link_end: on line 882
+Defining \__pdfannot_backend_link_end_aux: on line 887
+Defining \__pdfannot_backend_link_minima: on line 924
+Defining \__pdfannot_backend_link_outerbox:n on line 953
+Defining \__pdfannot_backend_link_sf_save: on line 972
+Defining \__pdfannot_backend_link_sf_restore: on line 981
+Defining \__pdfannot_backend_link_last: on line 1015
+Defining \__pdfannot_backend_link_margin:n on line 1017
+Defining \__pdfannot_backend_link_on: on line 1024
+Defining \__pdfannot_backend_link_off: on line 1025
+Defining \__pdf_backend_annotation:nnnn on line 1026
+Defining \__pdf_backend_annotation_last: on line 1027
+Defining \__pdf_backend_link_begin_goto:nnw on line 1037
+Defining \__pdf_backend_link_begin_user:nnw on line 1037
+Defining \__pdf_backend_link_begin:nnnw on line 1037
+Defining \__pdf_backend_link_end: on line 1037
+Defining \__pdf_backend_link_last: on line 1037
+Defining \__pdf_backend_link_margin:n on line 1037
+Defining \__opacity_backend_select:n on line 1039
+Defining \__opacity_backend_fill:n on line 1044
+Defining \__opacity_backend_stroke:n on line 1051
+Defining \__opacity_backend:nnn on line 1058
+Defining \__opacity_backend_reset: on line 1077
+Defining \__opacity_backend_reset_fill: on line 1082
+Defining \__opacity_backend_reset_stroke: on line 1089
+)
+No file m3regex005.aux.
+\openout1 = `m3regex005.aux'.
+
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 12.
+LaTeX Font Info:    ... okay on input line 12.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 12.
+LaTeX Font Info:    ... okay on input line 12.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 12.
+LaTeX Font Info:    ... okay on input line 12.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 12.
+LaTeX Font Info:    ... okay on input line 12.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 12.
+LaTeX Font Info:    ... okay on input line 12.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 12.
+LaTeX Font Info:    ... okay on input line 12.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 12.
+LaTeX Font Info:    ... okay on input line 12.
+
+START-TEST-LOG
+
+
+This is a generated file for the l3build validation system.
+
+Don't change this file in any respect.
+
+
+! Undefined control sequence.
+l.15 \AUTHOR
+            {Bruno Le Floch}
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+OMIT
+Defining \l_foo_seq on line 19
+TIMO
+============================================================
+TEST 1: on token lists
+============================================================
+The token list contains the tokens:
+>  { (begin-group character {)
+>  a (the letter a)
+>  b (the letter b)
+>  c (the letter c)
+>  } (end-group character }).
+<recently read> }
+
+l.44   }
+
+
+The token list contains the tokens:
+>  { (begin-group character {)
+>  i (the letter i)
+>  j (the letter j)
+>  k (the letter k)
+>  } (end-group character }).
+<recently read> }
+
+l.44   }
+
+
+The token list contains the tokens:
+>  a (the letter a)
+>  b (the letter b)
+>  \undef (control sequence=undefined).
+<recently read> }
+
+l.44   }
+
+
+The token list contains the tokens:
+>  c (the letter c).
+<recently read> }
+
+l.44   }
+
+
+The token list contains the tokens:
+>  d (the letter d)
+>  \foobar (control sequence=undefined)
+>  d (the letter d)
+>  e (the letter e)
+>  f (the letter f).
+<recently read> }
+
+l.44   }
+
+
+The token list contains the tokens:
+>  \de: (control sequence=undefined).
+<recently read> }
+
+l.44   }
+
+
+The token list contains the tokens:
+>  \hi: (control sequence=undefined)
+>  \jk: (control sequence=undefined).
+<recently read> }
+
+l.44   }
+
+
+The token list contains the tokens:
+>  \uv: (control sequence=undefined).
+<recently read> }
+
+l.44   }
+
+
+The token list contains the tokens:
+>  \ab (control sequence=undefined)
+>  X (the letter X)
+>  \cd (control sequence=undefined).
+<recently read> }
+
+l.44   }
+
+
+The token list contains the tokens:
+>  \deX (control sequence=undefined)
+>  \f (control sequence=undefined)
+>  \  (control sequence=\ )
+>  X (the letter X)
+>  X (the letter X)
+>  \O (control sequence=macro:->\T1-cmd \O \T1\O ).
+<recently read> }
+
+l.44   }
+
+
+
+! LaTeX Error: Missing brace inserted when splitting or extracting submatches.
+
+For immediate help type H <return>.
+ ...
+
+l.44   }
+
+
+LaTeX was asked to do some regular expression operation, and the resulting token list would not have the same number of begin-group and end-group tokens. Braces were inserted: 1 left, 2 right.
+
+
+The token list contains the tokens:
+>  \abc (control sequence=undefined)
+>  { (begin-group character {)
+>  } (end-group character }).
+<recently read> }
+
+l.44   }
+
+
+The token list contains the tokens:
+>  b (the letter b)
+>  c (the letter c).
+<recently read> }
+
+l.44   }
+
+
+The token list contains the tokens:
+>  { (begin-group character {)
+>  d (the letter d)
+>  } (end-group character }).
+<recently read> }
+
+l.44   }
+
+
+The token list contains the tokens:
+>  { (begin-group character {)
+>  e (the letter e)
+>  } (end-group character }).
+<recently read> }
+
+l.44   }
+
+
+============================================================
+
+============================================================
+TEST 2: with somewhat unbalanced braces
+============================================================
+The token list \l_tmpa_tl contains the tokens:
+>  [ (begin-group character [)
+>  a (the letter a)
+>  ] (end-group character ])
+>  [ (begin-group character [)
+>  b (the letter b)
+>  ] (end-group character ])
+>  { (begin-group character {)
+>  { (begin-group character {)
+>  [ (begin-group character [)
+>  c (the letter c)
+>  ] (end-group character ])
+>  [ (begin-group character [)
+>  d (the letter d)
+>  ] (end-group character ])
+>  { (begin-group character {)
+>  { (begin-group character {)
+>  \e (control sequence=undefined)
+>  \e (control sequence=undefined)
+>  } (end-group character })
+>  } (end-group character })
+>  [ (begin-group character [)
+>  f (the letter f)
+>  ] (end-group character ])
+>  } (end-group character })
+>  } (end-group character })
+>  \gh (control sequence=undefined)
+>  \gh (control sequence=undefined).
+<recently read> }
+
+l.53   }
+
+
+============================================================
+
+============================================================
+TEST 3: Unbalanced things
+============================================================
+
+! LaTeX Error: Missing brace inserted when replacing.
+
+For immediate help type H <return>.
+ ...
+
+l.63   }
+
+
+LaTeX was asked to do some regular expression operation, and the resulting token list would not have the same number of begin-group and end-group tokens. Braces were inserted: 1 left, 0 right.
+
+
+
+! LaTeX Error: Missing brace inserted when replacing.
+
+For immediate help type H <return>.
+ ...
+
+l.63   }
+
+
+LaTeX was asked to do some regular expression operation, and the resulting token list would not have the same number of begin-group and end-group tokens. Braces were inserted: 0 left, 1 right.
+
+
+The token list \l_tmpa_tl contains the tokens:
+>  { (begin-group character {)
+>  { (begin-group character {)
+>  \{{ (control sequence=undefined)
+>  > (end-group character >)
+>  { (begin-group character {)
+>  \>{ (control sequence=undefined)
+>  } (end-group character })
+>  b (the letter b)
+>  \}b (control sequence=undefined)
+>  } (end-group character }).
+<recently read> }
+
+l.63   }
+
+
+============================================================
+
+============================================================
+TEST 4: Macro parameters
+============================================================
+
+! LaTeX Error: Category code '\cP' ignored inside '\c{...}' in a replacement text.
+
+For immediate help type H <return>.
+ ...
+
+l.77   }
+
+
+In a replacement text, the category codes of the argument of '\c{...}' are ignored when building the control sequence name.
+
+
+The token list \l_tmpa_tl contains the tokens:
+>  \# (control sequence=\char"23=35)
+>  # (macro parameter character #)
+>  \#x (control sequence=undefined).
+<recently read> }
+
+l.77   }
+
+
+The token list \l_tmpa_tl contains the tokens:
+>  x (the letter x)
+>  \c_parameter_token (control sequence=macro parameter character #)
+>  x (the letter x).
+<recently read> }
+
+l.77   }
+
+
+============================================================
+
+============================================================
+TEST 5: Nested classes
+============================================================
+{ABYZz|} {zA}
+{{ghi}} {{q}}
+============================================================
+
+============================================================
+TEST 6: Escaped u
+============================================================
+{x} {x##|\c_empty_tl } {x}
+The token list \l_tmpa_tl contains the tokens:
+>  A (the letter A)
+>  B (the letter B)
+>  y (the letter y)
+>  \c_space_tl (control sequence=macro:-> )
+>  # (macro parameter character #)
+>  { (begin-group character {)
+>  } (end-group character })
+>  y (the letter y)
+>  \c_space_tl (control sequence=macro:-> )
+>  # (macro parameter character #).
+<recently read> }
+
+l.102   }
+
+
+The token list \l_tmpa_tl contains the tokens:
+>  \if_false: (control sequence=\iffalse)
+>  \if_false: (control sequence=\iffalse)
+>  \c_parameter_token (control sequence=macro parameter character #)
+>  \if_false: (control sequence=\iffalse)
+>  \if_false: (control sequence=\iffalse)
+>  \c_parameter_token (control sequence=macro parameter character #).
+<recently read> }
+
+l.102   }
+
+
+============================================================
+
+============================================================
+TEST 7: Catcodes shouldn't "stick"
+============================================================
+{A*012} { +AZ- }
+============================================================
+
+============================================================
+TEST 8: The \K command
+============================================================
+{d} {a} {d} {ace} {a} {e} {d} {b} {d} {ce} {b} {e}
+
+! LaTeX Error: Invalid escape '\K' within a control sequence.
+
+For immediate help type H <return>.
+ ...
+
+l.122   }
+
+
+The escape sequence '\K' may not appear within a control sequence test introduced by '\c{'.
+
+
+> Compiled regex {\c {a|b\K }}:
++-branch
+  control sequence \a or \bK.
+<recently read> }
+
+l.122   }
+
+
+{1} {a}
+{c3} {bc}
+
+! LaTeX Error: Category code '\cB' ignored inside '\c{...}' in a replacement text.
+
+For immediate help type H <return>.
+ ...
+
+l.122   }
+
+
+In a replacement text, the category codes of the argument of '\c{...}' are ignored when building the control sequence name.
+
+
+The token list \l_tmpa_tl contains the tokens:
+>  a (the letter a)
+>  < (the character <)
+>  \x (control sequence=undefined)
+>  > (the character >)
+>  b (the letter b)
+>  < (the character <)
+>  \x (control sequence=undefined)
+>  > (the character >)
+>  c (the letter c)
+>  < (the character <)
+>  \x (control sequence=undefined)
+>  > (the character >).
+<recently read> }
+
+l.122   }
+
+
+{} {foo} {} {} {} {foo} {} {foo}
+{?} {?}
+============================================================
+
+============================================================
+TEST 9: Catcodes and groups
+============================================================
+
+{ab*ef} {ab*}
+============================================================
+
+============================================================
+TEST 10: Caseless matching and cs
+============================================================
+{\abcd e} {\abcd E}
+{xabc\abc } {Xabc\abc }
+============================================================
+
+============================================================
+TEST 11: Braces
+============================================================
+
+! LaTeX Error: Left braces must be escaped in '\u{...}'.
+
+For immediate help type H <return>.
+ ...
+
+l.149   }
+
+
+Constructions such as '\u{...{...}' are not allowed and should be replaced by '\u{...\{...}'.
+
+
+|\csname\endcsname }|
+The token list \l_tmpa_tl contains the tokens:
+>  \csname\endcsname (control sequence=undefined)
+>  } (the letter }).
+<recently read> }
+
+l.149   }
+
+
+
+! LaTeX Error: Missing right brace inserted in replacement text.
+
+For immediate help type H <return>.
+ ...
+
+l.149   }
+
+
+There was 1 missing right brace.
+
+
+|\csname\endcsname |
+============================================================
+
+============================================================
+TEST 12: More tests of cs
+============================================================
+{\abcdefghijkl }
+============================================================
+
+OMIT
+TIMO
+============================================================
+TEST 13: Replaced space catcode
+============================================================
+blank space
+blank space
+blank space
+============================================================
+
+OMIT
+Defining \foo on line 177
+TIMO
+============================================================
+TEST 14: Catcode group in replacement
+============================================================
+
+! LaTeX Error: Escaped letter or digit after category code in replacement text.
+
+For immediate help type H <return>.
+ ...
+
+l.189   }
+
+
+In a replacement text, the '\c' escape sequence can be followed by one of the letters 'ABCDELMOPSTU' representing the character category. Then, a character must follow, not '\1'.
+
+
+The token list \l_tmpa_tl contains the tokens:
+>  q (the letter q)
+>  e (subscript character e)
+>  t (superscript character t)
+>  a (the letter a)
+>  b (the letter b)
+>  Z (the letter Z)
+>  1 (math shift character 1)
+>  p (superscript character p)
+>  s (subscript character s)
+>  f (the letter f)
+>  q (the letter q)
+>  e (subscript character e)
+>  t (superscript character t)
+>  a (the character a)
+>  b (the character b)
+>  Z (the letter Z)
+>  1 (math shift character 1)
+>  p (superscript character p)
+>  s (subscript character s)
+>  f (the letter f).
+<recently read> }
+
+l.189   }
+
+
+
+! LaTeX Error: Missing right parenthesis inserted in replacement text.
+
+For immediate help type H <return>.
+ ...
+
+l.189   }
+
+
+There was 1 missing right parenthesis.
+
+
+> \l_tmpb_tl=.
+
+! LaTeX Error: Missing right parenthesis inserted in replacement text.
+
+For immediate help type H <return>.
+ ...
+
+l.189   }
+
+
+There were 2 missing right parentheses.
+
+
+> \l_tmpb_tl=.
+============================================================
+
+============================================================
+TEST 15: Repetitions on \u escape
+============================================================
+The token list \l_tmpa_tl contains the tokens:
+>  / (the character /)
+>  \foobaz (control sequence=undefined)
+>  \foobaz (control sequence=undefined)
+>  y (the letter y)
+>  / (the character /)
+>  y (the letter y).
+<recently read> }
+
+l.215   }
+
+
+============================================================
+> Compiled regex variable \l_tmpb_regex:
++-branch
+  ,-group begin (no capture)
+  | char code 97 (a)
+  | ,-group begin (no capture)
+  | | char code 65 (A)
+  | `-group end
+  `-group end, repeated 0 or more times, greedy
+  ,-group begin
+  | ,-group begin
+  | | char code 66 (B)
+  | `-group end
+  | char code 97 (a)
+  | ,-group begin (no capture)
+  | | char code 65 (A)
+  | `-group end
+  | ,-group begin
+  | | char code 67 (C)
+  | `-group end
+  `-group end.
+<recently read> }
+
+l.215   }
+
+
+> \l_tmpa_tl=(aAaAaABaAC,BaAC,B,C)aABC(BaAC,BaAC,B,C)BBC.
+<recently read> }
+
+l.215   }
+
+
+============================================================
+> Compiled regex variable \l_tmpb_regex:
++-branch
+  ,-group begin (no capture)
+  | char code 97 (a)
+  +-branch
+  | ,-group begin (no capture)
+  | | char code 65 (A)
+  | `-group end
+  `-group end, repeated between 0 and 2 times, greedy
+  ,-group begin
+  | ,-group begin
+  | | char code 66 (B)
+  | `-group end
+  | ,-group begin (no capture)
+  | | char code 97 (a)
+  | +-branch
+  | | ,-group begin (no capture)
+  | | | char code 65 (A)
+  | | `-group end
+  | `-group end
+  | ,-group begin
+  | | char code 67 (C)
+  | `-group end
+  `-group end.
+<recently read> }
+
+l.215   }
+
+
+> \l_tmpa_tl=aAaA(aABAC,BAC,B,C)aABC(BaC,BaC,B,C)BBaAC.
+<recently read> }
+
+l.215   }
+
+
+============================================================
+
+============================================================
+TEST 16: c and u escapes with braces
+============================================================
+
+! LaTeX Error: Left braces must be escaped in '\c{...}'.
+
+For immediate help type H <return>.
+ ...
+
+l.230   }
+
+
+Constructions such as '\c{...{...}' are not allowed and should be replaced by '\c{...\{...}'.
+
+
+! Use of \??? doesn't match its definition.
+<argument> \???
+                 ! LaTeX Error: Left braces must be escaped in '\u{...}'.
+l.230   }
+
+If you say, e.g., `\def\a1{...}', then you must always
+put `1' after `\a', since control sequence names are
+made up of letters only. The macro here has not been
+followed by the required stuff, so I'm ignoring it.
+
+! Use of \??? doesn't match its definition.
+<argument> \???
+                 ! LaTeX Error: Erroneous variable \csname\endcsname used!
+l.230   }
+
+If you say, e.g., `\def\a1{...}', then you must always
+put `1' after `\a', since control sequence names are
+made up of letters only. The macro here has not been
+followed by the required stuff, so I'm ignoring it.
+
+> Compiled regex {\c {{}\u {{}\cD }\cU }}:
++-branch
+  control sequence \
+  Match
+    categories D, class
+      char code 125 (})
+  Match
+    categories U, class
+      char code 125 (}).
+<recently read> }
+
+l.230   }
+
+
+
+! LaTeX Error: Left braces must be escaped in '\u{...}'.
+
+For immediate help type H <return>.
+ ...
+
+l.230   }
+
+
+Constructions such as '\u{...{...}' are not allowed and should be replaced by '\u{...\{...}'.
+
+
+
+! LaTeX Error: Left braces must be escaped in '\u{...}'.
+
+For immediate help type H <return>.
+ ...
+
+l.230   }
+
+
+Constructions such as '\u{...{...}' are not allowed and should be replaced by '\u{...\{...}'.
+
+
+! Use of \??? doesn't match its definition.
+<argument> \???
+                 ! LaTeX Error: Erroneous variable \csname\endcsname used!
+l.230   }
+
+If you say, e.g., `\def\a1{...}', then you must always
+put `1' after `\a', since control sequence names are
+made up of letters only. The macro here has not been
+followed by the required stuff, so I'm ignoring it.
+
+The token list \l_tmpa_tl contains the tokens:
+>  \csname\endcsname (control sequence=undefined)
+>  } (subscript character })
+>  } (superscript character }).
+<recently read> }
+
+l.230   }
+
+
+============================================================
+Defining \x{ on line 230
+> Compiled regex {\c {\{}\u {x\{}}:
++-branch
+  control sequence \{
+  char 102 (f), catcode 11
+  char 111 (o), catcode 11
+  char 111 (o), catcode 11.
+<recently read> }
+
+l.230   }
+
+
+The token list \l_tmpa_tl contains the tokens:
+>  \{ (control sequence=\protected macro:->\ifmmode \lbrace \else \textbraceleft \fi )
+>  f (the letter f)
+>  o (the letter o)
+>  o (the letter o).
+<recently read> }
+
+l.230   }
+
+
+============================================================
+
+============================================================
+TEST 17: Catcode used by default
+============================================================
+The token list \l_tmpa_tl contains the tokens:
+>  ^^M (the character ^^M)
+>  ! (the character !)
+>  @ (the character @)
+>  # (macro parameter character #)
+>  # (macro parameter character #)
+>  # (macro parameter character #)
+>  $ (math shift character $)
+>  % (the character %)
+>  $ (math shift character $)
+>  ^ (superscript character ^)
+>  & (alignment tab character &)
+>  * (the character *)
+>  { (begin-group character {)
+>    (blank space  )
+>  } (end-group character })
+>  : (the character :)
+>  _ (subscript character _)
+>  ~ (active character=\protected macro:->\ifincsname \expandafter ~\else \expandafter \nobreakspace \fi )
+>  \ (the character \).
+<recently read> }
+
+l.240   }
+
+
+============================================================
+
+
+END-TEST-LOG
+
+ )
+
+No pages of output.

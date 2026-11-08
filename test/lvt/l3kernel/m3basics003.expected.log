@@ -1,0 +1,183 @@
+entering extended mode
+(m3basics003.lvt
+LaTeX2e <2026-11-01>
+L3 programming layer <2026-09-09>
+(minimal.cls
+Document Class: minimal 2001/05/25 Standard LaTeX minimal class
+) (regression-test.tex
+\gTESTint=\count276
+) (l3debug.def
+File: l3debug.def 2026-09-09 L3 Debugging support
+)
+
+START-TEST-LOG
+
+
+This is a generated file for the l3build validation system.
+
+Don't change this file in any respect.
+
+
+! Undefined control sequence.
+l.13 \AUTHOR
+            {Bruno Le Floch}
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+
+! LaTeX Error: Missing \begin{document}.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...
+
+l.13 \AUTHOR{B
+              runo Le Floch}
+You're in trouble here.  Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+Missing character: There is no B in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no u in font nullfont!
+Missing character: There is no n in font nullfont!
+Missing character: There is no o in font nullfont!
+Missing character: There is no L in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no F in font nullfont!
+Missing character: There is no l in font nullfont!
+Missing character: There is no o in font nullfont!
+Missing character: There is no c in font nullfont!
+Missing character: There is no h in font nullfont!
+OMIT
+Defining \l_A_tl on line 17
+Defining \g_B_tl on line 18
+Defining \c_C_tl on line 19
+Defining \q_test on line 20
+Defining \gfoo on line 21
+Defining \lfoobar on line 22
+TIMO
+============================================================
+TEST 1: Local/global assignments without checking
+============================================================
+============================================================
+
+============================================================
+TEST 2: Local/global assignments checked
+============================================================
+
+! LaTeX Error: Inconsistent local/global assignment
+
+For immediate help type H <return>.
+ ...
+
+l.58   }
+
+
+This is a coding error.
+
+Global assignment to a local variable '\l_A_tl'.
+
+
+
+! LaTeX Error: Inconsistent local/global assignment
+
+For immediate help type H <return>.
+ ...
+
+l.58   }
+
+
+This is a coding error.
+
+Local assignment to a global variable '\g_B_tl'.
+
+
+
+! LaTeX Error: Inconsistent local/global assignment
+
+For immediate help type H <return>.
+ ...
+
+l.58   }
+
+
+This is a coding error.
+
+Global assignment to a local variable '\l_A_tl'.
+
+
+
+! LaTeX Error: Inconsistent local/global assignment
+
+For immediate help type H <return>.
+ ...
+
+l.58   }
+
+
+This is a coding error.
+
+Local assignment to a constant variable '\c_C_tl'.
+
+
+
+! LaTeX Error: Inconsistent local/global assignment
+
+For immediate help type H <return>.
+ ...
+
+l.58   }
+
+
+This is a coding error.
+
+Local assignment to a constant variable '\q_test'.
+
+
+
+! LaTeX Error: Inconsistent local/global assignment
+
+For immediate help type H <return>.
+ ...
+
+l.58   }
+
+
+This is a coding error.
+
+Global assignment to a local variable '\gfoo'.
+
+
+
+! LaTeX Error: Inconsistent local/global assignment
+
+For immediate help type H <return>.
+ ...
+
+l.58   }
+
+
+This is a coding error.
+
+Local assignment to a global variable '\lfoobar'.
+
+
+============================================================
+
+
+END-TEST-LOG
+
+
+Overfull \hbox (20.0pt too wide) in paragraph at lines 13--60
+[]
+
+\hbox(0.0+0.0)x0.0
+.\hbox(0.0+0.0)x20.0
+.\glue(\rightskip) 0.0
+
+ )
+
+No pages of output.

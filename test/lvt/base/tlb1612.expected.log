@@ -1,0 +1,116 @@
+entering extended mode
+(tlb1612.lvt
+LaTeX2e <2026-11-01>
+L3 programming layer <2026-09-09>
+(book.cls
+Document Class: book 2026-06-04 v1.4n Standard LaTeX document class
+(bk10.clo
+File: bk10.clo 2026-06-04 v1.4n Standard LaTeX file (size option)
+)
+\c@part=\count276
+\c@chapter=\count277
+\c@section=\count278
+\c@subsection=\count279
+\c@subsubsection=\count280
+\c@paragraph=\count281
+\c@subparagraph=\count282
+\c@figure=\count283
+\c@table=\count284
+\abovecaptionskip=\skip49
+\belowcaptionskip=\skip50
+\bibindent=\dimen150
+) (alltt.sty
+Package: alltt 2024/07/07 v2.0g defines alltt environment
+) (test2e.tex
+OMIT
+TIMO
+(expl3.sty
+Package: expl3 2026-09-09 L3 programming layer (loader)
+ (l3backend-dvips.def
+File: l3backend-dvips.def 2026-09-09 L3 backend support: dvips
+\l__pdfannot_backend_content_box=\box53
+\l__pdfannot_backend_model_box=\box54
+\g__pdfannot_backend_int=\count285
+\g__pdfannot_backend_link_int=\count286
+\g__pdfannot_backend_link_sf_int=\count287
+)))
+Author: Johannes Braams
+Address: J.L.Braams@research.ptt.nl
+Main Class: article
+Package: alltt
+START-TEST-LOG
+
+This is a generated file for the LaTeX2e validation system.
+
+Don't change this file in any respect.
+
+OMIT
+No file tlb1612.aux.
+\openout1 = `tlb1612.aux'.
+
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 13.
+LaTeX Font Info:    ... okay on input line 13.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 13.
+LaTeX Font Info:    ... okay on input line 13.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 13.
+LaTeX Font Info:    ... okay on input line 13.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 13.
+LaTeX Font Info:    ... okay on input line 13.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 13.
+LaTeX Font Info:    ... okay on input line 13.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 13.
+LaTeX Font Info:    ... okay on input line 13.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 13.
+LaTeX Font Info:    ... okay on input line 13.
+TIMO
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <7> on input line 17.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <5> on input line 17.
+
+Completed box being shipped out [1]
+\vbox(627.36243+0.0)x380.0
+.\glue 22.0
+.\vbox(605.36243+0.0)x345.0, shifted 35.0
+..\vbox(12.0+0.0)x345.0, glue set 5.55556fil
+...\glue 0.0 plus 1.0fil
+...\hbox(6.44444+0.0)x345.0
+....\hbox(6.44444+0.0)x345.0, glue set 339.99998fil
+.....\glue 0.0 plus 1.0fil
+.....\OT1/cmr/m/n/10 1
+..\glue 18.06749
+..\glue(\lineskip) 0.0
+..\vbox(550.0+0.0)x345.0, glue set 530.0fil
+...\write-{}
+...\glue(\topskip) 2.48218
+...\hbox(7.51782+0.0)x345.0, glue set 336.47917fil
+....\hbox(0.0+0.0)x0.0
+.....\glue 0.0
+.....\glue 0.0
+.....\glue -5.0
+.....\hbox(0.0+0.0)x0.0
+.....\glue 5.0
+....\mathon
+....\OML/cmm/m/it/10 x
+....\hbox(3.8889+0.0)x2.80556, shifted -3.62892
+.....\OMS/cmsy/m/n/7 0
+....\mathoff
+....\hbox(0.0+0.0)x0.0
+....\penalty 10000
+....\glue(\parfillskip) 0.0 plus 1.0fil
+....\glue(\rightskip) 0.0
+...\penalty 0
+...\penalty -51
+...\glue 10.0 plus 3.0 minus 5.0
+...\glue 0.0 plus 1.0fil
+...\glue 0.0
+..\glue(\baselineskip) 25.29494
+..\hbox(0.0+0.0)x345.0
+...\hbox(0.0+0.0)x345.0
+
+
+(tlb1612.aux)
+END-TEST-LOG
+ )
+
+Output written on tlb1612.dvi (1 page, 312 bytes).

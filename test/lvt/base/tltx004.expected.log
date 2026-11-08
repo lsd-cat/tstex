@@ -1,0 +1,190 @@
+entering extended mode
+(tltx004.lvt
+LaTeX2e <2026-11-01>
+L3 programming layer <2026-09-09>
+(article.cls
+Document Class: article 2026-06-04 v1.4n Standard LaTeX document class
+(size10.clo
+File: size10.clo 2026-06-04 v1.4n Standard LaTeX file (size option)
+)
+\c@part=\count276
+\c@section=\count277
+\c@subsection=\count278
+\c@subsubsection=\count279
+\c@paragraph=\count280
+\c@subparagraph=\count281
+\c@figure=\count282
+\c@table=\count283
+\abovecaptionskip=\skip49
+\belowcaptionskip=\skip50
+\bibindent=\dimen150
+) (ifthen.sty
+Package: ifthen 2026-06-01 v1.1e Standard LaTeX ifthen package (DPC)
+) (test2e.tex
+OMIT
+TIMO
+(expl3.sty
+Package: expl3 2026-09-09 L3 programming layer (loader)
+ (l3backend-dvips.def
+File: l3backend-dvips.def 2026-09-09 L3 backend support: dvips
+\l__pdfannot_backend_content_box=\box53
+\l__pdfannot_backend_model_box=\box54
+\g__pdfannot_backend_int=\count284
+\g__pdfannot_backend_link_int=\count285
+\g__pdfannot_backend_link_sf_int=\count286
+)))
+No file tltx004.aux.
+\openout1 = `tltx004.aux'.
+
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 4.
+LaTeX Font Info:    ... okay on input line 4.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 4.
+LaTeX Font Info:    ... okay on input line 4.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 4.
+LaTeX Font Info:    ... okay on input line 4.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 4.
+LaTeX Font Info:    ... okay on input line 4.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 4.
+LaTeX Font Info:    ... okay on input line 4.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 4.
+LaTeX Font Info:    ... okay on input line 4.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 4.
+LaTeX Font Info:    ... okay on input line 4.
+START-TEST-LOG
+
+This is a generated file for the LaTeX2e validation system.
+
+Don't change this file in any respect.
+
+
+Main Class: article
+Package: ifthen v0.1c
+Author: David Carlisle
+Defined   \ifthenelse
+Defined   \whiledo
+*******
+
+1=1 \and 2=2
+    yes:  yes
+1=1 \and 1=2
+    no :  no
+1=3 \or 2=2
+    yes:  yes
+\(1=3 \and 2=2\) \or 5=5
+    yes:  yes
+\(1=3 \and 2=2\) \and 5=5
+    no :  no
+\(1=3 \and 2=2\) \or \( 5=5 \or 1=7\)
+    yes:  yes
+ \( 5=5 \)
+    yes:  yes
+ \( 5=9 \)
+    no :  no
+\not 1=2
+    yes:  yes
+\not 1=1
+    no :  no
+\not \not 1=1
+    yes:  yes
+\not \not 1=2
+    no :  no
+******************
+
+1=1
+    yes:  yes
+\boolean {aaa}
+    no :  no
+\boolean {aaa}
+    yes:  yes
+\boolean {aaa} \and 1 < 3
+    yes:  yes
+ \( 1 < 3 \) \and \( \equal {aaax}{\aaa } \or 1=1 \) \and 2=2
+    yes:  yes
+ \( \equal {aa}{bb} \or \equal {\aaa }{aaa} \) \and 6<9 \or \boolean {false}
+    yes:  yes
+\boolean {true}
+    yes:  yes
+ 1<2 \and \( 1=1 \and 2 < 3 \) \and \( \equal {aa}{aa} \or 1<4 \)
+    yes:  yes
+ 1<2 \and \( 1=1 \and 2 < 2 \) \and \( \equal {aa}{aa} \or 1<4 \)
+    no :  no
+ 1<2 \and \( 1=1 \and 2 < 2 \) \and \not \( \equal {aa}{aa} \or 1<4 \)
+    no :  no
+ \not 1 > 2 \and 1 =1
+    yes:  yes
+OMIT
+\c@A=\count287
+TIMO
+
+ \isodd {0}
+    no :  no
+ \isodd {1}
+    yes:  yes
+ \isodd {100}
+    no :  no
+ \isodd {111}
+    yes:  yes
+ \isodd {\value {A}}
+    no :  no
+ \isodd {\value {A}}
+    yes:  yes
+ \isodd {0}
+    no :  no
+ \isodd {xxx}
+    no :  no
+ \isodd {1}
+    yes:  yes
+ \isodd {-1}
+    yes:  yes
+ \isodd {-2}
+    no :  no
+ \isodd {11xx}
+    no :  yes!! (wrong value)
+OMIT
+\A=\count288
+TIMO
+
+ \isodd {\A }
+    yes:  no !! (wrong value)
+ \isodd {\pageref {foo}}
+    yes:  no !! (wrong value) [1
+
+]
+ \isodd {\pageref {bar}}
+    no :  no
+ \lengthtest { 1pt < 1in}
+    yes:  yes
+ \lengthtest { 1pt = 1in} \or \( \boolean {false} \and 3 = 3 \)
+    no :  no
+ \lengthtest { 1pt = 1in} \or \( \boolean {false} \and 3 = 3 \) \or \lengthtest {72bp = 1in}
+    yes:  yes
+ \lengthtest {72bp = 1in}
+    yes:  yes
+ \boolean {abc}
+    no :  no
+ \boolean {abc}
+    yes:  yes
+ \boolean {true} \or \isodd {\pageref {bar}}
+    yes:  yes
+\equal {\aaa }{\bbb }
+    yes:  yes
+\equal {\aaa }{\bbb }
+    yes:  yes
+\boolean {true} \or \isodd {3}
+    yes:  yes
+\boolean {true} \or \equal {x}{y}
+    yes:  yes
+*******
+3
+2
+1
+[2
+
+] (tltx004.aux)
+
+LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
+
+END-TEST-LOG
+ )
+
+Output written on tltx004.dvi (2 pages, 308 bytes).

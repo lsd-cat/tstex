@@ -1,0 +1,331 @@
+entering extended mode
+(github-0479c.lvt
+LaTeX2e <2026-11-01>
+L3 programming layer <2026-09-09>
+(test2e.tex
+OMIT
+TIMO
+(expl3.sty
+Package: expl3 2026-09-09 L3 programming layer (loader)
+ (l3backend-dvips.def
+File: l3backend-dvips.def 2026-09-09 L3 backend support: dvips
+\l__pdfannot_backend_content_box=\box53
+\l__pdfannot_backend_model_box=\box54
+\g__pdfannot_backend_int=\count276
+\g__pdfannot_backend_link_int=\count277
+\g__pdfannot_backend_link_sf_int=\count278
+)))
+
+LaTeX Info: Writing file `./test-latexrelease.sty'.
+
+\openout15 = `test-latexrelease.sty'.
+
+
+START-TEST-LOG
+
+This is a generated file for the LaTeX2e validation system.
+
+Don't change this file in any respect.
+
+(test-latexrelease.sty (latexrelease.sty)
+LaTeX Info: Redefining \IfTargetDateBefore on input line 24.
+
+
+LaTeX Warning: You have requested package `test-latexrelease',
+               but the package provides `latexrelease'.
+
+Package: latexrelease 2026-03-13 v1.0s LaTeX release emulation and tests (including releases up to 2021-11-01)
+
+Package latexrelease Warning: Current format date selected, no patches applied.
+
+)
+! Undefined control sequence.
+l.130 \edef\x{\A
+                }\show\x \show\B \show\C \show\D
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+> \x=macro:
+->.
+l.130 \edef\x{\A}\show\x
+                         \show\B \show\C \show\D
+
+> \B=undefined.
+l.130 \edef\x{\A}\show\x \show\B
+                                 \show\C \show\D
+
+> \C=undefined.
+l.130 \edef\x{\A}\show\x \show\B \show\C
+                                         \show\D
+
+> \D=undefined.
+l.130 \edef\x{\A}\show\x \show\B \show\C \show\D
+
+
+(test-latexrelease.sty (latexrelease.sty)
+LaTeX Info: Redefining \IfTargetDateBefore on input line 24.
+
+
+LaTeX Warning: You have requested package `test-latexrelease',
+               but the package provides `latexrelease'.
+
+Package: latexrelease 2026-03-13 v1.0s LaTeX release emulation and tests (including releases up to 2021-11-01)
+! Undefined control sequence.
+l.24 \x\latexrelease@postexpl
+
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+BEGIN module: lttestmodule (2020/10/01) on input line 29.
+              Test module.
+Applying module lttestmodule on input line 29.
+Skipping: [2021/11/01] change \__internal_A:  on input line 35.
+Skipping: [2021/06/01] change \__internal_A:  on input line 38.
+Applying: [2020/10/01] change \__internal_A:  on input line 41.
+Skipping: [2021/06/01] change \B  on input line 48.
+Applying: [2020/10/01] change \B  on input line 51.
+Skipping: [2021/11/01] change \C  on input line 58.
+Applying: [2020/10/01] change \C  on input line 61.
+Skipping: [0000/00/00] Undo module on input line 68.
+END module: lttestmodule (2020/10/01) on input line 76.
+)
+> \x=macro:
+->original.
+l.135 \edef\x{\A}\show\x
+                         \show\B \show\C \show\D
+
+> \B=\long macro:
+->.
+l.135 \edef\x{\A}\show\x \show\B
+                                 \show\C \show\D
+
+> \C=\long macro:
+->.
+l.135 \edef\x{\A}\show\x \show\B \show\C
+                                         \show\D
+
+> \D=\long macro:
+->.
+l.135 \edef\x{\A}\show\x \show\B \show\C \show\D
+
+
+(test-latexrelease.sty (latexrelease.sty)
+LaTeX Info: Redefining \IfTargetDateBefore on input line 24.
+
+
+LaTeX Warning: You have requested package `test-latexrelease',
+               but the package provides `latexrelease'.
+
+Package: latexrelease 2026-03-13 v1.0s LaTeX release emulation and tests (including releases up to 2021-11-01)
+! Undefined control sequence.
+l.24 \x\latexrelease@postexpl
+
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+BEGIN module: lttestmodule (2020/10/01) on input line 29.
+              Test module.
+Applying module lttestmodule on input line 29.
+
+! LaTeX Error: Control sequence \A already defined.
+
+For immediate help type H <return>.
+ ...
+
+l.33 \cs_new:Npn \A
+                    { \__internal_A: }
+
+This is a coding error.
+
+LaTeX has been asked to create a new control sequence '\A' but this name has already been used elsewhere.
+
+The current meaning is:
+  \long macro:->\__internal_A:
+
+
+Skipping: [2021/11/01] change \__internal_A:  on input line 35.
+Applying: [2021/06/01] change \__internal_A:  on input line 38.
+Already applied: [2020/10/01] change \__internal_A:  on input line 41.
+Applying: [2021/06/01] change \B  on input line 48.
+Already applied: [2020/10/01] change \B  on input line 51.
+Skipping: [2021/11/01] change \C  on input line 58.
+Applying: [2020/10/01] change \C  on input line 61.
+
+! LaTeX Error: Control sequence \D already defined.
+
+For immediate help type H <return>.
+ ...
+
+l.65 \cs_new:Npn \D
+                    { }
+
+This is a coding error.
+
+LaTeX has been asked to create a new control sequence '\D' but this name has already been used elsewhere.
+
+The current meaning is:
+  \long macro:->
+
+
+Skipping: [0000/00/00] Undo module on input line 68.
+END module: lttestmodule (2020/10/01) on input line 76.
+)
+> \x=macro:
+->previous version.
+l.140 \edef\x{\A}\show\x
+                         \show\B \show\C \show\D
+
+> \B=\long macro:
+->altered.
+l.140 \edef\x{\A}\show\x \show\B
+                                 \show\C \show\D
+
+> \C=\long macro:
+->.
+l.140 \edef\x{\A}\show\x \show\B \show\C
+                                         \show\D
+
+> \D=\long macro:
+->.
+l.140 \edef\x{\A}\show\x \show\B \show\C \show\D
+
+
+(test-latexrelease.sty (latexrelease.sty)
+LaTeX Info: Redefining \IfTargetDateBefore on input line 24.
+
+
+LaTeX Warning: You have requested package `test-latexrelease',
+               but the package provides `latexrelease'.
+
+Package: latexrelease 2026-03-13 v1.0s LaTeX release emulation and tests (including releases up to 2021-11-01)
+! Undefined control sequence.
+l.24 \x\latexrelease@postexpl
+
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+BEGIN module: lttestmodule (2020/10/01) on input line 29.
+              Test module.
+Applying module lttestmodule on input line 29.
+
+! LaTeX Error: Control sequence \A already defined.
+
+For immediate help type H <return>.
+ ...
+
+l.33 \cs_new:Npn \A
+                    { \__internal_A: }
+
+This is a coding error.
+
+LaTeX has been asked to create a new control sequence '\A' but this name has already been used elsewhere.
+
+The current meaning is:
+  \long macro:->\__internal_A:
+
+
+Applying: [2021/11/01] change \__internal_A:  on input line 35.
+Already applied: [2021/06/01] change \__internal_A:  on input line 38.
+Already applied: [2020/10/01] change \__internal_A:  on input line 41.
+Applying: [2021/06/01] change \B  on input line 48.
+Already applied: [2020/10/01] change \B  on input line 51.
+Applying: [2021/11/01] change \C  on input line 58.
+Already applied: [2020/10/01] change \C  on input line 61.
+
+! LaTeX Error: Control sequence \D already defined.
+
+For immediate help type H <return>.
+ ...
+
+l.65 \cs_new:Npn \D
+                    { }
+
+This is a coding error.
+
+LaTeX has been asked to create a new control sequence '\D' but this name has already been used elsewhere.
+
+The current meaning is:
+  \long macro:->
+
+
+Skipping: [0000/00/00] Undo module on input line 68.
+END module: lttestmodule (2020/10/01) on input line 76.
+)
+> \x=macro:
+->changed internal.
+l.145 \edef\x{\A}\show\x
+                         \show\B \show\C \show\D
+
+> \B=\long macro:
+->altered.
+l.145 \edef\x{\A}\show\x \show\B
+                                 \show\C \show\D
+
+> \C=\long macro:
+->metoo.
+l.145 \edef\x{\A}\show\x \show\B \show\C
+                                         \show\D
+
+> \D=\long macro:
+->.
+l.145 \edef\x{\A}\show\x \show\B \show\C \show\D
+
+
+(test-latexrelease.sty (latexrelease.sty)
+LaTeX Info: Redefining \IfTargetDateBefore on input line 24.
+
+
+LaTeX Warning: You have requested package `test-latexrelease',
+               but the package provides `latexrelease'.
+
+Package: latexrelease 2026-03-13 v1.0s LaTeX release emulation and tests (including releases up to 2021-11-01)
+! Undefined control sequence.
+l.24 \x\latexrelease@postexpl
+
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+BEGIN module: lttestmodule (2020/10/01) on input line 29.
+              Test module.
+Skipping module lttestmodule on input line 29.
+END module: lttestmodule (2020/10/01) on input line 76.
+)
+> \x=macro:
+->changed internal.
+l.151 \edef\x{\A}\show\x
+                         \show\B \show\C \show\D
+
+> \B=\long macro:
+->altered.
+l.151 \edef\x{\A}\show\x \show\B
+                                 \show\C \show\D
+
+> \C=\long macro:
+->metoo.
+l.151 \edef\x{\A}\show\x \show\B \show\C
+                                         \show\D
+
+> \D=\long macro:
+->.
+l.151 \edef\x{\A}\show\x \show\B \show\C \show\D
+
+
+END-TEST-LOG
+ )
+
+No pages of output.

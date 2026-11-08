@@ -1,0 +1,68 @@
+entering extended mode
+(github-0828.lvt
+LaTeX2e <2026-11-01>
+L3 programming layer <2026-09-09>
+
+LaTeX Info: Writing file `./demo.sty'.
+
+\openout15 = `demo.sty'.
+
+
+(test2e.tex
+OMIT
+TIMO
+(expl3.sty
+Package: expl3 2026-09-09 L3 programming layer (loader)
+ (l3backend-dvips.def
+File: l3backend-dvips.def 2026-09-09 L3 backend support: dvips
+\l__pdfannot_backend_content_box=\box53
+\l__pdfannot_backend_model_box=\box54
+\g__pdfannot_backend_int=\count276
+\g__pdfannot_backend_link_int=\count277
+\g__pdfannot_backend_link_sf_int=\count278
+))) (article.cls
+Document Class: article 2026-06-04 v1.4n Standard LaTeX document class
+(size10.clo
+File: size10.clo 2026-06-04 v1.4n Standard LaTeX file (size option)
+)
+\c@part=\count279
+\c@section=\count280
+\c@subsection=\count281
+\c@subsubsection=\count282
+\c@paragraph=\count283
+\c@subparagraph=\count284
+\c@figure=\count285
+\c@table=\count286
+\abovecaptionskip=\skip49
+\belowcaptionskip=\skip50
+\bibindent=\dimen150
+)
+START-TEST-LOG
+
+This is a generated file for the LaTeX2e validation system.
+
+Don't change this file in any respect.
+
+--> \maxdimen
+Include code introduced on 2023-01-01
+new
+(demo.sty
+Rollback for package 'demo' requested -> date 2022-02-02.
+         Best approximation is the release introduced on 2021-02-02.
+
+--> 20220202
+--> 20000101
+(alltt.sty
+Package: alltt 2024/07/07 v2.0g defines alltt environment
+)
+--> 20000101
+--> 20220202
+)
+--> \maxdimen
+Include code introduced on 2023-01-01
+new
+--> \maxdimen
+END-TEST-LOG
+ )
+
+No pages of output.

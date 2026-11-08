@@ -1,0 +1,6 @@
+base/github-0942: oracle: missing file par.tex
+base/github-1022: oracle: missing file lipsum.sty
+hyperref/121-makeuppercase: oracle: missing file memoir.cls
+hyperref/gh234-ltugboat: oracle: missing file ltugboat.cls
+hyperref/gh236-beamer: oracle: missing file beamer.cls
+hyperref/test0: oracle: missing file lastpage.sty

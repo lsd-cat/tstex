@@ -1,0 +1,300 @@
+entering extended mode
+(m3basics004.lvt
+LaTeX2e <2026-11-01>
+L3 programming layer <2026-09-09>
+(minimal.cls
+Document Class: minimal 2001/05/25 Standard LaTeX minimal class
+) (regression-test.tex
+\gTESTint=\count276
+)
+
+START-TEST-LOG
+
+
+This is a generated file for the l3build validation system.
+
+Don't change this file in any respect.
+
+
+! Undefined control sequence.
+l.9 \AUTHOR
+           {Vit Stary Novotny, Joseph Wright}
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+
+! LaTeX Error: Missing \begin{document}.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...
+
+l.9 \AUTHOR{V
+             it Stary Novotny, Joseph Wright}
+You're in trouble here.  Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+Missing character: There is no V in font nullfont!
+Missing character: There is no i in font nullfont!
+Missing character: There is no t in font nullfont!
+Missing character: There is no S in font nullfont!
+Missing character: There is no t in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no y in font nullfont!
+Missing character: There is no N in font nullfont!
+Missing character: There is no o in font nullfont!
+Missing character: There is no v in font nullfont!
+Missing character: There is no o in font nullfont!
+Missing character: There is no t in font nullfont!
+Missing character: There is no n in font nullfont!
+Missing character: There is no y in font nullfont!
+Missing character: There is no , in font nullfont!
+Missing character: There is no J in font nullfont!
+Missing character: There is no o in font nullfont!
+Missing character: There is no s in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no p in font nullfont!
+Missing character: There is no h in font nullfont!
+Missing character: There is no W in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no i in font nullfont!
+Missing character: There is no g in font nullfont!
+Missing character: There is no h in font nullfont!
+Missing character: There is no t in font nullfont!
+OMIT
+TIMO
+============================================================
+TEST 1: Assertions are unchecked by default
+============================================================
+
+============================================================
+
+(l3debug.def
+File: l3debug.def 2026-09-09 L3 Debugging support
+)
+============================================================
+TEST 2: Enabling the checking of assertions, check-assertions
+============================================================
+! Use of \??? doesn't match its definition.
+<argument> \???
+                 ! Package mypkg Error: Assertion failed: \c_false_bool
+l.37   }
+
+If you say, e.g., `\def\a1{...}', then you must always
+put `1' after `\a', since control sequence names are
+made up of letters only. The macro here has not been
+followed by the required stuff, so I'm ignoring it.
+
+! Use of \??? doesn't match its definition.
+<argument> \???
+                 ! Package mypkg Error: Assertion failed: \c_false_bool
+l.37   }
+
+If you say, e.g., `\def\a1{...}', then you must always
+put `1' after `\a', since control sequence names are
+made up of letters only. The macro here has not been
+followed by the required stuff, so I'm ignoring it.
+
+! Use of \??? doesn't match its definition.
+<argument> \???
+                 ! Package mypkg Error: Shut her down, Clancy!
+l.37   }
+
+If you say, e.g., `\def\a1{...}', then you must always
+put `1' after `\a', since control sequence names are
+made up of letters only. The macro here has not been
+followed by the required stuff, so I'm ignoring it.
+
+! Use of \??? doesn't match its definition.
+<argument> \???
+                 ! Package mypkg Error: She's pumping mud!
+l.37   }
+
+If you say, e.g., `\def\a1{...}', then you must always
+put `1' after `\a', since control sequence names are
+made up of letters only. The macro here has not been
+followed by the required stuff, so I'm ignoring it.
+
+
+============================================================
+
+============================================================
+TEST 3: Enabling and disabling the checking of assertions, check-assertions
+============================================================
+
+============================================================
+
+============================================================
+TEST 4: Enabling the checking of assertions, all
+============================================================
+! Use of \??? doesn't match its definition.
+<argument> \???
+                 ! Package mypkg Error: Assertion failed: \c_false_bool
+l.49   }
+
+If you say, e.g., `\def\a1{...}', then you must always
+put `1' after `\a', since control sequence names are
+made up of letters only. The macro here has not been
+followed by the required stuff, so I'm ignoring it.
+
+! Use of \??? doesn't match its definition.
+<argument> \???
+                 ! Package mypkg Error: Assertion failed: \c_false_bool
+l.49   }
+
+If you say, e.g., `\def\a1{...}', then you must always
+put `1' after `\a', since control sequence names are
+made up of letters only. The macro here has not been
+followed by the required stuff, so I'm ignoring it.
+
+! Use of \??? doesn't match its definition.
+<argument> \???
+                 ! Package mypkg Error: Shut her down, Clancy!
+l.49   }
+
+If you say, e.g., `\def\a1{...}', then you must always
+put `1' after `\a', since control sequence names are
+made up of letters only. The macro here has not been
+followed by the required stuff, so I'm ignoring it.
+
+! Use of \??? doesn't match its definition.
+<argument> \???
+                 ! Package mypkg Error: She's pumping mud!
+l.49   }
+
+If you say, e.g., `\def\a1{...}', then you must always
+put `1' after `\a', since control sequence names are
+made up of letters only. The macro here has not been
+followed by the required stuff, so I'm ignoring it.
+
+
+============================================================
+
+============================================================
+TEST 5: Enabling and disabling the checking of assertions, all
+============================================================
+
+============================================================
+
+============================================================
+TEST 6: Enabling and suspending the checking of assertions, check-assertions
+============================================================
+
+============================================================
+
+============================================================
+TEST 7: Enabling and suspending the checking of assertions, all
+============================================================
+
+============================================================
+
+============================================================
+TEST 8: Enabling, suspending, and resuming the checking of assertions, check-assertions
+============================================================
+! Use of \??? doesn't match its definition.
+<argument> \???
+                 ! Package mypkg Error: Assertion failed: \c_false_bool
+l.81   }
+
+If you say, e.g., `\def\a1{...}', then you must always
+put `1' after `\a', since control sequence names are
+made up of letters only. The macro here has not been
+followed by the required stuff, so I'm ignoring it.
+
+! Use of \??? doesn't match its definition.
+<argument> \???
+                 ! Package mypkg Error: Assertion failed: \c_false_bool
+l.81   }
+
+If you say, e.g., `\def\a1{...}', then you must always
+put `1' after `\a', since control sequence names are
+made up of letters only. The macro here has not been
+followed by the required stuff, so I'm ignoring it.
+
+! Use of \??? doesn't match its definition.
+<argument> \???
+                 ! Package mypkg Error: Shut her down, Clancy!
+l.81   }
+
+If you say, e.g., `\def\a1{...}', then you must always
+put `1' after `\a', since control sequence names are
+made up of letters only. The macro here has not been
+followed by the required stuff, so I'm ignoring it.
+
+! Use of \??? doesn't match its definition.
+<argument> \???
+                 ! Package mypkg Error: She's pumping mud!
+l.81   }
+
+If you say, e.g., `\def\a1{...}', then you must always
+put `1' after `\a', since control sequence names are
+made up of letters only. The macro here has not been
+followed by the required stuff, so I'm ignoring it.
+
+
+============================================================
+
+============================================================
+TEST 9: Enabling, suspending, and resuming the checking of assertions, all
+============================================================
+! Use of \??? doesn't match its definition.
+<argument> \???
+                 ! Package mypkg Error: Assertion failed: \c_false_bool
+l.90   }
+
+If you say, e.g., `\def\a1{...}', then you must always
+put `1' after `\a', since control sequence names are
+made up of letters only. The macro here has not been
+followed by the required stuff, so I'm ignoring it.
+
+! Use of \??? doesn't match its definition.
+<argument> \???
+                 ! Package mypkg Error: Assertion failed: \c_false_bool
+l.90   }
+
+If you say, e.g., `\def\a1{...}', then you must always
+put `1' after `\a', since control sequence names are
+made up of letters only. The macro here has not been
+followed by the required stuff, so I'm ignoring it.
+
+! Use of \??? doesn't match its definition.
+<argument> \???
+                 ! Package mypkg Error: Shut her down, Clancy!
+l.90   }
+
+If you say, e.g., `\def\a1{...}', then you must always
+put `1' after `\a', since control sequence names are
+made up of letters only. The macro here has not been
+followed by the required stuff, so I'm ignoring it.
+
+! Use of \??? doesn't match its definition.
+<argument> \???
+                 ! Package mypkg Error: She's pumping mud!
+l.90   }
+
+If you say, e.g., `\def\a1{...}', then you must always
+put `1' after `\a', since control sequence names are
+made up of letters only. The macro here has not been
+followed by the required stuff, so I'm ignoring it.
+
+
+============================================================
+
+
+END-TEST-LOG
+
+
+Overfull \hbox (20.0pt too wide) in paragraph at lines 9--93
+[]
+
+\hbox(0.0+0.0)x0.0
+.\hbox(0.0+0.0)x20.0
+.\glue(\rightskip) 0.0
+
+ )
+
+No pages of output.

@@ -1,0 +1,216 @@
+entering extended mode
+(github-0239.lvt
+LaTeX2e <2026-11-01>
+L3 programming layer <2026-09-09>
+(article.cls
+Document Class: article 2026-06-04 v1.4n Standard LaTeX document class
+(size10.clo
+File: size10.clo 2026-06-04 v1.4n Standard LaTeX file (size option)
+)
+\c@part=\count276
+\c@section=\count277
+\c@subsection=\count278
+\c@subsubsection=\count279
+\c@paragraph=\count280
+\c@subparagraph=\count281
+\c@figure=\count282
+\c@table=\count283
+\abovecaptionskip=\skip49
+\belowcaptionskip=\skip50
+\bibindent=\dimen150
+) (test2e.tex
+OMIT
+TIMO
+(expl3.sty
+Package: expl3 2026-09-09 L3 programming layer (loader)
+ (l3backend-dvips.def
+File: l3backend-dvips.def 2026-09-09 L3 backend support: dvips
+\l__pdfannot_backend_content_box=\box53
+\l__pdfannot_backend_model_box=\box54
+\g__pdfannot_backend_int=\count284
+\g__pdfannot_backend_link_int=\count285
+\g__pdfannot_backend_link_sf_int=\count286
+)))
+No file github-0239.aux.
+\openout1 = `github-0239.aux'.
+
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 7.
+LaTeX Font Info:    ... okay on input line 7.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 7.
+LaTeX Font Info:    ... okay on input line 7.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 7.
+LaTeX Font Info:    ... okay on input line 7.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 7.
+LaTeX Font Info:    ... okay on input line 7.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 7.
+LaTeX Font Info:    ... okay on input line 7.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 7.
+LaTeX Font Info:    ... okay on input line 7.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 7.
+LaTeX Font Info:    ... okay on input line 7.
+START-TEST-LOG
+
+This is a generated file for the LaTeX2e validation system.
+
+Don't change this file in any respect.
+
+\tmp=macro:->\@protected@testopt \tmp \\tmp {}|
+\tmp =\relax|
+\\tmp=\long macro:[#1]->boo|
+\\tmp =\relax|
+
+\tmp=macro:->\protect \tmp  |
+\tmp =\long macro:#1->boo|
+\\tmp=\relax|
+\\tmp =\relax|
+
+\tmp=macro:->\protect \tmp  |
+\tmp =macro:->\@protected@testopt \tmp  \\tmp  {}|
+\\tmp=\relax|
+\\tmp =\long macro:[#1]->boo|
+
+\tmp=\protected macro:->\@testopt \\tmp |
+\tmp =\relax|
+\\tmp=macro:[#1]->boo|
+\\tmp =\relax|
+
+\+=macro:->\@protected@testopt \+\\+ {}|
+\+ =\relax|
+\\+=\long macro:[#1]->boo|
+\\+ =\relax|
+
+LaTeX Info: Redefining \# on input line 68.
+\+=macro:->\x@protect \+\protect \+  |
+\+ =\long macro:#1->boo|
+\\+=\relax|
+\\+ =\relax|
+
+LaTeX Info: Redefining \$ on input line 70.
+\+=macro:->\x@protect \+\protect \+  |
+\+ =macro:->\@protected@testopt \+  \\+  {}|
+\\+=\relax|
+\\+ =\long macro:[#1]->boo|
+
+\+=\protected macro:->\@testopt \\+ |
+\+ =\relax|
+\\+=macro:[#1]->boo|
+\\+ =\relax|
+
+\tmp=macro:->\@protected@testopt \tmp \\tmp {}|
+\tmp =\relax|
+\\tmp=\long macro:[#1]->boo|
+\\tmp =\relax|
+
+LaTeX Info: Redefining \# on input line 84.
+\tmp=macro:->\protect \tmp  |
+\tmp =\long macro:#1->boo|
+\\tmp=\relax|
+\\tmp =\relax|
+
+LaTeX Info: Redefining \$ on input line 86.
+\tmp=macro:->\protect \tmp  |
+\tmp =macro:->\@protected@testopt \tmp  \\tmp  {}|
+\\tmp=\relax|
+\\tmp =\long macro:[#1]->boo|
+
+\tmp=\protected macro:->\@testopt \\tmp |
+\tmp =\relax|
+\\tmp=macro:[#1]->boo|
+\\tmp =\relax|
+
+\+=macro:->\@protected@testopt \+\\+ {}|
+\+ =\relax|
+\\+=\long macro:[#1]->boo|
+\\+ =\relax|
+
+LaTeX Info: Redefining \cmdb on input line 98.
+\+=macro:->\x@protect \+\protect \+  |
+\+ =\long macro:#1->boo|
+\\+=\relax|
+\\+ =\relax|
+
+LaTeX Info: Redefining \cmdc on input line 100.
+\+=macro:->\x@protect \+\protect \+  |
+\+ =macro:->\@protected@testopt \+  \\+  {}|
+\\+=\relax|
+\\+ =\long macro:[#1]->boo|
+
+\+=\protected macro:->\@testopt \\+ |
+\+ =\relax|
+\\+=macro:[#1]->boo|
+\\+ =\relax|
+
+\cmda=\count287
+\tmp=\count287
+\tmp =\relax
+\\tmp=\relax
+\\tmp =\relax
+
+\tmp=undefined|
+\tmp =\relax|
+\\tmp=\relax|
+\\tmp =\relax|
+
+\tmp=\relax|
+\tmp =\relax|
+\\tmp=\relax|
+\\tmp =\relax|
+
+\tmp=\detokenize|
+\tmp =\relax|
+\\tmp=\relax|
+\\tmp =\relax|
+
+\tmp=macro:#1#2#3#4#5#6#7#8#9->|
+\tmp =\relax|
+\\tmp=\relax|
+\\tmp =\relax|
+
+> \myfrac=macro:
+->\protect \myfrac  .
+l.127 \show\myfrac
+
+
+> \myfrac =\long macro:
+#1#2->{\begingroup #1\endgroup \over #2}.
+\myfrac ->\protect \myfrac
+
+l.128 {\let\protect\show\myfrac
+                               }
+
+\mycmd=macro:->\@protected@testopt \mycmd \\mycmd {default}|
+\mycmd =\relax|
+\\mycmd=\long macro:[#1]#2#3#4#5#6#7#8#9->(#1#2#3#4#5#6#7#8#9)|
+\\mycmd =\relax|
+
+\mycmd=macro:->\protect \mycmd  |
+\mycmd =macro:->\@protected@testopt \mycmd  \\mycmd  {default}|
+\\mycmd=\relax|
+\\mycmd =\long macro:[#1]#2#3#4#5#6#7#8#9->(#1#2#3#4#5#6#7#8#9)|
+
+> \tmp =macro:
+->\par \penalty -500 .
+\tmp ->\protect \tmp
+
+l.139 {\let\protect\show\tmp
+                            }
+
+> \mypar =macro:
+->funny \endgraf .
+\mypar ->\protect \mypar
+
+l.146 \let\protect\show\mypar
+                             }
+
+> \par =macro:
+->funny \endgraf .
+\par ->\protect \par
+
+l.150 \let\protect\show\par
+                           }
+
+(github-0239.aux)
+END-TEST-LOG
+ )
+
+No pages of output.

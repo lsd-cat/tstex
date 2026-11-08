@@ -1,0 +1,139 @@
+entering extended mode
+(m3text-utils001.lvt
+LaTeX2e <2026-11-01>
+L3 programming layer <2026-09-09>
+(regression-test.tex
+\gTESTint=\count276
+) (l3debug.def
+File: l3debug.def 2026-09-09 L3 Debugging support
+)
+
+START-TEST-LOG
+
+
+This is a generated file for the l3build validation system.
+
+Don't change this file in any respect.
+
+
+============================================================
+TEST 1: Simple BCP 47 parsing
+============================================================
+{en}{}{}{}{}{}{}
+{en}{}{}{gb}{}{}{}
+{en}{}{latn}{gb}{}{}{}
+{en}{{abc}}{}{}{}{}{}
+{en}{{abc}{def}}{}{}{}{}{}
+{en}{{abc}{def}{ghi}}{}{}{}{}{}
+{es}{}{}{419}{}{}{}
+{es}{}{latn}{419}{}{}{}
+{rm}{}{}{}{{sursilv}}{}{}
+{sr}{}{cyrl}{}{}{}{}
+{nan}{}{hant}{tw}{}{}{}
+{yue}{}{hant}{hk}{}{}{}
+{en}{}{}{}{}{t{{jp}}}{}
+{ar}{}{}{}{}{u{{nu}{latn}}}{}
+{he}{}{}{il}{}{u{{ca}{hebrew}{tz}{jeruslm}}}{}
+{gsw}{}{}{}{}{u{{sd}{chzh}}}{}
+{de}{}{}{}{}{}{{eszett}}
+============================================================
+
+============================================================
+TEST 2: Invalid BCP 47 input
+============================================================
+! Use of \??? doesn't match its definition.
+<argument> \???
+                 ! Package text Error: Empty input for BCP 47 decoding.
+l.68   }
+
+If you say, e.g., `\def\a1{...}', then you must always
+put `1' after `\a', since control sequence names are
+made up of letters only. The macro here has not been
+followed by the required stuff, so I'm ignoring it.
+
+! Use of \??? doesn't match its definition.
+<argument> \???
+                 ! Package text Error: Invalid language in BCP input.
+l.68   }
+
+If you say, e.g., `\def\a1{...}', then you must always
+put `1' after `\a', since control sequence names are
+made up of letters only. The macro here has not been
+followed by the required stuff, so I'm ignoring it.
+
+! Use of \??? doesn't match its definition.
+<argument> \???
+                 ! Package text Error: Invalid subtag in BCP input.
+l.68   }
+
+If you say, e.g., `\def\a1{...}', then you must always
+put `1' after `\a', since control sequence names are
+made up of letters only. The macro here has not been
+followed by the required stuff, so I'm ignoring it.
+
+! Use of \??? doesn't match its definition.
+<argument> \???
+                 ! Package text Error: Invalid subtag in BCP input.
+l.68   }
+
+If you say, e.g., `\def\a1{...}', then you must always
+put `1' after `\a', since control sequence names are
+made up of letters only. The macro here has not been
+followed by the required stuff, so I'm ignoring it.
+
+! Use of \??? doesn't match its definition.
+<argument> \???
+                 ! Package text Error: Invalid subtag in BCP input.
+l.68   }
+
+If you say, e.g., `\def\a1{...}', then you must always
+put `1' after `\a', since control sequence names are
+made up of letters only. The macro here has not been
+followed by the required stuff, so I'm ignoring it.
+
+! Use of \??? doesn't match its definition.
+<argument> \???
+                 ! Package text Error: Invalid subtag in BCP input.
+l.68   }
+
+If you say, e.g., `\def\a1{...}', then you must always
+put `1' after `\a', since control sequence names are
+made up of letters only. The macro here has not been
+followed by the required stuff, so I'm ignoring it.
+
+! Use of \??? doesn't match its definition.
+<argument> \???
+                 ! Package text Error: Invalid subtag in BCP input.
+l.68   }
+
+If you say, e.g., `\def\a1{...}', then you must always
+put `1' after `\a', since control sequence names are
+made up of letters only. The macro here has not been
+followed by the required stuff, so I'm ignoring it.
+
+! Use of \??? doesn't match its definition.
+<argument> \???
+                 ! Package text Error: Invalid subtag in BCP input.
+l.68   }
+
+If you say, e.g., `\def\a1{...}', then you must always
+put `1' after `\a', since control sequence names are
+made up of letters only. The macro here has not been
+followed by the required stuff, so I'm ignoring it.
+
+
+
+{en}
+{en}{}{}{}{}
+{es}{}{}{419}
+{es}
+{en}{}{}{}{}
+{en}{}{}{}{}
+============================================================
+
+
+END-TEST-LOG
+
+ )
+
+No pages of output.

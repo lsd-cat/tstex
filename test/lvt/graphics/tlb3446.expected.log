@@ -1,0 +1,122 @@
+entering extended mode
+(tlb3446.lvt
+LaTeX2e <2026-11-01>
+L3 programming layer <2026-09-09>
+(article.cls
+Document Class: article 2026-06-04 v1.4n Standard LaTeX document class
+(size10.clo
+File: size10.clo 2026-06-04 v1.4n Standard LaTeX file (size option)
+)
+\c@part=\count276
+\c@section=\count277
+\c@subsection=\count278
+\c@subsubsection=\count279
+\c@paragraph=\count280
+\c@subparagraph=\count281
+\c@figure=\count282
+\c@table=\count283
+\abovecaptionskip=\skip49
+\belowcaptionskip=\skip50
+\bibindent=\dimen150
+) (keyval.sty
+Package: keyval 2026-06-01 v1.15 key=value parser (DPC)
+\KV@toks@=\toks17
+) (l3backend-dvips.def
+File: l3backend-dvips.def 2026-09-09 L3 backend support: dvips
+\l__pdfannot_backend_content_box=\box53
+\l__pdfannot_backend_model_box=\box54
+\g__pdfannot_backend_int=\count284
+\g__pdfannot_backend_link_int=\count285
+\g__pdfannot_backend_link_sf_int=\count286
+)
+No file tlb3446.aux.
+\openout1 = `tlb3446.aux'.
+
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 5.
+LaTeX Font Info:    ... okay on input line 5.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 5.
+LaTeX Font Info:    ... okay on input line 5.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 5.
+LaTeX Font Info:    ... okay on input line 5.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 5.
+LaTeX Font Info:    ... okay on input line 5.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 5.
+LaTeX Font Info:    ... okay on input line 5.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 5.
+LaTeX Font Info:    ... okay on input line 5.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 5.
+LaTeX Font Info:    ... okay on input line 5.
+(test2e.tex
+OMIT
+TIMO
+)
+START-TEST-LOG
+
+This is a generated file for the LaTeX2e validation system.
+
+Don't change this file in any respect.
+
+Author: David Carlisle
+Package: keyval
+foo=(a)
+b=(zzz)
+foo=(a,b)
+foo=(a,b)
+foo=({a,b})
+foo=(a)
+foo=(a)
+foo=(a)
+foo=(a)
+foo=(a)
+foo=(a)
+foo=(a)
+foo=(a)
+foo=(x \par y)
+
+1a Should be [\j erman]
+[\j erman]
+[\j erman]
+1b Should be [\j erman]
+[\j erman]
+[\j erman]
+
+2a Should be [german]
+[german]
+[german]
+2b Should be [german]
+[german]
+[german]
+
+3a Should be [\j erman]
+[\j erman]
+[\j erman]
+3b Should be [\j erman]
+[\j erman]
+[\j erman]
+
+4a Should be [german]
+[german]
+[german]
+
+4b Should be [german]
+[german]
+[german]
+
+5a Should be [german]
+[german]
+[german]
+5b Should be [{german}]
+[{german}]
+[{german}]
+
+6a Should be [{german}]
+[{german}]
+[{german}]
+6b Should be [{{german}}]
+[{{german}}]
+[{{german}}]
+(tlb3446.aux)
+END-TEST-LOG
+ )
+
+No pages of output.

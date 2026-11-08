@@ -1,0 +1,4364 @@
+entering extended mode
+(m3coffins001.lvt
+LaTeX2e <2026-11-01>
+L3 programming layer <2026-09-09>
+(minimal.cls
+Document Class: minimal 2001/05/25 Standard LaTeX minimal class
+) (regression-test.tex
+\gTESTint=\count276
+) (l3debug.def
+File: l3debug.def 2026-09-09 L3 Debugging support
+)
+Defining \l__hook_label_calc-noop_seq on line 16
+Defining \l__hook_label_kernel/filelist_seq on line 16
+Defining \l__hook_label_kernel/warnings_seq on line 16
+Defining \l__hook_label_kernel/release_seq on line 16
+Defining \l__hook_label_kernel/testmode_seq on line 16
+Defining \l__hook_label_firstaid_seq on line 16
+Defining \l__hook_label_firstaid/aliascounter_seq on line 16
+Defining \c_sys_output_str on line 16
+Defining \sys_if_output_dvi:T on line 16
+Defining \sys_if_output_dvi:F on line 16
+Defining \sys_if_output_dvi:TF on line 16
+Defining \sys_if_output_dvi_p: on line 16
+Defining \sys_if_output_hnt:T on line 16
+Defining \sys_if_output_hnt:F on line 16
+Defining \sys_if_output_hnt:TF on line 16
+Defining \sys_if_output_hnt_p: on line 16
+Defining \sys_if_output_pdf:T on line 16
+Defining \sys_if_output_pdf:F on line 16
+Defining \sys_if_output_pdf:TF on line 16
+Defining \sys_if_output_pdf_p: on line 16
+Defining \c_sys_backend_str on line 16
+(l3backend-dvips.def
+File: l3backend-dvips.def 2026-09-09 L3 backend support: dvips
+Defining \__kernel_backend_literal:e on line 46
+Defining \__kernel_backend_literal:n on line 47
+Defining \__kernel_backend_first_shipout:n on line 58
+Defining \__kernel_backend_literal_postscript:n on line 59
+Defining \__kernel_backend_literal_postscript:e on line 61
+Defining \__kernel_backend_postscript:n on line 62
+Defining \__kernel_backend_postscript:e on line 64
+Defining \l__hook_label_l3backend_seq on line 69
+Defining \__kernel_backend_align_begin: on line 70
+Defining \__kernel_backend_align_end: on line 76
+Defining \__kernel_backend_scope_begin: on line 81
+Defining \__kernel_backend_scope_end: on line 83
+Defining \__color_backend_raw_cmyk:n on line 86
+Defining \__color_backend_raw_gray:n on line 87
+Defining \__color_backend_raw_rgb:n on line 88
+Defining \__color_backend_current_cmyk:n on line 89
+Defining \__color_backend_current_gray:n on line 90
+Defining \__color_backend_current_rgb:n on line 91
+Defining \__color_backend_select_cmyk:n on line 92
+Defining \__color_backend_select_gray:n on line 94
+Defining \__color_backend_select_rgb:n on line 96
+Defining \__color_backend_select:nn on line 98
+Defining \__color_backend_reset: on line 104
+Defining \g__color_backend_colorant_prop on line 106
+Defining \__color_backend_devicen_colorants:n on line 107
+Defining \__color_backend_devicen_colorants:w on line 122
+Defining \__color_backend_raw_separation:nn on line 132
+Defining \__color_backend_raw_devicen:nn on line 133
+Defining \__color_backend_raw_iccbased:nn on line 134
+Defining \__color_backend_current_separation:nn on line 135
+Defining \__color_backend_current_devicen:nn on line 136
+Defining \__color_backend_current_iccbased:nn on line 137
+Defining \__color_backend_select_separation:nn on line 138
+Defining \__color_backend_select_devicen:nn on line 140
+Defining \__color_backend_select_iccbased:nn on line 141
+Defining \__color_backend_separation_init:nnnnn on line 142
+Defining \__color_backend_separation_init:neenn on line 163
+Defining \__color_backend_separation_init_aux:nnnnnn on line 164
+Defining \__color_backend_separation_init_/DeviceCMYK:nnn on line 185
+Defining \__color_backend_separation_init_/DeviceGray:nnn on line 187
+Defining \__color_backend_separation_init_/DeviceRGB:nnn on line 189
+Defining \__color_backend_separation_init_Device:Nn on line 191
+Defining \__color_backend_separation_init:nnn on line 198
+Defining \__color_backend_separation_init_count:n on line 204
+Defining \__color_backend_separation_init_count:w on line 206
+Defining \__color_backend_separation_init:nnnn on line 212
+Defining \__color_backend_separation_init:w on line 229
+Defining \__color_backend_separation_init:n on line 236
+Defining \__color_backend_separation_init:nw on line 238
+Defining \__color_backend_separation_init_CIELAB:nnn on line 254
+Defining \__color_backend_devicen_init:nnn on line 300
+Defining \__color_backend_iccbased_init:nnn on line 319
+Defining \__color_backend_fill_cmyk:n on line 320
+Defining \__color_backend_fill_gray:n on line 322
+Defining \__color_backend_fill_rgb:n on line 324
+Defining \__color_backend_fill:n on line 326
+Defining \__color_backend_stroke_cmyk:n on line 328
+Defining \__color_backend_stroke_gray:n on line 330
+Defining \__color_backend_stroke_rgb:n on line 332
+Defining \__color_backend_stroke:n on line 334
+Defining \__color_backend_fill_separation:nn on line 336
+Defining \__color_backend_stroke_separation:nn on line 338
+Defining \__color_backend_fill_devicen:nn on line 340
+Defining \__color_backend_stroke_devicen:nn on line 341
+Defining \__color_backend_fill_reset: on line 342
+Defining \__color_backend_stroke_reset: on line 343
+Defining \__box_backend_clip:N on line 345
+Defining \__box_backend_rotate:Nn on line 367
+Defining \__box_backend_rotate_aux:Nn on line 369
+Defining \__box_backend_scale:Nnn on line 384
+Defining \__draw_backend_literal:n on line 399
+Defining \__draw_backend_literal:e on line 400
+Defining \__draw_backend_begin: on line 401
+Defining \__draw_backend_end: on line 407
+Defining \__draw_backend_scope_begin: on line 412
+Defining \__draw_backend_scope_end: on line 414
+Defining \__draw_backend_moveto:nn on line 416
+Defining \__draw_backend_lineto:nn on line 424
+Defining \__draw_backend_rectangle:nnnn on line 432
+Defining \__draw_backend_curveto:nnnnnn on line 441
+Defining \__draw_backend_evenodd_rule: on line 451
+Defining \__draw_backend_nonzero_rule: on line 453
+Defining \g__draw_draw_eor_bool on line 455
+Defining \__draw_backend_closepath: on line 456
+Defining \__draw_backend_stroke: on line 458
+Defining \__draw_backend_closestroke: on line 475
+Defining \__draw_backend_fill: on line 480
+Defining \__draw_backend_fillstroke: on line 498
+Defining \__draw_backend_clip: on line 520
+Defining \g__draw_draw_clip_bool on line 522
+Defining \__draw_backend_discardpath: on line 523
+Defining \__draw_backend_dash_pattern:nn on line 536
+Defining \__draw_backend_dash:n on line 547
+Defining \__draw_backend_linewidth:n on line 549
+Defining \__draw_backend_miterlimit:n on line 554
+Defining \__draw_backend_cap_butt: on line 556
+Defining \__draw_backend_cap_round: on line 558
+Defining \__draw_backend_cap_rectangle: on line 560
+Defining \__draw_backend_join_miter: on line 562
+Defining \__draw_backend_join_round: on line 564
+Defining \__draw_backend_join_bevel: on line 566
+Defining \__draw_backend_transform:nnnn on line 568
+Defining \__draw_backend_shift:nn on line 573
+Defining \__draw_backend_box_use:Nnnnn on line 578
+Defining \__graphics_backend_getbb_eps:n on line 603
+Defining \__graphics_backend_getbb_ps:n on line 604
+Defining \__graphics_backend_include_eps:n on line 605
+Defining \__graphics_backend_include_ps:n on line 616
+Defining \__graphics_backend_get_pagecount:n on line 617
+Defining \__pdf_backend_pdfmark:n on line 619
+Defining \__pdf_backend_pdfmark:e on line 621
+Defining \__pdf_backend_catalog_gput:nn on line 622
+Defining \__pdf_backend_info_gput:nn on line 624
+Defining \__pdf_backend_object_new: on line 626
+Defining \__pdf_backend_object_ref:n on line 628
+Defining \__pdf_backend_object_id:n on line 629
+Defining \__pdf_backend_object_write:nnn on line 630
+Defining \__pdf_backend_object_write:nne on line 636
+Defining \__pdf_backend_object_write_aux:nnn on line 637
+Defining \__pdf_backend_object_write_array:nn on line 654
+Defining \__pdf_backend_object_write_dict:nn on line 659
+Defining \__pdf_backend_object_write_fstream:nn on line 664
+Defining \__pdf_backend_object_write_fstream:nnn on line 669
+Defining \__pdf_backend_object_write_stream:nn on line 679
+Defining \__pdf_backend_object_write_stream:nnn on line 684
+Defining \__pdf_backend_object_now:nn on line 692
+Defining \__pdf_backend_object_now:ne on line 699
+Defining \__pdf_backend_object_last: on line 700
+Defining \__pdf_backend_pageobject_ref:n on line 702
+Defining \__pdf_backend_destination:nn on line 704
+Defining \__pdf_backend_destination:nnnn on line 730
+Defining \__pdf_backend_destination_aux:nnnn on line 735
+Defining \__pdf_backend_compresslevel:n on line 763
+Defining \__pdf_backend_compress_objects:n on line 775
+Defining \__pdf_backend_version_major_gset:n on line 787
+Defining \__pdf_backend_version_minor_gset:n on line 791
+Defining \__pdf_backend_version_major: on line 795
+Defining \__pdf_backend_version_minor: on line 796
+Defining \__pdf_backend_bdc:nn on line 797
+Defining \__pdf_backend_emc: on line 799
+Defining \__pdf_backend_pagesize_gset:nn on line 801
+Defining \l__pdfannot_backend_content_box on line 812
+\l__pdfannot_backend_content_box=\box53
+Defining \l__pdfannot_backend_model_box on line 813
+\l__pdfannot_backend_model_box=\box54
+Defining \g__pdfannot_backend_int on line 814
+\g__pdfannot_backend_int=\count277
+Defining \__pdfannot_backend_generic:nnnn on line 815
+Defining \__pdfannot_backend_generic_aux:nnnn on line 820
+Defining \__pdfannot_backend_last: on line 844
+Defining \g__pdfannot_backend_link_int on line 846
+\g__pdfannot_backend_link_int=\count278
+Defining \g__pdfannot_backend_link_dict_tl on line 847
+Defining \g__pdfannot_backend_link_sf_int on line 848
+\g__pdfannot_backend_link_sf_int=\count279
+Defining \g__pdfannot_backend_link_math_bool on line 849
+Defining \g__pdfannot_backend_link_bool on line 850
+Defining \l__pdfannot_backend_breaklink_pdfmark_tl on line 851
+Defining \__pdfannot_backend_breaklink_postscript:n on line 853
+Defining \__pdfannot_backend_breaklink_usebox:N on line 854
+Defining \__pdfannot_backend_link_begin_goto:nnw on line 855
+Defining \__pdfannot_backend_link_begin_user:nnw on line 860
+Defining \__pdfannot_backend_link_begin:nw on line 862
+Defining \__pdfannot_backend_link_begin_aux:nw on line 867
+Defining \__pdfannot_backend_link_end: on line 882
+Defining \__pdfannot_backend_link_end_aux: on line 887
+Defining \__pdfannot_backend_link_minima: on line 924
+Defining \__pdfannot_backend_link_outerbox:n on line 953
+Defining \__pdfannot_backend_link_sf_save: on line 972
+Defining \__pdfannot_backend_link_sf_restore: on line 981
+Defining \__pdfannot_backend_link_last: on line 1015
+Defining \__pdfannot_backend_link_margin:n on line 1017
+Defining \__pdfannot_backend_link_on: on line 1024
+Defining \__pdfannot_backend_link_off: on line 1025
+Defining \__pdf_backend_annotation:nnnn on line 1026
+Defining \__pdf_backend_annotation_last: on line 1027
+Defining \__pdf_backend_link_begin_goto:nnw on line 1037
+Defining \__pdf_backend_link_begin_user:nnw on line 1037
+Defining \__pdf_backend_link_begin:nnnw on line 1037
+Defining \__pdf_backend_link_end: on line 1037
+Defining \__pdf_backend_link_last: on line 1037
+Defining \__pdf_backend_link_margin:n on line 1037
+Defining \__opacity_backend_select:n on line 1039
+Defining \__opacity_backend_fill:n on line 1044
+Defining \__opacity_backend_stroke:n on line 1051
+Defining \__opacity_backend:nnn on line 1058
+Defining \__opacity_backend_reset: on line 1077
+Defining \__opacity_backend_reset_fill: on line 1082
+Defining \__opacity_backend_reset_stroke: on line 1089
+)
+No file m3coffins001.aux.
+\openout1 = `m3coffins001.aux'.
+
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 16.
+LaTeX Font Info:    ... okay on input line 16.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 16.
+LaTeX Font Info:    ... okay on input line 16.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 16.
+LaTeX Font Info:    ... okay on input line 16.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 16.
+LaTeX Font Info:    ... okay on input line 16.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 16.
+LaTeX Font Info:    ... okay on input line 16.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 16.
+LaTeX Font Info:    ... okay on input line 16.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 16.
+LaTeX Font Info:    ... okay on input line 16.
+
+START-TEST-LOG
+
+
+This is a generated file for the l3build validation system.
+
+Don't change this file in any respect.
+
+
+! Undefined control sequence.
+l.18 \AUTHOR
+            {Joseph Wright}
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+============================================================
+TEST 1: Making new coffins
+============================================================
+Defining \l_tmpc_coffin on line 27
+\l_tmpc_coffin=\box55
+Size of coffin \l_tmpc_coffin:
+> ht = 0.0pt
+> dp = 0.0pt
+> wd = 0.0pt
+Poles of coffin \l_tmpc_coffin:
+>  l  =>  {0pt}{0pt}{0pt}{1000pt}
+>  hc  =>  {0pt}{0pt}{0pt}{1000pt}
+>  r  =>  {0pt}{0pt}{0pt}{1000pt}
+>  b  =>  {0pt}{0pt}{1000pt}{0pt}
+>  vc  =>  {0pt}{0pt}{1000pt}{0pt}
+>  t  =>  {0pt}{0pt}{1000pt}{0pt}
+>  B  =>  {0pt}{0pt}{1000pt}{0pt}
+>  H  =>  {0pt}{0pt}{1000pt}{0pt}
+>  T  =>  {0pt}{0pt}{1000pt}{0pt}.
+<recently read> }
+
+l.27   }
+
+
+
+! LaTeX Error: Control sequence \l_tmpa_coffin already defined.
+
+For immediate help type H <return>.
+ ...
+
+l.27   }
+
+
+This is a coding error.
+
+LaTeX has been asked to create a new control sequence '\l_tmpa_coffin' but this name has already been used elsewhere.
+
+The current meaning is:
+  \char"17
+
+
+Defining \l_tmpa_coffin on line 27
+\l_tmpa_coffin=\box56
+============================================================
+
+============================================================
+TEST 2: Setting coffin poles
+============================================================
+OMIT
+TIMO
+Size of coffin \l_tmpa_coffin:
+> ht = 6.94444pt
+> dp = 0.0pt
+> wd = 22.50005pt
+Poles of coffin \l_tmpa_coffin:
+>  l  =>  {0pt}{0pt}{0pt}{1000pt}
+>  hc  =>  {11.25002pt}{0pt}{0pt}{1000pt}
+>  r  =>  {22.50005pt}{0pt}{0pt}{1000pt}
+>  b  =>  {0pt}{0.0pt}{1000pt}{0pt}
+>  vc  =>  {0pt}{3.47223pt}{1000pt}{0pt}
+>  t  =>  {0pt}{6.94444pt}{1000pt}{0pt}
+>  B  =>  {0pt}{0pt}{1000pt}{0pt}
+>  H  =>  {0pt}{0pt}{1000pt}{0pt}
+>  T  =>  {0pt}{0pt}{1000pt}{0pt}
+>  test-1  =>  {0pt}{3.47223pt}{1000pt}{0pt}.
+<recently read> }
+
+l.60   }
+
+
+Size of coffin \g_tmpa_coffin:
+> ht = 6.94444pt
+> dp = 0.0pt
+> wd = 22.50005pt
+Poles of coffin \g_tmpa_coffin:
+>  l  =>  {0pt}{0pt}{0pt}{1000pt}
+>  hc  =>  {11.25002pt}{0pt}{0pt}{1000pt}
+>  r  =>  {22.50005pt}{0pt}{0pt}{1000pt}
+>  b  =>  {0pt}{0.0pt}{1000pt}{0pt}
+>  vc  =>  {0pt}{3.47223pt}{1000pt}{0pt}
+>  t  =>  {0pt}{6.94444pt}{1000pt}{0pt}
+>  B  =>  {0pt}{0pt}{1000pt}{0pt}
+>  H  =>  {0pt}{0pt}{1000pt}{0pt}
+>  T  =>  {0pt}{0pt}{1000pt}{0pt}
+>  test-1  =>  {0pt}{3.47223pt}{1000pt}{0pt}.
+<recently read> }
+
+l.60   }
+
+
+Size of coffin \l_tmpa_coffin:
+> ht = 6.94444pt
+> dp = 0.0pt
+> wd = 22.50005pt
+Poles of coffin \l_tmpa_coffin:
+>  l  =>  {0pt}{0pt}{0pt}{1000pt}
+>  hc  =>  {11.25002pt}{0pt}{0pt}{1000pt}
+>  r  =>  {22.50005pt}{0pt}{0pt}{1000pt}
+>  b  =>  {0pt}{0.0pt}{1000pt}{0pt}
+>  vc  =>  {0pt}{3.47223pt}{1000pt}{0pt}
+>  t  =>  {0pt}{6.94444pt}{1000pt}{0pt}
+>  B  =>  {0pt}{0pt}{1000pt}{0pt}
+>  H  =>  {0pt}{0pt}{1000pt}{0pt}
+>  T  =>  {0pt}{0pt}{1000pt}{0pt}.
+<recently read> }
+
+l.60   }
+
+
+Size of coffin \g_tmpa_coffin:
+> ht = 6.94444pt
+> dp = 0.0pt
+> wd = 22.50005pt
+Poles of coffin \g_tmpa_coffin:
+>  l  =>  {0pt}{0pt}{0pt}{1000pt}
+>  hc  =>  {11.25002pt}{0pt}{0pt}{1000pt}
+>  r  =>  {22.50005pt}{0pt}{0pt}{1000pt}
+>  b  =>  {0pt}{0.0pt}{1000pt}{0pt}
+>  vc  =>  {0pt}{3.47223pt}{1000pt}{0pt}
+>  t  =>  {0pt}{6.94444pt}{1000pt}{0pt}
+>  B  =>  {0pt}{0pt}{1000pt}{0pt}
+>  H  =>  {0pt}{0pt}{1000pt}{0pt}
+>  T  =>  {0pt}{0pt}{1000pt}{0pt}
+>  test-1  =>  {0pt}{3.47223pt}{1000pt}{0pt}.
+<recently read> }
+
+l.60   }
+
+
+OMIT
+TIMO
+Size of coffin \l_tmpa_coffin:
+> ht = 6.94444pt
+> dp = 0.0pt
+> wd = 22.50005pt
+Poles of coffin \l_tmpa_coffin:
+>  l  =>  {0pt}{0pt}{0pt}{1000pt}
+>  hc  =>  {11.25002pt}{0pt}{0pt}{1000pt}
+>  r  =>  {22.50005pt}{0pt}{0pt}{1000pt}
+>  b  =>  {0pt}{0.0pt}{1000pt}{0pt}
+>  vc  =>  {0pt}{3.47223pt}{1000pt}{0pt}
+>  t  =>  {0pt}{6.94444pt}{1000pt}{0pt}
+>  B  =>  {0pt}{0pt}{1000pt}{0pt}
+>  H  =>  {0pt}{0pt}{1000pt}{0pt}
+>  T  =>  {0pt}{0pt}{1000pt}{0pt}
+>  test-1  =>  {11.25003pt}{0pt}{0pt}{1000pt}.
+<recently read> }
+
+l.60   }
+
+
+Size of coffin \g_tmpa_coffin:
+> ht = 6.94444pt
+> dp = 0.0pt
+> wd = 22.50005pt
+Poles of coffin \g_tmpa_coffin:
+>  l  =>  {0pt}{0pt}{0pt}{1000pt}
+>  hc  =>  {11.25002pt}{0pt}{0pt}{1000pt}
+>  r  =>  {22.50005pt}{0pt}{0pt}{1000pt}
+>  b  =>  {0pt}{0.0pt}{1000pt}{0pt}
+>  vc  =>  {0pt}{3.47223pt}{1000pt}{0pt}
+>  t  =>  {0pt}{6.94444pt}{1000pt}{0pt}
+>  B  =>  {0pt}{0pt}{1000pt}{0pt}
+>  H  =>  {0pt}{0pt}{1000pt}{0pt}
+>  T  =>  {0pt}{0pt}{1000pt}{0pt}
+>  test-1  =>  {11.25003pt}{0pt}{0pt}{1000pt}.
+<recently read> }
+
+l.60   }
+
+
+Size of coffin \l_tmpa_coffin:
+> ht = 6.94444pt
+> dp = 0.0pt
+> wd = 22.50005pt
+Poles of coffin \l_tmpa_coffin:
+>  l  =>  {0pt}{0pt}{0pt}{1000pt}
+>  hc  =>  {11.25002pt}{0pt}{0pt}{1000pt}
+>  r  =>  {22.50005pt}{0pt}{0pt}{1000pt}
+>  b  =>  {0pt}{0.0pt}{1000pt}{0pt}
+>  vc  =>  {0pt}{3.47223pt}{1000pt}{0pt}
+>  t  =>  {0pt}{6.94444pt}{1000pt}{0pt}
+>  B  =>  {0pt}{0pt}{1000pt}{0pt}
+>  H  =>  {0pt}{0pt}{1000pt}{0pt}
+>  T  =>  {0pt}{0pt}{1000pt}{0pt}.
+<recently read> }
+
+l.60   }
+
+
+Size of coffin \g_tmpa_coffin:
+> ht = 6.94444pt
+> dp = 0.0pt
+> wd = 22.50005pt
+Poles of coffin \g_tmpa_coffin:
+>  l  =>  {0pt}{0pt}{0pt}{1000pt}
+>  hc  =>  {11.25002pt}{0pt}{0pt}{1000pt}
+>  r  =>  {22.50005pt}{0pt}{0pt}{1000pt}
+>  b  =>  {0pt}{0.0pt}{1000pt}{0pt}
+>  vc  =>  {0pt}{3.47223pt}{1000pt}{0pt}
+>  t  =>  {0pt}{6.94444pt}{1000pt}{0pt}
+>  B  =>  {0pt}{0pt}{1000pt}{0pt}
+>  H  =>  {0pt}{0pt}{1000pt}{0pt}
+>  T  =>  {0pt}{0pt}{1000pt}{0pt}
+>  test-1  =>  {11.25003pt}{0pt}{0pt}{1000pt}.
+<recently read> }
+
+l.60   }
+
+
+============================================================
+
+OMIT
+TIMO
+============================================================
+TEST 3: Recovering coffin poles
+============================================================
+! Use of \??? doesn't match its definition.
+<argument> \???
+                 ! LaTeX Error: Pole 'A' unknown for coffin '\l_tmpa_coffin'.
+l.73     }
+
+If you say, e.g., `\def\a1{...}', then you must always
+put `1' after `\a', since control sequence names are
+made up of letters only. The macro here has not been
+followed by the required stuff, so I'm ignoring it.
+
+{11.25002pt}{0pt}{0pt}{1000pt}
+{0pt}{3.47223pt}{1000pt}{0pt}
+{0pt}{0pt}{0pt}{0pt}
+============================================================
+
+============================================================
+TEST 4: Equating coffins
+============================================================
+OMIT
+TIMO
+Size of coffin \l_tmpb_coffin:
+> ht = 4.30554pt
+> dp = 1.94444pt
+> wd = 5.00002pt
+Poles of coffin \l_tmpb_coffin:
+>  l  =>  {0pt}{0pt}{0pt}{1000pt}
+>  hc  =>  {2.5pt}{0pt}{0pt}{1000pt}
+>  r  =>  {5.00002pt}{0pt}{0pt}{1000pt}
+>  b  =>  {0pt}{-1.94444pt}{1000pt}{0pt}
+>  vc  =>  {0pt}{1.18056pt}{1000pt}{0pt}
+>  t  =>  {0pt}{4.30554pt}{1000pt}{0pt}
+>  B  =>  {0pt}{0pt}{1000pt}{0pt}
+>  H  =>  {0pt}{0pt}{1000pt}{0pt}
+>  T  =>  {0pt}{0pt}{1000pt}{0pt}.
+<recently read> }
+
+l.101   }
+
+
+> \box24=
+\hbox(4.30554+1.94444)x5.00002
+.\special{color push gray 0}
+.\special{ps:SDict begin /color.sc {} def end}
+.\OT1/cmr/m/n/10 g
+.\special{color pop}
+
+! OK.
+<argument> \l_tmpb_coffin
+
+l.101   }
+
+
+Size of coffin \g_tmpb_coffin:
+> ht = 4.30554pt
+> dp = 1.94444pt
+> wd = 5.00002pt
+Poles of coffin \g_tmpb_coffin:
+>  l  =>  {0pt}{0pt}{0pt}{1000pt}
+>  hc  =>  {2.5pt}{0pt}{0pt}{1000pt}
+>  r  =>  {5.00002pt}{0pt}{0pt}{1000pt}
+>  b  =>  {0pt}{-1.94444pt}{1000pt}{0pt}
+>  vc  =>  {0pt}{1.18056pt}{1000pt}{0pt}
+>  t  =>  {0pt}{4.30554pt}{1000pt}{0pt}
+>  B  =>  {0pt}{0pt}{1000pt}{0pt}
+>  H  =>  {0pt}{0pt}{1000pt}{0pt}
+>  T  =>  {0pt}{0pt}{1000pt}{0pt}.
+> \box26=
+\hbox(4.30554+1.94444)x5.00002
+.\special{color push gray 0}
+.\special{ps:SDict begin /color.sc {} def end}
+.\OT1/cmr/m/n/10 g
+.\special{color pop}
+
+! OK.
+<argument> \g_tmpb_coffin
+
+l.101   }
+
+
+Size of coffin \l_tmpb_coffin:
+> ht = 6.83331pt
+> dp = 0.0pt
+> wd = 7.50002pt
+Poles of coffin \l_tmpb_coffin:
+>  l  =>  {0pt}{0pt}{0pt}{1000pt}
+>  hc  =>  {3.75pt}{0pt}{0pt}{1000pt}
+>  r  =>  {7.50002pt}{0pt}{0pt}{1000pt}
+>  b  =>  {0pt}{0.0pt}{1000pt}{0pt}
+>  vc  =>  {0pt}{3.41666pt}{1000pt}{0pt}
+>  t  =>  {0pt}{6.83331pt}{1000pt}{0pt}
+>  B  =>  {0pt}{0pt}{1000pt}{0pt}
+>  H  =>  {0pt}{0pt}{1000pt}{0pt}
+>  T  =>  {0pt}{0pt}{1000pt}{0pt}.
+<recently read> }
+
+l.101   }
+
+
+Size of coffin \g_tmpb_coffin:
+> ht = 6.83331pt
+> dp = 0.0pt
+> wd = 7.50002pt
+Poles of coffin \g_tmpb_coffin:
+>  l  =>  {0pt}{0pt}{0pt}{1000pt}
+>  hc  =>  {3.75pt}{0pt}{0pt}{1000pt}
+>  r  =>  {7.50002pt}{0pt}{0pt}{1000pt}
+>  b  =>  {0pt}{0.0pt}{1000pt}{0pt}
+>  vc  =>  {0pt}{3.41666pt}{1000pt}{0pt}
+>  t  =>  {0pt}{6.83331pt}{1000pt}{0pt}
+>  B  =>  {0pt}{0pt}{1000pt}{0pt}
+>  H  =>  {0pt}{0pt}{1000pt}{0pt}
+>  T  =>  {0pt}{0pt}{1000pt}{0pt}.
+<recently read> }
+
+l.101   }
+
+
+> \box24=
+\hbox(6.83331+0.0)x7.50002
+.\special{color push gray 0}
+.\special{ps:SDict begin /color.sc {} def end}
+.\OT1/cmr/m/n/10 A
+.\special{color pop}
+
+! OK.
+<argument> \l_tmpb_coffin
+
+l.101   }
+
+
+> \box26=
+\hbox(6.83331+0.0)x7.50002
+.\special{color push gray 0}
+.\special{ps:SDict begin /color.sc {} def end}
+.\OT1/cmr/m/n/10 A
+.\special{color pop}
+
+! OK.
+<argument> \g_tmpb_coffin
+
+l.101   }
+
+
+Size of coffin \l_tmpb_coffin:
+> ht = 4.30554pt
+> dp = 1.94444pt
+> wd = 5.00002pt
+Poles of coffin \l_tmpb_coffin:
+>  l  =>  {0pt}{0pt}{0pt}{1000pt}
+>  hc  =>  {2.5pt}{0pt}{0pt}{1000pt}
+>  r  =>  {5.00002pt}{0pt}{0pt}{1000pt}
+>  b  =>  {0pt}{-1.94444pt}{1000pt}{0pt}
+>  vc  =>  {0pt}{1.18056pt}{1000pt}{0pt}
+>  t  =>  {0pt}{4.30554pt}{1000pt}{0pt}
+>  B  =>  {0pt}{0pt}{1000pt}{0pt}
+>  H  =>  {0pt}{0pt}{1000pt}{0pt}
+>  T  =>  {0pt}{0pt}{1000pt}{0pt}.
+<recently read> }
+
+l.101   }
+
+
+Size of coffin \g_tmpb_coffin:
+> ht = 6.83331pt
+> dp = 0.0pt
+> wd = 7.50002pt
+Poles of coffin \g_tmpb_coffin:
+>  l  =>  {0pt}{0pt}{0pt}{1000pt}
+>  hc  =>  {3.75pt}{0pt}{0pt}{1000pt}
+>  r  =>  {7.50002pt}{0pt}{0pt}{1000pt}
+>  b  =>  {0pt}{0.0pt}{1000pt}{0pt}
+>  vc  =>  {0pt}{3.41666pt}{1000pt}{0pt}
+>  t  =>  {0pt}{6.83331pt}{1000pt}{0pt}
+>  B  =>  {0pt}{0pt}{1000pt}{0pt}
+>  H  =>  {0pt}{0pt}{1000pt}{0pt}
+>  T  =>  {0pt}{0pt}{1000pt}{0pt}.
+<recently read> }
+
+l.101   }
+
+
+> \box24=
+\hbox(4.30554+1.94444)x5.00002
+.\special{color push gray 0}
+.\special{ps:SDict begin /color.sc {} def end}
+.\OT1/cmr/m/n/10 g
+.\special{color pop}
+
+! OK.
+<argument> \l_tmpb_coffin
+
+l.101   }
+
+
+> \box26=
+\hbox(6.83331+0.0)x7.50002
+.\special{color push gray 0}
+.\special{ps:SDict begin /color.sc {} def end}
+.\OT1/cmr/m/n/10 A
+.\special{color pop}
+
+! OK.
+<argument> \g_tmpb_coffin
+
+l.101   }
+
+
+============================================================
+
+============================================================
+TEST 5: Typesetting coffins
+============================================================
+Defining \0 on line 127
+\0=\box57
+Defining \1 on line 127
+\1=\box58
+Defining \2 on line 127
+\2=\box59
+> \box56=
+\hbox(13.74443+0.0)x94.85011
+.\hbox(4.30554+0.0)x4.30554
+..\rule(4.30554+0.0)x4.30554
+.\hbox(13.74443+0.0)x90.54457
+..\hbox(0.0+0.0)x0.0
+..\kern 0.0
+..\kern 0.0
+..\hbox(13.74443+0.0)x90.54457
+...\hbox(13.74443+0.0)x90.54457
+....\hbox(13.74443+0.0)x90.54457
+.....\kern 45.41116
+.....\hbox(13.74443+0.0)x45.1334
+......\kern 0.0
+......\kern 0.0
+......\hbox(10.34444+3.4)x45.1334, shifted -3.4
+.......\special{color push gray 0}
+.......\special{ps:SDict begin /color.sc {} def end}
+.......\hbox(10.34444+3.4)x45.1334
+........\hbox(13.74443+0.0)x45.1334, shifted 3.4
+.........\vbox(13.74443+0.0)x45.1334
+..........\rule(0.4+0.0)x*
+..........\hbox(12.94444+0.0)x45.1334
+...........\rule(*+*)x0.4
+...........\vbox(12.94444+0.0)x44.33342
+............\glue 3.0
+............\hbox(6.94444+0.0)x44.33342
+.............\kern 3.0
+.............\OT1/cmr/m/n/10 c
+.............\OT1/cmr/m/n/10 o
+.............\OT1/cmr/m/n/10 ^^N (ligature ffi)
+.............\OT1/cmr/m/n/10 n
+.............\OT1/cmr/m/n/10 o
+.............\OT1/cmr/m/n/10 n
+.............\OT1/cmr/m/n/10 e
+.............\kern 3.0
+............\glue 3.0
+...........\rule(*+*)x0.4
+..........\rule(0.4+0.0)x*
+.......\special{color pop}
+.....\kern -45.1334
+.....\kern -45.41116
+.....\hbox(10.34444+3.4)x45.41116, shifted -3.4
+......\special{color push gray 0}
+......\special{ps:SDict begin /color.sc {} def end}
+......\hbox(10.34444+3.4)x45.41116
+.......\hbox(13.74443+0.0)x45.41116, shifted 3.4
+........\vbox(13.74443+0.0)x45.41116
+.........\rule(0.4+0.0)x*
+.........\hbox(12.94444+0.0)x45.41116
+..........\rule(*+*)x0.4
+..........\vbox(12.94444+0.0)x44.61118
+...........\glue 3.0
+...........\hbox(6.94444+0.0)x44.61118
+............\kern 3.0
+............\OT1/cmr/m/n/10 c
+............\OT1/cmr/m/n/10 o
+............\OT1/cmr/m/n/10 ^^N (ligature ffi)
+............\OT1/cmr/m/n/10 n
+............\kern-0.27779
+............\OT1/cmr/m/n/10 t
+............\kern-0.27779
+............\OT1/cmr/m/n/10 w
+............\kern-0.27779
+............\OT1/cmr/m/n/10 o
+............\kern 3.0
+...........\glue 3.0
+..........\rule(*+*)x0.4
+.........\rule(0.4+0.0)x*
+......\special{color pop}
+.....\kern 45.1334
+....\kern -90.54457
+....\kern -0.5
+....\hbox(1.0+0.0)x1.0, shifted 0.5
+.....\special{color push gray 0}
+.....\special{ps:SDict begin /color.sc {} def end}
+.....\special{color push rgb 1.0 0.0 0.0}
+.....\special{ps:SDict begin /color.sc {} def end}
+.....\hbox(1.0+0.0)x1.0
+......\rule(1.0+*)x1.0
+.....\special{color pop}
+.....\special{color pop}
+...\kern -90.54457
+...\kern -11.61815
+...\hbox(3.75+1.25)x9.61815, shifted 5.75
+....\special{color push gray 0}
+....\special{ps:SDict begin /color.sc {} def end}
+....\special{color push rgb 1.0 0.0 0.0}
+....\special{ps:SDict begin /color.sc {} def end}
+....\OT1/cmss/m/n/5 (
+....\OT1/cmss/m/n/5 l
+....\OT1/cmss/m/n/5 ,
+....\OT1/cmss/m/n/5 b
+....\OT1/cmss/m/n/5 )
+....\special{color pop}
+....\special{color pop}
+
+! OK.
+<argument> \l_tmpa_coffin
+
+l.127 }
+
+
+> \box56=
+\hbox(6.87221+6.87222)x49.57784
+.\hbox(4.30554+0.0)x4.30554
+..\rule(4.30554+0.0)x4.30554
+.\hbox(6.87221+6.87222)x45.2723
+..\hbox(0.0+0.0)x0.0
+..\kern 0.0
+..\kern -45.27228
+..\hbox(13.74443+0.0)x90.54457, shifted 6.87222
+...\hbox(13.74443+0.0)x90.54457
+....\hbox(13.74443+0.0)x90.54457
+.....\hbox(13.74443+0.0)x90.54457
+......\hbox(13.74443+0.0)x90.54457
+.......\kern 45.41116
+.......\hbox(13.74443+0.0)x45.1334
+........\kern 0.0
+........\kern 0.0
+........\hbox(10.34444+3.4)x45.1334, shifted -3.4
+.........\special{color push gray 0}
+.........\special{ps:SDict begin /color.sc {} def end}
+.........\hbox(10.34444+3.4)x45.1334
+..........\hbox(13.74443+0.0)x45.1334, shifted 3.4
+...........\vbox(13.74443+0.0)x45.1334
+............\rule(0.4+0.0)x*
+............\hbox(12.94444+0.0)x45.1334
+.............\rule(*+*)x0.4
+.............\vbox(12.94444+0.0)x44.33342
+..............\glue 3.0
+..............\hbox(6.94444+0.0)x44.33342
+...............\kern 3.0
+...............\OT1/cmr/m/n/10 c
+...............\OT1/cmr/m/n/10 o
+...............\OT1/cmr/m/n/10 ^^N (ligature ffi)
+...............\OT1/cmr/m/n/10 n
+...............\OT1/cmr/m/n/10 o
+...............\OT1/cmr/m/n/10 n
+...............\OT1/cmr/m/n/10 e
+...............\kern 3.0
+..............\glue 3.0
+.............\rule(*+*)x0.4
+............\rule(0.4+0.0)x*
+.........\special{color pop}
+.......\kern -45.1334
+.......\kern -45.41116
+.......\hbox(10.34444+3.4)x45.41116, shifted -3.4
+........\special{color push gray 0}
+........\special{ps:SDict begin /color.sc {} def end}
+........\hbox(10.34444+3.4)x45.41116
+.........\hbox(13.74443+0.0)x45.41116, shifted 3.4
+..........\vbox(13.74443+0.0)x45.41116
+...........\rule(0.4+0.0)x*
+...........\hbox(12.94444+0.0)x45.41116
+............\rule(*+*)x0.4
+............\vbox(12.94444+0.0)x44.61118
+.............\glue 3.0
+.............\hbox(6.94444+0.0)x44.61118
+..............\kern 3.0
+..............\OT1/cmr/m/n/10 c
+..............\OT1/cmr/m/n/10 o
+..............\OT1/cmr/m/n/10 ^^N (ligature ffi)
+..............\OT1/cmr/m/n/10 n
+..............\kern-0.27779
+..............\OT1/cmr/m/n/10 t
+..............\kern-0.27779
+..............\OT1/cmr/m/n/10 w
+..............\kern-0.27779
+..............\OT1/cmr/m/n/10 o
+..............\kern 3.0
+.............\glue 3.0
+............\rule(*+*)x0.4
+...........\rule(0.4+0.0)x*
+........\special{color pop}
+.......\kern 45.1334
+......\kern -90.54457
+......\kern -0.5
+......\hbox(1.0+0.0)x1.0, shifted 0.5
+.......\special{color push gray 0}
+.......\special{ps:SDict begin /color.sc {} def end}
+.......\special{color push rgb 1.0 0.0 0.0}
+.......\special{ps:SDict begin /color.sc {} def end}
+.......\hbox(1.0+0.0)x1.0
+........\rule(1.0+*)x1.0
+.......\special{color pop}
+.......\special{color pop}
+.....\kern -90.54457
+.....\kern -11.61815
+.....\hbox(3.75+1.25)x9.61815, shifted 5.75
+......\special{color push gray 0}
+......\special{ps:SDict begin /color.sc {} def end}
+......\special{color push rgb 1.0 0.0 0.0}
+......\special{ps:SDict begin /color.sc {} def end}
+......\OT1/cmss/m/n/5 (
+......\OT1/cmss/m/n/5 l
+......\OT1/cmss/m/n/5 ,
+......\OT1/cmss/m/n/5 b
+......\OT1/cmss/m/n/5 )
+......\special{color pop}
+......\special{color pop}
+....\kern -90.54457
+....\kern 44.77228
+....\hbox(1.0+0.0)x1.0, shifted -6.37222
+.....\special{color push gray 0}
+.....\special{ps:SDict begin /color.sc {} def end}
+.....\special{color push rgb 0.0 0.0 1.0}
+.....\special{ps:SDict begin /color.sc {} def end}
+.....\hbox(1.0+0.0)x1.0
+......\rule(1.0+*)x1.0
+.....\special{color pop}
+.....\special{color pop}
+...\kern -90.54457
+...\kern 37.51178
+...\hbox(3.75+1.25)x15.52101, shifted -5.62222
+....\special{color push gray 0}
+....\special{ps:SDict begin /color.sc {} def end}
+....\special{color push rgb 0.0 0.0 1.0}
+....\special{ps:SDict begin /color.sc {} def end}
+....\OT1/cmss/m/n/5 (
+....\OT1/cmss/m/n/5 h
+....\OT1/cmss/m/n/5 c
+....\OT1/cmss/m/n/5 ,
+....\OT1/cmss/m/n/5 v
+....\OT1/cmss/m/n/5 c
+....\OT1/cmss/m/n/5 )
+....\special{color pop}
+....\special{color pop}
+
+! OK.
+<argument> \l_tmpa_coffin
+
+l.127 }
+
+
+Size of coffin \l_tmpa_coffin:
+> ht = 13.74443pt
+> dp = 0.0pt
+> wd = 49.43895pt
+Poles of coffin \l_tmpa_coffin:
+>  l  =>  {0pt}{0pt}{0pt}{1000pt}
+>  hc  =>  {0pt}{0pt}{0pt}{1000pt}
+>  r  =>  {0pt}{0pt}{0pt}{1000pt}
+>  b  =>  {0pt}{0pt}{1000pt}{0pt}
+>  vc  =>  {0pt}{0pt}{1000pt}{0pt}
+>  t  =>  {0pt}{0pt}{1000pt}{0pt}
+>  B  =>  {0pt}{0pt}{1000pt}{0pt}
+>  H  =>  {0pt}{0pt}{1000pt}{0pt}
+>  T  =>  {0pt}{0pt}{1000pt}{0pt}.
+> \box56=
+\hbox(13.74443+0.0)x49.43895
+.\hbox(4.30554+0.0)x4.30554
+..\rule(4.30554+0.0)x4.30554
+.\hbox(13.74443+0.0)x45.1334
+..\hbox(0.0+0.0)x0.0
+..\kern 0.0
+..\kern -45.41116
+..\hbox(13.74443+0.0)x90.54457
+...\hbox(13.74443+0.0)x90.54457
+....\hbox(13.74443+0.0)x90.54457
+.....\hbox(13.74443+0.0)x90.54457
+......\hbox(13.74443+0.0)x90.54457
+.......\hbox(13.74443+0.0)x90.54457
+........\hbox(13.74443+0.0)x90.54457
+.........\kern 45.41116
+.........\hbox(13.74443+0.0)x45.1334
+..........\kern 0.0
+..........\kern 0.0
+..........\hbox(10.34444+3.4)x45.1334, shifted -3.4
+...........\special{color push gray 0}
+...........\special{ps:SDict begin /color.sc {} def end}
+...........\hbox(10.34444+3.4)x45.1334
+............\hbox(13.74443+0.0)x45.1334, shifted 3.4
+.............\vbox(13.74443+0.0)x45.1334
+..............\rule(0.4+0.0)x*
+..............\hbox(12.94444+0.0)x45.1334
+...............\rule(*+*)x0.4
+...............\vbox(12.94444+0.0)x44.33342
+................\glue 3.0
+................\hbox(6.94444+0.0)x44.33342 []
+................\glue 3.0
+...............\rule(*+*)x0.4
+..............\rule(0.4+0.0)x*
+...........\special{color pop}
+.........\kern -45.1334
+.........\kern -45.41116
+.........\hbox(10.34444+3.4)x45.41116, shifted -3.4
+..........\special{color push gray 0}
+..........\special{ps:SDict begin /color.sc {} def end}
+..........\hbox(10.34444+3.4)x45.41116
+...........\hbox(13.74443+0.0)x45.41116, shifted 3.4
+............\vbox(13.74443+0.0)x45.41116
+.............\rule(0.4+0.0)x*
+.............\hbox(12.94444+0.0)x45.41116
+..............\rule(*+*)x0.4
+..............\vbox(12.94444+0.0)x44.61118
+...............\glue 3.0
+...............\hbox(6.94444+0.0)x44.61118
+................\kern 3.0
+................\OT1/cmr/m/n/10 c
+................\OT1/cmr/m/n/10 o
+................\OT1/cmr/m/n/10 ^^N (ligature ffi)
+................\OT1/cmr/m/n/10 n
+................\kern-0.27779
+................\OT1/cmr/m/n/10 t
+................\kern-0.27779
+................\OT1/cmr/m/n/10 w
+................\kern-0.27779
+................\OT1/cmr/m/n/10 o
+................\kern 3.0
+...............\glue 3.0
+..............\rule(*+*)x0.4
+.............\rule(0.4+0.0)x*
+..........\special{color pop}
+.........\kern 45.1334
+........\kern -90.54457
+........\kern -0.5
+........\hbox(1.0+0.0)x1.0, shifted 0.5
+.........\special{color push gray 0}
+.........\special{ps:SDict begin /color.sc {} def end}
+.........\special{color push rgb 1.0 0.0 0.0}
+.........\special{ps:SDict begin /color.sc {} def end}
+.........\hbox(1.0+0.0)x1.0
+..........\rule(1.0+*)x1.0
+.........\special{color pop}
+.........\special{color pop}
+.......\kern -90.54457
+.......\kern -11.61815
+.......\hbox(3.75+1.25)x9.61815, shifted 5.75
+........\special{color push gray 0}
+........\special{ps:SDict begin /color.sc {} def end}
+........\special{color push rgb 1.0 0.0 0.0}
+........\special{ps:SDict begin /color.sc {} def end}
+........\OT1/cmss/m/n/5 (
+........\OT1/cmss/m/n/5 l
+........\OT1/cmss/m/n/5 ,
+........\OT1/cmss/m/n/5 b
+........\OT1/cmss/m/n/5 )
+........\special{color pop}
+........\special{color pop}
+......\kern -90.54457
+......\kern 44.77228
+......\hbox(1.0+0.0)x1.0, shifted -6.37222
+.......\special{color push gray 0}
+.......\special{ps:SDict begin /color.sc {} def end}
+.......\special{color push rgb 0.0 0.0 1.0}
+.......\special{ps:SDict begin /color.sc {} def end}
+.......\hbox(1.0+0.0)x1.0
+........\rule(1.0+*)x1.0
+.......\special{color pop}
+.......\special{color pop}
+.....\kern -90.54457
+.....\kern 37.51178
+.....\hbox(3.75+1.25)x15.52101, shifted -5.62222
+......\special{color push gray 0}
+......\special{ps:SDict begin /color.sc {} def end}
+......\special{color push rgb 0.0 0.0 1.0}
+......\special{ps:SDict begin /color.sc {} def end}
+......\OT1/cmss/m/n/5 (
+......\OT1/cmss/m/n/5 h
+......\OT1/cmss/m/n/5 c
+......\OT1/cmss/m/n/5 ,
+......\OT1/cmss/m/n/5 v
+......\OT1/cmss/m/n/5 c
+......\OT1/cmss/m/n/5 )
+......\special{color pop}
+......\special{color pop}
+....\kern -90.54457
+....\kern 44.91116
+....\hbox(1.0+0.0)x1.0, shifted 0.5
+.....\special{color push gray 0}
+.....\special{ps:SDict begin /color.sc {} def end}
+.....\special{color push rgb 0.0 1.0 0.0}
+.....\special{ps:SDict begin /color.sc {} def end}
+.....\hbox(1.0+0.0)x1.0
+......\rule(1.0+*)x1.0
+.....\special{color pop}
+.....\special{color pop}
+...\kern -90.54457
+...\kern 46.41116
+...\hbox(3.75+1.25)x23.78499, shifted 1.25
+....\special{color push gray 0}
+....\special{ps:SDict begin /color.sc {} def end}
+....\special{color push rgb 0.0 1.0 0.0}
+....\special{ps:SDict begin /color.sc {} def end}
+....\OT1/cmss/m/n/5 (
+....\OT1/cmss/m/n/5 \
+....\OT1/cmss/m/n/5 1
+....\OT1/cmss/m/n/5 -
+....\OT1/cmss/m/n/5 l
+....\OT1/cmss/m/n/5 ,
+....\OT1/cmss/m/n/5 \
+....\OT1/cmss/m/n/5 1
+....\OT1/cmss/m/n/5 -
+....\OT1/cmss/m/n/5 b
+....etc.
+
+! OK.
+<argument> \l_tmpa_coffin
+
+l.127 }
+
+
+============================================================
+
+============================================================
+TEST 6: Sizes
+============================================================
+OMIT
+TIMO
+> \coffin_ht:N \l_tmpa_coffin =7.5pt.
+<recently read> }
+
+l.141   }
+
+
+> \coffin_ht:c {l_tmpa_coffin}=7.5pt.
+<recently read> }
+
+l.141   }
+
+
+> \coffin_dp:N \l_tmpa_coffin =2.5pt.
+<recently read> }
+
+l.141   }
+
+
+> \coffin_dp:c {l_tmpa_coffin}=2.5pt.
+<recently read> }
+
+l.141   }
+
+
+> \coffin_wd:N \l_tmpa_coffin =7.7778pt.
+<recently read> }
+
+l.141   }
+
+
+> \coffin_wd:c {l_tmpa_coffin}=7.7778pt.
+<recently read> }
+
+l.141   }
+
+
+============================================================
+
+============================================================
+TEST 7: Rotation
+============================================================
+OMIT
+TIMO
+> \box56=
+\hbox(40.2855+0.0)x40.2855
+.\hbox(40.2855+0.0)x40.2855
+..\kern 0.0
+..\hbox(40.2855+0.0)x40.2855
+...\hbox(40.2855+0.0)x40.2855
+....\kern 4.91046
+....\hbox(6.94444+0.0)x50.02786
+.....\special{ps:gsave}
+.....\special{ps::[begin]}
+.....\special{ps::currentpoint}
+.....\special{ps::currentpoint translate}
+.....\special{ps::-45 rotate}
+.....\special{ps::neg exch neg exch translate}
+.....\special{ps::[end]}
+.....\hbox(6.94444+0.0)x50.02786
+......\hbox(6.94444+0.0)x50.02786
+.......\special{color push gray 0}
+.......\special{ps:SDict begin /color.sc {} def end}
+.......\OT1/cmr/m/n/10 H
+.......\OT1/cmr/m/n/10 e
+.......\OT1/cmr/m/n/10 l
+.......\OT1/cmr/m/n/10 l
+.......\OT1/cmr/m/n/10 o
+.......\glue 3.33333 plus 1.66666 minus 1.11111
+.......\OT1/cmr/m/n/10 w
+.......\kern-0.27779
+.......\OT1/cmr/m/n/10 o
+.......\OT1/cmr/m/n/10 r
+.......\OT1/cmr/m/n/10 l
+.......\OT1/cmr/m/n/10 d
+.......\special{color pop}
+.....\special{ps:grestore}
+
+! OK.
+<argument> \l_tmpa_coffin
+
+l.186   }
+
+
+> \box25=
+\hbox(40.2855+0.0)x40.2855
+.\hbox(40.2855+0.0)x40.2855
+..\kern 0.0
+..\hbox(40.2855+0.0)x40.2855
+...\hbox(40.2855+0.0)x40.2855
+....\kern 4.91046
+....\hbox(6.94444+0.0)x50.02786
+.....\special{ps:gsave}
+.....\special{ps::[begin]}
+.....\special{ps::currentpoint}
+.....\special{ps::currentpoint translate}
+.....\special{ps::-45 rotate}
+.....\special{ps::neg exch neg exch translate}
+.....\special{ps::[end]}
+.....\hbox(6.94444+0.0)x50.02786
+......\hbox(6.94444+0.0)x50.02786
+.......\special{color push gray 0}
+.......\special{ps:SDict begin /color.sc {} def end}
+.......\OT1/cmr/m/n/10 H
+.......\OT1/cmr/m/n/10 e
+.......\OT1/cmr/m/n/10 l
+.......\OT1/cmr/m/n/10 l
+.......\OT1/cmr/m/n/10 o
+.......\glue 3.33333 plus 1.66666 minus 1.11111
+.......\OT1/cmr/m/n/10 w
+.......\kern-0.27779
+.......\OT1/cmr/m/n/10 o
+.......\OT1/cmr/m/n/10 r
+.......\OT1/cmr/m/n/10 l
+.......\OT1/cmr/m/n/10 d
+.......\special{color pop}
+.....\special{ps:grestore}
+
+! OK.
+<argument> \g_tmpa_coffin
+
+l.186   }
+
+
+Size of coffin \l_tmpa_coffin:
+> ht = 40.2855pt
+> dp = 0.0pt
+> wd = 40.2855pt
+Poles of coffin \l_tmpa_coffin:
+>  l  =>  {4.91046pt}{0.0pt}{-707.10678pt}{707.10678pt}
+>  hc  =>  {22.59798pt}{17.68752pt}{-707.10678pt}{707.10678pt}
+>  r  =>  {40.2855pt}{35.37505pt}{-707.10678pt}{707.10678pt}
+>  b  =>  {4.91046pt}{0.0pt}{707.10678pt}{707.10678pt}
+>  vc  =>  {2.45523pt}{2.45523pt}{707.10678pt}{707.10678pt}
+>  t  =>  {0.0pt}{4.91046pt}{707.10678pt}{707.10678pt}
+>  B  =>  {4.91046pt}{0.0pt}{707.10678pt}{707.10678pt}
+>  H  =>  {4.91046pt}{0.0pt}{707.10678pt}{707.10678pt}
+>  T  =>  {4.91046pt}{0.0pt}{707.10678pt}{707.10678pt}.
+<recently read> }
+
+l.186   }
+
+
+Size of coffin \g_tmpa_coffin:
+> ht = 40.2855pt
+> dp = 0.0pt
+> wd = 40.2855pt
+Poles of coffin \g_tmpa_coffin:
+>  l  =>  {4.91046pt}{0.0pt}{-707.10678pt}{707.10678pt}
+>  hc  =>  {22.59798pt}{17.68752pt}{-707.10678pt}{707.10678pt}
+>  r  =>  {40.2855pt}{35.37505pt}{-707.10678pt}{707.10678pt}
+>  b  =>  {4.91046pt}{0.0pt}{707.10678pt}{707.10678pt}
+>  vc  =>  {2.45523pt}{2.45523pt}{707.10678pt}{707.10678pt}
+>  t  =>  {0.0pt}{4.91046pt}{707.10678pt}{707.10678pt}
+>  B  =>  {4.91046pt}{0.0pt}{707.10678pt}{707.10678pt}
+>  H  =>  {4.91046pt}{0.0pt}{707.10678pt}{707.10678pt}
+>  T  =>  {4.91046pt}{0.0pt}{707.10678pt}{707.10678pt}.
+<recently read> }
+
+l.186   }
+
+
+> \box56=
+\hbox(6.94444+0.0)x50.02786
+.\special{color push gray 0}
+.\special{ps:SDict begin /color.sc {} def end}
+.\OT1/cmr/m/n/10 H
+.\OT1/cmr/m/n/10 e
+.\OT1/cmr/m/n/10 l
+.\OT1/cmr/m/n/10 l
+.\OT1/cmr/m/n/10 o
+.\glue 3.33333 plus 1.66666 minus 1.11111
+.\OT1/cmr/m/n/10 w
+.\kern-0.27779
+.\OT1/cmr/m/n/10 o
+.\OT1/cmr/m/n/10 r
+.\OT1/cmr/m/n/10 l
+.\OT1/cmr/m/n/10 d
+.\special{color pop}
+
+! OK.
+<argument> \l_tmpa_coffin
+
+l.186   }
+
+
+> \box25=
+\hbox(40.2855+0.0)x40.2855
+.\hbox(40.2855+0.0)x40.2855
+..\kern 0.0
+..\hbox(40.2855+0.0)x40.2855
+...\hbox(40.2855+0.0)x40.2855
+....\kern 4.91046
+....\hbox(6.94444+0.0)x50.02786
+.....\special{ps:gsave}
+.....\special{ps::[begin]}
+.....\special{ps::currentpoint}
+.....\special{ps::currentpoint translate}
+.....\special{ps::-45 rotate}
+.....\special{ps::neg exch neg exch translate}
+.....\special{ps::[end]}
+.....\hbox(6.94444+0.0)x50.02786
+......\hbox(6.94444+0.0)x50.02786
+.......\special{color push gray 0}
+.......\special{ps:SDict begin /color.sc {} def end}
+.......\OT1/cmr/m/n/10 H
+.......\OT1/cmr/m/n/10 e
+.......\OT1/cmr/m/n/10 l
+.......\OT1/cmr/m/n/10 l
+.......\OT1/cmr/m/n/10 o
+.......\glue 3.33333 plus 1.66666 minus 1.11111
+.......\OT1/cmr/m/n/10 w
+.......\kern-0.27779
+.......\OT1/cmr/m/n/10 o
+.......\OT1/cmr/m/n/10 r
+.......\OT1/cmr/m/n/10 l
+.......\OT1/cmr/m/n/10 d
+.......\special{color pop}
+.....\special{ps:grestore}
+
+! OK.
+<argument> \g_tmpa_coffin
+
+l.186   }
+
+
+Size of coffin \l_tmpa_coffin:
+> ht = 6.94444pt
+> dp = 0.0pt
+> wd = 50.02786pt
+Poles of coffin \l_tmpa_coffin:
+>  l  =>  {0pt}{0pt}{0pt}{1000pt}
+>  hc  =>  {25.01393pt}{0pt}{0pt}{1000pt}
+>  r  =>  {50.02786pt}{0pt}{0pt}{1000pt}
+>  b  =>  {0pt}{0.0pt}{1000pt}{0pt}
+>  vc  =>  {0pt}{3.47223pt}{1000pt}{0pt}
+>  t  =>  {0pt}{6.94444pt}{1000pt}{0pt}
+>  B  =>  {0pt}{0pt}{1000pt}{0pt}
+>  H  =>  {0pt}{0pt}{1000pt}{0pt}
+>  T  =>  {0pt}{0pt}{1000pt}{0pt}.
+<recently read> }
+
+l.186   }
+
+
+Size of coffin \g_tmpa_coffin:
+> ht = 40.2855pt
+> dp = 0.0pt
+> wd = 40.2855pt
+Poles of coffin \g_tmpa_coffin:
+>  l  =>  {4.91046pt}{0.0pt}{-707.10678pt}{707.10678pt}
+>  hc  =>  {22.59798pt}{17.68752pt}{-707.10678pt}{707.10678pt}
+>  r  =>  {40.2855pt}{35.37505pt}{-707.10678pt}{707.10678pt}
+>  b  =>  {4.91046pt}{0.0pt}{707.10678pt}{707.10678pt}
+>  vc  =>  {2.45523pt}{2.45523pt}{707.10678pt}{707.10678pt}
+>  t  =>  {0.0pt}{4.91046pt}{707.10678pt}{707.10678pt}
+>  B  =>  {4.91046pt}{0.0pt}{707.10678pt}{707.10678pt}
+>  H  =>  {4.91046pt}{0.0pt}{707.10678pt}{707.10678pt}
+>  T  =>  {4.91046pt}{0.0pt}{707.10678pt}{707.10678pt}.
+<recently read> }
+
+l.186   }
+
+
+> \box56=
+\hbox(31.028+0.0)x46.79762
+.\hbox(31.028+0.0)x46.79762
+..\kern 0.0
+..\hbox(31.028+0.0)x46.79762
+...\hbox(31.028+0.0)x46.79762
+....\kern 3.47223
+....\hbox(6.94444+0.0)x50.02786
+.....\special{ps:gsave}
+.....\special{ps::[begin]}
+.....\special{ps::currentpoint}
+.....\special{ps::currentpoint translate}
+.....\special{ps::-30 rotate}
+.....\special{ps::neg exch neg exch translate}
+.....\special{ps::[end]}
+.....\hbox(6.94444+0.0)x50.02786
+......\hbox(6.94444+0.0)x50.02786
+.......\special{color push gray 0}
+.......\special{ps:SDict begin /color.sc {} def end}
+.......\OT1/cmr/m/n/10 H
+.......\OT1/cmr/m/n/10 e
+.......\OT1/cmr/m/n/10 l
+.......\OT1/cmr/m/n/10 l
+.......\OT1/cmr/m/n/10 o
+.......\glue 3.33333 plus 1.66666 minus 1.11111
+.......\OT1/cmr/m/n/10 w
+.......\kern-0.27779
+.......\OT1/cmr/m/n/10 o
+.......\OT1/cmr/m/n/10 r
+.......\OT1/cmr/m/n/10 l
+.......\OT1/cmr/m/n/10 d
+.......\special{color pop}
+.....\special{ps:grestore}
+
+! OK.
+<argument> \l_tmpa_coffin
+
+l.186   }
+
+
+> \box25=
+\hbox(50.12056+0.0)x19.65598
+.\hbox(50.12056+0.0)x19.65598
+..\kern -17.68753
+..\hbox(55.03102+0.0)x55.03104, shifted 2.45523
+...\hbox(55.03102+0.0)x55.03104
+....\kern 20.14276
+....\hbox(40.2855+0.0)x40.2855
+.....\special{ps:gsave}
+.....\special{ps::[begin]}
+.....\special{ps::currentpoint}
+.....\special{ps::currentpoint translate}
+.....\special{ps::-30 rotate}
+.....\special{ps::neg exch neg exch translate}
+.....\special{ps::[end]}
+.....\hbox(40.2855+0.0)x40.2855
+......\hbox(40.2855+0.0)x40.2855
+.......\hbox(40.2855+0.0)x40.2855
+........\kern 0.0
+........\hbox(40.2855+0.0)x40.2855
+.........\hbox(40.2855+0.0)x40.2855
+..........\kern 4.91046
+..........\hbox(6.94444+0.0)x50.02786
+...........\special{ps:gsave}
+...........\special{ps::[begin]}
+...........\special{ps::currentpoint}
+...........\special{ps::currentpoint translate}
+...........\special{ps::-45 rotate}
+...........\special{ps::neg exch neg exch translate}
+...........\special{ps::[end]}
+...........\hbox(6.94444+0.0)x50.02786
+............\hbox(6.94444+0.0)x50.02786
+.............\special{color push gray 0}
+.............\special{ps:SDict begin /color.sc {} def end}
+.............\OT1/cmr/m/n/10 H
+.............\OT1/cmr/m/n/10 e
+.............\OT1/cmr/m/n/10 l
+.............\OT1/cmr/m/n/10 l
+.............\OT1/cmr/m/n/10 o
+.............\glue 3.33333 plus 1.66666 minus 1.11111
+.............\OT1/cmr/m/n/10 w
+.............\kern-0.27779
+.............\OT1/cmr/m/n/10 o
+.............\OT1/cmr/m/n/10 r
+.............\OT1/cmr/m/n/10 l
+.............\OT1/cmr/m/n/10 d
+.............\special{color pop}
+...........\special{ps:grestore}
+.....\special{ps:grestore}
+
+! OK.
+<argument> \g_tmpa_coffin
+
+l.186   }
+
+
+Size of coffin \l_tmpa_coffin:
+> ht = 31.028pt
+> dp = 0.0pt
+> wd = 46.79762pt
+Poles of coffin \l_tmpa_coffin:
+>  l  =>  {3.47223pt}{0.0pt}{-500.0pt}{866.0254pt}
+>  hc  =>  {25.13493pt}{12.50696pt}{-500.0pt}{866.0254pt}
+>  r  =>  {46.79762pt}{25.01393pt}{-500.0pt}{866.0254pt}
+>  b  =>  {3.47223pt}{0.0pt}{866.0254pt}{500.0pt}
+>  vc  =>  {1.73611pt}{3.00703pt}{866.0254pt}{500.0pt}
+>  t  =>  {0.0pt}{6.01407pt}{866.0254pt}{500.0pt}
+>  B  =>  {3.47223pt}{0.0pt}{866.0254pt}{500.0pt}
+>  H  =>  {3.47223pt}{0.0pt}{866.0254pt}{500.0pt}
+>  T  =>  {3.47223pt}{0.0pt}{866.0254pt}{500.0pt}.
+<recently read> }
+
+l.186   }
+
+
+Size of coffin \g_tmpa_coffin:
+> ht = 50.12056pt
+> dp = 0.0pt
+> wd = 19.65598pt
+Poles of coffin \g_tmpa_coffin:
+>  l  =>  {6.70781pt}{0.0pt}{-965.92583pt}{258.81905pt}
+>  hc  =>  {13.1819pt}{24.16159pt}{-965.92583pt}{258.81905pt}
+>  r  =>  {19.65598pt}{48.32321pt}{-965.92583pt}{258.81905pt}
+>  b  =>  {6.70781pt}{0.0pt}{258.81905pt}{965.92583pt}
+>  vc  =>  {3.35391pt}{0.89868pt}{258.81905pt}{965.92583pt}
+>  t  =>  {0.0pt}{1.79735pt}{258.81905pt}{965.92583pt}
+>  B  =>  {6.70781pt}{0.0pt}{258.81905pt}{965.92583pt}
+>  H  =>  {6.70781pt}{0.0pt}{258.81905pt}{965.92583pt}
+>  T  =>  {6.70781pt}{0.0pt}{258.81905pt}{965.92583pt}.
+<recently read> }
+
+l.186   }
+
+
+> \box56=
+\hbox(6.94444+0.0)x50.02786
+.\special{color push gray 0}
+.\special{ps:SDict begin /color.sc {} def end}
+.\OT1/cmr/m/n/10 H
+.\OT1/cmr/m/n/10 e
+.\OT1/cmr/m/n/10 l
+.\OT1/cmr/m/n/10 l
+.\OT1/cmr/m/n/10 o
+.\glue 3.33333 plus 1.66666 minus 1.11111
+.\OT1/cmr/m/n/10 w
+.\kern-0.27779
+.\OT1/cmr/m/n/10 o
+.\OT1/cmr/m/n/10 r
+.\OT1/cmr/m/n/10 l
+.\OT1/cmr/m/n/10 d
+.\special{color pop}
+
+! OK.
+<argument> \l_tmpa_coffin
+
+l.186   }
+
+
+> \box25=
+\hbox(50.12056+0.0)x19.65598
+.\hbox(50.12056+0.0)x19.65598
+..\kern -17.68753
+..\hbox(55.03102+0.0)x55.03104, shifted 2.45523
+...\hbox(55.03102+0.0)x55.03104
+....\kern 20.14276
+....\hbox(40.2855+0.0)x40.2855
+.....\special{ps:gsave}
+.....\special{ps::[begin]}
+.....\special{ps::currentpoint}
+.....\special{ps::currentpoint translate}
+.....\special{ps::-30 rotate}
+.....\special{ps::neg exch neg exch translate}
+.....\special{ps::[end]}
+.....\hbox(40.2855+0.0)x40.2855
+......\hbox(40.2855+0.0)x40.2855
+.......\hbox(40.2855+0.0)x40.2855
+........\kern 0.0
+........\hbox(40.2855+0.0)x40.2855
+.........\hbox(40.2855+0.0)x40.2855
+..........\kern 4.91046
+..........\hbox(6.94444+0.0)x50.02786
+...........\special{ps:gsave}
+...........\special{ps::[begin]}
+...........\special{ps::currentpoint}
+...........\special{ps::currentpoint translate}
+...........\special{ps::-45 rotate}
+...........\special{ps::neg exch neg exch translate}
+...........\special{ps::[end]}
+...........\hbox(6.94444+0.0)x50.02786
+............\hbox(6.94444+0.0)x50.02786
+.............\special{color push gray 0}
+.............\special{ps:SDict begin /color.sc {} def end}
+.............\OT1/cmr/m/n/10 H
+.............\OT1/cmr/m/n/10 e
+.............\OT1/cmr/m/n/10 l
+.............\OT1/cmr/m/n/10 l
+.............\OT1/cmr/m/n/10 o
+.............\glue 3.33333 plus 1.66666 minus 1.11111
+.............\OT1/cmr/m/n/10 w
+.............\kern-0.27779
+.............\OT1/cmr/m/n/10 o
+.............\OT1/cmr/m/n/10 r
+.............\OT1/cmr/m/n/10 l
+.............\OT1/cmr/m/n/10 d
+.............\special{color pop}
+...........\special{ps:grestore}
+.....\special{ps:grestore}
+
+! OK.
+<argument> \g_tmpa_coffin
+
+l.186   }
+
+
+Size of coffin \l_tmpa_coffin:
+> ht = 6.94444pt
+> dp = 0.0pt
+> wd = 50.02786pt
+Poles of coffin \l_tmpa_coffin:
+>  l  =>  {0pt}{0pt}{0pt}{1000pt}
+>  hc  =>  {25.01393pt}{0pt}{0pt}{1000pt}
+>  r  =>  {50.02786pt}{0pt}{0pt}{1000pt}
+>  b  =>  {0pt}{0.0pt}{1000pt}{0pt}
+>  vc  =>  {0pt}{3.47223pt}{1000pt}{0pt}
+>  t  =>  {0pt}{6.94444pt}{1000pt}{0pt}
+>  B  =>  {0pt}{0pt}{1000pt}{0pt}
+>  H  =>  {0pt}{0pt}{1000pt}{0pt}
+>  T  =>  {0pt}{0pt}{1000pt}{0pt}.
+<recently read> }
+
+l.186   }
+
+
+Size of coffin \g_tmpa_coffin:
+> ht = 50.12056pt
+> dp = 0.0pt
+> wd = 19.65598pt
+Poles of coffin \g_tmpa_coffin:
+>  l  =>  {6.70781pt}{0.0pt}{-965.92583pt}{258.81905pt}
+>  hc  =>  {13.1819pt}{24.16159pt}{-965.92583pt}{258.81905pt}
+>  r  =>  {19.65598pt}{48.32321pt}{-965.92583pt}{258.81905pt}
+>  b  =>  {6.70781pt}{0.0pt}{258.81905pt}{965.92583pt}
+>  vc  =>  {3.35391pt}{0.89868pt}{258.81905pt}{965.92583pt}
+>  t  =>  {0.0pt}{1.79735pt}{258.81905pt}{965.92583pt}
+>  B  =>  {6.70781pt}{0.0pt}{258.81905pt}{965.92583pt}
+>  H  =>  {6.70781pt}{0.0pt}{258.81905pt}{965.92583pt}
+>  T  =>  {6.70781pt}{0.0pt}{258.81905pt}{965.92583pt}.
+<recently read> }
+
+l.186   }
+
+
+> \box56=
+\hbox(40.2855+0.0)x40.2855
+.\hbox(40.2855+0.0)x40.2855
+..\kern 0.0
+..\hbox(4.91046+35.37505)x40.2855, shifted -35.37505
+...\hbox(4.91046+35.37505)x40.2855
+....\kern 0.0
+....\hbox(6.94444+0.0)x50.02786
+.....\special{ps:gsave}
+.....\special{ps::[begin]}
+.....\special{ps::currentpoint}
+.....\special{ps::currentpoint translate}
+.....\special{ps::45 rotate}
+.....\special{ps::neg exch neg exch translate}
+.....\special{ps::[end]}
+.....\hbox(6.94444+0.0)x50.02786
+......\hbox(6.94444+0.0)x50.02786
+.......\special{color push gray 0}
+.......\special{ps:SDict begin /color.sc {} def end}
+.......\OT1/cmr/m/n/10 H
+.......\OT1/cmr/m/n/10 e
+.......\OT1/cmr/m/n/10 l
+.......\OT1/cmr/m/n/10 l
+.......\OT1/cmr/m/n/10 o
+.......\glue 3.33333 plus 1.66666 minus 1.11111
+.......\OT1/cmr/m/n/10 w
+.......\kern-0.27779
+.......\OT1/cmr/m/n/10 o
+.......\OT1/cmr/m/n/10 r
+.......\OT1/cmr/m/n/10 l
+.......\OT1/cmr/m/n/10 d
+.......\special{color pop}
+.....\special{ps:grestore}
+
+! OK.
+<argument> \l_tmpa_coffin
+
+l.186   }
+
+
+> \box25=
+\hbox(31.02798+0.0)x46.79762
+.\hbox(31.02798+0.0)x46.79762
+..\kern -1.27092
+..\hbox(35.44058+13.89888)x49.33946, shifted -4.74313
+...\hbox(35.44058+13.89888)x49.33946
+....\kern 0.0
+....\hbox(50.12056+0.0)x19.65598
+.....\special{ps:gsave}
+.....\special{ps::[begin]}
+.....\special{ps::currentpoint}
+.....\special{ps::currentpoint translate}
+.....\special{ps::45 rotate}
+.....\special{ps::neg exch neg exch translate}
+.....\special{ps::[end]}
+.....\hbox(50.12056+0.0)x19.65598
+......\hbox(50.12056+0.0)x19.65598
+.......\hbox(50.12056+0.0)x19.65598
+........\kern -17.68753
+........\hbox(55.03102+0.0)x55.03104, shifted 2.45523
+.........\hbox(55.03102+0.0)x55.03104
+..........\kern 20.14276
+..........\hbox(40.2855+0.0)x40.2855
+...........\special{ps:gsave}
+...........\special{ps::[begin]}
+...........\special{ps::currentpoint}
+...........\special{ps::currentpoint translate}
+...........\special{ps::-30 rotate}
+...........\special{ps::neg exch neg exch translate}
+...........\special{ps::[end]}
+...........\hbox(40.2855+0.0)x40.2855
+............\hbox(40.2855+0.0)x40.2855
+.............\hbox(40.2855+0.0)x40.2855
+..............\kern 0.0
+..............\hbox(40.2855+0.0)x40.2855
+...............\hbox(40.2855+0.0)x40.2855
+................\kern 4.91046
+................\hbox(6.94444+0.0)x50.02786
+.................\special{ps:gsave}
+.................\special{ps::[begin]}
+.................\special{ps::currentpoint}
+.................\special{ps::currentpoint translate}
+.................\special{ps::-45 rotate}
+.................\special{ps::neg exch neg exch translate}
+.................\special{ps::[end]}
+.................\hbox(6.94444+0.0)x50.02786
+..................\hbox(6.94444+0.0)x50.02786
+...................\special{color push gray 0}
+...................\special{ps:SDict begin /color.sc {} def end}
+...................\OT1/cmr/m/n/10 H
+...................\OT1/cmr/m/n/10 e
+...................\OT1/cmr/m/n/10 l
+...................\OT1/cmr/m/n/10 l
+...................\OT1/cmr/m/n/10 o
+...................\glue 3.33333 plus 1.66666 minus 1.11111
+...................\OT1/cmr/m/n/10 w
+...................\kern-0.27779
+...................\OT1/cmr/m/n/10 o
+...................\OT1/cmr/m/n/10 r
+...................\OT1/cmr/m/n/10 l
+...................\OT1/cmr/m/n/10 d
+...................\special{color pop}
+.................\special{ps:grestore}
+...........\special{ps:grestore}
+.....\special{ps:grestore}
+
+! OK.
+<argument> \g_tmpa_coffin
+
+l.186   }
+
+
+Size of coffin \l_tmpa_coffin:
+> ht = 40.2855pt
+> dp = 0.0pt
+> wd = 40.2855pt
+Poles of coffin \l_tmpa_coffin:
+>  l  =>  {0.0pt}{35.37505pt}{707.10678pt}{707.10678pt}
+>  hc  =>  {17.68752pt}{17.68753pt}{707.10678pt}{707.10678pt}
+>  r  =>  {35.37505pt}{0.0pt}{707.10678pt}{707.10678pt}
+>  b  =>  {0.0pt}{35.37505pt}{707.10678pt}{-707.10678pt}
+>  vc  =>  {2.45523pt}{37.83028pt}{707.10678pt}{-707.10678pt}
+>  t  =>  {4.91046pt}{40.2855pt}{707.10678pt}{-707.10678pt}
+>  B  =>  {0.0pt}{35.37505pt}{707.10678pt}{-707.10678pt}
+>  H  =>  {0.0pt}{35.37505pt}{707.10678pt}{-707.10678pt}
+>  T  =>  {0.0pt}{35.37505pt}{707.10678pt}{-707.10678pt}.
+<recently read> }
+
+l.186   }
+
+
+Size of coffin \g_tmpa_coffin:
+> ht = 31.02798pt
+> dp = 0.0pt
+> wd = 46.79762pt
+Poles of coffin \g_tmpa_coffin:
+>  l  =>  {3.47221pt}{0.0pt}{-500.0pt}{866.0254pt}
+>  hc  =>  {25.13492pt}{12.50694pt}{-500.0pt}{866.0254pt}
+>  r  =>  {46.79762pt}{25.01393pt}{-500.0pt}{866.0254pt}
+>  b  =>  {3.47221pt}{0.0pt}{866.0254pt}{500.0pt}
+>  vc  =>  {1.73611pt}{3.00702pt}{866.0254pt}{500.0pt}
+>  t  =>  {0.0pt}{6.01405pt}{866.0254pt}{500.0pt}
+>  B  =>  {3.47221pt}{0.0pt}{866.0254pt}{500.0pt}
+>  H  =>  {3.47221pt}{0.0pt}{866.0254pt}{500.0pt}
+>  T  =>  {3.47221pt}{0.0pt}{866.0254pt}{500.0pt}.
+<recently read> }
+
+l.186   }
+
+
+> \box56=
+\hbox(6.94444+0.0)x50.02786
+.\special{color push gray 0}
+.\special{ps:SDict begin /color.sc {} def end}
+.\OT1/cmr/m/n/10 H
+.\OT1/cmr/m/n/10 e
+.\OT1/cmr/m/n/10 l
+.\OT1/cmr/m/n/10 l
+.\OT1/cmr/m/n/10 o
+.\glue 3.33333 plus 1.66666 minus 1.11111
+.\OT1/cmr/m/n/10 w
+.\kern-0.27779
+.\OT1/cmr/m/n/10 o
+.\OT1/cmr/m/n/10 r
+.\OT1/cmr/m/n/10 l
+.\OT1/cmr/m/n/10 d
+.\special{color pop}
+
+! OK.
+<argument> \l_tmpa_coffin
+
+l.186   }
+
+
+> \box25=
+\hbox(31.02798+0.0)x46.79762
+.\hbox(31.02798+0.0)x46.79762
+..\kern -1.27092
+..\hbox(35.44058+13.89888)x49.33946, shifted -4.74313
+...\hbox(35.44058+13.89888)x49.33946
+....\kern 0.0
+....\hbox(50.12056+0.0)x19.65598
+.....\special{ps:gsave}
+.....\special{ps::[begin]}
+.....\special{ps::currentpoint}
+.....\special{ps::currentpoint translate}
+.....\special{ps::45 rotate}
+.....\special{ps::neg exch neg exch translate}
+.....\special{ps::[end]}
+.....\hbox(50.12056+0.0)x19.65598
+......\hbox(50.12056+0.0)x19.65598
+.......\hbox(50.12056+0.0)x19.65598
+........\kern -17.68753
+........\hbox(55.03102+0.0)x55.03104, shifted 2.45523
+.........\hbox(55.03102+0.0)x55.03104
+..........\kern 20.14276
+..........\hbox(40.2855+0.0)x40.2855
+...........\special{ps:gsave}
+...........\special{ps::[begin]}
+...........\special{ps::currentpoint}
+...........\special{ps::currentpoint translate}
+...........\special{ps::-30 rotate}
+...........\special{ps::neg exch neg exch translate}
+...........\special{ps::[end]}
+...........\hbox(40.2855+0.0)x40.2855
+............\hbox(40.2855+0.0)x40.2855
+.............\hbox(40.2855+0.0)x40.2855
+..............\kern 0.0
+..............\hbox(40.2855+0.0)x40.2855
+...............\hbox(40.2855+0.0)x40.2855
+................\kern 4.91046
+................\hbox(6.94444+0.0)x50.02786
+.................\special{ps:gsave}
+.................\special{ps::[begin]}
+.................\special{ps::currentpoint}
+.................\special{ps::currentpoint translate}
+.................\special{ps::-45 rotate}
+.................\special{ps::neg exch neg exch translate}
+.................\special{ps::[end]}
+.................\hbox(6.94444+0.0)x50.02786
+..................\hbox(6.94444+0.0)x50.02786
+...................\special{color push gray 0}
+...................\special{ps:SDict begin /color.sc {} def end}
+...................\OT1/cmr/m/n/10 H
+...................\OT1/cmr/m/n/10 e
+...................\OT1/cmr/m/n/10 l
+...................\OT1/cmr/m/n/10 l
+...................\OT1/cmr/m/n/10 o
+...................\glue 3.33333 plus 1.66666 minus 1.11111
+...................\OT1/cmr/m/n/10 w
+...................\kern-0.27779
+...................\OT1/cmr/m/n/10 o
+...................\OT1/cmr/m/n/10 r
+...................\OT1/cmr/m/n/10 l
+...................\OT1/cmr/m/n/10 d
+...................\special{color pop}
+.................\special{ps:grestore}
+...........\special{ps:grestore}
+.....\special{ps:grestore}
+
+! OK.
+<argument> \g_tmpa_coffin
+
+l.186   }
+
+
+Size of coffin \l_tmpa_coffin:
+> ht = 6.94444pt
+> dp = 0.0pt
+> wd = 50.02786pt
+Poles of coffin \l_tmpa_coffin:
+>  l  =>  {0pt}{0pt}{0pt}{1000pt}
+>  hc  =>  {25.01393pt}{0pt}{0pt}{1000pt}
+>  r  =>  {50.02786pt}{0pt}{0pt}{1000pt}
+>  b  =>  {0pt}{0.0pt}{1000pt}{0pt}
+>  vc  =>  {0pt}{3.47223pt}{1000pt}{0pt}
+>  t  =>  {0pt}{6.94444pt}{1000pt}{0pt}
+>  B  =>  {0pt}{0pt}{1000pt}{0pt}
+>  H  =>  {0pt}{0pt}{1000pt}{0pt}
+>  T  =>  {0pt}{0pt}{1000pt}{0pt}.
+<recently read> }
+
+l.186   }
+
+
+Size of coffin \g_tmpa_coffin:
+> ht = 31.02798pt
+> dp = 0.0pt
+> wd = 46.79762pt
+Poles of coffin \g_tmpa_coffin:
+>  l  =>  {3.47221pt}{0.0pt}{-500.0pt}{866.0254pt}
+>  hc  =>  {25.13492pt}{12.50694pt}{-500.0pt}{866.0254pt}
+>  r  =>  {46.79762pt}{25.01393pt}{-500.0pt}{866.0254pt}
+>  b  =>  {3.47221pt}{0.0pt}{866.0254pt}{500.0pt}
+>  vc  =>  {1.73611pt}{3.00702pt}{866.0254pt}{500.0pt}
+>  t  =>  {0.0pt}{6.01405pt}{866.0254pt}{500.0pt}
+>  B  =>  {3.47221pt}{0.0pt}{866.0254pt}{500.0pt}
+>  H  =>  {3.47221pt}{0.0pt}{866.0254pt}{500.0pt}
+>  T  =>  {3.47221pt}{0.0pt}{866.0254pt}{500.0pt}.
+<recently read> }
+
+l.186   }
+
+
+============================================================
+
+============================================================
+TEST 8: Scaling
+============================================================
+OMIT
+TIMO
+> \box56=
+\hbox(7.63892+0.0)x50.02786
+.\hbox(7.63892+0.0)x50.02786
+..\kern 0.0
+..\hbox(7.63892+0.0)x50.02786
+...\special{ps:gsave}
+...\special{ps::[begin]}
+...\special{ps::currentpoint}
+...\special{ps::currentpoint translate}
+...\special{ps::1 1.1 scale}
+...\special{ps::neg exch neg exch translate}
+...\special{ps::[end]}
+...\hbox(6.94444+0.0)x0.0, glue set - 50.02786fil
+....\hbox(6.94444+0.0)x50.02786
+.....\special{color push gray 0}
+.....\special{ps:SDict begin /color.sc {} def end}
+.....\OT1/cmr/m/n/10 H
+.....\OT1/cmr/m/n/10 e
+.....\OT1/cmr/m/n/10 l
+.....\OT1/cmr/m/n/10 l
+.....\OT1/cmr/m/n/10 o
+.....\glue 3.33333 plus 1.66666 minus 1.11111
+.....\OT1/cmr/m/n/10 w
+.....\kern-0.27779
+.....\OT1/cmr/m/n/10 o
+.....\OT1/cmr/m/n/10 r
+.....\OT1/cmr/m/n/10 l
+.....\OT1/cmr/m/n/10 d
+.....\special{color pop}
+....\glue 0.0 plus 1.0fil minus 1.0fil
+...\special{ps:grestore}
+..\glue 0.0 plus 1.0fil minus 1.0fil
+
+! OK.
+<argument> \l_tmpa_coffin
+
+l.218   }
+
+
+> \box25=
+\hbox(7.63892+0.0)x50.02786
+.\hbox(7.63892+0.0)x50.02786
+..\kern 0.0
+..\hbox(7.63892+0.0)x50.02786
+...\special{ps:gsave}
+...\special{ps::[begin]}
+...\special{ps::currentpoint}
+...\special{ps::currentpoint translate}
+...\special{ps::1 1.1 scale}
+...\special{ps::neg exch neg exch translate}
+...\special{ps::[end]}
+...\hbox(6.94444+0.0)x0.0, glue set - 50.02786fil
+....\hbox(6.94444+0.0)x50.02786
+.....\special{color push gray 0}
+.....\special{ps:SDict begin /color.sc {} def end}
+.....\OT1/cmr/m/n/10 H
+.....\OT1/cmr/m/n/10 e
+.....\OT1/cmr/m/n/10 l
+.....\OT1/cmr/m/n/10 l
+.....\OT1/cmr/m/n/10 o
+.....\glue 3.33333 plus 1.66666 minus 1.11111
+.....\OT1/cmr/m/n/10 w
+.....\kern-0.27779
+.....\OT1/cmr/m/n/10 o
+.....\OT1/cmr/m/n/10 r
+.....\OT1/cmr/m/n/10 l
+.....\OT1/cmr/m/n/10 d
+.....\special{color pop}
+....\glue 0.0 plus 1.0fil minus 1.0fil
+...\special{ps:grestore}
+..\glue 0.0 plus 1.0fil minus 1.0fil
+
+! OK.
+<argument> \g_tmpa_coffin
+
+l.218   }
+
+
+Size of coffin \l_tmpa_coffin:
+> ht = 7.63892pt
+> dp = 0.0pt
+> wd = 50.02786pt
+Poles of coffin \l_tmpa_coffin:
+>  l  =>  {0.0pt}{0.0pt}{0pt}{1000pt}
+>  hc  =>  {25.01393pt}{0.0pt}{0pt}{1000pt}
+>  r  =>  {50.02786pt}{0.0pt}{0pt}{1000pt}
+>  b  =>  {0.0pt}{0.0pt}{1000pt}{0pt}
+>  vc  =>  {0.0pt}{3.81946pt}{1000pt}{0pt}
+>  t  =>  {0.0pt}{7.63889pt}{1000pt}{0pt}
+>  B  =>  {0.0pt}{0.0pt}{1000pt}{0pt}
+>  H  =>  {0.0pt}{0.0pt}{1000pt}{0pt}
+>  T  =>  {0.0pt}{0.0pt}{1000pt}{0pt}.
+<recently read> }
+
+l.218   }
+
+
+Size of coffin \g_tmpa_coffin:
+> ht = 7.63892pt
+> dp = 0.0pt
+> wd = 50.02786pt
+Poles of coffin \g_tmpa_coffin:
+>  l  =>  {0.0pt}{0.0pt}{0pt}{1000pt}
+>  hc  =>  {25.01393pt}{0.0pt}{0pt}{1000pt}
+>  r  =>  {50.02786pt}{0.0pt}{0pt}{1000pt}
+>  b  =>  {0.0pt}{0.0pt}{1000pt}{0pt}
+>  vc  =>  {0.0pt}{3.81946pt}{1000pt}{0pt}
+>  t  =>  {0.0pt}{7.63889pt}{1000pt}{0pt}
+>  B  =>  {0.0pt}{0.0pt}{1000pt}{0pt}
+>  H  =>  {0.0pt}{0.0pt}{1000pt}{0pt}
+>  T  =>  {0.0pt}{0.0pt}{1000pt}{0pt}.
+<recently read> }
+
+l.218   }
+
+
+> \box56=
+\hbox(6.94444+0.0)x50.02786
+.\special{color push gray 0}
+.\special{ps:SDict begin /color.sc {} def end}
+.\OT1/cmr/m/n/10 H
+.\OT1/cmr/m/n/10 e
+.\OT1/cmr/m/n/10 l
+.\OT1/cmr/m/n/10 l
+.\OT1/cmr/m/n/10 o
+.\glue 3.33333 plus 1.66666 minus 1.11111
+.\OT1/cmr/m/n/10 w
+.\kern-0.27779
+.\OT1/cmr/m/n/10 o
+.\OT1/cmr/m/n/10 r
+.\OT1/cmr/m/n/10 l
+.\OT1/cmr/m/n/10 d
+.\special{color pop}
+
+! OK.
+<argument> \l_tmpa_coffin
+
+l.218   }
+
+
+> \box25=
+\hbox(7.63892+0.0)x50.02786
+.\hbox(7.63892+0.0)x50.02786
+..\kern 0.0
+..\hbox(7.63892+0.0)x50.02786
+...\special{ps:gsave}
+...\special{ps::[begin]}
+...\special{ps::currentpoint}
+...\special{ps::currentpoint translate}
+...\special{ps::1 1.1 scale}
+...\special{ps::neg exch neg exch translate}
+...\special{ps::[end]}
+...\hbox(6.94444+0.0)x0.0, glue set - 50.02786fil
+....\hbox(6.94444+0.0)x50.02786
+.....\special{color push gray 0}
+.....\special{ps:SDict begin /color.sc {} def end}
+.....\OT1/cmr/m/n/10 H
+.....\OT1/cmr/m/n/10 e
+.....\OT1/cmr/m/n/10 l
+.....\OT1/cmr/m/n/10 l
+.....\OT1/cmr/m/n/10 o
+.....\glue 3.33333 plus 1.66666 minus 1.11111
+.....\OT1/cmr/m/n/10 w
+.....\kern-0.27779
+.....\OT1/cmr/m/n/10 o
+.....\OT1/cmr/m/n/10 r
+.....\OT1/cmr/m/n/10 l
+.....\OT1/cmr/m/n/10 d
+.....\special{color pop}
+....\glue 0.0 plus 1.0fil minus 1.0fil
+...\special{ps:grestore}
+..\glue 0.0 plus 1.0fil minus 1.0fil
+
+! OK.
+<argument> \g_tmpa_coffin
+
+l.218   }
+
+
+Size of coffin \l_tmpa_coffin:
+> ht = 6.94444pt
+> dp = 0.0pt
+> wd = 50.02786pt
+Poles of coffin \l_tmpa_coffin:
+>  l  =>  {0pt}{0pt}{0pt}{1000pt}
+>  hc  =>  {25.01393pt}{0pt}{0pt}{1000pt}
+>  r  =>  {50.02786pt}{0pt}{0pt}{1000pt}
+>  b  =>  {0pt}{0.0pt}{1000pt}{0pt}
+>  vc  =>  {0pt}{3.47223pt}{1000pt}{0pt}
+>  t  =>  {0pt}{6.94444pt}{1000pt}{0pt}
+>  B  =>  {0pt}{0pt}{1000pt}{0pt}
+>  H  =>  {0pt}{0pt}{1000pt}{0pt}
+>  T  =>  {0pt}{0pt}{1000pt}{0pt}.
+<recently read> }
+
+l.218   }
+
+
+Size of coffin \g_tmpa_coffin:
+> ht = 7.63892pt
+> dp = 0.0pt
+> wd = 50.02786pt
+Poles of coffin \g_tmpa_coffin:
+>  l  =>  {0.0pt}{0.0pt}{0pt}{1000pt}
+>  hc  =>  {25.01393pt}{0.0pt}{0pt}{1000pt}
+>  r  =>  {50.02786pt}{0.0pt}{0pt}{1000pt}
+>  b  =>  {0.0pt}{0.0pt}{1000pt}{0pt}
+>  vc  =>  {0.0pt}{3.81946pt}{1000pt}{0pt}
+>  t  =>  {0.0pt}{7.63889pt}{1000pt}{0pt}
+>  B  =>  {0.0pt}{0.0pt}{1000pt}{0pt}
+>  H  =>  {0.0pt}{0.0pt}{1000pt}{0pt}
+>  T  =>  {0.0pt}{0.0pt}{1000pt}{0pt}.
+<recently read> }
+
+l.218   }
+
+
+> \box56=
+\hbox(3.47221+0.0)x100.05573
+.\hbox(3.47221+0.0)x100.05573
+..\kern 0.0
+..\hbox(3.47221+0.0)x100.05573
+...\special{ps:gsave}
+...\special{ps::[begin]}
+...\special{ps::currentpoint}
+...\special{ps::currentpoint translate}
+...\special{ps::2 0.5 scale}
+...\special{ps::neg exch neg exch translate}
+...\special{ps::[end]}
+...\hbox(6.94444+0.0)x0.0, glue set - 50.02786fil
+....\hbox(6.94444+0.0)x50.02786
+.....\special{color push gray 0}
+.....\special{ps:SDict begin /color.sc {} def end}
+.....\OT1/cmr/m/n/10 H
+.....\OT1/cmr/m/n/10 e
+.....\OT1/cmr/m/n/10 l
+.....\OT1/cmr/m/n/10 l
+.....\OT1/cmr/m/n/10 o
+.....\glue 3.33333 plus 1.66666 minus 1.11111
+.....\OT1/cmr/m/n/10 w
+.....\kern-0.27779
+.....\OT1/cmr/m/n/10 o
+.....\OT1/cmr/m/n/10 r
+.....\OT1/cmr/m/n/10 l
+.....\OT1/cmr/m/n/10 d
+.....\special{color pop}
+....\glue 0.0 plus 1.0fil minus 1.0fil
+...\special{ps:grestore}
+..\glue 0.0 plus 1.0fil minus 1.0fil
+
+! OK.
+<argument> \l_tmpa_coffin
+
+l.218   }
+
+
+> \box25=
+\hbox(3.81946+0.0)x100.05573
+.\hbox(3.81946+0.0)x100.05573
+..\kern 0.0
+..\hbox(3.81946+0.0)x100.05573
+...\special{ps:gsave}
+...\special{ps::[begin]}
+...\special{ps::currentpoint}
+...\special{ps::currentpoint translate}
+...\special{ps::2 0.5 scale}
+...\special{ps::neg exch neg exch translate}
+...\special{ps::[end]}
+...\hbox(7.63892+0.0)x0.0, glue set - 50.02786fil
+....\hbox(7.63892+0.0)x50.02786
+.....\hbox(7.63892+0.0)x50.02786
+......\kern 0.0
+......\hbox(7.63892+0.0)x50.02786
+.......\special{ps:gsave}
+.......\special{ps::[begin]}
+.......\special{ps::currentpoint}
+.......\special{ps::currentpoint translate}
+.......\special{ps::1 1.1 scale}
+.......\special{ps::neg exch neg exch translate}
+.......\special{ps::[end]}
+.......\hbox(6.94444+0.0)x0.0, glue set - 50.02786fil
+........\hbox(6.94444+0.0)x50.02786
+.........\special{color push gray 0}
+.........\special{ps:SDict begin /color.sc {} def end}
+.........\OT1/cmr/m/n/10 H
+.........\OT1/cmr/m/n/10 e
+.........\OT1/cmr/m/n/10 l
+.........\OT1/cmr/m/n/10 l
+.........\OT1/cmr/m/n/10 o
+.........\glue 3.33333 plus 1.66666 minus 1.11111
+.........\OT1/cmr/m/n/10 w
+.........\kern-0.27779
+.........\OT1/cmr/m/n/10 o
+.........\OT1/cmr/m/n/10 r
+.........\OT1/cmr/m/n/10 l
+.........\OT1/cmr/m/n/10 d
+.........\special{color pop}
+........\glue 0.0 plus 1.0fil minus 1.0fil
+.......\special{ps:grestore}
+......\glue 0.0 plus 1.0fil minus 1.0fil
+....\glue 0.0 plus 1.0fil minus 1.0fil
+...\special{ps:grestore}
+..\glue 0.0 plus 1.0fil minus 1.0fil
+
+! OK.
+<argument> \g_tmpa_coffin
+
+l.218   }
+
+
+Size of coffin \l_tmpa_coffin:
+> ht = 3.47221pt
+> dp = 0.0pt
+> wd = 100.05573pt
+Poles of coffin \l_tmpa_coffin:
+>  l  =>  {0.0pt}{0.0pt}{0pt}{1000pt}
+>  hc  =>  {50.02786pt}{0.0pt}{0pt}{1000pt}
+>  r  =>  {100.05573pt}{0.0pt}{0pt}{1000pt}
+>  b  =>  {0.0pt}{0.0pt}{1000pt}{0pt}
+>  vc  =>  {0.0pt}{1.73611pt}{1000pt}{0pt}
+>  t  =>  {0.0pt}{3.47223pt}{1000pt}{0pt}
+>  B  =>  {0.0pt}{0.0pt}{1000pt}{0pt}
+>  H  =>  {0.0pt}{0.0pt}{1000pt}{0pt}
+>  T  =>  {0.0pt}{0.0pt}{1000pt}{0pt}.
+<recently read> }
+
+l.218   }
+
+
+Size of coffin \g_tmpa_coffin:
+> ht = 3.81946pt
+> dp = 0.0pt
+> wd = 100.05573pt
+Poles of coffin \g_tmpa_coffin:
+>  l  =>  {0.0pt}{0.0pt}{0pt}{1000pt}
+>  hc  =>  {50.02786pt}{0.0pt}{0pt}{1000pt}
+>  r  =>  {100.05573pt}{0.0pt}{0pt}{1000pt}
+>  b  =>  {0.0pt}{0.0pt}{1000pt}{0pt}
+>  vc  =>  {0.0pt}{1.90973pt}{1000pt}{0pt}
+>  t  =>  {0.0pt}{3.81944pt}{1000pt}{0pt}
+>  B  =>  {0.0pt}{0.0pt}{1000pt}{0pt}
+>  H  =>  {0.0pt}{0.0pt}{1000pt}{0pt}
+>  T  =>  {0.0pt}{0.0pt}{1000pt}{0pt}.
+<recently read> }
+
+l.218   }
+
+
+> \box56=
+\hbox(6.94444+0.0)x50.02786
+.\special{color push gray 0}
+.\special{ps:SDict begin /color.sc {} def end}
+.\OT1/cmr/m/n/10 H
+.\OT1/cmr/m/n/10 e
+.\OT1/cmr/m/n/10 l
+.\OT1/cmr/m/n/10 l
+.\OT1/cmr/m/n/10 o
+.\glue 3.33333 plus 1.66666 minus 1.11111
+.\OT1/cmr/m/n/10 w
+.\kern-0.27779
+.\OT1/cmr/m/n/10 o
+.\OT1/cmr/m/n/10 r
+.\OT1/cmr/m/n/10 l
+.\OT1/cmr/m/n/10 d
+.\special{color pop}
+
+! OK.
+<argument> \l_tmpa_coffin
+
+l.218   }
+
+
+> \box25=
+\hbox(3.81946+0.0)x100.05573
+.\hbox(3.81946+0.0)x100.05573
+..\kern 0.0
+..\hbox(3.81946+0.0)x100.05573
+...\special{ps:gsave}
+...\special{ps::[begin]}
+...\special{ps::currentpoint}
+...\special{ps::currentpoint translate}
+...\special{ps::2 0.5 scale}
+...\special{ps::neg exch neg exch translate}
+...\special{ps::[end]}
+...\hbox(7.63892+0.0)x0.0, glue set - 50.02786fil
+....\hbox(7.63892+0.0)x50.02786
+.....\hbox(7.63892+0.0)x50.02786
+......\kern 0.0
+......\hbox(7.63892+0.0)x50.02786
+.......\special{ps:gsave}
+.......\special{ps::[begin]}
+.......\special{ps::currentpoint}
+.......\special{ps::currentpoint translate}
+.......\special{ps::1 1.1 scale}
+.......\special{ps::neg exch neg exch translate}
+.......\special{ps::[end]}
+.......\hbox(6.94444+0.0)x0.0, glue set - 50.02786fil
+........\hbox(6.94444+0.0)x50.02786
+.........\special{color push gray 0}
+.........\special{ps:SDict begin /color.sc {} def end}
+.........\OT1/cmr/m/n/10 H
+.........\OT1/cmr/m/n/10 e
+.........\OT1/cmr/m/n/10 l
+.........\OT1/cmr/m/n/10 l
+.........\OT1/cmr/m/n/10 o
+.........\glue 3.33333 plus 1.66666 minus 1.11111
+.........\OT1/cmr/m/n/10 w
+.........\kern-0.27779
+.........\OT1/cmr/m/n/10 o
+.........\OT1/cmr/m/n/10 r
+.........\OT1/cmr/m/n/10 l
+.........\OT1/cmr/m/n/10 d
+.........\special{color pop}
+........\glue 0.0 plus 1.0fil minus 1.0fil
+.......\special{ps:grestore}
+......\glue 0.0 plus 1.0fil minus 1.0fil
+....\glue 0.0 plus 1.0fil minus 1.0fil
+...\special{ps:grestore}
+..\glue 0.0 plus 1.0fil minus 1.0fil
+
+! OK.
+<argument> \g_tmpa_coffin
+
+l.218   }
+
+
+Size of coffin \l_tmpa_coffin:
+> ht = 6.94444pt
+> dp = 0.0pt
+> wd = 50.02786pt
+Poles of coffin \l_tmpa_coffin:
+>  l  =>  {0pt}{0pt}{0pt}{1000pt}
+>  hc  =>  {25.01393pt}{0pt}{0pt}{1000pt}
+>  r  =>  {50.02786pt}{0pt}{0pt}{1000pt}
+>  b  =>  {0pt}{0.0pt}{1000pt}{0pt}
+>  vc  =>  {0pt}{3.47223pt}{1000pt}{0pt}
+>  t  =>  {0pt}{6.94444pt}{1000pt}{0pt}
+>  B  =>  {0pt}{0pt}{1000pt}{0pt}
+>  H  =>  {0pt}{0pt}{1000pt}{0pt}
+>  T  =>  {0pt}{0pt}{1000pt}{0pt}.
+<recently read> }
+
+l.218   }
+
+
+Size of coffin \g_tmpa_coffin:
+> ht = 3.81946pt
+> dp = 0.0pt
+> wd = 100.05573pt
+Poles of coffin \g_tmpa_coffin:
+>  l  =>  {0.0pt}{0.0pt}{0pt}{1000pt}
+>  hc  =>  {50.02786pt}{0.0pt}{0pt}{1000pt}
+>  r  =>  {100.05573pt}{0.0pt}{0pt}{1000pt}
+>  b  =>  {0.0pt}{0.0pt}{1000pt}{0pt}
+>  vc  =>  {0.0pt}{1.90973pt}{1000pt}{0pt}
+>  t  =>  {0.0pt}{3.81944pt}{1000pt}{0pt}
+>  B  =>  {0.0pt}{0.0pt}{1000pt}{0pt}
+>  H  =>  {0.0pt}{0.0pt}{1000pt}{0pt}
+>  T  =>  {0.0pt}{0.0pt}{1000pt}{0pt}.
+<recently read> }
+
+l.218   }
+
+
+============================================================
+
+============================================================
+TEST 9: Resizing
+============================================================
+OMIT
+TIMO
+> \box56=
+\hbox(56.9055+0.0)x28.45274
+.\hbox(56.9055+0.0)x28.45274
+..\kern 0.0
+..\hbox(56.9055+0.0)x28.45274
+...\special{ps:gsave}
+...\special{ps::[begin]}
+...\special{ps::currentpoint}
+...\special{ps::currentpoint translate}
+...\special{ps::0.56874 8.19439 scale}
+...\special{ps::neg exch neg exch translate}
+...\special{ps::[end]}
+...\hbox(6.94444+0.0)x0.0, glue set - 50.02786fil
+....\hbox(6.94444+0.0)x50.02786
+.....\special{color push gray 0}
+.....\special{ps:SDict begin /color.sc {} def end}
+.....\OT1/cmr/m/n/10 H
+.....\OT1/cmr/m/n/10 e
+.....\OT1/cmr/m/n/10 l
+.....\OT1/cmr/m/n/10 l
+.....\OT1/cmr/m/n/10 o
+.....\glue 3.33333 plus 1.66666 minus 1.11111
+.....\OT1/cmr/m/n/10 w
+.....\kern-0.27779
+.....\OT1/cmr/m/n/10 o
+.....\OT1/cmr/m/n/10 r
+.....\OT1/cmr/m/n/10 l
+.....\OT1/cmr/m/n/10 d
+.....\special{color pop}
+....\glue 0.0 plus 1.0fil minus 1.0fil
+...\special{ps:grestore}
+..\glue 0.0 plus 1.0fil minus 1.0fil
+
+! OK.
+<argument> \l_tmpa_coffin
+
+l.238   }
+
+
+> \box25=
+\hbox(56.9055+0.0)x28.45274
+.\hbox(56.9055+0.0)x28.45274
+..\kern 0.0
+..\hbox(56.9055+0.0)x28.45274
+...\special{ps:gsave}
+...\special{ps::[begin]}
+...\special{ps::currentpoint}
+...\special{ps::currentpoint translate}
+...\special{ps::0.56874 8.19439 scale}
+...\special{ps::neg exch neg exch translate}
+...\special{ps::[end]}
+...\hbox(6.94444+0.0)x0.0, glue set - 50.02786fil
+....\hbox(6.94444+0.0)x50.02786
+.....\special{color push gray 0}
+.....\special{ps:SDict begin /color.sc {} def end}
+.....\OT1/cmr/m/n/10 H
+.....\OT1/cmr/m/n/10 e
+.....\OT1/cmr/m/n/10 l
+.....\OT1/cmr/m/n/10 l
+.....\OT1/cmr/m/n/10 o
+.....\glue 3.33333 plus 1.66666 minus 1.11111
+.....\OT1/cmr/m/n/10 w
+.....\kern-0.27779
+.....\OT1/cmr/m/n/10 o
+.....\OT1/cmr/m/n/10 r
+.....\OT1/cmr/m/n/10 l
+.....\OT1/cmr/m/n/10 d
+.....\special{color pop}
+....\glue 0.0 plus 1.0fil minus 1.0fil
+...\special{ps:grestore}
+..\glue 0.0 plus 1.0fil minus 1.0fil
+
+! OK.
+<argument> \g_tmpa_coffin
+
+l.238   }
+
+
+Size of coffin \l_tmpa_coffin:
+> ht = 56.9055pt
+> dp = 0.0pt
+> wd = 28.45274pt
+Poles of coffin \l_tmpa_coffin:
+>  l  =>  {0.0pt}{0.0pt}{0pt}{1000pt}
+>  hc  =>  {14.22638pt}{0.0pt}{0pt}{1000pt}
+>  r  =>  {28.45274pt}{0.0pt}{0pt}{1000pt}
+>  b  =>  {0.0pt}{0.0pt}{1000pt}{0pt}
+>  vc  =>  {0.0pt}{28.45282pt}{1000pt}{0pt}
+>  t  =>  {0.0pt}{56.9055pt}{1000pt}{0pt}
+>  B  =>  {0.0pt}{0.0pt}{1000pt}{0pt}
+>  H  =>  {0.0pt}{0.0pt}{1000pt}{0pt}
+>  T  =>  {0.0pt}{0.0pt}{1000pt}{0pt}.
+<recently read> }
+
+l.238   }
+
+
+Size of coffin \g_tmpa_coffin:
+> ht = 56.9055pt
+> dp = 0.0pt
+> wd = 28.45274pt
+Poles of coffin \g_tmpa_coffin:
+>  l  =>  {0.0pt}{0.0pt}{0pt}{1000pt}
+>  hc  =>  {14.22638pt}{0.0pt}{0pt}{1000pt}
+>  r  =>  {28.45274pt}{0.0pt}{0pt}{1000pt}
+>  b  =>  {0.0pt}{0.0pt}{1000pt}{0pt}
+>  vc  =>  {0.0pt}{28.45282pt}{1000pt}{0pt}
+>  t  =>  {0.0pt}{56.9055pt}{1000pt}{0pt}
+>  B  =>  {0.0pt}{0.0pt}{1000pt}{0pt}
+>  H  =>  {0.0pt}{0.0pt}{1000pt}{0pt}
+>  T  =>  {0.0pt}{0.0pt}{1000pt}{0pt}.
+<recently read> }
+
+l.238   }
+
+
+> \box56=
+\hbox(6.94444+0.0)x50.02786
+.\special{color push gray 0}
+.\special{ps:SDict begin /color.sc {} def end}
+.\OT1/cmr/m/n/10 H
+.\OT1/cmr/m/n/10 e
+.\OT1/cmr/m/n/10 l
+.\OT1/cmr/m/n/10 l
+.\OT1/cmr/m/n/10 o
+.\glue 3.33333 plus 1.66666 minus 1.11111
+.\OT1/cmr/m/n/10 w
+.\kern-0.27779
+.\OT1/cmr/m/n/10 o
+.\OT1/cmr/m/n/10 r
+.\OT1/cmr/m/n/10 l
+.\OT1/cmr/m/n/10 d
+.\special{color pop}
+
+! OK.
+<argument> \l_tmpa_coffin
+
+l.238   }
+
+
+> \box25=
+\hbox(56.9055+0.0)x28.45274
+.\hbox(56.9055+0.0)x28.45274
+..\kern 0.0
+..\hbox(56.9055+0.0)x28.45274
+...\special{ps:gsave}
+...\special{ps::[begin]}
+...\special{ps::currentpoint}
+...\special{ps::currentpoint translate}
+...\special{ps::0.56874 8.19439 scale}
+...\special{ps::neg exch neg exch translate}
+...\special{ps::[end]}
+...\hbox(6.94444+0.0)x0.0, glue set - 50.02786fil
+....\hbox(6.94444+0.0)x50.02786
+.....\special{color push gray 0}
+.....\special{ps:SDict begin /color.sc {} def end}
+.....\OT1/cmr/m/n/10 H
+.....\OT1/cmr/m/n/10 e
+.....\OT1/cmr/m/n/10 l
+.....\OT1/cmr/m/n/10 l
+.....\OT1/cmr/m/n/10 o
+.....\glue 3.33333 plus 1.66666 minus 1.11111
+.....\OT1/cmr/m/n/10 w
+.....\kern-0.27779
+.....\OT1/cmr/m/n/10 o
+.....\OT1/cmr/m/n/10 r
+.....\OT1/cmr/m/n/10 l
+.....\OT1/cmr/m/n/10 d
+.....\special{color pop}
+....\glue 0.0 plus 1.0fil minus 1.0fil
+...\special{ps:grestore}
+..\glue 0.0 plus 1.0fil minus 1.0fil
+
+! OK.
+<argument> \g_tmpa_coffin
+
+l.238   }
+
+
+Size of coffin \l_tmpa_coffin:
+> ht = 6.94444pt
+> dp = 0.0pt
+> wd = 50.02786pt
+Poles of coffin \l_tmpa_coffin:
+>  l  =>  {0pt}{0pt}{0pt}{1000pt}
+>  hc  =>  {25.01393pt}{0pt}{0pt}{1000pt}
+>  r  =>  {50.02786pt}{0pt}{0pt}{1000pt}
+>  b  =>  {0pt}{0.0pt}{1000pt}{0pt}
+>  vc  =>  {0pt}{3.47223pt}{1000pt}{0pt}
+>  t  =>  {0pt}{6.94444pt}{1000pt}{0pt}
+>  B  =>  {0pt}{0pt}{1000pt}{0pt}
+>  H  =>  {0pt}{0pt}{1000pt}{0pt}
+>  T  =>  {0pt}{0pt}{1000pt}{0pt}.
+<recently read> }
+
+l.238   }
+
+
+Size of coffin \g_tmpa_coffin:
+> ht = 56.9055pt
+> dp = 0.0pt
+> wd = 28.45274pt
+Poles of coffin \g_tmpa_coffin:
+>  l  =>  {0.0pt}{0.0pt}{0pt}{1000pt}
+>  hc  =>  {14.22638pt}{0.0pt}{0pt}{1000pt}
+>  r  =>  {28.45274pt}{0.0pt}{0pt}{1000pt}
+>  b  =>  {0.0pt}{0.0pt}{1000pt}{0pt}
+>  vc  =>  {0.0pt}{28.45282pt}{1000pt}{0pt}
+>  t  =>  {0.0pt}{56.9055pt}{1000pt}{0pt}
+>  B  =>  {0.0pt}{0.0pt}{1000pt}{0pt}
+>  H  =>  {0.0pt}{0.0pt}{1000pt}{0pt}
+>  T  =>  {0.0pt}{0.0pt}{1000pt}{0pt}.
+<recently read> }
+
+l.238   }
+
+
+============================================================
+
+============================================================
+TEST 10: Complex poles
+============================================================
+OMIT
+TIMO
+> \box13=
+\hbox(155.46875+0.0)x155.46873
+.\hbox(155.46875+0.0)x155.46873
+..\hbox(155.46875+0.0)x155.46873
+...\hbox(155.46875+0.0)x155.46873
+....\hbox(155.46875+0.0)x155.46873
+.....\hbox(155.46875+0.0)x155.46873
+......\hbox(155.46875+0.0)x155.46873
+.......\hbox(155.46875+0.0)x155.46873
+........\hbox(155.46875+0.0)x155.46873
+.........\hbox(155.46875+0.0)x155.46873
+..........\hbox(155.46875+0.0)x155.46873
+...........\hbox(155.46875+0.0)x155.46873
+............\hbox(155.46875+0.0)x155.46873
+.............\hbox(155.46875+0.0)x155.46873
+..............\hbox(155.46875+0.0)x155.46873
+...............\hbox(155.46875+0.0)x155.46873
+................\hbox(155.46875+0.0)x155.46873
+.................\hbox(155.46875+0.0)x155.46873
+..................\hbox(155.46875+0.0)x155.46873
+...................\hbox(155.46875+0.0)x155.46873
+....................\hbox(155.46875+0.0)x155.46873
+.....................\hbox(155.46875+0.0)x155.46873
+......................\hbox(155.46875+0.0)x155.46873
+.......................\hbox(155.46875+0.0)x155.46873
+........................\hbox(155.46875+0.0)x155.46873
+.........................\hbox(155.46875+0.0)x155.46873
+..........................\hbox(155.46875+0.0)x155.46873
+...........................\hbox(155.46875+0.0)x155.46873
+............................\hbox(155.46875+0.0)x155.46873
+.............................\hbox(155.46875+0.0)x155.46873
+..............................\hbox(155.46875+0.0)x155.46873
+...............................\hbox(155.46875+0.0)x155.46873
+................................\hbox(155.46875+0.0)x155.46873
+.................................\hbox(155.46875+0.0)x155.46873
+..................................\hbox(155.46875+0.0)x155.46873
+...................................\hbox(155.46875+0.0)x155.46873
+....................................\hbox(155.46875+0.0)x155.46873
+.....................................\hbox(155.46875+0.0)x155.46873
+......................................\hbox(155.46875+0.0)x155.46873
+.......................................\hbox(155.46875+0.0)x155.46873
+........................................\hbox(155.46875+0.0)x155.46873
+.........................................\kern 0.0
+.........................................\hbox(155.46875+0.0)x155.46873
+..........................................\hbox(155.46875+0.0)x155.46873
+...........................................\kern 56.9055
+...........................................\hbox(113.81102+0.0)x113.81102
+............................................\special{ps:gsave}
+............................................\special{ps::[begin]}
+............................................\special{ps::currentpoint}
+............................................\special{ps::currentpoint translate}
+............................................\special{ps::-30 rotate}
+............................................\special{ps::neg exch neg exch translate}
+............................................\special{ps::[end]}
+............................................\hbox(113.81102+0.0)x113.81102
+.............................................\hbox(113.81102+0.0)x113.81102
+..............................................\special{color push gray 0}
+..............................................\special{ps:SDict begin /color.sc {} def end}
+..............................................\hbox(113.81102+0.0)x113.81102
+...............................................\rule(113.81102+0.0)x113.81102
+..............................................\special{color pop}
+............................................\special{ps:grestore}
+.......................................\kern -155.46873
+.......................................\kern 56.4055
+.......................................\hbox(1.0+0.0)x1.0, shifted 0.5
+........................................\special{color push gray 0}
+........................................\special{ps:SDict begin /color.sc {} def end}
+........................................\special{color push rgb 0.0 0.0 1.0}
+........................................\special{ps:SDict begin /color.sc {} def end}
+........................................\hbox(1.0+0.0)x1.0
+.........................................\rule(1.0+*)x1.0
+........................................\special{color pop}
+........................................\special{color pop}
+......................................\kern -155.46873
+......................................\kern 45.28735
+......................................\hbox(3.75+1.25)x9.61815, shifted 5.75
+.......................................\special{color push gray 0}
+.......................................\special{ps:SDict begin /color.sc {} def end}
+.......................................\special{color push rgb 0.0 0.0 1.0}
+.......................................\special{ps:SDict begin /color.sc {} def end}
+.......................................\OT1/cmss/m/n/5 (
+.......................................\OT1/cmss/m/n/5 l
+.......................................\OT1/cmss/m/n/5 ,
+.......................................\OT1/cmss/m/n/5 b
+.......................................\OT1/cmss/m/n/5 )
+.......................................\special{color pop}
+.......................................\special{color pop}
+.....................................\kern -155.46873
+.....................................\kern 27.95274
+.....................................\hbox(1.0+0.0)x1.0, shifted -48.78163
+......................................\special{color push gray 0}
+......................................\special{ps:SDict begin /color.sc {} def end}
+......................................\special{color push rgb 0.0 0.0 1.0}
+......................................\special{ps:SDict begin /color.sc {} def end}
+......................................\hbox(1.0+0.0)x1.0
+.......................................\rule(1.0+*)x1.0
+......................................\special{color pop}
+......................................\special{color pop}
+....................................\kern -155.46873
+....................................\kern 14.7686
+....................................\hbox(3.75+1.25)x11.68414, shifted -48.03163
+.....................................\special{color push gray 0}
+.....................................\special{ps:SDict begin /color.sc {} def end}
+.....................................\special{color push rgb 0.0 0.0 1.0}
+.....................................\special{ps:SDict begin /color.sc {} def end}
+.....................................\OT1/cmss/m/n/5 (
+.....................................\OT1/cmss/m/n/5 l
+.....................................\OT1/cmss/m/n/5 ,
+.....................................\OT1/cmss/m/n/5 v
+.....................................\OT1/cmss/m/n/5 c
+.....................................\OT1/cmss/m/n/5 )
+.....................................\special{color pop}
+.....................................\special{color pop}
+...................................\kern -155.46873
+...................................\kern -0.5
+...................................\hbox(1.0+0.0)x1.0, shifted -98.06322
+....................................\special{color push gray 0}
+....................................\special{ps:SDict begin /color.sc {} def end}
+....................................\special{color push rgb 0.0 0.0 1.0}
+....................................\special{ps:SDict begin /color.sc {} def end}
+....................................\hbox(1.0+0.0)x1.0
+.....................................\rule(1.0+*)x1.0
+....................................\special{color pop}
+....................................\special{color pop}
+..................................\kern -155.46873
+..................................\kern -10.79349
+..................................\hbox(3.75+1.25)x8.79349, shifted -101.81322
+...................................\special{color push gray 0}
+...................................\special{ps:SDict begin /color.sc {} def end}
+...................................\special{color push rgb 0.0 0.0 1.0}
+...................................\special{ps:SDict begin /color.sc {} def end}
+...................................\OT1/cmss/m/n/5 (
+...................................\OT1/cmss/m/n/5 l
+...................................\OT1/cmss/m/n/5 ,
+...................................\OT1/cmss/m/n/5 t
+...................................\OT1/cmss/m/n/5 )
+...................................\special{color pop}
+...................................\special{color pop}
+.................................\kern -155.46873
+.................................\kern 56.4055
+.................................\hbox(1.0+0.0)x1.0, shifted 0.5
+..................................\special{color push gray 0}
+..................................\special{ps:SDict begin /color.sc {} def end}
+..................................\special{color push rgb 0.0 0.0 1.0}
+..................................\special{ps:SDict begin /color.sc {} def end}
+..................................\hbox(1.0+0.0)x1.0
+...................................\rule(1.0+*)x1.0
+..................................\special{color pop}
+..................................\special{color pop}
+................................\kern -155.46873
+................................\kern 44.2804
+................................\hbox(3.75+1.25)x10.6251, shifted -0.75
+.................................\special{color push gray 0}
+.................................\special{ps:SDict begin /color.sc {} def end}
+.................................\special{color push rgb 0.0 0.0 1.0}
+.................................\special{ps:SDict begin /color.sc {} def end}
+.................................\OT1/cmss/m/n/5 (
+.................................\OT1/cmss/m/n/5 l
+.................................\OT1/cmss/m/n/5 ,
+.................................\OT1/cmss/m/n/5 H
+.................................\OT1/cmss/m/n/5 )
+.................................\special{color pop}
+.................................\special{color pop}
+...............................\kern -155.46873
+...............................\kern 11.52554
+...............................\hbox(1.0+0.0)x1.0, shifted -77.23438
+................................\special{color push gray 0}
+................................\special{ps:SDict begin /color.sc {} def end}
+................................\special{color push rgb 0.0 0.0 1.0}
+................................\special{ps:SDict begin /color.sc {} def end}
+................................\hbox(1.0+0.0)x1.0
+.................................\rule(1.0+*)x1.0
+................................\special{color pop}
+................................\special{color pop}
+..............................\kern -155.46873
+..............................\kern 13.02554
+..............................\hbox(3.75+1.25)x9.323, shifted -76.48438
+...............................\special{color push gray 0}
+...............................\special{ps:SDict begin /color.sc {} def end}
+...............................\special{color push rgb 0.0 0.0 1.0}
+...............................\special{ps:SDict begin /color.sc {} def end}
+...............................\OT1/cmss/m/n/5 (
+...............................\OT1/cmss/m/n/5 l
+...............................\OT1/cmss/m/n/5 ,
+...............................\OT1/cmss/m/n/5 x
+...............................\OT1/cmss/m/n/5 )
+...............................\special{color pop}
+...............................\special{color pop}
+.............................\kern -155.46873
+.............................\kern 105.68712
+.............................\hbox(1.0+0.0)x1.0, shifted -27.95276
+..............................\special{color push gray 0}
+..............................\special{ps:SDict begin /color.sc {} def end}
+..............................\special{color push rgb 0.0 0.0 1.0}
+..............................\special{ps:SDict begin /color.sc {} def end}
+..............................\hbox(1.0+0.0)x1.0
+...............................\rule(1.0+*)x1.0
+..............................\special{color pop}
+..............................\special{color pop}
+............................\kern -155.46873
+............................\kern 99.45961
+............................\hbox(3.75+1.25)x13.45502, shifted -22.70276
+.............................\special{color push gray 0}
+.............................\special{ps:SDict begin /color.sc {} def end}
+.............................\special{color push rgb 0.0 0.0 1.0}
+.............................\special{ps:SDict begin /color.sc {} def end}
+.............................\OT1/cmss/m/n/5 (
+.............................\OT1/cmss/m/n/5 h
+.............................\OT1/cmss/m/n/5 c
+.............................\OT1/cmss/m/n/5 ,
+.............................\OT1/cmss/m/n/5 b
+.............................\OT1/cmss/m/n/5 )
+.............................\special{color pop}
+.............................\special{color pop}
+...........................\kern -155.46873
+...........................\kern 77.23436
+...........................\hbox(1.0+0.0)x1.0, shifted -77.23439
+............................\special{color push gray 0}
+............................\special{ps:SDict begin /color.sc {} def end}
+............................\special{color push rgb 0.0 0.0 1.0}
+............................\special{ps:SDict begin /color.sc {} def end}
+............................\hbox(1.0+0.0)x1.0
+.............................\rule(1.0+*)x1.0
+............................\special{color pop}
+............................\special{color pop}
+..........................\kern -155.46873
+..........................\kern 69.97386
+..........................\hbox(3.75+1.25)x15.52101, shifted -76.48439
+...........................\special{color push gray 0}
+...........................\special{ps:SDict begin /color.sc {} def end}
+...........................\special{color push rgb 0.0 0.0 1.0}
+...........................\special{ps:SDict begin /color.sc {} def end}
+...........................\OT1/cmss/m/n/5 (
+...........................\OT1/cmss/m/n/5 h
+...........................\OT1/cmss/m/n/5 c
+...........................\OT1/cmss/m/n/5 ,
+...........................\OT1/cmss/m/n/5 v
+...........................\OT1/cmss/m/n/5 c
+...........................\OT1/cmss/m/n/5 )
+...........................\special{color pop}
+...........................\special{color pop}
+.........................\kern -155.46873
+.........................\kern 48.78162
+.........................\hbox(1.0+0.0)x1.0, shifted -126.51598
+..........................\special{color push gray 0}
+..........................\special{ps:SDict begin /color.sc {} def end}
+..........................\special{color push rgb 0.0 0.0 1.0}
+..........................\special{ps:SDict begin /color.sc {} def end}
+..........................\hbox(1.0+0.0)x1.0
+...........................\rule(1.0+*)x1.0
+..........................\special{color pop}
+..........................\special{color pop}
+........................\kern -155.46873
+........................\kern 42.96645
+........................\hbox(3.75+1.25)x12.63036, shifted -130.26598
+.........................\special{color push gray 0}
+.........................\special{ps:SDict begin /color.sc {} def end}
+.........................\special{color push rgb 0.0 0.0 1.0}
+.........................\special{ps:SDict begin /color.sc {} def end}
+.........................\OT1/cmss/m/n/5 (
+.........................\OT1/cmss/m/n/5 h
+.........................\OT1/cmss/m/n/5 c
+.........................\OT1/cmss/m/n/5 ,
+.........................\OT1/cmss/m/n/5 t
+.........................\OT1/cmss/m/n/5 )
+.........................\special{color pop}
+.........................\special{color pop}
+.......................\kern -155.46873
+.......................\kern 105.68712
+.......................\hbox(1.0+0.0)x1.0, shifted -27.95276
+........................\special{color push gray 0}
+........................\special{ps:SDict begin /color.sc {} def end}
+........................\special{color push rgb 0.0 0.0 1.0}
+........................\special{ps:SDict begin /color.sc {} def end}
+........................\hbox(1.0+0.0)x1.0
+.........................\rule(1.0+*)x1.0
+........................\special{color pop}
+........................\special{color pop}
+......................\kern -155.46873
+......................\kern 98.95613
+......................\hbox(3.75+1.25)x14.46198, shifted -29.20276
+.......................\special{color push gray 0}
+.......................\special{ps:SDict begin /color.sc {} def end}
+.......................\special{color push rgb 0.0 0.0 1.0}
+.......................\special{ps:SDict begin /color.sc {} def end}
+.......................\OT1/cmss/m/n/5 (
+.......................\OT1/cmss/m/n/5 h
+.......................\OT1/cmss/m/n/5 c
+.......................\OT1/cmss/m/n/5 ,
+.......................\OT1/cmss/m/n/5 H
+.......................\OT1/cmss/m/n/5 )
+.......................\special{color pop}
+.......................\special{color pop}
+.....................\kern -155.46873
+.....................\kern 77.23436
+.....................\hbox(1.0+0.0)x1.0, shifted -77.23439
+......................\special{color push gray 0}
+......................\special{ps:SDict begin /color.sc {} def end}
+......................\special{color push rgb 0.0 0.0 1.0}
+......................\special{ps:SDict begin /color.sc {} def end}
+......................\hbox(1.0+0.0)x1.0
+.......................\rule(1.0+*)x1.0
+......................\special{color pop}
+......................\special{color pop}
+....................\kern -155.46873
+....................\kern 78.73436
+....................\hbox(3.75+1.25)x13.15987, shifted -76.48439
+.....................\special{color push gray 0}
+.....................\special{ps:SDict begin /color.sc {} def end}
+.....................\special{color push rgb 0.0 0.0 1.0}
+.....................\special{ps:SDict begin /color.sc {} def end}
+.....................\OT1/cmss/m/n/5 (
+.....................\OT1/cmss/m/n/5 h
+.....................\OT1/cmss/m/n/5 c
+.....................\OT1/cmss/m/n/5 ,
+.....................\OT1/cmss/m/n/5 x
+.....................\OT1/cmss/m/n/5 )
+.....................\special{color pop}
+.....................\special{color pop}
+...................\kern -155.46873
+...................\kern 154.96873
+...................\hbox(1.0+0.0)x1.0, shifted -56.4055
+....................\special{color push gray 0}
+....................\special{ps:SDict begin /color.sc {} def end}
+....................\special{color push rgb 0.0 0.0 1.0}
+....................\special{ps:SDict begin /color.sc {} def end}
+....................\hbox(1.0+0.0)x1.0
+.....................\rule(1.0+*)x1.0
+....................\special{color pop}
+....................\special{color pop}
+..................\kern -155.46873
+..................\kern 157.46873
+..................\hbox(3.75+1.25)x10.16504, shifted -51.1555
+...................\special{color push gray 0}
+...................\special{ps:SDict begin /color.sc {} def end}
+...................\special{color push rgb 0.0 0.0 1.0}
+...................\special{ps:SDict begin /color.sc {} def end}
+...................\OT1/cmss/m/n/5 (
+...................\OT1/cmss/m/n/5 r
+...................\OT1/cmss/m/n/5 ,
+...................\OT1/cmss/m/n/5 b
+...................\OT1/cmss/m/n/5 )
+...................\special{color pop}
+...................\special{color pop}
+.................\kern -155.46873
+.................\kern 126.51598
+.................\hbox(1.0+0.0)x1.0, shifted -105.68713
+..................\special{color push gray 0}
+..................\special{ps:SDict begin /color.sc {} def end}
+..................\special{color push rgb 0.0 0.0 1.0}
+..................\special{ps:SDict begin /color.sc {} def end}
+..................\hbox(1.0+0.0)x1.0
+...................\rule(1.0+*)x1.0
+..................\special{color pop}
+..................\special{color pop}
+................\kern -155.46873
+................\kern 129.01598
+................\hbox(3.75+1.25)x12.23103, shifted -104.93713
+.................\special{color push gray 0}
+.................\special{ps:SDict begin /color.sc {} def end}
+.................\special{color push rgb 0.0 0.0 1.0}
+.................\special{ps:SDict begin /color.sc {} def end}
+.................\OT1/cmss/m/n/5 (
+.................\OT1/cmss/m/n/5 r
+.................\OT1/cmss/m/n/5 ,
+.................\OT1/cmss/m/n/5 v
+.................\OT1/cmss/m/n/5 c
+.................\OT1/cmss/m/n/5 )
+.................\special{color pop}
+.................\special{color pop}
+...............\kern -155.46873
+...............\kern 98.06323
+...............\hbox(1.0+0.0)x1.0, shifted -154.96872
+................\special{color push gray 0}
+................\special{ps:SDict begin /color.sc {} def end}
+................\special{color push rgb 0.0 0.0 1.0}
+................\special{ps:SDict begin /color.sc {} def end}
+................\hbox(1.0+0.0)x1.0
+.................\rule(1.0+*)x1.0
+................\special{color pop}
+................\special{color pop}
+..............\kern -155.46873
+..............\kern 100.56323
+..............\hbox(3.75+1.25)x9.34038, shifted -158.71872
+...............\special{color push gray 0}
+...............\special{ps:SDict begin /color.sc {} def end}
+...............\special{color push rgb 0.0 0.0 1.0}
+...............\special{ps:SDict begin /color.sc {} def end}
+...............\OT1/cmss/m/n/5 (
+...............\OT1/cmss/m/n/5 r
+...............\OT1/cmss/m/n/5 ,
+...............\OT1/cmss/m/n/5 t
+...............\OT1/cmss/m/n/5 )
+...............\special{color pop}
+...............\special{color pop}
+.............\kern -155.46873
+.............\kern 154.96873
+.............\hbox(1.0+0.0)x1.0, shifted -56.4055
+..............\special{color push gray 0}
+..............\special{ps:SDict begin /color.sc {} def end}
+..............\special{color push rgb 0.0 0.0 1.0}
+..............\special{ps:SDict begin /color.sc {} def end}
+..............\hbox(1.0+0.0)x1.0
+...............\rule(1.0+*)x1.0
+..............\special{color pop}
+..............\special{color pop}
+............\kern -155.46873
+............\kern 157.46873
+............\hbox(3.75+1.25)x11.172, shifted -57.6555
+.............\special{color push gray 0}
+.............\special{ps:SDict begin /color.sc {} def end}
+.............\special{color push rgb 0.0 0.0 1.0}
+.............\special{ps:SDict begin /color.sc {} def end}
+.............\OT1/cmss/m/n/5 (
+.............\OT1/cmss/m/n/5 r
+.............\OT1/cmss/m/n/5 ,
+.............\OT1/cmss/m/n/5 H
+.............\OT1/cmss/m/n/5 )
+.............\special{color pop}
+.............\special{color pop}
+...........\kern -155.46873
+...........\kern 142.94318
+...........\hbox(1.0+0.0)x1.0, shifted -77.23438
+............\special{color push gray 0}
+............\special{ps:SDict begin /color.sc {} def end}
+............\special{color push rgb 0.0 0.0 1.0}
+............\special{ps:SDict begin /color.sc {} def end}
+............\hbox(1.0+0.0)x1.0
+.............\rule(1.0+*)x1.0
+............\special{color pop}
+............\special{color pop}
+..........\kern -155.46873
+..........\kern 144.44318
+..........\hbox(3.75+1.25)x9.86989, shifted -76.48438
+...........\special{color push gray 0}
+...........\special{ps:SDict begin /color.sc {} def end}
+...........\special{color push rgb 0.0 0.0 1.0}
+...........\special{ps:SDict begin /color.sc {} def end}
+...........\OT1/cmss/m/n/5 (
+...........\OT1/cmss/m/n/5 r
+...........\OT1/cmss/m/n/5 ,
+...........\OT1/cmss/m/n/5 x
+...........\OT1/cmss/m/n/5 )
+...........\special{color pop}
+...........\special{color pop}
+.........\kern -155.46873
+.........\kern 191.0454
+.........\hbox(1.0+0.0)x1.0, shifted -77.23438
+..........\special{color push gray 0}
+..........\special{ps:SDict begin /color.sc {} def end}
+..........\special{color push rgb 0.0 0.0 1.0}
+..........\special{ps:SDict begin /color.sc {} def end}
+..........\hbox(1.0+0.0)x1.0
+...........\rule(1.0+*)x1.0
+..........\special{color pop}
+..........\special{color pop}
+........\kern -155.46873
+........\kern 192.5454
+........\hbox(3.75+1.25)x10.79872, shifted -76.48438
+.........\special{color push gray 0}
+.........\special{ps:SDict begin /color.sc {} def end}
+.........\special{color push rgb 0.0 0.0 1.0}
+.........\special{ps:SDict begin /color.sc {} def end}
+.........\OT1/cmss/m/n/5 (
+.........\OT1/cmss/m/n/5 b
+.........\OT1/cmss/m/n/5 ,
+.........\OT1/cmss/m/n/5 x
+.........\OT1/cmss/m/n/5 )
+.........\special{color pop}
+.........\special{color pop}
+.......\kern -155.46873
+.......\kern 77.23438
+.......\hbox(1.0+0.0)x1.0, shifted -77.23438
+........\special{color push gray 0}
+........\special{ps:SDict begin /color.sc {} def end}
+........\special{color push rgb 0.0 0.0 1.0}
+........\special{ps:SDict begin /color.sc {} def end}
+........\hbox(1.0+0.0)x1.0
+.........\rule(1.0+*)x1.0
+........\special{color pop}
+........\special{color pop}
+......\kern -155.46873
+......\kern 78.73438
+......\hbox(3.75+1.25)x12.86472, shifted -76.48438
+.......\special{color push gray 0}
+.......\special{ps:SDict begin /color.sc {} def end}
+.......\special{color push rgb 0.0 0.0 1.0}
+.......\special{ps:SDict begin /color.sc {} def end}
+.......\OT1/cmss/m/n/5 (
+.......\OT1/cmss/m/n/5 v
+.......\OT1/cmss/m/n/5 c
+.......\OT1/cmss/m/n/5 ,
+.......\OT1/cmss/m/n/5 x
+.......\OT1/cmss/m/n/5 )
+.......\special{color pop}
+.......\special{color pop}
+.....\kern -155.46873
+.....\kern -36.57664
+.....\hbox(1.0+0.0)x1.0, shifted -77.23438
+......\special{color push gray 0}
+......\special{ps:SDict begin /color.sc {} def end}
+......\special{color push rgb 0.0 0.0 1.0}
+......\special{ps:SDict begin /color.sc {} def end}
+......\hbox(1.0+0.0)x1.0
+.......\rule(1.0+*)x1.0
+......\special{color pop}
+......\special{color pop}
+....\kern -155.46873
+....\kern -35.07664
+....\hbox(3.75+1.25)x9.97406, shifted -76.48438
+.....\special{color push gray 0}
+.....\special{ps:SDict begin /color.sc {} def end}
+.....\special{color push rgb 0.0 0.0 1.0}
+.....\special{ps:SDict begin /color.sc {} def end}
+.....\OT1/cmss/m/n/5 (
+.....\OT1/cmss/m/n/5 t
+.....\OT1/cmss/m/n/5 ,
+.....\OT1/cmss/m/n/5 x
+.....\OT1/cmss/m/n/5 )
+.....\special{color pop}
+.....\special{color pop}
+...\kern -155.46873
+...\kern 191.0454
+...\hbox(1.0+0.0)x1.0, shifted -77.23438
+....\special{color push gray 0}
+....\special{ps:SDict begin /color.sc {} def end}
+....\special{color push rgb 0.0 0.0 1.0}
+....\special{ps:SDict begin /color.sc {} def end}
+....\hbox(1.0+0.0)x1.0
+.....\rule(1.0+*)x1.0
+....\special{color pop}
+....\special{color pop}
+..\kern -155.46873
+..\kern 192.5454
+..\hbox(3.75+1.25)x11.80568, shifted -76.48438
+...\special{color push gray 0}
+...\special{ps:SDict begin /color.sc {} def end}
+...\special{color push rgb 0.0 0.0 1.0}
+...\special{ps:SDict begin /color.sc {} def end}
+...\OT1/cmss/m/n/5 (
+...\OT1/cmss/m/n/5 H
+...\OT1/cmss/m/n/5 ,
+...\OT1/cmss/m/n/5 x
+...\OT1/cmss/m/n/5 )
+...\special{color pop}
+...\special{color pop}
+
+! OK.
+<argument> \l_tmpa_box
+
+l.251   }
+
+
+============================================================
+
+============================================================
+TEST 11: Lists in coffins
+============================================================
+OMIT
+TIMO
+> \box56=
+\vbox(42.94444+0.0)x164.4171
+.\penalty 0
+.\glue 0.0 plus 1.0
+.\glue 0.0
+.\glue(\parskip) 0.0
+.\glue(\parskip) 0.0
+.\hbox(6.94444+0.0)x164.4171, glue set 0.43098
+..\hbox(0.0+0.0)x0.0
+...\glue 0.0
+...\glue 0.0
+...\glue 0.0
+...\hbox(0.0+0.0)x0.0
+....\glue 0.0 plus 1.0fil minus 1.0fil
+....\hbox(0.0+0.0)x0.0
+.....\glue 0.0 plus 1.0fil minus 1.0fil
+...\glue 0.0
+..\penalty 0
+..\OT1/cmr/m/n/10 T
+..\OT1/cmr/m/n/10 h
+..\OT1/cmr/m/n/10 i
+..\OT1/cmr/m/n/10 s
+..\glue 3.33333 plus 1.66666 minus 1.11111
+..\OT1/cmr/m/n/10 i
+..\OT1/cmr/m/n/10 s
+..\glue 3.33333 plus 1.66666 minus 1.11111
+..\OT1/cmr/m/n/10 a
+..\glue 3.33333 plus 1.66666 minus 1.11111
+..\OT1/cmr/m/n/10 s
+..\OT1/cmr/m/n/10 e
+..\discretionary replacing 2
+...\OT1/cmr/m/n/10 n
+...\OT1/cmr/m/n/10 -
+..\OT1/cmr/m/n/10 n
+..\kern-0.27779
+..\OT1/cmr/m/n/10 t
+..\OT1/cmr/m/n/10 e
+..\OT1/cmr/m/n/10 n
+..\OT1/cmr/m/n/10 c
+..\OT1/cmr/m/n/10 e
+..\glue 3.33333 plus 1.66666 minus 1.11111
+..\OT1/cmr/m/n/10 w
+..\OT1/cmr/m/n/10 h
+..\OT1/cmr/m/n/10 i
+..\OT1/cmr/m/n/10 c
+..\kern-0.27779
+..\OT1/cmr/m/n/10 h
+..\glue 3.33333 plus 1.66666 minus 1.11111
+..\OT1/cmr/m/n/10 n
+..\OT1/cmr/m/n/10 e
+..\OT1/cmr/m/n/10 e
+..\OT1/cmr/m/n/10 d
+..\OT1/cmr/m/n/10 s
+..\glue 3.33333 plus 1.66666 minus 1.11111
+..\OT1/cmr/m/n/10 t
+..\OT1/cmr/m/n/10 o
+..\glue 3.33333 plus 1.66666 minus 1.11111
+..\OT1/cmr/m/n/10 b
+..\kern0.27779
+..\OT1/cmr/m/n/10 e
+..\glue(\rightskip) 0.0
+.\penalty 150
+.\glue(\baselineskip) 5.05556
+.\hbox(6.94444+1.94444)x164.4171, glue set 1.05336
+..\OT1/cmr/m/n/10 m
+..\OT1/cmr/m/n/10 o
+..\OT1/cmr/m/n/10 r
+..\OT1/cmr/m/n/10 e
+..\glue 3.33333 plus 1.66666 minus 1.11111
+..\OT1/cmr/m/n/10 t
+..\OT1/cmr/m/n/10 h
+..\OT1/cmr/m/n/10 a
+..\OT1/cmr/m/n/10 n
+..\glue 3.33333 plus 1.66666 minus 1.11111
+..\OT1/cmr/m/n/10 o
+..\OT1/cmr/m/n/10 n
+..\OT1/cmr/m/n/10 e
+..\OT1/cmr/m/n/10 -
+..\discretionary
+..\OT1/cmr/m/n/10 q
+..\OT1/cmr/m/n/10 u
+..\OT1/cmr/m/n/10 a
+..\OT1/cmr/m/n/10 r
+..\OT1/cmr/m/n/10 t
+..\OT1/cmr/m/n/10 e
+..\OT1/cmr/m/n/10 r
+..\glue 3.33333 plus 1.66666 minus 1.11111
+..\OT1/cmr/m/n/10 t
+..\OT1/cmr/m/n/10 h
+..\OT1/cmr/m/n/10 e
+..\glue 3.33333 plus 1.66666 minus 1.11111
+..\OT1/cmr/m/n/10 w
+..\OT1/cmr/m/n/10 i
+..\OT1/cmr/m/n/10 d
+..\OT1/cmr/m/n/10 t
+..\OT1/cmr/m/n/10 h
+..\glue 3.33333 plus 1.66666 minus 1.11111
+..\OT1/cmr/m/n/10 o
+..\OT1/cmr/m/n/10 f
+..\glue(\rightskip) 0.0
+.\glue(\baselineskip) 3.11111
+.\hbox(6.94444+1.94444)x164.4171, glue set 1.12003
+..\OT1/cmr/m/n/10 t
+..\OT1/cmr/m/n/10 h
+..\OT1/cmr/m/n/10 e
+..\glue 3.33333 plus 1.66666 minus 1.11111
+..\OT1/cmr/m/n/10 t
+..\OT1/cmr/m/n/10 e
+..\OT1/cmr/m/n/10 x
+..\OT1/cmr/m/n/10 t
+..\glue 3.33333 plus 1.66666 minus 1.11111
+..\OT1/cmr/m/n/10 b
+..\OT1/cmr/m/n/10 l
+..\OT1/cmr/m/n/10 o
+..\kern0.27779
+..\OT1/cmr/m/n/10 c
+..\kern-0.27779
+..\OT1/cmr/m/n/10 k
+..\glue 3.33333 plus 1.66666 minus 1.11111
+..\OT1/cmr/m/n/10 a
+..\OT1/cmr/m/n/10 n
+..\OT1/cmr/m/n/10 d
+..\glue 3.33333 plus 1.66666 minus 1.11111
+..\OT1/cmr/m/n/10 p
+..\OT1/cmr/m/n/10 r
+..\OT1/cmr/m/n/10 e
+..\OT1/cmr/m/n/10 f
+..\OT1/cmr/m/n/10 e
+..\OT1/cmr/m/n/10 r
+..\discretionary
+...\OT1/cmr/m/n/10 -
+..\OT1/cmr/m/n/10 a
+..\OT1/cmr/m/n/10 b
+..\OT1/cmr/m/n/10 l
+..\OT1/cmr/m/n/10 y
+..\glue 3.33333 plus 1.66666 minus 1.11111
+..\OT1/cmr/m/n/10 w
+..\OT1/cmr/m/n/10 i
+..\OT1/cmr/m/n/10 d
+..\OT1/cmr/m/n/10 e
+..\OT1/cmr/m/n/10 r
+..\glue(\rightskip) 0.0
+.\penalty 150
+.\glue(\baselineskip) 3.11111
+.\hbox(6.94444+0.0)x164.4171, glue set 67.75024fil
+..\OT1/cmr/m/n/10 t
+..\OT1/cmr/m/n/10 h
+..\OT1/cmr/m/n/10 a
+..\OT1/cmr/m/n/10 n
+..\glue 3.33333 plus 1.66666 minus 1.11111
+..\OT1/cmr/m/n/10 t
+..\OT1/cmr/m/n/10 h
+..\OT1/cmr/m/n/10 e
+..\glue 3.33333 plus 1.66666 minus 1.11111
+..\OT1/cmr/m/n/10 w
+..\OT1/cmr/m/n/10 h
+..\OT1/cmr/m/n/10 o
+..\OT1/cmr/m/n/10 l
+..\OT1/cmr/m/n/10 e
+..\glue 3.33333 plus 1.66666 minus 1.11111
+..\OT1/cmr/m/n/10 w
+..\OT1/cmr/m/n/10 i
+..\OT1/cmr/m/n/10 d
+..\OT1/cmr/m/n/10 t
+..\OT1/cmr/m/n/10 h
+..\OT1/cmr/m/n/10 .
+..\penalty 10000
+..\glue(\parfillskip) 0.0 plus 1.0fil
+..\glue(\rightskip) 0.0
+.\penalty 0
+.\glue 0.0
+
+! OK.
+<argument> \l_tmpa_coffin
+
+l.266   }
+
+
+============================================================
+
+============================================================
+TEST 12: Scopes
+============================================================
+Size of coffin \l_tmpa_coffin:
+> ht = 6.94444pt
+> dp = 0.0pt
+> wd = 22.50005pt
+Poles of coffin \l_tmpa_coffin:
+>  l  =>  {0pt}{0pt}{0pt}{1000pt}
+>  hc  =>  {11.25002pt}{0pt}{0pt}{1000pt}
+>  r  =>  {22.50005pt}{0pt}{0pt}{1000pt}
+>  b  =>  {0pt}{0.0pt}{1000pt}{0pt}
+>  vc  =>  {0pt}{3.47223pt}{1000pt}{0pt}
+>  t  =>  {0pt}{6.94444pt}{1000pt}{0pt}
+>  B  =>  {0pt}{0pt}{1000pt}{0pt}
+>  H  =>  {0pt}{0pt}{1000pt}{0pt}
+>  T  =>  {0pt}{0pt}{1000pt}{0pt}.
+> \box56=
+\hbox(6.94444+0.0)x22.50005
+.\special{color push gray 0}
+.\special{ps:SDict begin /color.sc {} def end}
+.\OT1/cmr/m/n/10 H
+.\OT1/cmr/m/n/10 e
+.\OT1/cmr/m/n/10 l
+.\OT1/cmr/m/n/10 l
+.\OT1/cmr/m/n/10 o
+.\special{color pop}
+
+! OK.
+<argument> \l_tmpa_coffin
+
+l.393   }
+
+
+Size of coffin \g_tmpa_coffin:
+> ht = 0.0pt
+> dp = 0.0pt
+> wd = 0.0pt
+Poles of coffin \g_tmpa_coffin:
+>  l  =>  {0pt}{0pt}{0pt}{1000pt}
+>  hc  =>  {0pt}{0pt}{0pt}{1000pt}
+>  r  =>  {0pt}{0pt}{0pt}{1000pt}
+>  b  =>  {0pt}{0pt}{1000pt}{0pt}
+>  vc  =>  {0pt}{0pt}{1000pt}{0pt}
+>  t  =>  {0pt}{0pt}{1000pt}{0pt}
+>  B  =>  {0pt}{0pt}{1000pt}{0pt}
+>  H  =>  {0pt}{0pt}{1000pt}{0pt}
+>  T  =>  {0pt}{0pt}{1000pt}{0pt}.
+> \box25=void
+
+! OK.
+<argument> \g_tmpa_coffin
+
+l.393   }
+
+
+Size of coffin \l_tmpa_coffin:
+> ht = 6.94444pt
+> dp = 0.0pt
+> wd = 22.50005pt
+Poles of coffin \l_tmpa_coffin:
+>  l  =>  {0pt}{0pt}{0pt}{1000pt}
+>  hc  =>  {11.25002pt}{0pt}{0pt}{1000pt}
+>  r  =>  {22.50005pt}{0pt}{0pt}{1000pt}
+>  b  =>  {0pt}{0.0pt}{1000pt}{0pt}
+>  vc  =>  {0pt}{3.47223pt}{1000pt}{0pt}
+>  t  =>  {0pt}{6.94444pt}{1000pt}{0pt}
+>  B  =>  {0pt}{0pt}{1000pt}{0pt}
+>  H  =>  {0pt}{0pt}{1000pt}{0pt}
+>  T  =>  {0pt}{0pt}{1000pt}{0pt}.
+> \box56=
+\hbox(6.94444+0.0)x22.50005
+.\special{color push gray 0}
+.\special{ps:SDict begin /color.sc {} def end}
+.\OT1/cmr/m/n/10 H
+.\OT1/cmr/m/n/10 e
+.\OT1/cmr/m/n/10 l
+.\OT1/cmr/m/n/10 l
+.\OT1/cmr/m/n/10 o
+.\special{color pop}
+
+! OK.
+<argument> \l_tmpa_coffin
+
+l.393   }
+
+
+Size of coffin \g_tmpa_coffin:
+> ht = 6.83331pt
+> dp = 1.94444pt
+> wd = 16.52782pt
+Poles of coffin \g_tmpa_coffin:
+>  l  =>  {0pt}{0pt}{0pt}{1000pt}
+>  hc  =>  {8.2639pt}{0pt}{0pt}{1000pt}
+>  r  =>  {16.52782pt}{0pt}{0pt}{1000pt}
+>  b  =>  {0pt}{-1.94444pt}{1000pt}{0pt}
+>  vc  =>  {0pt}{2.44444pt}{1000pt}{0pt}
+>  t  =>  {0pt}{6.83331pt}{1000pt}{0pt}
+>  B  =>  {0pt}{0pt}{1000pt}{0pt}
+>  H  =>  {0pt}{0pt}{1000pt}{0pt}
+>  T  =>  {0pt}{0pt}{1000pt}{0pt}.
+> \box25=
+\hbox(6.83331+1.94444)x16.52782
+.\special{color push gray 0}
+.\special{ps:SDict begin /color.sc {} def end}
+.\OT1/cmr/m/n/10 B
+.\OT1/cmr/m/n/10 y
+.\kern-0.27779
+.\OT1/cmr/m/n/10 e
+.\special{color pop}
+
+! OK.
+<argument> \g_tmpa_coffin
+
+l.393   }
+
+
+Size of coffin \l_tmpa_coffin:
+> ht = 6.94444pt
+> dp = 0.0pt
+> wd = 22.50005pt
+Poles of coffin \l_tmpa_coffin:
+>  l  =>  {0pt}{0pt}{0pt}{1000pt}
+>  hc  =>  {11.25002pt}{0pt}{0pt}{1000pt}
+>  r  =>  {22.50005pt}{0pt}{0pt}{1000pt}
+>  b  =>  {0pt}{0.0pt}{1000pt}{0pt}
+>  vc  =>  {0pt}{3.47223pt}{1000pt}{0pt}
+>  t  =>  {0pt}{6.94444pt}{1000pt}{0pt}
+>  B  =>  {0pt}{0pt}{1000pt}{0pt}
+>  H  =>  {0pt}{0pt}{1000pt}{0pt}
+>  T  =>  {0pt}{0pt}{1000pt}{0pt}.
+> \box56=
+\hbox(6.94444+0.0)x22.50005
+.\special{color push gray 0}
+.\special{ps:SDict begin /color.sc {} def end}
+.\OT1/cmr/m/n/10 H
+.\OT1/cmr/m/n/10 e
+.\OT1/cmr/m/n/10 l
+.\OT1/cmr/m/n/10 l
+.\OT1/cmr/m/n/10 o
+.\special{color pop}
+
+! OK.
+<argument> \l_tmpa_coffin
+
+l.393   }
+
+
+Size of coffin \g_tmpa_coffin:
+> ht = 6.94444pt
+> dp = 0.0pt
+> wd = 22.50005pt
+Poles of coffin \g_tmpa_coffin:
+>  l  =>  {0pt}{0pt}{0pt}{1000pt}
+>  hc  =>  {11.25002pt}{0pt}{0pt}{1000pt}
+>  r  =>  {22.50005pt}{0pt}{0pt}{1000pt}
+>  b  =>  {0pt}{0.0pt}{1000pt}{0pt}
+>  vc  =>  {0pt}{3.47223pt}{1000pt}{0pt}
+>  t  =>  {0pt}{6.94444pt}{1000pt}{0pt}
+>  B  =>  {0pt}{0pt}{1000pt}{0pt}
+>  H  =>  {0pt}{0pt}{1000pt}{0pt}
+>  T  =>  {0pt}{0pt}{1000pt}{0pt}.
+> \box25=
+\hbox(6.94444+0.0)x22.50005
+.\special{color push gray 0}
+.\special{ps:SDict begin /color.sc {} def end}
+.\OT1/cmr/m/n/10 H
+.\OT1/cmr/m/n/10 e
+.\OT1/cmr/m/n/10 l
+.\OT1/cmr/m/n/10 l
+.\OT1/cmr/m/n/10 o
+.\special{color pop}
+
+! OK.
+<argument> \g_tmpa_coffin
+
+l.393   }
+
+
+Size of coffin \l_tmpa_coffin:
+> ht = 6.94444pt
+> dp = 0.0pt
+> wd = 22.50005pt
+Poles of coffin \l_tmpa_coffin:
+>  l  =>  {0pt}{0pt}{0pt}{1000pt}
+>  hc  =>  {11.25002pt}{0pt}{0pt}{1000pt}
+>  r  =>  {22.50005pt}{0pt}{0pt}{1000pt}
+>  b  =>  {0pt}{0.0pt}{1000pt}{0pt}
+>  vc  =>  {0pt}{3.47223pt}{1000pt}{0pt}
+>  t  =>  {0pt}{6.94444pt}{1000pt}{0pt}
+>  B  =>  {0pt}{0pt}{1000pt}{0pt}
+>  H  =>  {0pt}{0pt}{1000pt}{0pt}
+>  T  =>  {0pt}{0pt}{1000pt}{0pt}.
+> \box56=
+\hbox(6.94444+0.0)x22.50005
+.\special{color push gray 0}
+.\special{ps:SDict begin /color.sc {} def end}
+.\OT1/cmr/m/n/10 H
+.\OT1/cmr/m/n/10 e
+.\OT1/cmr/m/n/10 l
+.\OT1/cmr/m/n/10 l
+.\OT1/cmr/m/n/10 o
+.\special{color pop}
+
+! OK.
+<argument> \l_tmpa_coffin
+
+l.393   }
+
+
+Size of coffin \g_tmpa_coffin:
+> ht = 6.94444pt
+> dp = 0.0pt
+> wd = 22.50005pt
+Poles of coffin \g_tmpa_coffin:
+>  l  =>  {0pt}{0pt}{0pt}{1000pt}
+>  hc  =>  {11.25002pt}{0pt}{0pt}{1000pt}
+>  r  =>  {22.50005pt}{0pt}{0pt}{1000pt}
+>  b  =>  {0pt}{0.0pt}{1000pt}{0pt}
+>  vc  =>  {0pt}{3.47223pt}{1000pt}{0pt}
+>  t  =>  {0pt}{6.94444pt}{1000pt}{0pt}
+>  B  =>  {0pt}{0pt}{1000pt}{0pt}
+>  H  =>  {0pt}{0pt}{1000pt}{0pt}
+>  T  =>  {0pt}{0pt}{1000pt}{0pt}.
+> \box25=
+\hbox(6.94444+0.0)x22.50005
+.\special{color push gray 0}
+.\special{ps:SDict begin /color.sc {} def end}
+.\OT1/cmr/m/n/10 H
+.\OT1/cmr/m/n/10 e
+.\OT1/cmr/m/n/10 l
+.\OT1/cmr/m/n/10 l
+.\OT1/cmr/m/n/10 o
+.\special{color pop}
+
+! OK.
+<argument> \g_tmpa_coffin
+
+l.393   }
+
+
+Size of coffin \l_tmpa_coffin:
+> ht = 6.94444pt
+> dp = 0.0pt
+> wd = 22.50005pt
+Poles of coffin \l_tmpa_coffin:
+>  l  =>  {0pt}{0pt}{0pt}{1000pt}
+>  hc  =>  {11.25002pt}{0pt}{0pt}{1000pt}
+>  r  =>  {22.50005pt}{0pt}{0pt}{1000pt}
+>  b  =>  {0pt}{0.0pt}{1000pt}{0pt}
+>  vc  =>  {0pt}{3.47223pt}{1000pt}{0pt}
+>  t  =>  {0pt}{6.94444pt}{1000pt}{0pt}
+>  B  =>  {0pt}{0pt}{1000pt}{0pt}
+>  H  =>  {0pt}{0pt}{1000pt}{0pt}
+>  T  =>  {0pt}{0pt}{1000pt}{0pt}.
+> \box56=
+\hbox(6.94444+0.0)x22.50005
+.\special{color push gray 0}
+.\special{ps:SDict begin /color.sc {} def end}
+.\OT1/cmr/m/n/10 H
+.\OT1/cmr/m/n/10 e
+.\OT1/cmr/m/n/10 l
+.\OT1/cmr/m/n/10 l
+.\OT1/cmr/m/n/10 o
+.\special{color pop}
+
+! OK.
+<argument> \l_tmpa_coffin
+
+l.393   }
+
+
+Size of coffin \g_tmpa_coffin:
+> ht = 6.83331pt
+> dp = 1.94444pt
+> wd = 16.52782pt
+Poles of coffin \g_tmpa_coffin:
+>  l  =>  {0pt}{0pt}{0pt}{1000pt}
+>  hc  =>  {8.2639pt}{0pt}{0pt}{1000pt}
+>  r  =>  {16.52782pt}{0pt}{0pt}{1000pt}
+>  b  =>  {0pt}{-1.94444pt}{1000pt}{0pt}
+>  vc  =>  {0pt}{2.44444pt}{1000pt}{0pt}
+>  t  =>  {0pt}{6.83331pt}{1000pt}{0pt}
+>  B  =>  {0pt}{0pt}{1000pt}{0pt}
+>  H  =>  {0pt}{0pt}{1000pt}{0pt}
+>  T  =>  {0pt}{0pt}{1000pt}{0pt}.
+> \box25=
+\hbox(6.83331+1.94444)x16.52782
+.\special{color push gray 0}
+.\special{ps:SDict begin /color.sc {} def end}
+.\OT1/cmr/m/n/10 B
+.\OT1/cmr/m/n/10 y
+.\kern-0.27779
+.\OT1/cmr/m/n/10 e
+.\special{color pop}
+
+! OK.
+<argument> \g_tmpa_coffin
+
+l.393   }
+
+
+Size of coffin \l_tmpa_coffin:
+> ht = 6.94444pt
+> dp = 0.0pt
+> wd = 22.50005pt
+Poles of coffin \l_tmpa_coffin:
+>  l  =>  {0pt}{0pt}{0pt}{1000pt}
+>  hc  =>  {11.25002pt}{0pt}{0pt}{1000pt}
+>  r  =>  {22.50005pt}{0pt}{0pt}{1000pt}
+>  b  =>  {0pt}{0.0pt}{1000pt}{0pt}
+>  vc  =>  {0pt}{3.47223pt}{1000pt}{0pt}
+>  t  =>  {0pt}{6.94444pt}{1000pt}{0pt}
+>  B  =>  {0pt}{0pt}{1000pt}{0pt}
+>  H  =>  {0pt}{0pt}{1000pt}{0pt}
+>  T  =>  {0pt}{0pt}{1000pt}{0pt}.
+> \box56=
+\hbox(6.94444+0.0)x22.50005
+.\special{color push gray 0}
+.\special{ps:SDict begin /color.sc {} def end}
+.\OT1/cmr/m/n/10 H
+.\OT1/cmr/m/n/10 e
+.\OT1/cmr/m/n/10 l
+.\OT1/cmr/m/n/10 l
+.\OT1/cmr/m/n/10 o
+.\special{color pop}
+
+! OK.
+<argument> \l_tmpa_coffin
+
+l.393   }
+
+
+Size of coffin \g_tmpa_coffin:
+> ht = 6.94444pt
+> dp = 0.0pt
+> wd = 142.26378pt
+Poles of coffin \g_tmpa_coffin:
+>  l  =>  {0pt}{0pt}{0pt}{1000pt}
+>  hc  =>  {71.13188pt}{0pt}{0pt}{1000pt}
+>  r  =>  {142.26378pt}{0pt}{0pt}{1000pt}
+>  b  =>  {0pt}{0.0pt}{1000pt}{0pt}
+>  vc  =>  {0pt}{3.47223pt}{1000pt}{0pt}
+>  t  =>  {0pt}{6.94444pt}{1000pt}{0pt}
+>  B  =>  {0pt}{0pt}{1000pt}{0pt}
+>  H  =>  {0pt}{0pt}{1000pt}{0pt}
+>  T  =>  {0pt}{0.0pt}{1000pt}{0pt}.
+> \box25=
+\vbox(6.94444+0.0)x142.26378
+.\hbox(6.94444+0.0)x142.26378, glue set 99.76373fil
+..\hbox(0.0+0.0)x20.0
+..\OT1/cmr/m/n/10 H
+..\OT1/cmr/m/n/10 e
+..\OT1/cmr/m/n/10 l
+..\OT1/cmr/m/n/10 l
+..\OT1/cmr/m/n/10 o
+..\penalty 10000
+..\glue(\parfillskip) 0.0 plus 1.0fil
+..\glue(\rightskip) 0.0
+
+! OK.
+<argument> \g_tmpa_coffin
+
+l.393   }
+
+
+Size of coffin \l_tmpa_coffin:
+> ht = 6.94444pt
+> dp = 0.0pt
+> wd = 22.50005pt
+Poles of coffin \l_tmpa_coffin:
+>  l  =>  {0pt}{0pt}{0pt}{1000pt}
+>  hc  =>  {11.25002pt}{0pt}{0pt}{1000pt}
+>  r  =>  {22.50005pt}{0pt}{0pt}{1000pt}
+>  b  =>  {0pt}{0.0pt}{1000pt}{0pt}
+>  vc  =>  {0pt}{3.47223pt}{1000pt}{0pt}
+>  t  =>  {0pt}{6.94444pt}{1000pt}{0pt}
+>  B  =>  {0pt}{0pt}{1000pt}{0pt}
+>  H  =>  {0pt}{0pt}{1000pt}{0pt}
+>  T  =>  {0pt}{0pt}{1000pt}{0pt}.
+> \box56=
+\hbox(6.94444+0.0)x22.50005
+.\special{color push gray 0}
+.\special{ps:SDict begin /color.sc {} def end}
+.\OT1/cmr/m/n/10 H
+.\OT1/cmr/m/n/10 e
+.\OT1/cmr/m/n/10 l
+.\OT1/cmr/m/n/10 l
+.\OT1/cmr/m/n/10 o
+.\special{color pop}
+
+! OK.
+<argument> \l_tmpa_coffin
+
+l.393   }
+
+
+Size of coffin \g_tmpa_coffin:
+> ht = 6.83331pt
+> dp = 1.94444pt
+> wd = 142.26378pt
+Poles of coffin \g_tmpa_coffin:
+>  l  =>  {0pt}{0pt}{0pt}{1000pt}
+>  hc  =>  {71.13188pt}{0pt}{0pt}{1000pt}
+>  r  =>  {142.26378pt}{0pt}{0pt}{1000pt}
+>  b  =>  {0pt}{-1.94444pt}{1000pt}{0pt}
+>  vc  =>  {0pt}{2.44444pt}{1000pt}{0pt}
+>  t  =>  {0pt}{6.83331pt}{1000pt}{0pt}
+>  B  =>  {0pt}{0pt}{1000pt}{0pt}
+>  H  =>  {0pt}{0pt}{1000pt}{0pt}
+>  T  =>  {0pt}{0.0pt}{1000pt}{0pt}.
+> \box25=
+\vbox(6.83331+1.94444)x142.26378
+.\hbox(6.83331+1.94444)x142.26378, glue set 105.73596fil
+..\hbox(0.0+0.0)x20.0
+..\OT1/cmr/m/n/10 B
+..\OT1/cmr/m/n/10 y
+..\kern-0.27779
+..\OT1/cmr/m/n/10 e
+..\penalty 10000
+..\glue(\parfillskip) 0.0 plus 1.0fil
+..\glue(\rightskip) 0.0
+
+! OK.
+<argument> \g_tmpa_coffin
+
+l.393   }
+
+
+Size of coffin \l_tmpa_coffin:
+> ht = 6.94444pt
+> dp = 0.0pt
+> wd = 22.50005pt
+Poles of coffin \l_tmpa_coffin:
+>  l  =>  {0pt}{0pt}{0pt}{1000pt}
+>  hc  =>  {11.25002pt}{0pt}{0pt}{1000pt}
+>  r  =>  {22.50005pt}{0pt}{0pt}{1000pt}
+>  b  =>  {0pt}{0.0pt}{1000pt}{0pt}
+>  vc  =>  {0pt}{3.47223pt}{1000pt}{0pt}
+>  t  =>  {0pt}{6.94444pt}{1000pt}{0pt}
+>  B  =>  {0pt}{0pt}{1000pt}{0pt}
+>  H  =>  {0pt}{0pt}{1000pt}{0pt}
+>  T  =>  {0pt}{0pt}{1000pt}{0pt}.
+> \box56=
+\hbox(6.94444+0.0)x22.50005
+.\special{color push gray 0}
+.\special{ps:SDict begin /color.sc {} def end}
+.\OT1/cmr/m/n/10 H
+.\OT1/cmr/m/n/10 e
+.\OT1/cmr/m/n/10 l
+.\OT1/cmr/m/n/10 l
+.\OT1/cmr/m/n/10 o
+.\special{color pop}
+
+! OK.
+<argument> \l_tmpa_coffin
+
+l.393   }
+
+
+Size of coffin \g_tmpa_coffin:
+> ht = 6.83331pt
+> dp = 1.94444pt
+> wd = 142.26378pt
+Poles of coffin \g_tmpa_coffin:
+>  l  =>  {0pt}{0pt}{0pt}{1000pt}
+>  hc  =>  {71.13188pt}{0pt}{0pt}{1000pt}
+>  r  =>  {142.26378pt}{0pt}{0pt}{1000pt}
+>  b  =>  {0pt}{-1.94444pt}{1000pt}{0pt}
+>  vc  =>  {0pt}{2.44444pt}{1000pt}{0pt}
+>  t  =>  {0pt}{6.83331pt}{1000pt}{0pt}
+>  B  =>  {0pt}{0pt}{1000pt}{0pt}
+>  H  =>  {0pt}{0pt}{1000pt}{0pt}
+>  T  =>  {0pt}{0.0pt}{1000pt}{0pt}
+>  test-H  =>  {0pt}{3.41666pt}{1000pt}{0pt}.
+> \box25=
+\vbox(6.83331+1.94444)x142.26378
+.\hbox(6.83331+1.94444)x142.26378, glue set 105.73596fil
+..\hbox(0.0+0.0)x20.0
+..\OT1/cmr/m/n/10 B
+..\OT1/cmr/m/n/10 y
+..\kern-0.27779
+..\OT1/cmr/m/n/10 e
+..\penalty 10000
+..\glue(\parfillskip) 0.0 plus 1.0fil
+..\glue(\rightskip) 0.0
+
+! OK.
+<argument> \g_tmpa_coffin
+
+l.393   }
+
+
+Size of coffin \l_tmpa_coffin:
+> ht = 6.94444pt
+> dp = 0.0pt
+> wd = 22.50005pt
+Poles of coffin \l_tmpa_coffin:
+>  l  =>  {0pt}{0pt}{0pt}{1000pt}
+>  hc  =>  {11.25002pt}{0pt}{0pt}{1000pt}
+>  r  =>  {22.50005pt}{0pt}{0pt}{1000pt}
+>  b  =>  {0pt}{0.0pt}{1000pt}{0pt}
+>  vc  =>  {0pt}{3.47223pt}{1000pt}{0pt}
+>  t  =>  {0pt}{6.94444pt}{1000pt}{0pt}
+>  B  =>  {0pt}{0pt}{1000pt}{0pt}
+>  H  =>  {0pt}{0pt}{1000pt}{0pt}
+>  T  =>  {0pt}{0pt}{1000pt}{0pt}.
+> \box56=
+\hbox(6.94444+0.0)x22.50005
+.\special{color push gray 0}
+.\special{ps:SDict begin /color.sc {} def end}
+.\OT1/cmr/m/n/10 H
+.\OT1/cmr/m/n/10 e
+.\OT1/cmr/m/n/10 l
+.\OT1/cmr/m/n/10 l
+.\OT1/cmr/m/n/10 o
+.\special{color pop}
+
+! OK.
+<argument> \l_tmpa_coffin
+
+l.393   }
+
+
+Size of coffin \g_tmpa_coffin:
+> ht = 6.83331pt
+> dp = 1.94444pt
+> wd = 142.26378pt
+Poles of coffin \g_tmpa_coffin:
+>  l  =>  {0pt}{0pt}{0pt}{1000pt}
+>  hc  =>  {71.13188pt}{0pt}{0pt}{1000pt}
+>  r  =>  {142.26378pt}{0pt}{0pt}{1000pt}
+>  b  =>  {0pt}{-1.94444pt}{1000pt}{0pt}
+>  vc  =>  {0pt}{2.44444pt}{1000pt}{0pt}
+>  t  =>  {0pt}{6.83331pt}{1000pt}{0pt}
+>  B  =>  {0pt}{0pt}{1000pt}{0pt}
+>  H  =>  {0pt}{0pt}{1000pt}{0pt}
+>  T  =>  {0pt}{0.0pt}{1000pt}{0pt}
+>  test-H  =>  {0pt}{3.41666pt}{1000pt}{0pt}
+>  test-V  =>  {71.1319pt}{0pt}{0pt}{1000pt}.
+> \box25=
+\vbox(6.83331+1.94444)x142.26378
+.\hbox(6.83331+1.94444)x142.26378, glue set 105.73596fil
+..\hbox(0.0+0.0)x20.0
+..\OT1/cmr/m/n/10 B
+..\OT1/cmr/m/n/10 y
+..\kern-0.27779
+..\OT1/cmr/m/n/10 e
+..\penalty 10000
+..\glue(\parfillskip) 0.0 plus 1.0fil
+..\glue(\rightskip) 0.0
+
+! OK.
+<argument> \g_tmpa_coffin
+
+l.393   }
+
+
+Size of coffin \l_tmpa_coffin:
+> ht = 6.94444pt
+> dp = 0.0pt
+> wd = 22.50005pt
+Poles of coffin \l_tmpa_coffin:
+>  l  =>  {0pt}{0pt}{0pt}{1000pt}
+>  hc  =>  {11.25002pt}{0pt}{0pt}{1000pt}
+>  r  =>  {22.50005pt}{0pt}{0pt}{1000pt}
+>  b  =>  {0pt}{0.0pt}{1000pt}{0pt}
+>  vc  =>  {0pt}{3.47223pt}{1000pt}{0pt}
+>  t  =>  {0pt}{6.94444pt}{1000pt}{0pt}
+>  B  =>  {0pt}{0pt}{1000pt}{0pt}
+>  H  =>  {0pt}{0pt}{1000pt}{0pt}
+>  T  =>  {0pt}{0pt}{1000pt}{0pt}.
+> \box56=
+\hbox(6.94444+0.0)x22.50005
+.\special{color push gray 0}
+.\special{ps:SDict begin /color.sc {} def end}
+.\OT1/cmr/m/n/10 H
+.\OT1/cmr/m/n/10 e
+.\OT1/cmr/m/n/10 l
+.\OT1/cmr/m/n/10 l
+.\OT1/cmr/m/n/10 o
+.\special{color pop}
+
+! OK.
+<argument> \l_tmpa_coffin
+
+l.393   }
+
+
+Size of coffin \g_tmpa_coffin:
+> ht = 0.00002pt
+> dp = 0.0pt
+> wd = 0.00002pt
+Poles of coffin \g_tmpa_coffin:
+>  l  =>  {0.0pt}{0.0pt}{0pt}{1000pt}
+>  hc  =>  {0.0pt}{0.0pt}{0pt}{1000pt}
+>  r  =>  {0.00002pt}{0.0pt}{0pt}{1000pt}
+>  b  =>  {0.0pt}{0.0pt}{1000pt}{0pt}
+>  vc  =>  {0.0pt}{0.0pt}{1000pt}{0pt}
+>  t  =>  {0.0pt}{0.00002pt}{1000pt}{0pt}
+>  B  =>  {0.0pt}{0.0pt}{1000pt}{0pt}
+>  H  =>  {0.0pt}{0.0pt}{1000pt}{0pt}
+>  T  =>  {0.0pt}{0.0pt}{1000pt}{0pt}
+>  test-H  =>  {0.0pt}{0.0pt}{1000pt}{0pt}
+>  test-V  =>  {0.00002pt}{0.0pt}{0pt}{1000pt}.
+> \box25=
+\hbox(0.00002+0.0)x0.00002
+.\hbox(0.00002+0.0)x0.00002
+..\kern 0.0
+..\hbox(0.00002+0.0)x0.00002
+...\special{ps:gsave}
+...\special{ps::[begin]}
+...\special{ps::currentpoint}
+...\special{ps::currentpoint translate}
+...\special{ps::0 0 scale}
+...\special{ps::neg exch neg exch translate}
+...\special{ps::[end]}
+...\hbox(6.83331+1.94444)x0.0, glue set - 142.26378fil
+....\vbox(6.83331+1.94444)x142.26378
+.....\hbox(6.83331+1.94444)x142.26378, glue set 105.73596fil
+......\hbox(0.0+0.0)x20.0
+......\OT1/cmr/m/n/10 B
+......\OT1/cmr/m/n/10 y
+......\kern-0.27779
+......\OT1/cmr/m/n/10 e
+......\penalty 10000
+......\glue(\parfillskip) 0.0 plus 1.0fil
+......\glue(\rightskip) 0.0
+....\glue 0.0 plus 1.0fil minus 1.0fil
+...\special{ps:grestore}
+..\glue 0.0 plus 1.0fil minus 1.0fil
+
+! OK.
+<argument> \g_tmpa_coffin
+
+l.393   }
+
+
+Size of coffin \l_tmpa_coffin:
+> ht = 6.94444pt
+> dp = 0.0pt
+> wd = 22.50005pt
+Poles of coffin \l_tmpa_coffin:
+>  l  =>  {0pt}{0pt}{0pt}{1000pt}
+>  hc  =>  {11.25002pt}{0pt}{0pt}{1000pt}
+>  r  =>  {22.50005pt}{0pt}{0pt}{1000pt}
+>  b  =>  {0pt}{0.0pt}{1000pt}{0pt}
+>  vc  =>  {0pt}{3.47223pt}{1000pt}{0pt}
+>  t  =>  {0pt}{6.94444pt}{1000pt}{0pt}
+>  B  =>  {0pt}{0pt}{1000pt}{0pt}
+>  H  =>  {0pt}{0pt}{1000pt}{0pt}
+>  T  =>  {0pt}{0pt}{1000pt}{0pt}.
+> \box56=
+\hbox(6.94444+0.0)x22.50005
+.\special{color push gray 0}
+.\special{ps:SDict begin /color.sc {} def end}
+.\OT1/cmr/m/n/10 H
+.\OT1/cmr/m/n/10 e
+.\OT1/cmr/m/n/10 l
+.\OT1/cmr/m/n/10 l
+.\OT1/cmr/m/n/10 o
+.\special{color pop}
+
+! OK.
+<argument> \l_tmpa_coffin
+
+l.393   }
+
+
+Size of coffin \g_tmpa_coffin:
+> ht = 0.00002pt
+> dp = 0.0pt
+> wd = 0.00003pt
+Poles of coffin \g_tmpa_coffin:
+>  l  =>  {0.00002pt}{0.0pt}{-707.10678pt}{707.10678pt}
+>  hc  =>  {0.00002pt}{0.0pt}{-707.10678pt}{707.10678pt}
+>  r  =>  {0.00003pt}{0.00002pt}{-707.10678pt}{707.10678pt}
+>  b  =>  {0.00002pt}{0.0pt}{707.10678pt}{707.10678pt}
+>  vc  =>  {0.00002pt}{0.0pt}{707.10678pt}{707.10678pt}
+>  t  =>  {0.0pt}{0.00002pt}{707.10678pt}{707.10678pt}
+>  B  =>  {0.00002pt}{0.0pt}{707.10678pt}{707.10678pt}
+>  H  =>  {0.00002pt}{0.0pt}{707.10678pt}{707.10678pt}
+>  T  =>  {0.00002pt}{0.0pt}{707.10678pt}{707.10678pt}
+>  test-H  =>  {0.00002pt}{0.0pt}{707.10678pt}{707.10678pt}
+>  test-V  =>  {0.00003pt}{0.00002pt}{-707.10678pt}{707.10678pt}.
+> \box25=
+\hbox(0.00002+0.0)x0.00003
+.\hbox(0.00002+0.0)x0.00003
+..\kern 0.0
+..\hbox(0.00002+0.0)x0.00003
+...\hbox(0.00002+0.0)x0.00003
+....\kern 0.00002
+....\hbox(0.00002+0.0)x0.00002
+.....\special{ps:gsave}
+.....\special{ps::[begin]}
+.....\special{ps::currentpoint}
+.....\special{ps::currentpoint translate}
+.....\special{ps::-45 rotate}
+.....\special{ps::neg exch neg exch translate}
+.....\special{ps::[end]}
+.....\hbox(0.00002+0.0)x0.00002
+......\hbox(0.00002+0.0)x0.00002
+.......\hbox(0.00002+0.0)x0.00002
+........\kern 0.0
+........\hbox(0.00002+0.0)x0.00002
+.........\special{ps:gsave}
+.........\special{ps::[begin]}
+.........\special{ps::currentpoint}
+.........\special{ps::currentpoint translate}
+.........\special{ps::0 0 scale}
+.........\special{ps::neg exch neg exch translate}
+.........\special{ps::[end]}
+.........\hbox(6.83331+1.94444)x0.0, glue set - 142.26378fil
+..........\vbox(6.83331+1.94444)x142.26378
+...........\hbox(6.83331+1.94444)x142.26378, glue set 105.73596fil
+............\hbox(0.0+0.0)x20.0
+............\OT1/cmr/m/n/10 B
+............\OT1/cmr/m/n/10 y
+............\kern-0.27779
+............\OT1/cmr/m/n/10 e
+............\penalty 10000
+............\glue(\parfillskip) 0.0 plus 1.0fil
+............\glue(\rightskip) 0.0
+..........\glue 0.0 plus 1.0fil minus 1.0fil
+.........\special{ps:grestore}
+........\glue 0.0 plus 1.0fil minus 1.0fil
+.....\special{ps:grestore}
+
+! OK.
+<argument> \g_tmpa_coffin
+
+l.393   }
+
+
+Size of coffin \l_tmpa_coffin:
+> ht = 6.94444pt
+> dp = 0.0pt
+> wd = 22.50005pt
+Poles of coffin \l_tmpa_coffin:
+>  l  =>  {0pt}{0pt}{0pt}{1000pt}
+>  hc  =>  {11.25002pt}{0pt}{0pt}{1000pt}
+>  r  =>  {22.50005pt}{0pt}{0pt}{1000pt}
+>  b  =>  {0pt}{0.0pt}{1000pt}{0pt}
+>  vc  =>  {0pt}{3.47223pt}{1000pt}{0pt}
+>  t  =>  {0pt}{6.94444pt}{1000pt}{0pt}
+>  B  =>  {0pt}{0pt}{1000pt}{0pt}
+>  H  =>  {0pt}{0pt}{1000pt}{0pt}
+>  T  =>  {0pt}{0pt}{1000pt}{0pt}.
+> \box56=
+\hbox(6.94444+0.0)x22.50005
+.\special{color push gray 0}
+.\special{ps:SDict begin /color.sc {} def end}
+.\OT1/cmr/m/n/10 H
+.\OT1/cmr/m/n/10 e
+.\OT1/cmr/m/n/10 l
+.\OT1/cmr/m/n/10 l
+.\OT1/cmr/m/n/10 o
+.\special{color pop}
+
+! OK.
+<argument> \l_tmpa_coffin
+
+l.393   }
+
+
+Size of coffin \g_tmpa_coffin:
+> ht = 0.00003pt
+> dp = 0.0pt
+> wd = 0.00003pt
+Poles of coffin \g_tmpa_coffin:
+>  l  =>  {0.00002pt}{0.0pt}{-707.10678pt}{707.10678pt}
+>  hc  =>  {0.00002pt}{0.0pt}{-707.10678pt}{707.10678pt}
+>  r  =>  {0.0pt}{0.00003pt}{-707.10678pt}{707.10678pt}
+>  b  =>  {0.00002pt}{0.0pt}{707.10678pt}{707.10678pt}
+>  vc  =>  {0.00002pt}{0.0pt}{707.10678pt}{707.10678pt}
+>  t  =>  {0.00003pt}{0.00003pt}{707.10678pt}{707.10678pt}
+>  B  =>  {0.00002pt}{0.0pt}{707.10678pt}{707.10678pt}
+>  H  =>  {0.00002pt}{0.0pt}{707.10678pt}{707.10678pt}
+>  T  =>  {0.00002pt}{0.0pt}{707.10678pt}{707.10678pt}
+>  test-H  =>  {0.00002pt}{0.0pt}{707.10678pt}{707.10678pt}
+>  test-V  =>  {0.0pt}{0.00003pt}{-707.10678pt}{707.10678pt}.
+> \box25=
+\hbox(0.00003+0.0)x0.00003
+.\hbox(0.00003+0.0)x0.00003
+..\kern 0.00003
+..\hbox(0.00003+0.0)x0.0
+...\special{ps:gsave}
+...\special{ps::[begin]}
+...\special{ps::currentpoint}
+...\special{ps::currentpoint translate}
+...\special{ps::-1 2 scale}
+...\special{ps::neg exch neg exch translate}
+...\special{ps::[end]}
+...\hbox(0.00002+0.0)x0.0, glue set - 0.00003fil
+....\hbox(0.00002+0.0)x0.00003
+.....\hbox(0.00002+0.0)x0.00003
+......\kern 0.0
+......\hbox(0.00002+0.0)x0.00003
+.......\hbox(0.00002+0.0)x0.00003
+........\kern 0.00002
+........\hbox(0.00002+0.0)x0.00002
+.........\special{ps:gsave}
+.........\special{ps::[begin]}
+.........\special{ps::currentpoint}
+.........\special{ps::currentpoint translate}
+.........\special{ps::-45 rotate}
+.........\special{ps::neg exch neg exch translate}
+.........\special{ps::[end]}
+.........\hbox(0.00002+0.0)x0.00002
+..........\hbox(0.00002+0.0)x0.00002
+...........\hbox(0.00002+0.0)x0.00002
+............\kern 0.0
+............\hbox(0.00002+0.0)x0.00002
+.............\special{ps:gsave}
+.............\special{ps::[begin]}
+.............\special{ps::currentpoint}
+.............\special{ps::currentpoint translate}
+.............\special{ps::0 0 scale}
+.............\special{ps::neg exch neg exch translate}
+.............\special{ps::[end]}
+.............\hbox(6.83331+1.94444)x0.0, glue set - 142.26378fil
+..............\vbox(6.83331+1.94444)x142.26378
+...............\hbox(6.83331+1.94444)x142.26378, glue set 105.73596fil
+................\hbox(0.0+0.0)x20.0
+................\OT1/cmr/m/n/10 B
+................\OT1/cmr/m/n/10 y
+................\kern-0.27779
+................\OT1/cmr/m/n/10 e
+................\penalty 10000
+................\glue(\parfillskip) 0.0 plus 1.0fil
+................\glue(\rightskip) 0.0
+..............\glue 0.0 plus 1.0fil minus 1.0fil
+.............\special{ps:grestore}
+............\glue 0.0 plus 1.0fil minus 1.0fil
+.........\special{ps:grestore}
+....\glue 0.0 plus 1.0fil minus 1.0fil
+...\special{ps:grestore}
+..\glue 0.0 plus 1.0fil minus 1.0fil
+
+! OK.
+<argument> \g_tmpa_coffin
+
+l.393   }
+
+
+Size of coffin \l_tmpa_coffin:
+> ht = 6.83331pt
+> dp = 0.0pt
+> wd = 13.75003pt
+Poles of coffin \l_tmpa_coffin:
+>  l  =>  {0pt}{0pt}{0pt}{1000pt}
+>  hc  =>  {6.87502pt}{0pt}{0pt}{1000pt}
+>  r  =>  {13.75003pt}{0pt}{0pt}{1000pt}
+>  b  =>  {0pt}{0.0pt}{1000pt}{0pt}
+>  vc  =>  {0pt}{3.41666pt}{1000pt}{0pt}
+>  t  =>  {0pt}{6.83331pt}{1000pt}{0pt}
+>  B  =>  {0pt}{0pt}{1000pt}{0pt}
+>  H  =>  {0pt}{0pt}{1000pt}{0pt}
+>  T  =>  {0pt}{0pt}{1000pt}{0pt}.
+> \box56=
+\hbox(6.83331+0.0)x13.75003
+.\special{color push gray 0}
+.\special{ps:SDict begin /color.sc {} def end}
+.\OT1/cmr/m/n/10 L
+.\OT1/cmr/m/n/10 A
+.\special{color pop}
+
+! OK.
+<argument> \l_tmpa_coffin
+
+l.393   }
+
+
+Size of coffin \g_tmpa_coffin:
+> ht = 6.83331pt
+> dp = 0.0pt
+> wd = 15.34724pt
+Poles of coffin \g_tmpa_coffin:
+>  l  =>  {0pt}{0pt}{0pt}{1000pt}
+>  hc  =>  {7.67361pt}{0pt}{0pt}{1000pt}
+>  r  =>  {15.34724pt}{0pt}{0pt}{1000pt}
+>  b  =>  {0pt}{0.0pt}{1000pt}{0pt}
+>  vc  =>  {0pt}{3.41666pt}{1000pt}{0pt}
+>  t  =>  {0pt}{6.83331pt}{1000pt}{0pt}
+>  B  =>  {0pt}{-6.83331pt}{1000pt}{0pt}
+>  H  =>  {0pt}{0pt}{1000pt}{0pt}
+>  T  =>  {0pt}{0.0pt}{1000pt}{0pt}
+>  \g_tmpa_coffin -l  =>  {0.0pt}{0.0pt}{0pt}{1000pt}
+>  \g_tmpa_coffin -hc  =>  {7.67361pt}{0.0pt}{0pt}{1000pt}
+>  \g_tmpa_coffin -r  =>  {15.34724pt}{0.0pt}{0pt}{1000pt}
+>  \g_tmpa_coffin -b  =>  {0.0pt}{0.0pt}{1000pt}{0pt}
+>  \g_tmpa_coffin -vc  =>  {0.0pt}{3.41666pt}{1000pt}{0pt}
+>  \g_tmpa_coffin -t  =>  {0.0pt}{6.83331pt}{1000pt}{0pt}
+>  \g_tmpa_coffin -B  =>  {0.0pt}{0.0pt}{1000pt}{0pt}
+>  \g_tmpa_coffin -H  =>  {0.0pt}{0.0pt}{1000pt}{0pt}
+>  \g_tmpa_coffin -T  =>  {0.0pt}{0.0pt}{1000pt}{0pt}
+>  \g_tmpb_coffin -l  =>  {15.34724pt}{-6.83331pt}{0pt}{1000pt}
+>  \g_tmpb_coffin -hc  =>  {22.81253pt}{-6.83331pt}{0pt}{1000pt}
+>  \g_tmpb_coffin -r  =>  {30.27783pt}{-6.83331pt}{0pt}{1000pt}
+>  \g_tmpb_coffin -b  =>  {15.34724pt}{-6.83331pt}{1000pt}{0pt}
+>  \g_tmpb_coffin -vc  =>  {15.34724pt}{-3.41666pt}{1000pt}{0pt}
+>  \g_tmpb_coffin -t  =>  {15.34724pt}{0.0pt}{1000pt}{0pt}
+>  \g_tmpb_coffin -B  =>  {15.34724pt}{-6.83331pt}{1000pt}{0pt}
+>  \g_tmpb_coffin -H  =>  {15.34724pt}{-6.83331pt}{1000pt}{0pt}
+>  \g_tmpb_coffin -T  =>  {15.34724pt}{-6.83331pt}{1000pt}{0pt}.
+> \box25=
+\hbox(6.83331+0.0)x15.34724
+.\hbox(6.83331+0.0)x15.34724
+..\special{color push gray 0}
+..\special{ps:SDict begin /color.sc {} def end}
+..\OT1/cmr/m/n/10 G
+..\OT1/cmr/m/n/10 A
+..\special{color pop}
+.\kern -15.34724
+.\kern 15.34724
+.\hbox(6.83331+0.0)x14.93059, shifted 6.83331
+..\special{color push gray 0}
+..\special{ps:SDict begin /color.sc {} def end}
+..\OT1/cmr/m/n/10 G
+..\OT1/cmr/m/n/10 B
+..\special{color pop}
+
+! OK.
+<argument> \g_tmpa_coffin
+
+l.393   }
+
+
+Size of coffin \l_tmpa_coffin:
+> ht = 6.83331pt
+> dp = 0.0pt
+> wd = 13.75003pt
+Poles of coffin \l_tmpa_coffin:
+>  l  =>  {0pt}{0pt}{0pt}{1000pt}
+>  hc  =>  {6.87502pt}{0pt}{0pt}{1000pt}
+>  r  =>  {13.75003pt}{0pt}{0pt}{1000pt}
+>  b  =>  {0pt}{0.0pt}{1000pt}{0pt}
+>  vc  =>  {0pt}{3.41666pt}{1000pt}{0pt}
+>  t  =>  {0pt}{6.83331pt}{1000pt}{0pt}
+>  B  =>  {0pt}{0pt}{1000pt}{0pt}
+>  H  =>  {0pt}{0pt}{1000pt}{0pt}
+>  T  =>  {0pt}{0pt}{1000pt}{0pt}.
+> \box56=
+\hbox(6.83331+0.0)x13.75003
+.\special{color push gray 0}
+.\special{ps:SDict begin /color.sc {} def end}
+.\OT1/cmr/m/n/10 L
+.\OT1/cmr/m/n/10 A
+.\special{color pop}
+
+! OK.
+<argument> \l_tmpa_coffin
+
+l.393   }
+
+
+Size of coffin \g_tmpa_coffin:
+> ht = 6.83331pt
+> dp = 6.83331pt
+> wd = 30.27783pt
+Poles of coffin \g_tmpa_coffin:
+>  l  =>  {0pt}{0pt}{0pt}{1000pt}
+>  hc  =>  {15.13892pt}{0pt}{0pt}{1000pt}
+>  r  =>  {30.27783pt}{0pt}{0pt}{1000pt}
+>  b  =>  {0pt}{-6.83331pt}{1000pt}{0pt}
+>  vc  =>  {0pt}{0.0pt}{1000pt}{0pt}
+>  t  =>  {0pt}{6.83331pt}{1000pt}{0pt}
+>  B  =>  {0pt}{-6.83331pt}{1000pt}{0pt}
+>  H  =>  {0pt}{0pt}{1000pt}{0pt}
+>  T  =>  {0pt}{0.0pt}{1000pt}{0pt}
+>  \g_tmpa_coffin -l  =>  {0.0pt}{0.0pt}{0pt}{1000pt}
+>  \g_tmpa_coffin -hc  =>  {7.67361pt}{0.0pt}{0pt}{1000pt}
+>  \g_tmpa_coffin -r  =>  {15.34724pt}{0.0pt}{0pt}{1000pt}
+>  \g_tmpa_coffin -b  =>  {0.0pt}{0.0pt}{1000pt}{0pt}
+>  \g_tmpa_coffin -vc  =>  {0.0pt}{3.41666pt}{1000pt}{0pt}
+>  \g_tmpa_coffin -t  =>  {0.0pt}{6.83331pt}{1000pt}{0pt}
+>  \g_tmpa_coffin -B  =>  {0.0pt}{0.0pt}{1000pt}{0pt}
+>  \g_tmpa_coffin -H  =>  {0.0pt}{0.0pt}{1000pt}{0pt}
+>  \g_tmpa_coffin -T  =>  {0.0pt}{0.0pt}{1000pt}{0pt}
+>  \g_tmpb_coffin -l  =>  {15.34724pt}{-6.83331pt}{0pt}{1000pt}
+>  \g_tmpb_coffin -hc  =>  {22.81253pt}{-6.83331pt}{0pt}{1000pt}
+>  \g_tmpb_coffin -r  =>  {30.27783pt}{-6.83331pt}{0pt}{1000pt}
+>  \g_tmpb_coffin -b  =>  {15.34724pt}{-6.83331pt}{1000pt}{0pt}
+>  \g_tmpb_coffin -vc  =>  {15.34724pt}{-3.41666pt}{1000pt}{0pt}
+>  \g_tmpb_coffin -t  =>  {15.34724pt}{0.0pt}{1000pt}{0pt}
+>  \g_tmpb_coffin -B  =>  {15.34724pt}{-6.83331pt}{1000pt}{0pt}
+>  \g_tmpb_coffin -H  =>  {15.34724pt}{-6.83331pt}{1000pt}{0pt}
+>  \g_tmpb_coffin -T  =>  {15.34724pt}{-6.83331pt}{1000pt}{0pt}.
+> \box25=
+\hbox(6.83331+6.83331)x30.27783
+.\hbox(6.83331+0.0)x15.34724
+..\special{color push gray 0}
+..\special{ps:SDict begin /color.sc {} def end}
+..\OT1/cmr/m/n/10 G
+..\OT1/cmr/m/n/10 A
+..\special{color pop}
+.\kern -15.34724
+.\kern 15.34724
+.\hbox(6.83331+0.0)x14.93059, shifted 6.83331
+..\special{color push gray 0}
+..\special{ps:SDict begin /color.sc {} def end}
+..\OT1/cmr/m/n/10 G
+..\OT1/cmr/m/n/10 B
+..\special{color pop}
+
+! OK.
+<argument> \g_tmpa_coffin
+
+l.393   }
+
+
+============================================================
+
+
+END-TEST-LOG
+
+ )
+
+No pages of output.

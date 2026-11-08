@@ -1,0 +1,162 @@
+entering extended mode
+(github-1712.lvt
+LaTeX2e <2026-11-01>
+L3 programming layer <2026-09-09>
+(regression-test.tex
+\gTESTint=\count276
+) (article.cls
+Document Class: article 2026-06-04 v1.4n Standard LaTeX document class
+(size10.clo
+File: size10.clo 2026-06-04 v1.4n Standard LaTeX file (size option)
+)
+\c@part=\count277
+\c@section=\count278
+\c@subsection=\count279
+\c@subsubsection=\count280
+\c@paragraph=\count281
+\c@subparagraph=\count282
+\c@figure=\count283
+\c@table=\count284
+\abovecaptionskip=\skip49
+\belowcaptionskip=\skip50
+\bibindent=\dimen150
+) (l3backend-dvips.def
+File: l3backend-dvips.def 2026-09-09 L3 backend support: dvips
+\l__pdfannot_backend_content_box=\box53
+\l__pdfannot_backend_model_box=\box54
+\g__pdfannot_backend_int=\count285
+\g__pdfannot_backend_link_int=\count286
+\g__pdfannot_backend_link_sf_int=\count287
+)
+No file github-1712.aux.
+\openout1 = `github-1712.aux'.
+
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 3.
+LaTeX Font Info:    ... okay on input line 3.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 3.
+LaTeX Font Info:    ... okay on input line 3.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 3.
+LaTeX Font Info:    ... okay on input line 3.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 3.
+LaTeX Font Info:    ... okay on input line 3.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 3.
+LaTeX Font Info:    ... okay on input line 3.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 3.
+LaTeX Font Info:    ... okay on input line 3.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 3.
+LaTeX Font Info:    ... okay on input line 3.
+
+START-TEST-LOG
+
+
+This is a generated file for the l3build validation system.
+
+Don't change this file in any respect.
+
+
+
+Completed box being shipped out [1]
+\vbox(633.0+0.0)x407.0
+.\hbox(0.0+0.0)x0.0
+..\special{header=l3backend-dvips.pro}
+.\glue 16.0
+.\vbox(617.0+0.0)x345.0, shifted 62.0
+..\vbox(12.0+0.0)x345.0, glue set 12.0fil
+...\glue 0.0 plus 1.0fil
+...\hbox(0.0+0.0)x345.0
+....\hbox(0.0+0.0)x345.0
+..\glue 25.0
+..\glue(\lineskip) 0.0
+..\vbox(550.0+0.0)x345.0, glue set 529.94339fil
+...\special{ps: /setdistillerparams where {pop << /CompressPages false /CompressStreams false >> setdistillerparams} if }
+...\special{! <</DocumentUUID (DocumentUUID)>> setpagedevice}
+...\special{! <</InstanceUUID (InstanceUUID)>> setpagedevice}
+...\write-{}
+...\glue(\topskip) 3.05556
+...\hbox(6.94444+0.0)x319.99997, glue set 300.55547fil, shifted 25.00003
+....\hbox(4.37393+0.0)x0.0
+.....\glue 0.0
+.....\glue -20.00003
+.....\glue -5.0
+.....\hbox(4.37393+0.0)x20.00003, glue set 20.00003fil
+......\glue 0.0 plus 1.0fil minus 1.0fil
+......\hbox(4.37393+0.0)x0.0, glue set - 4.99878fil
+.......\glue 0.0 plus 1.0fil minus 1.0fil
+.......\TS1/cmr/m/n/10 �
+.....\glue 5.0
+....\penalty 0
+....\OT1/cmr/m/n/10 b
+....\OT1/cmr/m/n/10 l
+....\OT1/cmr/m/n/10 u
+....\OT1/cmr/m/n/10 b
+....\penalty 10000
+....\glue(\parfillskip) 0.0 plus 1.0fil
+....\glue(\rightskip) 0.0
+...\penalty -51
+...\glue 10.0 plus 3.0 minus 5.0
+...\glue 0.0 plus 1.0fil
+...\glue 0.0
+...\glue 0.0 plus 0.0001fil
+..\glue(\baselineskip) 23.55556
+..\hbox(6.44444+0.0)x345.0
+...\hbox(6.44444+0.0)x345.0, glue set 170.0fil
+....\glue 0.0 plus 1.0fil
+....\OT1/cmr/m/n/10 1
+....\glue 0.0 plus 1.0fil
+.\kern 0.0
+
+
+> .
+l.9 \showthe\everypar
+
+
+
+Completed box being shipped out [2]
+\vbox(633.0+0.0)x407.0
+.\glue 16.0
+.\vbox(617.0+0.0)x345.0, shifted 62.0
+..\vbox(12.0+0.0)x345.0, glue set 12.0fil
+...\glue 0.0 plus 1.0fil
+...\hbox(0.0+0.0)x345.0
+....\hbox(0.0+0.0)x345.0
+..\glue 25.0
+..\glue(\lineskip) 0.0
+..\vbox(550.0+0.0)x345.0, glue set 527.9436fil
+...\glue(\topskip) 3.05556
+...\hbox(6.94444+0.0)x345.0, glue set 310.5555fil
+....\hbox(0.0+0.0)x15.0
+....\OT1/cmr/m/n/10 b
+....\OT1/cmr/m/n/10 l
+....\OT1/cmr/m/n/10 u
+....\OT1/cmr/m/n/10 b
+....\penalty 10000
+....\glue 0.0 plus 1.0fil
+....\penalty -10000
+....\glue(\rightskip) 0.0
+...\penalty 300
+...\glue(\baselineskip) 5.05556
+...\hbox(6.94444+0.0)x345.0, glue set 325.5555fil
+....\OT1/cmr/m/n/10 b
+....\OT1/cmr/m/n/10 l
+....\OT1/cmr/m/n/10 u
+....\OT1/cmr/m/n/10 b
+....\penalty 10000
+....\glue(\parfillskip) 0.0 plus 1.0fil
+....\glue(\rightskip) 0.0
+...\glue 0.0 plus 1.0fil
+...\glue 0.0
+...\glue 0.0 plus 0.0001fil
+..\glue(\baselineskip) 23.55556
+..\hbox(6.44444+0.0)x345.0
+...\hbox(6.44444+0.0)x345.0, glue set 170.0fil
+....\glue 0.0 plus 1.0fil
+....\OT1/cmr/m/n/10 2
+....\glue 0.0 plus 1.0fil
+
+(github-1712.aux)
+
+END-TEST-LOG
+
+ )
+
+Output written on github-1712.dvi (2 pages, 636 bytes).

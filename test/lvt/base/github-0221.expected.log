@@ -1,0 +1,134 @@
+entering extended mode
+(github-0221.lvt
+LaTeX2e <2026-11-01>
+L3 programming layer <2026-09-09>
+(article.cls
+Document Class: article 2026-06-04 v1.4n Standard LaTeX document class
+(size10.clo
+File: size10.clo 2026-06-04 v1.4n Standard LaTeX file (size option)
+)
+\c@part=\count276
+\c@section=\count277
+\c@subsection=\count278
+\c@subsubsection=\count279
+\c@paragraph=\count280
+\c@subparagraph=\count281
+\c@figure=\count282
+\c@table=\count283
+\abovecaptionskip=\skip49
+\belowcaptionskip=\skip50
+\bibindent=\dimen150
+) (test2e.tex
+OMIT
+TIMO
+(expl3.sty
+Package: expl3 2026-09-09 L3 programming layer (loader)
+ (l3backend-dvips.def
+File: l3backend-dvips.def 2026-09-09 L3 backend support: dvips
+\l__pdfannot_backend_content_box=\box53
+\l__pdfannot_backend_model_box=\box54
+\g__pdfannot_backend_int=\count284
+\g__pdfannot_backend_link_int=\count285
+\g__pdfannot_backend_link_sf_int=\count286
+))) (docstrip.tex
+\blockLevel=\count287
+\emptyLines=\count288
+\processedLines=\count289
+\commentsRemoved=\count290
+\commentsPassed=\count291
+\codeLinesPassed=\count292
+\TotalprocessedLines=\count293
+\TotalcommentsRemoved=\count294
+\TotalcommentsPassed=\count295
+\TotalcodeLinesPassed=\count296
+\NumberOfFiles=\count297
+\inFile=\read2
+\inputcheck=\read3
+\off@0=\count298
+\off@1=\count299
+\off@2=\count300
+\off@3=\count301
+\off@4=\count302
+\off@5=\count303
+\off@6=\count304
+\off@7=\count305
+\off@8=\count306
+\off@9=\count307
+\off@10=\count308
+\off@11=\count309
+\off@12=\count310
+\off@13=\count311
+\off@14=\count312
+\off@15=\count313
+\@maxfiles=\count314
+\@maxoutfiles=\count315
+
+Utility: `docstrip' v2.6c <2024-12-23>
+English documentation    <2026-06-01>
+
+**********************************************************
+* This program converts documented macro-files into fast *
+* loadable files by stripping off (nearly) all comments! *
+**********************************************************
+
+********************************************************
+* No Configuration file found, using default settings. *
+********************************************************
+
+)
+START-TEST-LOG
+
+This is a generated file for the LaTeX2e validation system.
+
+Don't change this file in any respect.
+
+Author: Johannes Braams
+Format: LaTeX2e <2020-02-02> pathc level 5
+OMIT
+
+LaTeX Warning: Declared format LaTeX2e <2020-02-02> pathc level 5,
+Actual format LaTeX2e<2026-11-01> on input line 14.
+
+TIMO
+OMIT
+
+Generating file(s) ./lorem ipsum.tex
+\openout0 = `"./lorem ipsum.tex"'.
+
+
+Processing file github-0221.lvt (lips) -> lorem ipsum.tex
+% % % % % % <*driver . . . . . . . . . . . . . . . . . . . . . . . . > <lips . >
+Lines  processed: 33
+Comments removed: 6
+Comments  passed: 0
+Codelines passed: 24
+
+TIMO
+1: yes
+> 0.0pt.
+l.21 \showthe\wd0
+
+
+OMIT
+
+Generating file(s) ./"lorem ipsum quoted.tex"
+\openout0 = `"./lorem ipsum quoted.tex"'.
+
+
+Processing file github-0221.lvt (lips) -> "lorem ipsum quoted.tex"
+% % % % % % <*driver . . . . . . . . . . . . . . . . . . . . . . . . > <lips . >
+Lines  processed: 33
+Comments removed: 6
+Comments  passed: 0
+Codelines passed: 24
+
+TIMO
+2: yes
+> 0.0pt.
+l.29 \showthe\wd0
+
+
+END-TEST-LOG
+ )
+
+No pages of output.

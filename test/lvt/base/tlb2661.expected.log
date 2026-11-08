@@ -1,0 +1,80 @@
+entering extended mode
+(tlb2661.lvt
+LaTeX2e <2026-11-01>
+L3 programming layer <2026-09-09>
+(test2e.tex
+OMIT
+TIMO
+(expl3.sty
+Package: expl3 2026-09-09 L3 programming layer (loader)
+ (l3backend-dvips.def
+File: l3backend-dvips.def 2026-09-09 L3 backend support: dvips
+\l__pdfannot_backend_content_box=\box53
+\l__pdfannot_backend_model_box=\box54
+\g__pdfannot_backend_int=\count276
+\g__pdfannot_backend_link_int=\count277
+\g__pdfannot_backend_link_sf_int=\count278
+)))
+
+LaTeX Info: Writing file `./TESTcmm.fd'.
+
+\openout15 = `TESTcmm.fd'.
+
+
+(minimal.cls
+Document Class: minimal 2001/05/25 Standard LaTeX minimal class
+)
+Now handling font encoding TEST ...
+... no UTF-8 mapping file for font encoding TEST
+LaTeX Font Info:    Redeclaring symbol font `letters' on input line 22.
+LaTeX Font Info:    Encoding `OML' has changed to `TEST' for symbol font
+(Font)              `letters' in the math version `normal' on input line 22.
+LaTeX Font Info:    Overwriting symbol font `letters' in version `normal'
+(Font)                  OML/cmm/m/it --> TEST/cmm/m/it on input line 22.
+LaTeX Font Info:    Encoding `OML' has changed to `TEST' for symbol font
+(Font)              `letters' in the math version `bold' on input line 22.
+LaTeX Font Info:    Overwriting symbol font `letters' in version `bold'
+(Font)                  OML/cmm/b/it --> TEST/cmm/m/it on input line 22.
+LaTeX Font Info:    Redeclaring math alphabet \mathit on input line 24.
+LaTeX Font Info:    Overwriting math alphabet `\mathit' in version `normal'
+(Font)                  OT1/cmr/m/it --> TEST/cmm/m/it on input line 24.
+LaTeX Font Info:    Overwriting math alphabet `\mathit' in version `bold'
+(Font)                  OT1/cmr/bx/it --> TEST/cmm/m/it on input line 24.
+
+No file tlb2661.aux.
+\openout1 = `tlb2661.aux'.
+
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 27.
+LaTeX Font Info:    ... okay on input line 27.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 27.
+LaTeX Font Info:    ... okay on input line 27.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 27.
+LaTeX Font Info:    ... okay on input line 27.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 27.
+LaTeX Font Info:    ... okay on input line 27.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 27.
+LaTeX Font Info:    ... okay on input line 27.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 27.
+LaTeX Font Info:    ... okay on input line 27.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 27.
+LaTeX Font Info:    ... okay on input line 27.
+LaTeX Font Info:    Checking defaults for TEST/cmm/m/it on input line 27.
+LaTeX Font Info:    Trying to load font information for TEST+cmm on input line 27.
+(testcmm.fd)
+LaTeX Font Info:    ... okay on input line 27.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <7> on input line 30.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <5> on input line 30.
+
+START-TEST-LOG
+
+This is a generated file for the LaTeX2e validation system.
+
+Don't change this file in any respect.
+
+using TEST encoding
+END-TEST-LOG
+ )
+
+No pages of output.

@@ -5,3 +5,4 @@ node_modules
 *.fmt
 test/lvt/_src/
 !*.expected.dvi
+build/

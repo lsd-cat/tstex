@@ -1,0 +1,70 @@
+entering extended mode
+(tlb2054.lvt
+LaTeX2e <2026-11-01>
+L3 programming layer <2026-09-09>
+(minimal.cls
+Document Class: minimal 2001/05/25 Standard LaTeX minimal class
+) (test2e.tex
+OMIT
+TIMO
+(expl3.sty
+Package: expl3 2026-09-09 L3 programming layer (loader)
+ (l3backend-dvips.def
+File: l3backend-dvips.def 2026-09-09 L3 backend support: dvips
+\l__pdfannot_backend_content_box=\box53
+\l__pdfannot_backend_model_box=\box54
+\g__pdfannot_backend_int=\count276
+\g__pdfannot_backend_link_int=\count277
+\g__pdfannot_backend_link_sf_int=\count278
+)))
+START-TEST-LOG
+
+This is a generated file for the LaTeX2e validation system.
+
+Don't change this file in any respect.
+
+Author: Frank Mittelbach
+Format: LaTeX2e<1996/06/01>
+OMIT
+
+LaTeX Warning: Declared format LaTeX2e<1996/06/01>,
+Actual format LaTeX2e<2026-11-01> on input line 17.
+
+TIMO
+Package: fontenc
+(fontenc.sty
+Package: fontenc 2026-07-31 v2.2a Standard LaTeX package
+
+
+! Package fontenc Error: Encoding file `x1enc.def' not found.
+(fontenc)                You might have misspelled the name of the encoding
+(fontenc)                or a required support package (e.g., cyrillic) is
+(fontenc)                missing in your installation.
+
+See the fontenc package documentation for explanation.
+Type  H <return>  for immediate help.
+ ...
+
+l.115 \ProcessOptions*
+
+Necessary code for this encoding was not loaded.
+Thus calling the encoding later on will produce further error messages.
+
+
+! LaTeX Error: Encoding scheme `x1' unknown.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...
+
+l.116 ...\familydefault\seriesdefault\shapedefault
+
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+)
+END-TEST-LOG
+ )
+
+No pages of output.

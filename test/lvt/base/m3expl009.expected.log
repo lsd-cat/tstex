@@ -1,0 +1,83 @@
+entering extended mode
+(m3expl009.lvt
+LaTeX2e <2026-11-01>
+L3 programming layer <2026-09-09>
+(regression-test.tex
+\gTESTint=\count276
+) (expl3.sty
+Package: expl3 2026-09-09 L3 programming layer (loader)
+(l3backend-dvips.def
+File: l3backend-dvips.def 2026-09-09 L3 backend support: dvips
+\l__pdfannot_backend_content_box=\box53
+\l__pdfannot_backend_model_box=\box54
+\g__pdfannot_backend_int=\count277
+\g__pdfannot_backend_link_int=\count278
+\g__pdfannot_backend_link_sf_int=\count279
+))
+
+START-TEST-LOG
+
+
+This is a generated file for the l3build validation system.
+
+Don't change this file in any respect.
+
+
+\cnta=\count280
+(expl3.sty
+Package: expl3 2026-09-09 L3 programming layer (loader)
+
+! LaTeX Error: Mismatched LaTeX support files detected.
+(LaTeX)        Loading 'expl3.sty' aborted!
+(LaTeX)
+(LaTeX)        The L3 programming layer in the LaTeX format
+(LaTeX)        is dated 0000-00-00, but in your TeX tree the files require
+(LaTeX)        at least 2026-09-09.
+
+For immediate help type H <return>.
+ ...
+
+l.78      \ExplLoaderFileDate{expl3.sty}}
+                                         %
+
+The most likely causes are:
+ - A recent format generation failed;
+ - A stray format file in the user tree which needs to be removed or rebuilt;
+ - You are running a manually installed version of expl3.sty
+   which is incompatible with the version in LaTeX.
+
+LaTeX will abort loading the incompatible support files but this may lead to
+later errors. Please ensure that your LaTeX format is correctly regenerated.
+
+
+) (expl3.sty
+Package: expl3 2026-09-09 L3 programming layer (loader)
+) (expl3.sty
+Package: expl3 2026-09-09 L3 programming layer (loader)
+
+! LaTeX Error: Mismatched LaTeX support files detected.
+(LaTeX)        Loading 'expl3.sty' aborted!
+
+For immediate help type H <return>.
+ ...
+
+l.78      \ExplLoaderFileDate{expl3.sty}}
+                                         %
+
+The most likely causes are:
+ - A recent format generation failed;
+ - A stray format file in the user tree which needs to be removed or rebuilt;
+ - You are running a manually installed version of expl3.sty
+   which is incompatible with the version in LaTeX.
+
+LaTeX will abort loading the incompatible support files but this may lead to
+later errors. Please ensure that your LaTeX format is correctly regenerated.
+
+
+)
+
+END-TEST-LOG
+
+ )
+
+No pages of output.

@@ -1,0 +1,145 @@
+entering extended mode
+(tlb3073.lvt
+LaTeX2e <2026-11-01>
+L3 programming layer <2026-09-09>
+(test2e.tex
+OMIT
+TIMO
+(expl3.sty
+Package: expl3 2026-09-09 L3 programming layer (loader)
+ (l3backend-dvips.def
+File: l3backend-dvips.def 2026-09-09 L3 backend support: dvips
+\l__pdfannot_backend_content_box=\box53
+\l__pdfannot_backend_model_box=\box54
+\g__pdfannot_backend_int=\count276
+\g__pdfannot_backend_link_int=\count277
+\g__pdfannot_backend_link_sf_int=\count278
+))) (article.cls
+Document Class: article 2026-06-04 v1.4n Standard LaTeX document class
+(size10.clo
+File: size10.clo 2026-06-04 v1.4n Standard LaTeX file (size option)
+)
+\c@part=\count279
+\c@section=\count280
+\c@subsection=\count281
+\c@subsubsection=\count282
+\c@paragraph=\count283
+\c@subparagraph=\count284
+\c@figure=\count285
+\c@table=\count286
+\abovecaptionskip=\skip49
+\belowcaptionskip=\skip50
+\bibindent=\dimen150
+)
+START-TEST-LOG
+
+This is a generated file for the LaTeX2e validation system.
+
+Don't change this file in any respect.
+
+Author: Morten H\o gholm
+OMIT
+(fixltx2e.sty
+Package: fixltx2e 2016/12/29 v2.1a fixes to LaTeX (obsolete)
+Applying: [2015/01/01] Old fixltx2e package on input line 46.
+
+
+Package fixltx2e Warning: fixltx2e is not required with releases after 2015
+(fixltx2e)                All fixes are now in the LaTeX kernel.
+(fixltx2e)                See the latexrelease package for details.
+
+Already applied: [0000/00/00] Old fixltx2e package on input line 53.
+)
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <7> on input line 30.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <5> on input line 30.
+
+No file tlb3073.aux.
+\openout1 = `tlb3073.aux'.
+
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 35.
+LaTeX Font Info:    ... okay on input line 35.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 35.
+LaTeX Font Info:    ... okay on input line 35.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 35.
+LaTeX Font Info:    ... okay on input line 35.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 35.
+LaTeX Font Info:    ... okay on input line 35.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 35.
+LaTeX Font Info:    ... okay on input line 35.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 35.
+LaTeX Font Info:    ... okay on input line 35.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 35.
+LaTeX Font Info:    ... okay on input line 35.
+TIMO
+%% goal height=250.0, max depth=5.0
+% t=0.0 g=250.0 b=10000 p=0 c=100000#
+% t=250.0 g=250.0 b=0 p=0 c=0#
+% t=251.94444 plus 1.0fil g=250.0 b=* p=-10000 c=*
+%% goal height=250.0, max depth=5.0
+% t=10.0 g=250.0 b=10000 p=150 c=100000#
+% t=22.0 g=250.0 b=10000 p=150 c=100000#
+% t=34.0 g=250.0 b=10000 p=-51 c=100000#
+% t=54.0 plus 4.0 minus 2.0 g=250.0 b=10000 p=150 c=100000#
+% t=66.0 plus 4.0 minus 2.0 g=250.0 b=10000 p=150 c=100000#
+% t=78.0 plus 4.0 minus 2.0 g=250.0 b=10000 p=-51 c=100000#
+% t=98.0 plus 8.0 minus 4.0 g=250.0 b=10000 p=150 c=100000#
+% t=110.0 plus 8.0 minus 4.0 g=250.0 b=10000 p=150 c=100000#
+% t=122.0 plus 8.0 minus 4.0 g=250.0 b=10000 p=-51 c=100000#
+% t=142.0 plus 12.0 minus 6.0 g=250.0 b=10000 p=300 c=100000#
+% t=154.0 plus 12.0 minus 6.0 g=250.0 b=10000 p=-51 c=100000#
+% t=174.0 plus 16.0 minus 8.0 g=250.0 b=10000 p=300 c=100000#
+% t=186.0 plus 16.0 minus 8.0 g=250.0 b=6396 p=-51 c=6345#
+% t=206.0 plus 20.0 minus 10.0 g=250.0 b=1062 p=300 c=1362#
+% t=218.0 plus 20.0 minus 10.0 g=250.0 b=409 p=-51 c=358#
+% t=218.0 plus 20.0 minus 10.0 g=250.0 b=409 p=-300 c=109#
+% t=279.19461 plus 28.16663 plus 1.0fill minus 10.86108 g=250.0 b=* p=0 c=*
+[1
+
+]
+%% goal height=250.0, max depth=5.0
+% t=38.12521 plus 3.86108 plus 1.0fill g=250.0 b=0 p=0 c=0#
+% t=38.12521 plus 3.86108 plus 1.0fill g=250.0 b=0 p=-100 c=-100#
+% t=38.12521 plus 3.86108 plus 1.0fill g=250.0 b=0 p=-100 c=-100#
+% t=38.12521 plus 3.86108 plus 1.0fill g=250.0 b=0 p=-100 c=-100#
+% t=38.12521 plus 3.86108 plus 1.0fill g=250.0 b=0 p=-100 c=-100#
+% t=38.12521 plus 3.86108 plus 1.0fill g=250.0 b=0 p=-100 c=-100#
+% t=38.12521 plus 3.86108 plus 1.0fill g=250.0 b=0 p=-10000 c=-10000#
+%% goal height=250.0, max depth=5.0
+% t=24.5 plus 3.0 g=250.0 b=10000 p=0 c=100000#
+% t=24.5 plus 3.0 g=250.0 b=10000 p=-300 c=100000#
+% t=76.97215 plus 8.16663 minus 0.86108 g=250.0 b=10000 p=0 c=100000#
+% t=100.97215 plus 11.16663 minus 0.86108 g=250.0 b=10000 p=0 c=100000#
+% t=100.97215 plus 11.16663 minus 0.86108 g=250.0 b=10000 p=-300 c=100000#
+% t=155.9443 plus 16.33325 minus 1.72217 g=250.0 b=10000 p=0 c=100000#
+% t=179.9443 plus 19.33325 minus 1.72217 g=250.0 b=4752 p=0 c=4752#
+% t=182.4443 plus 19.33325 minus 1.72217 g=250.0 b=4254 p=-300 c=3954#
+% t=241.41644 plus 24.49988 minus 2.58325 g=250.0 b=4 p=150 c=154#
+% t=253.41644 plus 24.49988 minus 2.58325 g=250.0 b=* p=0 c=*
+ [2]
+%% goal height=250.0, max depth=5.0
+% t=10.0 g=250.0 b=10000 p=0 c=100000#
+% t=12.15277 plus 1.0fil g=250.0 b=0 p=-10000 c=-10000#
+%% goal height=250.0, max depth=5.0
+% t=0.0 g=250.0 b=10000 p=0 c=100000#
+% t=10.0 g=250.0 b=10000 p=-10001 c=-10001#
+%% goal height=250.0, max depth=5.0
+% t=0.0 g=250.0 b=10000 p=0 c=100000#
+% t=10.0 g=250.0 b=10000 p=0 c=100000#
+% t=10.0 plus 1.0fil g=250.0 b=0 p=-10000 c=-10000#
+ [3
+
+]
+%% goal height=250.0, max depth=5.0
+% t=0.0 g=250.0 b=10000 p=0 c=100000#
+% t=10.0 g=250.0 b=10000 p=-10001 c=-10001#
+ (tlb3073.aux)
+END-TEST-LOG
+%% goal height=250.0, max depth=5.0
+% t=0.0 g=250.0 b=10000 p=0 c=100000#
+% t=10.0 g=250.0 b=10000 p=0 c=100000#
+% t=10.0 plus 1.0fill g=250.0 b=0 p=-1073741824 c=-1073741824#
+ )
+
+Output written on tlb3073.dvi (3 pages, 2372 bytes).

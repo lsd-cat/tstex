@@ -1,0 +1,126 @@
+entering extended mode
+(properties-002-multiply.lvt
+LaTeX2e <2026-11-01>
+L3 programming layer <2026-09-09>
+(l3debug.def
+File: l3debug.def 2026-09-09 L3 Debugging support
+) (article.cls
+Document Class: article 2026-06-04 v1.4n Standard LaTeX document class
+(size10.clo
+File: size10.clo 2026-06-04 v1.4n Standard LaTeX file (size option)
+)
+\c@part=\count276
+\c@section=\count277
+\c@subsection=\count278
+\c@subsubsection=\count279
+\c@paragraph=\count280
+\c@subparagraph=\count281
+\c@figure=\count282
+\c@table=\count283
+\abovecaptionskip=\skip49
+\belowcaptionskip=\skip50
+\bibindent=\dimen150
+) (regression-test.tex
+\gTESTint=\count284
+)
+
+START-TEST-LOG
+
+
+This is a generated file for the l3build validation system.
+
+Don't change this file in any respect.
+
+
+(l3backend-dvips.def
+File: l3backend-dvips.def 2026-09-09 L3 backend support: dvips
+\l__pdfannot_backend_content_box=\box53
+\l__pdfannot_backend_model_box=\box54
+\g__pdfannot_backend_int=\count285
+\g__pdfannot_backend_link_int=\count286
+\g__pdfannot_backend_link_sf_int=\count287
+)
+No file properties-002-multiply.aux.
+\openout1 = `properties-002-multiply.aux'.
+
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 7.
+LaTeX Font Info:    ... okay on input line 7.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 7.
+LaTeX Font Info:    ... okay on input line 7.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 7.
+LaTeX Font Info:    ... okay on input line 7.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 7.
+LaTeX Font Info:    ... okay on input line 7.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 7.
+LaTeX Font Info:    ... okay on input line 7.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 7.
+LaTeX Font Info:    ... okay on input line 7.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 7.
+LaTeX Font Info:    ... okay on input line 7.
+============================================================
+TEST 1: references to multiply label
+============================================================
+UNKNOWN
+UNKNOWN
+UNKNOWN
+UNKNOWN
+============================================================
+
+
+Completed box being shipped out [1]
+\vbox(633.0+0.0)x407.0
+.\hbox(0.0+0.0)x0.0
+..\special{header=l3backend-dvips.pro}
+.\glue 16.0
+.\vbox(617.0+0.0)x345.0, shifted 62.0
+..\vbox(12.0+0.0)x345.0, glue set 12.0fil
+...\glue 0.0 plus 1.0fil
+...\hbox(0.0+0.0)x345.0
+....\hbox(0.0+0.0)x345.0
+..\glue 25.0
+..\glue(\lineskip) 0.0
+..\vbox(550.0+0.0)x345.0, glue set 539.94232fil
+...\write-{}
+...\special{ps: /setdistillerparams where {pop << /CompressPages false /CompressStreams false >> setdistillerparams} if }
+...\special{! <</DocumentUUID (DocumentUUID)>> setpagedevice}
+...\special{! <</InstanceUUID (InstanceUUID)>> setpagedevice}
+...\write1{\newlabel{penguin}{{}{\thepage }{Grüße}{}{}}}
+...\write1{\newlabel{penguin}{{}{\thepage }{Grüße}{}{}}}
+...\write1{\new@label@record{sloth-0}{{page}{\__property_code_page: }}}
+...\write1{\newlabel{sloth-0}{{}{\thepage }{Grüße}{}{}}}
+...\write1{\newlabel{duck}{{}{\thepage }{Grüße}{}{}}}
+...\write1{\new@label@record{duck}{{page}{\__property_code_page: }}}
+...\write1{\new@label@record{bär}{{abspage}{\__property_code_abspage: }{title}{Grüße}}}
+...\write1{\new@label@record{bär}{{page}{\__property_code_page: }{title}{Hallo}}}
+...\write1{\new@label@record{unique}{{title}{Hallo}}}
+...\glue(\topskip) 5.69446
+...\hbox(4.30554+0.0)x345.0, glue set 314.1666fil
+....\hbox(0.0+0.0)x15.0
+....\OT1/cmr/m/n/10 x
+....\OT1/cmr/m/n/10 x
+....\OT1/cmr/m/n/10 x
+....\penalty 10000
+....\glue(\parfillskip) 0.0 plus 1.0fil
+....\glue(\rightskip) 0.0
+...\glue 0.0 plus 1.0fil
+...\glue 0.0
+...\glue 0.0 plus 0.0001fil
+..\glue(\baselineskip) 25.69446
+..\hbox(4.30554+0.0)x345.0
+...\hbox(4.30554+0.0)x345.0, glue set 170.0fil
+....\glue 0.0 plus 1.0fil
+....\OT1/cmr/m/n/10 a
+....\glue 0.0 plus 1.0fil
+.\kern 0.0
+
+
+(properties-002-multiply.aux)
+
+LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
+
+
+END-TEST-LOG
+
+ )
+
+Output written on properties-002-multiply.dvi (1 page, 468 bytes).

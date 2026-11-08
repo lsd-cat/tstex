@@ -1,0 +1,42 @@
+entering extended mode
+(github-1137.lvt
+LaTeX2e <2026-11-01>
+L3 programming layer <2026-09-09>
+(l3debug.def
+File: l3debug.def 2026-09-09 L3 Debugging support
+) (regression-test.tex
+\gTESTint=\count276
+) (article.cls
+Document Class: article 2026-06-04 v1.4n Standard LaTeX document class
+(size10.clo
+File: size10.clo 2026-06-04 v1.4n Standard LaTeX file (size option)
+)
+\c@part=\count277
+\c@section=\count278
+\c@subsection=\count279
+\c@subsubsection=\count280
+\c@paragraph=\count281
+\c@subparagraph=\count282
+\c@figure=\count283
+\c@table=\count284
+\abovecaptionskip=\skip49
+\belowcaptionskip=\skip50
+\bibindent=\dimen150
+)
+
+START-TEST-LOG
+
+
+This is a generated file for the l3build validation system.
+
+Don't change this file in any respect.
+
+
+)
+! Emergency stop.
+<*> github-1137.lvt^^M
+
+*** (job aborted, no legal \end found)
+
+
+No pages of output.

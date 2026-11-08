@@ -1,0 +1,828 @@
+entering extended mode
+(m3regex007.lvt
+LaTeX2e <2026-11-01>
+L3 programming layer <2026-09-09>
+(minimal.cls
+Document Class: minimal 2001/05/25 Standard LaTeX minimal class
+) (regression-test.tex
+\gTESTint=\count276
+) (l3debug.def
+File: l3debug.def 2026-09-09 L3 Debugging support
+)
+Defining \l__hook_label_calc-noop_seq on line 12
+Defining \l__hook_label_kernel/filelist_seq on line 12
+Defining \l__hook_label_kernel/warnings_seq on line 12
+Defining \l__hook_label_kernel/release_seq on line 12
+Defining \l__hook_label_kernel/testmode_seq on line 12
+Defining \l__hook_label_firstaid_seq on line 12
+Defining \l__hook_label_firstaid/aliascounter_seq on line 12
+Defining \c_sys_output_str on line 12
+Defining \sys_if_output_dvi:T on line 12
+Defining \sys_if_output_dvi:F on line 12
+Defining \sys_if_output_dvi:TF on line 12
+Defining \sys_if_output_dvi_p: on line 12
+Defining \sys_if_output_hnt:T on line 12
+Defining \sys_if_output_hnt:F on line 12
+Defining \sys_if_output_hnt:TF on line 12
+Defining \sys_if_output_hnt_p: on line 12
+Defining \sys_if_output_pdf:T on line 12
+Defining \sys_if_output_pdf:F on line 12
+Defining \sys_if_output_pdf:TF on line 12
+Defining \sys_if_output_pdf_p: on line 12
+Defining \c_sys_backend_str on line 12
+(l3backend-dvips.def
+File: l3backend-dvips.def 2026-09-09 L3 backend support: dvips
+Defining \__kernel_backend_literal:e on line 46
+Defining \__kernel_backend_literal:n on line 47
+Defining \__kernel_backend_first_shipout:n on line 58
+Defining \__kernel_backend_literal_postscript:n on line 59
+Defining \__kernel_backend_literal_postscript:e on line 61
+Defining \__kernel_backend_postscript:n on line 62
+Defining \__kernel_backend_postscript:e on line 64
+Defining \l__hook_label_l3backend_seq on line 69
+Defining \__kernel_backend_align_begin: on line 70
+Defining \__kernel_backend_align_end: on line 76
+Defining \__kernel_backend_scope_begin: on line 81
+Defining \__kernel_backend_scope_end: on line 83
+Defining \__color_backend_raw_cmyk:n on line 86
+Defining \__color_backend_raw_gray:n on line 87
+Defining \__color_backend_raw_rgb:n on line 88
+Defining \__color_backend_current_cmyk:n on line 89
+Defining \__color_backend_current_gray:n on line 90
+Defining \__color_backend_current_rgb:n on line 91
+Defining \__color_backend_select_cmyk:n on line 92
+Defining \__color_backend_select_gray:n on line 94
+Defining \__color_backend_select_rgb:n on line 96
+Defining \__color_backend_select:nn on line 98
+Defining \__color_backend_reset: on line 104
+Defining \g__color_backend_colorant_prop on line 106
+Defining \__color_backend_devicen_colorants:n on line 107
+Defining \__color_backend_devicen_colorants:w on line 122
+Defining \__color_backend_raw_separation:nn on line 132
+Defining \__color_backend_raw_devicen:nn on line 133
+Defining \__color_backend_raw_iccbased:nn on line 134
+Defining \__color_backend_current_separation:nn on line 135
+Defining \__color_backend_current_devicen:nn on line 136
+Defining \__color_backend_current_iccbased:nn on line 137
+Defining \__color_backend_select_separation:nn on line 138
+Defining \__color_backend_select_devicen:nn on line 140
+Defining \__color_backend_select_iccbased:nn on line 141
+Defining \__color_backend_separation_init:nnnnn on line 142
+Defining \__color_backend_separation_init:neenn on line 163
+Defining \__color_backend_separation_init_aux:nnnnnn on line 164
+Defining \__color_backend_separation_init_/DeviceCMYK:nnn on line 185
+Defining \__color_backend_separation_init_/DeviceGray:nnn on line 187
+Defining \__color_backend_separation_init_/DeviceRGB:nnn on line 189
+Defining \__color_backend_separation_init_Device:Nn on line 191
+Defining \__color_backend_separation_init:nnn on line 198
+Defining \__color_backend_separation_init_count:n on line 204
+Defining \__color_backend_separation_init_count:w on line 206
+Defining \__color_backend_separation_init:nnnn on line 212
+Defining \__color_backend_separation_init:w on line 229
+Defining \__color_backend_separation_init:n on line 236
+Defining \__color_backend_separation_init:nw on line 238
+Defining \__color_backend_separation_init_CIELAB:nnn on line 254
+Defining \__color_backend_devicen_init:nnn on line 300
+Defining \__color_backend_iccbased_init:nnn on line 319
+Defining \__color_backend_fill_cmyk:n on line 320
+Defining \__color_backend_fill_gray:n on line 322
+Defining \__color_backend_fill_rgb:n on line 324
+Defining \__color_backend_fill:n on line 326
+Defining \__color_backend_stroke_cmyk:n on line 328
+Defining \__color_backend_stroke_gray:n on line 330
+Defining \__color_backend_stroke_rgb:n on line 332
+Defining \__color_backend_stroke:n on line 334
+Defining \__color_backend_fill_separation:nn on line 336
+Defining \__color_backend_stroke_separation:nn on line 338
+Defining \__color_backend_fill_devicen:nn on line 340
+Defining \__color_backend_stroke_devicen:nn on line 341
+Defining \__color_backend_fill_reset: on line 342
+Defining \__color_backend_stroke_reset: on line 343
+Defining \__box_backend_clip:N on line 345
+Defining \__box_backend_rotate:Nn on line 367
+Defining \__box_backend_rotate_aux:Nn on line 369
+Defining \__box_backend_scale:Nnn on line 384
+Defining \__draw_backend_literal:n on line 399
+Defining \__draw_backend_literal:e on line 400
+Defining \__draw_backend_begin: on line 401
+Defining \__draw_backend_end: on line 407
+Defining \__draw_backend_scope_begin: on line 412
+Defining \__draw_backend_scope_end: on line 414
+Defining \__draw_backend_moveto:nn on line 416
+Defining \__draw_backend_lineto:nn on line 424
+Defining \__draw_backend_rectangle:nnnn on line 432
+Defining \__draw_backend_curveto:nnnnnn on line 441
+Defining \__draw_backend_evenodd_rule: on line 451
+Defining \__draw_backend_nonzero_rule: on line 453
+Defining \g__draw_draw_eor_bool on line 455
+Defining \__draw_backend_closepath: on line 456
+Defining \__draw_backend_stroke: on line 458
+Defining \__draw_backend_closestroke: on line 475
+Defining \__draw_backend_fill: on line 480
+Defining \__draw_backend_fillstroke: on line 498
+Defining \__draw_backend_clip: on line 520
+Defining \g__draw_draw_clip_bool on line 522
+Defining \__draw_backend_discardpath: on line 523
+Defining \__draw_backend_dash_pattern:nn on line 536
+Defining \__draw_backend_dash:n on line 547
+Defining \__draw_backend_linewidth:n on line 549
+Defining \__draw_backend_miterlimit:n on line 554
+Defining \__draw_backend_cap_butt: on line 556
+Defining \__draw_backend_cap_round: on line 558
+Defining \__draw_backend_cap_rectangle: on line 560
+Defining \__draw_backend_join_miter: on line 562
+Defining \__draw_backend_join_round: on line 564
+Defining \__draw_backend_join_bevel: on line 566
+Defining \__draw_backend_transform:nnnn on line 568
+Defining \__draw_backend_shift:nn on line 573
+Defining \__draw_backend_box_use:Nnnnn on line 578
+Defining \__graphics_backend_getbb_eps:n on line 603
+Defining \__graphics_backend_getbb_ps:n on line 604
+Defining \__graphics_backend_include_eps:n on line 605
+Defining \__graphics_backend_include_ps:n on line 616
+Defining \__graphics_backend_get_pagecount:n on line 617
+Defining \__pdf_backend_pdfmark:n on line 619
+Defining \__pdf_backend_pdfmark:e on line 621
+Defining \__pdf_backend_catalog_gput:nn on line 622
+Defining \__pdf_backend_info_gput:nn on line 624
+Defining \__pdf_backend_object_new: on line 626
+Defining \__pdf_backend_object_ref:n on line 628
+Defining \__pdf_backend_object_id:n on line 629
+Defining \__pdf_backend_object_write:nnn on line 630
+Defining \__pdf_backend_object_write:nne on line 636
+Defining \__pdf_backend_object_write_aux:nnn on line 637
+Defining \__pdf_backend_object_write_array:nn on line 654
+Defining \__pdf_backend_object_write_dict:nn on line 659
+Defining \__pdf_backend_object_write_fstream:nn on line 664
+Defining \__pdf_backend_object_write_fstream:nnn on line 669
+Defining \__pdf_backend_object_write_stream:nn on line 679
+Defining \__pdf_backend_object_write_stream:nnn on line 684
+Defining \__pdf_backend_object_now:nn on line 692
+Defining \__pdf_backend_object_now:ne on line 699
+Defining \__pdf_backend_object_last: on line 700
+Defining \__pdf_backend_pageobject_ref:n on line 702
+Defining \__pdf_backend_destination:nn on line 704
+Defining \__pdf_backend_destination:nnnn on line 730
+Defining \__pdf_backend_destination_aux:nnnn on line 735
+Defining \__pdf_backend_compresslevel:n on line 763
+Defining \__pdf_backend_compress_objects:n on line 775
+Defining \__pdf_backend_version_major_gset:n on line 787
+Defining \__pdf_backend_version_minor_gset:n on line 791
+Defining \__pdf_backend_version_major: on line 795
+Defining \__pdf_backend_version_minor: on line 796
+Defining \__pdf_backend_bdc:nn on line 797
+Defining \__pdf_backend_emc: on line 799
+Defining \__pdf_backend_pagesize_gset:nn on line 801
+Defining \l__pdfannot_backend_content_box on line 812
+\l__pdfannot_backend_content_box=\box53
+Defining \l__pdfannot_backend_model_box on line 813
+\l__pdfannot_backend_model_box=\box54
+Defining \g__pdfannot_backend_int on line 814
+\g__pdfannot_backend_int=\count277
+Defining \__pdfannot_backend_generic:nnnn on line 815
+Defining \__pdfannot_backend_generic_aux:nnnn on line 820
+Defining \__pdfannot_backend_last: on line 844
+Defining \g__pdfannot_backend_link_int on line 846
+\g__pdfannot_backend_link_int=\count278
+Defining \g__pdfannot_backend_link_dict_tl on line 847
+Defining \g__pdfannot_backend_link_sf_int on line 848
+\g__pdfannot_backend_link_sf_int=\count279
+Defining \g__pdfannot_backend_link_math_bool on line 849
+Defining \g__pdfannot_backend_link_bool on line 850
+Defining \l__pdfannot_backend_breaklink_pdfmark_tl on line 851
+Defining \__pdfannot_backend_breaklink_postscript:n on line 853
+Defining \__pdfannot_backend_breaklink_usebox:N on line 854
+Defining \__pdfannot_backend_link_begin_goto:nnw on line 855
+Defining \__pdfannot_backend_link_begin_user:nnw on line 860
+Defining \__pdfannot_backend_link_begin:nw on line 862
+Defining \__pdfannot_backend_link_begin_aux:nw on line 867
+Defining \__pdfannot_backend_link_end: on line 882
+Defining \__pdfannot_backend_link_end_aux: on line 887
+Defining \__pdfannot_backend_link_minima: on line 924
+Defining \__pdfannot_backend_link_outerbox:n on line 953
+Defining \__pdfannot_backend_link_sf_save: on line 972
+Defining \__pdfannot_backend_link_sf_restore: on line 981
+Defining \__pdfannot_backend_link_last: on line 1015
+Defining \__pdfannot_backend_link_margin:n on line 1017
+Defining \__pdfannot_backend_link_on: on line 1024
+Defining \__pdfannot_backend_link_off: on line 1025
+Defining \__pdf_backend_annotation:nnnn on line 1026
+Defining \__pdf_backend_annotation_last: on line 1027
+Defining \__pdf_backend_link_begin_goto:nnw on line 1037
+Defining \__pdf_backend_link_begin_user:nnw on line 1037
+Defining \__pdf_backend_link_begin:nnnw on line 1037
+Defining \__pdf_backend_link_end: on line 1037
+Defining \__pdf_backend_link_last: on line 1037
+Defining \__pdf_backend_link_margin:n on line 1037
+Defining \__opacity_backend_select:n on line 1039
+Defining \__opacity_backend_fill:n on line 1044
+Defining \__opacity_backend_stroke:n on line 1051
+Defining \__opacity_backend:nnn on line 1058
+Defining \__opacity_backend_reset: on line 1077
+Defining \__opacity_backend_reset_fill: on line 1082
+Defining \__opacity_backend_reset_stroke: on line 1089
+)
+No file m3regex007.aux.
+\openout1 = `m3regex007.aux'.
+
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 12.
+LaTeX Font Info:    ... okay on input line 12.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 12.
+LaTeX Font Info:    ... okay on input line 12.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 12.
+LaTeX Font Info:    ... okay on input line 12.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 12.
+LaTeX Font Info:    ... okay on input line 12.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 12.
+LaTeX Font Info:    ... okay on input line 12.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 12.
+LaTeX Font Info:    ... okay on input line 12.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 12.
+LaTeX Font Info:    ... okay on input line 12.
+
+START-TEST-LOG
+
+
+This is a generated file for the l3build validation system.
+
+Don't change this file in any respect.
+
+
+! Undefined control sequence.
+l.15 \AUTHOR
+            {Bruno Le Floch}
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+============================================================
+TEST 1: regex_show
+============================================================
+
+LaTeX Warning: Extra right parenthesis ignored in regular expression.
+
+> Compiled regex {a*|b??|(c{0}d{2,}e|[^fg\c [^BE][^\d ]\w ]){2,4}?)}:
++-branch
+  char code 97 (a), repeated 0 or more times, greedy
++-branch
+  char code 98 (b), repeated between 0 and 1 times, lazy
++-branch
+  ,-group begin
+  | char code 99 (c), repeated 0 times
+  | char code 100 (d), repeated 2 or more times, greedy
+  | char code 101 (e)
+  +-branch
+  | Don't match
+  |   char code 102 (f)
+  |   char code 103 (g)
+  |   categories CMTPUDSLOA, negative class
+  |     range [48 (0),57 (9)]
+  |   range [97 (a),122 (z)]
+  |   range [65 (A),90 (Z)]
+  |   range [48 (0),57 (9)]
+  |   char code 95 (_)
+  `-group end, repeated between 2 and 4 times, lazy
+  char code 41 ()).
+<recently read> }
+
+l.39   }
+
+
+Defining \l_foo_regex on line 39
+> Compiled regex variable \l_foo_regex:
++-branch
+  assertion: anchor at start (\A)
+  char code 97 (a)
++-branch
+  char code 98 (b)
++-branch.
+<recently read> }
+
+l.39   }
+
+
+> Compiled regex {a\ur {l_foo_regex}b\c {\ur {l_foo_regex}{2,7}?|D}}:
++-branch
+  char code 97 (a)
+  ,-group begin (no capture)
+  | assertion: anchor at start (\A)
+  | char code 97 (a)
+  +-branch
+  | char code 98 (b)
+  +-branch
+  `-group end
+  char code 98 (b)
+  Match
+    control sequence
+    +-branch
+      ,-group begin (no capture)
+      | assertion: anchor at start (\A)
+      | char code 97 (a)
+      +-branch
+      | char code 98 (b)
+      +-branch
+      `-group end, repeated between 2 and 7 times, lazy
+    +-branch
+      char code 68 (D).
+<recently read> }
+
+l.39   }
+
+
+> Compiled regex {a\c {bc}\u {c_space_tl}+\c {\u {c_space_tl}|}}:
++-branch
+  char code 97 (a)
+  control sequence \bc
+  ,-group begin (no capture)
+  | char 32 ( ), catcode 10
+  `-group end, repeated 1 or more times, greedy
+  control sequence \  or \.
+<recently read> }
+
+l.39   }
+
+
+> Compiled regex {\u {l_tmpa_tl}*\c {\u {l_tmpa_tl}|(?:\u {l_tmpa_int})?}{3}|y*}:
++-branch
+  ,-group begin (no capture)
+  | control sequence \abc
+  `-group end, repeated 0 or more times, greedy
+  Match, repeated 3 times
+    control sequence
+    +-branch
+      char code 92 (\)
+      char code 97 (a)
+      char code 98 (b)
+      char code 99 (c)
+      char code 32 ( )
+    +-branch
+      ,-group begin (no capture)
+      | char code 55 (7)
+      `-group end, repeated between 0 and 1 times, greedy
++-branch
+  char code 121 (y), repeated 0 or more times, greedy.
+<recently read> }
+
+l.39   }
+
+
+> Compiled regex {a(?:bc(?|de|f){2}g|hi){3,4}?}:
++-branch
+  char code 97 (a)
+  ,-group begin (no capture)
+  | char code 98 (b)
+  | char code 99 (c)
+  | ,-group begin (resetting)
+  | | char code 100 (d)
+  | | char code 101 (e)
+  | +-branch
+  | | char code 102 (f)
+  | `-group end, repeated 2 times
+  | char code 103 (g)
+  +-branch
+  | char code 104 (h)
+  | char code 105 (i)
+  `-group end, repeated between 3 and 4 times, lazy.
+<recently read> }
+
+l.39   }
+
+
+Defining \l_bar_regex on line 39
+> Compiled regex variable \l_bar_regex:
++-branch
+  Fail.
+<recently read> }
+
+l.39   }
+
+
+
+! LaTeX Error: Variable \g_undefined_regex undefined.
+
+For immediate help type H <return>.
+ ...
+
+l.39   }
+
+
+This is a coding error.
+
+LaTeX has been asked to show a variable \g_undefined_regex, but this has not been defined yet.
+
+
+> Compiled regex variable \l_tmpa_regex:
++-branch
+  range [48 (0),57 (9)]
++-branch
+  Match
+    range [97 (a),122 (z)]
+    Reversed match
+      range [97 (a),122 (z)]
+      range [65 (A),90 (Z)]
+      range [48 (0),57 (9)]
+      char code 95 (_)
+  any token
+  Match
+    range [97 (a),122 (z)]
+    range [65 (A),90 (Z)]
+    Reversed match
+      range [0,127]
+    char code 37 (%).
+<recently read> }
+
+l.39   }
+
+
+
+! LaTeX Error: Variable '\l_tmpa_regex' is not a valid regex.
+
+For immediate help type H <return>.
+ ...
+
+l.39   }
+
+
+This is a coding error.
+
+The variable '\l_tmpa_regex' with value
+
+    \__regex_branch:n {\__regex_class:NnnnN \c_true_bool {\__regex_item_caseful_equal:n {65}}{1}{0}\c_false_bool }X
+
+should be a regex variable, but it does not have the correct internal structure:
+
+    \__regex_branch:n {\__regex_class:NnnnN \c_true_bool {\__regex_item_caseful_equal:n {65}}{1}{0}\c_false_bool }
+
+
+============================================================
+
+============================================================
+TEST 2: regex_show again
+============================================================
+> Compiled regex {[^\d \W \s ]*?[^a-z[:^cntrl:]A-Z]??}:
++-branch
+  Don't match, repeated 0 or more times, lazy
+    range [48 (0),57 (9)]
+    Reversed match
+      range [97 (a),122 (z)]
+      range [65 (A),90 (Z)]
+      range [48 (0),57 (9)]
+      char code 95 (_)
+    char code 32 ( )
+    char code 9
+    char code 10
+    char code 12
+    char code 13
+  Don't match, repeated between 0 and 1 times, lazy
+    range [97 (a),122 (z)]
+    Reversed match
+      range [0,31]
+      char code 127
+    range [65 (A),90 (Z)].
+<recently read> }
+
+l.49   }
+
+
+> Compiled regex {[^\c [^L][^[:^alpha:]]]{2,}?}:
++-branch
+  Don't match, repeated 2 or more times, lazy
+    categories CBEMTPUDSOA, negative class
+      Reversed match
+        range [97 (a),122 (z)]
+        range [65 (A),90 (Z)].
+<recently read> }
+
+l.49   }
+
+
+
+! LaTeX Error: Missing right bracket inserted in regular expression.
+
+For immediate help type H <return>.
+ ...
+
+l.49   }
+
+
+LaTeX was given a regular expression where a character class was started with '[', but the matching ']' is missing.
+
+
+
+! LaTeX Error: Missing right parentheses inserted in regular expression.
+
+For immediate help type H <return>.
+ ...
+
+l.49   }
+
+
+LaTeX was given a regular expression with 2 more left parentheses than right parentheses.
+
+
+> Compiled regex {(a(b|[^}:
++-branch
+  ,-group begin
+  | char code 97 (a)
+  | ,-group begin
+  | | char code 98 (b)
+  | +-branch
+  | | Pass
+  | `-group end
+  `-group end.
+<recently read> }
+
+l.49   }
+
+
+
+! LaTeX Error: Missing right brace inserted for '\c' escape.
+
+For immediate help type H <return>.
+ ...
+
+l.49   }
+
+
+LaTeX was given a regular expression where a '\c{...' construction was not ended with a closing brace '}'.
+
+
+
+! LaTeX Error: Missing right bracket inserted in regular expression.
+
+For immediate help type H <return>.
+ ...
+
+l.49   }
+
+
+LaTeX was given a regular expression where a character class was started with '[', but the matching ']' is missing.
+
+
+
+! LaTeX Error: Missing right parenthesis inserted in regular expression.
+
+For immediate help type H <return>.
+ ...
+
+l.49   }
+
+
+LaTeX was given a regular expression with 1 more left parentheses than right parentheses.
+
+
+
+! LaTeX Error: Missing right bracket inserted in regular expression.
+
+For immediate help type H <return>.
+ ...
+
+l.49   }
+
+
+LaTeX was given a regular expression where a character class was started with '[', but the matching ']' is missing.
+
+
+
+! LaTeX Error: Missing right parenthesis inserted in regular expression.
+
+For immediate help type H <return>.
+ ...
+
+l.49   }
+
+
+LaTeX was given a regular expression with 1 more left parentheses than right parentheses.
+
+
+> Compiled regex {([\c {([}:
++-branch
+  ,-group begin
+  | Match
+  |   control sequence
+  |   +-branch
+  |     ,-group begin
+  |     | Fail
+  |     `-group end
+  `-group end.
+<recently read> }
+
+l.49   }
+
+
+> Compiled regex {\c {[}{]}}:
++-branch
+  Match
+    control sequence
+    +-branch
+      Match
+        char code 125 (})
+        char code 123 ({).
+<recently read> }
+
+l.49   }
+
+
+============================================================
+
+============================================================
+TEST 3: all escaped sequences
+============================================================
+> Compiled regex {\A \B \C \D \E \F \G \H \I \J \K \L \M \N \O \P \Q \R \S \T \U \V \W \X \Y \Z }:
++-branch
+  assertion: anchor at start (\A)
+  negative assertion: word boundary
+  char code 67 (C)
+  Match
+    Reversed match
+      range [48 (0),57 (9)]
+  char code 69 (E)
+  char code 70 (F)
+  assertion: anchor at start of match (\G)
+  Match
+    Reversed match
+      char code 32 ( )
+      char code 9
+  char code 73 (I)
+  char code 74 (J)
+  reset match start (\K)
+  char code 76 (L)
+  char code 77 (M)
+  Match
+    Reversed match
+      char code 10
+  char code 79 (O)
+  char code 80 (P)
+  char code 81 (Q)
+  char code 82 (R)
+  Match
+    Reversed match
+      char code 32 ( )
+      char code 9
+      char code 10
+      char code 12
+      char code 13
+  char code 84 (T)
+  char code 85 (U)
+  Match
+    Reversed match
+      range [10,13]
+  Match
+    Reversed match
+      range [97 (a),122 (z)]
+      range [65 (A),90 (Z)]
+      range [48 (0),57 (9)]
+      char code 95 (_)
+  char code 88 (X)
+  char code 89 (Y)
+  assertion: anchor at end (\Z).
+<recently read> }
+
+l.57   }
+
+
+
+! LaTeX Error: Invalid character 'd' following '\c' escape.
+
+For immediate help type H <return>.
+ ...
+
+l.57   }
+
+
+In regular expressions, the '\c' escape sequence may only be followed by a left brace, a left bracket, or a capital letter representing a character category, namely one of 'ABCDELMOPSTU'.
+
+
+
+! LaTeX Error: Missing left brace following '\u' escape.
+
+For immediate help type H <return>.
+ ...
+
+l.57   }
+
+
+The '\u' escape sequence must be followed by a brace group with the name of the variable to use.
+
+
+> Compiled regex {\a \b \c \d \e \f \g \h \i \j \k \l \m \n \o \p \q \r \s \t \u \v \w \x \y \z }:
++-branch
+  char code 7
+  assertion: word boundary
+  range [48 (0),57 (9)]
+  char code 27
+  char code 12
+  char code 103 (g)
+  Match
+    char code 32 ( )
+    char code 9
+  char code 105 (i)
+  char code 106 (j)
+  char code 107 (k)
+  char code 108 (l)
+  char code 109 (m)
+  char code 10
+  char code 111 (o)
+  char code 112 (p)
+  char code 113 (q)
+  char code 13
+  Match
+    char code 32 ( )
+    char code 9
+    char code 10
+    char code 12
+    char code 13
+  char code 9
+  char code 117 (u)
+  range [10,13]
+  Match
+    range [97 (a),122 (z)]
+    range [65 (A),90 (Z)]
+    range [48 (0),57 (9)]
+    char code 95 (_)
+  char code 0
+  char code 121 (y)
+  assertion: anchor at end (\Z).
+<recently read> }
+
+l.57   }
+
+
+> Compiled regex {\0\1\2\3\4\5\6\7\8\9}:
++-branch
+  char code 48 (0)
+  char code 49 (1)
+  char code 50 (2)
+  char code 51 (3)
+  char code 52 (4)
+  char code 53 (5)
+  char code 54 (6)
+  char code 55 (7)
+  char code 56 (8)
+  char code 57 (9).
+<recently read> }
+
+l.57   }
+
+
+============================================================
+
+============================================================
+TEST 4: regex_log
+============================================================
+> Compiled regex variable \l_foo_regex:
++-branch
+  assertion: anchor at start (\A)
+  char code 97 (a)
++-branch
+  char code 98 (b)
++-branch
+============================================================
+> Compiled regex {a\ur {l_foo_regex}b\c {\ur {l_foo_regex}{2,7}?|D}}:
++-branch
+  char code 97 (a)
+  ,-group begin (no capture)
+  | assertion: anchor at start (\A)
+  | char code 97 (a)
+  +-branch
+  | char code 98 (b)
+  +-branch
+  `-group end
+  char code 98 (b)
+  Match
+    control sequence
+    +-branch
+      ,-group begin (no capture)
+      | assertion: anchor at start (\A)
+      | char code 97 (a)
+      +-branch
+      | char code 98 (b)
+      +-branch
+      `-group end, repeated between 2 and 7 times, lazy
+    +-branch
+      char code 68 (D)
+============================================================
+
+! LaTeX Error: Variable \g_undefined_regex undefined.
+
+For immediate help type H <return>.
+ ...
+
+l.68   }
+
+
+This is a coding error.
+
+LaTeX has been asked to show a variable \g_undefined_regex, but this has not been defined yet.
+
+
+============================================================
+
+
+END-TEST-LOG
+
+ )
+
+No pages of output.

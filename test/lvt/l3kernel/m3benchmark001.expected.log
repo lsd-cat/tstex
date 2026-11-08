@@ -1,0 +1,94 @@
+entering extended mode
+(m3benchmark001.lvt
+LaTeX2e <2026-11-01>
+L3 programming layer <2026-09-09>
+(minimal.cls
+Document Class: minimal 2001/05/25 Standard LaTeX minimal class
+) (regression-test.tex
+\gTESTint=\count276
+) (l3debug.def
+File: l3debug.def 2026-09-09 L3 Debugging support
+)
+
+START-TEST-LOG
+
+
+This is a generated file for the l3build validation system.
+
+Don't change this file in any respect.
+
+
+OMIT
+Defining \test_slow_code: on line 20
+Defining \test_disable_iow:n on line 22
+TIMO
+============================================================
+TEST 1: benchmark
+============================================================
+OMIT
+Defining \g__benchmark_1_int on line 66
+\g__benchmark_1_int=\count277
+TIMO
+OMIT
+TIMO
+OMIT
+TIMO
+OMIT
+TIMO
+OMIT
+TIMO
+OMIT
+TIMO
+TRUE
+============================================================
+
+OMIT
+Defining \test_reset_time_at_iow:n on line 69
+TIMO
+============================================================
+TEST 2: tic/toc
+============================================================
+
+! Package benchmark Error: \benchmark_toc: without \benchmark_tic: !
+
+Type <return> to continue.
+ ...
+
+l.94   }
+
+
+LaTeX does not know anything more about this error, sorry.
+
+Try typing <return> to proceed.
+If that doesn't work, type X <return> to quit.
+
+
+
+! Package benchmark Error: \benchmark_toc: without \benchmark_tic: !
+
+Type <return> to continue.
+ ...
+
+l.94   }
+
+
+LaTeX does not know anything more about this error, sorry.
+
+Try typing <return> to proceed.
+If that doesn't work, type X <return> to quit.
+
+
+(l3benchmark) + TIC
+(l3benchmark) +-+ TIC
+(l3benchmark) +-+-+ TIC
+(l3benchmark) +-+-+ TOC: 1.2 s
+(l3benchmark) +-+ TOC: 1.2 s
+(l3benchmark) + TOC: 1.2 s
+============================================================
+
+
+END-TEST-LOG
+
+ )
+
+No pages of output.

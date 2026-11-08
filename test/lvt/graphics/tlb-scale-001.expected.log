@@ -1,0 +1,117 @@
+entering extended mode
+(tlb-scale-001.lvt
+LaTeX2e <2026-11-01>
+L3 programming layer <2026-09-09>
+(graphics.sty
+Package: graphics 2026-05-17 v1.4h Standard LaTeX Graphics (DPC,SPQR)
+(trig.sty
+Package: trig 2023/12/02 v1.11 sin cos tan (DPC)
+) (graphics.cfg
+File: graphics.cfg 2016/06/04 v1.11 sample graphics configuration
+)
+Package graphics Info: Driver file: dvips.def on input line 106.
+(dvips.def
+File: dvips.def 2025/01/21 v3.2a Graphics/color driver for dvips
+)) (test2e.tex
+OMIT
+TIMO
+(expl3.sty
+Package: expl3 2026-09-09 L3 programming layer (loader)
+ (l3backend-dvips.def
+File: l3backend-dvips.def 2026-09-09 L3 backend support: dvips
+\l__pdfannot_backend_content_box=\box53
+\l__pdfannot_backend_model_box=\box54
+\g__pdfannot_backend_int=\count276
+\g__pdfannot_backend_link_int=\count277
+\g__pdfannot_backend_link_sf_int=\count278
+)))
+START-TEST-LOG
+
+This is a generated file for the LaTeX2e validation system.
+
+Don't change this file in any respect.
+
+
+=======================================
+ 100pt=100.0pt / 10pt=10.0pt
+=======================================
+ result: 10
+
+=======================================
+ 10pt=10.0pt / 100pt=100.0pt
+=======================================
+ result: 0.09999
+
+=======================================
+ 1pt=1.0pt / 7pt=7.0pt
+=======================================
+ result: 0.14285
+
+=======================================
+ 7pt=7.0pt / 1pt=1.0pt
+=======================================
+ result: 7
+
+=======================================
+ 5sp=0.00008pt / 2sp=0.00003pt
+=======================================
+ result: 2.5
+
+=======================================
+ 2sp=0.00003pt / 5sp=0.00008pt
+=======================================
+ result: 0.4
+
+=======================================
+ 30cm=853.58267pt / 2pt=2.0pt
+=======================================
+ result: 426.79134
+
+=======================================
+ 2pt=2.0pt / 30cm=853.58267pt
+=======================================
+ result: 0.00233
+
+=======================================
+ 100cm=2845.27559pt / 90cm=2560.74802pt
+=======================================
+ result: 1.1112
+
+=======================================
+ 90cm=2560.74802pt / 100cm=2845.27559pt
+=======================================
+ result: 0.9
+
+=======================================
+ \textheight =8191.99998pt / \textwidth =8191.99998pt
+=======================================
+ result: 1.00006
+
+=======================================
+ \textwidth =8191.99998pt / \textheight =8191.99998pt
+=======================================
+ result: 1.00006
+
+=======================================
+ 15000pt=15000.0pt / 5pt=5.0pt
+=======================================
+ result: 3000
+
+=======================================
+ 5pt=5.0pt / 15000pt=15000.0pt
+=======================================
+ result: 0.00032
+
+=======================================
+ 15123pt=15123.0pt / 5pt=5.0pt
+=======================================
+ result: 3024.59999
+
+=======================================
+ 5pt=5.0pt / 15123pt=15123.0pt
+=======================================
+ result: 0.00032
+END-TEST-LOG
+ )
+
+No pages of output.

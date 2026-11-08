@@ -1,0 +1,440 @@
+entering extended mode
+(m3expan001.lvt
+LaTeX2e <2026-11-01>
+L3 programming layer <2026-09-09>
+(regression-test.tex
+\gTESTint=\count276
+) (l3debug.def
+File: l3debug.def 2026-09-09 L3 Debugging support
+)
+
+START-TEST-LOG
+
+
+This is a generated file for the l3build validation system.
+
+Don't change this file in any respect.
+
+
+! Undefined control sequence.
+l.16 \AUTHOR
+            {Frank Mittelbach, Bruno Le Floch}
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+
+! LaTeX Error: Missing \begin{document}.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...
+
+l.16 \AUTHOR{F
+              rank Mittelbach, Bruno Le Floch}
+You're in trouble here.  Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+Missing character: There is no F in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no n in font nullfont!
+Missing character: There is no k in font nullfont!
+Missing character: There is no M in font nullfont!
+Missing character: There is no i in font nullfont!
+Missing character: There is no t in font nullfont!
+Missing character: There is no t in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no l in font nullfont!
+Missing character: There is no b in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no c in font nullfont!
+Missing character: There is no h in font nullfont!
+Missing character: There is no , in font nullfont!
+Missing character: There is no B in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no u in font nullfont!
+Missing character: There is no n in font nullfont!
+Missing character: There is no o in font nullfont!
+Missing character: There is no L in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no F in font nullfont!
+Missing character: There is no l in font nullfont!
+Missing character: There is no o in font nullfont!
+Missing character: There is no c in font nullfont!
+Missing character: There is no h in font nullfont!
+
+Overfull \hbox (20.0pt too wide) in paragraph at lines 16--17
+[]
+
+\hbox(0.0+0.0)x0.0
+.\hbox(0.0+0.0)x20.0
+.\glue(\rightskip) 0.0
+
+Defining \c_a_tl on line 20
+Defining \c_b_tl on line 21
+Defining \c_aa_tl on line 22
+Defining \c_bb_tl on line 23
+Defining \c_aaa_tl on line 24
+Defining \c_bbb_tl on line 25
+Defining \foo:nn on line 27
+Defining \foo:oo on line 29
+Defining \foo:VV on line 29
+Defining \foo:xx on line 29
+Defining \foo:cc on line 29
+
+! LaTeX Error: Variant form 'cc' deprecated for base form '\foo:nn'. One should not change an argument from type 'n' to type 'c': use a 'v' variant?
+
+Type <return> to continue.
+ ...
+
+l.29   { oo , VV , xx , cc , nx , fx , xf }
+
+
+LaTeX does not know anything more about this error, sorry.
+
+Try typing <return> to proceed.
+If that doesn't work, type X <return> to quit.
+
+
+
+! LaTeX Error: Variant form 'cc' deprecated for base form '\foo:nn'. One should not change an argument from type 'n' to type 'c': use a 'v' variant?
+
+Type <return> to continue.
+ ...
+
+l.29   { oo , VV , xx , cc , nx , fx , xf }
+
+
+LaTeX does not know anything more about this error, sorry.
+
+Try typing <return> to proceed.
+If that doesn't work, type X <return> to quit.
+
+
+Defining \foo:nx on line 29
+Defining \exp_args:Nfx on line 29
+Defining \foo:fx on line 29
+Defining \exp_args:Nxf on line 29
+Defining \foo:xf on line 29
+Defining \bar:nnnnnn on line 31
+Defining \exp_args:NfvVonx on line 33
+Defining \bar:fvVonx on line 33
+============================================================
+TEST 1: protection
+============================================================
+\long macro:->\exp_args:Noo \foo:nn
+\long macro:->\exp_args:NVV \foo:nn
+\protected\long macro:->\exp_args:Nxx \foo:nn
+\long macro:->\exp_args:Ncc \foo:nn
+\protected\long macro:->\exp_args:Nnx \foo:nn
+\protected\long macro:->\exp_args:Nfx \foo:nn
+\protected\long macro:->\exp_args:Nxf \foo:nn
+\protected\long macro:->\exp_args:NfvVonx \bar:nnnnnn
+\protected\long macro:#1#2#3#4#5#6#7->\use:x {\exp_not:N #1{\__kernel_exp_not:w \exp_after:w {\exp:w \exp_end_continue_f:w #2}}{\__kernel_exp_not:w \exp_after:w {\exp:w \__exp_eval_register:c {#3}}}{\__kernel_exp_not:w \exp_after:w {\exp:w \__exp_eval_register:N #4}}{\__kernel_exp_not:w \exp_after:w {#5}}{\exp_not:n {#6}}{#7}}
+============================================================
+
+============================================================
+TEST 2: expansion
+============================================================
+(a)(b)
+(\c_a_tl )(\c_b_tl )
+(\c_a_tl )(\c_b_tl )
+(\c_a_tl )(\c_b_tl )
+(A)(B)
+(a)(B)
+(A\c_a_tl )(BB)
+(AA)(B\c_b_tl )
+(A\c_a_tl )(\c_b_tl \c_b_tl )(\c_a_tl )(\c_b_tl )(\c_a_tl )(B)
+============================================================
+
+============================================================
+TEST 3: generate bad variants
+============================================================
+
+! LaTeX Error: Control sequence \undefined:nn undefined.
+
+For immediate help type H <return>.
+ ...
+
+l.73   }
+
+
+This is a coding error.
+
+LaTeX has been asked to use a control sequence '\undefined:nn':
+this has not been defined yet.
+
+
+Defining \undefined:on on line 73
+
+! LaTeX Error: Variant form 'ooo' longer than base signature of '\undefined:nn'.
+
+For immediate help type H <return>.
+ ...
+
+l.73   }
+
+
+This is a coding error.
+
+LaTeX has been asked to create a variant of the function '\undefined:nn' with a signature starting with 'ooo', but that is longer than the signature (part after the colon) of '\undefined:nn'.
+
+
+Variant \undefined:on already defined; not changing it on line 73
+
+! LaTeX Error: Variant form 'x' invalid for base form '\undefined:on'.
+
+For immediate help type H <return>.
+ ...
+
+l.73   }
+
+
+This is a coding error.
+
+LaTeX has been asked to create a variant of the function '\undefined:on' with a signature starting with 'x', but cannot change an argument from type 'o' to type 'x'.
+
+
+
+! LaTeX Error: Function '\aa' contains no ':'.
+
+For immediate help type H <return>.
+ ...
+
+l.73   }
+
+
+This is a coding error.
+
+Code-level functions must contain ':' to separate the argument specification from the function name. This is needed when defining conditionals or variants, or when building a parameter text from the number of arguments of the function.
+
+
+\long macro:->\exp_args:No \undefined:nn
+undefined
+undefined
+undefined
+============================================================
+
+============================================================
+TEST 4: Issue 101: protected variants for non-expandable primitives
+============================================================
+Defining \my_def:Npn on line 80
+Defining \my_def:cpn on line 80
+\protected\long macro:->\exp_args:Nc \my_def:Npn
+============================================================
+
+============================================================
+TEST 5: Issue 102: macros expanding to \protected
+============================================================
+Defining \foo:n on line 87
+Defining \foo:o on line 87
+\long macro:->\exp_args:No \foo:n
+============================================================
+
+============================================================
+TEST 6: Detect \protected with unusual \escapechar
+============================================================
+Defining /bar:n on line 95
+Defining /bar:o on line 95
+long macro:->/exp_args:No /bar:n
+============================================================
+
+============================================================
+TEST 7: Issue 103: is the variant list a clist?
+============================================================
+Defining \bar:f on line 101
+Variant \bar:n already defined; not changing it on line 101
+
+! LaTeX Error: Variant form same as base form '\bar:n'.
+
+For immediate help type H <return>.
+ ...
+
+l.101   }
+
+
+This is a coding error.
+
+LaTeX has been asked to create a variant of the function '\bar:n' with the same signature.
+
+
+Defining \bar:x on line 101
+\protected\long macro:->\exp_args:Nx \bar:n
+============================================================
+
+============================================================
+TEST 8: What if the base function has no colon?
+============================================================
+Defining \foo on line 108
+
+! LaTeX Error: Function '\foo' contains no ':'.
+
+For immediate help type H <return>.
+ ...
+
+l.108   }
+
+
+This is a coding error.
+
+Code-level functions must contain ':' to separate the argument specification from the function name. This is needed when defining conditionals or variants, or when building a parameter text from the number of arguments of the function.
+
+
+undefined
+============================================================
+
+Defining \foobar:Nn on line 110
+============================================================
+TEST 9: Incorrect letters
+============================================================
+Variant \foobar:Nn already defined; not changing it on line 119
+
+! LaTeX Error: Variant form 'pn' invalid for base form '\foobar:Nn'.
+
+For immediate help type H <return>.
+ ...
+
+l.119   }
+
+
+This is a coding error.
+
+LaTeX has been asked to create a variant of the function '\foobar:Nn' with a signature starting with 'pn', but cannot change an argument from type 'N' to type 'p'.
+
+
+Variant \foobar:Nn already defined; not changing it on line 119
+
+! LaTeX Error: Variant form ':Nn' invalid for base form '\foobar:Nn'.
+
+For immediate help type H <return>.
+ ...
+
+l.119   }
+
+
+This is a coding error.
+
+LaTeX has been asked to create a variant of the function '\foobar:Nn' with a signature starting with ':Nn', but cannot change an argument from type 'N' to type ':'.
+
+
+undefined,undefined,
+============================================================
+
+============================================================
+TEST 10: Issue 418: changing N/n to incompatible variants
+============================================================
+Defining \foobar:on on line 130
+
+! LaTeX Error: Variant form 'on' deprecated for base form '\foobar:Nn'. One should not change an argument from type 'N' to type 'o': base form only accepts a single token argument.
+
+Type <return> to continue.
+ ...
+
+l.130   }
+
+
+LaTeX does not know anything more about this error, sorry.
+
+Try typing <return> to proceed.
+If that doesn't work, type X <return> to quit.
+
+
+Defining \foobar:Nc on line 130
+
+! LaTeX Error: Variant form 'Nc' deprecated for base form '\foobar:Nn'. One should not change an argument from type 'n' to type 'c': use a 'v' variant?
+
+Type <return> to continue.
+ ...
+
+l.130   }
+
+
+LaTeX does not know anything more about this error, sorry.
+
+Try typing <return> to proceed.
+If that doesn't work, type X <return> to quit.
+
+
+Defining \exp_args:Nn on line 130
+Defining \foobar:nn on line 130
+
+! LaTeX Error: Variant form 'n' deprecated for base form '\foobar:Nn'. One should not change an argument from type 'N' to type 'n': base form only accepts a single token argument.
+
+Type <return> to continue.
+ ...
+
+l.130   }
+
+
+LaTeX does not know anything more about this error, sorry.
+
+Try typing <return> to proceed.
+If that doesn't work, type X <return> to quit.
+
+
+\long macro:->\exp_args:No \foobar:Nn ,\long macro:->\exp_args:NNc \foobar:Nn ,\long macro:->\exp_args:Nn \foobar:Nn ,
+============================================================
+
+============================================================
+TEST 11: Issue 418 again
+============================================================
+Variant \foobar:on already defined; not changing it on line 141
+
+! LaTeX Error: Variant form 'on' deprecated for base form '\foobar:Nn'. One should not change an argument from type 'N' to type 'o': base form only accepts a single token argument.
+
+Type <return> to continue.
+ ...
+
+l.141   }
+
+
+LaTeX does not know anything more about this error, sorry.
+
+Try typing <return> to proceed.
+If that doesn't work, type X <return> to quit.
+
+
+Variant \foobar:Nc already defined; not changing it on line 141
+
+! LaTeX Error: Variant form 'Nc' deprecated for base form '\foobar:Nn'. One should not change an argument from type 'n' to type 'c': use a 'v' variant?
+
+Type <return> to continue.
+ ...
+
+l.141   }
+
+
+LaTeX does not know anything more about this error, sorry.
+
+Try typing <return> to proceed.
+If that doesn't work, type X <return> to quit.
+
+
+Variant \foobar:nn already defined; not changing it on line 141
+
+! LaTeX Error: Variant form 'n' deprecated for base form '\foobar:Nn'. One should not change an argument from type 'N' to type 'n': base form only accepts a single token argument.
+
+Type <return> to continue.
+ ...
+
+l.141   }
+
+
+LaTeX does not know anything more about this error, sorry.
+
+Try typing <return> to proceed.
+If that doesn't work, type X <return> to quit.
+
+
+\long macro:->\exp_args:No \foobar:Nn ,\long macro:->\exp_args:NNc \foobar:Nn ,\long macro:->\exp_args:Nn \foobar:Nn ,
+============================================================
+
+
+END-TEST-LOG
+
+ )
+
+No pages of output.

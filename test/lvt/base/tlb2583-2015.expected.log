@@ -1,0 +1,271 @@
+entering extended mode
+(tlb2583-2015.lvt
+LaTeX2e <2026-11-01>
+L3 programming layer <2026-09-09>
+(test2e.tex
+OMIT
+TIMO
+(expl3.sty
+Package: expl3 2026-09-09 L3 programming layer (loader)
+ (l3backend-dvips.def
+File: l3backend-dvips.def 2026-09-09 L3 backend support: dvips
+\l__pdfannot_backend_content_box=\box53
+\l__pdfannot_backend_model_box=\box54
+\g__pdfannot_backend_int=\count276
+\g__pdfannot_backend_link_int=\count277
+\g__pdfannot_backend_link_sf_int=\count278
+))) (slides.cls
+Document Class: slides 2025-12-31 v2.4c Standard LaTeX document class
+(slides.def
+File: slides.def 2025-12-31 v2.4c SLiTeX definitions
+ hacks, slides,
+\c@page=\count279
+ picture, mods,
+\@smashboxa=\box55
+\@smashboxb=\box56
+\@smashboxc=\box57
+ output, init) (sfonts.def
+File: sfonts.def 2023/12/02 v2.2f Standard LaTeX slide font definitions
+ (ot1lcmss.fd
+File: ot1lcmss.fd 2023/12/02 v2.2f Standard LaTeX slide font definitions
+))
+\c@minutes=\count280
+\c@seconds=\count281
+\c@mv@invisible=\count282
+LaTeX Font Info:    Overwriting symbol font `operators' in version `normal'
+(Font)                  OT1/cmr/m/n --> OT1/lcmss/m/n on input line 360.
+LaTeX Font Info:    Overwriting symbol font `letters' in version `normal'
+(Font)                  OML/cmm/m/it --> OML/lcmm/m/it on input line 363.
+LaTeX Font Info:    Overwriting symbol font `symbols' in version `normal'
+(Font)                  OMS/cmsy/m/n --> OMS/lcmsy/m/n on input line 365.
+LaTeX Font Info:    Overwriting symbol font `largesymbols' in version `normal'
+(Font)                  OMX/cmex/m/n --> OMX/lcmex/m/n on input line 367.
+LaTeX Font Info:    Overwriting symbol font `operators' in version `invisible'
+(Font)                  OT1/cmr/m/n --> OT1/lcmss/m/In on input line 370.
+LaTeX Font Info:    Overwriting symbol font `letters' in version `invisible'
+(Font)                  OML/cmm/m/it --> OML/lcmm/m/Iit on input line 372.
+LaTeX Font Info:    Overwriting symbol font `symbols' in version `invisible'
+(Font)                  OMS/cmsy/m/n --> OMS/lcmsy/m/In on input line 374.
+LaTeX Font Info:    Overwriting symbol font `largesymbols' in version `invisible'
+(Font)                  OMX/cmex/m/n --> OMX/lcmex/m/In on input line 376.
+)
+Author: pletat@informatik.hu-berlin.de (Henrik Pletat)
+Format: LaTeX2e<1997/06/01>
+OMIT
+
+LaTeX Warning: Declared format LaTeX2e<1997/06/01>,
+Actual format LaTeX2e<2026-11-01> on input line 29.
+
+TIMO
+Main Class: slides
+Package: fontenc
+    Options: T1
+(fontenc.sty
+Package: fontenc 2026-07-31 v2.2a Standard LaTeX package
+LaTeX Font Info:    Trying to load font information for T1+lcmss on input line 116.
+ (t1lcmss.fd
+File: t1lcmss.fd 2023/12/02 v2.2f Standard LaTeX slide font definitions
+))
+START-TEST-LOG
+
+This is a generated file for the LaTeX2e validation system.
+
+Don't change this file in any respect.
+
+\c@df=\count283
+No file tlb2583-2015.aux.
+\openout1 = `tlb2583-2015.aux'.
+
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 47.
+LaTeX Font Info:    ... okay on input line 47.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 47.
+LaTeX Font Info:    ... okay on input line 47.
+LaTeX Font Info:    Checking defaults for OT1/lcmss/m/n on input line 47.
+LaTeX Font Info:    ... okay on input line 47.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 47.
+LaTeX Font Info:    ... okay on input line 47.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 47.
+LaTeX Font Info:    ... okay on input line 47.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 47.
+LaTeX Font Info:    ... okay on input line 47.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 47.
+LaTeX Font Info:    ... okay on input line 47.
+LaTeX Font Info:    Trying to load font information for OML+lcmm on input line 52.
+(omllcmm.fd
+File: omllcmm.fd 2023/12/02 v2.2f Standard LaTeX slide font definitions
+)
+LaTeX Font Info:    Trying to load font information for OMS+lcmsy on input line 52.
+ (omslcmsy.fd
+File: omslcmsy.fd 2023/12/02 v2.2f Standard LaTeX slide font definitions
+)
+LaTeX Font Info:    Trying to load font information for OMX+lcmex on input line 52.
+ (omxlcmex.fd
+File: omxlcmex.fd 2023/12/02 v2.2f Standard LaTeX slide font definitions
+)
+LaTeX Font Info:    External font `cmex10 at17.28pt' loaded for size
+(Font)              <19.907> on input line 52.
+LaTeX Font Info:    External font `cmex10 at17.28pt' loaded for size
+(Font)              <16.59> on input line 52.
+LaTeX Font Info:    External font `cmex10 at17.28pt' loaded for size
+(Font)              <13.82> on input line 52.
+
+
+Completed box being shipped out [0]
+\vbox(647.0+0.0)x469.3775
+.\glue 3.0
+.\vbox(644.0+0.0)x469.0, shifted 0.3775
+..\vbox(14.0+0.0)x469.0, glue set 14.0fil
+...\glue 0.0 plus 1.0fil
+...\hbox(0.0+0.0)x469.0
+....\hbox(0.0+0.0)x469.0
+..\glue 15.0
+..\glue(\lineskip) 0.0
+..\vbox(590.0+0.0)x469.0, glue set 132.07838fil
+...\glue 0.0 plus 1.0fil
+...\write-{}
+...\glue(\topskip) 16.1757
+...\hbox(13.8243+0.0)x469.0, glue set 66.83743fil
+....\hbox(13.8243+0.0)x141.71185
+.....\glue 0.0
+.....\glue 0.0
+.....\glue -10.0
+.....\hbox(13.8243+0.0)x141.71185
+......\hbox(0.0+0.0)x0.0
+......\penalty 10000
+......\glue 10.0
+......\T1/lcmss/bx/n/19.907 D
+......\T1/lcmss/bx/n/19.907 e
+......\T1/lcmss/bx/n/19.907 ^^\ (ligature fi)
+......\T1/lcmss/bx/n/19.907 n
+......\T1/lcmss/bx/n/19.907 i
+......\T1/lcmss/bx/n/19.907 t
+......\T1/lcmss/bx/n/19.907 i
+......\T1/lcmss/bx/n/19.907 o
+......\T1/lcmss/bx/n/19.907 n
+......\glue 9.12408 plus 4.56204 minus 3.04135
+......\T1/lcmss/bx/n/19.907 1
+.....\glue 10.0
+....\penalty 0
+....\T1/lcmss/m/sl/19.907 S
+....\T1/lcmss/m/sl/19.907 o
+....\T1/lcmss/m/sl/19.907 m
+....\T1/lcmss/m/sl/19.907 e
+....\glue 8.2946 plus 4.1473 minus 2.76486
+....\T1/lcmss/m/sl/19.907 s
+....\T1/lcmss/m/sl/19.907 t
+....\T1/lcmss/m/sl/19.907 u
+....\T1/lcmss/m/sl/19.907 ^^[ (ligature ff)
+....\glue 8.2946 plus 4.1473 minus 2.76486
+....\T1/lcmss/m/sl/19.907 t
+....\T1/lcmss/m/sl/19.907 o
+....\glue 8.2946 plus 4.1473 minus 2.76486
+....\T1/lcmss/m/sl/19.907 b
+....\kern0.69122
+....\T1/lcmss/m/sl/19.907 e
+....\glue 8.2946 plus 4.1473 minus 2.76486
+....\T1/lcmss/m/sl/19.907 d
+....\T1/lcmss/m/sl/19.907 e
+....\T1/lcmss/m/sl/19.907 ^^\ (ligature fi)
+....\T1/lcmss/m/sl/19.907 n
+....\T1/lcmss/m/sl/19.907 e
+....\T1/lcmss/m/sl/19.907 d
+....\T1/lcmss/m/sl/19.907 .
+....\penalty 10000
+....\glue(\parfillskip) 0.0 plus 1.0fil
+....\glue(\rightskip) 0.0
+...\penalty 0
+...\glue 45.0 plus 18.0 minus 9.0
+...\glue -45.0 plus -18.0 minus -9.0
+...\glue 30.0 plus 18.0 minus 9.0
+...\glue(\parskip) 15.0
+...\glue(\parskip) 0.0
+...\glue(\baselineskip) 14.1757 plus 3.0 minus 4.0
+...\hbox(13.8243+0.0)x431.0, glue set 324.82903fil, shifted 38.0
+....\hbox(9.08954+0.0)x0.0
+.....\glue 0.0
+.....\glue 0.0
+.....\glue -10.0
+.....\hbox(9.08954+0.0)x0.0
+......\glue 0.0 plus 1.0fil minus 1.0fil
+......\hbox(9.08954+0.0)x0.0, glue set - 10.57573fil
+.......\glue 0.0 plus 1.0fil minus 1.0fil
+.......\mathon
+.......\OMS/lcmsy/m/n/19.907 ^^O
+.......\mathoff
+.....\glue 10.0
+....\penalty 0
+....\T1/lcmss/m/sl/19.907 s
+....\T1/lcmss/m/sl/19.907 o
+....\T1/lcmss/m/sl/19.907 m
+....\T1/lcmss/m/sl/19.907 e
+....\glue 8.2946 plus 4.1473 minus 2.76486
+....\T1/lcmss/m/sl/19.907 s
+....\T1/lcmss/m/sl/19.907 t
+....\T1/lcmss/m/sl/19.907 u
+....\T1/lcmss/m/sl/19.907 ^^[ (ligature ff)
+....\penalty 10000
+....\glue(\parfillskip) 0.0 plus 1.0fil
+....\glue(\rightskip) 0.0
+...\penalty 0
+...\glue 15.0
+...\glue -15.0
+...\penalty 0
+...\glue 15.0
+...\glue -15.0
+...\glue 45.0 plus 18.0 minus 9.0
+...\glue -45.0 plus -18.0 minus -9.0
+...\glue 30.0 plus 18.0 minus 9.0
+...\glue(\parskip) 15.0
+...\glue(\parskip) 0.0
+...\glue(\baselineskip) 14.1757 plus 3.0 minus 4.0
+...\hbox(13.8243+2.76486)x431.0, glue set 264.00189fil, shifted 38.0
+....\hbox(13.23186+0.0)x0.0
+.....\glue 0.0
+.....\glue 0.0
+.....\glue -10.0
+.....\hbox(13.23186+0.0)x0.0
+......\glue 0.0 plus 1.0fil minus 1.0fil
+......\hbox(13.23186+0.0)x0.0, glue set - 19.35408fil
+.......\glue 0.0 plus 1.0fil minus 1.0fil
+.......\T1/lcmss/m/sl/19.907 1
+.......\T1/lcmss/m/sl/19.907 .
+.....\glue 10.0
+....\penalty 0
+....\T1/lcmss/m/sl/19.907 s
+....\T1/lcmss/m/sl/19.907 o
+....\T1/lcmss/m/sl/19.907 m
+....\T1/lcmss/m/sl/19.907 e
+....\glue 8.2946 plus 4.1473 minus 2.76486
+....\T1/lcmss/m/sl/19.907 g
+....\T1/lcmss/m/sl/19.907 r
+....\T1/lcmss/m/sl/19.907 e
+....\T1/lcmss/m/sl/19.907 a
+....\T1/lcmss/m/sl/19.907 t
+....\glue 8.2946 plus 4.1473 minus 2.76486
+....\T1/lcmss/m/sl/19.907 s
+....\T1/lcmss/m/sl/19.907 t
+....\T1/lcmss/m/sl/19.907 u
+....\T1/lcmss/m/sl/19.907 ^^[ (ligature ff)
+....\penalty 10000
+....\glue(\parfillskip) 0.0 plus 1.0fil
+....\glue(\rightskip) 0.0
+...\penalty 0
+...\glue 15.0
+...\glue -15.0
+...\glue 15.0
+...\glue -17.76486
+...\penalty 0
+...\glue 2.76486
+...\glue 15.0
+...\glue 0.0 plus 1.0fil
+...\glue 0.0 plus 1.0fil
+..\glue(\baselineskip) 25.0
+..\hbox(0.0+0.0)x469.0
+...\hbox(0.0+0.0)x469.0
+
+
+(tlb2583-2015.aux)
+END-TEST-LOG
+ )
+
+Output written on tlb2583-2015.dvi (1 page, 416 bytes).

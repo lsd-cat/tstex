@@ -1,0 +1,522 @@
+entering extended mode
+(tlb0152.lvt
+LaTeX2e <2026-11-01>
+L3 programming layer <2026-09-09>
+(article.cls
+Document Class: article 2026-06-04 v1.4n Standard LaTeX document class
+(size10.clo
+File: size10.clo 2026-06-04 v1.4n Standard LaTeX file (size option)
+)
+\c@part=\count276
+\c@section=\count277
+\c@subsection=\count278
+\c@subsubsection=\count279
+\c@paragraph=\count280
+\c@subparagraph=\count281
+\c@figure=\count282
+\c@table=\count283
+\abovecaptionskip=\skip49
+\belowcaptionskip=\skip50
+\bibindent=\dimen150
+) (test2e.tex
+OMIT
+TIMO
+(expl3.sty
+Package: expl3 2026-09-09 L3 programming layer (loader)
+ (l3backend-dvips.def
+File: l3backend-dvips.def 2026-09-09 L3 backend support: dvips
+\l__pdfannot_backend_content_box=\box53
+\l__pdfannot_backend_model_box=\box54
+\g__pdfannot_backend_int=\count284
+\g__pdfannot_backend_link_int=\count285
+\g__pdfannot_backend_link_sf_int=\count286
+)))
+START-TEST-LOG
+
+This is a generated file for the LaTeX2e validation system.
+
+Don't change this file in any respect.
+
+Author: Juergen Fischbach
+Format: LaTeX2e<1993/06/01>
+OMIT
+
+LaTeX Warning: Declared format LaTeX2e<1993/06/01>,
+Actual format LaTeX2e<2026-11-01> on input line 31.
+
+TIMO
+Main Class: article
+OMIT
+No file tlb0152.aux.
+\openout1 = `tlb0152.aux'.
+
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 39.
+LaTeX Font Info:    ... okay on input line 39.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 39.
+LaTeX Font Info:    ... okay on input line 39.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 39.
+LaTeX Font Info:    ... okay on input line 39.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 39.
+LaTeX Font Info:    ... okay on input line 39.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 39.
+LaTeX Font Info:    ... okay on input line 39.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 39.
+LaTeX Font Info:    ... okay on input line 39.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 39.
+LaTeX Font Info:    ... okay on input line 39.
+TIMO
+No file tlb0152.toc.
+\tf@toc=\write3
+\openout3 = `tlb0152.toc'.
+
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <14.4> on input line 45.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <7> on input line 45.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <12> on input line 46.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <8> on input line 46.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <6> on input line 46.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <5> on input line 47.
+
+Completed box being shipped out [1]
+\vbox(633.0+0.0)x407.0
+.\glue 16.0
+.\vbox(617.0+0.0)x345.0, shifted 62.0
+..\vbox(12.0+0.0)x345.0, glue set 12.0fil
+...\glue 0.0 plus 1.0fil
+...\hbox(0.0+0.0)x345.0
+....\hbox(0.0+0.0)x345.0
+..\glue 25.0
+..\glue(\lineskip) 0.0
+..\vbox(550.0+0.0)x345.0, glue set 387.14606fil
+...\write-{}
+...\glue(\topskip) 0.12001
+...\hbox(9.87999+0.0)x345.0, glue set 281.71843fil
+....\hbox(0.0+0.0)x0.0
+.....\glue 0.0
+....\OT1/cmr/bx/n/14.4 C
+....\OT1/cmr/bx/n/14.4 o
+....\OT1/cmr/bx/n/14.4 n
+....\kern-0.45001
+....\OT1/cmr/bx/n/14.4 t
+....\OT1/cmr/bx/n/14.4 e
+....\OT1/cmr/bx/n/14.4 n
+....\kern-0.45001
+....\OT1/cmr/bx/n/14.4 t
+....\OT1/cmr/bx/n/14.4 s
+....\penalty 10000
+....\glue(\parfillskip) 0.0 plus 1.0fil
+....\glue(\rightskip) 0.0
+...\penalty 10000
+...\glue 9.90276 plus 0.86108
+...\glue -9.90276 plus -0.86108
+...\penalty -300
+...\glue 9.90276 plus 0.86108
+...\glue -9.90276 plus -0.86108
+...\glue 15.0694 plus 4.30554 minus 0.86108
+...\glue(\parskip) 0.0 plus 1.0
+...\glue(\parskip) 0.0
+...\glue(\baselineskip) 8.00002
+...\hbox(9.99998+4.10443)x345.0, glue set 45.87704fil
+....\hbox(9.27998+0.0)x24.29997
+.....\glue 0.0
+.....\OT1/cmr/bx/n/14.4 1
+.....\glue 16.19998
+....\OT1/cmr/bx/n/14.4 S
+....\OT1/cmr/bx/n/14.4 e
+....\OT1/cmr/bx/n/14.4 c
+....\OT1/cmr/bx/n/14.4 t
+....\OT1/cmr/bx/n/14.4 i
+....\OT1/cmr/bx/n/14.4 o
+....\OT1/cmr/bx/n/14.4 n
+....\OT1/cmr/bx/n/14.4 1
+....\glue 5.4 plus 2.7 minus 1.79999
+....\OT1/cmr/bx/n/14.4 w
+....\OT1/cmr/bx/n/14.4 i
+....\OT1/cmr/bx/n/14.4 t
+....\OT1/cmr/bx/n/14.4 h
+....\glue 5.4 plus 2.7 minus 1.79999
+....\OT1/cmr/bx/n/14.4 b
+....\kern0.45
+....\OT1/cmr/bx/n/14.4 o
+....\OT1/cmr/bx/n/14.4 l
+....\OT1/cmr/bx/n/14.4 d
+....\glue 5.4 plus 2.7 minus 1.79999
+....\OT1/cmr/bx/n/14.4 m
+....\OT1/cmr/bx/n/14.4 a
+....\OT1/cmr/bx/n/14.4 t
+....\OT1/cmr/bx/n/14.4 h
+....\glue 5.4 plus 2.7 minus 1.79999
+....\OT1/cmr/bx/n/14.4 e
+....\OT1/cmr/bx/n/14.4 x
+....\OT1/cmr/bx/n/14.4 p
+....\OT1/cmr/bx/n/14.4 r
+....\OT1/cmr/bx/n/14.4 e
+....\OT1/cmr/bx/n/14.4 s
+....\OT1/cmr/bx/n/14.4 s
+....\OT1/cmr/bx/n/14.4 i
+....\OT1/cmr/bx/n/14.4 o
+....\OT1/cmr/bx/n/14.4 n
+....\glue 5.4 plus 2.7 minus 1.79999
+....\mathon
+....\OML/cmm/b/it/14.4 T
+....\hbox(4.44444+1.94444)x6.50923, shifted 2.15999
+.....\OML/cmm/b/it/10 p
+....\mathoff
+....\penalty 10000
+....\glue(\parfillskip) 0.0 plus 1.0fil
+....\glue(\rightskip) 0.0
+...\write1{\@writefile{toc}{\protect \contentsline {section}{\protect \numberline {1}\protect \boldmath  Section1 with bold math expression $T_p$}{\thepage }{}\protected@file@percent }}
+...\penalty 10000
+...\glue 9.90276 plus 0.86108
+...\glue(\parskip) 0.0 plus 1.0
+...\glue(\parskip) 0.0
+...\glue(\baselineskip) 1.56226
+...\hbox(8.33331+3.35555)x345.0, glue set 54.19188fil
+....\hbox(7.73332+0.0)x30.75
+.....\glue 0.0
+.....\OT1/cmr/bx/n/12 1
+.....\OT1/cmr/bx/n/12 .
+.....\OT1/cmr/bx/n/12 1
+.....\glue 13.5
+....\OT1/cmr/bx/n/12 S
+....\OT1/cmr/bx/n/12 u
+....\OT1/cmr/bx/n/12 b
+....\OT1/cmr/bx/n/12 s
+....\OT1/cmr/bx/n/12 e
+....\OT1/cmr/bx/n/12 c
+....\OT1/cmr/bx/n/12 t
+....\OT1/cmr/bx/n/12 i
+....\OT1/cmr/bx/n/12 o
+....\OT1/cmr/bx/n/12 n
+....\OT1/cmr/bx/n/12 1
+....\OT1/cmr/bx/n/12 .
+....\OT1/cmr/bx/n/12 1
+....\glue 4.5 plus 2.25 minus 1.5
+....\OT1/cmr/bx/n/12 w
+....\OT1/cmr/bx/n/12 i
+....\OT1/cmr/bx/n/12 t
+....\OT1/cmr/bx/n/12 h
+....\glue 4.5 plus 2.25 minus 1.5
+....\OT1/cmr/bx/n/12 b
+....\kern0.375
+....\OT1/cmr/bx/n/12 o
+....\OT1/cmr/bx/n/12 l
+....\OT1/cmr/bx/n/12 d
+....\glue 4.5 plus 2.25 minus 1.5
+....\OT1/cmr/bx/n/12 m
+....\OT1/cmr/bx/n/12 a
+....\OT1/cmr/bx/n/12 t
+....\OT1/cmr/bx/n/12 h
+....\glue 4.5 plus 2.25 minus 1.5
+....\OT1/cmr/bx/n/12 e
+....\OT1/cmr/bx/n/12 x
+....\OT1/cmr/bx/n/12 p
+....\OT1/cmr/bx/n/12 r
+....\OT1/cmr/bx/n/12 e
+....\OT1/cmr/bx/n/12 s
+....\OT1/cmr/bx/n/12 s
+....\OT1/cmr/bx/n/12 i
+....\OT1/cmr/bx/n/12 o
+....\OT1/cmr/bx/n/12 n
+....\glue 4.5 plus 2.25 minus 1.5
+....\mathon
+....\OML/cmm/b/it/12 T
+....\hbox(3.55556+1.55556)x5.63802, shifted 1.79999
+.....\OML/cmm/b/it/8 p
+....\mathoff
+....\penalty 10000
+....\glue(\parfillskip) 0.0 plus 1.0fil
+....\glue(\rightskip) 0.0
+...\write1{\@writefile{toc}{\protect \contentsline {subsection}{\protect \numberline {1.1}\protect \boldmath  Subsection1.1 with bold math expression $T_p$}{\thepage }{}\protected@file@percent }}
+...\penalty 10000
+...\penalty 10000
+...\glue 6.45831 plus 0.86108
+...\glue(\parskip) 0.0 plus 1.0
+...\glue(\parskip) 0.0
+...\glue(\baselineskip) 1.70001
+...\hbox(6.94444+2.86108)x345.0, glue set 59.74815fil
+....\hbox(6.44444+0.0)x35.1387
+.....\glue 0.0
+.....\OT1/cmr/bx/n/10 1
+.....\OT1/cmr/bx/n/10 .
+.....\OT1/cmr/bx/n/10 1
+.....\OT1/cmr/bx/n/10 .
+.....\OT1/cmr/bx/n/10 1
+.....\glue 11.49994
+....\OT1/cmr/bx/n/10 S
+....\OT1/cmr/bx/n/10 u
+....\OT1/cmr/bx/n/10 b
+....\OT1/cmr/bx/n/10 S
+....\OT1/cmr/bx/n/10 u
+....\OT1/cmr/bx/n/10 b
+....\OT1/cmr/bx/n/10 s
+....\OT1/cmr/bx/n/10 e
+....\OT1/cmr/bx/n/10 c
+....\OT1/cmr/bx/n/10 t
+....\OT1/cmr/bx/n/10 i
+....\OT1/cmr/bx/n/10 o
+....\OT1/cmr/bx/n/10 n
+....\OT1/cmr/bx/n/10 1
+....\OT1/cmr/bx/n/10 .
+....\OT1/cmr/bx/n/10 1
+....\OT1/cmr/bx/n/10 .
+....\OT1/cmr/bx/n/10 1
+....\glue 3.83331 plus 1.91666 minus 1.27777
+....\OT1/cmr/bx/n/10 w
+....\OT1/cmr/bx/n/10 i
+....\OT1/cmr/bx/n/10 t
+....\OT1/cmr/bx/n/10 h
+....\glue 3.83331 plus 1.91666 minus 1.27777
+....\OT1/cmr/bx/n/10 b
+....\kern0.31944
+....\OT1/cmr/bx/n/10 o
+....\OT1/cmr/bx/n/10 l
+....\OT1/cmr/bx/n/10 d
+....\glue 3.83331 plus 1.91666 minus 1.27777
+....\OT1/cmr/bx/n/10 m
+....\OT1/cmr/bx/n/10 a
+....\OT1/cmr/bx/n/10 t
+....\OT1/cmr/bx/n/10 h
+....\glue 3.83331 plus 1.91666 minus 1.27777
+....\OT1/cmr/bx/n/10 e
+....\OT1/cmr/bx/n/10 x
+....\OT1/cmr/bx/n/10 p
+....\OT1/cmr/bx/n/10 r
+....\OT1/cmr/bx/n/10 e
+....\OT1/cmr/bx/n/10 s
+....\OT1/cmr/bx/n/10 s
+....\OT1/cmr/bx/n/10 i
+....\OT1/cmr/bx/n/10 o
+....\OT1/cmr/bx/n/10 n
+....\glue 3.83331 plus 1.91666 minus 1.27777
+....\mathon
+....\OML/cmm/b/it/10 T
+....\hbox(3.1111+1.3611)x5.3065, shifted 1.49998
+.....\OML/cmm/b/it/7 p
+....\mathoff
+....\penalty 10000
+....\glue(\parfillskip) 0.0 plus 1.0fil
+....\glue(\rightskip) 0.0
+...\write1{\@writefile{toc}{\protect \contentsline {subsubsection}{\protect \numberline {1.1.1}\protect \boldmath  SubSubsection1.1.1 with bold math expression $T_p$}{\thepage }{}\protected@file@percent }}
+...\penalty 10000
+...\penalty 10000
+...\glue 6.45831 plus 0.86108
+...\glue(\parskip) 0.0 plus 1.0
+...\glue(\parskip) 0.0
+...\glue(\baselineskip) 2.19447
+...\hbox(6.94444+2.86108)x345.0, glue set 44.34381fil
+....\hbox(6.44444+0.0)x35.1387
+.....\glue 0.0
+.....\OT1/cmr/bx/n/10 1
+.....\OT1/cmr/bx/n/10 .
+.....\OT1/cmr/bx/n/10 1
+.....\OT1/cmr/bx/n/10 .
+.....\OT1/cmr/bx/n/10 2
+.....\glue 11.49994
+....\OT1/cmr/bx/n/10 S
+....\OT1/cmr/bx/n/10 u
+....\OT1/cmr/bx/n/10 b
+....\OT1/cmr/bx/n/10 S
+....\OT1/cmr/bx/n/10 u
+....\OT1/cmr/bx/n/10 b
+....\OT1/cmr/bx/n/10 s
+....\OT1/cmr/bx/n/10 e
+....\OT1/cmr/bx/n/10 c
+....\OT1/cmr/bx/n/10 t
+....\OT1/cmr/bx/n/10 i
+....\OT1/cmr/bx/n/10 o
+....\OT1/cmr/bx/n/10 n
+....\OT1/cmr/bx/n/10 1
+....\OT1/cmr/bx/n/10 .
+....\OT1/cmr/bx/n/10 1
+....\OT1/cmr/bx/n/10 .
+....\OT1/cmr/bx/n/10 2
+....\glue 3.83331 plus 1.91666 minus 1.27777
+....\OT1/cmr/bx/n/10 w
+....\OT1/cmr/bx/n/10 i
+....\OT1/cmr/bx/n/10 t
+....\OT1/cmr/bx/n/10 h
+....\OT1/cmr/bx/n/10 o
+....\OT1/cmr/bx/n/10 u
+....\OT1/cmr/bx/n/10 t
+....\glue 3.83331 plus 1.91666 minus 1.27777
+....\OT1/cmr/bx/n/10 b
+....\kern0.31944
+....\OT1/cmr/bx/n/10 o
+....\OT1/cmr/bx/n/10 l
+....\OT1/cmr/bx/n/10 d
+....\glue 3.83331 plus 1.91666 minus 1.27777
+....\OT1/cmr/bx/n/10 m
+....\OT1/cmr/bx/n/10 a
+....\OT1/cmr/bx/n/10 t
+....\OT1/cmr/bx/n/10 h
+....\glue 3.83331 plus 1.91666 minus 1.27777
+....\OT1/cmr/bx/n/10 e
+....\OT1/cmr/bx/n/10 x
+....\OT1/cmr/bx/n/10 p
+....\OT1/cmr/bx/n/10 r
+....\OT1/cmr/bx/n/10 e
+....\OT1/cmr/bx/n/10 s
+....\OT1/cmr/bx/n/10 s
+....\OT1/cmr/bx/n/10 i
+....\OT1/cmr/bx/n/10 o
+....\OT1/cmr/bx/n/10 n
+....\glue 3.83331 plus 1.91666 minus 1.27777
+....\mathon
+....\OML/cmm/m/it/10 T
+....\hbox(3.01389+1.3611)x4.62234, shifted 1.49998
+.....\OML/cmm/m/it/7 p
+....\mathoff
+....\penalty 10000
+....\glue(\parfillskip) 0.0 plus 1.0fil
+....\glue(\rightskip) 0.0
+...\write1{\@writefile{toc}{\protect \contentsline {subsubsection}{\protect \numberline {1.1.2}SubSubsection1.1.2 without bold math expression $T_p$ }{\thepage }{}\protected@file@percent }}
+...\penalty 10000
+...\penalty 10000
+...\glue 6.45831 plus 0.86108
+...\glue(\parskip) 0.0 plus 1.0
+...\glue(\parskip) 0.0
+...\glue(\baselineskip) 2.8056
+...\hbox(8.33331+3.35555)x345.0, glue set 36.30392fil
+....\hbox(7.73332+0.0)x30.75
+.....\glue 0.0
+.....\OT1/cmr/bx/n/12 1
+.....\OT1/cmr/bx/n/12 .
+.....\OT1/cmr/bx/n/12 2
+.....\glue 13.5
+....\OT1/cmr/bx/n/12 S
+....\OT1/cmr/bx/n/12 u
+....\OT1/cmr/bx/n/12 b
+....\OT1/cmr/bx/n/12 s
+....\OT1/cmr/bx/n/12 e
+....\OT1/cmr/bx/n/12 c
+....\OT1/cmr/bx/n/12 t
+....\OT1/cmr/bx/n/12 i
+....\OT1/cmr/bx/n/12 o
+....\OT1/cmr/bx/n/12 n
+....\OT1/cmr/bx/n/12 1
+....\OT1/cmr/bx/n/12 .
+....\OT1/cmr/bx/n/12 2
+....\glue 4.5 plus 2.25 minus 1.5
+....\OT1/cmr/bx/n/12 w
+....\OT1/cmr/bx/n/12 i
+....\OT1/cmr/bx/n/12 t
+....\OT1/cmr/bx/n/12 h
+....\OT1/cmr/bx/n/12 o
+....\OT1/cmr/bx/n/12 u
+....\OT1/cmr/bx/n/12 t
+....\glue 4.5 plus 2.25 minus 1.5
+....\OT1/cmr/bx/n/12 b
+....\kern0.375
+....\OT1/cmr/bx/n/12 o
+....\OT1/cmr/bx/n/12 l
+....\OT1/cmr/bx/n/12 d
+....\glue 4.5 plus 2.25 minus 1.5
+....\OT1/cmr/bx/n/12 m
+....\OT1/cmr/bx/n/12 a
+....\OT1/cmr/bx/n/12 t
+....\OT1/cmr/bx/n/12 h
+....\glue 4.5 plus 2.25 minus 1.5
+....\OT1/cmr/bx/n/12 e
+....\OT1/cmr/bx/n/12 x
+....\OT1/cmr/bx/n/12 p
+....\OT1/cmr/bx/n/12 r
+....\OT1/cmr/bx/n/12 e
+....\OT1/cmr/bx/n/12 s
+....\OT1/cmr/bx/n/12 s
+....\OT1/cmr/bx/n/12 i
+....\OT1/cmr/bx/n/12 o
+....\OT1/cmr/bx/n/12 n
+....\glue 4.5 plus 2.25 minus 1.5
+....\mathon
+....\OML/cmm/m/it/12 T
+....\hbox(3.44444+1.55556)x4.77876, shifted 1.79999
+.....\OML/cmm/m/it/8 p
+....\mathoff
+....\penalty 10000
+....\glue(\parfillskip) 0.0 plus 1.0fil
+....\glue(\rightskip) 0.0
+...\write1{\@writefile{toc}{\protect \contentsline {subsection}{\protect \numberline {1.2}Subsection1.2 without bold math expression $T_p$ }{\thepage }{}\protected@file@percent }}
+...\penalty 10000
+...\penalty 10000
+...\glue 6.45831 plus 0.86108
+...\glue(\parskip) 0.0 plus 1.0
+...\glue(\parskip) 0.0
+...\glue(\baselineskip) 4.64447
+...\hbox(9.99998+4.10443)x345.0, glue set 24.35841fil
+....\hbox(9.27998+0.0)x24.29997
+.....\glue 0.0
+.....\OT1/cmr/bx/n/14.4 2
+.....\glue 16.19998
+....\OT1/cmr/bx/n/14.4 S
+....\OT1/cmr/bx/n/14.4 e
+....\OT1/cmr/bx/n/14.4 c
+....\OT1/cmr/bx/n/14.4 t
+....\OT1/cmr/bx/n/14.4 i
+....\OT1/cmr/bx/n/14.4 o
+....\OT1/cmr/bx/n/14.4 n
+....\OT1/cmr/bx/n/14.4 2
+....\glue 5.4 plus 2.7 minus 1.79999
+....\OT1/cmr/bx/n/14.4 w
+....\OT1/cmr/bx/n/14.4 i
+....\OT1/cmr/bx/n/14.4 t
+....\OT1/cmr/bx/n/14.4 h
+....\OT1/cmr/bx/n/14.4 o
+....\OT1/cmr/bx/n/14.4 u
+....\OT1/cmr/bx/n/14.4 t
+....\glue 5.4 plus 2.7 minus 1.79999
+....\OT1/cmr/bx/n/14.4 b
+....\kern0.45
+....\OT1/cmr/bx/n/14.4 o
+....\OT1/cmr/bx/n/14.4 l
+....\OT1/cmr/bx/n/14.4 d
+....\glue 5.4 plus 2.7 minus 1.79999
+....\OT1/cmr/bx/n/14.4 m
+....\OT1/cmr/bx/n/14.4 a
+....\OT1/cmr/bx/n/14.4 t
+....\OT1/cmr/bx/n/14.4 h
+....\glue 5.4 plus 2.7 minus 1.79999
+....\OT1/cmr/bx/n/14.4 e
+....\OT1/cmr/bx/n/14.4 x
+....\OT1/cmr/bx/n/14.4 p
+....\OT1/cmr/bx/n/14.4 r
+....\OT1/cmr/bx/n/14.4 e
+....\OT1/cmr/bx/n/14.4 s
+....\OT1/cmr/bx/n/14.4 s
+....\OT1/cmr/bx/n/14.4 i
+....\OT1/cmr/bx/n/14.4 o
+....\OT1/cmr/bx/n/14.4 n
+....\glue 5.4 plus 2.7 minus 1.79999
+....\mathon
+....\OML/cmm/m/it/14.4 T
+....\hbox(4.30554+1.94444)x5.53125, shifted 2.15999
+.....\OML/cmm/m/it/10 p
+....\mathoff
+....\penalty 10000
+....\glue(\parfillskip) 0.0 plus 1.0fil
+....\glue(\rightskip) 0.0
+...\write1{\@writefile{toc}{\protect \contentsline {section}{\protect \numberline {2}Section2 without bold math expression $T_p$}{\thepage }{}\protected@file@percent }}
+...\penalty 10000
+...\penalty 10000
+...\glue 9.90276 plus 0.86108
+...\glue 0.0 plus 1.0fil
+...\glue 0.0
+...\glue 0.0 plus 0.0001fil
+..\glue(\baselineskip) 23.55556
+..\hbox(6.44444+0.0)x345.0
+...\hbox(6.44444+0.0)x345.0, glue set 170.0fil
+....\glue 0.0 plus 1.0fil
+....\OT1/cmr/m/n/10 1
+....\glue 0.0 plus 1.0fil
+
+
+(tlb0152.aux)
+END-TEST-LOG
+ )
+
+Output written on tlb0152.dvi (1 page, 1264 bytes).

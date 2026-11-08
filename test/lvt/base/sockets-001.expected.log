@@ -1,0 +1,109 @@
+entering extended mode
+(sockets-001.lvt
+LaTeX2e <2026-11-01>
+L3 programming layer <2026-09-09>
+(article.cls
+Document Class: article 2026-06-04 v1.4n Standard LaTeX document class
+(size10.clo
+File: size10.clo 2026-06-04 v1.4n Standard LaTeX file (size option)
+)
+\c@part=\count276
+\c@section=\count277
+\c@subsection=\count278
+\c@subsubsection=\count279
+\c@paragraph=\count280
+\c@subparagraph=\count281
+\c@figure=\count282
+\c@table=\count283
+\abovecaptionskip=\skip49
+\belowcaptionskip=\skip50
+\bibindent=\dimen150
+) (regression-test.tex
+\gTESTint=\count284
+)
+
+START-TEST-LOG
+
+
+This is a generated file for the l3build validation system.
+
+Don't change this file in any respect.
+
+
+
+! LaTeX socket Error: Sockets can only be declared at top-level!
+
+For immediate help type H <return>.
+ ...
+
+l.8 { \NewSocket{foo}{0}
+                          } % fail
+
+It is not allowed to declare sockets inside a group. Move the declaration to the top-level.
+
+
+
+! LaTeX socket Error: Socket 'foo' already declared!
+
+For immediate help type H <return>.
+ ...
+
+l.12 \NewSocket{foo}{0}
+                             % fail
+
+A socket can only be declared once. The name 'foo' is already taken. Use \ShowSocket {foo} to see its definition.
+
+
+
+! LaTeX socket Error: Plug 'undefined' for socket 'foo' undeclared!
+
+For immediate help type H <return>.
+ ...
+
+l.14 \AssignSocketPlug{foo}{undefined}
+                                       %fail
+
+The plug name is unknown. Is the name misspelled or did you intend to assign it to a different socket?
+
+
+
+! LaTeX socket Error: Plug 'default' for socket 'foo' already declared!
+
+For immediate help type H <return>.
+ ...
+
+l.18 ...efault}{\typeout{A socket plug redefined}}
+                                                   % fail
+
+You can't change an existing plug with \NewSocketPlug and it is normally not sensible to do so. Use the L3 programming layer function \socket_set_plug:nnn if you really have to.
+
+
+----------------------
+Socket foo:
+    number of inputs = 0
+    available plugs = noop, default
+    current plug = noop
+    definition = \long macro:->\typeout {modified noop}
+
+! .
+\ShowSocket #1->\socket_log:n {#1}\errmessage {}
+
+l.25 \ShowSocket {foo}
+
+
+You can't change an existing plug with \NewSocketPlug and it is normally not sensible to do so. Use the L3 programming layer function \socket_set_plug:nnn if you really have to.
+
+
+----------------------
+A socket plug
+----------------------
+modified noop
+----------------------
+A socket plug
+----------------------
+
+END-TEST-LOG
+
+ )
+
+No pages of output.

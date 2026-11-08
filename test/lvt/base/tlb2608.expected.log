@@ -1,0 +1,115 @@
+entering extended mode
+(tlb2608.lvt
+LaTeX2e <2026-11-01>
+L3 programming layer <2026-09-09>
+(test2e.tex
+OMIT
+TIMO
+(expl3.sty
+Package: expl3 2026-09-09 L3 programming layer (loader)
+ (l3backend-dvips.def
+File: l3backend-dvips.def 2026-09-09 L3 backend support: dvips
+\l__pdfannot_backend_content_box=\box53
+\l__pdfannot_backend_model_box=\box54
+\g__pdfannot_backend_int=\count276
+\g__pdfannot_backend_link_int=\count277
+\g__pdfannot_backend_link_sf_int=\count278
+)))
+Main Class: article
+Package: inputenc
+(article.cls
+Document Class: article 2026-06-04 v1.4n Standard LaTeX document class
+(size10.clo
+File: size10.clo 2026-06-04 v1.4n Standard LaTeX file (size option)
+)
+\c@part=\count279
+\c@section=\count280
+\c@subsection=\count281
+\c@subsubsection=\count282
+\c@paragraph=\count283
+\c@subparagraph=\count284
+\c@figure=\count285
+\c@table=\count286
+\abovecaptionskip=\skip49
+\belowcaptionskip=\skip50
+\bibindent=\dimen150
+) (inputenc.sty
+Package: inputenc 2024/02/08 v1.3d Input encoding file
+\inpenc@prehook=\toks17
+\inpenc@posthook=\toks18
+)
+No file tlb2608.aux.
+\openout1 = `tlb2608.aux'.
+
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 34.
+LaTeX Font Info:    ... okay on input line 34.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 34.
+LaTeX Font Info:    ... okay on input line 34.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 34.
+LaTeX Font Info:    ... okay on input line 34.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 34.
+LaTeX Font Info:    ... okay on input line 34.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 34.
+LaTeX Font Info:    ... okay on input line 34.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 34.
+LaTeX Font Info:    ... okay on input line 34.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 34.
+LaTeX Font Info:    ... okay on input line 34.
+START-TEST-LOG
+
+This is a generated file for the LaTeX2e validation system.
+
+Don't change this file in any respect.
+
+(cp850.def
+File: cp850.def 2024/02/08 v1.3d Input encoding file
+LaTeX Encoding Info:    Ignoring declaration for text command \textdegree (encoding ?) on input line 50.
+LaTeX Encoding Info:    Ignoring declaration for text command \textonehalf (encoding ?) on input line 51.
+LaTeX Encoding Info:    Ignoring declaration for text command \textonequarter (encoding ?) on input line 52.
+LaTeX Encoding Info:    Ignoring declaration for text command \textthreequarters (encoding ?) on input line 53.
+LaTeX Encoding Info:    Ignoring declaration for text command \textflorin (encoding ?) on input line 54.
+LaTeX Encoding Info:    Ignoring declaration for text command \textcent (encoding ?) on input line 57.
+LaTeX Encoding Info:    Ignoring declaration for text command \textyen (encoding ?) on input line 59.
+LaTeX Encoding Info:    Ignoring declaration for text command \textcurrency (encoding ?) on input line 61.
+LaTeX Encoding Info:    Ignoring declaration for text command \textbrokenbar (encoding ?) on input line 63.
+)
+> \box0=
+\hbox(0.0+0.0)x0.0
+
+
+! OK.
+l.43 \showbox0
+               % This produces a number of glue elements
+
+(latin2.def
+File: latin2.def 2024/02/08 v1.3d Input encoding file
+LaTeX Encoding Info:    Ignoring declaration for text command \textdegree (encoding ?) on input line 47.
+LaTeX Encoding Info:    Ignoring declaration for text command \textcurrency (encoding ?) on input line 48.
+)
+> \box0=
+\hbox(0.0+0.0)x0.0
+
+
+! OK.
+l.52 \showbox0
+               % This produces a number of glue elements
+
+(cp1250.def
+File: cp1250.def 2024/02/08 v1.3d Input encoding file
+LaTeX Encoding Info:    Ignoring declaration for text command \textdegree (encoding ?) on input line 47.
+LaTeX Encoding Info:    Ignoring declaration for text command \textcurrency (encoding ?) on input line 48.
+LaTeX Encoding Info:    Ignoring declaration for text command \textbrokenbar (encoding ?) on input line 50.
+LaTeX Encoding Info:    Ignoring declaration for text command \textperthousand (encoding ?) on input line 52.
+)
+> \box0=
+\hbox(0.0+0.0)x0.0
+
+
+! OK.
+l.61 \showbox0
+               % This produces a number of glue elements
+
+END-TEST-LOG
+ )
+
+No pages of output.

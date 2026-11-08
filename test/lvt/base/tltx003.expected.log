@@ -1,0 +1,377 @@
+entering extended mode
+(tltx003.lvt
+LaTeX2e <2026-11-01>
+L3 programming layer <2026-09-09>
+(test2e.tex
+OMIT
+TIMO
+(expl3.sty
+Package: expl3 2026-09-09 L3 programming layer (loader)
+ (l3backend-dvips.def
+File: l3backend-dvips.def 2026-09-09 L3 backend support: dvips
+\l__pdfannot_backend_content_box=\box53
+\l__pdfannot_backend_model_box=\box54
+\g__pdfannot_backend_int=\count276
+\g__pdfannot_backend_link_int=\count277
+\g__pdfannot_backend_link_sf_int=\count278
+)))
+START-TEST-LOG
+
+This is a generated file for the LaTeX2e validation system.
+
+Don't change this file in any respect.
+
+Author: David Carlisle
+Format: LaTeX2e 1994/01/17 (private version)
+OMIT
+
+LaTeX Warning: Declared format LaTeX2e 1994/01/17 (private version),
+Actual format LaTeX2e<2026-11-01> on input line 13.
+
+TIMO
+Main Class:
+Package: {tltx 003}a
+Package: {tltx 003}b
+Package: {tltx 003}c
+Package: {tltx 003}d
+Package: {tltx 003}e
+Package: {tltx 003}f
+
+LaTeX Info: Writing file `./tltx003a.sty'.
+
+\openout15 = `tltx003a.sty'.
+
+
+
+LaTeX Info: Writing file `./tltx003b.sty'.
+
+\openout15 = `tltx003b.sty'.
+
+
+
+LaTeX Info: Writing file `./tltx003c.sty'.
+
+\openout15 = `tltx003c.sty'.
+
+
+
+LaTeX Info: Writing file `./tltx003d.sty'.
+
+\openout15 = `tltx003d.sty'.
+
+
+
+LaTeX Info: Writing file `./tltx003e.sty'.
+
+\openout15 = `tltx003e.sty'.
+
+
+
+LaTeX Info: Writing file `./tltx003f.sty'.
+
+\openout15 = `tltx003f.sty'.
+
+
+OMIT
+(tltx003a.sty
+TIMO
+a> 1
+OMIT
+) (tltx003a.sty
+TIMO
+a> 2
+OMIT
+) (tltx003a.sty
+TIMO
+a> 3
+OMIT
+) (tltx003a.sty
+TIMO
+a> 4
+OMIT
+) (tltx003a.sty
+TIMO
+a> 5
+OMIT
+) (tltx003a.sty
+TIMO
+a> 6
+OMIT
+) (tltx003a.sty
+TIMO
+a> 7
+OMIT
+) (tltx003a.sty
+TIMO
+a> 8
+OMIT
+) (tltx003a.sty
+TIMO
+a> 9
+OMIT
+) (tltx003a.sty
+TIMO
+a> 10
+OMIT
+) (tltx003a.sty
+TIMO
+a> 11
+OMIT
+) (tltx003a.sty
+TIMO
+a> 12
+OMIT
+) (tltx003a.sty
+TIMO
+a> 13
+OMIT
+) (tltx003a.sty
+TIMO
+a> 14
+OMIT
+) (tltx003b.sty
+TIMO
+b
+OMIT
+) (tltx003b.sty
+TIMO
+b
+OMIT
+) (tltx003b.sty
+TIMO
+b
+OMIT
+) (tltx003b.sty
+TIMO
+b
+OMIT
+) (tltx003b.sty
+TIMO
+b
+OMIT
+) (tltx003b.sty
+TIMO
+b
+OMIT
+) (tltx003b.sty
+TIMO
+b
+OMIT
+) (tltx003b.sty
+TIMO
+b
+OMIT
+) (tltx003b.sty
+TIMO
+b
+OMIT
+) (tltx003b.sty
+TIMO
+b
+OMIT
+) (tltx003b.sty
+TIMO
+b
+OMIT
+) (tltx003b.sty
+TIMO
+b
+OMIT
+) (tltx003b.sty
+TIMO
+b
+OMIT
+) (tltx003b.sty
+TIMO
+b
+OMIT
+) (tltx003b.sty
+TIMO
+b
+OMIT
+) (tltx003b.sty
+TIMO
+b
+OMIT
+) (tltx003b.sty
+TIMO
+b
+OMIT
+) (tltx003b.sty
+TIMO
+b
+OMIT
+) (tltx003b.sty
+TIMO
+b
+OMIT
+) (tltx003b.sty
+TIMO
+b
+OMIT
+) (tltx003b.sty
+TIMO
+b
+OMIT
+) (tltx003b.sty
+TIMO
+b
+OMIT
+) (tltx003b.sty
+TIMO
+b
+OMIT
+) (tltx003b.sty
+TIMO
+b
+OMIT
+) (tltx003b.sty
+TIMO
+b
+OMIT
+) (tltx003b.sty
+TIMO
+b
+OMIT
+) (tltx003b.sty
+TIMO
+b
+OMIT
+) (tltx003b.sty
+TIMO
+b
+OMIT
+) (tltx003b.sty
+TIMO
+b
+OMIT
+) (tltx003b.sty
+TIMO
+b
+OMIT
+) (tltx003c.sty
+TIMO
+c
+OMIT
+(tltx003d.sty
+TIMO
+d
+OMIT
+(tltx003e.sty
+TIMO
+e
+OMIT
+(tltx003f.sty
+TIMO
+f
+OMIT
+) (tltx003f.sty
+TIMO
+f
+OMIT
+)) (tltx003e.sty
+TIMO
+e
+OMIT
+(tltx003f.sty
+TIMO
+f
+OMIT
+) (tltx003f.sty
+TIMO
+f
+OMIT
+))) (tltx003d.sty
+TIMO
+d
+OMIT
+(tltx003e.sty
+TIMO
+e
+OMIT
+(tltx003f.sty
+TIMO
+f
+OMIT
+) (tltx003f.sty
+TIMO
+f
+OMIT
+)) (tltx003e.sty
+TIMO
+e
+OMIT
+(tltx003f.sty
+TIMO
+f
+OMIT
+) (tltx003f.sty
+TIMO
+f
+OMIT
+)))) (tltx003c.sty
+TIMO
+c
+OMIT
+(tltx003d.sty
+TIMO
+d
+OMIT
+(tltx003e.sty
+TIMO
+e
+OMIT
+(tltx003f.sty
+TIMO
+f
+OMIT
+) (tltx003f.sty
+TIMO
+f
+OMIT
+)) (tltx003e.sty
+TIMO
+e
+OMIT
+(tltx003f.sty
+TIMO
+f
+OMIT
+) (tltx003f.sty
+TIMO
+f
+OMIT
+))) (tltx003d.sty
+TIMO
+d
+OMIT
+(tltx003e.sty
+TIMO
+e
+OMIT
+(tltx003f.sty
+TIMO
+f
+OMIT
+) (tltx003f.sty
+TIMO
+f
+OMIT
+)) (tltx003e.sty
+TIMO
+e
+OMIT
+(tltx003f.sty
+TIMO
+f
+OMIT
+) (tltx003f.sty
+TIMO
+f
+OMIT
+))))
+TIMO
+END-TEST-LOG
+ )
+
+No pages of output.

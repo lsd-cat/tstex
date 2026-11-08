@@ -1,0 +1,188 @@
+entering extended mode
+(m3color007.lvt
+LaTeX2e <2026-11-01>
+L3 programming layer <2026-09-09>
+(minimal.cls
+Document Class: minimal 2001/05/25 Standard LaTeX minimal class
+) (regression-test.tex
+\gTESTint=\count276
+) (l3debug.def
+File: l3debug.def 2026-09-09 L3 Debugging support
+)
+Defining \__color_parse_model_lms:w on line 12
+Defining \__color_parse_model_cbrtlms:w on line 14
+Defining \__color_parse_model_linearrgb:w on line 16
+
+START-TEST-LOG
+
+
+This is a generated file for the l3build validation system.
+
+Don't change this file in any respect.
+
+
+! Undefined control sequence.
+l.21 \AUTHOR
+            {Markus~Kurtz}
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+
+! LaTeX Error: Missing \begin{document}.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...
+
+l.21 \AUTHOR{M
+              arkus~Kurtz}
+You're in trouble here.  Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+Missing character: There is no M in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no k in font nullfont!
+Missing character: There is no u in font nullfont!
+Missing character: There is no s in font nullfont!
+Missing character: There is no K in font nullfont!
+Missing character: There is no u in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no t in font nullfont!
+Missing character: There is no z in font nullfont!
+============================================================
+TEST 1: linearrgb model
+============================================================
+Defining \l__color_named_foo1_tl on line 34
+Defining \l__color_named_foo1_prop on line 34
+The color foo1 has the properties:
+>  model  =>  rgb
+>  rgb  =>  0.01 0.3 0.5
+The color foo1 has the properties:
+>  model  =>  rgb
+>  rgb  =>  0 0.04044992308 0.04045003451334598
+The color foo1 has the properties:
+>  model  =>  rgb
+>  rgb  =>  0 1 1
+The color foo1 has the properties:
+>  model  =>  rgb
+>  rgb  =>  0.4845292044817069 0.79773773303126 0.954687171885866
+============================================================
+
+============================================================
+TEST 2: lms model
+============================================================
+The color foo1 has the properties:
+>  model  =>  rgb
+>  rgb  =>  1 1 1
+The color foo1 has the properties:
+>  model  =>  rgb
+>  rgb  =>  0.8543058315449401 0.8543058315449401 0.8543058315449401
+The color foo1 has the properties:
+>  model  =>  rgb
+>  rgb  =>  0.3741786031699747 0 0.9327622252715925
+The color foo1 has the properties:
+>  model  =>  rgb
+>  rgb  =>  0 0.7948336840226253 0.2691830197643374
+The color foo1 has the properties:
+>  model  =>  rgb
+>  rgb  =>  0.8288044270221876 0.8902538737698393 0.633036318401439
+============================================================
+
+============================================================
+TEST 3: cbrtlms model
+============================================================
+The color foo1 has the properties:
+>  model  =>  rgb
+>  rgb  =>  1 1 1
+The color foo1 has the properties:
+>  model  =>  rgb
+>  rgb  =>  0.6204994654003908 0.6204994654003908 0.6204994654003908
+The color foo1 has the properties:
+>  model  =>  rgb
+>  rgb  =>  0.1858683470023627 0 0.4993628053104879
+The color foo1 has the properties:
+>  model  =>  rgb
+>  rgb  =>  0 0.3959478675515466 0
+The color foo1 has the properties:
+>  model  =>  rgb
+>  rgb  =>  0.5772615717173346 0.6780821058614707 0
+============================================================
+
+============================================================
+TEST 4: oklab model
+============================================================
+The color foo1 has the properties:
+>  model  =>  rgb
+>  rgb  =>  0 0 0
+The color foo1 has the properties:
+>  model  =>  rgb
+>  rgb  =>  1 1 1
+The color foo1 has the properties:
+>  model  =>  rgb
+>  rgb  =>  0.6204994654003908 0.6204994654003908 0.6204994654003908
+The color foo1 has the properties:
+>  model  =>  rgb
+>  rgb  =>  0.4842738090432652 0.01913857747061253 0.02426429457184269
+The color foo1 has the properties:
+>  model  =>  rgb
+>  rgb  =>  0.003179872312245272 0.0000259847232831 0.99379117131677
+The color foo1 has the properties:
+>  model  =>  rgb
+>  rgb  =>  0.1525473096988617 0.1913362061546487 0.3194347438290483
+The color foo1 has the properties:
+>  model  =>  rgb
+>  rgb  =>  0.5985815757223127 0.6754026826189243 0
+The color foo1 has the properties:
+>  model  =>  rgb
+>  rgb  =>  1 1 1
+============================================================
+
+============================================================
+TEST 5: oklch model
+============================================================
+The color foo1 has the properties:
+>  model  =>  rgb
+>  rgb  =>  0 0 0
+The color foo1 has the properties:
+>  model  =>  rgb
+>  rgb  =>  1 1 1
+The color foo1 has the properties:
+>  model  =>  rgb
+>  rgb  =>  0.6204994654003908 0.6204994654003908 0.6204994654003908
+The color foo1 has the properties:
+>  model  =>  rgb
+>  rgb  =>  1 0 0.4646834491735871
+The color foo1 has the properties:
+>  model  =>  rgb
+>  rgb  =>  0.000646966654132396 0.02772663050089872 0.993174110239439
+The color foo1 has the properties:
+>  model  =>  rgb
+>  rgb  =>  0.8418570616286571 0.734024402153969 0.4387023732211911
+The color foo1 has the properties:
+>  model  =>  rgb
+>  rgb  =>  0.03997663126521621 0.003559099498593614 0.006487309387513319
+The color foo1 has the properties:
+>  model  =>  rgb
+>  rgb  =>  0 0.6387818589565522 0.5207007185748967
+============================================================
+
+
+END-TEST-LOG
+
+
+Overfull \hbox (20.0pt too wide) in paragraph at lines 21--104
+[]
+
+\hbox(0.0+0.0)x0.0
+.\hbox(0.0+0.0)x20.0
+.\penalty 10000
+.\glue(\parfillskip) 0.0 plus 1.0fil
+.\glue(\rightskip) 0.0
+
+ )
+
+No pages of output.

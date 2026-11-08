@@ -1,0 +1,141 @@
+entering extended mode
+(github-0735.lvt
+LaTeX2e <2026-11-01>
+L3 programming layer <2026-09-09>
+(minimal.cls
+Document Class: minimal 2001/05/25 Standard LaTeX minimal class
+) (regression-test.tex
+\gTESTint=\count276
+) (l3backend-dvips.def
+File: l3backend-dvips.def 2026-09-09 L3 backend support: dvips
+\l__pdfannot_backend_content_box=\box53
+\l__pdfannot_backend_model_box=\box54
+\g__pdfannot_backend_int=\count277
+\g__pdfannot_backend_link_int=\count278
+\g__pdfannot_backend_link_sf_int=\count279
+)
+No file github-0735.aux.
+\openout1 = `github-0735.aux'.
+
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 5.
+LaTeX Font Info:    ... okay on input line 5.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 5.
+LaTeX Font Info:    ... okay on input line 5.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 5.
+LaTeX Font Info:    ... okay on input line 5.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 5.
+LaTeX Font Info:    ... okay on input line 5.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 5.
+LaTeX Font Info:    ... okay on input line 5.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 5.
+LaTeX Font Info:    ... okay on input line 5.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 5.
+LaTeX Font Info:    ... okay on input line 5.
+
+START-TEST-LOG
+
+
+This is a generated file for the l3build validation system.
+
+Don't change this file in any respect.
+
+
+============================================================
+TEST 1:  pre-expansion one argument
+============================================================
+> \foo=document command:
+  #1:o
+  #2:m
+->???.
+<recently read> }
+
+l.18   }
+
+
+> \foo=document command:
+  #1:o
+  #2:m
+->???.
+<recently read> }
+
+l.18   }
+
+
+> \baz=document command:
+  #1:o
+  #2:m
+->???.
+<recently read> }
+
+l.18   }
+
+
+Ok?
+============================================================
+
+============================================================
+TEST 2:  pre-expansion two arguments
+============================================================
+> \baz=document command:
+  #1:o
+  #2:m
+->???.
+<recently read> }
+
+l.27   }
+
+
+> \baz=document command:
+  #1:o
+  #2:m
+->???.
+<recently read> }
+
+l.27   }
+
+
+============================================================
+
+============================================================
+TEST 3:  Unknown variant
+============================================================
+! Use of \??? doesn't match its definition.
+<argument> \???
+                 ! LaTeX Error: Unknown arg expansion "XX"
+l.32   }
+
+If you say, e.g., `\def\a1{...}', then you must always
+put `1' after `\a', since control sequence names are
+made up of letters only. The macro here has not been
+followed by the required stuff, so I'm ignoring it.
+
+! Argument of \declare@commandcopy@let has an extra }.
+<inserted text>
+                \par
+l.32   }
+
+I've run across a `}' that doesn't seem to match anything.
+For example, `\def\a#1{...}' and `\a}' would produce
+this error. If you simply proceed now, the `\par' that
+I've just inserted will cause me to report a runaway
+argument that might be the root of the problem. But if
+your `}' was spurious, just type `2' and it will go away.
+
+Runaway argument?
+! Paragraph ended before \declare@commandcopy@let was complete.
+<to be read again>
+                   \par
+l.32   }
+
+I suspect you've forgotten a `}', causing me to apply this
+control sequence to too much text. How can we recover?
+My plan is to forget the whole thing and hope for the best.
+
+============================================================
+
+
+END-TEST-LOG
+
+ )
+
+No pages of output.

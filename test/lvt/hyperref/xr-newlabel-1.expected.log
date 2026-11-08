@@ -1,0 +1,169 @@
+entering extended mode
+(xr-newlabel-1.lvt
+LaTeX2e <2026-11-01>
+L3 programming layer <2026-09-09>
+(book.cls
+Document Class: book 2026-06-04 v1.4n Standard LaTeX document class
+(bk10.clo
+File: bk10.clo 2026-06-04 v1.4n Standard LaTeX file (size option)
+)
+\c@part=\count276
+\c@chapter=\count277
+\c@section=\count278
+\c@subsection=\count279
+\c@subsubsection=\count280
+\c@paragraph=\count281
+\c@subparagraph=\count282
+\c@figure=\count283
+\c@table=\count284
+\abovecaptionskip=\skip49
+\belowcaptionskip=\skip50
+\bibindent=\dimen150
+) (regression-test.tex
+\gTESTint=\count285
+)
+
+LaTeX Info: Writing file `./test-aux1.aux'.
+
+\openout15 = `test-aux1.aux'.
+
+
+
+LaTeX Info: Writing file `./test-aux2.aux'.
+
+\openout15 = `test-aux2.aux'.
+
+
+
+LaTeX Info: Writing file `./test-aux3.aux'.
+
+\openout15 = `test-aux3.aux'.
+
+
+(xr-hyper.sty
+Package: xr-hyper 2026-11-03 v7.01t eXternal References (DPC)
+(xr.sty
+Package: xr 2024-12-22 v6.00 eXternal References (DPC)
+))
+Package xr Info: IMPORTING LABELS FROM test-aux1.aux on input line 24.
+Package xr Info: IMPORTING LABELS FROM test-aux2.aux on input line 25.
+Package xr Info: IMPORTING LABELS FROM test-aux3.aux on input line 26.
+(l3backend-dvips.def
+File: l3backend-dvips.def 2026-09-09 L3 backend support: dvips
+\l__pdfannot_backend_content_box=\box53
+\l__pdfannot_backend_model_box=\box54
+\g__pdfannot_backend_int=\count286
+\g__pdfannot_backend_link_int=\count287
+\g__pdfannot_backend_link_sf_int=\count288
+)
+No file xr-newlabel-1.aux.
+\openout1 = `xr-newlabel-1.aux'.
+
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 26.
+LaTeX Font Info:    ... okay on input line 26.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 26.
+LaTeX Font Info:    ... okay on input line 26.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 26.
+LaTeX Font Info:    ... okay on input line 26.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 26.
+LaTeX Font Info:    ... okay on input line 26.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 26.
+LaTeX Font Info:    ... okay on input line 26.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 26.
+LaTeX Font Info:    ... okay on input line 26.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 26.
+LaTeX Font Info:    ... okay on input line 26.
+
+START-TEST-LOG
+
+
+This is a generated file for the l3build validation system.
+
+Don't change this file in any respect.
+
+
+> \r@Ia=macro:
+->{1.1}{1}{}{}{test-aux1.pdf}.
+l.30  \show\r@Ia
+                 \show\r@Ib \show\r@Icspecial
+
+> \r@Ib=macro:
+->{1.2}{1}{}{}{test-aux1.pdf}.
+l.30  \show\r@Ia \show\r@Ib
+                            \show\r@Icspecial
+
+> \r@Icspecial=macro:
+->{1.3}{1}{}{}{test-aux1.pdf}.
+l.30  \show\r@Ia \show\r@Ib \show\r@Icspecial
+
+
+> \r@IIa=macro:
+->{1.1}{1}{}{}{test-aux2.pdf}.
+l.32  \show\r@IIa
+                  \show\r@IIb \show\r@IIbspecial \show\r@IIc
+
+> \r@IIb=macro:
+->{1.2}{1}{}{}{test-aux2.pdf}.
+l.32  \show\r@IIa \show\r@IIb
+                              \show\r@IIbspecial \show\r@IIc
+
+> \r@IIbspecial=macro:
+->{1.2}{1}{}{}{test-aux2.pdf}.
+l.32  \show\r@IIa \show\r@IIb \show\r@IIbspecial
+                                                 \show\r@IIc
+
+> \r@IIc=macro:
+->{1.3}{1}{}{}{test-aux2.pdf}.
+l.32 ...\show\r@IIb \show\r@IIbspecial \show\r@IIc
+
+
+> \r@IIIa=macro:
+->{1.1}{1}{title}{section.title}{test-aux3.pdf}.
+l.34  \show\r@IIIa
+
+
+
+Completed box being shipped out [1]
+\vbox(627.36243+0.0)x380.0
+.\hbox(0.0+0.0)x0.0
+..\special{header=l3backend-dvips.pro}
+.\glue 22.0
+.\vbox(605.36243+0.0)x345.0, shifted 35.0
+..\vbox(12.0+0.0)x345.0, glue set 5.55556fil
+...\glue 0.0 plus 1.0fil
+...\hbox(6.44444+0.0)x345.0
+....\hbox(6.44444+0.0)x345.0, glue set 339.99998fil
+.....\glue 0.0 plus 1.0fil
+.....\OT1/cmr/m/n/10 1
+..\glue 18.06749
+..\glue(\lineskip) 0.0
+..\vbox(550.0+0.0)x345.0, glue set 540.0fil
+...\write-{}
+...\special{ps: /setdistillerparams where {pop << /CompressPages false /CompressStreams false >> setdistillerparams} if }
+...\special{! <</DocumentUUID (DocumentUUID)>> setpagedevice}
+...\special{! <</InstanceUUID (InstanceUUID)>> setpagedevice}
+...\glue(\topskip) 3.55556
+...\hbox(6.44444+0.0)x345.0, glue set 317.22218fil
+....\hbox(0.0+0.0)x15.0
+....\OT1/cmr/m/n/10 1
+....\OT1/cmr/m/n/10 .
+....\OT1/cmr/m/n/10 1
+....\hbox(0.0+0.0)x0.0
+....\penalty 10000
+....\glue(\parfillskip) 0.0 plus 1.0fil
+....\glue(\rightskip) 0.0
+...\glue 0.0 plus 1.0fil
+...\glue 0.0
+..\glue(\baselineskip) 25.29494
+..\hbox(0.0+0.0)x345.0
+...\hbox(0.0+0.0)x345.0
+.\kern 0.0
+
+
+(xr-newlabel-1.aux)
+
+END-TEST-LOG
+
+ )
+
+Output written on xr-newlabel-1.dvi (1 page, 468 bytes).

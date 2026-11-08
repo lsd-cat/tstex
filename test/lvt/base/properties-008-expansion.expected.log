@@ -1,0 +1,118 @@
+entering extended mode
+(properties-008-expansion.lvt
+LaTeX2e <2026-11-01>
+L3 programming layer <2026-09-09>
+(l3debug.def
+File: l3debug.def 2026-09-09 L3 Debugging support
+) (article.cls
+Document Class: article 2026-06-04 v1.4n Standard LaTeX document class
+(size10.clo
+File: size10.clo 2026-06-04 v1.4n Standard LaTeX file (size option)
+)
+\c@part=\count276
+\c@section=\count277
+\c@subsection=\count278
+\c@subsubsection=\count279
+\c@paragraph=\count280
+\c@subparagraph=\count281
+\c@figure=\count282
+\c@table=\count283
+\abovecaptionskip=\skip49
+\belowcaptionskip=\skip50
+\bibindent=\dimen150
+) (regression-test.tex
+\gTESTint=\count284
+)
+
+START-TEST-LOG
+
+
+This is a generated file for the l3build validation system.
+
+Don't change this file in any respect.
+
+
+-------- properties-008-expansion.aux (start) ---------
+Not found
+-------- properties-008-expansion.aux (end) -----------
+OMIT
+(l3backend-dvips.def
+File: l3backend-dvips.def 2026-09-09 L3 backend support: dvips
+\l__pdfannot_backend_content_box=\box53
+\l__pdfannot_backend_model_box=\box54
+\g__pdfannot_backend_int=\count285
+\g__pdfannot_backend_link_int=\count286
+\g__pdfannot_backend_link_sf_int=\count287
+)
+No file properties-008-expansion.aux.
+\openout1 = `properties-008-expansion.aux'.
+
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 11.
+LaTeX Font Info:    ... okay on input line 11.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 11.
+LaTeX Font Info:    ... okay on input line 11.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 11.
+LaTeX Font Info:    ... okay on input line 11.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 11.
+LaTeX Font Info:    ... okay on input line 11.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 11.
+LaTeX Font Info:    ... okay on input line 11.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 11.
+LaTeX Font Info:    ... okay on input line 11.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 11.
+LaTeX Font Info:    ... okay on input line 11.
+TIMO
+============================================================
+TEST 1: Ref by string
+============================================================
+FAILED
+============================================================
+
+============================================================
+TEST 2: Ref by command
+============================================================
+FAILED
+============================================================
+
+============================================================
+TEST 3: Test property by command
+============================================================
+PASSED
+============================================================
+
+============================================================
+TEST 4: Test label by command
+============================================================
+FAILED
+============================================================
+
+============================================================
+TEST 5: Test label/property by command
+============================================================
+FAILED
+============================================================
+
+
+LaTeX Warning: Reference `label-LA' on page 1 undefined on input line 74.
+
+
+LaTeX Warning: Reference `label-LA' on page 1 undefined on input line 76.
+
+
+LaTeX Warning: Reference `labelX-LA' on page 1 undefined on input line 78.
+
+[1
+
+] (properties-008-expansion.aux)
+
+LaTeX Warning: There were undefined references.
+
+
+LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
+
+
+END-TEST-LOG
+
+ )
+
+Output written on properties-008-expansion.dvi (1 page, 468 bytes).

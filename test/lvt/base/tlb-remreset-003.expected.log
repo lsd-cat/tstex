@@ -1,0 +1,272 @@
+entering extended mode
+(tlb-remreset-003.lvt
+LaTeX2e <2026-11-01>
+L3 programming layer <2026-09-09>
+(article.cls
+Document Class: article 2026-06-04 v1.4n Standard LaTeX document class
+(size10.clo
+File: size10.clo 2026-06-04 v1.4n Standard LaTeX file (size option)
+)
+\c@part=\count276
+\c@section=\count277
+\c@subsection=\count278
+\c@subsubsection=\count279
+\c@paragraph=\count280
+\c@subparagraph=\count281
+\c@figure=\count282
+\c@table=\count283
+\abovecaptionskip=\skip49
+\belowcaptionskip=\skip50
+\bibindent=\dimen150
+) (test2e.tex
+OMIT
+TIMO
+(expl3.sty
+Package: expl3 2026-09-09 L3 programming layer (loader)
+ (l3backend-dvips.def
+File: l3backend-dvips.def 2026-09-09 L3 backend support: dvips
+\l__pdfannot_backend_content_box=\box53
+\l__pdfannot_backend_model_box=\box54
+\g__pdfannot_backend_int=\count284
+\g__pdfannot_backend_link_int=\count285
+\g__pdfannot_backend_link_sf_int=\count286
+)))
+START-TEST-LOG
+
+This is a generated file for the LaTeX2e validation system.
+
+Don't change this file in any respect.
+
+> \cl@foo=undefined.
+l.14 \show\cl@foo
+
+
+> \cl@baz=undefined.
+l.15 \show\cl@baz
+
+
+> \cl@footnote=macro:
+->.
+l.16 \show\cl@footnote
+
+
+> \cl@chapter=undefined.
+l.17 \show\cl@chapter
+
+
+> \cl@section=macro:
+->\@elt {subsection}.
+l.18 \show\cl@section
+
+
+
+! LaTeX Error: No counter 'foo' defined.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...
+
+l.20 \counterwithout*{foo}{baz}
+
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+> \thefoo=undefined.
+l.22 \show\thefoo
+                   % undefined
+
+> \cl@foo=undefined.
+l.23 \show\cl@foo
+                   % undefined
+
+> \cl@baz=undefined.
+l.24 \show\cl@baz
+                   % undefined
+
+
+! LaTeX Error: No counter 'baz' defined.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...
+
+l.26 \counterwithout*{footnote}{baz}
+
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+> \thefootnote=macro:
+->\@arabic \c@footnote .
+l.28 \show\thefootnote
+                        % \arabic{footnote}
+
+> \cl@baz=undefined.
+l.29 \show\cl@baz
+                        % undefined
+
+> \cl@footnote=macro:
+->.
+l.30 \show\cl@footnote
+                        % empty
+
+
+! LaTeX Error: No counter 'chapter' defined.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...
+
+l.32 \counterwithout*{chapter}{section}
+
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+> \thechapter=undefined.
+l.34 \show\thechapter
+                        % undefined
+
+> \cl@chapter=undefined.
+l.35 \show\cl@chapter
+                        % undefined
+
+> \cl@section=macro:
+->\@elt {subsection}.
+l.36 \show\cl@section
+                        % resets subsection
+
+> \cl@subsection=macro:
+->\@elt {subsubsection}.
+l.39 \show\cl@subsection
+                         % resets subsubsection
+
+> \thesection=macro:
+->\@arabic \c@section .
+l.41 \show\thesection
+                         % \arabic{section}
+
+> \thesection=macro:
+->\@arabic \c@section .
+l.45 \show\thesection
+                         % unchanged as it wasn't on before
+
+> \cl@subsection=macro:
+->\@elt {subsubsection}.
+l.46 \show\cl@subsection
+                         % unchanged
+
+> \cl@section=macro:
+->\@elt {subsection}.
+l.47 \show\cl@section
+                         % unchanged
+
+> \thesubsection=macro:
+->\thesection .\@arabic \c@subsection .
+l.49 \show\thesubsection
+                         % \thesubsection . \arabic{subsubsection}
+
+> \thesubsection=macro:
+->\thesection .\@arabic \c@subsection .
+l.53 \show\thesubsection
+                         % unchanged (because of *)
+
+> \cl@subsection=macro:
+->\@elt {subsubsection}.
+l.54 \show\cl@subsection
+                         % unchanged
+
+> \cl@section=macro:
+->.
+l.55 \show\cl@section
+                         % now empty
+
+> \thefootnote=macro:
+->\@arabic \c@footnote .
+l.62 \show\thefootnote
+                         % \arabic{footnote} (because of *)
+
+> \cl@subsection=macro:
+->\@elt {subsubsection}\@elt {footnote}.
+l.63 \show\cl@subsection
+                         % footnote added
+
+> \thefootnote=macro:
+->\@arabic \c@footnote .
+l.67 \show\thefootnote
+                         % unchanged (because of *)
+
+> \cl@subsection=macro:
+->\@elt {subsubsection}.
+l.68 \show\cl@subsection
+                         % footnote removed
+
+
+! LaTeX Error: No counter 'footnot' defined.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...
+
+l.71 \counterwithin*{footnot}{subsection}
+
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+> \thefootnot=undefined.
+l.73 \show\thefootnot
+                         % undefined
+
+> \cl@subsection=macro:
+->\@elt {subsubsection}.
+l.74 \show\cl@subsection
+                         % unchanged
+
+
+! LaTeX Error: No counter 'footnot' defined.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...
+
+l.76 \counterwithout*{footnot}{subsection}
+
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+> \thefootnot=undefined.
+l.78 \show\thefootnot
+                         % undefined
+
+> \cl@subsection=macro:
+->\@elt {subsubsection}.
+l.79 \show\cl@subsection
+                         % unchanged
+
+> \thefootnote=macro:
+->\@arabic \c@footnote .
+l.86 \show\thefootnote
+                         % \arabic{footnote} (because of *)
+
+> \cl@subsection=macro:
+->\@elt {subsubsection}\@elt {footnote}\@elt {footnote}\@elt {footnote}.
+l.87 \show\cl@subsection
+                         % 3 footnote?
+
+> \thefootnote=macro:
+->\@arabic \c@footnote .
+l.91 \show\thefootnote
+                         % \arabic{footnote} (because of *)
+
+> \cl@subsection=macro:
+->\@elt {subsubsection}.
+l.92 \show\cl@subsection
+                         % all footnotes removed?
+
+END-TEST-LOG
+ )
+
+No pages of output.

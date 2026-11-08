@@ -1,0 +1,261 @@
+entering extended mode
+(tlb1503.lvt
+LaTeX2e <2026-11-01>
+L3 programming layer <2026-09-09>
+(article.cls
+Document Class: article 2026-06-04 v1.4n Standard LaTeX document class
+(size10.clo
+File: size10.clo 2026-06-04 v1.4n Standard LaTeX file (size option)
+)
+\c@part=\count276
+\c@section=\count277
+\c@subsection=\count278
+\c@subsubsection=\count279
+\c@paragraph=\count280
+\c@subparagraph=\count281
+\c@figure=\count282
+\c@table=\count283
+\abovecaptionskip=\skip49
+\belowcaptionskip=\skip50
+\bibindent=\dimen150
+) (test2e.tex
+OMIT
+TIMO
+(expl3.sty
+Package: expl3 2026-09-09 L3 programming layer (loader)
+ (l3backend-dvips.def
+File: l3backend-dvips.def 2026-09-09 L3 backend support: dvips
+\l__pdfannot_backend_content_box=\box53
+\l__pdfannot_backend_model_box=\box54
+\g__pdfannot_backend_int=\count284
+\g__pdfannot_backend_link_int=\count285
+\g__pdfannot_backend_link_sf_int=\count286
+)))
+Author: Frank Mittelbach
+Format: LaTeX2e<1995/06/01>
+OMIT
+
+LaTeX Warning: Declared format LaTeX2e<1995/06/01>,
+Actual format LaTeX2e<2026-11-01> on input line 15.
+
+TIMO
+No file tlb1503.aux.
+\openout1 = `tlb1503.aux'.
+
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 19.
+LaTeX Font Info:    ... okay on input line 19.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 19.
+LaTeX Font Info:    ... okay on input line 19.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 19.
+LaTeX Font Info:    ... okay on input line 19.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 19.
+LaTeX Font Info:    ... okay on input line 19.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 19.
+LaTeX Font Info:    ... okay on input line 19.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 19.
+LaTeX Font Info:    ... okay on input line 19.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 19.
+LaTeX Font Info:    ... okay on input line 19.
+START-TEST-LOG
+
+This is a generated file for the LaTeX2e validation system.
+
+Don't change this file in any respect.
+
+No file tlb1503.toc.
+\tf@toc=\write3
+\openout3 = `tlb1503.toc'.
+
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <7> on input line 33.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <5> on input line 33.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <8> on input line 33.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <6> on input line 33.
+
+Completed box being shipped out [1]
+\vbox(633.0+0.0)x407.0
+.\glue 16.0
+.\vbox(617.0+0.0)x345.0, shifted 62.0
+..\vbox(12.0+0.0)x345.0, glue set 12.0fil
+...\glue 0.0 plus 1.0fil
+...\hbox(0.0+0.0)x345.0
+....\hbox(0.0+0.0)x345.0
+..\glue 25.0
+..\glue(\lineskip) 0.0
+..\vbox(550.0+0.0)x345.0, glue set 425.7293fil
+...\write-{}
+...\glue(\topskip) 0.00002
+...\hbox(9.99998+0.0)x345.0, glue set 285.72777fil
+....\hbox(0.0+0.0)x0.0
+.....\glue 0.0
+....\OT1/cmss/bx/n/14.4 C
+....\OT1/cmss/bx/n/14.4 o
+....\OT1/cmss/bx/n/14.4 n
+....\OT1/cmss/bx/n/14.4 t
+....\OT1/cmss/bx/n/14.4 e
+....\OT1/cmss/bx/n/14.4 n
+....\OT1/cmss/bx/n/14.4 t
+....\OT1/cmss/bx/n/14.4 s
+....\penalty 10000
+....\glue(\parfillskip) 0.0 plus 1.0fil
+....\glue(\rightskip) 0.0
+...\penalty 10000
+...\glue 10.22223 plus 0.88887
+...\glue -10.22223 plus -0.88887
+...\penalty -300
+...\glue 10.22223 plus 0.88887
+...\glue -10.22223 plus -0.88887
+...\glue 15.55554 plus 4.44444 minus 0.88887
+...\glue(\parskip) 0.0 plus 1.0
+...\glue(\parskip) 0.0
+...\glue(\baselineskip) 8.00002
+...\hbox(9.99998+0.0)x345.0, glue set 296.59982fil
+....\hbox(9.99998+0.0)x23.7601
+.....\glue 0.0
+.....\OT1/cmss/bx/n/14.4 1
+.....\glue 15.84007
+....\OT1/cmss/bx/n/14.4 F
+....\kern-0.44
+....\OT1/cmss/bx/n/14.4 o
+....\kern0.43999
+....\OT1/cmss/bx/n/14.4 o
+....\penalty 10000
+....\glue(\parfillskip) 0.0 plus 1.0fil
+....\glue(\rightskip) 0.0
+...\write1{\@writefile{toc}{\protect \contentsline {section}{\protect \numberline {1}Foo}{\thepage }{}\protected@file@percent }}
+...\penalty 10000
+...\glue 10.22223 plus 0.88887
+...\glue(\parskip) 0.0 plus 1.0
+...\glue(\parskip) 0.0
+...\glue(\baselineskip) 5.66667
+...\hbox(8.33333+0.0)x345.0, glue set 297.79974fil
+....\hbox(8.33333+0.0)x30.06683
+.....\glue 0.0
+.....\OT1/cmss/bx/n/12 1
+.....\OT1/cmss/bx/n/12 .
+.....\OT1/cmss/bx/n/12 1
+.....\glue 13.20007
+....\OT1/cmss/bx/n/12 b
+....\OT1/cmss/bx/n/12 a
+....\kern-0.36667
+....\OT1/cmss/bx/n/12 r
+....\penalty 10000
+....\glue(\parfillskip) 0.0 plus 1.0fil
+....\glue(\rightskip) 0.0
+...\write1{\@writefile{toc}{\protect \contentsline {subsection}{\protect \numberline {1.1}bar}{\thepage }{}\protected@file@percent }}
+...\penalty 10000
+...\penalty 10000
+...\glue 6.66666 plus 0.88887
+...\glue(\parskip) 0.0 plus 1.0
+...\glue(\parskip) 0.0
+...\glue(\baselineskip) 3.77733
+...\hbox(8.22267+0.0)x345.0, glue set 299.94783fil
+....\OT1/cmss/m/n/10 s
+....\OT1/cmss/m/n/10 o
+....\OT1/cmss/m/n/10 m
+....\OT1/cmss/m/n/10 e
+....\glue 3.33333 plus 1.66666 minus 1.11111
+....\OT1/cmss/m/n/10 t
+....\OT1/cmss/m/n/10 e
+....\OT1/cmss/m/n/10 x
+....\OT1/cmss/m/n/10 t
+....\penalty 10000
+....\hbox(8.22267+0.0)x4.2188
+.....\hbox(4.59375+0.0)x3.7188, shifted -3.62892
+......\OT1/cmss/m/n/7 1
+.....\penalty 10000
+.....\glue 0.5
+.....\kern 0.0
+....\penalty 10000
+....\glue(\parfillskip) 0.0 plus 1.0fil
+....\glue(\rightskip) 0.0
+...\glue(\parskip) 0.0 plus 1.0
+...\glue(\parskip) 0.0
+...\glue(\baselineskip) 3.50945
+...\hbox(8.49055+0.0)x345.0, glue set 285.22046fil
+....\hbox(0.0+0.0)x15.0
+....\OT1/cmss/m/n/10 s
+....\OT1/cmss/m/n/10 o
+....\OT1/cmss/m/n/10 m
+....\OT1/cmss/m/n/10 e
+....\glue 3.33333 plus 1.66666 minus 1.11111
+....\OT1/cmss/m/n/10 t
+....\OT1/cmss/m/n/10 e
+....\OT1/cmss/m/n/10 x
+....\OT1/cmss/m/n/10 t
+....\penalty 10000
+....\hbox(8.49055+0.0)x3.94617
+.....\hbox(4.86163+1.36078)x3.44617, shifted -3.62892
+......\TS1/cmss/m/n/7 �
+.....\penalty 10000
+.....\glue 0.5
+.....\kern 0.0
+....\penalty 10000
+....\glue(\parfillskip) 0.0 plus 1.0fil
+....\glue(\rightskip) 0.0
+...\glue 0.0 plus 1.0fil
+...\glue 9.0 plus 4.0 minus 2.0
+...\kern -3.0
+...\rule(0.4+0.0)x137.9979
+...\kern 2.6
+...\hbox(6.76083+2.85002)x345.0, glue set 317.53294fil
+....\hbox(6.76083+0.0)x15.30023, glue set 11.61269fil
+.....\glue 0.0 plus 1.0fil minus 1.0fil
+.....\hbox(6.76083+0.0)x3.68755
+......\hbox(3.9375+0.0)x3.18755, shifted -2.82333
+.......\OT1/cmss/m/n/6 1
+......\penalty 10000
+......\glue 0.5
+......\kern 0.0
+....\hbox(6.65+0.0)x0.0
+.....\rule(6.65+0.0)x0.0
+....\OT1/cmss/m/n/8 b
+....\OT1/cmss/m/n/8 a
+....\OT1/cmss/m/n/8 z
+....\penalty 10000
+....\rule(0.0+2.85002)x0.0
+....\penalty 10000
+....\glue(\parfillskip) 0.0 plus 1.0fil
+....\glue(\rightskip) 0.0
+...\hbox(7.16995+2.85002)x345.0, glue set 307.22723fil
+....\hbox(7.16995+0.0)x15.30023, glue set 11.66939fil
+.....\glue 0.0 plus 1.0fil minus 1.0fil
+.....\hbox(7.16995+0.0)x3.63084
+......\hbox(4.34662+1.16638)x3.13084, shifted -2.82333
+.......\TS1/cmss/m/n/6 �
+......\penalty 10000
+......\glue 0.5
+......\kern 0.0
+....\hbox(6.65+0.0)x0.0
+.....\rule(6.65+0.0)x0.0
+....\OT1/cmss/m/n/8 f
+....\OT1/cmss/m/n/8 o
+....\kern0.23611
+....\OT1/cmss/m/n/8 o
+....\OT1/cmss/m/n/8 b
+....\OT1/cmss/m/n/8 a
+....\kern-0.23611
+....\OT1/cmss/m/n/8 r
+....\penalty 10000
+....\rule(0.0+2.85002)x0.0
+....\penalty 10000
+....\glue(\parfillskip) 0.0 plus 1.0fil
+....\glue(\rightskip) 0.0
+...\glue -2.85002
+...\glue 0.0 plus 0.0001fil
+..\glue(\baselineskip) 23.44444
+..\hbox(6.55556+0.0)x345.0
+...\hbox(6.55556+0.0)x345.0, glue set 170.0fil
+....\glue 0.0 plus 1.0fil
+....\OT1/cmss/m/n/10 1
+....\glue 0.0 plus 1.0fil
+
+
+(tlb1503.aux)
+END-TEST-LOG
+ )
+
+Output written on tlb1503.dvi (1 page, 752 bytes).

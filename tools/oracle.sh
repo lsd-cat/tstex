@@ -14,11 +14,16 @@ case "${mode:-ini}" in
   latex) args="-fmt pdflatex" ;;
   *) echo "oracle.sh: unknown mode $mode" >&2; exit 1 ;;
 esac
+runs=$(head -5 "$tex" | sed -n 's/^%! runs: *\([0-9]*\).*/\1/p' | head -1); runs=${runs:-1}
+export max_print_line=9999 # TeX Live texmf.cnf variable; only affects latex mode below
+[ "${mode:-ini}" = latex ] || unset max_print_line
 rm -f "$dir/$name.expected.dvi" "$dir/$name.expected.dvitype" "$dir/$name.expected.out" # no stale artefacts from an earlier version of the test
 tmp=$(mktemp -d); trap 'rm -rf "$tmp"' EXIT
 # every input lives in the temp dir so pdftex prints ./name (path-independent 79-col wrapping)
 cp "$dir"/*.tex "$root"/test/texmf/*.tex "$tmp/"
-(cd "$tmp" && TEXINPUTS=".:$root/test/lvt:" TFMFONTS="$root/test/texmf:" "$pdftex" $args -interaction=batchmode -output-format=dvi -jobname="$name" "$name.tex" >/dev/null 2>&1)
+i=0; while [ $i -lt "$runs" ]; do i=$((i+1))
+  (cd "$tmp" && TEXINPUTS=".:$root/test/lvt:" TFMFONTS="$root/test/texmf:" "$pdftex" $args -interaction=batchmode -output-format=dvi -jobname="$name" "$name.tex" >/dev/null 2>&1)
+done
 [ -f "$tmp/$name.log" ] || { echo "oracle.sh: pdftex produced no log" >&2; exit 1; }
 node "$root/tools/normalize-log.ts" "$tmp/$name.log" > "$dir/$name.expected.log"
 [ -f "$tmp/$name.dvi" ] && cp "$tmp/$name.dvi" "$dir/$name.expected.dvi"

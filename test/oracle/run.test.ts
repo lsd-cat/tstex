@@ -14,6 +14,9 @@ import { normalizeLog } from '../../tools/normalize-log.ts'
 
 const dir = new URL('.', import.meta.url).pathname
 const lvt = new URL('../lvt/', import.meta.url).pathname
+const fmtPath = new URL('../../build/latex.fmt', import.meta.url).pathname
+const TEXMFDIST = process.env.TEXMFDIST ?? '/Users/g/texlive/2026/texmf-dist'
+const TEXMFVAR = process.env.TEXMFVAR ?? '/Users/g/texlive/2026/texmf-var'
 const texmf = new URL('../texmf/', import.meta.url).pathname
 
 // zero the k preamble comment bytes (§617: 247 id num den mag k comment)
@@ -31,17 +34,34 @@ for (const file of readdirSync(dir).filter(f => f.endsWith('.tex')).sort()) {
     const expected = readFileSync(`${dir}${name}.expected.log`, 'utf8')
     const mode = (readFileSync(dir + file, 'utf8').split('\n')[0]!.match(/^%! oracle: *(\w+)/)?.[1] ?? 'ini') as 'ini' | 'etex' | 'latex'
     // string specifiers keep tsc quiet while the modules do not exist yet
-    const [{ Engine }, { nodeFS }] = await Promise.all([
+    const [{ Engine }, { nodeFS }, { loadFormat }] = await Promise.all([
       import('../../src/engine' + '.ts').catch(() => assert.fail('src/engine.ts missing')),
       import('../../src/platform/node' + '.ts').catch(() => assert.fail('src/platform/node.ts missing')),
+      import('../../src/format' + '.ts').catch(() => ({ loadFormat: undefined })),
     ])
-    const engine = new Engine({ fs: nodeFS([dir, texmf, lvt]) })
-    await engine.run({ jobname: name, mode })
-    assert.strictEqual(normalizeLog(engine.log), expected)
-    if (existsSync(`${dir}${name}.expected.out`)) assert.strictEqual(engine.outputFiles.get(`${name}.out`), readFileSync(`${dir}${name}.expected.out`, 'utf8'))
+    let format, fs = nodeFS([dir, texmf, lvt]), runs = 1, limits = {}
+    if (mode === 'latex') {
+      if (!existsSync(fmtPath)) assert.fail('build/latex.fmt missing: run `node tools/build-format.ts --out build/latex.fmt` first')
+      assert.ok(loadFormat, 'src/format.ts missing')
+      format = loadFormat(readFileSync(fmtPath))
+      fs = nodeFS([dir, texmf, lvt], [TEXMFDIST, TEXMFVAR])
+      runs = Number(readFileSync(dir + file, 'utf8').match(/^%! runs: *(\d+)/m)?.[1] ?? 1)
+      limits = { max_print_line: 9999 }
+    }
+    const overlay = new Map<string, string | Uint8Array>() // files written by earlier runs (.aux ...)
+    const base = fs
+    fs = { find: (n: string, k: string) => { const o = overlay.get(n); return o === undefined ? base.find(n, k) : typeof o === 'string' ? new TextEncoder().encode(o) : o } }
+    let engine
+    for (let i = 0; i < runs; i++) {
+      engine = new Engine({ fs, format, limits })
+      await engine.run({ jobname: name, mode })
+      for (const [n, v] of engine.outputFiles) overlay.set(n, v)
+    }
+    assert.strictEqual(normalizeLog(engine!.log), expected)
+    if (existsSync(`${dir}${name}.expected.out`)) assert.strictEqual(engine!.outputFiles.get(`${name}.out`), readFileSync(`${dir}${name}.expected.out`, 'utf8'))
     if (!existsSync(`${dir}${name}.expected.dvi`)) return
     const want = maskDvi(readFileSync(`${dir}${name}.expected.dvi`))
-    const got = engine.dvi ? maskDvi(engine.dvi) : new Uint8Array()
+    const got = engine!.dvi ? maskDvi(engine!.dvi) : new Uint8Array()
     const at = want.findIndex((v, i) => v !== got[i])
     assert.deepStrictEqual(got, want, `DVI differs; first differing byte ${at < 0 ? want.length : at}`)
   })

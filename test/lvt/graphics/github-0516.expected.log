@@ -1,0 +1,50 @@
+entering extended mode
+(github-0516.lvt
+LaTeX2e <2026-11-01>
+L3 programming layer <2026-09-09>
+(regression-test.tex
+\gTESTint=\count276
+)
+
+LaTeX Info: Writing file `./graph-test.1'.
+
+\openout15 = `graph-test.1'.
+
+
+(graphics.sty
+Package: graphics 2026-05-17 v1.4h Standard LaTeX Graphics (DPC,SPQR)
+(trig.sty
+Package: trig 2023/12/02 v1.11 sin cos tan (DPC)
+) (graphics.cfg
+File: graphics.cfg 2016/06/04 v1.11 sample graphics configuration
+)
+Package graphics Info: Driver file: dvips.def on input line 106.
+(dvips.def
+File: dvips.def 2025/01/21 v3.2a Graphics/color driver for dvips
+))
+
+START-TEST-LOG
+
+
+This is a generated file for the l3build validation system.
+
+Don't change this file in any respect.
+
+
+File: graph-test.1 Graphic file (type eps)
+<graph-test.1>
+> \box0=
+\hbox(30.11249+0.0)x30.11249
+.\hbox(30.11249+0.0)x30.11249
+..\special{PSfile="graph-test.1" llx=-1 lly=-1 urx=29 ury=29 rwi=300 }
+
+! OK.
+l.28 \showbox0
+
+
+
+END-TEST-LOG
+
+ )
+
+No pages of output.

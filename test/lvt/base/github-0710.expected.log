@@ -1,0 +1,167 @@
+entering extended mode
+(github-0710.lvt
+LaTeX2e <2026-11-01>
+L3 programming layer <2026-09-09>
+(article.cls
+Document Class: article 2026-06-04 v1.4n Standard LaTeX document class
+(size10.clo
+File: size10.clo 2026-06-04 v1.4n Standard LaTeX file (size option)
+)
+\c@part=\count276
+\c@section=\count277
+\c@subsection=\count278
+\c@subsubsection=\count279
+\c@paragraph=\count280
+\c@subparagraph=\count281
+\c@figure=\count282
+\c@table=\count283
+\abovecaptionskip=\skip49
+\belowcaptionskip=\skip50
+\bibindent=\dimen150
+)
+
+LaTeX Info: Writing file `./mypkg.sty'.
+
+\openout15 = `mypkg.sty'.
+
+
+(test2e.tex
+OMIT
+TIMO
+(expl3.sty
+Package: expl3 2026-09-09 L3 programming layer (loader)
+ (l3backend-dvips.def
+File: l3backend-dvips.def 2026-09-09 L3 backend support: dvips
+\l__pdfannot_backend_content_box=\box53
+\l__pdfannot_backend_model_box=\box54
+\g__pdfannot_backend_int=\count284
+\g__pdfannot_backend_link_int=\count285
+\g__pdfannot_backend_link_sf_int=\count286
+)))
+START-TEST-LOG
+
+This is a generated file for the LaTeX2e validation system.
+
+Don't change this file in any respect.
+
+Author: Joseph Wright
+(mypkg.sty)
+> \x=macro:
+->111:::.
+\mypkgtest ...my@A :\my@B :\my@C :\my@D }\show \x
+                                                  \endgroup
+l.26 \mypkgtest
+
+
+
+LaTeX Warning: Package "mypkg" has already been loaded: ignoring load-time option "load-option-A".
+
+> \x=macro:
+->111:::.
+\mypkgtest ...my@A :\my@B :\my@C :\my@D }\show \x
+                                                  \endgroup
+l.28 \mypkgtest
+
+
+
+LaTeX Warning: Package "mypkg" has already been loaded: ignoring load-time option "load-option-A".
+
+> \x=macro:
+->111::333:.
+\mypkgtest ...my@A :\my@B :\my@C :\my@D }\show \x
+                                                  \endgroup
+l.30 \mypkgtest
+
+
+> \x=macro:
+->111::333:.
+\mypkgtest ...my@A :\my@B :\my@C :\my@D }\show \x
+                                                  \endgroup
+l.32 \mypkgtest
+
+
+
+LaTeX Warning: Package "mypkg" has already been loaded: ignoring load-time option "load-option-B".
+
+> \x=macro:
+->111::333:.
+\mypkgtest ...my@A :\my@B :\my@C :\my@D }\show \x
+                                                  \endgroup
+l.34 \mypkgtest
+
+
+
+! LaTeX Error: Key "load-option-A" may only be used during loading of package "mypkg".
+
+For immediate help type H <return>.
+ ...
+
+l.35 \SetKeys[mypkg]{load-option-A = 666}
+                                                                % 6
+
+LaTeX was asked to set a key called "load-option-A", but this is only allowed in the optional argument when loading package "mypkg".
+
+
+> \x=macro:
+->111::333:.
+\mypkgtest ...my@A :\my@B :\my@C :\my@D }\show \x
+                                                  \endgroup
+l.36 \mypkgtest
+
+
+> \x=macro:
+->111::333:777.
+\mypkgtest ...my@A :\my@B :\my@C :\my@D }\show \x
+                                                  \endgroup
+l.38 \mypkgtest
+
+
+> \x=macro:
+->111::333:888.
+\mypkgtest ...my@A :\my@B :\my@C :\my@D }\show \x
+                                                  \endgroup
+l.40 \mypkgtest
+
+
+OMIT
+No file github-0710.aux.
+\openout1 = `github-0710.aux'.
+
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 43.
+LaTeX Font Info:    ... okay on input line 43.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 43.
+LaTeX Font Info:    ... okay on input line 43.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 43.
+LaTeX Font Info:    ... okay on input line 43.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 43.
+LaTeX Font Info:    ... okay on input line 43.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 43.
+LaTeX Font Info:    ... okay on input line 43.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 43.
+LaTeX Font Info:    ... okay on input line 43.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 43.
+LaTeX Font Info:    ... okay on input line 43.
+TIMO
+
+! LaTeX Error: Key "preamble-option-D" may only be used in the preamble.
+
+For immediate help type H <return>.
+ ...
+
+l.47   preamble-option-D = 999}
+                                % 9
+
+LaTeX was asked to set a key called "preamble-option-D", but this is only allowed before \begin {document}. You will need to set the key earlier.
+
+
+> \x=macro:
+->111::999:888.
+\mypkgtest ...my@A :\my@B :\my@C :\my@D }\show \x
+                                                  \endgroup
+l.48 \mypkgtest
+
+
+END-TEST-LOG
+ )
+
+No pages of output.

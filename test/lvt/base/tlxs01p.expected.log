@@ -1,0 +1,206 @@
+entering extended mode
+(tlxs01p.lvt
+LaTeX2e <2026-11-01>
+L3 programming layer <2026-09-09>
+(proc.cls
+Document Class: proc 2021/12/09 v1.3m Standard LaTeX document class
+(article.cls
+Document Class: article 2026-06-04 v1.4n Standard LaTeX document class
+(size10.clo
+File: size10.clo 2026-06-04 v1.4n Standard LaTeX file (size option)
+)
+\c@part=\count276
+\c@section=\count277
+\c@subsection=\count278
+\c@subsubsection=\count279
+\c@paragraph=\count280
+\c@subparagraph=\count281
+\c@figure=\count282
+\c@table=\count283
+\abovecaptionskip=\skip49
+\belowcaptionskip=\skip50
+\bibindent=\dimen150
+)) (l3backend-dvips.def
+File: l3backend-dvips.def 2026-09-09 L3 backend support: dvips
+\l__pdfannot_backend_content_box=\box53
+\l__pdfannot_backend_model_box=\box54
+\g__pdfannot_backend_int=\count284
+\g__pdfannot_backend_link_int=\count285
+\g__pdfannot_backend_link_sf_int=\count286
+)
+No file tlxs01p.aux.
+\openout1 = `tlxs01p.aux'.
+
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 23.
+LaTeX Font Info:    ... okay on input line 23.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 23.
+LaTeX Font Info:    ... okay on input line 23.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 23.
+LaTeX Font Info:    ... okay on input line 23.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 23.
+LaTeX Font Info:    ... okay on input line 23.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 23.
+LaTeX Font Info:    ... okay on input line 23.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 23.
+LaTeX Font Info:    ... okay on input line 23.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 23.
+LaTeX Font Info:    ... okay on input line 23.
+(test2e.tex
+OMIT
+TIMO
+)
+START-TEST-LOG
+
+This is a generated file for the LaTeX2e validation system.
+
+Don't change this file in any respect.
+
+Author: Chris Martin
+Format: LaTeX2e<1993/12/24>
+OMIT
+
+LaTeX Warning: Declared format LaTeX2e<1993/12/24>,
+Actual format LaTeX2e<2026-11-01> on input line 36.
+
+TIMO
+Main Class: proc
+Defined   \partname
+Defined   \contentsname
+Defined   \listfigurename
+Defined   \listtablename
+Defined   \refname
+Defined   \indexname
+Defined   \figurename
+Defined   \tablename
+Defined   \abstractname
+Defined   \pagename
+OMIT
+\c@contentsname=\count287
+\c@listfigurename=\count288
+\c@listtablename=\count289
+\c@refname=\count290
+\c@indexname=\count291
+\c@figurename=\count292
+\c@tablename=\count293
+\c@chaptername=\count294
+\c@partname=\count295
+\c@abstractname=\count296
+\c@pagename=\count297
+TIMO
+List of Tables name changed to XList of Tables
+No file tlxs01p.lot.
+\tf@lot=\write3
+\openout3 = `tlxs01p.lot'.
+
+List of Figures name changed to XList of Figures
+No file tlxs01p.lof.
+\tf@lof=\write4
+\openout4 = `tlxs01p.lof'.
+
+Contents name changed to XContents
+No file tlxs01p.toc.
+\tf@toc=\write5
+\openout5 = `tlxs01p.toc'.
+
+Part name changed to XPart
+Abstract name changed to XAbstract
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <7> on input line 95.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <5> on input line 95.
+Table name changed to XTable
+Figure name changed to XFigure
+
+LaTeX Warning: Citation `bitmap' on page 1 undefined on input line 110.
+
+References name changed to XReferences
+
+Underfull \hbox (badness 10000) in paragraph at lines 113--115
+[]\OT1/cmr/m/n/10 Steve Rim-mer \OT1/cmr/bx/n/10 Bit-Mapped Graph-ics\OT1/cmr/m/n/10 ,
+
+\hbox(7.5+2.5)x214.89378, glue set 7.08282
+.\hbox(7.5+2.5)x0.0
+..\glue 0.0
+..\glue -10.55559
+..\glue -5.0
+..\hbox(7.5+2.5)x10.55559
+...\glue 0.0 plus 1.0fil
+...\OT1/cmr/m/n/10 [
+...\OT1/cmr/m/n/10 1
+...\OT1/cmr/m/n/10 ]
+..\glue 5.0
+.\penalty 0
+.\OT1/cmr/m/n/10 S
+.\OT1/cmr/m/n/10 t
+.\OT1/cmr/m/n/10 e
+.\OT1/cmr/m/n/10 v
+.\kern-0.27779
+.\OT1/cmr/m/n/10 e
+.\glue 3.33333 plus 1.66666 minus 1.11111
+.\OT1/cmr/m/n/10 R
+.\OT1/cmr/m/n/10 i
+.\OT1/cmr/m/n/10 m
+.\discretionary
+..\OT1/cmr/m/n/10 -
+.\OT1/cmr/m/n/10 m
+.\OT1/cmr/m/n/10 e
+.\OT1/cmr/m/n/10 r
+.\glue 3.33333 plus 1.66666 minus 1.11111
+.\OT1/cmr/bx/n/10 B
+.\OT1/cmr/bx/n/10 i
+.\OT1/cmr/bx/n/10 t
+.\OT1/cmr/bx/n/10 -
+.\discretionary
+.\OT1/cmr/bx/n/10 M
+.\OT1/cmr/bx/n/10 a
+.\OT1/cmr/bx/n/10 p
+.\OT1/cmr/bx/n/10 p
+.\kern0.31944
+.\OT1/cmr/bx/n/10 e
+.\OT1/cmr/bx/n/10 d
+.\glue 3.83331 plus 1.91666 minus 1.27777
+.\OT1/cmr/bx/n/10 G
+.\OT1/cmr/bx/n/10 r
+.\OT1/cmr/bx/n/10 a
+.\OT1/cmr/bx/n/10 p
+.\OT1/cmr/bx/n/10 h
+.\discretionary
+..\OT1/cmr/bx/n/10 -
+.\OT1/cmr/bx/n/10 i
+.\OT1/cmr/bx/n/10 c
+.\OT1/cmr/bx/n/10 s
+.\OT1/cmr/m/n/10 ,
+.\glue(\rightskip) 0.0
+
+Page name changed to XPage
+[1
+
+
+]
+Index name changed to XIndex
+[2
+
+
+]
+Each counter should have a non-zero value to show that the name has been changed
+Counter contentsname is 1
+Counter listfigurename is 1
+Counter listtablename is 1
+Counter refname is 1
+Counter indexname is 1
+Counter figurename is 1
+Counter tablename is 1
+Counter partname is 1
+Counter abstractname is 1
+Counter pagename is 1
+(tlxs01p.aux)
+
+LaTeX Warning: There were undefined references.
+
+
+LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
+
+END-TEST-LOG
+ )
+
+Output written on tlxs01p.dvi (2 pages, 1720 bytes).

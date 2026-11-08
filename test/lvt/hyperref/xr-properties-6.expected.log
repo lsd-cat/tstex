@@ -1,0 +1,89 @@
+entering extended mode
+(xr-properties-6.lvt
+LaTeX2e <2026-11-01>
+L3 programming layer <2026-09-09>
+(book.cls
+Document Class: book 2026-06-04 v1.4n Standard LaTeX document class
+(bk10.clo
+File: bk10.clo 2026-06-04 v1.4n Standard LaTeX file (size option)
+)
+\c@part=\count276
+\c@chapter=\count277
+\c@section=\count278
+\c@subsection=\count279
+\c@subsubsection=\count280
+\c@paragraph=\count281
+\c@subparagraph=\count282
+\c@figure=\count283
+\c@table=\count284
+\abovecaptionskip=\skip49
+\belowcaptionskip=\skip50
+\bibindent=\dimen150
+) (regression-test.tex
+\gTESTint=\count285
+)
+
+LaTeX Info: Writing file `./test-aux6.aux'.
+
+\openout15 = `test-aux6.aux'.
+
+
+(xr-hyper.sty
+Package: xr-hyper 2026-11-03 v7.01t eXternal References (DPC)
+(xr.sty
+Package: xr 2024-12-22 v6.00 eXternal References (DPC)
+))
+Package xr Info: IMPORTING LABELS FROM test-aux6.aux on input line 11.
+Package xr Info: IMPORTING LABELS FROM test-aux6.aux on input line 11.
+(l3backend-dvips.def
+File: l3backend-dvips.def 2026-09-09 L3 backend support: dvips
+\l__pdfannot_backend_content_box=\box53
+\l__pdfannot_backend_model_box=\box54
+\g__pdfannot_backend_int=\count286
+\g__pdfannot_backend_link_int=\count287
+\g__pdfannot_backend_link_sf_int=\count288
+)
+No file xr-properties-6.aux.
+\openout1 = `xr-properties-6.aux'.
+
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 12.
+LaTeX Font Info:    ... okay on input line 12.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 12.
+LaTeX Font Info:    ... okay on input line 12.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 12.
+LaTeX Font Info:    ... okay on input line 12.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 12.
+LaTeX Font Info:    ... okay on input line 12.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 12.
+LaTeX Font Info:    ... okay on input line 12.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 12.
+LaTeX Font Info:    ... okay on input line 12.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 12.
+LaTeX Font Info:    ... okay on input line 12.
+
+START-TEST-LOG
+
+
+This is a generated file for the l3build validation system.
+
+Don't change this file in any respect.
+
+
+> \r@VIa=macro:
+->{page}{1}{title}{\unknown section.title}{xr-url}{test-aux6.pdf}.
+l.18  \show\r@VIa
+                   \show\r@VIb
+
+> \r@VIb=macro:
+->{1.1}{1}{title}{\unknown section.title}{test-aux6.pdf}.
+l.18  \show\r@VIa  \show\r@VIb
+
+
+ test-aux6.pdf, 1, KNOWNsection.title, https://xxx.yyy.zzz
+(xr-properties-6.aux)
+
+END-TEST-LOG
+
+ )
+
+No pages of output.

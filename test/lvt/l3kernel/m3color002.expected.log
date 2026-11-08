@@ -1,0 +1,1095 @@
+entering extended mode
+(m3color002.lvt
+LaTeX2e <2026-11-01>
+L3 programming layer <2026-09-09>
+(minimal.cls
+Document Class: minimal 2001/05/25 Standard LaTeX minimal class
+) (regression-test.tex
+\gTESTint=\count276
+) (l3debug.def
+File: l3debug.def 2026-09-09 L3 Debugging support
+)
+
+START-TEST-LOG
+
+
+This is a generated file for the l3build validation system.
+
+Don't change this file in any respect.
+
+
+! Undefined control sequence.
+l.15 \AUTHOR
+            {Joseph Wright}
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+
+! LaTeX Error: Missing \begin{document}.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...
+
+l.15 \AUTHOR{J
+              oseph Wright}
+You're in trouble here.  Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+Missing character: There is no J in font nullfont!
+Missing character: There is no o in font nullfont!
+Missing character: There is no s in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no p in font nullfont!
+Missing character: There is no h in font nullfont!
+Missing character: There is no W in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no i in font nullfont!
+Missing character: There is no g in font nullfont!
+Missing character: There is no h in font nullfont!
+Missing character: There is no t in font nullfont!
+
+Overfull \hbox (20.0pt too wide) in paragraph at lines 15--16
+[]
+
+\hbox(0.0+0.0)x0.0
+.\hbox(0.0+0.0)x20.0
+.\glue(\rightskip) 0.0
+
+============================================================
+TEST 1: Gray model
+============================================================
+Defining \l__color_named_foo1_tl on line 25
+Defining \l__color_named_foo1_prop on line 25
+The color foo1 has the properties:
+>  model  =>  gray
+>  gray  =>  0.1333333333333333
+The color foo1 has the properties:
+>  model  =>  gray
+>  gray  =>  0.9333333333333333
+============================================================
+
+============================================================
+TEST 2: hsb model
+============================================================
+The color foo1 has the properties:
+>  model  =>  rgb
+>  rgb  =>  0.7 0.567 0.28.
+<recently read> }
+
+l.35   }
+
+
+The color foo1 has the properties:
+>  model  =>  rgb
+>  rgb  =>  0.66499 0.7 0.28.
+<recently read> }
+
+l.35   }
+
+
+The color foo1 has the properties:
+>  model  =>  rgb
+>  rgb  =>  0.28 0.7 0.31499.
+<recently read> }
+
+l.35   }
+
+
+============================================================
+
+============================================================
+TEST 3: Hsb model
+============================================================
+The color foo1 has the properties:
+>  model  =>  rgb
+>  rgb  =>  0.7 0.315 0.28.
+<recently read> }
+
+l.55   }
+
+
+The color foo1 has the properties:
+>  model  =>  rgb
+>  rgb  =>  0.665 0.7 0.28.
+<recently read> }
+
+l.55   }
+
+
+The color foo1 has the properties:
+>  model  =>  rgb
+>  rgb  =>  0.28 0.7 0.315.
+<recently read> }
+
+l.55   }
+
+
+The color foo1 has the properties:
+>  model  =>  rgb
+>  rgb  =>  0.28 0.665 0.7.
+<recently read> }
+
+l.55   }
+
+
+The color foo1 has the properties:
+>  model  =>  rgb
+>  rgb  =>  0.315 0.28 0.7.
+<recently read> }
+
+l.55   }
+
+
+The color foo1 has the properties:
+>  model  =>  rgb
+>  rgb  =>  0.7 0.28 0.665.
+<recently read> }
+
+l.55   }
+
+
+The color foo1 has the properties:
+>  model  =>  rgb
+>  rgb  =>  0.7 0.28 0.28.
+<recently read> }
+
+l.55   }
+
+
+The color foo1 has the properties:
+>  model  =>  rgb
+>  rgb  =>  0.19833 0.2 0.18.
+<recently read> }
+
+l.55   }
+
+
+============================================================
+
+============================================================
+TEST 4: wave model
+============================================================
+The color foo1 has the properties:
+>  model  =>  rgb
+>  rgb  =>  0.0 0 0.
+<recently read> }
+
+l.68   }
+
+
+The color foo1 has the properties:
+>  model  =>  rgb
+>  rgb  =>  0.3 0 0.3.
+<recently read> }
+
+l.68   }
+
+
+The color foo1 has the properties:
+>  model  =>  rgb
+>  rgb  =>  0.43333 0 0.65.
+<recently read> }
+
+l.68   }
+
+
+The color foo1 has the properties:
+>  model  =>  rgb
+>  rgb  =>  0.4125 0 0.825.
+<recently read> }
+
+l.68   }
+
+
+The color foo1 has the properties:
+>  model  =>  rgb
+>  rgb  =>  0 0 1.0.
+<recently read> }
+
+l.68   }
+
+
+The color foo1 has the properties:
+>  model  =>  rgb
+>  rgb  =>  0 0.8 1.0.
+<recently read> }
+
+l.68   }
+
+
+The color foo1 has the properties:
+>  model  =>  rgb
+>  rgb  =>  0 1 1.0.
+<recently read> }
+
+l.68   }
+
+
+The color foo1 has the properties:
+>  model  =>  rgb
+>  rgb  =>  0 1.0 0.5.
+<recently read> }
+
+l.68   }
+
+
+The color foo1 has the properties:
+>  model  =>  rgb
+>  rgb  =>  0 1.0 0.
+<recently read> }
+
+l.68   }
+
+
+The color foo1 has the properties:
+>  model  =>  rgb
+>  rgb  =>  0.42857 1.0 0.
+<recently read> }
+
+l.68   }
+
+
+The color foo1 has the properties:
+>  model  =>  rgb
+>  rgb  =>  1 1.0 0.
+<recently read> }
+
+l.68   }
+
+
+The color foo1 has the properties:
+>  model  =>  rgb
+>  rgb  =>  1.0 0.69231 0.
+<recently read> }
+
+l.68   }
+
+
+The color foo1 has the properties:
+>  model  =>  rgb
+>  rgb  =>  1.0 0 0.
+<recently read> }
+
+l.68   }
+
+
+The color foo1 has the properties:
+>  model  =>  rgb
+>  rgb  =>  1.0 0 0.
+<recently read> }
+
+l.68   }
+
+
+The color foo1 has the properties:
+>  model  =>  rgb
+>  rgb  =>  0.65 0 0.
+<recently read> }
+
+l.68   }
+
+
+The color foo1 has the properties:
+>  model  =>  rgb
+>  rgb  =>  0.3 0 0.
+<recently read> }
+
+l.68   }
+
+
+The color foo1 has the properties:
+>  model  =>  rgb
+>  rgb  =>  0.125 0 0.
+<recently read> }
+
+l.68   }
+
+
+============================================================
+
+============================================================
+TEST 5: Integer/integer-like models
+============================================================
+The color foo1 has the properties:
+>  model  =>  rgb
+>  rgb  =>  0.04167 0.04124 0.03993.
+<recently read> }
+
+l.78   }
+
+
+The color foo1 has the properties:
+>  model  =>  rgb
+>  rgb  =>  0.07843 0.15686 0.23529.
+<recently read> }
+
+l.78   }
+
+
+Defining \l__color_named_foo2_tl on line 78
+Defining \l__color_named_foo2_prop on line 78
+The color foo2 has the properties:
+>  model  =>  rgb
+>  rgb  =>  0.07059 0.20392 0.68235.
+<recently read> }
+
+l.78   }
+
+
+============================================================
+
+============================================================
+TEST 6: Expressions in converted models
+============================================================
+The color foo1 has the properties:
+>  model  =>  rgb
+>  rgb  =>  0.04167 0.04124 0.03993.
+<recently read> }
+
+l.86   }
+
+
+The color foo1 has the properties:
+>  model  =>  rgb
+>  rgb  =>  0.07843 0.15686 0.23529.
+<recently read> }
+
+l.86   }
+
+
+============================================================
+
+============================================================
+TEST 7: cmy model
+============================================================
+The color foo1 has the properties:
+>  model  =>  cmyk
+>  cmyk  =>  0 0.111 0.222 0.123.
+<recently read> }
+
+l.94   }
+
+
+============================================================
+
+============================================================
+TEST 8: tHsb model
+============================================================
+The color foo1 has the properties:
+>  model  =>  rgb
+>  rgb  =>  1.0 0.75 0.
+<recently read> }
+
+l.106   }
+
+
+The color foo2 has the properties:
+>  model  =>  rgb
+>  rgb  =>  0 1.0 0.25.
+<recently read> }
+
+l.106   }
+
+
+Defining \l__color_named_foo3_tl on line 106
+Defining \l__color_named_foo3_prop on line 106
+The color foo3 has the properties:
+>  model  =>  rgb
+>  rgb  =>  0.5 0 1.0.
+<recently read> }
+
+l.106   }
+
+
+Defining \l__color_named_foo4_tl on line 106
+Defining \l__color_named_foo4_prop on line 106
+The color foo4 has the properties:
+>  model  =>  rgb
+>  rgb  =>  1.0 0 0.
+<recently read> }
+
+l.106   }
+
+
+============================================================
+
+============================================================
+TEST 9: &spot model
+============================================================
+The color foo1 has the properties:
+>  model  =>  gray
+>  gray  =>  0.54.
+<recently read> }
+
+l.112   }
+
+
+============================================================
+
+============================================================
+TEST 10: Exporting colors
+============================================================
+> \l_tmpa_tl={rgb}{0.0 0.0 1.0}.
+<recently read> }
+
+l.130   }
+
+
+> \l_tmpa_tl={rgb}{0.5 0 0.5}.
+<recently read> }
+
+l.130   }
+
+
+> \l_tmpa_tl={cmyk}{1.0 0.0 0.0 0.0}.
+<recently read> }
+
+l.130   }
+
+
+> \l_tmpa_tl={gray}{0.6}.
+<recently read> }
+
+l.130   }
+
+
+> \l_tmpa_tl=0000FF.
+<recently read> }
+
+l.130   }
+
+
+> \l_tmpa_tl=800080.
+<recently read> }
+
+l.130   }
+
+
+> \l_tmpa_tl=00FFFF.
+<recently read> }
+
+l.130   }
+
+
+> \l_tmpa_tl=999999.
+<recently read> }
+
+l.130   }
+
+
+> \l_tmpa_tl=1 1 0 0.
+<recently read> }
+
+l.130   }
+
+
+> \l_tmpa_tl=0 0.5 0 0.5.
+<recently read> }
+
+l.130   }
+
+
+> \l_tmpa_tl=1.0 0.0 0.0 0.0.
+<recently read> }
+
+l.130   }
+
+
+> \l_tmpa_tl=0 0 0 0.4.
+<recently read> }
+
+l.130   }
+
+
+> \l_tmpa_tl=0.0 0.0 1.0.
+<recently read> }
+
+l.130   }
+
+
+> \l_tmpa_tl=0.5 0 0.5.
+<recently read> }
+
+l.130   }
+
+
+> \l_tmpa_tl=0 1 1.
+<recently read> }
+
+l.130   }
+
+
+> \l_tmpa_tl=0.6 0.6 0.6.
+<recently read> }
+
+l.130   }
+
+
+============================================================
+
+============================================================
+TEST 11: Exporting color: errors
+============================================================
+
+! LaTeX Error: Unknown export format 'mumble'.
+
+For immediate help type H <return>.
+ ...
+
+l.135   }
+
+
+LaTeX has been asked to export a color in format 'mumble', but this has never been defined.
+
+
+============================================================
+
+============================================================
+TEST 12: Exporting complex models
+============================================================
+OMIT
+Defining \__color_backend_fill_BarToneCMYK:n on line 169
+Defining \__color_backend_stroke_BarToneCMYK:n on line 169
+Defining \__color_backend_select_BarToneCMYK:n on line 169
+Defining \__color_backend_raw_BarToneCMYK:n on line 169
+Defining \__color_model_BarToneCMYK_white: on line 169
+Defining \__color_parse_mix_BarToneCMYK:nw on line 169
+Defining \__color_parse_model_BarToneCMYK:w on line 169
+Defining \c__color_fallback_BarToneCMYK_tl on line 169
+Defining \__color_convert_BarToneCMYK_cmyk:w on line 169
+Defining \__color_convert_cmyk_BarToneCMYK:w on line 169
+! Undefined control sequence.
+\__color_model_separation_cmyk:nnnnnn ...it:nnnnn
+                                                  {#2}{/DeviceCMYK}{}{0 0 0 ...
+l.169   }
+
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+
+! LaTeX Error: Missing \begin{document}.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...
+
+l.169   }
+
+You're in trouble here.  Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+Missing character: There is no B in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no T in font nullfont!
+Missing character: There is no o in font nullfont!
+Missing character: There is no n in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no 5 in font nullfont!
+Missing character: There is no 5 in font nullfont!
+Missing character: There is no 5 in font nullfont!
+Missing character: There is no G in font nullfont!
+Missing character: There is no N in font nullfont!
+Missing character: There is no / in font nullfont!
+Missing character: There is no D in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no v in font nullfont!
+Missing character: There is no i in font nullfont!
+Missing character: There is no c in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no C in font nullfont!
+Missing character: There is no M in font nullfont!
+Missing character: There is no Y in font nullfont!
+Missing character: There is no K in font nullfont!
+Missing character: There is no 0 in font nullfont!
+Missing character: There is no 0 in font nullfont!
+Missing character: There is no 0 in font nullfont!
+Missing character: There is no 0 in font nullfont!
+Missing character: There is no 0 in font nullfont!
+Missing character: There is no . in font nullfont!
+Missing character: There is no 8 in font nullfont!
+Missing character: There is no 0 in font nullfont!
+Missing character: There is no . in font nullfont!
+Missing character: There is no 2 in font nullfont!
+Missing character: There is no 0 in font nullfont!
+Missing character: There is no . in font nullfont!
+Missing character: There is no 5 in font nullfont!
+Missing character: There is no 0 in font nullfont!
+Missing character: There is no . in font nullfont!
+Missing character: There is no 3 in font nullfont!
+Defining \__color_backend_fill_BarToneCIELAB:n on line 169
+Defining \__color_backend_stroke_BarToneCIELAB:n on line 169
+Defining \__color_backend_select_BarToneCIELAB:n on line 169
+Defining \__color_backend_raw_BarToneCIELAB:n on line 169
+Defining \__color_model_BarToneCIELAB_white: on line 169
+Defining \__color_parse_mix_BarToneCIELAB:nw on line 169
+Defining \__color_parse_model_BarToneCIELAB:w on line 169
+! Undefined control sequence.
+<argument> ..._backend_separation_init_CIELAB:nnn
+                                                  {d65}{BarTone 555 GN}{50 -...
+l.169   }
+
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+Missing character: There is no d in font nullfont!
+Missing character: There is no 6 in font nullfont!
+Missing character: There is no 5 in font nullfont!
+Missing character: There is no B in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no T in font nullfont!
+Missing character: There is no o in font nullfont!
+Missing character: There is no n in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no 5 in font nullfont!
+Missing character: There is no 5 in font nullfont!
+Missing character: There is no 5 in font nullfont!
+Missing character: There is no G in font nullfont!
+Missing character: There is no N in font nullfont!
+Missing character: There is no 5 in font nullfont!
+Missing character: There is no 0 in font nullfont!
+Missing character: There is no - in font nullfont!
+Missing character: There is no 3 in font nullfont!
+Missing character: There is no 0 in font nullfont!
+Missing character: There is no - in font nullfont!
+Missing character: There is no 4 in font nullfont!
+Missing character: There is no 0 in font nullfont!
+Defining \c__color_fallback_BarToneCIELAB_tl on line 169
+Defining \__color_convert_BarToneCIELAB_gray:w on line 169
+Defining \__color_convert_gray_BarToneCIELAB:w on line 169
+Defining \__color_backend_fill_TwoUp:n on line 169
+Defining \__color_backend_stroke_TwoUp:n on line 169
+Defining \__color_backend_select_TwoUp:n on line 169
+Defining \__color_backend_raw_TwoUp:n on line 169
+Defining \__color_model_TwoUp_white: on line 169
+Defining \__color_parse_model_TwoUp:w on line 169
+Defining \__color_parse_mix_TwoUp:nw on line 169
+! Undefined control sequence.
+<argument> \__color_backend_devicen_init:nnn
+                                             {\clist_map_function:nN {BarTon...
+l.169   }
+
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+Missing character: There is no / in font nullfont!
+Missing character: There is no B in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no T in font nullfont!
+Missing character: There is no o in font nullfont!
+Missing character: There is no n in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no # in font nullfont!
+Missing character: There is no 2 in font nullfont!
+Missing character: There is no 0 in font nullfont!
+Missing character: There is no 5 in font nullfont!
+Missing character: There is no 5 in font nullfont!
+Missing character: There is no 5 in font nullfont!
+Missing character: There is no # in font nullfont!
+Missing character: There is no 2 in font nullfont!
+Missing character: There is no 0 in font nullfont!
+Missing character: There is no G in font nullfont!
+Missing character: There is no N in font nullfont!
+Missing character: There is no / in font nullfont!
+Missing character: There is no B in font nullfont!
+Missing character: There is no l in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no c in font nullfont!
+Missing character: There is no k in font nullfont!
+Missing character: There is no / in font nullfont!
+Missing character: There is no D in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no v in font nullfont!
+Missing character: There is no i in font nullfont!
+Missing character: There is no c in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no C in font nullfont!
+Missing character: There is no M in font nullfont!
+Missing character: There is no Y in font nullfont!
+Missing character: There is no K in font nullfont!
+Missing character: There is no 1 in font nullfont!
+Missing character: There is no . in font nullfont!
+Missing character: There is no 0 in font nullfont!
+Missing character: There is no 1 in font nullfont!
+Missing character: There is no . in font nullfont!
+Missing character: There is no 0 in font nullfont!
+Missing character: There is no 1 in font nullfont!
+Missing character: There is no . in font nullfont!
+Missing character: There is no 0 in font nullfont!
+Missing character: There is no 1 in font nullfont!
+Missing character: There is no . in font nullfont!
+Missing character: There is no 0 in font nullfont!
+Missing character: There is no 5 in font nullfont!
+Missing character: There is no i in font nullfont!
+Missing character: There is no n in font nullfont!
+Missing character: There is no d in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no x in font nullfont!
+Missing character: There is no - in font nullfont!
+Missing character: There is no 0 in font nullfont!
+Missing character: There is no . in font nullfont!
+Missing character: There is no 8 in font nullfont!
+Missing character: There is no m in font nullfont!
+Missing character: There is no u in font nullfont!
+Missing character: There is no l in font nullfont!
+Missing character: There is no 1 in font nullfont!
+Missing character: There is no . in font nullfont!
+Missing character: There is no 0 in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no d in font nullfont!
+Missing character: There is no d in font nullfont!
+Missing character: There is no m in font nullfont!
+Missing character: There is no u in font nullfont!
+Missing character: There is no l in font nullfont!
+Missing character: There is no 4 in font nullfont!
+Missing character: There is no - in font nullfont!
+Missing character: There is no 1 in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no o in font nullfont!
+Missing character: There is no l in font nullfont!
+Missing character: There is no l in font nullfont!
+Missing character: There is no 5 in font nullfont!
+Missing character: There is no i in font nullfont!
+Missing character: There is no n in font nullfont!
+Missing character: There is no d in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no x in font nullfont!
+Missing character: There is no - in font nullfont!
+Missing character: There is no 0 in font nullfont!
+Missing character: There is no . in font nullfont!
+Missing character: There is no 2 in font nullfont!
+Missing character: There is no m in font nullfont!
+Missing character: There is no u in font nullfont!
+Missing character: There is no l in font nullfont!
+Missing character: There is no 1 in font nullfont!
+Missing character: There is no . in font nullfont!
+Missing character: There is no 0 in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no d in font nullfont!
+Missing character: There is no d in font nullfont!
+Missing character: There is no m in font nullfont!
+Missing character: There is no u in font nullfont!
+Missing character: There is no l in font nullfont!
+Missing character: There is no 4 in font nullfont!
+Missing character: There is no - in font nullfont!
+Missing character: There is no 1 in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no o in font nullfont!
+Missing character: There is no l in font nullfont!
+Missing character: There is no l in font nullfont!
+Missing character: There is no 5 in font nullfont!
+Missing character: There is no i in font nullfont!
+Missing character: There is no n in font nullfont!
+Missing character: There is no d in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no x in font nullfont!
+Missing character: There is no - in font nullfont!
+Missing character: There is no 0 in font nullfont!
+Missing character: There is no . in font nullfont!
+Missing character: There is no 5 in font nullfont!
+Missing character: There is no m in font nullfont!
+Missing character: There is no u in font nullfont!
+Missing character: There is no l in font nullfont!
+Missing character: There is no 1 in font nullfont!
+Missing character: There is no . in font nullfont!
+Missing character: There is no 0 in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no d in font nullfont!
+Missing character: There is no d in font nullfont!
+Missing character: There is no m in font nullfont!
+Missing character: There is no u in font nullfont!
+Missing character: There is no l in font nullfont!
+Missing character: There is no 4 in font nullfont!
+Missing character: There is no - in font nullfont!
+Missing character: There is no 1 in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no o in font nullfont!
+Missing character: There is no l in font nullfont!
+Missing character: There is no l in font nullfont!
+Missing character: There is no 5 in font nullfont!
+Missing character: There is no i in font nullfont!
+Missing character: There is no n in font nullfont!
+Missing character: There is no d in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no x in font nullfont!
+Missing character: There is no - in font nullfont!
+Missing character: There is no 0 in font nullfont!
+Missing character: There is no . in font nullfont!
+Missing character: There is no 3 in font nullfont!
+Missing character: There is no m in font nullfont!
+Missing character: There is no u in font nullfont!
+Missing character: There is no l in font nullfont!
+Missing character: There is no 1 in font nullfont!
+Missing character: There is no . in font nullfont!
+Missing character: There is no 0 in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no d in font nullfont!
+Missing character: There is no d in font nullfont!
+Missing character: There is no m in font nullfont!
+Missing character: There is no u in font nullfont!
+Missing character: There is no l in font nullfont!
+Missing character: There is no 4 in font nullfont!
+Missing character: There is no - in font nullfont!
+Missing character: There is no 1 in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no o in font nullfont!
+Missing character: There is no l in font nullfont!
+Missing character: There is no l in font nullfont!
+Missing character: There is no 4 in font nullfont!
+Missing character: There is no - in font nullfont!
+Missing character: There is no 1 in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no o in font nullfont!
+Missing character: There is no l in font nullfont!
+Missing character: There is no l in font nullfont!
+Missing character: There is no 4 in font nullfont!
+Missing character: There is no - in font nullfont!
+Missing character: There is no 1 in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no o in font nullfont!
+Missing character: There is no l in font nullfont!
+Missing character: There is no l in font nullfont!
+Missing character: There is no 4 in font nullfont!
+Missing character: There is no - in font nullfont!
+Missing character: There is no 1 in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no o in font nullfont!
+Missing character: There is no l in font nullfont!
+Missing character: There is no l in font nullfont!
+Missing character: There is no 4 in font nullfont!
+Missing character: There is no i in font nullfont!
+Missing character: There is no n in font nullfont!
+Missing character: There is no d in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no x in font nullfont!
+Missing character: There is no - in font nullfont!
+Missing character: There is no 1 in font nullfont!
+Missing character: There is no m in font nullfont!
+Missing character: There is no u in font nullfont!
+Missing character: There is no l in font nullfont!
+Missing character: There is no 1 in font nullfont!
+Missing character: There is no . in font nullfont!
+Missing character: There is no 0 in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no d in font nullfont!
+Missing character: There is no d in font nullfont!
+Missing character: There is no m in font nullfont!
+Missing character: There is no u in font nullfont!
+Missing character: There is no l in font nullfont!
+Missing character: There is no 4 in font nullfont!
+Missing character: There is no - in font nullfont!
+Missing character: There is no 1 in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no o in font nullfont!
+Missing character: There is no l in font nullfont!
+Missing character: There is no l in font nullfont!
+Missing character: There is no n in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no g in font nullfont!
+Missing character: There is no 1 in font nullfont!
+Missing character: There is no . in font nullfont!
+Missing character: There is no 0 in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no d in font nullfont!
+Missing character: There is no d in font nullfont!
+Missing character: There is no 4 in font nullfont!
+Missing character: There is no - in font nullfont!
+Missing character: There is no 1 in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no o in font nullfont!
+Missing character: There is no l in font nullfont!
+Missing character: There is no l in font nullfont!
+Missing character: There is no n in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no g in font nullfont!
+Missing character: There is no 1 in font nullfont!
+Missing character: There is no . in font nullfont!
+Missing character: There is no 0 in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no d in font nullfont!
+Missing character: There is no d in font nullfont!
+Missing character: There is no 4 in font nullfont!
+Missing character: There is no - in font nullfont!
+Missing character: There is no 1 in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no o in font nullfont!
+Missing character: There is no l in font nullfont!
+Missing character: There is no l in font nullfont!
+Missing character: There is no n in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no g in font nullfont!
+Missing character: There is no 1 in font nullfont!
+Missing character: There is no . in font nullfont!
+Missing character: There is no 0 in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no d in font nullfont!
+Missing character: There is no d in font nullfont!
+Missing character: There is no 4 in font nullfont!
+Missing character: There is no - in font nullfont!
+Missing character: There is no 1 in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no o in font nullfont!
+Missing character: There is no l in font nullfont!
+Missing character: There is no l in font nullfont!
+Missing character: There is no n in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no g in font nullfont!
+Missing character: There is no 1 in font nullfont!
+Missing character: There is no . in font nullfont!
+Missing character: There is no 0 in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no d in font nullfont!
+Missing character: There is no d in font nullfont!
+Missing character: There is no 4 in font nullfont!
+Missing character: There is no - in font nullfont!
+Missing character: There is no 1 in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no o in font nullfont!
+Missing character: There is no l in font nullfont!
+Missing character: There is no l in font nullfont!
+Missing character: There is no 6 in font nullfont!
+Missing character: There is no 4 in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no o in font nullfont!
+Missing character: There is no l in font nullfont!
+Missing character: There is no l in font nullfont!
+Missing character: There is no p in font nullfont!
+Missing character: There is no o in font nullfont!
+Missing character: There is no p in font nullfont!
+Missing character: There is no p in font nullfont!
+Missing character: There is no o in font nullfont!
+Missing character: There is no p in font nullfont!
+Missing character: There is no 4 in font nullfont!
+Missing character: There is no 1 in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no o in font nullfont!
+Missing character: There is no l in font nullfont!
+Missing character: There is no l in font nullfont!
+Defining \c__color_fallback_TwoUp_tl on line 169
+Defining \__color_convert_cmyk_TwoUp:w on line 169
+Defining \__color_convert_TwoUp_cmyk:w on line 169
+TIMO
+> \l_tmpa_tl={BarToneCMYK}{0.6}.
+<recently read> }
+
+l.169   }
+
+
+> \l_tmpa_tl={BarToneCIELAB}{0.6}.
+<recently read> }
+
+l.169   }
+
+
+> \l_tmpa_tl={TwoUp}{0.6 0.4}.
+<recently read> }
+
+l.169   }
+
+
+> \l_tmpa_tl=57B285.
+<recently read> }
+
+l.169   }
+
+
+> \l_tmpa_tl=000000.
+<recently read> }
+
+l.169   }
+
+
+> \l_tmpa_tl=035F31.
+<recently read> }
+
+l.169   }
+
+
+> \l_tmpa_tl=0.48 0.12 0.3 0.18.
+<recently read> }
+
+l.169   }
+
+
+> \l_tmpa_tl=0 0 0 1.
+<recently read> }
+
+l.169   }
+
+
+> \l_tmpa_tl=0.48 0.12 0.3 0.508.
+<recently read> }
+
+l.169   }
+
+
+> \l_tmpa_tl=0.34 0.7 0.52.
+<recently read> }
+
+l.169   }
+
+
+> \l_tmpa_tl=0 0 0.
+<recently read> }
+
+l.169   }
+
+
+> \l_tmpa_tl=0.012 0.372 0.192.
+<recently read> }
+
+l.169   }
+
+
+============================================================
+
+============================================================
+TEST 13: Multiple models
+============================================================
+The color foo3 has the properties:
+>  model  =>  rgb
+>  rgb  =>  0.231 0.231 0.70.
+<recently read> }
+
+l.180   }
+
+
+The color foo3 has the properties:
+>  model  =>  rgb
+>  rgb  =>  0.231 0.231 0.70.
+<recently read> }
+
+l.180   }
+
+
+============================================================
+
+
+END-TEST-LOG
+
+
+Overfull \hbox (20.0pt too wide) in paragraph at lines 169--182
+[]
+
+\hbox(0.0+0.0)x0.0
+.\hbox(0.0+0.0)x20.0
+.\glue(\rightskip) 0.0
+
+ )
+
+No pages of output.

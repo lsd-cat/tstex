@@ -1,0 +1,205 @@
+entering extended mode
+(m3text006.lvt
+LaTeX2e <2026-11-01>
+L3 programming layer <2026-09-09>
+(regression-test.tex
+\gTESTint=\count276
+) (l3debug.def
+File: l3debug.def 2026-09-09 L3 Debugging support
+) (minimal.cls
+Document Class: minimal 2001/05/25 Standard LaTeX minimal class
+)
+
+START-TEST-LOG
+
+
+This is a generated file for the l3build validation system.
+
+Don't change this file in any respect.
+
+
+! Undefined control sequence.
+l.13 \AUTHOR
+            {Joseph Wright}
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+
+! LaTeX Error: Missing \begin{document}.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...
+
+l.13 \AUTHOR{J
+              oseph Wright}
+You're in trouble here.  Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+Missing character: There is no J in font nullfont!
+Missing character: There is no o in font nullfont!
+Missing character: There is no s in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no p in font nullfont!
+Missing character: There is no h in font nullfont!
+Missing character: There is no W in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no i in font nullfont!
+Missing character: There is no g in font nullfont!
+Missing character: There is no h in font nullfont!
+Missing character: There is no t in font nullfont!
+
+Overfull \hbox (20.0pt too wide) in paragraph at lines 13--14
+[]
+
+\hbox(0.0+0.0)x0.0
+.\hbox(0.0+0.0)x20.0
+.\glue(\rightskip) 0.0
+
+OMIT
+TIMO
+============================================================
+TEST 1: Grapheme mapping
+============================================================
+OMIT
+
+! LaTeX Error: File 'GraphemeBreakTest.txt' not found.
+
+For immediate help type H <return>.
+ ...
+
+l.166   }
+
+
+The requested file could not be found in the current directory, in the TeX search path or in the LaTeX search path.
+
+
+TIMO
+============================================================
+
+============================================================
+TEST 2: Word boundary mapping
+============================================================
+OMIT
+
+! LaTeX Error: File 'WordBreakTest.txt' not found.
+
+For immediate help type H <return>.
+ ...
+
+l.181   }
+
+
+The requested file could not be found in the current directory, in the TeX search path or in the LaTeX search path.
+
+
+TIMO
+============================================================
+
+OMIT
+TIMO
+============================================================
+TEST 3: Math-mode escape
+============================================================
+S
+o
+m
+e
+
+t
+e
+x
+t
+
+$y = mx + c$
+Some
+
+text
+
+$y = mx + c$
+$y = mx + c$
+
+t
+e
+x
+t
+$y = mx + c$
+
+text
+O
+o
+p
+s
+
+n
+o
+t
+
+c
+l
+o
+s
+e
+
+t
+o
+k
+e
+n
+
+i
+n
+
+$y = mx + c
+Oops
+
+not
+
+close
+
+token
+
+in
+
+$y = mx + c
+============================================================
+
+============================================================
+TEST 4: Active chars
+============================================================
+S
+o
+m
+e
+
+t
+e
+x
+t
+
+X
+X
+X
+A
+
+b
+b
+b
+Some
+
+text
+
+XXXA
+
+bbb
+============================================================
+
+
+END-TEST-LOG
+
+ )
+
+No pages of output.

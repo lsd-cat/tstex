@@ -1,0 +1,299 @@
+entering extended mode
+(m3expan002.lvt
+LaTeX2e <2026-11-01>
+L3 programming layer <2026-09-09>
+(regression-test.tex
+\gTESTint=\count276
+) (l3debug.def
+File: l3debug.def 2026-09-09 L3 Debugging support
+)
+
+START-TEST-LOG
+
+
+This is a generated file for the l3build validation system.
+
+Don't change this file in any respect.
+
+
+! Undefined control sequence.
+l.18 \AUTHOR
+            {Bruno Le Floch}
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+
+! LaTeX Error: Missing \begin{document}.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...
+
+l.18 \AUTHOR{B
+              runo Le Floch}
+You're in trouble here.  Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+Missing character: There is no B in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no u in font nullfont!
+Missing character: There is no n in font nullfont!
+Missing character: There is no o in font nullfont!
+Missing character: There is no L in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no F in font nullfont!
+Missing character: There is no l in font nullfont!
+Missing character: There is no o in font nullfont!
+Missing character: There is no c in font nullfont!
+Missing character: There is no h in font nullfont!
+
+Overfull \hbox (20.0pt too wide) in paragraph at lines 18--19
+[]
+
+\hbox(0.0+0.0)x0.0
+.\hbox(0.0+0.0)x20.0
+.\glue(\rightskip) 0.0
+
+============================================================
+TEST 1: Trimming trailing letters common between base and variant
+============================================================
+Defining \foo:nnnNN on line 34
+Defining \foo:onnNN on line 34
+Defining \exp_args:Noxvc on line 34
+Defining \foo:oxvcN on line 34
+Defining \exp_args:NonoNc on line 34
+Defining \foo:onoNc on line 34
+Defining \exp_args:Nnonc on line 34
+Defining \foo:noncN on line 34
+Variant \foo:nnnNN already defined; not changing it on line 34
+
+! LaTeX Error: Variant form 'nnnNNN' longer than base signature of '\foo:nnnNN'.
+
+For immediate help type H <return>.
+ ...
+
+l.34   }
+
+
+This is a coding error.
+
+LaTeX has been asked to create a variant of the function '\foo:nnnNN' with a signature starting with 'nnnNNN', but that is longer than the signature (part after the colon) of '\foo:nnnNN'.
+
+
+undefined
+\protected\long macro:->\exp_args:Noxvc \foo:nnnNN
+\long macro:->\exp_args:NonoNc \foo:nnnNN
+\long macro:->\exp_args:Nnonc \foo:nnnNN
+undefined
+============================================================
+
+============================================================
+TEST 2: Leaving non-N/n-base letters unchanged is allowed
+============================================================
+Defining \foo:oNnTF on line 50
+Defining \exp_args:NnNo on line 50
+Defining \foo:oNoTF on line 50
+
+! LaTeX Error: Variant form 'oNoT' deprecated for base form '\foo:oNnTF'. One should not change an argument from type 'o' to type 'o': base form is already a variant.
+
+Type <return> to continue.
+ ...
+
+l.50   }
+
+
+LaTeX does not know anything more about this error, sorry.
+
+Try typing <return> to proceed.
+If that doesn't work, type X <return> to quit.
+
+
+Defining \exp_args:NnNx on line 50
+Defining \foo:oNxTF on line 50
+
+! LaTeX Error: Variant form 'oNxTF' deprecated for base form '\foo:oNnTF'. One should not change an argument from type 'o' to type 'o': base form is already a variant.
+
+Type <return> to continue.
+ ...
+
+l.50   }
+
+
+LaTeX does not know anything more about this error, sorry.
+
+Try typing <return> to proceed.
+If that doesn't work, type X <return> to quit.
+
+
+Defining \foo:ocnTF on line 50
+
+! LaTeX Error: Variant form 'ocnTF' deprecated for base form '\foo:oNnTF'. One should not change an argument from type 'o' to type 'o': base form is already a variant.
+
+Type <return> to continue.
+ ...
+
+l.50   }
+
+
+LaTeX does not know anything more about this error, sorry.
+
+Try typing <return> to proceed.
+If that doesn't work, type X <return> to quit.
+
+
+Variant \foo:oNnTF already defined; not changing it on line 50
+
+! LaTeX Error: Variant form 'xNn' invalid for base form '\foo:oNnTF'.
+
+For immediate help type H <return>.
+ ...
+
+l.50   }
+
+
+This is a coding error.
+
+LaTeX has been asked to create a variant of the function '\foo:oNnTF' with a signature starting with 'xNn', but cannot change an argument from type 'o' to type 'x'.
+
+
+Variant \foo:oNnTF already defined; not changing it on line 50
+
+! LaTeX Error: Variant form 'n' invalid for base form '\foo:oNnTF'.
+
+For immediate help type H <return>.
+ ...
+
+l.50   }
+
+
+This is a coding error.
+
+LaTeX has been asked to create a variant of the function '\foo:oNnTF' with a signature starting with 'n', but cannot change an argument from type 'o' to type 'n'.
+
+
+Variant \foo:oNnTF already defined; not changing it on line 50
+
+! LaTeX Error: Variant form 'oNnTFF' longer than base signature of '\foo:oNnTF'.
+
+For immediate help type H <return>.
+ ...
+
+l.50   }
+
+
+This is a coding error.
+
+LaTeX has been asked to create a variant of the function '\foo:oNnTF' with a signature starting with 'oNnTFF', but that is longer than the signature (part after the colon) of '\foo:oNnTF'.
+
+
+\long macro:->\exp_args:NnNo \foo:oNnTF
+\protected\long macro:->\exp_args:NnNx \foo:oNnTF
+\long macro:->\exp_args:Nnc \foo:oNnTF
+undefined
+undefined
+undefined
+Defining \foo:NNw on line 50
+Defining \foo:ccw on line 50
+\long macro:->\exp_args:Ncc \foo:NNw
+============================================================
+
+============================================================
+TEST 3: Using p arguments
+============================================================
+Defining \exp_args:Ncpo on line 72
+Defining \cs_new:cpo on line 72
+\protected\long macro:->\exp_args:Ncpo \cs_new:Npn
+\long macro:->\::c \::p \::o \:::
+Defining \foo_bar:nw on line 72
+\long macro:#1#2\q_stop ->#1
+Defining \exp_args:NNpox on line 72
+Defining \prg_new_conditional:Npox on line 72
+\protected\long macro:->\exp_args:NNpox \prg_new_conditional:Npnn
+\protected\long macro:->\::N \::p \::o \::x \:::
+Defining \foo_bar:wF on line 72
+undefined
+\long macro:#1;->\prg_return_true: \exp_end: {}
+Variant \cs_new:Npn already defined; not changing it on line 72
+
+! LaTeX Error: Variant form 'No' invalid for base form '\cs_new:Npn'.
+
+For immediate help type H <return>.
+ ...
+
+l.72   }
+
+
+This is a coding error.
+
+LaTeX has been asked to create a variant of the function '\cs_new:Npn' with a signature starting with 'No', but cannot change an argument from type 'p' to type 'o'.
+
+
+undefined
+============================================================
+
+============================================================
+TEST 4: \exp_args_generate:n
+============================================================
+undefined,undefined,undefined
+
+! LaTeX Error: Invalid variant specifier 'a' in 'abc'.
+
+For immediate help type H <return>.
+ ...
+
+l.81   }
+
+
+This is a coding error.
+
+LaTeX has been asked to create an \exp_args:N... function with signature 'Nabc' but 'a' is not a valid argument specifier.
+
+
+Defining \exp_args:Nfoo on line 81
+Defining \exp_args:Nfox on line 81
+undefined,\long macro:#1#2#3#4->\tex_expanded:D {\exp_not:N #1{\__kernel_exp_not:w \exp_after:w {\exp:w \exp_end_continue_f:w #2}}{\__kernel_exp_not:w \exp_after:w {#3}}{\__kernel_exp_not:w \exp_after:w {#4}}},\protected\long macro:#1#2#3#4->\use:x {\exp_not:N #1{\__kernel_exp_not:w \exp_after:w {\exp:w \exp_end_continue_f:w #2}}{\__kernel_exp_not:w \exp_after:w {#3}}{#4}}
+\long macro:#1#2#3#4->\tex_expanded:D {\exp_not:N #1{\__kernel_exp_not:w \exp_after:w {\exp:w \exp_end_continue_f:w #2}}{\__kernel_exp_not:w \exp_after:w {#3}}{\__kernel_exp_not:w \exp_after:w {#4}}},\protected\long macro:#1#2#3#4->\use:x {\exp_not:N #1{\__kernel_exp_not:w \exp_after:w {\exp:w \exp_end_continue_f:w #2}}{\__kernel_exp_not:w \exp_after:w {#3}}{#4}}
+============================================================
+
+============================================================
+TEST 5: \exp_args many arguments
+============================================================
+Defining \foo:nnnnnnnnnn on line 100
+Defining \exp_args:Nnononono on line 100
+Defining \foo:nononononn on line 100
+Defining \exp_args:Nnonononono on line 100
+Defining \foo:nonononono on line 100
+Defining \exp_args:NnVfnoevnno on line 100
+Defining \foo:nVfnoevnno on line 100
+Defining \exp_args:NnVfnoevxno on line 100
+Defining \foo:nVfnoevxno on line 100
+Defining \exp_args:NVfnoevxo on line 100
+Defining \foo:Vfnoevxonn on line 100
+\long macro:#1#2#3#4#5#6#7#8#9->\tex_expanded:D {\exp_not:N #1{\exp_not:n {#2}}{\__kernel_exp_not:w \exp_after:w {#3}}{\exp_not:n {#4}}{\__kernel_exp_not:w \exp_after:w {#5}}{\exp_not:n {#6}}{\__kernel_exp_not:w \exp_after:w {#7}}{\exp_not:n {#8}}{\__kernel_exp_not:w \exp_after:w {#9}}}
+\long macro:->\::n \::o \::n \::o \::n \::o \::n \::o \::n \::o \:::
+\long macro:->\::n \::V \::f \::n \::o \::e \::v \::n \::n \::o \:::
+\protected\long macro:->\::n \::V \::f \::n \::o \::e \::v \::x \::n \::o \:::
+\protected\long macro:#1#2#3#4#5#6#7#8#9->\use:x {\exp_not:N #1{\__kernel_exp_not:w \exp_after:w {\exp:w \__exp_eval_register:N #2}}{\__kernel_exp_not:w \exp_after:w {\exp:w \exp_end_continue_f:w #3}}{\exp_not:n {#4}}{\__kernel_exp_not:w \exp_after:w {#5}}{\__kernel_exp_not:w \tex_expanded:D {{#6}}}{\__kernel_exp_not:w \exp_after:w {\exp:w \__exp_eval_register:c {#7}}}{#8}{\__kernel_exp_not:w \exp_after:w {#9}}}
+Defining \exp_args:Nnoonoono on line 100
+Defining \exp_args:Nnoonoonoo on line 100
+Defining \exp_args:Nnoonoonoofoefoe on line 100
+\long macro:#1#2#3#4#5#6#7#8#9->\tex_expanded:D {\exp_not:N #1{\exp_not:n {#2}}{\__kernel_exp_not:w \exp_after:w {#3}}{\__kernel_exp_not:w \exp_after:w {#4}}{\exp_not:n {#5}}{\__kernel_exp_not:w \exp_after:w {#6}}{\__kernel_exp_not:w \exp_after:w {#7}}{\exp_not:n {#8}}{\__kernel_exp_not:w \exp_after:w {#9}}}
+\long macro:->\::n \::o \::o \::n \::o \::o \::n \::o \::o \:::
+\long macro:->\::n \::o \::o \::n \::o \::o \::n \::o \::o \::f \::o \::e \::f \::o \::e \:::
+Defining \exp_args:Nnoxnoono on line 100
+Defining \exp_args:Nnoxnoonoo on line 100
+Defining \exp_args:Nnoxnoonoofxnxnx on line 100
+\protected\long macro:#1#2#3#4#5#6#7#8#9->\use:x {\exp_not:N #1{\exp_not:n {#2}}{\__kernel_exp_not:w \exp_after:w {#3}}{#4}{\exp_not:n {#5}}{\__kernel_exp_not:w \exp_after:w {#6}}{\__kernel_exp_not:w \exp_after:w {#7}}{\exp_not:n {#8}}{\__kernel_exp_not:w \exp_after:w {#9}}}
+\protected\long macro:->\::n \::o \::x \::n \::o \::o \::n \::o \::o \:::
+\protected\long macro:->\::n \::o \::x \::n \::o \::o \::n \::o \::o \::f \::x \::n \::x \::n \::x \:::
+============================================================
+
+
+END-TEST-LOG
+
+ )
+
+No pages of output.

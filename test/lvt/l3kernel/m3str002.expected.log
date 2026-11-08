@@ -1,0 +1,114 @@
+entering extended mode
+(m3str002.lvt
+LaTeX2e <2026-11-01>
+L3 programming layer <2026-09-09>
+(regression-test.tex
+\gTESTint=\count276
+) (l3debug.def
+File: l3debug.def 2026-09-09 L3 Debugging support
+)
+
+START-TEST-LOG
+
+
+This is a generated file for the l3build validation system.
+
+Don't change this file in any respect.
+
+
+! Undefined control sequence.
+l.10 \AUTHOR
+            {Joseph Wright}
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+
+! LaTeX Error: Missing \begin{document}.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...
+
+l.10 \AUTHOR{J
+              oseph Wright}
+You're in trouble here.  Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+Missing character: There is no J in font nullfont!
+Missing character: There is no o in font nullfont!
+Missing character: There is no s in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no p in font nullfont!
+Missing character: There is no h in font nullfont!
+Missing character: There is no W in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no i in font nullfont!
+Missing character: There is no g in font nullfont!
+Missing character: There is no h in font nullfont!
+Missing character: There is no t in font nullfont!
+============================================================
+TEST 1: Simple Latin case folding
+============================================================
+"abc 123 abc !@"
+" abc 123 abc !@ "
+"some $&## odd text { } "
+============================================================
+
+============================================================
+TEST 2: Checking category codes
+============================================================
+OMIT
+TIMO
+FALSE
+OMIT
+TIMO
+TRUE
+============================================================
+
+============================================================
+TEST 3: Accented characters, etc.
+============================================================
+"CAFÉ"
+"ćėɗṑṑ"
+"ὢιων"
+"ΰῢst"
+"ꚉꚇ"
+"ｚꝏⓧ"
+============================================================
+
+============================================================
+TEST 4: Characters with context-sensitive Unicode behavior
+============================================================
+TRUE
+============================================================
+
+OMIT
+TIMO
+============================================================
+TEST 5: MD5 hash
+============================================================
+ACBD18DB4CC2F85CEDEF654FCCC4A4D8
+2EE44D8E2EBA7C35496E4A82CFD620A0
+C3776EC7ED6D262C7A74B09E446A7AA1
+3440094ABA126C1E66A4CF632E30A6CE
+0CC175B9C0F1B6A831C399E269772661
+0CC175B9C0F1B6A831C399E269772661
+============================================================
+
+
+END-TEST-LOG
+
+
+Overfull \hbox (20.0pt too wide) in paragraph at lines 10--79
+[]
+
+\hbox(0.0+0.0)x0.0
+.\hbox(0.0+0.0)x20.0
+.\glue(\rightskip) 0.0
+
+ )
+
+No pages of output.

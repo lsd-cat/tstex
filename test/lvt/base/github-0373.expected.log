@@ -1,0 +1,370 @@
+entering extended mode
+(github-0373.lvt
+LaTeX2e <2026-11-01>
+L3 programming layer <2026-09-09>
+(article.cls
+Document Class: article 2026-06-04 v1.4n Standard LaTeX document class
+(size10.clo
+File: size10.clo 2026-06-04 v1.4n Standard LaTeX file (size option)
+)
+\c@part=\count276
+\c@section=\count277
+\c@subsection=\count278
+\c@subsubsection=\count279
+\c@paragraph=\count280
+\c@subparagraph=\count281
+\c@figure=\count282
+\c@table=\count283
+\abovecaptionskip=\skip49
+\belowcaptionskip=\skip50
+\bibindent=\dimen150
+) (test2e.tex
+OMIT
+TIMO
+(expl3.sty
+Package: expl3 2026-09-09 L3 programming layer (loader)
+ (l3backend-dvips.def
+File: l3backend-dvips.def 2026-09-09 L3 backend support: dvips
+\l__pdfannot_backend_content_box=\box53
+\l__pdfannot_backend_model_box=\box54
+\g__pdfannot_backend_int=\count284
+\g__pdfannot_backend_link_int=\count285
+\g__pdfannot_backend_link_sf_int=\count286
+)))
+No file github-0373.aux.
+\openout1 = `github-0373.aux'.
+
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 7.
+LaTeX Font Info:    ... okay on input line 7.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 7.
+LaTeX Font Info:    ... okay on input line 7.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 7.
+LaTeX Font Info:    ... okay on input line 7.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 7.
+LaTeX Font Info:    ... okay on input line 7.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 7.
+LaTeX Font Info:    ... okay on input line 7.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 7.
+LaTeX Font Info:    ... okay on input line 7.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 7.
+LaTeX Font Info:    ... okay on input line 7.
+START-TEST-LOG
+
+This is a generated file for the LaTeX2e validation system.
+
+Don't change this file in any respect.
+
+----------------------------------------
+> \foo=robust macro:
+->\protect \foo  .
+
+> \foo =\long macro:
+#1->bar.
+<argument> \foo
+
+l.42 \ShowCommand\foo
+
+
+----- TeX
+> \foo=macro:
+->\protect \foo  .
+l.45 \show\foo
+
+
+> \foo =\long macro:
+#1->bar.
+<recently read> \foo
+
+l.46 \expandafter\show\csname foo \endcsname
+
+
+----------------------------------------
+LaTeX Info: Redefining \foo on input line 49.
+> \foo=robust macro:
+->\protect \foo  .
+
+> \foo =robust macro:
+->\@protected@testopt \foo  \\foo  {\zz }.
+
+> \\foo =\long macro:
+> default #1=\zz .
+[#1]->bar.
+<recently read> }
+
+l.50 \ShowCommand\foo
+
+
+----- TeX
+> \foo=macro:
+->\protect \foo  .
+l.53 \show\foo
+
+
+> \foo =macro:
+->\@protected@testopt \foo  \\foo  {\zz }.
+<recently read> \foo
+
+l.54 \expandafter\show\csname foo \endcsname
+
+
+> \\foo =\long macro:
+[#1]->bar.
+<recently read> \\foo
+
+l.56   \string\foo\space\endcsname
+
+
+----------------------------------------
+LaTeX Info: Redefining \foo on input line 59.
+> \foo=robust macro:
+->\protect \foo  .
+
+> \foo =macro:
+#1->bar.
+<argument> \foo
+
+l.60 \ShowCommand\foo
+
+
+----- TeX
+> \foo=macro:
+->\protect \foo  .
+l.63 \show\foo
+
+
+> \foo =macro:
+#1->bar.
+<recently read> \foo
+
+l.64 \expandafter\show\csname foo \endcsname
+
+
+----------------------------------------
+LaTeX Info: Redefining \foo on input line 67.
+> \foo=robust macro:
+->\protect \foo  .
+
+> \foo =robust macro:
+->\@protected@testopt \foo  \\foo  {\zz }.
+
+> \\foo =macro:
+> default #1=\zz .
+[#1]->bar.
+<recently read> }
+
+l.68 \ShowCommand\foo
+
+
+----- TeX
+> \foo=macro:
+->\protect \foo  .
+l.71 \show\foo
+
+
+> \foo =macro:
+->\@protected@testopt \foo  \\foo  {\zz }.
+<recently read> \foo
+
+l.72 \expandafter\show\csname foo \endcsname
+
+
+> \\foo =macro:
+[#1]->bar.
+<recently read> \\foo
+
+l.74   \string\foo\space\endcsname
+
+
+----------------------------------------
+> \cmda=robust macro:
+->\@protected@testopt \cmda \\cmda {\zz }.
+
+> \\cmda=\long macro:
+> default #1=\zz .
+[#1]->boo.
+<recently read> }
+
+l.82   \renewcommand\cmda[1][\zz]{boo}}
+
+
+
+> \cmdb=robust macro:
+->\protect \cmdb  .
+
+> \cmdb =\long macro:
+#1->boo.
+<argument> \cmdb
+
+l.85   \DeclareRobustCommand\cmdb[1]{boo}}
+
+
+
+> \cmdc=robust macro:
+->\protect \cmdc  .
+
+> \cmdc =robust macro:
+->\@protected@testopt \cmdc  \\cmdc  {\zz }.
+
+> \\cmdc =\long macro:
+> default #1=\zz .
+[#1]->boo.
+<recently read> }
+
+l.88   \DeclareRobustCommand\cmdc[1][\zz]{boo}}
+
+
+
+> \cmdd=\protected macro:
+->\@testopt \\cmdd {}.
+<argument> \cmdd
+
+l.94     \string\cmdd\endcsname[#1]{boo}}
+
+
+
+> \!=robust macro:
+->\@protected@testopt \!\\! {\zz }.
+
+> \\!=\long macro:
+> default #1=\zz .
+[#1]->boo.
+<recently read> }
+
+l.98   \renewcommand\![1][\zz]{boo}}
+
+
+
+LaTeX Info: Redefining \# on input line 101.
+> \#=robust macro:
+->\x@protect \#\protect \#  .
+
+> \# =\long macro:
+#1->boo.
+<argument> \#
+
+l.101   \DeclareRobustCommand\#[1]{boo}}
+
+
+
+LaTeX Info: Redefining \$ on input line 104.
+> \$=robust macro:
+->\x@protect \$\protect \$  .
+
+> \$ =robust macro:
+->\@protected@testopt \$  \\$  {\zz }.
+
+> \\$ =\long macro:
+> default #1=\zz .
+[#1]->boo.
+<recently read> }
+
+l.104   \DeclareRobustCommand\$[1][\zz]{boo}}
+
+
+
+> \%=\protected macro:
+->\@testopt \\% {}.
+<argument> \%
+
+l.110     \string\%\endcsname[#1]{boo}}
+
+
+
+> \cmda=\count187.
+<argument> \cmda
+
+l.117  \test\cmda{\countdef\cmda187}
+                                    %
+
+
+> \cmdb=undefined.
+<argument> \cmdb
+
+l.120 \test\cmdb{\let\cmdb\undefined}
+
+
+
+> \cmdc=\relax.
+<argument> \cmdc
+
+l.122 \test\cmdc{\let\cmdc\relax}
+
+
+
+> \cmdd=\detokenize.
+<argument> \cmdd
+
+l.124 \test\cmdd{\let\cmdd\detokenize}
+
+
+
+> \cmde=macro:
+#1#2#3#4#5#6#7#8#9->.
+<argument> \cmde
+
+l.126 \test\cmde{\def\cmde#1#2#3#4#5#6#7#8#9{}}
+
+
+
+> cmda=robust macro:
+->@protected@testopt cmda \cmda {zz }.
+
+> \cmda=long macro:
+> default #1=zz .
+[#1]->boo.
+<recently read> }
+
+l.133 \ShowCommand\cmda
+
+
+> \frac=robust macro:
+->\protect \frac  .
+
+> \frac =\long macro:
+#1#2->{\begingroup #1\endgroup \over #2}.
+<argument> \frac
+
+l.137 \ShowCommand\frac
+
+
+> \goodbreak=robust macro:
+->\protect \goodbreak  .
+
+> \goodbreak =macro:
+->\par \penalty -500 .
+<argument> \goodbreak
+
+l.139 \ShowCommand\goodbreak
+
+
+> \par=robust macro:
+->
+
+.
+
+> \par =macro:
+->funny \endgraf .
+<argument> \par
+
+l.145 \ShowCommand\par
+                      }
+
+> \qbezier=robust macro:
+->\protect \qbezier  .
+
+> \qbezier =robust macro:
+->\@protected@testopt \qbezier  \\qbezier  {0}.
+
+> \\qbezier =\long macro:
+> default #1=0.
+[#1]#2->\bezier {#1}#2.
+<recently read> }
+
+l.147 \ShowCommand\qbezier
+
+
+(github-0373.aux)
+END-TEST-LOG
+ )
+
+No pages of output.

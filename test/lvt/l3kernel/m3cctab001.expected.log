@@ -1,0 +1,164 @@
+entering extended mode
+(m3cctab001.lvt
+LaTeX2e <2026-11-01>
+L3 programming layer <2026-09-09>
+(minimal.cls
+Document Class: minimal 2001/05/25 Standard LaTeX minimal class
+) (regression-test.tex
+\gTESTint=\count276
+) (l3debug.def
+File: l3debug.def 2026-09-09 L3 Debugging support
+)
+
+START-TEST-LOG
+
+
+This is a generated file for the l3build validation system.
+
+Don't change this file in any respect.
+
+
+! Undefined control sequence.
+l.13 \AUTHOR
+            {Phelype Oleinik, Bruno Le Floch}
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+
+! LaTeX Error: Missing \begin{document}.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...
+
+l.13 \AUTHOR{P
+              helype Oleinik, Bruno Le Floch}
+You're in trouble here.  Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+Missing character: There is no P in font nullfont!
+Missing character: There is no h in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no l in font nullfont!
+Missing character: There is no y in font nullfont!
+Missing character: There is no p in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no O in font nullfont!
+Missing character: There is no l in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no i in font nullfont!
+Missing character: There is no n in font nullfont!
+Missing character: There is no i in font nullfont!
+Missing character: There is no k in font nullfont!
+Missing character: There is no , in font nullfont!
+Missing character: There is no B in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no u in font nullfont!
+Missing character: There is no n in font nullfont!
+Missing character: There is no o in font nullfont!
+Missing character: There is no L in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no F in font nullfont!
+Missing character: There is no l in font nullfont!
+Missing character: There is no o in font nullfont!
+Missing character: There is no c in font nullfont!
+Missing character: There is no h in font nullfont!
+
+Overfull \hbox (20.0pt too wide) in paragraph at lines 13--14
+[]
+
+\hbox(0.0+0.0)x0.0
+.\hbox(0.0+0.0)x20.0
+.\glue(\rightskip) 0.0
+
+OMIT
+TIMO
+============================================================
+TEST 1: cctab_begin/code in iniTeX
+============================================================
+
+OK
+OK
+============================================================
+
+============================================================
+TEST 2: cctab_begin/iniTeX in code
+============================================================
+OK
+============================================================
+
+============================================================
+TEST 3: cctab_begin/str in document
+============================================================
+OK
+============================================================
+
+============================================================
+TEST 4: cctab_begin/document in str
+============================================================
+OK
+============================================================
+
+============================================================
+TEST 5: cctab_select/document in str
+============================================================
+OK
+============================================================
+
+OMIT
+TIMO
+============================================================
+TEST 6: catcode assignments don't change cctab
+============================================================
+TRUE
+TRUE
+TRUE
+TRUE
+TRUE
+============================================================
+
+============================================================
+TEST 7: str/other cctab
+============================================================
+TRUE
+FALSE
+TRUE
+============================================================
+
+============================================================
+TEST 8: cctab not affected by catcode assignments
+============================================================
+TRUE
+TRUE
+============================================================
+
+============================================================
+TEST 9: restoring cctab after group end
+============================================================
+TRUE
+TRUE
+============================================================
+
+============================================================
+TEST 10: restoring \cctab_select:N after group end
+============================================================
+TRUE
+TRUE
+============================================================
+
+============================================================
+TEST 11: \cctab_gsave_current:N
+============================================================
+TRUE
+TRUE
+============================================================
+
+
+END-TEST-LOG
+
+ )
+
+No pages of output.

@@ -1,0 +1,201 @@
+entering extended mode
+(tlxs02.lvt
+LaTeX2e <2026-11-01>
+L3 programming layer <2026-09-09>
+(article.cls
+Document Class: article 2026-06-04 v1.4n Standard LaTeX document class
+(size10.clo
+File: size10.clo 2026-06-04 v1.4n Standard LaTeX file (size option)
+)
+\c@part=\count276
+\c@section=\count277
+\c@subsection=\count278
+\c@subsubsection=\count279
+\c@paragraph=\count280
+\c@subparagraph=\count281
+\c@figure=\count282
+\c@table=\count283
+\abovecaptionskip=\skip49
+\belowcaptionskip=\skip50
+\bibindent=\dimen150
+) (l3backend-dvips.def
+File: l3backend-dvips.def 2026-09-09 L3 backend support: dvips
+\l__pdfannot_backend_content_box=\box53
+\l__pdfannot_backend_model_box=\box54
+\g__pdfannot_backend_int=\count284
+\g__pdfannot_backend_link_int=\count285
+\g__pdfannot_backend_link_sf_int=\count286
+)
+No file tlxs02.aux.
+\openout1 = `tlxs02.aux'.
+
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 32.
+LaTeX Font Info:    ... okay on input line 32.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 32.
+LaTeX Font Info:    ... okay on input line 32.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 32.
+LaTeX Font Info:    ... okay on input line 32.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 32.
+LaTeX Font Info:    ... okay on input line 32.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 32.
+LaTeX Font Info:    ... okay on input line 32.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 32.
+LaTeX Font Info:    ... okay on input line 32.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 32.
+LaTeX Font Info:    ... okay on input line 32.
+(test2e.tex
+OMIT
+TIMO
+)
+START-TEST-LOG
+
+This is a generated file for the LaTeX2e validation system.
+
+Don't change this file in any respect.
+
+Author: David Carlisle
+Format: LaTeX2e<1993/12/24>
+OMIT
+
+LaTeX Warning: Declared format LaTeX2e<1993/12/24>,
+Actual format LaTeX2e<2026-11-01> on input line 45.
+
+TIMO
+Main Class: article
+    Options: twocolumn,titlepage
+[1
+
+
+]
+Underfull \hbox (badness 1742) in paragraph at lines 76--88
+\OT1/cmr/m/n/10 lyricum profi-cisc-i-tur, quod a Pirustis finiti-mam
+
+\hbox(6.94444+1.94444)x229.5, glue set 2.59361
+.\OT1/cmr/m/n/10 l
+.\OT1/cmr/m/n/10 y
+.\OT1/cmr/m/n/10 r
+.\OT1/cmr/m/n/10 i
+.\OT1/cmr/m/n/10 c
+.\OT1/cmr/m/n/10 u
+.\OT1/cmr/m/n/10 m
+.\glue 3.33333 plus 1.66666 minus 1.11111
+.\OT1/cmr/m/n/10 p
+.\OT1/cmr/m/n/10 r
+.\OT1/cmr/m/n/10 o
+.\OT1/cmr/m/n/10 ^^L (ligature fi)
+.\discretionary
+..\OT1/cmr/m/n/10 -
+.\OT1/cmr/m/n/10 c
+.\OT1/cmr/m/n/10 i
+.\OT1/cmr/m/n/10 s
+.\OT1/cmr/m/n/10 c
+.\discretionary
+..\OT1/cmr/m/n/10 -
+.\OT1/cmr/m/n/10 i
+.\discretionary
+..\OT1/cmr/m/n/10 -
+.\OT1/cmr/m/n/10 t
+.\OT1/cmr/m/n/10 u
+.\OT1/cmr/m/n/10 r
+.\OT1/cmr/m/n/10 ,
+.\glue 3.33333 plus 2.08331 minus 0.88889
+.\OT1/cmr/m/n/10 q
+.\OT1/cmr/m/n/10 u
+.\OT1/cmr/m/n/10 o
+.\kern0.27779
+.\OT1/cmr/m/n/10 d
+.\glue 3.33333 plus 1.66666 minus 1.11111
+.\OT1/cmr/m/n/10 a
+.\glue 3.33333 plus 1.66666 minus 1.11111
+.\OT1/cmr/m/n/10 P
+.\OT1/cmr/m/n/10 i
+.\OT1/cmr/m/n/10 r
+.\OT1/cmr/m/n/10 u
+.\OT1/cmr/m/n/10 s
+.\OT1/cmr/m/n/10 t
+.\OT1/cmr/m/n/10 i
+.\OT1/cmr/m/n/10 s
+.\glue 3.33333 plus 1.66666 minus 1.11111
+.\OT1/cmr/m/n/10 ^^L (ligature fi)
+.\OT1/cmr/m/n/10 n
+.\OT1/cmr/m/n/10 i
+.\OT1/cmr/m/n/10 t
+.\OT1/cmr/m/n/10 i
+.\discretionary
+..\OT1/cmr/m/n/10 -
+.\OT1/cmr/m/n/10 m
+.\OT1/cmr/m/n/10 a
+.\OT1/cmr/m/n/10 m
+.\glue(\rightskip) 0.0
+
+
+Underfull \hbox (badness 3250) in paragraph at lines 106--130
+\OT1/cmr/m/n/10 ui-tatu valet mag-nasque ha-bet copias ped-i-tum,
+
+\hbox(6.94444+1.94444)x229.5, glue set 3.1933
+.\OT1/cmr/m/n/10 u
+.\OT1/cmr/m/n/10 i
+.\discretionary
+..\OT1/cmr/m/n/10 -
+.\OT1/cmr/m/n/10 t
+.\OT1/cmr/m/n/10 a
+.\OT1/cmr/m/n/10 t
+.\OT1/cmr/m/n/10 u
+.\glue 3.33333 plus 1.66666 minus 1.11111
+.\OT1/cmr/m/n/10 v
+.\kern-0.55556
+.\OT1/cmr/m/n/10 a
+.\OT1/cmr/m/n/10 l
+.\OT1/cmr/m/n/10 e
+.\OT1/cmr/m/n/10 t
+.\glue 3.33333 plus 1.66666 minus 1.11111
+.\OT1/cmr/m/n/10 m
+.\OT1/cmr/m/n/10 a
+.\OT1/cmr/m/n/10 g
+.\discretionary
+..\OT1/cmr/m/n/10 -
+.\OT1/cmr/m/n/10 n
+.\OT1/cmr/m/n/10 a
+.\OT1/cmr/m/n/10 s
+.\OT1/cmr/m/n/10 q
+.\OT1/cmr/m/n/10 u
+.\OT1/cmr/m/n/10 e
+.\glue 3.33333 plus 1.66666 minus 1.11111
+.\OT1/cmr/m/n/10 h
+.\OT1/cmr/m/n/10 a
+.\discretionary
+..\OT1/cmr/m/n/10 -
+.\OT1/cmr/m/n/10 b
+.\kern0.27779
+.\OT1/cmr/m/n/10 e
+.\OT1/cmr/m/n/10 t
+.\glue 3.33333 plus 1.66666 minus 1.11111
+.\OT1/cmr/m/n/10 c
+.\OT1/cmr/m/n/10 o
+.\OT1/cmr/m/n/10 p
+.\OT1/cmr/m/n/10 i
+.\OT1/cmr/m/n/10 a
+.\OT1/cmr/m/n/10 s
+.\glue 3.33333 plus 1.66666 minus 1.11111
+.\OT1/cmr/m/n/10 p
+.\kern0.27779
+.\OT1/cmr/m/n/10 e
+.\OT1/cmr/m/n/10 d
+.\discretionary
+..\OT1/cmr/m/n/10 -
+.\OT1/cmr/m/n/10 i
+.\discretionary
+..\OT1/cmr/m/n/10 -
+.\OT1/cmr/m/n/10 t
+.\OT1/cmr/m/n/10 u
+.\OT1/cmr/m/n/10 m
+.\OT1/cmr/m/n/10 ,
+.\glue(\rightskip) 0.0
+
+[1
+
+] (tlxs02.aux)
+END-TEST-LOG
+ )
+
+Output written on tlxs02.dvi (2 pages, 5540 bytes).

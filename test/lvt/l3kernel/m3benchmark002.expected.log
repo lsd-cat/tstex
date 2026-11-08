@@ -1,0 +1,40 @@
+entering extended mode
+(m3benchmark002.lvt
+LaTeX2e <2026-11-01>
+L3 programming layer <2026-09-09>
+(minimal.cls
+Document Class: minimal 2001/05/25 Standard LaTeX minimal class
+) (regression-test.tex
+\gTESTint=\count276
+) (l3debug.def
+File: l3debug.def 2026-09-09 L3 Debugging support
+)
+
+START-TEST-LOG
+
+
+This is a generated file for the l3build validation system.
+
+Don't change this file in any respect.
+
+
+OMIT
+Defining \l_test_fast_fp on line 18
+Defining \l_test_slow_fp on line 19
+Defining \test_slow_code: on line 22
+TIMO
+============================================================
+TEST 1: benchmark_silent
+============================================================
+Defining \g__benchmark_1_int on line 42
+\g__benchmark_1_int=\count277
+TRUE
+TRUE
+============================================================
+
+
+END-TEST-LOG
+
+ )
+
+No pages of output.

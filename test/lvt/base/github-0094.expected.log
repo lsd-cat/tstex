@@ -1,0 +1,141 @@
+entering extended mode
+(github-0094.lvt
+LaTeX2e <2026-11-01>
+L3 programming layer <2026-09-09>
+(article.cls
+Document Class: article 2026-06-04 v1.4n Standard LaTeX document class
+(size10.clo
+File: size10.clo 2026-06-04 v1.4n Standard LaTeX file (size option)
+)
+\c@part=\count276
+\c@section=\count277
+\c@subsection=\count278
+\c@subsubsection=\count279
+\c@paragraph=\count280
+\c@subparagraph=\count281
+\c@figure=\count282
+\c@table=\count283
+\abovecaptionskip=\skip49
+\belowcaptionskip=\skip50
+\bibindent=\dimen150
+) (test2e.tex
+OMIT
+TIMO
+{/Users/g/texlive/2026/texmf-var/fonts/map/pdftex/updmap/pdftex.map} (expl3.sty
+Package: expl3 2026-09-09 L3 programming layer (loader)
+ (l3backend-pdftex.def
+File: l3backend-pdftex.def 2026-09-09 L3 backend support: PDF output (pdfTeX)
+\l__color_backend_stack_int=\count284
+)))
+No file github-0094.aux.
+\openout1 = `github-0094.aux'.
+
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 18.
+LaTeX Font Info:    ... okay on input line 18.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 18.
+LaTeX Font Info:    ... okay on input line 18.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 18.
+LaTeX Font Info:    ... okay on input line 18.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 18.
+LaTeX Font Info:    ... okay on input line 18.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 18.
+LaTeX Font Info:    ... okay on input line 18.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 18.
+LaTeX Font Info:    ... okay on input line 18.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 18.
+LaTeX Font Info:    ... okay on input line 18.
+
+Underfull \vbox (badness 10000) has occurred while \output is active
+\vbox(550.0+0.0)x229.5, glue set 5.50168
+.\glue(\topskip) 10.0
+.\hbox(0.0+0.0)x0.0
+.\kern 522.49832
+.\glue(\parskip) 0.0 plus 1.0
+.\glue(\parskip) 0.0
+.\glue(\baselineskip) 7.69446
+.\hbox(4.30554+1.94444)x229.5, glue set 0.20738
+..\hbox(0.0+0.0)x10.00002
+..\pdfstartlink(*+*)x* attr{/Border[0 0 1]} action user{ URI(blkub)>>}
+..\OT1/cmr/m/n/10 v
+..\kern-0.27779
+..\OT1/cmr/m/n/10 e
+..\OT1/cmr/m/n/10 r
+..\OT1/cmr/m/n/10 y
+..\glue 3.33333 plus 1.66666 minus 1.11111
+..\OT1/cmr/m/n/10 v
+..\kern-0.27779
+..\OT1/cmr/m/n/10 e
+..\OT1/cmr/m/n/10 r
+..\OT1/cmr/m/n/10 y
+..\glue 3.33333 plus 1.66666 minus 1.11111
+..\OT1/cmr/m/n/10 v
+..\kern-0.27779
+..\OT1/cmr/m/n/10 e
+..\OT1/cmr/m/n/10 r
+..\OT1/cmr/m/n/10 y
+..\glue 3.33333 plus 1.66666 minus 1.11111
+..\OT1/cmr/m/n/10 v
+..\kern-0.27779
+..\OT1/cmr/m/n/10 e
+..\OT1/cmr/m/n/10 r
+..\OT1/cmr/m/n/10 y
+..\glue 3.33333 plus 1.66666 minus 1.11111
+..\OT1/cmr/m/n/10 v
+..\kern-0.27779
+..\OT1/cmr/m/n/10 e
+..\OT1/cmr/m/n/10 r
+..\OT1/cmr/m/n/10 y
+..\glue 3.33333 plus 1.66666 minus 1.11111
+..\OT1/cmr/m/n/10 v
+..\kern-0.27779
+..\OT1/cmr/m/n/10 e
+..\OT1/cmr/m/n/10 r
+..\OT1/cmr/m/n/10 y
+..\glue 3.33333 plus 1.66666 minus 1.11111
+..\OT1/cmr/m/n/10 v
+..\kern-0.27779
+..\OT1/cmr/m/n/10 e
+..\OT1/cmr/m/n/10 r
+..\OT1/cmr/m/n/10 y
+..\glue 3.33333 plus 1.66666 minus 1.11111
+..\OT1/cmr/m/n/10 v
+..\kern-0.27779
+..\OT1/cmr/m/n/10 e
+..\OT1/cmr/m/n/10 r
+..\OT1/cmr/m/n/10 y
+..\glue 3.33333 plus 1.66666 minus 1.11111
+..\OT1/cmr/m/n/10 v
+..\kern-0.27779
+..\OT1/cmr/m/n/10 e
+..\OT1/cmr/m/n/10 r
+..\OT1/cmr/m/n/10 y
+..\glue 3.33333 plus 1.66666 minus 1.11111
+..\OT1/cmr/m/n/10 v
+..\kern-0.27779
+..\OT1/cmr/m/n/10 e
+..\OT1/cmr/m/n/10 r
+..\OT1/cmr/m/n/10 y
+..\glue(\rightskip) 0.0
+.\glue -1.94444
+
+ [1
+
+]
+START-TEST-LOG
+
+This is a generated file for the LaTeX2e validation system.
+
+Don't change this file in any respect.
+
+[2
+
+] (github-0094.aux)
+END-TEST-LOG
+ )
+</Users/g/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb>
+Output written on github-0094.pdf (2 pages, 14029 bytes).
+PDF statistics:
+ 19 PDF objects out of 1000 (max. 8388607)
+ 12 compressed objects within 1 object stream
+ 0 named destinations out of 1000 (max. 500000)
+ 1 words of extra memory for PDF output out of 10000 (max. 10000000)

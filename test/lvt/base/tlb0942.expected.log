@@ -1,0 +1,1275 @@
+entering extended mode
+(tlb0942.lvt
+LaTeX2e <2026-11-01>
+L3 programming layer <2026-09-09>
+(article.cls
+Document Class: article 2026-06-04 v1.4n Standard LaTeX document class
+(size10.clo
+File: size10.clo 2026-06-04 v1.4n Standard LaTeX file (size option)
+)
+\c@part=\count276
+\c@section=\count277
+\c@subsection=\count278
+\c@subsubsection=\count279
+\c@paragraph=\count280
+\c@subparagraph=\count281
+\c@figure=\count282
+\c@table=\count283
+\abovecaptionskip=\skip49
+\belowcaptionskip=\skip50
+\bibindent=\dimen150
+) (test2e.tex
+OMIT
+TIMO
+(expl3.sty
+Package: expl3 2026-09-09 L3 programming layer (loader)
+ (l3backend-dvips.def
+File: l3backend-dvips.def 2026-09-09 L3 backend support: dvips
+\l__pdfannot_backend_content_box=\box53
+\l__pdfannot_backend_model_box=\box54
+\g__pdfannot_backend_int=\count284
+\g__pdfannot_backend_link_int=\count285
+\g__pdfannot_backend_link_sf_int=\count286
+)))
+START-TEST-LOG
+
+This is a generated file for the LaTeX2e validation system.
+
+Don't change this file in any respect.
+
+Author: Frank Mittelbach
+Format: LaTeX2e<1994/06/01>
+OMIT
+
+LaTeX Warning: Declared format LaTeX2e<1994/06/01>,
+Actual format LaTeX2e<2026-11-01> on input line 25.
+
+TIMO
+\acute = macro:->\mathaccent "7013\relax
+\bar = macro:->\mathaccent "7016\relax
+\breve = macro:->\mathaccent "7015\relax
+\check = macro:->\mathaccent "7014\relax
+\ddot = macro:->\mathaccent "707F\relax
+\dot = macro:->\mathaccent "705F\relax
+\grave = macro:->\mathaccent "7012\relax
+\hat = macro:->\mathaccent "705E\relax
+\tilde = macro:->\mathaccent "707E\relax
+\vec = macro:->\mathaccent "017E\relax
+\widehat = macro:->\mathaccent "0362\relax
+\widetilde = macro:->\mathaccent "0365\relax
+\Arrowvert = \protected macro:->\delimiter "026B33D
+\Downarrow = \protected macro:->\delimiter "322B37F
+\Uparrow = \protected macro:->\delimiter "322A37E
+\Updownarrow = \protected macro:->\delimiter "326D377
+\Vert = \protected macro:->\delimiter "026B30D
+\arrowvert = \protected macro:->\delimiter "026A33C
+\backslash = \protected macro:->\delimiter "026E30F
+\bracevert = \protected macro:->\delimiter "033E33E
+\downarrow = \protected macro:->\delimiter "3223379
+\langle = \protected macro:->\delimiter "426830A
+\lbrace = \protected macro:->\delimiter "4266308
+\lceil = \protected macro:->\delimiter "4264306
+\lfloor = \protected macro:->\delimiter "4262304
+\lgroup = \protected macro:->\delimiter "433A33A
+\lmoustache = \protected macro:->\delimiter "437A340
+\rangle = \protected macro:->\delimiter "526930B
+\rbrace = \protected macro:->\delimiter "5267309
+\rceil = \protected macro:->\delimiter "5265307
+\rfloor = \protected macro:->\delimiter "5263305
+\rgroup = \protected macro:->\delimiter "533B33B
+\rmoustache = \protected macro:->\delimiter "537B341
+\uparrow = \protected macro:->\delimiter "3222378
+\updownarrow = \protected macro:->\delimiter "326C33F
+\vert = \protected macro:->\delimiter "026A30C
+> 28720.
+l.66 \showthe\mathcode`\0
+
+
+> 28721.
+l.67 \showthe\mathcode`\1
+
+
+> 28722.
+l.68 \showthe\mathcode`\2
+
+
+> 28723.
+l.69 \showthe\mathcode`\3
+
+
+> 28724.
+l.70 \showthe\mathcode`\4
+
+
+> 28725.
+l.71 \showthe\mathcode`\5
+
+
+> 28726.
+l.72 \showthe\mathcode`\6
+
+
+> 28727.
+l.73 \showthe\mathcode`\7
+
+
+> 28728.
+l.74 \showthe\mathcode`\8
+
+
+> 28729.
+l.75 \showthe\mathcode`\9
+
+
+> 28993.
+<to be read again>
+                   \showthe
+l.77 \showthe
+             \mathcode`\B
+
+> 28994.
+<to be read again>
+                   \showthe
+l.78 \showthe
+             \mathcode`\C
+
+> 28995.
+<to be read again>
+                   \showthe
+l.79 \showthe
+             \mathcode`\D
+
+> 28996.
+<to be read again>
+                   \showthe
+l.80 \showthe
+             \mathcode`\E
+
+> 28997.
+<to be read again>
+                   \showthe
+l.81 \showthe
+             \mathcode`\F
+
+> 28998.
+<to be read again>
+                   \showthe
+l.82 \showthe
+             \mathcode`\G
+
+> 28999.
+<to be read again>
+                   \showthe
+l.83 \showthe
+             \mathcode`\H
+
+> 29000.
+<to be read again>
+                   \showthe
+l.84 \showthe
+             \mathcode`\I
+
+> 29001.
+<to be read again>
+                   \showthe
+l.85 \showthe
+             \mathcode`\J
+
+> 29002.
+<to be read again>
+                   \showthe
+l.86 \showthe
+             \mathcode`\K
+
+> 29003.
+<to be read again>
+                   \showthe
+l.87 \showthe
+             \mathcode`\L
+
+> 29004.
+<to be read again>
+                   \showthe
+l.88 \showthe
+             \mathcode`\M
+
+> 29005.
+<to be read again>
+                   \showthe
+l.89 \showthe
+             \mathcode`\N
+
+> 29006.
+<to be read again>
+                   \showthe
+l.90 \showthe
+             \mathcode`\O
+
+> 29007.
+<to be read again>
+                   \showthe
+l.91 \showthe
+             \mathcode`\P
+
+> 29008.
+<to be read again>
+                   \showthe
+l.92 \showthe
+             \mathcode`\Q
+
+> 29009.
+<to be read again>
+                   \showthe
+l.93 \showthe
+             \mathcode`\R
+
+> 29010.
+<to be read again>
+                   \showthe
+l.94 \showthe
+             \mathcode`\S
+
+> 29011.
+<to be read again>
+                   \showthe
+l.95 \showthe
+             \mathcode`\T
+
+> 29012.
+<to be read again>
+                   \showthe
+l.96 \showthe
+             \mathcode`\U
+
+> 29013.
+<to be read again>
+                   \showthe
+l.97 \showthe
+             \mathcode`\V
+
+> 29014.
+<to be read again>
+                   \showthe
+l.98 \showthe
+             \mathcode`\W
+
+> 29015.
+<to be read again>
+                   \showthe
+l.99 \showthe
+             \mathcode`\X
+
+> 29016.
+<to be read again>
+                   \showthe
+l.100 \showthe
+              \mathcode`\Y
+
+> 29017.
+<to be read again>
+                   \showthe
+l.101 \showthe
+              \mathcode`\Z
+
+> 29018.
+<to be read again>
+                   \show
+l.102 \show
+           \Delta
+
+> \Delta=\mathchar"7001.
+l.102 \show\Delta
+
+
+> \Gamma=\mathchar"7000.
+l.103 \show\Gamma
+
+
+> \Im=\mathchar"23D.
+l.104 \show\Im
+
+
+> \Lambda=\mathchar"7003.
+l.105 \show\Lambda
+
+
+> \Leftarrow=\mathchar"3228.
+l.106 \show\Leftarrow
+
+
+> \Leftrightarrow=\mathchar"322C.
+l.107 \show\Leftrightarrow
+
+
+> \Omega=\mathchar"700A.
+l.108 \show\Omega
+
+
+> \Phi=\mathchar"7008.
+l.109 \show\Phi
+
+
+> \Pi=\mathchar"7005.
+l.110 \show\Pi
+
+
+> \Psi=\mathchar"7009.
+l.111 \show\Psi
+
+
+> \Re=\mathchar"23C.
+l.112 \show\Re
+
+
+> \Rightarrow=\mathchar"3229.
+l.113 \show\Rightarrow
+
+
+> \Sigma=\mathchar"7006.
+l.114 \show\Sigma
+
+
+> \Theta=\mathchar"7002.
+l.115 \show\Theta
+
+
+> \Upsilon=\mathchar"7007.
+l.116 \show\Upsilon
+
+
+> \Xi=\mathchar"7004.
+l.117 \show\Xi
+
+
+> \aleph=\mathchar"240.
+l.118 \show\aleph
+
+
+> \alpha=\mathchar"10B.
+l.119 \show\alpha
+
+
+> \amalg=\mathchar"2271.
+l.120 \show\amalg
+
+
+> \approx=\mathchar"3219.
+l.121 \show\approx
+
+
+> \ast=\mathchar"2203.
+l.122 \show\ast
+
+
+> \asymp=\mathchar"3210.
+l.123 \show\asymp
+
+
+> \beta=\mathchar"10C.
+l.124 \show\beta
+
+
+> \bigcap=\mathchar"1354.
+l.125 \show\bigcap
+
+
+> \bigcirc=\mathchar"220D.
+l.126 \show\bigcirc
+
+
+> \bigcup=\mathchar"1353.
+l.127 \show\bigcup
+
+
+> \bigodot=\mathchar"134A.
+l.128 \show\bigodot
+
+
+> \bigoplus=\mathchar"134C.
+l.129 \show\bigoplus
+
+
+> \bigotimes=\mathchar"134E.
+l.130 \show\bigotimes
+
+
+> \bigsqcup=\mathchar"1346.
+l.131 \show\bigsqcup
+
+
+> \bigtriangledown=\mathchar"2235.
+l.132 \show\bigtriangledown
+
+
+> \bigtriangleup=\mathchar"2234.
+l.133 \show\bigtriangleup
+
+
+> \biguplus=\mathchar"1355.
+l.134 \show\biguplus
+
+
+> \bigvee=\mathchar"1357.
+l.135 \show\bigvee
+
+
+> \bigwedge=\mathchar"1356.
+l.136 \show\bigwedge
+
+
+> \bot=\mathchar"23F.
+l.137 \show\bot
+
+
+> \braceld=\mathchar"37A.
+l.138 \show\braceld
+
+
+> \bracelu=\mathchar"37C.
+l.139 \show\bracelu
+
+
+> \bracerd=\mathchar"37B.
+l.140 \show\bracerd
+
+
+> \braceru=\mathchar"37D.
+l.141 \show\braceru
+
+
+> \bullet=\mathchar"220F.
+l.142 \show\bullet
+
+
+> \cap=\mathchar"225C.
+l.143 \show\cap
+
+
+> \cdotp=\mathchar"6201.
+l.144 \show\cdotp
+
+
+> \cdot=\mathchar"2201.
+l.145 \show\cdot
+
+
+> \chi=\mathchar"11F.
+l.146 \show\chi
+
+
+> \circ=\mathchar"220E.
+l.147 \show\circ
+
+
+> \clubsuit=\mathchar"27C.
+l.148 \show\clubsuit
+
+
+> \colon=\mathchar"603A.
+l.149 \show\colon
+
+
+> \coprod=\mathchar"1360.
+l.150 \show\coprod
+
+
+> \cup=\mathchar"225B.
+l.151 \show\cup
+
+
+> \dagger=\mathchar"2279.
+l.152 \show\dagger
+
+
+> \dashv=\mathchar"3261.
+l.153 \show\dashv
+
+
+> \ddagger=\mathchar"227A.
+l.154 \show\ddagger
+
+
+> \delta=\mathchar"10E.
+l.155 \show\delta
+
+
+> \diamondsuit=\mathchar"27D.
+l.156 \show\diamondsuit
+
+
+> \diamond=\mathchar"2205.
+l.157 \show\diamond
+
+
+> \div=\mathchar"2204.
+l.158 \show\div
+
+
+> \ell=\mathchar"160.
+l.159 \show\ell
+
+
+> \emptyset=\mathchar"23B.
+l.160 \show\emptyset
+
+
+> \epsilon=\mathchar"10F.
+l.161 \show\epsilon
+
+
+> \equiv=\mathchar"3211.
+l.162 \show\equiv
+
+
+> \eta=\mathchar"111.
+l.163 \show\eta
+
+
+> \exists=\mathchar"239.
+l.164 \show\exists
+
+
+> \flat=\mathchar"15B.
+l.165 \show\flat
+
+
+> \forall=\mathchar"238.
+l.166 \show\forall
+
+
+> \frown=\mathchar"315F.
+l.167 \show\frown
+
+
+> \gamma=\mathchar"10D.
+l.168 \show\gamma
+
+
+> \geq=\mathchar"3215.
+l.169 \show\geq
+
+
+> \gg=\mathchar"321D.
+l.170 \show\gg
+
+
+> \heartsuit=\mathchar"27E.
+l.171 \show\heartsuit
+
+
+> \imath=\mathchar"17B.
+l.172 \show\imath
+
+
+> \infty=\mathchar"231.
+l.173 \show\infty
+
+
+> \intop=\mathchar"1352.
+l.174 \show\intop
+
+
+> \in=\mathchar"3232.
+l.175 \show\in
+
+
+> \iota=\mathchar"113.
+l.176 \show\iota
+
+
+> \jmath=\mathchar"17C.
+l.177 \show\jmath
+
+
+> \kappa=\mathchar"114.
+l.178 \show\kappa
+
+
+> \lambda=\mathchar"115.
+l.179 \show\lambda
+
+
+> \ldotp=\mathchar"613A.
+l.180 \show\ldotp
+
+
+> \leftarrow=\mathchar"3220.
+l.181 \show\leftarrow
+
+
+> \leftharpoondown=\mathchar"3129.
+l.182 \show\leftharpoondown
+
+
+> \leftharpoonup=\mathchar"3128.
+l.183 \show\leftharpoonup
+
+
+> \leftrightarrow=\mathchar"3224.
+l.184 \show\leftrightarrow
+
+
+> \leq=\mathchar"3214.
+l.185 \show\leq
+
+
+> \lhook=\mathchar"312C.
+l.186 \show\lhook
+
+
+> \ll=\mathchar"321C.
+l.187 \show\ll
+
+
+> \mapstochar=\mathchar"3237.
+l.188 \show\mapstochar
+
+
+> \mid=\mathchar"326A.
+l.189 \show\mid
+
+
+> \mp=\mathchar"2207.
+l.190 \show\mp
+
+
+> \mu=\mathchar"116.
+l.191 \show\mu
+
+
+> \nabla=\mathchar"272.
+l.192 \show\nabla
+
+
+> \natural=\mathchar"15C.
+l.193 \show\natural
+
+
+> \nearrow=\mathchar"3225.
+l.194 \show\nearrow
+
+
+> \neg=\mathchar"23A.
+l.195 \show\neg
+
+
+> \ni=\mathchar"3233.
+l.196 \show\ni
+
+
+> \not=\mathchar"3236.
+l.197 \show\not
+
+
+> \nu=\mathchar"117.
+l.198 \show\nu
+
+
+> \nwarrow=\mathchar"322D.
+l.199 \show\nwarrow
+
+
+> \odot=\mathchar"220C.
+l.200 \show\odot
+
+
+> \ointop=\mathchar"1348.
+l.201 \show\ointop
+
+
+> \omega=\mathchar"121.
+l.202 \show\omega
+
+
+> \ominus=\mathchar"2209.
+l.203 \show\ominus
+
+
+> \oplus=\mathchar"2208.
+l.204 \show\oplus
+
+
+> \oslash=\mathchar"220B.
+l.205 \show\oslash
+
+
+> \otimes=\mathchar"220A.
+l.206 \show\otimes
+
+
+> \parallel=\mathchar"326B.
+l.207 \show\parallel
+
+
+> \partial=\mathchar"140.
+l.208 \show\partial
+
+
+> \perp=\mathchar"323F.
+l.209 \show\perp
+
+
+> \phi=\mathchar"11E.
+l.210 \show\phi
+
+
+> \pi=\mathchar"119.
+l.211 \show\pi
+
+
+> \pm=\mathchar"2206.
+l.212 \show\pm
+
+
+> \preceq=\mathchar"3216.
+l.213 \show\preceq
+
+
+> \prec=\mathchar"321E.
+l.214 \show\prec
+
+
+> \prime=\mathchar"230.
+l.215 \show\prime
+
+
+> \prod=\mathchar"1351.
+l.216 \show\prod
+
+
+> \propto=\mathchar"322F.
+l.217 \show\propto
+
+
+> \psi=\mathchar"120.
+l.218 \show\psi
+
+
+> \rhook=\mathchar"312D.
+l.219 \show\rhook
+
+
+> \rho=\mathchar"11A.
+l.220 \show\rho
+
+
+> \rightarrow=\mathchar"3221.
+l.221 \show\rightarrow
+
+
+> \rightharpoondown=\mathchar"312B.
+l.222 \show\rightharpoondown
+
+
+> \rightharpoonup=\mathchar"312A.
+l.223 \show\rightharpoonup
+
+
+> \searrow=\mathchar"3226.
+l.224 \show\searrow
+
+
+> \setminus=\mathchar"226E.
+l.225 \show\setminus
+
+
+> \sharp=\mathchar"15D.
+l.226 \show\sharp
+
+
+> \sigma=\mathchar"11B.
+l.227 \show\sigma
+
+
+> \simeq=\mathchar"3227.
+l.228 \show\simeq
+
+
+> \sim=\mathchar"3218.
+l.229 \show\sim
+
+
+> \smallint=\mathchar"1273.
+l.230 \show\smallint
+
+
+> \smile=\mathchar"315E.
+l.231 \show\smile
+
+
+> \spadesuit=\mathchar"27F.
+l.232 \show\spadesuit
+
+
+> \sqcap=\mathchar"2275.
+l.233 \show\sqcap
+
+
+> \sqcup=\mathchar"2274.
+l.234 \show\sqcup
+
+
+> \sqsubseteq=\mathchar"3276.
+l.235 \show\sqsubseteq
+
+
+> \sqsupseteq=\mathchar"3277.
+l.236 \show\sqsupseteq
+
+
+> \star=\mathchar"213F.
+l.237 \show\star
+
+
+> \subseteq=\mathchar"3212.
+l.238 \show\subseteq
+
+
+> \subset=\mathchar"321A.
+l.239 \show\subset
+
+
+> \succeq=\mathchar"3217.
+l.240 \show\succeq
+
+
+> \succ=\mathchar"321F.
+l.241 \show\succ
+
+
+> \sum=\mathchar"1350.
+l.242 \show\sum
+
+
+> \supseteq=\mathchar"3213.
+l.243 \show\supseteq
+
+
+> \supset=\mathchar"321B.
+l.244 \show\supset
+
+
+> \swarrow=\mathchar"322E.
+l.245 \show\swarrow
+
+
+> \tau=\mathchar"11C.
+l.246 \show\tau
+
+
+> \theta=\mathchar"112.
+l.247 \show\theta
+
+
+> \times=\mathchar"2202.
+l.248 \show\times
+
+
+> \top=\mathchar"23E.
+l.249 \show\top
+
+
+> \triangleleft=\mathchar"212F.
+l.250 \show\triangleleft
+
+
+> \triangleright=\mathchar"212E.
+l.251 \show\triangleright
+
+
+> \triangle=\mathchar"234.
+l.252 \show\triangle
+
+
+> \uplus=\mathchar"225D.
+l.253 \show\uplus
+
+
+> \upsilon=\mathchar"11D.
+l.254 \show\upsilon
+
+
+> \varepsilon=\mathchar"122.
+l.255 \show\varepsilon
+
+
+> \varphi=\mathchar"127.
+l.256 \show\varphi
+
+
+> \varpi=\mathchar"124.
+l.257 \show\varpi
+
+
+> \varrho=\mathchar"125.
+l.258 \show\varrho
+
+
+> \varsigma=\mathchar"126.
+l.259 \show\varsigma
+
+
+> \vartheta=\mathchar"123.
+l.260 \show\vartheta
+
+
+> \vdash=\mathchar"3260.
+l.261 \show\vdash
+
+
+> \vee=\mathchar"225F.
+l.262 \show\vee
+
+
+> \wedge=\mathchar"225E.
+l.263 \show\wedge
+
+
+> \wp=\mathchar"17D.
+l.264 \show\wp
+
+
+> \wr=\mathchar"226F.
+l.265 \show\wr
+
+
+> \xi=\mathchar"118.
+l.266 \show\xi
+
+
+> \zeta=\mathchar"110.
+l.267 \show\zeta
+
+
+> -1.
+l.268 \showthe\delcode`\!
+
+
+> 164608.
+l.269 \showthe\delcode`\(
+
+
+> 168705.
+l.270 \showthe\delcode`\)
+
+
+> -1.
+l.271 \showthe\delcode`\*
+
+
+> -1.
+l.272 \showthe\delcode`\+
+
+
+> -1.
+l.273 \showthe\delcode`\,
+
+
+> -1.
+l.274 \showthe\delcode`\-
+
+
+> 0.
+l.275 \showthe\delcode`\.
+
+
+> 193294.
+l.276 \showthe\delcode`\/
+
+
+> -1.
+l.277 \showthe\delcode`\:
+
+
+> -1.
+l.278 \showthe\delcode`\;
+
+
+> 2523914.
+l.279 \showthe\delcode`\<
+
+
+> -1.
+l.280 \showthe\delcode`\=
+
+
+> 2528011.
+l.281 \showthe\delcode`\>
+
+
+> -1.
+l.282 \showthe\delcode`\?
+
+
+> 373506.
+l.283 \showthe\delcode`\[
+
+
+> 2548495.
+l.284 \showthe\delcode`\\
+
+
+> 381699.
+l.285 \showthe\delcode`\]
+
+
+> -1.
+l.286 \showthe\delcode`\{
+
+
+> 2532108.
+l.287 \showthe\delcode`\|
+
+
+> -1.
+<to be read again>
+                   \showthe
+l.289 \showthe
+              \mathcode`\!
+
+> 20513.
+l.289 \showthe\mathcode`\!
+
+
+> 16424.
+l.290 \showthe\mathcode`\(
+
+
+> 20521.
+l.291 \showthe\mathcode`\)
+
+
+> 8707.
+l.292 \showthe\mathcode`\*
+
+
+> 8235.
+l.293 \showthe\mathcode`\+
+
+
+> 24891.
+l.294 \showthe\mathcode`\,
+
+
+> 8704.
+l.295 \showthe\mathcode`\-
+
+
+> 314.
+l.296 \showthe\mathcode`\.
+
+
+> 317.
+l.297 \showthe\mathcode`\/
+
+
+> 12346.
+l.298 \showthe\mathcode`\:
+
+
+> 24635.
+l.299 \showthe\mathcode`\;
+
+
+> 12604.
+l.300 \showthe\mathcode`\<
+
+
+> 12349.
+l.301 \showthe\mathcode`\=
+
+
+> 12606.
+l.302 \showthe\mathcode`\>
+
+
+> 20543.
+l.303 \showthe\mathcode`\?
+
+
+> 16475.
+l.304 \showthe\mathcode`\[
+
+
+> 622.
+l.305 \showthe\mathcode`\\
+
+
+> 20573.
+l.306 \showthe\mathcode`\]
+
+
+> 123.
+l.307 \showthe\mathcode`\{
+
+
+> 618.
+l.308 \showthe\mathcode`\|
+
+
+> 9.
+<to be read again>
+                   \showthe
+l.310 \showthe
+              \mathcode`\a
+
+> 29025.
+<to be read again>
+                   \showthe
+l.311 \showthe
+              \mathcode`\b
+
+> 29026.
+<to be read again>
+                   \showthe
+l.312 \showthe
+              \mathcode`\c
+
+> 29027.
+<to be read again>
+                   \showthe
+l.313 \showthe
+              \mathcode`\d
+
+> 29028.
+<to be read again>
+                   \showthe
+l.314 \showthe
+              \mathcode`\e
+
+> 29029.
+<to be read again>
+                   \showthe
+l.315 \showthe
+              \mathcode`\f
+
+> 29030.
+<to be read again>
+                   \showthe
+l.316 \showthe
+              \mathcode`\g
+
+> 29031.
+<to be read again>
+                   \showthe
+l.317 \showthe
+              \mathcode`\h
+
+> 29032.
+<to be read again>
+                   \showthe
+l.318 \showthe
+              \mathcode`\i
+
+> 29033.
+<to be read again>
+                   \showthe
+l.319 \showthe
+              \mathcode`\j
+
+> 29034.
+<to be read again>
+                   \showthe
+l.320 \showthe
+              \mathcode`\k
+
+> 29035.
+<to be read again>
+                   \showthe
+l.321 \showthe
+              \mathcode`\l
+
+> 29036.
+<to be read again>
+                   \showthe
+l.322 \showthe
+              \mathcode`\m
+
+> 29037.
+<to be read again>
+                   \showthe
+l.323 \showthe
+              \mathcode`\n
+
+> 29038.
+<to be read again>
+                   \showthe
+l.324 \showthe
+              \mathcode`\o
+
+> 29039.
+<to be read again>
+                   \showthe
+l.325 \showthe
+              \mathcode`\p
+
+> 29040.
+<to be read again>
+                   \showthe
+l.326 \showthe
+              \mathcode`\q
+
+> 29041.
+<to be read again>
+                   \showthe
+l.327 \showthe
+              \mathcode`\r
+
+> 29042.
+<to be read again>
+                   \showthe
+l.328 \showthe
+              \mathcode`\s
+
+> 29043.
+<to be read again>
+                   \showthe
+l.329 \showthe
+              \mathcode`\t
+
+> 29044.
+<to be read again>
+                   \showthe
+l.330 \showthe
+              \mathcode`\u
+
+> 29045.
+<to be read again>
+                   \showthe
+l.331 \showthe
+              \mathcode`\v
+
+> 29046.
+<to be read again>
+                   \showthe
+l.332 \showthe
+              \mathcode`\w
+
+> 29047.
+<to be read again>
+                   \showthe
+l.333 \showthe
+              \mathcode`\x
+
+> 29048.
+<to be read again>
+                   \showthe
+l.334 \showthe
+              \mathcode`\y
+
+> 29049.
+<to be read again>
+                   \showthe
+l.335 \showthe
+              \mathcode`\z
+
+> 29050.
+<to be read again>
+                   \scan_stop:
+l.336
+
+
+END-TEST-LOG
+ )
+
+No pages of output.

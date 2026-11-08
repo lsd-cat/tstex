@@ -1,0 +1,587 @@
+entering extended mode
+(m3text002.lvt
+LaTeX2e <2026-11-01>
+L3 programming layer <2026-09-09>
+(regression-test.tex
+\gTESTint=\count276
+) (l3debug.def
+File: l3debug.def 2026-09-09 L3 Debugging support
+)
+
+START-TEST-LOG
+
+
+This is a generated file for the l3build validation system.
+
+Don't change this file in any respect.
+
+
+! Undefined control sequence.
+l.11 \AUTHOR
+            {Joseph Wright}
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+
+! LaTeX Error: Missing \begin{document}.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...
+
+l.11 \AUTHOR{J
+              oseph Wright}
+You're in trouble here.  Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+Missing character: There is no J in font nullfont!
+Missing character: There is no o in font nullfont!
+Missing character: There is no s in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no p in font nullfont!
+Missing character: There is no h in font nullfont!
+Missing character: There is no W in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no i in font nullfont!
+Missing character: There is no g in font nullfont!
+Missing character: There is no h in font nullfont!
+Missing character: There is no t in font nullfont!
+OMIT
+TIMO
+============================================================
+TEST 1: Basic case changing
+============================================================
+hello world \par with \&
+HELLO WORLD \par WITH \&
+Hello World \par With \&
+Hello world \par with \&
+============================================================
+
+============================================================
+TEST 2: Case changes in braces
+============================================================
+{hello} world \par with \&
+{HELLO} WORLD \par WITH \&
+{Hello} World \par With \&
+{Hello} world \par with \&
+============================================================
+
+============================================================
+TEST 3: Case change exclusions
+============================================================
+some text \cite {WithFun}
+SOME TEXT \cite {WithFun}
+Some Text \cite {WithFun}
+Some text \cite {WithFun}
+============================================================
+
+OMIT
+TIMO
+============================================================
+TEST 4: Titlecase basics
+============================================================
+Hello World
+Hello world
+HELLO WORLD
+HELLO WORLD
+" Hello World"
+" hello world"
+" HELLO WORLD"
+" HELLO WORLD"
+{H}ello World
+{H}ello world
+{H}ELLO WORLD
+{H}ELLO WORLD
+{}hello World
+{}hello world
+{}hello World
+{}hello world
+============================================================
+
+============================================================
+TEST 5: Titlecase skipping chars
+============================================================
+`Hic Sunt Leones'
+`Hic sunt leones'
+``Hic Sunt Leones''
+``Hic sunt leones''
+([Hic Sunt Leones])
+([Hic sunt leones])
+============================================================
+
+============================================================
+TEST 6: Titlecase first
+============================================================
+`Hic SUNT Leones'
+`Hic SUNT leones'
+`HIC SUNT Leones'
+`HIC SUNT leones'
+E PLURIBUS UNUM
+E PLURIBUS UNUM
+============================================================
+
+============================================================
+TEST 7: Titlecase control
+============================================================
+`hic SUNT Leones'
+`hic SUNT leones'
+`HIC SUNT Leones'
+`HIC SUNT leones'
+E PLURIBUS UNUM
+E PLURIBUS UNUM
+============================================================
+
+============================================================
+TEST 8: Language based case changing but nothing
+============================================================
+no problems
+NO PROBLEMS
+No Problems
+No problems
+no problems
+NO PROBLEMS
+No Problems
+No problems
+============================================================
+
+============================================================
+TEST 9: (u)pTeX-based tests
+============================================================
+abcè日本語
+ABCÈ日本語
+ABCÈ日本語
+ABCÈ日本語
+一级标题
+一级标题
+一级标题
+一级标题
+============================================================
+
+============================================================
+TEST 10: Unicode case changing
+============================================================
+åéîøὥдαɛ
+ÅÉÎØὭДΑƐ
+ÅéîøὭдαƐ
+ÅéîøὭдαƐ
+============================================================
+
+============================================================
+TEST 11: Unicode case changing exceptions
+============================================================
+fußball
+FUSSBALL
+Fußball
+Fußball
+============================================================
+
+============================================================
+TEST 12: The final sigma rule
+============================================================
+ὀδυσσεύς (ὀδυσσεύς) ὀδυσσεύς, ὀδυσσεύς{} ὀδυσσεύς\noop
+ὈΔΥΣΣΕΎΣ (ὈΔΥΣΣΕΎΣ) ὈΔΥΣΣΕΎΣ, ὈΔΥΣΣΕΎΣ{} ὈΔΥΣΣΕΎΣ\noop
+ὈΔΥΣΣΕΎΣ (ὈΔΥΣΣΕΎΣ) ὈΔΥΣΣΕΎΣ, ὈΔΥΣΣΕΎΣ{} ὈΔΥΣΣΕΎΣ\noop
+ὈΔΥΣΣΕΎΣ (ὈΔΥΣΣΕΎΣ) ὈΔΥΣΣΕΎΣ, ὈΔΥΣΣΕΎΣ{} ὈΔΥΣΣΕΎΣ\noop
+ὀδυσσεύς
+ὈΔΥΣΣΕΎΣ
+ὈΔΥΣΣΕΎΣ
+ὈΔΥΣΣΕΎΣ
+============================================================
+
+============================================================
+TEST 13: Cyrillic
+============================================================
+доклады академии наук
+ДОКЛАДЫ АКАДЕМИИ НАУК
+Доклады Академии Наук
+Доклады Академии наук
+============================================================
+
+============================================================
+TEST 14: BCP47 parts
+============================================================
+ΑΔΙΚΟΣ, ΚΕΙΜΕΝΟ, ΙΡΙΔΑ
+============================================================
+
+============================================================
+TEST 15: Armenian
+============================================================
+ԵՐԵՒԱՆ
+ԵՐԵՎԱՆ
+ԵՐԵՒԱՆ
+Երևան
+Եվան
+Եւան
+============================================================
+
+============================================================
+TEST 16: German-alternative
+============================================================
+FUSSBALL
+FUẞBALL
+============================================================
+
+OMIT
+TIMO
+============================================================
+TEST 17: Greek
+============================================================
+ΆΔΙΚΟΣ, ΚΕΊΜΕΝΟ, ΊΡΙΔΑ
+ΑΔΙΚΟΣ, ΚΕΙΜΕΝΟ, ΙΡΙΔΑ
+ΠΑΤΆΤΑ
+ΠΑΤΑΤΑ
+ΑΈΡΑΣ, ΜΥΣΤΉΡΙΟ, ΩΡΑΊΟ
+ΑΕΡΑΣ, ΜΥΣΤΗΡΙΟ, ΩΡΑΙΟ
+ΜΑΪ́ΟΥ, ΠΌΡΟΣ, ΡΎΘΜΙΣΗ
+ΜΑΪΟΥ, ΠΟΡΟΣ, ΡΥΘΜΙΣΗ
+Ϋ́, ΤΗΡΏ, ΜΆΙΟΣ
+Ϋ, ΤΗΡΩ, ΜΑΪΟΣ
+ΆΥΛΟΣ
+ΑΫΛΟΣ
+ΑΫΛΟΣ
+ΑΫΛΟΣ
+ΆΚΛΙΤΑ ΡΉΜΑΤΑ Ή ΆΚΛΙΤΕΣ ΜΕΤΟΧΈΣ
+ΑΚΛΙΤΑ ΡΗΜΑΤΑ Ή ΑΚΛΙΤΕΣ ΜΕΤΟΧΕΣ
+ΕΠΕΙΔΉ Η ΑΝΑΓΝΏΡΙΣΗ ΤΗΣ ΑΞΙΟΠΡΈΠΕΙΑΣ
+ΕΠΕΙΔΗ Η ΑΝΑΓΝΩΡΙΣΗ ΤΗΣ ΑΞΙΟΠΡΕΠΕΙΑΣ
+ΝΟΜΙΚΟΎ Ή ΔΙΕΘΝΟΎΣ
+ΝΟΜΙΚΟΥ Ή ΔΙΕΘΝΟΥΣ
+ἘΠΕΙΔῊ Ἡ ἈΝΑΓΝΏΡΙΣΗ
+ΕΠΕΙΔΗ Η ΑΝΑΓΝΩΡΙΣΗ
+ΝΟΜΙΚΟΥ͂ Ἢ ΔΙΕΘΝΟΥ͂Σ
+ΝΟΜΙΚΟΥ Ή ΔΙΕΘΝΟΥΣ
+ΝΈΟ, ΔΗΜΙΟΥΡΓΊΑ
+ΝΕΟ, ΔΗΜΙΟΥΡΓΙΑ
+ΕΛΆΤΕ ΝΑ ΦΆΤΕ ΤΑ ΚΑΛΎΤΕΡΑ ΠΑΪΔΆΚΙΑ!
+ΕΛΑΤΕ ΝΑ ΦΑΤΕ ΤΑ ΚΑΛΥΤΕΡΑ ΠΑΪΔΑΚΙΑ!
+ΜΑΪ́ΟΥ, ΤΡΌΛΕΪ
+ΜΑΪΟΥ, ΤΡΟΛΕΪ
+ΤΟ ΈΝΑ Ή ΤΟ ΆΛΛΟ.
+ΤΟ ΕΝΑ Ή ΤΟ ΑΛΛΟ.
+ΡΩΜΈΙΚΑ
+ΡΩΜΕΪΚΑ
+ὈΔΥΣΣΕΎΣ
+ὈΔΥΣΣΕΎΣ
+ΉΙ
+ῌ
+ΗΙ
+ΗΊ
+ῌ
+ΗΙ
+ἈἉἊἋἌἍἎἏ
+ΑΑΑΑΑΑΑΑ
+ἘἙἚἛἜἝ
+ΕΕΕΕΕΕ
+ἨἩἪἫἬἭἮἯ
+ΗΗΗΗΗΗΗΗ
+ἸἹἺἻἼἽἾἿ
+ΙΙΙΙΙΙΙΙ
+ὈὉὊὋὌὍ
+ΟΟΟΟΟΟ
+Υ̓ὙΥ̓̀ὛΥ̓́ὝΥ̓͂Ὗ
+ΥΥΥΥΥΥΥΥ
+ὨὩὪὫὬὭὮὯ
+ΩΩΩΩΩΩΩΩ
+ᾼᾼᾼᾼᾼᾼᾼᾼ
+ΑΙΑΙΑΙΑΙΑΙΑΙΑΙΑΙ
+ῌῌῌῌῌῌῌῌ
+ΗΙΗΙΗΙΗΙΗΙΗΙΗΙΗΙ
+ῼῼῼῼῼῼῼῼ
+ΩΙΩΙΩΙΩΙΩΙΩΙΩΙΩΙ
+ʹ
+ʹ
+ΤΟ ΈΝΑ Ή ΤΟ ΆΛΛΟ
+ΤΟ ΕΝΑ Ή ΤΟ ΑΛΛΟ
+ͺ῀`´῾᾽᾿῍῎῝῞῟῏῭΅῁
+ͺ῀`´῾᾽᾿῍῎῝῞῟῏῭¨῁
+;
+;
+ἈΥΠΝΊΑ
+ΑΫΠΝΙΑ
+ᾸᾹῘῙῨῩ
+ᾸᾹῘῙῨῩ
+ἊΙ
+ᾼ
+Ἀ
+Α
+
+============================================================
+
+============================================================
+TEST 18: Turkish/Azeri
+============================================================
+ragıp hulûsi özdem
+ragip hulûsi̇ özdem
+RAGIP HULÛSİ ÖZDEM
+RAGIP HULÛSI ÖZDEM
+Ragıp Hulûsi Özdem
+Ragıp Hulûsi Özdem
+Ip Hulûsi Özdem
+Ip Hulûsi Özdem
+============================================================
+
+============================================================
+TEST 19: Lithuanian
+============================================================
+i̇̀i̇́i̇̃i̇̀i̇́i̇̃j̇̀j̇́j̇̃į̇̀į̇́į̇̃
+ìíĩìíĩj̀j́j̃į̀į́į̃
+ÌÌĨÌÍĨJ̀J́J̃Į̀Į́Į̃
+İ̀İ̀İ̃İ̀İ́İ̃J̇̀J̇́J̇̃Į̇̀Į̇́Į̇̃
+ÌÍĨÌÍĨJ̀J́J̃Į̀Į́Į̃
+Ìi̇̀i̇̃i̇̀i̇́i̇̃j̇̀j̇́j̇̃į̇̀į̇́į̇̃
+ÌÍĨÌÍĨJ̀J́J̃Į̀Į́Į̃
+İ̀i̇̀i̇̃i̇̀i̇́i̇̃j̇̀j̇́j̇̃į̇̀į̇́į̇̃
+============================================================
+
+============================================================
+TEST 20: Medieval Latin
+============================================================
+lupus
+lvpvs
+LVPVS
+LUPUS
+============================================================
+
+============================================================
+TEST 21: Dutch
+============================================================
+ijsselmeer
+ijsselmeer
+IJSSELMEER
+IJSSELMEER
+IJsselmeer
+Ijsselmeer
+IJsselmeer
+Ijsselmeer
+IJsselmeer
+IJsselmeer
+Im
+Im
+============================================================
+
+============================================================
+TEST 22: Titlecase exceptions
+============================================================
+Ssoo
+ǅ!
+
+============================================================
+
+OMIT
+TIMO
+============================================================
+TEST 23: Case changing braced arguments
+============================================================
+foo \emph {BAR} {baz}
+FOO \emph {BAR} {BAZ}
+FOO \emph {BAR} {BAZ}
+FOO \emph {BAR} {BAZ}
+\emph {BAR} {baz}
+\emph {BAR} {BAZ}
+\emph {BAR} {BAZ}
+\emph {BAR} {BAZ}
+============================================================
+
+OMIT
+TIMO
+============================================================
+TEST 24: Expanding content
+============================================================
+some text hello
+SOME TEXT HELLO
+Some Text Hello
+Some text Hello
+hello sometext
+HELLO SOMETEXT
+Hello Sometext
+Hello sometext
+some text hello
+SOME TEXT HELLO
+Some Text Hello
+Some text Hello
+hello sometext
+HELLO SOMETEXT
+Hello Sometext
+Hello sometext
+some text \cs_tmp:w
+SOME TEXT \cs_tmp:w
+Some Text \cs_tmp:w
+Some text \cs_tmp:w
+\cs_tmp:w  sometext
+\cs_tmp:w  SOMETEXT
+\cs_tmp:w  Sometext
+\cs_tmp:w  sometext
+============================================================
+
+============================================================
+TEST 25: Math-mode escape
+============================================================
+some text $y = mx + c$
+SOME TEXT $y = mx + c$
+Some Text $y = mx + c$
+Some text $y = mx + c$
+$y = mx + c$ text
+$y = mx + c$ TEXT
+$y = mx + c$ Text
+$y = mx + c$ text
+oops not close token in $y = mx + c
+OOPS NOT CLOSE TOKEN IN $y = mx + c
+Oops Not Close Token In $y = mx + c
+Oops not close token in $y = mx + c
+============================================================
+
+============================================================
+TEST 26: Nesting
+============================================================
+HELLO
+hello
+FUSSBALL
+ὈΔΥΣΣΕΎΣ
+============================================================
+
+============================================================
+TEST 27: Letter-like commands
+============================================================
+\aa \aa \ae \dh \ss \l \o
+\AA \AA \AE \DH \SS \L \O
+\AA \aa \ae \dh \ss \l \O
+\AA \aa \ae \dh \ss \l \O
+============================================================
+
+============================================================
+TEST 28: Accents
+============================================================
+\"{a}\u {e}\H {i}\v {o}\.{u}
+\"{A}\u {E}\H {I}\v {O}\.{U}
+\"{A}\u {e}\H {i}\v {o}\.{u}
+\"{A}\u {e}\H {i}\v {o}\.{u}
+============================================================
+
+============================================================
+TEST 29: Active chars
+============================================================
+"`lo"=rem"'
+"`LO"=REM"'
+"`Lo"=rem"'
+"`Lo"=rem"'
+============================================================
+
+============================================================
+TEST 30: Case changing exclusions
+============================================================
+> foo\NoCaseChange {BAR}.
+<recently read> }
+
+l.385   }
+
+
+> \use:n {foo}\NoCaseChange {BAR}.
+<recently read> }
+
+l.385   }
+
+
+============================================================
+
+============================================================
+TEST 31: Case change switching
+============================================================
+lower
+UPPER
+Title
+Title
+WORDS lower
+words UPPER
+Words Title
+Words \text_case_switch:nnnn {normal}{lower}{UPPER}{Title}
+
+============================================================
+
+============================================================
+TEST 32: Case change replacements
+============================================================
+Defining \l__text_case_\foo_tl on line 410
+> fooreplaced.
+<recently read> }
+
+l.410   }
+
+
+============================================================
+
+============================================================
+TEST 33: Case change customisation
+============================================================
+Defining \l__text_uppercase_ǰ_xx_tl on line 430
+Defining \l__text_uppercase_special_xx_tl on line 430
+Defining \l__text_uppercase_ǰ_la-x-new_tl on line 430
+Defining \l__text_uppercase_special_la-x-new_tl on line 430
+> ǰ\v J\v JXǰǰ\v I\v I\v IXǰXǰ.
+<recently read> }
+
+l.430   }
+
+
+============================================================
+
+============================================================
+TEST 34: Titlecase catcode handling
+============================================================
+> Abc.
+<recently read> }
+
+l.437   }
+
+
+============================================================
+
+OMIT
+Defining \l__text_titlecase_exclude_a_tl on line 440
+Defining \l__text_lowercase_exclude_Fe_tl on line 441
+Defining \l__text_titlecase_exclude_Fe_tl on line 442
+Defining \l__text_uppercase_exclude_Fe_tl on line 443
+Defining \l__text_titlecase_exclude_iPhone_tl on line 444
+TIMO
+============================================================
+TEST 35: Excluded words
+============================================================
+A DEMO OF A COMPLEX SETUP $ a = 4 $
+a demo of a complex setup $ a = 4 $
+A Demo Of a Complex Setup $ a = 4 $
+A demo of a complex setup $ a = 4 $
+Fe
+Fe
+Fe
+Fe
+[Fe]
+[Fe]
+[Fe]
+[Fe]
+[Fe]-HYDROGENASE
+[Fe]-hydrogenase
+[Fe]-Hydrogenase
+[Fe]-Hydrogenase
+LOTS OF IPHONE PARTS, FOR EXAMPLE
+lots of iphone parts, for example
+Lots Of iPhone Parts, For Example
+Lots of iPhone parts, for example
+
+============================================================
+
+
+END-TEST-LOG
+
+
+Overfull \hbox (20.0pt too wide) in paragraph at lines 11--456
+[]
+
+\hbox(0.0+0.0)x0.0
+.\hbox(0.0+0.0)x20.0
+.\glue(\rightskip) 0.0
+
+ )
+
+No pages of output.

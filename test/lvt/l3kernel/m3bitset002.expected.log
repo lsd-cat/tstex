@@ -1,0 +1,124 @@
+entering extended mode
+(m3bitset002.lvt
+LaTeX2e <2026-11-01>
+L3 programming layer <2026-09-09>
+(regression-test.tex
+\gTESTint=\count276
+)
+
+START-TEST-LOG
+
+
+This is a generated file for the l3build validation system.
+
+Don't change this file in any respect.
+
+
+OMIT
+TIMO
+============================================================
+TEST 1: log named index
+============================================================
+The bitset \l_my_test_bitset knows the name/index pairs (without outer braces):
+>  {Invisible}  =>  {1}
+>  {Hidden}  =>  {2}
+>  {Print}  =>  {3}
+>  {NoZoom}  =>  {4}
+>  {NoRotate}  =>  {5}
+>  {NoView}  =>  {6}
+>  {ReadOnly}  =>  {7}
+>  {Locked}  =>  {8}
+>  {ToggleNoView}  =>  {9}
+>  {LockedContents}  =>  {10}.
+The bitset \g_my_test_bitset knows the name/index pairs (without outer braces):
+>  {gInvisible}  =>  {1}
+>  {gHidden}  =>  {2}
+>  {gPrint}  =>  {3}
+>  {gNoZoom}  =>  {4}
+>  {gNoRotate}  =>  {5}
+>  {gNoView}  =>  {6}
+>  {gReadOnly}  =>  {7}
+>  {gLocked}  =>  {8}
+>  {gToggleNoView}  =>  {9}
+>  {gLockedContents}  =>  {10}.
+============================================================
+
+============================================================
+TEST 2: unset key
+============================================================
+0
+0
+============================================================
+
+OMIT
+TIMO
+============================================================
+TEST 3: set Invisible (index 1)
+============================================================
+1
+1
+1
+1
+============================================================
+
+============================================================
+TEST 4: set unknown key
+============================================================
+
+LaTeX Warning: The name 'unknown' is unknown for bitset \l_my_test_bitset
+
+
+
+
+LaTeX Warning: The name 'unknown' is unknown for bitset \g_my_test_bitset
+
+
+
+The bitset \l_my_test_bitset has the representation:
+> binary: 1
+> arabic: 1.
+<recently read> }
+
+l.79   }
+
+
+
+
+The bitset \g_my_test_bitset has the representation:
+> binary: 1
+> arabic: 1.
+<recently read> }
+
+l.79   }
+
+
+============================================================
+
+OMIT
+TIMO
+============================================================
+TEST 5: set 3, 4, 5, 6
+============================================================
+101010101
+341
+101010101
+341
+============================================================
+
+OMIT
+TIMO
+============================================================
+TEST 6: unset 3, 4, 5, 6
+============================================================
+000000001
+1
+000000001
+1
+============================================================
+
+
+END-TEST-LOG
+
+ )
+
+No pages of output.

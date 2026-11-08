@@ -1,0 +1,164 @@
+entering extended mode
+(github-0217-io-space.lvt
+LaTeX2e <2026-11-01>
+L3 programming layer <2026-09-09>
+
+LaTeX Info: Writing file `./part one.tex'.
+
+\openout15 = `"part one.tex"'.
+
+
+
+LaTeX Info: Writing file `./part two.tex'.
+
+\openout15 = `"part two.tex"'.
+
+
+
+LaTeX Info: Writing file `./part3.tex'.
+
+\openout15 = `part3.tex'.
+
+
+
+LaTeX Info: Writing file `./part4.tex'.
+
+\openout15 = `part4.tex'.
+
+
+
+LaTeX Info: Writing file `./github-io-0217-io-sapce.aux'.
+
+\openout15 = `github-io-0217-io-sapce.aux'.
+
+
+
+LaTeX Info: Writing file `./part one.aux'.
+
+\openout15 = `"part one.aux"'.
+
+
+
+LaTeX Info: Writing file `./part two.aux'.
+
+\openout15 = `"part two.aux"'.
+
+
+
+LaTeX Info: Writing file `./part3.aux'.
+
+\openout15 = `part3.aux'.
+
+
+
+LaTeX Info: Writing file `./part4.aux'.
+
+\openout15 = `part4.aux'.
+
+
+(report.cls
+Document Class: report 2026-06-04 v1.4n Standard LaTeX document class
+(size10.clo
+File: size10.clo 2026-06-04 v1.4n Standard LaTeX file (size option)
+)
+\c@part=\count276
+\c@chapter=\count277
+\c@section=\count278
+\c@subsection=\count279
+\c@subsubsection=\count280
+\c@paragraph=\count281
+\c@subparagraph=\count282
+\c@figure=\count283
+\c@table=\count284
+\abovecaptionskip=\skip49
+\belowcaptionskip=\skip50
+\bibindent=\dimen150
+) (test2e.tex
+OMIT
+TIMO
+(expl3.sty
+Package: expl3 2026-09-09 L3 programming layer (loader)
+ (l3backend-dvips.def
+File: l3backend-dvips.def 2026-09-09 L3 backend support: dvips
+\l__pdfannot_backend_content_box=\box53
+\l__pdfannot_backend_model_box=\box54
+\g__pdfannot_backend_int=\count285
+\g__pdfannot_backend_link_int=\count286
+\g__pdfannot_backend_link_sf_int=\count287
+)))
+START-TEST-LOG
+
+This is a generated file for the LaTeX2e validation system.
+
+Don't change this file in any respect.
+
+Author: Johannes Braams
+Format: LaTeX2e<2020-02-02>
+OMIT
+
+LaTeX Warning: Declared format LaTeX2e<2020-02-02>,
+Actual format LaTeX2e<2026-11-01> on input line 169.
+
+TIMO
+Main Class: report
+OMIT
+No file github-0217-io-space.aux.
+\openout1 = `github-0217-io-space.aux'.
+
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 173.
+LaTeX Font Info:    ... okay on input line 173.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 173.
+LaTeX Font Info:    ... okay on input line 173.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 173.
+LaTeX Font Info:    ... okay on input line 173.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 173.
+LaTeX Font Info:    ... okay on input line 173.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 173.
+LaTeX Font Info:    ... okay on input line 173.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 173.
+LaTeX Font Info:    ... okay on input line 173.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 173.
+LaTeX Font Info:    ... okay on input line 173.
+TIMO
+\openout2 = `"part one.aux"'.
+
+(part one.tex
+First Included file
+Chapter 1.
+) [1
+
+
+
+]
+\openout2 = `part3.aux'.
+
+ (part3.tex
+Third Included file
+Chapter 2.
+) [2
+
+
+
+
+
+]
+\openout2 = `part4.aux'.
+
+ (part4.tex
+Fourth Included file
+Chapter 3.
+) [3
+
+
+
+
+]
+OMIT
+(github-0217-io-space.aux (part one.aux) (part two.aux) (part3.aux) (part4.aux))
+
+LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
+
+END-TEST-LOG
+ )
+
+Output written on github-0217-io-space.dvi (3 pages, 764 bytes).

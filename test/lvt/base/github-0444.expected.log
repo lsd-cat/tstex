@@ -1,0 +1,290 @@
+entering extended mode
+(github-0444.lvt
+LaTeX2e <2026-11-01>
+L3 programming layer <2026-09-09>
+(article.cls
+Document Class: article 2026-06-04 v1.4n Standard LaTeX document class
+(size10.clo
+File: size10.clo 2026-06-04 v1.4n Standard LaTeX file (size option)
+)
+\c@part=\count276
+\c@section=\count277
+\c@subsection=\count278
+\c@subsubsection=\count279
+\c@paragraph=\count280
+\c@subparagraph=\count281
+\c@figure=\count282
+\c@table=\count283
+\abovecaptionskip=\skip49
+\belowcaptionskip=\skip50
+\bibindent=\dimen150
+)
+LaTeX Font Info:    Trying to load font information for T1+lmr on input line 3.
+(t1lmr.fd
+File: t1lmr.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
+)
+LaTeX Font Info:    Trying to load font information for T1+lmss on input line 7.
+(t1lmss.fd
+File: t1lmss.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
+) (test2e.tex
+OMIT
+TIMO
+(expl3.sty
+Package: expl3 2026-09-09 L3 programming layer (loader)
+ (l3backend-dvips.def
+File: l3backend-dvips.def 2026-09-09 L3 backend support: dvips
+\l__pdfannot_backend_content_box=\box53
+\l__pdfannot_backend_model_box=\box54
+\g__pdfannot_backend_int=\count284
+\g__pdfannot_backend_link_int=\count285
+\g__pdfannot_backend_link_sf_int=\count286
+)))
+No file github-0444.aux.
+\openout1 = `github-0444.aux'.
+
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 17.
+LaTeX Font Info:    ... okay on input line 17.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 17.
+LaTeX Font Info:    ... okay on input line 17.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 17.
+LaTeX Font Info:    ... okay on input line 17.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 17.
+LaTeX Font Info:    ... okay on input line 17.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 17.
+LaTeX Font Info:    ... okay on input line 17.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 17.
+LaTeX Font Info:    ... okay on input line 17.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 17.
+LaTeX Font Info:    ... okay on input line 17.
+START-TEST-LOG
+
+This is a generated file for the LaTeX2e validation system.
+
+Don't change this file in any respect.
+
+Font is \T1/lmr/l/n/10 = T1/lmr/l/n/10 ?
+Font is \T1/lmr/m/scsl/10 = T1/lmr/m/scsl/10 ?
+Font is \T1/lmr/m/n/10 = T1/lmr/m/n/10 ?
+Font is \T1/lmss/sbc/n/10 = T1/lms/sbc/n/10 ?
+Font is \T1/lmss/sbc/n/10 = T1/lms/sbc/n/10 ?
+Font is \T1/lmr/m/sc/10 = T1/lmr/m/sc/10 ?
+LaTeX Font Info:    Trying to load font information for T1+lmtt on input line 71.
+(t1lmtt.fd
+File: t1lmtt.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
+)
+Font is \T1/lmtt/l/n/10 = T1/lmtt/l/n/10 ?
+
+Completed box being shipped out [1]
+\vbox(633.0+0.0)x407.0
+.\glue 16.0
+.\vbox(617.0+0.0)x345.0, shifted 62.0
+..\vbox(12.0+0.0)x345.0, glue set 12.0fil
+...\glue 0.0 plus 1.0fil
+...\hbox(0.0+0.0)x345.0
+....\hbox(0.0+0.0)x345.0
+..\glue 25.0
+..\glue(\lineskip) 0.0
+..\vbox(550.0+0.0)x345.0, glue set 455.9513fil
+...\write-{}
+...\glue(\topskip) 3.1128
+...\hbox(6.8872+0.0)x345.0, glue set 311.33789fil
+....\hbox(0.0+0.0)x15.0
+....\T1/cmr/m/n/10 T
+....\kern-0.83313
+....\T1/cmr/m/n/10 e
+....\T1/cmr/m/n/10 s
+....\T1/cmr/m/n/10 t
+....\penalty 10000
+....\glue(\parfillskip) 0.0 plus 1.0fil
+....\glue(\rightskip) 0.0
+...\glue(\parskip) 0.0 plus 1.0
+...\glue(\parskip) 0.0
+...\glue(\baselineskip) 5.11125
+...\hbox(6.88875+0.0)x345.0, glue set 266.85916fil
+....\hbox(0.0+0.0)x15.0
+....\T1/lmr/m/sc/10 S
+....\T1/lmr/m/sc/10 m
+....\T1/lmr/m/sc/10 a
+....\T1/lmr/m/sc/10 l
+....\T1/lmr/m/sc/10 l
+....\glue 3.77774 plus 1.75 minus 1.16666
+....\T1/lmr/m/sc/10 C
+....\T1/lmr/m/sc/10 a
+....\T1/lmr/m/sc/10 p
+....\T1/lmr/m/sc/10 s
+....\T1/lmr/m/sc/10 ?
+....\penalty 10000
+....\glue(\parfillskip) 0.0 plus 1.0fil
+....\glue(\rightskip) 0.0
+...\glue(\parskip) 0.0 plus 1.0
+...\glue(\parskip) 0.0
+...\glue(\baselineskip) 5.11125
+...\hbox(6.88875+0.0)x345.0, glue set 217.16466fil
+....\hbox(0.0+0.0)x15.0
+....\T1/lmr/m/scsl/10 m
+....\T1/lmr/m/scsl/10 e
+....\T1/lmr/m/scsl/10 d
+....\T1/lmr/m/scsl/10 i
+....\T1/lmr/m/scsl/10 u
+....\T1/lmr/m/scsl/10 m
+....\glue 3.77774 plus 1.75 minus 1.16666
+....\T1/lmr/m/scsl/10 s
+....\T1/lmr/m/scsl/10 m
+....\T1/lmr/m/scsl/10 a
+....\T1/lmr/m/scsl/10 l
+....\T1/lmr/m/scsl/10 l
+....\glue 3.77774 plus 1.75 minus 1.16666
+....\T1/lmr/m/scsl/10 c
+....\T1/lmr/m/scsl/10 a
+....\T1/lmr/m/scsl/10 p
+....\T1/lmr/m/scsl/10 s
+....\glue 3.77774 plus 1.75 minus 1.16666
+....\T1/lmr/m/scsl/10 s
+....\T1/lmr/m/scsl/10 l
+....\T1/lmr/m/scsl/10 ?
+....\penalty 10000
+....\glue(\parfillskip) 0.0 plus 1.0fil
+....\glue(\rightskip) 0.0
+...\glue(\parskip) 0.0 plus 1.0
+...\glue(\parskip) 0.0
+...\glue(\baselineskip) 5.11125
+...\hbox(6.88875+0.0)x345.0, glue set 290.27876fil
+....\hbox(0.0+0.0)x15.0
+....\T1/lmr/m/n/10 m
+....\T1/lmr/m/n/10 e
+....\T1/lmr/m/n/10 d
+....\T1/lmr/m/n/10 i
+....\T1/lmr/m/n/10 u
+....\T1/lmr/m/n/10 m
+....\T1/lmr/m/n/10 ?
+....\penalty 10000
+....\glue(\parfillskip) 0.0 plus 1.0fil
+....\glue(\rightskip) 0.0
+...\glue(\parskip) 0.0 plus 1.0
+...\glue(\parskip) 0.0
+...\glue(\baselineskip) 5.0555
+...\hbox(6.9445+1.66666)x345.0, glue set 227.72858fil
+....\hbox(0.0+0.0)x15.0
+....\T1/lmss/sbc/n/10 s
+....\T1/lmss/sbc/n/10 e
+....\T1/lmss/sbc/n/10 m
+....\T1/lmss/sbc/n/10 i
+....\T1/lmss/sbc/n/10 b
+....\kern0.26387
+....\T1/lmss/sbc/n/10 o
+....\T1/lmss/sbc/n/10 l
+....\T1/lmss/sbc/n/10 d
+....\glue 3.16667 plus 1.58333 minus 1.05554
+....\T1/lmss/sbc/n/10 c
+....\T1/lmss/sbc/n/10 o
+....\T1/lmss/sbc/n/10 n
+....\T1/lmss/sbc/n/10 d
+....\T1/lmss/sbc/n/10 e
+....\T1/lmss/sbc/n/10 n
+....\T1/lmss/sbc/n/10 s
+....\T1/lmss/sbc/n/10 e
+....\T1/lmss/sbc/n/10 d
+....\T1/lmss/sbc/n/10 ?
+....\glue 4.22221 plus 4.74998 minus 0.35184
+....\T1/lmss/sbc/n/10 y
+....\kern-0.26389
+....\T1/lmss/sbc/n/10 e
+....\T1/lmss/sbc/n/10 s
+....\T1/lmss/sbc/n/10 !
+....\penalty 10000
+....\glue(\parfillskip) 0.0 plus 1.0fil
+....\glue(\rightskip) 0.0
+...\glue(\parskip) 0.0 plus 1.0
+...\glue(\parskip) 0.0
+...\glue(\baselineskip) 3.38884
+...\hbox(6.9445+1.66666)x345.0, glue set 230.78407fil
+....\hbox(0.0+0.0)x15.0
+....\T1/lmss/sbc/n/10 s
+....\T1/lmss/sbc/n/10 e
+....\T1/lmss/sbc/n/10 m
+....\T1/lmss/sbc/n/10 i
+....\T1/lmss/sbc/n/10 b
+....\kern0.26387
+....\T1/lmss/sbc/n/10 o
+....\T1/lmss/sbc/n/10 l
+....\T1/lmss/sbc/n/10 d
+....\glue 3.16667 plus 1.58333 minus 1.05554
+....\T1/lmss/sbc/n/10 c
+....\T1/lmss/sbc/n/10 o
+....\T1/lmss/sbc/n/10 n
+....\T1/lmss/sbc/n/10 d
+....\T1/lmss/sbc/n/10 e
+....\T1/lmss/sbc/n/10 n
+....\T1/lmss/sbc/n/10 s
+....\T1/lmss/sbc/n/10 e
+....\T1/lmss/sbc/n/10 d
+....\T1/lmss/sbc/n/10 ?
+....\glue 4.22221 plus 4.74998 minus 0.35184
+....\T1/lmss/sbc/n/10 y
+....\kern-0.26389
+....\T1/lmss/sbc/n/10 e
+....\T1/lmss/sbc/n/10 s
+....\penalty 10000
+....\glue(\parfillskip) 0.0 plus 1.0fil
+....\glue(\rightskip) 0.0
+...\glue(\parskip) 0.0 plus 1.0
+...\glue(\parskip) 0.0
+...\glue(\baselineskip) 5.06386
+...\hbox(5.26949+0.0)x345.0, glue set 239.91269fil
+....\hbox(0.0+0.0)x15.0
+....\T1/lmr/m/sc/10 r
+....\kern-0.22223
+....\T1/lmr/m/sc/10 o
+....\T1/lmr/m/sc/10 m
+....\T1/lmr/m/sc/10 a
+....\T1/lmr/m/sc/10 n
+....\glue 3.77774 plus 1.75 minus 1.16666
+....\T1/lmr/m/sc/10 s
+....\T1/lmr/m/sc/10 m
+....\T1/lmr/m/sc/10 a
+....\T1/lmr/m/sc/10 l
+....\T1/lmr/m/sc/10 l
+....\glue 3.77774 plus 1.75 minus 1.16666
+....\T1/lmr/m/sc/10 c
+....\T1/lmr/m/sc/10 a
+....\T1/lmr/m/sc/10 p
+....\T1/lmr/m/sc/10 s
+....\penalty 10000
+....\glue(\parfillskip) 0.0 plus 1.0fil
+....\glue(\rightskip) 0.0
+...\glue(\parskip) 0.0 plus 1.0
+...\glue(\parskip) 0.0
+...\glue(\baselineskip) 6.01451
+...\hbox(5.98549+2.29738)x345.0, glue set 272.25017fil
+....\hbox(0.0+0.0)x15.0
+....\T1/lmtt/l/n/10 l
+....\T1/lmtt/l/n/10 i
+....\T1/lmtt/l/n/10 g
+....\T1/lmtt/l/n/10 h
+....\T1/lmtt/l/n/10 t
+....\glue 5.24998
+....\T1/lmtt/l/n/10 t
+....\T1/lmtt/l/n/10 y
+....\T1/lmtt/l/n/10 p
+....\T1/lmtt/l/n/10 e
+....\T1/lmtt/l/n/10 ?
+....\penalty 10000
+....\glue(\parfillskip) 0.0 plus 1.0fil
+....\glue(\rightskip) 0.0
+...\glue -2.29738
+...\glue 0.0 plus 1.0fil
+...\glue 0.0
+...\glue 0.0 plus 0.0001fil
+..\glue(\baselineskip) 23.55556
+..\hbox(6.44444+0.0)x345.0
+...\hbox(6.44444+0.0)x345.0, glue set 170.0fil
+....\glue 0.0 plus 1.0fil
+....\OT1/cmr/m/n/10 1
+....\glue 0.0 plus 1.0fil
+
+
+(github-0444.aux)
+END-TEST-LOG
+ )
+
+Output written on github-0444.dvi (1 page, 740 bytes).

@@ -1,0 +1,211 @@
+entering extended mode
+(tlb3104.lvt
+LaTeX2e <2026-11-01>
+L3 programming layer <2026-09-09>
+(test2e.tex
+OMIT
+TIMO
+(expl3.sty
+Package: expl3 2026-09-09 L3 programming layer (loader)
+ (l3backend-dvips.def
+File: l3backend-dvips.def 2026-09-09 L3 backend support: dvips
+\l__pdfannot_backend_content_box=\box53
+\l__pdfannot_backend_model_box=\box54
+\g__pdfannot_backend_int=\count276
+\g__pdfannot_backend_link_int=\count277
+\g__pdfannot_backend_link_sf_int=\count278
+)))
+Main Class: article
+    Options: a4paper
+(article.cls
+Document Class: article 2026-06-04 v1.4n Standard LaTeX document class
+(size10.clo
+File: size10.clo 2026-06-04 v1.4n Standard LaTeX file (size option)
+)
+\c@part=\count279
+\c@section=\count280
+\c@subsection=\count281
+\c@subsubsection=\count282
+\c@paragraph=\count283
+\c@subparagraph=\count284
+\c@figure=\count285
+\c@table=\count286
+\abovecaptionskip=\skip49
+\belowcaptionskip=\skip50
+\bibindent=\dimen150
+)
+No file tlb3104.aux.
+\openout1 = `tlb3104.aux'.
+
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 29.
+LaTeX Font Info:    ... okay on input line 29.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 29.
+LaTeX Font Info:    ... okay on input line 29.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 29.
+LaTeX Font Info:    ... okay on input line 29.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 29.
+LaTeX Font Info:    ... okay on input line 29.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 29.
+LaTeX Font Info:    ... okay on input line 29.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 29.
+LaTeX Font Info:    ... okay on input line 29.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 29.
+LaTeX Font Info:    ... okay on input line 29.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <7> on input line 39.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <5> on input line 39.
+
+Completed box being shipped out [1]
+\vbox(168.0+0.0)x398.0
+.\glue 17.0
+.\vbox(151.0+0.0)x345.0, shifted 53.0
+..\vbox(12.0+0.0)x345.0, glue set 4.48218fil
+...\glue 0.0 plus 1.0fil
+...\hbox(7.51782+0.0)x345.0
+....\hbox(7.51782+0.0)x345.0, glue set 322.19438fil
+.....\mathon
+.....\OT1/cmr/m/n/10 1
+.....\OT1/cmr/m/n/10 2
+.....\OT1/cmr/m/n/10 3
+.....\hbox(3.8889+0.0)x2.80556, shifted -3.62892
+......\OMS/cmsy/m/n/7 0
+.....\mathoff
+.....\glue 0.0 plus 1.0fil
+.....\OT1/cmr/m/n/10 1
+..\glue 25.0
+..\glue(\lineskip) 0.0
+..\vbox(84.0+0.0)x345.0, glue set 18724.57143fil
+...\write-{}
+...\marks2{\__mark_value:nn {1}{$123'$}}
+...\marks3{\__mark_value:nn {2}{$123'$}}
+...\glue(\topskip) 3.88889
+...\hbox(6.11111+0.0)x345.0, glue set 339.75005fil
+....\hbox(0.0+0.0)x0.0
+.....\glue 0.0
+.....\glue 0.0
+.....\glue -5.0
+.....\hbox(0.0+0.0)x0.0
+.....\glue 5.0
+....\OT1/cmtt/m/n/10 1
+....\hbox(0.0+0.0)x0.0
+....\penalty 10000
+....\glue(\parfillskip) 0.0 plus 1.0fil
+....\glue(\rightskip) 0.0
+...\penalty 0
+...\glue(\parskip) 0.0
+...\glue(\parskip) 0.0
+...\glue(\baselineskip) 5.88889
+...\hbox(6.11111+0.0)x345.0, glue set 339.75005fil
+....\hbox(0.0+0.0)x0.0
+....\OT1/cmtt/m/n/10 2
+....\hbox(0.0+0.0)x0.0
+....\penalty 10000
+....\glue(\parfillskip) 0.0 plus 1.0fil
+....\glue(\rightskip) 0.0
+...\penalty 0
+...\glue(\parskip) 0.0
+...\glue(\parskip) 0.0
+...\glue(\baselineskip) 5.88889
+...\hbox(6.11111+0.0)x345.0, glue set 339.75005fil
+....\hbox(0.0+0.0)x0.0
+....\OT1/cmtt/m/n/10 3
+....\hbox(0.0+0.0)x0.0
+....\penalty 10000
+....\glue(\parfillskip) 0.0 plus 1.0fil
+....\glue(\rightskip) 0.0
+...\penalty 0
+...\glue(\parskip) 0.0
+...\glue(\parskip) 0.0
+...\glue(\baselineskip) 5.88889
+...\hbox(6.11111+0.0)x345.0, glue set 339.75005fil
+....\hbox(0.0+0.0)x0.0
+....\OT1/cmtt/m/n/10 4
+....\hbox(0.0+0.0)x0.0
+....\penalty 10000
+....\glue(\parfillskip) 0.0 plus 1.0fil
+....\glue(\rightskip) 0.0
+...\penalty 0
+...\glue(\parskip) 0.0
+...\glue(\parskip) 0.0
+...\glue(\baselineskip) 5.88889
+...\hbox(6.11111+0.0)x345.0, glue set 339.75005fil
+....\hbox(0.0+0.0)x0.0
+....\OT1/cmtt/m/n/10 5
+....\hbox(0.0+0.0)x0.0
+....\penalty 10000
+....\glue(\parfillskip) 0.0 plus 1.0fil
+....\glue(\rightskip) 0.0
+...\penalty 0
+...\glue(\parskip) 0.0
+...\glue(\parskip) 0.0
+...\glue(\baselineskip) 5.88889
+...\hbox(6.11111+0.0)x345.0, glue set 339.75005fil
+....\hbox(0.0+0.0)x0.0
+....\OT1/cmtt/m/n/10 6
+....\hbox(0.0+0.0)x0.0
+....\penalty 10000
+....\glue(\parfillskip) 0.0 plus 1.0fil
+....\glue(\rightskip) 0.0
+...\penalty 0
+...\glue(\parskip) 0.0
+...\glue(\parskip) 0.0
+...\glue(\baselineskip) 5.88889
+...\hbox(6.11111+0.0)x345.0, glue set 339.75005fil
+....\hbox(0.0+0.0)x0.0
+....\OT1/cmtt/m/n/10 7
+....\hbox(0.0+0.0)x0.0
+....\penalty 10000
+....\glue(\parfillskip) 0.0 plus 1.0fil
+....\glue(\rightskip) 0.0
+...\glue 0.0
+...\glue 0.0 plus 0.0001fil
+..\glue(\baselineskip) 30.0
+..\hbox(0.0+0.0)x345.0
+...\hbox(0.0+0.0)x345.0
+
+
+
+Completed box being shipped out [2]
+\vbox(168.0+0.0)x398.0
+.\glue 17.0
+.\vbox(151.0+0.0)x345.0, shifted 53.0
+..\vbox(12.0+0.0)x345.0, glue set 4.48218fil
+...\glue 0.0 plus 1.0fil
+...\hbox(7.51782+0.0)x345.0
+....\hbox(7.51782+0.0)x345.0, glue set 322.19438fil
+.....\mathon
+.....\OT1/cmr/m/n/10 1
+.....\OT1/cmr/m/n/10 2
+.....\OT1/cmr/m/n/10 3
+.....\hbox(3.8889+0.0)x2.80556, shifted -3.62892
+......\OMS/cmsy/m/n/7 0
+.....\mathoff
+.....\glue 0.0 plus 1.0fil
+.....\OT1/cmr/m/n/10 2
+..\glue 25.0
+..\glue(\lineskip) 0.0
+..\vbox(84.0+0.0)x345.0, glue set 63.99316fil
+...\glue(\topskip) 3.88889
+...\hbox(6.11111+0.0)x345.0, glue set 339.75005fil
+....\hbox(0.0+0.0)x0.0
+....\OT1/cmtt/m/n/10 8
+....\hbox(0.0+0.0)x0.0
+....\penalty 10000
+....\glue(\parfillskip) 0.0 plus 1.0fil
+....\glue(\rightskip) 0.0
+...\penalty 0
+...\penalty -51
+...\glue 10.0 plus 3.0 minus 5.0
+...\glue 0.0 plus 1.0fil
+...\glue 0.0
+...\glue 0.0 plus 0.0001fil
+..\glue(\baselineskip) 30.0
+..\hbox(0.0+0.0)x345.0
+...\hbox(0.0+0.0)x345.0
+
+(tlb3104.aux)
+END-TEST-LOG
+ )
+
+Output written on tlb3104.dvi (2 pages, 480 bytes).

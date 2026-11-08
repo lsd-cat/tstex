@@ -9,7 +9,7 @@ clone() { # name url sparse-paths...
   else git clone -q --depth 1 --filter=blob:none --sparse "$u" "$src/$n"; fi
   git -C "$src/$n" sparse-checkout set --no-cone "$@"
 }
-clone latex2e https://github.com/latex3/latex2e '/base/testfiles/' '/required/amsmath/testfiles/' '/required/graphics/testfiles/'
+clone latex2e https://github.com/latex3/latex2e '/base/testfiles/' '/required/amsmath/testfiles/' '/required/graphics/testfiles/' '/support/'
 clone latex3 https://github.com/latex3/latex3 '/l3kernel/testfiles/' '/texmf/tex/latex/l3build/regression-test.tex'
 clone hyperref https://github.com/latex3/hyperref '/testfiles/'
 copy() { # srcdir destname
@@ -26,5 +26,6 @@ copy "$src/latex3/l3kernel/testfiles" l3kernel
 copy "$src/latex2e/required/amsmath/testfiles" amsmath
 copy "$src/latex2e/required/graphics/testfiles" graphics
 copy "$src/hyperref/testfiles" hyperref
+for p in base amsmath graphics; do cp "$src/latex2e/support/test2e.tex" "$src/latex2e/support/test209.tex" "$src/latex2e/support/regression-test.tex" "$lvt/$p/"; done # latex2e tests use their own support files
 rt=$(find "$src/latex3" -name regression-test.tex | head -1)
 [ -n "$rt" ] && cp "$rt" "$lvt/" && echo "regression-test.tex: $rt"

@@ -1,0 +1,216 @@
+entering extended mode
+(tlb1895.lvt
+LaTeX2e <2026-11-01>
+L3 programming layer <2026-09-09>
+(test2e.tex
+OMIT
+TIMO
+(expl3.sty
+Package: expl3 2026-09-09 L3 programming layer (loader)
+ (l3backend-dvips.def
+File: l3backend-dvips.def 2026-09-09 L3 backend support: dvips
+\l__pdfannot_backend_content_box=\box53
+\l__pdfannot_backend_model_box=\box54
+\g__pdfannot_backend_int=\count276
+\g__pdfannot_backend_link_int=\count277
+\g__pdfannot_backend_link_sf_int=\count278
+))) (slides.cls
+Document Class: slides 2025-12-31 v2.4c Standard LaTeX document class
+(slides.def
+File: slides.def 2025-12-31 v2.4c SLiTeX definitions
+ hacks, slides,
+\c@page=\count279
+ picture, mods,
+\@smashboxa=\box55
+\@smashboxb=\box56
+\@smashboxc=\box57
+ output, init) (sfonts.def
+File: sfonts.def 2023/12/02 v2.2f Standard LaTeX slide font definitions
+ (ot1lcmss.fd
+File: ot1lcmss.fd 2023/12/02 v2.2f Standard LaTeX slide font definitions
+))
+\c@minutes=\count280
+\c@seconds=\count281
+\c@mv@invisible=\count282
+LaTeX Font Info:    Overwriting symbol font `operators' in version `normal'
+(Font)                  OT1/cmr/m/n --> OT1/lcmss/m/n on input line 360.
+LaTeX Font Info:    Overwriting symbol font `letters' in version `normal'
+(Font)                  OML/cmm/m/it --> OML/lcmm/m/it on input line 363.
+LaTeX Font Info:    Overwriting symbol font `symbols' in version `normal'
+(Font)                  OMS/cmsy/m/n --> OMS/lcmsy/m/n on input line 365.
+LaTeX Font Info:    Overwriting symbol font `largesymbols' in version `normal'
+(Font)                  OMX/cmex/m/n --> OMX/lcmex/m/n on input line 367.
+LaTeX Font Info:    Overwriting symbol font `operators' in version `invisible'
+(Font)                  OT1/cmr/m/n --> OT1/lcmss/m/In on input line 370.
+LaTeX Font Info:    Overwriting symbol font `letters' in version `invisible'
+(Font)                  OML/cmm/m/it --> OML/lcmm/m/Iit on input line 372.
+LaTeX Font Info:    Overwriting symbol font `symbols' in version `invisible'
+(Font)                  OMS/cmsy/m/n --> OMS/lcmsy/m/In on input line 374.
+LaTeX Font Info:    Overwriting symbol font `largesymbols' in version `invisible'
+(Font)                  OMX/cmex/m/n --> OMX/lcmex/m/In on input line 376.
+)
+START-TEST-LOG
+
+This is a generated file for the LaTeX2e validation system.
+
+Don't change this file in any respect.
+
+Author: Kevin W. Rudd
+Format: LaTeX2e<1995/12/01>
+OMIT
+
+LaTeX Warning: Declared format LaTeX2e<1995/12/01>,
+Actual format LaTeX2e<2026-11-01> on input line 32.
+
+TIMO
+Main Class: slides
+OMIT
+No file tlb1895.aux.
+\openout1 = `tlb1895.aux'.
+
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 40.
+LaTeX Font Info:    ... okay on input line 40.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 40.
+LaTeX Font Info:    ... okay on input line 40.
+LaTeX Font Info:    Checking defaults for OT1/lcmss/m/n on input line 40.
+LaTeX Font Info:    ... okay on input line 40.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 40.
+LaTeX Font Info:    ... okay on input line 40.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 40.
+LaTeX Font Info:    ... okay on input line 40.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 40.
+LaTeX Font Info:    ... okay on input line 40.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 40.
+LaTeX Font Info:    ... okay on input line 40.
+TIMO
+
+Completed box being shipped out [1]
+\vbox(647.0+0.0)x469.3775
+.\glue 3.0
+.\vbox(644.0+0.0)x469.0, shifted 0.3775
+..\vbox(14.0+0.0)x469.0, glue set 14.0fil
+...\glue 0.0 plus 1.0fil
+...\hbox(0.0+0.0)x469.0
+....\hbox(0.0+0.0)x469.0
+..\glue 15.0
+..\glue(\lineskip) 0.0
+..\vbox(590.0+0.0)x469.0, glue set 174.0fil
+...\glue 0.0 plus 1.0fil
+...\write-{}
+...\glue(\topskip) 10.09721
+...\hbox(19.90279+0.0)x469.0, glue set 107.46999fil
+....\glue(\leftskip) 0.0 plus 1.0fil
+....\hbox(0.0+0.0)x0.0
+....\OT1/lcmss/m/n/28.66 T
+....\kern-2.98546
+....\OT1/lcmss/m/n/28.66 e
+....\OT1/lcmss/m/n/28.66 c
+....\OT1/lcmss/m/n/28.66 h
+....\OT1/lcmss/m/n/28.66 n
+....\OT1/lcmss/m/n/28.66 i
+....\OT1/lcmss/m/n/28.66 c
+....\OT1/lcmss/m/n/28.66 a
+....\OT1/lcmss/m/n/28.66 l
+....\glue 11.9417 plus 5.97084 minus 3.98056
+....\OT1/lcmss/m/n/28.66 R
+....\OT1/lcmss/m/n/28.66 e
+....\OT1/lcmss/m/n/28.66 v
+....\OT1/lcmss/m/n/28.66 i
+....\OT1/lcmss/m/n/28.66 e
+....\OT1/lcmss/m/n/28.66 w
+....\penalty 10000
+....\glue(\parfillskip) 0.0
+....\glue(\rightskip) 0.0 plus 1.0fil
+...\glue -48.0 plus -30.0 minus -6.0
+...\glue(\parskip) 48.0 plus 30.0 minus 6.0
+...\glue(\parskip) 0.0
+...\glue(\baselineskip) 28.09721 plus 10.0 minus 6.0
+...\hbox(19.90279+0.0)x469.0, glue set 190.71375fil
+....\glue(\leftskip) 0.0 plus 1.0fil
+....\hbox(0.0+0.0)x0.0
+....\OT1/lcmss/m/n/28.66 o
+....\OT1/lcmss/m/n/28.66 f
+....\glue 11.9417 plus 5.97084 minus 3.98056
+....\OT1/lcmss/m/n/28.66 t
+....\OT1/lcmss/m/n/28.66 h
+....\OT1/lcmss/m/n/28.66 e
+....\penalty 10000
+....\glue(\parfillskip) 0.0
+....\glue(\rightskip) 0.0 plus 1.0fil
+...\glue -48.0 plus -30.0 minus -6.0
+...\glue(\parskip) 48.0 plus 30.0 minus 6.0
+...\glue(\parskip) 0.0
+...\glue(\baselineskip) 28.39575 plus 10.0 minus 6.0
+...\hbox(19.60425+0.0)x469.0, glue set 187.23076fil
+....\glue(\leftskip) 0.0 plus 1.0fil
+....\hbox(0.0+0.0)x0.0
+....\OT1/lcmss/m/n/28.66 P
+....\glue 11.9417 plus 5.96486 minus 3.98454
+....\OT1/lcmss/m/n/28.66 T
+....\glue 11.9417 plus 5.96486 minus 3.98454
+....\OT1/lcmss/m/n/28.66 P
+....\penalty 10000
+....\glue(\parfillskip) 0.0
+....\glue(\rightskip) 0.0 plus 1.0fil
+...\glue(\parskip) 30.0 plus 18.0 minus 9.0
+...\glue(\parskip) 0.0
+...\glue(\baselineskip) 14.1757 plus 3.0 minus 4.0
+...\hbox(13.8243+0.0)x469.0, glue set 156.0813fil
+....\glue(\leftskip) 0.0 plus 1.0fil
+....\hbox(0.0+0.0)x0.0
+....\OT1/lcmss/m/n/19.907 K
+....\OT1/lcmss/m/n/19.907 e
+....\OT1/lcmss/m/n/19.907 v
+....\OT1/lcmss/m/n/19.907 i
+....\OT1/lcmss/m/n/19.907 n
+....\glue 8.2946 plus 4.1473 minus 2.76486
+....\OT1/lcmss/m/n/19.907 W
+....\OT1/lcmss/m/n/19.907 .
+....\glue 8.2946 plus 4.1473 minus 2.76486
+....\OT1/lcmss/m/n/19.907 R
+....\OT1/lcmss/m/n/19.907 u
+....\OT1/lcmss/m/n/19.907 d
+....\OT1/lcmss/m/n/19.907 d
+....\penalty 10000
+....\glue(\parfillskip) 0.0
+....\glue(\rightskip) 0.0 plus 1.0fil
+...\glue(\parskip) 30.0 plus 18.0 minus 9.0
+...\glue(\parskip) 0.0
+...\glue(\baselineskip) 14.1757 plus 3.0 minus 4.0
+...\hbox(13.8243+0.0)x469.0, glue set 153.0055fil
+....\glue(\leftskip) 0.0 plus 1.0fil
+....\hbox(0.0+0.0)x0.0
+....\OT1/lcmss/m/n/19.907 6
+....\glue 8.2946 plus 4.1473 minus 2.76486
+....\OT1/lcmss/m/n/19.907 O
+....\OT1/lcmss/m/n/19.907 c
+....\OT1/lcmss/m/n/19.907 t
+....\OT1/lcmss/m/n/19.907 o
+....\OT1/lcmss/m/n/19.907 b
+....\kern0.69122
+....\OT1/lcmss/m/n/19.907 e
+....\OT1/lcmss/m/n/19.907 r
+....\glue 8.2946 plus 4.1473 minus 2.76486
+....\OT1/lcmss/m/n/19.907 1
+....\OT1/lcmss/m/n/19.907 9
+....\OT1/lcmss/m/n/19.907 9
+....\OT1/lcmss/m/n/19.907 5
+....\penalty 10000
+....\glue(\parfillskip) 0.0
+....\glue(\rightskip) 0.0 plus 1.0fil
+...\glue 0.0 plus 1.0fil
+..\glue(\baselineskip) 15.88266
+..\hbox(9.11734+0.0)x469.0
+...\hbox(9.11734+0.0)x469.0, glue set 417.17484fil
+....\hbox(0.0+0.0)x0.0
+....\glue 0.0 plus 1.0fil
+....\hbox(9.11734+0.0)x51.82516, glue set 43.18764fil
+.....\OT1/lcmss/m/n/13.82 1
+.....\glue 0.0 plus 1.0fil minus 1.0fil
+
+
+(tlb1895.aux)
+END-TEST-LOG
+ )
+
+Output written on tlb1895.dvi (1 page, 424 bytes).

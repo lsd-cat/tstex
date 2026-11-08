@@ -1,0 +1,409 @@
+entering extended mode
+(tlb1903.lvt
+LaTeX2e <2026-11-01>
+L3 programming layer <2026-09-09>
+(test2e.tex
+OMIT
+TIMO
+(expl3.sty
+Package: expl3 2026-09-09 L3 programming layer (loader)
+ (l3backend-dvips.def
+File: l3backend-dvips.def 2026-09-09 L3 backend support: dvips
+\l__pdfannot_backend_content_box=\box53
+\l__pdfannot_backend_model_box=\box54
+\g__pdfannot_backend_int=\count276
+\g__pdfannot_backend_link_int=\count277
+\g__pdfannot_backend_link_sf_int=\count278
+))) (article.cls
+Document Class: article 2026-06-04 v1.4n Standard LaTeX document class
+(size10.clo
+File: size10.clo 2026-06-04 v1.4n Standard LaTeX file (size option)
+)
+\c@part=\count279
+\c@section=\count280
+\c@subsection=\count281
+\c@subsubsection=\count282
+\c@paragraph=\count283
+\c@subparagraph=\count284
+\c@figure=\count285
+\c@table=\count286
+\abovecaptionskip=\skip49
+\belowcaptionskip=\skip50
+\bibindent=\dimen150
+) (inputenc.sty
+Package: inputenc 2024/02/08 v1.3d Input encoding file
+\inpenc@prehook=\toks17
+\inpenc@posthook=\toks18
+ (latin1.def
+File: latin1.def 2024/02/08 v1.3d Input encoding file
+LaTeX Encoding Info:    Ignoring declaration for text command \textdegree (encoding ?) on input line 47.
+LaTeX Encoding Info:    Ignoring declaration for text command \textonehalf (encoding ?) on input line 48.
+LaTeX Encoding Info:    Ignoring declaration for text command \textonequarter (encoding ?) on input line 49.
+LaTeX Encoding Info:    Ignoring declaration for text command \textthreequarters (encoding ?) on input line 50.
+LaTeX Encoding Info:    Ignoring declaration for text command \textcent (encoding ?) on input line 51.
+LaTeX Encoding Info:    Ignoring declaration for text command \textyen (encoding ?) on input line 53.
+LaTeX Encoding Info:    Ignoring declaration for text command \textcurrency (encoding ?) on input line 55.
+LaTeX Encoding Info:    Ignoring declaration for text command \textbrokenbar (encoding ?) on input line 57.
+))
+START-TEST-LOG
+
+This is a generated file for the LaTeX2e validation system.
+
+Don't change this file in any respect.
+
+Author: Stephen G Simpson and Rainer Schoepf
+Format: LaTeX2e<1995/12/01>
+OMIT
+
+LaTeX Warning: Declared format LaTeX2e<1995/12/01>,
+Actual format LaTeX2e<2026-11-01> on input line 35.
+
+TIMO
+Main Class: article
+Package: inputenc
+    Options: latin1
+OMIT
+No file tlb1903.aux.
+\openout1 = `tlb1903.aux'.
+
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 45.
+LaTeX Font Info:    ... okay on input line 45.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 45.
+LaTeX Font Info:    ... okay on input line 45.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 45.
+LaTeX Font Info:    ... okay on input line 45.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 45.
+LaTeX Font Info:    ... okay on input line 45.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 45.
+LaTeX Font Info:    ... okay on input line 45.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 45.
+LaTeX Font Info:    ... okay on input line 45.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 45.
+LaTeX Font Info:    ... okay on input line 45.
+TIMO
+No file tlb1903.toc.
+\tf@toc=\write3
+\openout3 = `tlb1903.toc'.
+
+
+Completed box being shipped out [1]
+\vbox(633.0+0.0)x407.0
+.\glue 16.0
+.\vbox(617.0+0.0)x345.0, shifted 62.0
+..\vbox(12.0+0.0)x345.0, glue set 12.0fil
+...\glue 0.0 plus 1.0fil
+...\hbox(0.0+0.0)x345.0
+....\hbox(0.0+0.0)x345.0
+..\glue 25.0
+..\glue(\lineskip) 0.0
+..\vbox(550.0+0.0)x345.0, glue set 368.4163fil
+...\write-{}
+...\glue(\topskip) 0.12001
+...\hbox(9.87999+0.0)x345.0, glue set 281.71843fil
+....\hbox(0.0+0.0)x0.0
+.....\glue 0.0
+....\OT1/cmr/bx/n/14.4 C
+....\OT1/cmr/bx/n/14.4 o
+....\OT1/cmr/bx/n/14.4 n
+....\kern-0.45001
+....\OT1/cmr/bx/n/14.4 t
+....\OT1/cmr/bx/n/14.4 e
+....\OT1/cmr/bx/n/14.4 n
+....\kern-0.45001
+....\OT1/cmr/bx/n/14.4 t
+....\OT1/cmr/bx/n/14.4 s
+....\penalty 10000
+....\glue(\parfillskip) 0.0 plus 1.0fil
+....\glue(\rightskip) 0.0
+...\penalty 10000
+...\glue 9.90276 plus 0.86108
+...\glue -9.90276 plus -0.86108
+...\penalty -300
+...\glue 9.90276 plus 0.86108
+...\glue -9.90276 plus -0.86108
+...\glue 15.0694 plus 4.30554 minus 0.86108
+...\glue(\parskip) 0.0 plus 1.0
+...\glue(\parskip) 0.0
+...\glue(\baselineskip) 8.00002
+...\hbox(9.99998+0.0)x345.0, glue set 243.8268fil
+....\hbox(9.27998+0.0)x24.29997
+.....\glue 0.0
+.....\OT1/cmr/bx/n/14.4 1
+.....\glue 16.19998
+....\OT1/cmr/bx/n/14.4 ^^L (ligature fi)
+....\OT1/cmr/bx/n/14.4 r
+....\OT1/cmr/bx/n/14.4 s
+....\OT1/cmr/bx/n/14.4 t
+....\OT1/cmr/bx/n/14.4 :
+....\glue 7.19998 plus 5.4 minus 0.9
+....\kern -0.1125 (for accent)
+....\OT1/cmr/bx/n/14.4 ^^S
+....\kern -7.98749 (for accent)
+....\OT1/cmr/bx/n/14.4 a
+....\kern -0.35417 (for accent)
+....\OT1/cmr/bx/n/14.4 ^^S
+....\kern -7.74582 (for accent)
+....\OT1/cmr/bx/n/14.4 e
+....\kern -1.8 (for accent)
+....\OT1/cmr/bx/n/14.4 ^^S
+....\kern -6.29999 (for accent)
+....\OT1/cmr/bx/n/14.4 ^^P
+....\kern 0.0 (for accent)
+....\OT1/cmr/bx/n/14.4 ^^S
+....\kern -8.09999 (for accent)
+....\OT1/cmr/bx/n/14.4 o
+....\kern 0.45 (for accent)
+....\OT1/cmr/bx/n/14.4 ^^S
+....\kern -8.54999 (for accent)
+....\OT1/cmr/bx/n/14.4 u
+....\penalty 10000
+....\glue(\parfillskip) 0.0 plus 1.0fil
+....\glue(\rightskip) 0.0
+...\write1{\@writefile{toc}{\protect \contentsline {section}{\protect \numberline {1}first: \'a\'e\IeC {\'\i }\'o\'u}{\thepage }{}\protected@file@percent }}
+...\penalty 10000
+...\glue 9.90276 plus 0.86108
+...\glue(\parskip) 0.0 plus 1.0
+...\glue(\parskip) 0.0
+...\glue(\baselineskip) 5.05556
+...\hbox(6.94444+0.0)x345.0, glue set 322.22217fil
+....\kern 0.0 (for accent)
+....\OT1/cmr/m/n/10 ^^S
+....\kern -5.00002 (for accent)
+....\OT1/cmr/m/n/10 a
+....\kern -0.27779 (for accent)
+....\OT1/cmr/m/n/10 ^^S
+....\kern -4.72223 (for accent)
+....\OT1/cmr/m/n/10 e
+....\kern -1.11111 (for accent)
+....\OT1/cmr/m/n/10 ^^S
+....\kern -3.8889 (for accent)
+....\OT1/cmr/m/n/10 ^^P
+....\kern 0.0 (for accent)
+....\OT1/cmr/m/n/10 ^^S
+....\kern -5.00002 (for accent)
+....\OT1/cmr/m/n/10 o
+....\kern 0.27779 (for accent)
+....\OT1/cmr/m/n/10 ^^S
+....\kern -5.2778 (for accent)
+....\OT1/cmr/m/n/10 u
+....\penalty 10000
+....\glue(\parfillskip) 0.0 plus 1.0fil
+....\glue(\rightskip) 0.0
+...\penalty -300
+...\glue 15.0694 plus 4.30554 minus 0.86108
+...\glue(\parskip) 0.0 plus 1.0
+...\glue(\parskip) 0.0
+...\glue(\baselineskip) 8.00002
+...\hbox(9.99998+0.0)x345.0, glue set 225.05182fil
+....\hbox(9.27998+0.0)x24.29997
+.....\glue 0.0
+.....\OT1/cmr/bx/n/14.4 2
+.....\glue 16.19998
+....\OT1/cmr/bx/n/14.4 s
+....\OT1/cmr/bx/n/14.4 e
+....\OT1/cmr/bx/n/14.4 c
+....\OT1/cmr/bx/n/14.4 o
+....\OT1/cmr/bx/n/14.4 n
+....\OT1/cmr/bx/n/14.4 d
+....\OT1/cmr/bx/n/14.4 :
+....\glue 7.19998 plus 5.4 minus 0.9
+....\kern -0.1125 (for accent)
+....\OT1/cmr/bx/n/14.4 ^^S
+....\kern -7.98749 (for accent)
+....\OT1/cmr/bx/n/14.4 a
+....\kern -0.35417 (for accent)
+....\OT1/cmr/bx/n/14.4 ^^S
+....\kern -7.74582 (for accent)
+....\OT1/cmr/bx/n/14.4 e
+....\kern -1.8 (for accent)
+....\OT1/cmr/bx/n/14.4 ^^S
+....\kern -6.29999 (for accent)
+....\OT1/cmr/bx/n/14.4 ^^P
+....\kern 0.0 (for accent)
+....\OT1/cmr/bx/n/14.4 ^^S
+....\kern -8.09999 (for accent)
+....\OT1/cmr/bx/n/14.4 o
+....\kern 0.45 (for accent)
+....\OT1/cmr/bx/n/14.4 ^^S
+....\kern -8.54999 (for accent)
+....\OT1/cmr/bx/n/14.4 u
+....\penalty 10000
+....\glue(\parfillskip) 0.0 plus 1.0fil
+....\glue(\rightskip) 0.0
+...\write1{\@writefile{toc}{\protect \contentsline {section}{\protect \numberline {2}second: \'a\'e\IeC {\'\i }\'o\'u}{\thepage }{}\protected@file@percent }}
+...\penalty 10000
+...\glue 9.90276 plus 0.86108
+...\glue 0.0 plus 1.0
+...\glue(\baselineskip) 3.60004
+...\hbox(8.39996+3.60004)x57.30568
+....\hbox(0.0+0.0)x0.0
+.....\hbox(0.0+0.0)x0.0
+......\glue 0.0
+......\hbox(0.0+0.0)x0.0
+.......\glue 0.0
+.......\glue 0.0
+.......\glue -5.0
+.......\hbox(0.0+0.0)x0.0
+.......\glue 5.0
+......\penalty 0
+......\glue 0.0 plus 1.0fil minus 1.0fil
+....\glue 0.0
+....\hbox(8.39996+3.60004)x57.30568
+.....\rule(8.39996+3.60004)x0.0
+.....\OT1/cmr/m/n/10 I
+.....\OT1/cmr/m/n/10 f
+.....\glue 3.33333 plus 1.66666 minus 1.11111
+.....\OT1/cmr/m/n/10 i
+.....\OT1/cmr/m/n/10 t
+.....\OT1/cmr/m/n/10 '
+.....\OT1/cmr/m/n/10 s
+.....\glue 3.33333 plus 1.66666 minus 1.11111
+.....\OT1/cmr/m/n/10 r
+.....\OT1/cmr/m/n/10 a
+.....\OT1/cmr/m/n/10 i
+.....\OT1/cmr/m/n/10 n
+.....\OT1/cmr/m/n/10 i
+.....\OT1/cmr/m/n/10 n
+.....\OT1/cmr/m/n/10 g
+...\glue(\baselineskip) 0.0
+...\hbox(8.39996+3.60004)x117.83359
+....\glue 0.0
+....\hbox(8.39996+3.60004)x117.83359
+.....\rule(8.39996+3.60004)x0.0
+.....\glue 10.00002
+.....\OT1/cmr/m/n/10 t
+.....\OT1/cmr/m/n/10 h
+.....\OT1/cmr/m/n/10 e
+.....\OT1/cmr/m/n/10 n
+.....\glue 3.33333 plus 1.66666 minus 1.11111
+.....\OT1/cmr/m/n/10 p
+.....\OT1/cmr/m/n/10 u
+.....\OT1/cmr/m/n/10 t
+.....\glue 3.33333 plus 1.66666 minus 1.11111
+.....\kern 0.0 (for accent)
+.....\OT1/cmr/m/n/10 ^^S
+.....\kern -5.00002 (for accent)
+.....\OT1/cmr/m/n/10 a
+.....\kern -0.27779 (for accent)
+.....\OT1/cmr/m/n/10 ^^S
+.....\kern -4.72223 (for accent)
+.....\OT1/cmr/m/n/10 e
+.....\kern -1.11111 (for accent)
+.....\OT1/cmr/m/n/10 ^^S
+.....\kern -3.8889 (for accent)
+.....\OT1/cmr/m/n/10 ^^P
+.....\kern 0.0 (for accent)
+.....\OT1/cmr/m/n/10 ^^S
+.....\kern -5.00002 (for accent)
+.....\OT1/cmr/m/n/10 o
+.....\kern 0.27779 (for accent)
+.....\OT1/cmr/m/n/10 ^^S
+.....\kern -5.2778 (for accent)
+.....\OT1/cmr/m/n/10 u
+.....\glue 3.33333 plus 1.66666 minus 1.11111
+.....\OT1/cmr/m/n/10 o
+.....\OT1/cmr/m/n/10 n
+.....\glue 3.33333 plus 1.66666 minus 1.11111
+.....\OT1/cmr/m/n/10 b
+.....\kern0.27779
+.....\OT1/cmr/m/n/10 o
+.....\kern0.27779
+.....\OT1/cmr/m/n/10 o
+.....\OT1/cmr/m/n/10 t
+.....\OT1/cmr/m/n/10 s
+.....\OT1/cmr/m/n/10 ,
+...\glue(\baselineskip) 0.0
+...\hbox(8.39996+3.60004)x97.77797
+....\glue 0.0
+....\hbox(8.39996+3.60004)x97.77797
+.....\rule(8.39996+3.60004)x0.0
+.....\glue 10.00002
+.....\glue 22.77782
+.....\OT1/cmr/m/n/10 t
+.....\OT1/cmr/m/n/10 a
+.....\OT1/cmr/m/n/10 k
+.....\kern-0.27779
+.....\OT1/cmr/m/n/10 e
+.....\glue 3.33333 plus 1.66666 minus 1.11111
+.....\kern 0.0 (for accent)
+.....\OT1/cmr/m/n/10 ^^S
+.....\kern -5.00002 (for accent)
+.....\OT1/cmr/m/n/10 a
+.....\kern -0.27779 (for accent)
+.....\OT1/cmr/m/n/10 ^^S
+.....\kern -4.72223 (for accent)
+.....\OT1/cmr/m/n/10 e
+.....\kern -1.11111 (for accent)
+.....\OT1/cmr/m/n/10 ^^S
+.....\kern -3.8889 (for accent)
+.....\OT1/cmr/m/n/10 ^^P
+.....\kern 0.0 (for accent)
+.....\OT1/cmr/m/n/10 ^^S
+.....\kern -5.00002 (for accent)
+.....\OT1/cmr/m/n/10 o
+.....\kern 0.27779 (for accent)
+.....\OT1/cmr/m/n/10 ^^S
+.....\kern -5.2778 (for accent)
+.....\OT1/cmr/m/n/10 u
+.....\glue 3.33333 plus 1.66666 minus 1.11111
+.....\OT1/cmr/m/n/10 h
+.....\OT1/cmr/m/n/10 a
+.....\OT1/cmr/m/n/10 t
+.....\OT1/cmr/m/n/10 ;
+...\glue(\baselineskip) 0.0
+...\hbox(8.39996+3.60004)x57.83344
+....\glue 0.0
+....\hbox(8.39996+3.60004)x57.83344
+.....\rule(8.39996+3.60004)x0.0
+.....\write1{\@writefile{toc}{test test: \'a\'e\'i\'o\'u}}
+.....\glue 3.33333 plus 1.66666 minus 1.11111
+.....\glue 6.66669
+.....\OT1/cmr/m/n/10 e
+.....\OT1/cmr/m/n/10 l
+.....\OT1/cmr/m/n/10 s
+.....\OT1/cmr/m/n/10 e
+.....\glue 3.33333 plus 1.66666 minus 1.11111
+.....\glue 3.83337
+.....\OT1/cmr/m/n/10 s
+.....\OT1/cmr/m/n/10 m
+.....\OT1/cmr/m/n/10 i
+.....\OT1/cmr/m/n/10 l
+.....\OT1/cmr/m/n/10 e
+.....\OT1/cmr/m/n/10 .
+...\glue(\baselineskip) 0.0
+...\hbox(8.39996+3.60004)x55.4723
+....\glue 0.0
+....\hbox(8.39996+3.60004)x55.4723
+.....\rule(8.39996+3.60004)x0.0
+.....\OT1/cmr/m/n/10 L
+.....\OT1/cmr/m/n/10 e
+.....\OT1/cmr/m/n/10 a
+.....\kern-0.27779
+.....\OT1/cmr/m/n/10 v
+.....\kern-0.27779
+.....\OT1/cmr/m/n/10 e
+.....\glue 3.33333 plus 1.66666 minus 1.11111
+.....\OT1/cmr/m/n/10 h
+.....\OT1/cmr/m/n/10 o
+.....\OT1/cmr/m/n/10 u
+.....\OT1/cmr/m/n/10 s
+.....\OT1/cmr/m/n/10 e
+.....\OT1/cmr/m/n/10 .
+...\penalty -51
+...\glue 10.0 plus 3.0 minus 5.0
+...\glue 0.0 plus 1.0fil
+...\glue 0.0
+...\glue 0.0 plus 0.0001fil
+..\glue(\baselineskip) 23.55556
+..\hbox(6.44444+0.0)x345.0
+...\hbox(6.44444+0.0)x345.0, glue set 170.0fil
+....\glue 0.0 plus 1.0fil
+....\OT1/cmr/m/n/10 1
+....\glue 0.0 plus 1.0fil
+
+
+(tlb1903.aux)
+END-TEST-LOG
+ )
+
+Output written on tlb1903.dvi (1 page, 668 bytes).

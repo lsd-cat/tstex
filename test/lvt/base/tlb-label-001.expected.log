@@ -1,0 +1,600 @@
+entering extended mode
+(tlb-label-001.lvt
+LaTeX2e <2026-11-01>
+L3 programming layer <2026-09-09>
+(l3debug.def
+File: l3debug.def 2026-09-09 L3 Debugging support
+) (article.cls
+Document Class: article 2026-06-04 v1.4n Standard LaTeX document class
+(size10.clo
+File: size10.clo 2026-06-04 v1.4n Standard LaTeX file (size option)
+)
+\c@part=\count276
+\c@section=\count277
+\c@subsection=\count278
+\c@subsubsection=\count279
+\c@paragraph=\count280
+\c@subparagraph=\count281
+\c@figure=\count282
+\c@table=\count283
+\abovecaptionskip=\skip49
+\belowcaptionskip=\skip50
+\bibindent=\dimen150
+) (regression-test.tex
+\gTESTint=\count284
+)
+
+[lthooks] Update code for hook 'para/before' on input line 11:
+
+
+[lthooks] Update code for hook 'para/after' on input line 11:
+
+
+[lthooks] Update code for hook 'para/begin' on input line 11:
+
+
+[lthooks] Update code for hook 'para/end' on input line 11:
+
+
+[lthooks] Update code for hook 'target/setname/after' on input line 11:
+
+
+[lthooks] Update code for hook 'begindocument' on input line 11:
+
+Code labels for sorting:
+ calc-noop
+
+Data structure for label rules:
+ calc-noop = 0 ->
+
+[lthooks] Handled code for calc-noop
+
+[lthooks] Update code for hook 'begindocument/before' on input line 11:
+
+
+[lthooks] Update code for hook 'begindocument/end' on input line 11:
+
+
+[lthooks] Update code for hook 'include/before' on input line 11:
+
+
+[lthooks] Update code for hook 'include/end' on input line 11:
+
+
+[lthooks] Update code for hook 'include/after' on input line 11:
+
+
+[lthooks] Update code for hook 'include/excluded' on input line 11:
+
+
+[lthooks] Update code for hook 'selectfont' on input line 11:
+
+
+[lthooks] Update code for hook 'rmfamily' on input line 11:
+
+
+[lthooks] Update code for hook 'sffamily' on input line 11:
+
+
+[lthooks] Update code for hook 'ttfamily' on input line 11:
+
+
+[lthooks] Update code for hook 'normalfont' on input line 11:
+
+
+[lthooks] Update code for hook 'expand@font@defaults' on input line 11:
+
+
+[lthooks] Update code for hook 'bfseries' on input line 11:
+
+
+[lthooks] Update code for hook 'bfseries/defaults' on input line 11:
+
+
+[lthooks] Update code for hook 'mdseries' on input line 11:
+
+
+[lthooks] Update code for hook 'mdseries/defaults' on input line 11:
+
+
+[lthooks] Update code for hook 'label' on input line 11:
+
+
+[lthooks] Update code for hook 'enddocument' on input line 11:
+
+
+[lthooks] Update code for hook 'enddocument/afterlastpage' on input line 11:
+
+
+[lthooks] Update code for hook 'enddocument/afteraux' on input line 11:
+
+
+[lthooks] Update code for hook 'enddocument/info' on input line 11:
+
+  normal rule kernel/warnings|kernel/filelist: > found
+  normal rule kernel/release|kernel/filelist: < found
+  normal rule kernel/testmode|kernel/release: -> found
+---> Drop 'kernel/release' code from \g__hook_enddocument/info_code_prop because of 'kernel/testmode'
+Code labels for sorting:
+ kernel/filelist, kernel/warnings, kernel/release and kernel/testmode
+
+Data structure for label rules:
+ kernel/filelist = 1 -> kernel/warnings
+ kernel/warnings = 1 ->
+ kernel/release = 0 -> kernel/filelist
+ kernel/testmode = 0 ->
+
+[lthooks] Handled code for kernel/release
+[lthooks] Handled code for kernel/testmode
+[lthooks] Handled code for kernel/filelist
+[lthooks] Handled code for kernel/warnings
+
+[lthooks] Update code for hook 'enddocument/end' on input line 11:
+
+
+[lthooks] Update code for hook 'tbl/init' on input line 11:
+
+
+[lthooks] Update code for hook 'tbl/row/init' on input line 11:
+
+
+[lthooks] Update code for hook 'tbl/row/begin' on input line 11:
+
+
+[lthooks] Update code for hook 'tbl/row/end' on input line 11:
+
+
+[lthooks] Update code for hook 'tbl/cell/init' on input line 11:
+
+
+[lthooks] Update code for hook 'tbl/cell/begin' on input line 11:
+
+
+[lthooks] Update code for hook 'tbl/cell/end' on input line 11:
+
+
+[lthooks] Update code for hook 'insertmark' on input line 11:
+
+
+[lthooks] Update code for hook 'package/before' on input line 11:
+
+
+[lthooks] Update code for hook 'class/before' on input line 11:
+
+
+[lthooks] Update code for hook 'package/after' on input line 11:
+
+
+[lthooks] Update code for hook 'class/after' on input line 11:
+
+
+[lthooks] Update code for hook 'file/before' on input line 11:
+
+
+[lthooks] Update code for hook 'file/after' on input line 11:
+
+
+[lthooks] Update code for hook 'shipout/before' on input line 11:
+
+
+[lthooks] Update code for hook 'shipout' on input line 11:
+
+
+[lthooks] Update code for hook 'shipout/after' on input line 11:
+
+
+[lthooks] Update code for hook 'shipout/foreground' on input line 11:
+
+
+[lthooks] Update code for hook 'shipout/background' on input line 11:
+
+
+[lthooks] Update code for hook 'shipout/firstpage' on input line 11:
+
+
+[lthooks] Update code for hook 'shipout/lastpage' on input line 11:
+
+
+[lthooks] Update code for hook 'build/page/before' on input line 11:
+
+
+[lthooks] Update code for hook 'build/page/after' on input line 11:
+
+
+[lthooks] Update code for hook 'build/page/reset' on input line 11:
+
+
+[lthooks] Update code for hook 'build/column/before' on input line 11:
+
+
+[lthooks] Update code for hook 'build/column/after' on input line 11:
+
+
+[lthooks] Update code for hook 'package/latex-lab-testphase-sec/after' on input line 11:
+
+
+[lthooks] Update code for hook 'file/dinbrief.cls/after' on input line 11:
+
+Code labels for sorting:
+ firstaid
+
+Data structure for label rules:
+ firstaid = 0 ->
+
+[lthooks] Handled code for firstaid
+
+[lthooks] Update code for hook 'package/unicode-math/after' on input line 11:
+
+
+[lthooks] Update code for hook 'file/pgfpages.sty/after' on input line 11:
+
+Code labels for sorting:
+ firstaid
+
+Data structure for label rules:
+ firstaid = 0 ->
+
+[lthooks] Handled code for firstaid
+
+[lthooks] Update code for hook 'file/pgfmorepages.sty/after' on input line 11:
+
+Code labels for sorting:
+ firstaid
+
+Data structure for label rules:
+ firstaid = 0 ->
+
+[lthooks] Handled code for firstaid
+
+[lthooks] Update code for hook 'file/babel.sty/before' on input line 11:
+
+Code labels for sorting:
+ firstaid
+
+Data structure for label rules:
+ firstaid = 0 ->
+
+[lthooks] Handled code for firstaid
+
+[lthooks] Update code for hook 'file/songs.sty/after' on input line 11:
+
+Code labels for sorting:
+ firstaid
+
+Data structure for label rules:
+ firstaid = 0 ->
+
+[lthooks] Handled code for firstaid
+
+[lthooks] Update code for hook 'file/crop.sty/after' on input line 11:
+
+Code labels for sorting:
+ firstaid
+
+Data structure for label rules:
+ firstaid = 0 ->
+
+[lthooks] Handled code for firstaid
+
+[lthooks] Update code for hook 'file/bigfoot.sty/after' on input line 11:
+
+
+[lthooks] Update code for hook 'file/marginfix.sty/after' on input line 11:
+
+Code labels for sorting:
+ firstaid
+
+Data structure for label rules:
+ firstaid = 0 ->
+
+[lthooks] Handled code for firstaid
+
+[lthooks] Update code for hook 'file/ulem.sty/after' on input line 11:
+
+Code labels for sorting:
+ firstaid
+
+Data structure for label rules:
+ firstaid = 0 ->
+
+[lthooks] Handled code for firstaid
+
+[lthooks] Update code for hook 'file/varwidth.sty/after' on input line 11:
+
+Code labels for sorting:
+ firstaid
+
+Data structure for label rules:
+ firstaid = 0 ->
+
+[lthooks] Handled code for firstaid
+
+[lthooks] Update code for hook 'file/german.sty/after' on input line 11:
+
+Code labels for sorting:
+ firstaid
+
+Data structure for label rules:
+ firstaid = 0 ->
+
+[lthooks] Handled code for firstaid
+
+[lthooks] Update code for hook 'file/ngerman.sty/after' on input line 11:
+
+Code labels for sorting:
+ firstaid
+
+Data structure for label rules:
+ firstaid = 0 ->
+
+[lthooks] Handled code for firstaid
+
+[lthooks] Update code for hook 'file/underscore.sty/after' on input line 11:
+
+Code labels for sorting:
+ firstaid
+
+Data structure for label rules:
+ firstaid = 0 ->
+
+[lthooks] Handled code for firstaid
+
+[lthooks] Update code for hook 'package/acro/after' on input line 11:
+
+Code labels for sorting:
+ firstaid
+
+Data structure for label rules:
+ firstaid = 0 ->
+
+[lthooks] Handled code for firstaid
+
+[lthooks] Update code for hook 'package/chemformula/before' on input line 11:
+
+Code labels for sorting:
+ firstaid
+
+Data structure for label rules:
+ firstaid = 0 ->
+
+[lthooks] Handled code for firstaid
+
+[lthooks] Update code for hook 'package/chemnum/after' on input line 11:
+
+Code labels for sorting:
+ firstaid
+
+Data structure for label rules:
+ firstaid = 0 ->
+
+[lthooks] Handled code for firstaid
+
+[lthooks] Update code for hook 'package/cleveref/after' on input line 11:
+
+Code labels for sorting:
+ firstaid
+
+Data structure for label rules:
+ firstaid = 0 ->
+
+[lthooks] Handled code for firstaid
+
+[lthooks] Update code for hook 'package/zref-clever/after' on input line 11:
+
+Code labels for sorting:
+ firstaid
+
+Data structure for label rules:
+ firstaid = 0 ->
+
+[lthooks] Handled code for firstaid
+
+[lthooks] Update code for hook 'package/subcaption/after' on input line 11:
+
+Code labels for sorting:
+ firstaid
+
+Data structure for label rules:
+ firstaid = 0 ->
+
+[lthooks] Handled code for firstaid
+
+[lthooks] Update code for hook 'package/arydshln/after' on input line 11:
+
+Code labels for sorting:
+ firstaid
+
+Data structure for label rules:
+ firstaid = 0 ->
+
+[lthooks] Handled code for firstaid
+
+[lthooks] Update code for hook 'package/zref-perpage/after' on input line 11:
+
+
+[lthooks] Update code for hook 'class/smfart/after' on input line 11:
+
+Code labels for sorting:
+ firstaid
+
+Data structure for label rules:
+ firstaid = 0 ->
+
+[lthooks] Handled code for firstaid
+
+[lthooks] Update code for hook 'class/smfbook/after' on input line 11:
+
+Code labels for sorting:
+ firstaid
+
+Data structure for label rules:
+ firstaid = 0 ->
+
+[lthooks] Handled code for firstaid
+
+[lthooks] Update code for hook 'class/amsart/after' on input line 11:
+
+Code labels for sorting:
+ firstaid/aliascounter
+
+Data structure for label rules:
+ firstaid/aliascounter = 0 ->
+
+[lthooks] Handled code for firstaid/aliascounter
+
+[lthooks] Update code for hook 'class/amsproc/after' on input line 11:
+
+Code labels for sorting:
+ firstaid/aliascounter
+
+Data structure for label rules:
+ firstaid/aliascounter = 0 ->
+
+[lthooks] Handled code for firstaid/aliascounter
+
+[lthooks] Update code for hook 'class/amsbook/after' on input line 11:
+
+Code labels for sorting:
+ firstaid/aliascounter
+
+Data structure for label rules:
+ firstaid/aliascounter = 0 ->
+
+[lthooks] Handled code for firstaid/aliascounter
+
+[lthooks] Update code for hook 'package/amsthm/after' on input line 11:
+
+Code labels for sorting:
+ firstaid/aliascounter
+
+Data structure for label rules:
+ firstaid/aliascounter = 0 ->
+
+[lthooks] Handled code for firstaid/aliascounter
+
+[lthooks] Update code for hook 'package/cellspace/after' on input line 11:
+
+Code labels for sorting:
+ firstaid
+
+Data structure for label rules:
+ firstaid = 0 ->
+
+[lthooks] Handled code for firstaid
+
+[lthooks] All initialized (non-empty) hooks:
+
+ begindocument -> \__hook_toplevel begindocument \__hook_next begindocument
+
+ enddocument/info -> \@dofilelist \@enddocument@kernel@warnings \__hook_toplevel enddocument/info \__hook_next enddocument/info
+
+ file/dinbrief.cls/after -> \__hook_toplevel file/dinbrief.cls/after \FirstAidNeededT {dinbrief}{cls}{2000/03/02 LaTeX2e class}{\AddToHook {env/document/begin}{\begingroup }}\__hook_next file/dinbrief.cls/after
+
+ file/pgfpages.sty/after -> \__hook_toplevel file/pgfpages.sty/after \cs_gset_eq:NN \shipout \pgfpages@originalshipout \cs_set_eq:NN \pgfpages@originalshipout \tex_shipout:D \cs_set_eq:NN \tex_shipout:D \pgfpages@interceptshipout \__hook_next file/pgfpages.sty/after
+
+ file/pgfmorepages.sty/after -> \__hook_toplevel file/pgfmorepages.sty/after \cs_set_nopar:Npn \pgfhookintoshipout {\cs_set_eq:NN \pgfpages@originalshipout \tex_shipout:D \cs_set_eq:NN \tex_shipout:D \pgfpages@interceptshipout }\__hook_next file/pgfmorepages.sty/after
+
+ file/babel.sty/before -> \def \BabelCaseHack {}\__hook_toplevel file/babel.sty/before \__hook_next file/babel.sty/before
+
+ file/songs.sty/after -> \__hook_toplevel file/songs.sty/after \FirstAidNeededT {songs}{sty}{2018/09/12 v3.1 Songs package}{\renewcommand \SB@obeylines {\let \obeyedline \SB@par \obeylines \let \@par \SB@@par }}\__hook_next file/songs.sty/after
+
+ file/crop.sty/after -> \__hook_toplevel file/crop.sty/after \FirstAidNeededT {crop}{sty}{2017/11/19 1.10 crop marks (mf)}{\ifdim \stockwidth > 0pt \else \stockwidth \paperwidth \fi \ifdim \stockheight > 0pt \else \stockheight \paperheight \fi \renewcommand *\CROP@genreflect [1]{\leavevmode \dimen 0\CROP@horigin \kern 2\dimen 0 \begingroup \set@typeset@protect \reflectbox {\hb@xt@ \paperwidth {\vbox to\paperheight {##1\vss }\hss }}\endgroup } }\__hook_next file/crop.sty/after
+
+ file/marginfix.sty/after -> \__hook_toplevel file/marginfix.sty/after \FirstAidNeededT {marginfix}{sty}{2020/05/06 v1.2 Fix Margin Paragraphs}{\let \@outputbox@attachfloats \@combinefloats }\__hook_next file/marginfix.sty/after
+
+ file/ulem.sty/after -> \__hook_toplevel file/ulem.sty/after \def \@hspace ##1{\begingroup \setlength \skip@ {##1}\edef \x {\endgroup \hskip \the \skip@ \relax }\x }\__hook_next file/ulem.sty/after
+
+ file/varwidth.sty/after -> \__hook_toplevel file/varwidth.sty/after \FirstAidNeededT {varwidth}{sty}{2009/03/30 ver 0.92; \space Variable-width minipages}{\def \@vwid@sift {\skip@ \lastskip \unskip \ifdim \lastskip =\z@ \unskip \fi \dimen@ \lastkern \unkern \count@ \lastpenalty \unpenalty \setbox \z@ \lastbox \ifvoid \z@ \advance \sift@deathcycles \@ne \else \sift@deathcycles \z@ \fi \ifnum \sift@deathcycles >33 \let \@vwid@sift \relax \PackageWarning {varwidth}{Failed to reprocess entire contents}\fi \ifnum \count@ =\@vwid@preeqp \@vwid@eqmodefalse \fi \ifnum \count@ =\@vwid@posteqp \@vwid@eqmodetrue \fi \ifnum \count@ =\@vwid@toppen \let \@vwid@sift \relax \else \ifnum \count@ =\@vwid@offsets \@vwid@setoffsets \else \ifnum \count@ =\@vwid@postw \else \@vwid@resetb \fi \@vwid@append \fi \fi \@vwid@sift }}\__hook_next file/varwidth.sty/after
+
+ file/german.sty/after -> \__hook_toplevel file/german.sty/after \FirstAidNeededT {german}{sty}{1998/07/08 v2.5e Support for writing german texts (br)} {\let \grmn@active@dq@ \@active@dq \def \@active@dq {\protect \grmn@active@dq@ }\germanTeX }\__hook_next file/german.sty/after
+
+ file/ngerman.sty/after -> \__hook_toplevel file/ngerman.sty/after \FirstAidNeededT {ngerman}{sty}{1998/07/08 v2.5e Support for writing german texts (br)} {\let \grmn@active@dq@ \@active@dq \def \@active@dq {\protect \grmn@active@dq@ }\ngermanTeX }\__hook_next file/ngerman.sty/after
+
+ file/underscore.sty/after -> \__hook_toplevel file/underscore.sty/after \FirstAidNeededT {underscore}{sty}{2006/09/13}{\RequirePackage {underscore-ltx}}\__hook_next file/underscore.sty/after
+
+ package/acro/after -> \__hook_toplevel package/acro/after \FirstAidNeededT {acro}{sty}{2022/04/01 v3.8 typeset acronyms and other abbreviations (CN)} {\UseName {prop_new:c}{l__acro_tmpa_prop}\acsetup {patch/longtable=false}}\__hook_next package/acro/after
+
+ package/chemformula/before -> \RequirePackage {l3keys2e}\__hook_toplevel package/chemformula/before \__hook_next package/chemformula/before
+
+ package/chemnum/after -> \__hook_toplevel package/chemnum/after \FirstAidNeededT {chemnum}{sty}{2021/01/21 v1.3a a comprehensive approach for the numbering of chemical compounds (CN)} {\UseName {prop_new:c}{l__chemnum_tmpa_prop}}\__hook_next package/chemnum/after
+
+ package/cleveref/after -> \__hook_toplevel package/cleveref/after \input {latex-firstaid-pkg-cleveref.ltx}\__hook_next package/cleveref/after
+
+ package/zref-clever/after -> \__hook_toplevel package/zref-clever/after \input {latex-firstaid-pkg-zref-clever.ltx}\__hook_next package/zref-clever/after
+
+ package/subcaption/after -> \__hook_toplevel package/subcaption/after \FirstAidNeededT {subcaption}{sty}{2023/07/28 v1.6b Sub-captions (AR)}{\AddToHook {begindocument}[firstaid/subcaption]{\IfPackageAtLeastT {amsmath}{2025-05-18}{\g@addto@macro \caption@subtypehook {\let \ltx@label \label }}}}\__hook_next package/subcaption/after
+
+ package/arydshln/after -> \__hook_toplevel package/arydshln/after \FirstAidNeededT {arydshln}{sty}{2019/02/21 v1.76 } {\protected \def \adl@@vlineL ##1##2##3##4{\adl@ivline ##4\@nil {##1}{##2}\xdef \adl@colsL {\adl@colsL \@elt {##3}{\number \@tempcnta }{\number \@tempcntb }{\adl@dashcolor }{\adl@gapcolor }}}\protected \def \adl@@vlineR ##1##2##3##4{\adl@ivline ##4\@nil {##1}{##2}\xdef \adl@colsR {\@elt {##3}{\number \@tempcnta }{\number \@tempcntb }{\adl@dashcolor }{\adl@gapcolor }\adl@colsR }}\let \adl@act@@vlineL \adl@@vlineL \let \adl@act@@vlineR \adl@@vlineR \def \endtabular {\endarray \egroup } }\__hook_next package/arydshln/after
+
+ class/smfart/after -> \__hook_toplevel class/smfart/after \FirstAidNeededT {smfart}{cls}{2021/03/28 v1.6 Classe LaTeX pour les articles publies par la SMF} {\def \leftmark {\expandafter \@leftmark \botmark \@empty \@empty }\def \rightmark {\expandafter \@rightmark \firstmark \@empty \@empty }}\__hook_next class/smfart/after
+
+ class/smfbook/after -> \__hook_toplevel class/smfbook/after \FirstAidNeededT {smfbook}{cls}{2021/03/28 v1.6 Classe LaTeX pour les monographies editees par la SMF} {\def \leftmark {\expandafter \@leftmark \botmark \@empty \@empty }\def \rightmark {\expandafter \@rightmark \firstmark \@empty \@empty }}\__hook_next class/smfbook/after
+
+ class/amsart/after -> \__hook_toplevel class/amsart/after \@amsthm@reset@ynthm \AddToHook {package/cleveref/after}[firstaid/aliascounter]{\let \@ynthm \@amsthm@saved@ynthm }\__hook_next class/amsart/after
+
+ class/amsproc/after -> \__hook_toplevel class/amsproc/after \@amsthm@reset@ynthm \AddToHook {package/cleveref/after}[firstaid/aliascounter]{\let \@ynthm \@amsthm@saved@ynthm }\__hook_next class/amsproc/after
+
+ class/amsbook/after -> \__hook_toplevel class/amsbook/after \@amsthm@reset@ynthm \AddToHook {package/cleveref/after}{\let \@ynthm \@amsthm@saved@ynthm }\__hook_next class/amsbook/after
+
+ package/amsthm/after -> \__hook_toplevel package/amsthm/after \@amsthm@reset@ynthm \AddToHook {package/cleveref/after}[firstaid/aliascounter]{\let \@ynthm \@amsthm@saved@ynthm }\__hook_next package/amsthm/after
+
+ package/cellspace/after -> \__hook_toplevel package/cellspace/after \FirstAidNeededT {cellspace}{sty}{2022/01/04 v1.9.0 Spacing table cells (JN)}{\let \@startpbox@action \@startpbox }\__hook_next package/cellspace/after
+(l3backend-dvips.def
+File: l3backend-dvips.def 2026-09-09 L3 backend support: dvips
+[lthooks] Add to hook 'shipout/firstpage' (l3backend) on input line 69
+[lthooks]    <- \__kernel_backend_literal:n {header=l3backend-dvips.pro}
+
+[lthooks] Update code for hook 'shipout/firstpage' on input line 69:
+
+Code labels for sorting:
+ l3backend
+
+Data structure for label rules:
+ l3backend = 0 ->
+
+[lthooks] Handled code for l3backend
+\l__pdfannot_backend_content_box=\box53
+\l__pdfannot_backend_model_box=\box54
+\g__pdfannot_backend_int=\count285
+\g__pdfannot_backend_link_int=\count286
+\g__pdfannot_backend_link_sf_int=\count287
+)
+No file tlb-label-001.aux.
+\openout1 = `tlb-label-001.aux'.
+
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 11.
+LaTeX Font Info:    ... okay on input line 11.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 11.
+LaTeX Font Info:    ... okay on input line 11.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 11.
+LaTeX Font Info:    ... okay on input line 11.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 11.
+LaTeX Font Info:    ... okay on input line 11.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 11.
+LaTeX Font Info:    ... okay on input line 11.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 11.
+LaTeX Font Info:    ... okay on input line 11.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 11.
+LaTeX Font Info:    ... okay on input line 11.
+
+START-TEST-LOG
+
+
+This is a generated file for the l3build validation system.
+
+Don't change this file in any respect.
+
+
+[lthooks] Add to hook 'label' (top-level) on input line 16
+[lthooks]    <- \typeout {Setting label ##1: \@currentlabel , \@currentlabelname , \@currentHref }
+
+[lthooks] Update code for hook 'label' on input line 16:
+
+Setting label test: 1, Titel, Destination
+(tlb-label-001.aux)
+
+END-TEST-LOG
+
+ )
+
+No pages of output.

@@ -1,0 +1,104 @@
+entering extended mode
+(tlb-isodate-001.lvt
+LaTeX2e <2026-11-01>
+L3 programming layer <2026-09-09>
+(test2e.tex
+OMIT
+TIMO
+(expl3.sty
+Package: expl3 2026-09-09 L3 programming layer (loader)
+ (l3backend-dvips.def
+File: l3backend-dvips.def 2026-09-09 L3 backend support: dvips
+\l__pdfannot_backend_content_box=\box53
+\l__pdfannot_backend_model_box=\box54
+\g__pdfannot_backend_int=\count276
+\g__pdfannot_backend_link_int=\count277
+\g__pdfannot_backend_link_sf_int=\count278
+)))
+
+LaTeX Info: Writing file `./tlb-isodate.sty'.
+
+\openout15 = `tlb-isodate.sty'.
+
+
+START-TEST-LOG
+
+This is a generated file for the LaTeX2e validation system.
+
+Don't change this file in any respect.
+
+00
+20170202
+20170202
+20170302
+20170302
+20170402
+00
+abx Bad -0
+abxB
+-0
+--
+/0
+
+(article.cls
+Document Class: article 2026-06-04 v1.4n Standard LaTeX document class
+(size10.clo
+File: size10.clo 2026-06-04 v1.4n Standard LaTeX file (size option)
+)
+\c@part=\count279
+\c@section=\count280
+\c@subsection=\count281
+\c@subsubsection=\count282
+\c@paragraph=\count283
+\c@subparagraph=\count284
+\c@figure=\count285
+\c@table=\count286
+\abovecaptionskip=\skip49
+\belowcaptionskip=\skip50
+\bibindent=\dimen150
+) (tlb-isodate.sty
+Package: tlb-isodate version 1
+) (makeidx.sty
+Package: makeidx 2021/10/04 v1.0m Standard LaTeX package
+) (newlfont.sty
+Package: newlfont 1998/08/17 v2.2m Standard LaTeX package
+LaTeX Info: Redefining \em on input line 57.
+ (latexsym.sty
+Package: latexsym 1998/08/17 v2.2e Standard LaTeX package (lasy symbols)
+\symlasy=\mathgroup4
+LaTeX Font Info:    Overwriting symbol font `lasy' in version `bold'
+(Font)                  U/lasy/m/n --> U/lasy/b/n on input line 52.
+)) (graphpap.sty
+Package: graphpap 1994/08/09 v1.0c Standard LaTeX graphpap package (LL)
+) (flafter.sty
+Package: flafter 2025/08/22 v1.4z Standard LaTeX floats after reference (FMi)
+Applying: [2025/06/01] float order in 2-column on input line 49.
+Already applied: [2015/01/01] float order in 2-column on input line 152.
+Already applied: [0000/00/00] float order in 2-column on input line 254.
+)
+
+LaTeX Warning: You have requested, on input line 32, version
+               `2085-01-01' of package flafter,
+               but only version
+               `2025/08/22 v1.4z Standard LaTeX floats after reference (FMi)'
+               is available.
+
+(shortvrb.sty
+Package: shortvrb 2026-11-01 v3.0r Standard LaTeX documentation package V3 (FMi)
+)
+
+LaTeX Warning: You have requested, on input line 33, version
+               `2085/01/01' of package shortvrb,
+               but only version
+               `2026-11-01 v3.0r Standard LaTeX documentation package V3 (FMi)'
+               is available.
+
+(ifthen.sty
+Package: ifthen 2026-06-01 v1.1e Standard LaTeX ifthen package (DPC)
+) (textcomp.sty
+Package: textcomp 2024/04/24 v2.1b Standard LaTeX package
+)
+END-TEST-LOG
+ )
+
+No pages of output.

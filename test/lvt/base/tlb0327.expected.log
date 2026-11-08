@@ -1,0 +1,206 @@
+entering extended mode
+(tlb0327.lvt
+LaTeX2e <2026-11-01>
+L3 programming layer <2026-09-09>
+(test2e.tex
+OMIT
+TIMO
+(expl3.sty
+Package: expl3 2026-09-09 L3 programming layer (loader)
+ (l3backend-dvips.def
+File: l3backend-dvips.def 2026-09-09 L3 backend support: dvips
+\l__pdfannot_backend_content_box=\box53
+\l__pdfannot_backend_model_box=\box54
+\g__pdfannot_backend_int=\count276
+\g__pdfannot_backend_link_int=\count277
+\g__pdfannot_backend_link_sf_int=\count278
+)))
+Author: Frank Mittelbach
+Format: LaTeX2e<1994/03/08>
+OMIT
+
+LaTeX Warning: Declared format LaTeX2e<1994/03/08>,
+Actual format LaTeX2e<2026-11-01> on input line 26.
+
+TIMO
+Main Class: slides
+(slides.cls
+Document Class: slides 2025-12-31 v2.4c Standard LaTeX document class
+(slides.def
+File: slides.def 2025-12-31 v2.4c SLiTeX definitions
+ hacks, slides,
+\c@page=\count279
+ picture, mods,
+\@smashboxa=\box55
+\@smashboxb=\box56
+\@smashboxc=\box57
+ output, init) (sfonts.def
+File: sfonts.def 2023/12/02 v2.2f Standard LaTeX slide font definitions
+ (ot1lcmss.fd
+File: ot1lcmss.fd 2023/12/02 v2.2f Standard LaTeX slide font definitions
+))
+\c@minutes=\count280
+\c@seconds=\count281
+\c@mv@invisible=\count282
+LaTeX Font Info:    Overwriting symbol font `operators' in version `normal'
+(Font)                  OT1/cmr/m/n --> OT1/lcmss/m/n on input line 360.
+LaTeX Font Info:    Overwriting symbol font `letters' in version `normal'
+(Font)                  OML/cmm/m/it --> OML/lcmm/m/it on input line 363.
+LaTeX Font Info:    Overwriting symbol font `symbols' in version `normal'
+(Font)                  OMS/cmsy/m/n --> OMS/lcmsy/m/n on input line 365.
+LaTeX Font Info:    Overwriting symbol font `largesymbols' in version `normal'
+(Font)                  OMX/cmex/m/n --> OMX/lcmex/m/n on input line 367.
+LaTeX Font Info:    Overwriting symbol font `operators' in version `invisible'
+(Font)                  OT1/cmr/m/n --> OT1/lcmss/m/In on input line 370.
+LaTeX Font Info:    Overwriting symbol font `letters' in version `invisible'
+(Font)                  OML/cmm/m/it --> OML/lcmm/m/Iit on input line 372.
+LaTeX Font Info:    Overwriting symbol font `symbols' in version `invisible'
+(Font)                  OMS/cmsy/m/n --> OMS/lcmsy/m/In on input line 374.
+LaTeX Font Info:    Overwriting symbol font `largesymbols' in version `invisible'
+(Font)                  OMX/cmex/m/n --> OMX/lcmex/m/In on input line 376.
+)
+No file tlb0327.aux.
+\openout1 = `tlb0327.aux'.
+
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 34.
+LaTeX Font Info:    ... okay on input line 34.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 34.
+LaTeX Font Info:    ... okay on input line 34.
+LaTeX Font Info:    Checking defaults for OT1/lcmss/m/n on input line 34.
+LaTeX Font Info:    ... okay on input line 34.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 34.
+LaTeX Font Info:    ... okay on input line 34.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 34.
+LaTeX Font Info:    ... okay on input line 34.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 34.
+LaTeX Font Info:    ... okay on input line 34.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 34.
+LaTeX Font Info:    ... okay on input line 34.
+START-TEST-LOG
+
+This is a generated file for the LaTeX2e validation system.
+
+Don't change this file in any respect.
+
+
+Completed box being shipped out [0]
+\vbox(647.0+0.0)x469.3775
+.\glue 3.0
+.\vbox(644.0+0.0)x469.0, shifted 0.3775
+..\vbox(14.0+0.0)x469.0, glue set 14.0fil
+...\glue 0.0 plus 1.0fil
+...\hbox(0.0+0.0)x469.0
+....\hbox(0.0+0.0)x469.0
+..\glue 15.0
+..\glue(\lineskip) 0.0
+..\vbox(590.0+0.0)x469.0, glue set 96.66667fil
+...\glue 0.0 plus 1.0fil
+...\write-{}
+...\glue(\topskip) 0.0
+...\hbox(300.0+0.0)x469.0, glue set 134.5fil
+....\glue(\leftskip) 0.0 plus 1.0fil
+....\hbox(0.0+0.0)x0.0
+.....\glue 0.0
+.....\glue 0.0
+.....\glue -10.0
+.....\hbox(0.0+0.0)x0.0
+.....\glue 10.0
+....\penalty 0
+....\hbox(300.0+0.0)x200.0
+.....\hbox(300.0+0.0)x200.0, glue set 200.0fil
+......\glue 0.0
+......\hbox(150.0+0.0)x0.0
+.......\hbox(0.0+15.2)x0.0, glue set - 100.0fil, shifted -150.0
+........\kern 100.0
+........\hbox(0.0+0.0)x0.0, glue set - 49.8fil, shifted 15.2
+.........\glue -50.2
+.........\hbox(0.0+0.0)x100.0
+..........\vbox(30.0+13.79999)x28.0, glue set 2.00002fil
+...........\kern -14.2
+...........\hbox(14.2+13.79999)x28.0
+............\tencirc ^^[
+...........\leaders 0.0 plus 1.0fil
+............\rule(*+*)x0.39998
+...........\hbox(14.2+13.79999)x28.0
+............\tencirc ^^Z
+..........\kern -28.0
+..........\kern 100.0
+..........\vbox(30.0+13.79999)x28.0, glue set 2.00002fil
+...........\kern -14.2
+...........\hbox(14.2+13.79999)x28.0
+............\tencirc ^^X
+...........\leaders 0.0 plus 1.0fil
+............\rule(*+*)x0.39998
+...........\hbox(14.2+13.79999)x28.0
+............\tencirc ^^Y
+..........\kern -28.0
+..........\kern -100.0
+..........\hbox(0.39998+0.0)x100.0, glue set 72.00002fil
+...........\kern 14.2
+...........\leaders 0.0 plus 1.0fil
+............\rule(0.39998+0.0)x*
+...........\kern 13.79999
+..........\kern -100.0
+..........\hbox(0.39998+0.0)x100.0, glue set 72.00002fil, shifted -30.0
+...........\kern 14.2
+...........\leaders 0.0 plus 1.0fil
+............\rule(0.39998+0.0)x*
+...........\kern 13.79999
+.........\glue 0.0 plus 1.0fil minus 1.0fil
+........\glue 0.0 plus 1.0fil minus 1.0fil
+.......\hbox(0.0+5.2)x0.0, glue set - 100.0fil, shifted -150.0
+........\kern 100.0
+........\hbox(0.0+0.0)x0.0, glue set - 29.8fil, shifted 5.2
+.........\glue -30.2
+.........\hbox(0.0+0.0)x60.0
+..........\vbox(10.0+3.79999)x8.0, glue set 2.00002fil
+...........\kern -4.2
+...........\hbox(4.2+3.79999)x8.0
+............\tencirc ^^G
+...........\leaders 0.0 plus 1.0fil
+............\rule(*+*)x0.39998
+...........\hbox(4.2+3.79999)x8.0
+............\tencirc ^^F
+..........\kern -8.0
+..........\kern 60.0
+..........\vbox(10.0+3.79999)x8.0, glue set 2.00002fil
+...........\kern -4.2
+...........\hbox(4.2+3.79999)x8.0
+............\tencirc ^^D
+...........\leaders 0.0 plus 1.0fil
+............\rule(*+*)x0.39998
+...........\hbox(4.2+3.79999)x8.0
+............\tencirc ^^E
+..........\kern -8.0
+..........\kern -60.0
+..........\hbox(0.39998+0.0)x60.0, glue set 52.00002fil
+...........\kern 4.2
+...........\leaders 0.0 plus 1.0fil
+............\rule(0.39998+0.0)x*
+...........\kern 3.79999
+..........\kern -60.0
+..........\hbox(0.39998+0.0)x60.0, glue set 52.00002fil, shifted -10.0
+...........\kern 4.2
+...........\leaders 0.0 plus 1.0fil
+............\rule(0.39998+0.0)x*
+...........\kern 3.79999
+.........\glue 0.0 plus 1.0fil minus 1.0fil
+........\glue 0.0 plus 1.0fil minus 1.0fil
+......\glue 0.0 plus 1.0fil minus 1.0fil
+....\penalty 10000
+....\glue(\parfillskip) 0.0
+....\glue(\rightskip) 0.0 plus 1.0fil
+...\penalty 0
+...\glue 0.0
+...\glue 0.0 plus 1.0fil
+...\glue 0.0 plus 1.0fil
+..\glue(\baselineskip) 25.0
+..\hbox(0.0+0.0)x469.0
+...\hbox(0.0+0.0)x469.0
+
+
+(tlb0327.aux)
+END-TEST-LOG
+ )
+
+Output written on tlb0327.dvi (1 page, 472 bytes).

@@ -1,0 +1,203 @@
+entering extended mode
+(tlb1233.lvt
+LaTeX2e <2026-11-01>
+L3 programming layer <2026-09-09>
+(test2e.tex
+OMIT
+TIMO
+(expl3.sty
+Package: expl3 2026-09-09 L3 programming layer (loader)
+ (l3backend-dvips.def
+File: l3backend-dvips.def 2026-09-09 L3 backend support: dvips
+\l__pdfannot_backend_content_box=\box53
+\l__pdfannot_backend_model_box=\box54
+\g__pdfannot_backend_int=\count276
+\g__pdfannot_backend_link_int=\count277
+\g__pdfannot_backend_link_sf_int=\count278
+))) (article.cls
+Document Class: article 2026-06-04 v1.4n Standard LaTeX document class
+(size10.clo
+File: size10.clo 2026-06-04 v1.4n Standard LaTeX file (size option)
+)
+\c@part=\count279
+\c@section=\count280
+\c@subsection=\count281
+\c@subsubsection=\count282
+\c@paragraph=\count283
+\c@subparagraph=\count284
+\c@figure=\count285
+\c@table=\count286
+\abovecaptionskip=\skip49
+\belowcaptionskip=\skip50
+\bibindent=\dimen150
+)
+START-TEST-LOG
+
+This is a generated file for the LaTeX2e validation system.
+
+Don't change this file in any respect.
+
+Author: Alan Jeffrey
+Main Style: article
+OMIT
+No file tlb1233.aux.
+\openout1 = `tlb1233.aux'.
+
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 32.
+LaTeX Font Info:    ... okay on input line 32.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 32.
+LaTeX Font Info:    ... okay on input line 32.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 32.
+LaTeX Font Info:    ... okay on input line 32.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 32.
+LaTeX Font Info:    ... okay on input line 32.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 32.
+LaTeX Font Info:    ... okay on input line 32.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 32.
+LaTeX Font Info:    ... okay on input line 32.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 32.
+LaTeX Font Info:    ... okay on input line 32.
+TIMO
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <7> on input line 43.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <5> on input line 43.
+
+Completed box being shipped out [1]
+\vbox(633.0+0.0)x407.0
+.\glue 16.0
+.\vbox(617.0+0.0)x345.0, shifted 62.0
+..\vbox(12.0+0.0)x345.0, glue set 12.0fil
+...\glue 0.0 plus 1.0fil
+...\hbox(0.0+0.0)x345.0
+....\hbox(0.0+0.0)x345.0
+..\glue 25.0
+..\glue(\lineskip) 0.0
+..\vbox(550.0+0.0)x345.0, glue set 517.44534fil
+...\write-{}
+...\glue(\topskip) 2.50183
+...\hbox(7.49817+2.49939)x345.0, glue set 189.6802fil
+....\hbox(0.0+0.0)x15.0
+....\OT1/cmr/m/n/10 S
+....\OT1/cmr/m/n/10 o
+....\OT1/cmr/m/n/10 m
+....\OT1/cmr/m/n/10 e
+....\glue 3.33333 plus 1.66666 minus 1.11111
+....\OT1/cmr/m/n/10 o
+....\kern0.27779
+....\OT1/cmr/m/n/10 o
+....\OT1/cmr/m/n/10 a
+....\OT1/cmr/m/n/10 l
+....\OT1/cmr/m/n/10 i
+....\OT1/cmr/m/n/10 g
+....\OT1/cmr/m/n/10 n
+....\OT1/cmr/m/n/10 s
+....\OT1/cmr/m/n/10 :
+....\glue 4.44444 plus 3.33331 minus 0.55556
+....\kern 0.27779 (for accent)
+....\OT1/cmr/m/n/10 ^^X
+....\kern -4.72223 (for accent)
+....\OT1/cmr/m/n/10 a
+....\glue 3.33333 plus 1.66666 minus 1.11111
+....\vbox(4.60689+2.49939)x11.1084
+.....\hbox(4.60689+0.0)x11.1084
+......\glue(\tabskip) 0.0
+......\hbox(4.60689+0.0)x11.1084, glue set 3.0542fil
+.......\glue 0.0 plus 1.0fil
+.......\hbox(4.30554+0.0)x5.00002, shifted -0.30135
+........\OT1/cmr/m/n/10 a
+.......\glue 0.0 plus 1.0fil
+......\glue(\tabskip) 0.0
+.....\glue(\baselineskip) -7.49817
+.....\hbox(7.49817+2.49939)x11.1084
+......\glue(\tabskip) 0.0
+......\hbox(7.49817+2.49939)x11.1084
+.......\TS1/cmr/m/n/10 O
+......\glue(\tabskip) 0.0
+....\glue 3.33333 plus 1.66666 minus 1.11111
+....\TS1/cmr/m/n/10 �
+....\glue 3.33333 plus 1.66666 minus 1.11111
+....\kern 0.27771 (for accent)
+....\T1/cmr/m/n/10
+....\kern -4.72107 (for accent)
+....\T1/cmr/m/n/10 a
+....\glue 3.33252 plus 1.66626 minus 1.11084
+....\vbox(4.60585+2.49939)x11.1084
+.....\hbox(4.60585+0.0)x11.1084
+......\glue(\tabskip) 0.0
+......\hbox(4.60585+0.0)x11.1084, glue set 3.05481fil
+.......\glue 0.0 plus 1.0fil
+.......\hbox(4.3045+0.0)x4.99878, shifted -0.30135
+........\T1/cmr/m/n/10 a
+.......\glue 0.0 plus 1.0fil
+......\glue(\tabskip) 0.0
+.....\glue(\baselineskip) -7.49817
+.....\hbox(7.49817+2.49939)x11.1084
+......\glue(\tabskip) 0.0
+......\hbox(7.49817+2.49939)x11.1084
+.......\TS1/cmr/m/n/10 O
+......\glue(\tabskip) 0.0
+....\glue 3.33252 plus 1.66626 minus 1.11084
+....\TS1/cmr/m/n/10 �
+....\penalty 10000
+....\glue(\parfillskip) 0.0 plus 1.0fil
+....\glue(\rightskip) 0.0
+...\glue(\parskip) 0.0 plus 1.0
+...\glue(\parskip) 0.0
+...\glue(\lineskip) 1.0
+...\hbox(14.5+9.5)x345.0, glue set 272.73326fil
+....\hbox(0.0+0.0)x15.0
+....\T1/cmr/m/n/10 A
+....\glue 3.33252 plus 1.66458 minus 1.11194
+....\T1/cmr/m/n/10 t
+....\T1/cmr/m/n/10 a
+....\T1/cmr/m/n/10 b
+....\T1/cmr/m/n/10 l
+....\T1/cmr/m/n/10 e
+....\T1/cmr/m/n/10 :
+....\glue 4.44336 plus 3.33252 minus 0.55542
+....\hbox(14.5+9.5)x17.55421
+.....\vbox(14.5+9.5)x17.55421
+......\hbox(8.39996+3.60004)x17.55421
+.......\glue(\tabskip) 0.0
+.......\hbox(8.39996+3.60004)x17.55421, glue set 0.27771fil
+........\rule(8.39996+3.60004)x0.0
+........\glue 6.0
+........\glue 0.0 plus 1.0fil
+........\glue 0.00002
+........\T1/cmr/m/n/10 a
+........\glue 0.0 plus 1.0fil
+........\glue 6.0
+.......\glue(\tabskip) 0.0
+......\glue(\lineskip) 0.0
+......\hbox(8.39996+3.60004)x17.55421
+.......\glue(\tabskip) 0.0
+.......\hbox(8.39996+3.60004)x17.55421
+........\rule(8.39996+3.60004)x0.0
+........\glue 6.0
+........\glue 0.0 plus 1.0fil
+........\glue 0.00002
+........\T1/cmr/m/n/10 b
+........\glue 0.0 plus 1.0fil
+........\glue 6.0
+.......\glue(\tabskip) 0.0
+....\penalty 10000
+....\glue(\parfillskip) 0.0 plus 1.0fil
+....\glue(\rightskip) 0.0
+...\glue -5.0
+...\glue 0.0 plus 1.0fil
+...\glue 0.0
+...\glue 0.0 plus 0.0001fil
+..\glue(\baselineskip) 23.55556
+..\hbox(6.44444+0.0)x345.0
+...\hbox(6.44444+0.0)x345.0, glue set 170.0fil
+....\glue 0.0 plus 1.0fil
+....\OT1/cmr/m/n/10 1
+....\glue 0.0 plus 1.0fil
+
+
+ (tlb1233.aux)
+END-TEST-LOG
+ )
+
+Output written on tlb1233.dvi (1 page, 468 bytes).

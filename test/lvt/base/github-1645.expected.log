@@ -1,0 +1,237 @@
+entering extended mode
+(github-1645.lvt
+LaTeX2e <2026-11-01>
+L3 programming layer <2026-09-09>
+(article.cls
+Document Class: article 2026-06-04 v1.4n Standard LaTeX document class
+(size10.clo
+File: size10.clo 2026-06-04 v1.4n Standard LaTeX file (size option)
+)
+\c@part=\count276
+\c@section=\count277
+\c@subsection=\count278
+\c@subsubsection=\count279
+\c@paragraph=\count280
+\c@subparagraph=\count281
+\c@figure=\count282
+\c@table=\count283
+\abovecaptionskip=\skip49
+\belowcaptionskip=\skip50
+\bibindent=\dimen150
+) (fltrace.sty
+Package: fltrace 2025/08/22 v1.4z Tracing LaTeX floats algorithm (FMi)
+Applying: [2015/01/01] float order in 2-column on input line 279.
+Already applied: [0000/00/00] float order in 2-column on input line 295.
+Applying: [2025/06/01] float order in 2-column on input line 395.
+Already applied: [2015/01/01] float order in 2-column on input line 498.
+Already applied: [0000/00/00] float order in 2-column on input line 600.
+Applying: [2025/06/01] float order in 2-column on input line 722.
+Already applied: [2015/01/01] float order in 2-column on input line 775.
+Already applied: [0000/00/00] float order in 2-column on input line 827.
+Applying: [2015/01/01] float order in 2-column on input line 893.
+Already applied: [0000/00/00] float order in 2-column on input line 981.
+Applying: [2015/01/01] trace float vals on input line 1081.
+Already applied: [0000/00/00] trace float vals on input line 1108.
+Applying: [2025/06/01] float placement calculation on input line 1212.
+Already applied: [0000/00/00] float placement calculation on input line 1249.
+Applying: [2017/01/01] negative height floats on input line 1286.
+Already applied: [0000/00/00] negative height floats on input line 1301.
+Applying: [2025/06/01] Use new mark mechanism on input line 1317.
+Already applied: [2015/01/01] 2 column marks on input line 1346.
+Already applied: [0000/00/00] 2 column marks on input line 1387.
+) (test2e.tex
+OMIT
+TIMO
+(expl3.sty
+Package: expl3 2026-09-09 L3 programming layer (loader)
+ (l3backend-dvips.def
+File: l3backend-dvips.def 2026-09-09 L3 backend support: dvips
+\l__pdfannot_backend_content_box=\box53
+\l__pdfannot_backend_model_box=\box54
+\g__pdfannot_backend_int=\count284
+\g__pdfannot_backend_link_int=\count285
+\g__pdfannot_backend_link_sf_int=\count286
+)))
+No file github-1645.aux.
+\openout1 = `github-1645.aux'.
+
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 13.
+LaTeX Font Info:    ... okay on input line 13.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 13.
+LaTeX Font Info:    ... okay on input line 13.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 13.
+LaTeX Font Info:    ... okay on input line 13.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 13.
+LaTeX Font Info:    ... okay on input line 13.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 13.
+LaTeX Font Info:    ... okay on input line 13.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 13.
+LaTeX Font Info:    ... okay on input line 13.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 13.
+LaTeX Font Info:    ... okay on input line 13.
+START-TEST-LOG
+
+This is a generated file for the LaTeX2e validation system.
+
+Don't change this file in any respect.
+
+LaTeX2e: ***Float placement parameters:
+LaTeX2e: \@colnum = 3
+LaTeX2e: \@colroom = 550.0pt
+LaTeX2e: \@topnum = 2
+LaTeX2e: \@toproom = 384.99832pt
+LaTeX2e: \@botnum = 1
+LaTeX2e: \@botroom = 384.99832pt
+LaTeX2e: \@fpmin = 275.0pt
+LaTeX2e: \textfraction= .2
+LaTeX2e: \@dbltopnum = 2
+LaTeX2e: \@dbltoproom = 384.99832pt
+LaTeX2e: \textfraction= .2
+LaTeX2e: toplist:
+LaTeX2e: botlist:
+LaTeX2e: midlist:
+LaTeX2e: deferlist:
+LaTeX2e: dbltoplist:
+LaTeX2e: ***Start addtocurcol
+LaTeX2e: (mod 32) fpstype: 19
+LaTeX2e: (mult of 32) currtype: 32
+LaTeX2e: ORD float
+LaTeX2e: fpstype: 19(flsettextmin)
+LaTeX2e: ORD textmin = 109.99832pt
+LaTeX2e: textfloatsheight (before) = 0.0pt
+LaTeX2e: textmin + textfloatsheight: 109.99832pt
+LaTeX2e: page-so-far: 286.0pt
+LaTeX2e: float size = 227.62204pt(addtocurcol)
+LaTeX2e: colroom = 550.0pt(addtocurcol)
+LaTeX2e: reqcolroom = 513.62204pt(addtocurcol)
+LaTeX2e: fpstype: 19(flsetnum \@colnum)
+LaTeX2e: \@colnum  (before) = 3
+LaTeX2e: \@currbox single column float -- ok
+LaTeX2e: deferlist: : (addtocurcol-before)
+LaTeX2e: botlist: : (addtocurcol-before)
+LaTeX2e: fpstype OK here: 19
+LaTeX2e: Fail---no room at 2nd test of colroom (addtocorcol \intextsep)
+LaTeX2e: not here: sent to addtotoporbot
+LaTeX2e: ***Start addtotoporbot
+LaTeX2e: fpstype OK top: 19
+LaTeX2e: fpstype: 19(flsetnum \@topnum)
+LaTeX2e: \@topnum  (before) = 2
+LaTeX2e: colroom = 550.0pt(flcheckspace \@toproom \@toplist)
+LaTeX2e: reqcolroom = 533.62204pt(flcheckspace \@toproom \@toplist)
+LaTeX2e: Space OK: \@toproom  = 384.99832pt > 227.62204pt(flcheckspace \@toproom \@toplist)
+LaTeX2e: (mid+bot)list: , : (addtotoporbot-before)
+LaTeX2e: colroom (after-top) = 302.37796pt
+LaTeX2e: colnum (after-top) = 2
+LaTeX2e: topnum (after-top) = 1
+LaTeX2e: ***Success: top
+[1
+
+]
+LaTeX2e: PAGE: one column (float? see above) page completed
+[2]
+LaTeX2e: PAGE: one column (float? see above) page completed
+LaTeX2e: ***Start addtocurcol
+LaTeX2e: (mod 32) fpstype: 21
+LaTeX2e: (mult of 32) currtype: 32
+LaTeX2e: ORD float
+LaTeX2e: fpstype: 21(flsettextmin)
+LaTeX2e: ORD textmin = 109.99832pt
+LaTeX2e: textfloatsheight (before) = 0.0pt
+LaTeX2e: textmin + textfloatsheight: 109.99832pt
+LaTeX2e: page-so-far: 286.0pt
+LaTeX2e: float size = 227.62204pt(addtocurcol)
+LaTeX2e: colroom = 550.0pt(addtocurcol)
+LaTeX2e: reqcolroom = 513.62204pt(addtocurcol)
+LaTeX2e: fpstype: 21(flsetnum \@colnum)
+LaTeX2e: \@colnum  (before) = 3
+LaTeX2e: \@currbox single column float -- ok
+LaTeX2e: deferlist: : (addtocurcol-before)
+LaTeX2e: botlist: : (addtocurcol-before)
+LaTeX2e: fpstype OK here: 21
+LaTeX2e: Fail---no room at 2nd test of colroom (addtocorcol \intextsep)
+LaTeX2e: not here: sent to addtotoporbot
+LaTeX2e: ***Start addtotoporbot
+LaTeX2e: fpstype not top: 21
+LaTeX2e: sent to addtobot (addtotoporbot)
+LaTeX2e: ***Start addtobot
+LaTeX2e: fpstype OK bot: 21
+LaTeX2e: fpstype: 21(flsetnum \@botnum)
+LaTeX2e: \@botnum  (before) = 1
+LaTeX2e: colroom = 550.0pt(flcheckspace \@botroom \@botlist)
+LaTeX2e: reqcolroom = 533.62204pt(flcheckspace \@botroom \@botlist)
+LaTeX2e: Space OK: \@botroom  = 384.99832pt > 227.62204pt(flcheckspace \@botroom \@botlist)
+LaTeX2e: colroom (after-bot) = 302.37796pt
+LaTeX2e: colnum (after-bot) = 2
+LaTeX2e: botnum (after-bot) = 0
+LaTeX2e: ***Success: bot
+[3]
+LaTeX2e: PAGE: one column (float? see above) page completed
+[4]
+LaTeX2e: PAGE: one column (float? see above) page completed
+LaTeX2e: ***Float placement parameters:
+LaTeX2e: \@colnum = 3
+LaTeX2e: \@colroom = 550.0pt
+LaTeX2e: \@topnum = 2
+LaTeX2e: \@toproom = 109.99832pt
+LaTeX2e: \@botnum = 1
+LaTeX2e: \@botroom = 384.99832pt
+LaTeX2e: \@fpmin = 275.0pt
+LaTeX2e: \textfraction= .2
+LaTeX2e: \@dbltopnum = 2
+LaTeX2e: \@dbltoproom = 384.99832pt
+LaTeX2e: \textfraction= .2
+LaTeX2e: toplist:
+LaTeX2e: botlist:
+LaTeX2e: midlist:
+LaTeX2e: deferlist:
+LaTeX2e: dbltoplist:
+LaTeX2e: ***Start addtocurcol
+LaTeX2e: (mod 32) fpstype: 23
+LaTeX2e: (mult of 32) currtype: 32
+LaTeX2e: ORD float
+LaTeX2e: fpstype: 23(flsettextmin)
+LaTeX2e: ORD textmin = 109.99832pt
+LaTeX2e: textfloatsheight (before) = 0.0pt
+LaTeX2e: textmin + textfloatsheight: 109.99832pt
+LaTeX2e: page-so-far: 286.0pt
+LaTeX2e: float size = 227.62204pt(addtocurcol)
+LaTeX2e: colroom = 550.0pt(addtocurcol)
+LaTeX2e: reqcolroom = 513.62204pt(addtocurcol)
+LaTeX2e: fpstype: 23(flsetnum \@colnum)
+LaTeX2e: \@colnum  (before) = 3
+LaTeX2e: \@currbox single column float -- ok
+LaTeX2e: deferlist: : (addtocurcol-before)
+LaTeX2e: botlist: : (addtocurcol-before)
+LaTeX2e: fpstype OK here: 23
+LaTeX2e: Fail---no room at 2nd test of colroom (addtocorcol \intextsep)
+LaTeX2e: not here: sent to addtotoporbot
+LaTeX2e: ***Start addtotoporbot
+LaTeX2e: fpstype OK top: 23
+LaTeX2e: fpstype: 23(flsetnum \@topnum)
+LaTeX2e: \@topnum  (before) = 2
+LaTeX2e: colroom = 550.0pt(flcheckspace \@toproom \@toplist)
+LaTeX2e: reqcolroom = 533.62204pt(flcheckspace \@toproom \@toplist)
+LaTeX2e: fpstype: 23(flcheckspace \@toproom \@toplist)
+LaTeX2e: Fail---no room (flcheckspace \@toproom \@toplist) (fpstype 23=ORD?):
+LaTeX2e:     \@toproom  = 109.99832pt. Ht float: 227.62204pt ORD?
+LaTeX2e: sent to addtobot (addtotoporbot)
+LaTeX2e: ***Start addtobot
+LaTeX2e: fpstype OK bot: 23
+LaTeX2e: fpstype: 23(flsetnum \@botnum)
+LaTeX2e: \@botnum  (before) = 1
+LaTeX2e: colroom = 550.0pt(flcheckspace \@botroom \@botlist)
+LaTeX2e: reqcolroom = 533.62204pt(flcheckspace \@botroom \@botlist)
+LaTeX2e: Space OK: \@botroom  = 384.99832pt > 227.62204pt(flcheckspace \@botroom \@botlist)
+LaTeX2e: colroom (after-bot) = 302.37796pt
+LaTeX2e: colnum (after-bot) = 2
+LaTeX2e: botnum (after-bot) = 0
+LaTeX2e: ***Success: bot
+[5]
+LaTeX2e: PAGE: one column (float? see above) page completed
+[6]
+LaTeX2e: PAGE: one column (float? see above) page completed
+(github-1645.aux)
+END-TEST-LOG
+ )
+
+Output written on github-1645.dvi (6 pages, 2348 bytes).

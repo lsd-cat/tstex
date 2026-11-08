@@ -1,0 +1,321 @@
+entering extended mode
+(tlb0230.lvt
+LaTeX2e <2026-11-01>
+L3 programming layer <2026-09-09>
+(test2e.tex
+OMIT
+TIMO
+(expl3.sty
+Package: expl3 2026-09-09 L3 programming layer (loader)
+ (l3backend-dvips.def
+File: l3backend-dvips.def 2026-09-09 L3 backend support: dvips
+\l__pdfannot_backend_content_box=\box53
+\l__pdfannot_backend_model_box=\box54
+\g__pdfannot_backend_int=\count276
+\g__pdfannot_backend_link_int=\count277
+\g__pdfannot_backend_link_sf_int=\count278
+))) (latex209.def
+File: latex209.def 2020/11/26 v0.55 Standard LaTeX file
+
+
+          Entering LaTeX 2.09 COMPATIBILITY MODE
+ *************************************************************
+    !!WARNING!!    !!WARNING!!    !!WARNING!!    !!WARNING!!
+
+ This mode attempts to provide an emulation of the LaTeX 2.09
+ author environment so that OLD documents can be successfully
+ processed. It should NOT be used for NEW documents!
+
+ New documents should use Standard LaTeX conventions and start
+ with the \documentclass command.
+
+ Compatibility mode is UNLIKELY TO WORK with LaTeX 2.09 style
+ files that change any internal macros, especially not with
+ those that change the FONT SELECTION or OUTPUT ROUTINES.
+
+ Therefore such style files MUST BE UPDATED to use
+          Current Standard LaTeX: LaTeX2e.
+ If you suspect that you may be using such a style file, which
+ is probably very, very old by now, then you should attempt to
+ get it updated by sending a copy of this error message to the
+ author of that file.
+ *************************************************************
+
+\footheight=\dimen150
+\@maxsep=\dimen151
+\@dblmaxsep=\dimen152
+\@cla=\count279
+\@clb=\count280
+\mscount=\count281
+(tracefnt.sty
+Package: tracefnt 2020/12/22 v3.0n Standard LaTeX package (font tracing)
+\tracingfonts=\count282
+LaTeX Info: Redefining \selectfont on input line 107.
+Applying: [2021/06/01] Add hook to \selectfont  on input line 142.
+Already applied: [0000/00/00] Add hook to \selectfont  on input line 145.
+)
+\symbold=\mathgroup4
+\symsans=\mathgroup5
+\symtypewriter=\mathgroup6
+\symitalic=\mathgroup7
+\symsmallcaps=\mathgroup8
+\symslanted=\mathgroup9
+LaTeX Font Info:    Redeclaring math alphabet \mathbf on input line 280.
+LaTeX Font Info:    Redeclaring math alphabet \mathsf on input line 281.
+LaTeX Font Info:    Redeclaring math alphabet \mathtt on input line 282.
+LaTeX Font Info:    Redeclaring math alphabet \mathit on input line 288.
+LaTeX Info: Redefining \em on input line 298.
+ (latexsym.sty
+Package: latexsym 1998/08/17 v2.2e Standard LaTeX package (lasy symbols)
+\symlasy=\mathgroup10
+LaTeX Font Info:    Overwriting symbol font `lasy' in version `bold'
+(Font)                  U/lasy/m/n --> U/lasy/b/n on input line 52.
+)
+LaTeX Font Info:    Redeclaring math delimiter \lgroup on input line 344.
+LaTeX Font Info:    Redeclaring math delimiter \rgroup on input line 346.
+LaTeX Font Info:    Redeclaring math delimiter \bracevert on input line 348.
+) (article.cls
+Document Class: article 2026-06-04 v1.4n Standard LaTeX document class
+(size10.clo
+File: size10.clo 2026-06-04 v1.4n Standard LaTeX file (size option)
+)
+\c@part=\count283
+\c@section=\count284
+\c@subsection=\count285
+\c@subsubsection=\count286
+\c@paragraph=\count287
+\c@subparagraph=\count288
+\c@figure=\count289
+\c@table=\count290
+\abovecaptionskip=\skip49
+\belowcaptionskip=\skip50
+Compatibility mode: definition of \rm ignored.
+Compatibility mode: definition of \sf ignored.
+Compatibility mode: definition of \tt ignored.
+Compatibility mode: definition of \bf ignored.
+Compatibility mode: definition of \it ignored.
+Compatibility mode: definition of \sl ignored.
+Compatibility mode: definition of \sc ignored.
+LaTeX Info: Redefining \cal on input line 497.
+LaTeX Info: Redefining \mit on input line 498.
+\bibindent=\dimen153
+)
+START-TEST-LOG
+
+This is a generated file for the LaTeX2e validation system.
+
+Don't change this file in any respect.
+
+Author: Jonathan I. Kamens
+Format: LaTeX2e<1993/06/01>
+OMIT
+
+LaTeX Warning: Declared format LaTeX2e<1993/06/01>,
+Actual format LaTeX2e<2026-11-01> on input line 33.
+
+TIMO
+Main Style: article
+Style Options: twocolumn
+OMIT
+No file tlb0230.aux.
+\openout1 = `tlb0230.aux'.
+
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 46.
+LaTeX Font Info:    ... okay on input line 46.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 46.
+LaTeX Font Info:    ... okay on input line 46.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 46.
+LaTeX Font Info:    ... okay on input line 46.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 46.
+LaTeX Font Info:    ... okay on input line 46.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 46.
+LaTeX Font Info:    ... okay on input line 46.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 46.
+LaTeX Font Info:    ... okay on input line 46.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 46.
+LaTeX Font Info:    ... okay on input line 46.
+TIMO
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <17.28> on input line 52.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <12> on input line 52.
+LaTeX Font Info:    Trying to load font information for U+lasy on input line 52.
+(ulasy.fd
+File: ulasy.fd 1998/08/17 v2.2e LaTeX symbol font definitions
+)
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <8> on input line 52.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <6> on input line 52.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <5> on input line 52.
+
+
+Completed box being shipped out [1]
+\vbox(620.0+0.0)x440.0
+.\glue 27.0
+.\vbox(593.0+0.0)x410.0, shifted 30.0
+..\vbox(12.0+0.0)x410.0, glue set 12.0fil
+...\glue 0.0 plus 1.0fil
+...\hbox(0.0+0.0)x410.0
+....\hbox(0.0+0.0)x410.0
+..\glue 25.0
+..\glue(\lineskip) 0.0
+..\vbox(526.0+0.0)x410.0
+...\vbox(101.86674+0.0)x410.0
+....\vbox(101.86674+0.0)x410.0
+.....\glue 0.0 plus 1.0fil
+.....\penalty -10000
+.....\hbox(0.0+0.0)x0.0
+.....\glue 20.00003
+.....\glue -20.00003
+.....\penalty -51
+.....\glue 20.00003
+.....\glue(\parskip) 0.0
+.....\glue(\parskip) 0.0
+.....\glue(\baselineskip) 10.0
+.....\hbox(12.0+0.0)x410.0, glue set 180.88846fil
+......\glue(\leftskip) 0.0 plus 1.0fil
+......\hbox(0.0+0.0)x0.0
+.......\glue 0.0
+.......\glue 0.0
+.......\glue -5.0
+.......\hbox(0.0+0.0)x0.0
+.......\glue 5.0
+......\penalty 0
+......\OT1/cmr/m/n/17.28 F
+......\kern-1.35416
+......\OT1/cmr/m/n/17.28 o
+......\kern0.45139
+......\OT1/cmr/m/n/17.28 o
+......\OT1/cmr/m/n/17.28 b
+......\OT1/cmr/m/n/17.28 a
+......\OT1/cmr/m/n/17.28 r
+......\hbox(11.85411+0.0)x0.0, glue set - 6.50002fil
+.......\mathon
+.......\hbox(5.58334+0.0)x6.50002, shifted -6.27077
+........\OMS/cmsy/m/n/12 ^^C
+.......\mathoff
+.......\glue 0.0 plus 1.0fil minus 1.0fil
+......\penalty 10000
+......\glue(\parfillskip) 0.0
+......\glue(\rightskip) 0.0 plus 1.0fil
+.....\glue 15.00002
+.....\glue(\parskip) 0.0
+.....\glue(\parskip) 0.0
+.....\glue(\baselineskip) 4.20004
+.....\hbox(9.79996+4.20004)x410.0, glue set 189.29106fil
+......\glue(\leftskip) 0.0 plus 1.0fil
+......\hbox(0.0+0.0)x0.0
+......\hbox(9.79996+4.20004)x31.41788
+.......\vbox(9.79996+4.20004)x31.41788
+........\hbox(9.79996+4.20004)x31.41788
+.........\glue(\tabskip) 0.0
+.........\hbox(9.79996+4.20004)x31.41788
+..........\rule(9.79996+4.20004)x0.0
+..........\glue 6.0
+..........\glue 0.0 plus 1.0fil
+..........\glue 0.00002
+..........\OT1/cmr/m/n/12 B
+..........\OT1/cmr/m/n/12 a
+..........\OT1/cmr/m/n/12 z
+..........\glue 0.0 plus 1.0fil
+..........\glue 6.0
+.........\glue(\tabskip) 0.0
+......\penalty 10000
+......\glue(\parfillskip) 0.0
+......\glue(\rightskip) 0.0 plus 1.0fil
+.....\glue 10.00002
+.....\glue(\parskip) 0.0
+.....\glue(\parskip) 0.0
+.....\glue(\lineskip) 1.0
+.....\hbox(8.33331+2.33331)x410.0, glue set 165.50945fil
+......\glue(\leftskip) 0.0 plus 1.0fil
+......\hbox(0.0+0.0)x0.0
+......\OT1/cmr/m/n/12 M
+......\OT1/cmr/m/n/12 a
+......\OT1/cmr/m/n/12 r
+......\OT1/cmr/m/n/12 c
+......\kern-0.32639
+......\OT1/cmr/m/n/12 h
+......\glue 3.91663 plus 1.95831 minus 1.30554
+......\OT1/cmr/m/n/12 3
+......\OT1/cmr/m/n/12 1
+......\OT1/cmr/m/n/12 ,
+......\glue 3.91663 plus 2.44789 minus 1.04443
+......\OT1/cmr/m/n/12 1
+......\OT1/cmr/m/n/12 9
+......\OT1/cmr/m/n/12 9
+......\OT1/cmr/m/n/12 8
+......\penalty 10000
+......\glue(\parfillskip) 0.0
+......\glue(\rightskip) 0.0 plus 1.0fil
+.....\penalty -51
+.....\glue 10.0 plus 3.0 minus 5.0
+.....\glue 15.00002
+.....\glue -20.0 plus -2.0 minus -4.0
+...\glue 12.0 plus 2.0 minus 2.0
+...\glue -12.0 plus -2.0 minus -2.0
+...\glue 20.0 plus 2.0 minus 4.0
+...\hbox(404.13326+0.0)x410.0, glue set 5.0fil
+....\hbox(404.13326+0.0)x200.0
+.....\vbox(404.13326+0.0)x200.0, glue set 378.48326fil
+......\mark{{}{}}
+......\marks1{\__mark_value:nn {2.09-compat}{}}
+......\marks2{\__mark_value:nn {2.09-compat}{}}
+......\marks3{\__mark_value:nn {2.09-compat}{}}
+......\write-{}
+......\write-{}
+......\glue(\topskip) 10.0
+......\hbox(0.0+0.0)x0.0
+......\glue 0.0 plus 1.0fil
+......\glue 9.0 plus 4.0 minus 2.0
+......\kern -3.0
+......\rule(0.4+0.0)x79.99878
+......\kern 2.6
+......\hbox(6.65+2.85002)x200.0, glue set 169.34538fil
+.......\hbox(5.615+0.0)x15.30023, glue set 10.96692fil
+........\glue 0.0 plus 1.0fil minus 1.0fil
+........\mathon
+........\hbox(2.79167+0.0)x4.33331, shifted -2.82333
+.........\OMS/cmsy/m/n/6 ^^C
+........\mathoff
+.......\hbox(6.65+0.0)x0.0
+........\rule(6.65+0.0)x0.0
+.......\OT1/cmr/m/n/8 f
+.......\OT1/cmr/m/n/8 r
+.......\OT1/cmr/m/n/8 e
+.......\OT1/cmr/m/n/8 l
+.......\OT1/cmr/m/n/8 t
+.......\rule(6.64996+2.85002)x0.0
+.......\penalty 10000
+.......\glue(\parfillskip) 0.0 plus 1.0fil
+.......\glue(\rightskip) 0.0
+......\glue -2.85002
+.....\glue 0.0 plus 1.0fil minus 1.0fil
+....\glue 0.0 plus 1.0fil
+....\rule(*+*)x0.0
+....\glue 0.0 plus 1.0fil
+....\hbox(404.13326+0.0)x200.0, glue set 200.0fil
+.....\vbox(404.13326+0.0)x0.0, glue set 394.13326fil
+......\write-{}
+......\glue(\topskip) 10.0
+......\vbox(0.0+0.0)x0.0
+......\glue 0.0 plus 1.0fil
+......\glue 0.0
+.....\glue 0.0 plus 1.0fil minus 1.0fil
+..\glue(\baselineskip) 23.55556
+..\hbox(6.44444+0.0)x410.0
+...\hbox(6.44444+0.0)x410.0, glue set 202.5fil
+....\glue 0.0 plus 1.0fil
+....\OT1/cmr/m/n/10 1
+....\glue 0.0 plus 1.0fil
+
+
+
+
+(tlb0230.aux)
+END-TEST-LOG
+ )
+
+Output written on tlb0230.dvi (1 page, 572 bytes).

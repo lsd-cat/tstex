@@ -1,0 +1,215 @@
+entering extended mode
+(tlb-commaaccent-001.lvt
+LaTeX2e <2026-11-01>
+L3 programming layer <2026-09-09>
+(article.cls
+Document Class: article 2026-06-04 v1.4n Standard LaTeX document class
+(size10.clo
+File: size10.clo 2026-06-04 v1.4n Standard LaTeX file (size option)
+)
+\c@part=\count276
+\c@section=\count277
+\c@subsection=\count278
+\c@subsubsection=\count279
+\c@paragraph=\count280
+\c@subparagraph=\count281
+\c@figure=\count282
+\c@table=\count283
+\abovecaptionskip=\skip49
+\belowcaptionskip=\skip50
+\bibindent=\dimen150
+) (fontenc.sty
+Package: fontenc 2026-07-31 v2.2a Standard LaTeX package
+) (test2e.tex
+OMIT
+TIMO
+(expl3.sty
+Package: expl3 2026-09-09 L3 programming layer (loader)
+ (l3backend-dvips.def
+File: l3backend-dvips.def 2026-09-09 L3 backend support: dvips
+\l__pdfannot_backend_content_box=\box53
+\l__pdfannot_backend_model_box=\box54
+\g__pdfannot_backend_int=\count284
+\g__pdfannot_backend_link_int=\count285
+\g__pdfannot_backend_link_sf_int=\count286
+)))
+No file tlb-commaaccent-001.aux.
+\openout1 = `tlb-commaaccent-001.aux'.
+
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 8.
+LaTeX Font Info:    ... okay on input line 8.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 8.
+LaTeX Font Info:    ... okay on input line 8.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 8.
+LaTeX Font Info:    ... okay on input line 8.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 8.
+LaTeX Font Info:    ... okay on input line 8.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 8.
+LaTeX Font Info:    ... okay on input line 8.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 8.
+LaTeX Font Info:    ... okay on input line 8.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 8.
+LaTeX Font Info:    ... okay on input line 8.
+START-TEST-LOG
+
+This is a generated file for the LaTeX2e validation system.
+
+Don't change this file in any respect.
+
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <7> on input line 15.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <5> on input line 15.
+> \box0=
+\vbox(18.48607+1.94397)x345.0
+.\hbox(6.48607+1.94444)x345.0, glue set 298.33327fil
+..\hbox(0.0+0.0)x15.0
+..\OT1/cmr/m/n/10 a
+..\OT1/cmr/m/n/10 a
+..\glue 3.33333 plus 1.66666 minus 1.11111
+..\vbox(6.48607+1.94444)x5.00002
+...\hbox(6.48607+0.0)x5.00002
+....\glue(\tabskip) 0.0
+....\hbox(6.48607+0.0)x5.00002, glue set 1001.49306fill
+.....\glue -1000.0 plus 1.0fill
+.....\hbox(3.47221+0.0)x2.01392, shifted -3.01385
+......\OT1/cmr/m/n/5 `
+.....\glue -1000.0 plus 1.0fill
+....\glue(\tabskip) 0.0
+...\glue(\baselineskip) -4.30554
+...\hbox(4.30554+1.94444)x5.00002
+....\glue(\tabskip) 0.0
+....\hbox(4.30554+1.94444)x5.00002
+.....\hbox(0.0+0.0)x0.0
+.....\OT1/cmr/m/n/10 g
+....\glue(\tabskip) 0.0
+..\glue 3.33333 plus 1.66666 minus 1.11111
+..\OT1/cmr/m/n/10 a
+..\OT1/cmr/m/n/10 a
+..\penalty 10000
+..\glue(\parfillskip) 0.0 plus 1.0fil
+..\glue(\rightskip) 0.0
+.\glue(\parskip) 0.0 plus 1.0
+.\glue(\parskip) 0.0
+.\glue(\baselineskip) 3.59882
+.\hbox(6.45674+1.94397)x345.0, glue set 298.34106fil
+..\hbox(0.0+0.0)x15.0
+..\T1/cmr/m/n/10 a
+..\T1/cmr/m/n/10 a
+..\glue 3.33252 plus 1.66626 minus 1.11084
+..\vbox(6.45674+1.94397)x4.99878
+...\hbox(6.45674+0.0)x4.99878
+....\glue(\tabskip) 0.0
+....\hbox(6.45674+0.0)x4.99878, glue set 1001.49269fill
+.....\glue -1000.0 plus 1.0fill
+.....\hbox(3.4436+0.0)x2.0134, shifted -3.01314
+......\T1/cmr/m/n/5 `
+.....\glue -1000.0 plus 1.0fill
+....\glue(\tabskip) 0.0
+...\glue(\baselineskip) -4.3045
+...\hbox(4.3045+1.94397)x4.99878
+....\glue(\tabskip) 0.0
+....\hbox(4.3045+1.94397)x4.99878
+.....\hbox(0.0+0.0)x0.0
+.....\T1/cmr/m/n/10 g
+....\glue(\tabskip) 0.0
+..\glue 3.33252 plus 1.66626 minus 1.11084
+..\T1/cmr/m/n/10 a
+..\T1/cmr/m/n/10 a
+..\penalty 10000
+..\glue(\parfillskip) 0.0 plus 1.0fil
+..\glue(\rightskip) 0.0
+
+! OK.
+l.21 \showbox0
+
+
+
+Completed box being shipped out [1]
+\vbox(633.0+0.0)x407.0
+.\glue 16.0
+.\vbox(617.0+0.0)x345.0, shifted 62.0
+..\vbox(12.0+0.0)x345.0, glue set 12.0fil
+...\glue 0.0 plus 1.0fil
+...\hbox(0.0+0.0)x345.0
+....\hbox(0.0+0.0)x345.0
+..\glue 25.0
+..\glue(\lineskip) 0.0
+..\vbox(550.0+0.0)x345.0, glue set 531.45717fil
+...\write-{}
+...\glue(\topskip) 0.0
+...\vbox(18.48607+1.94397)x345.0
+....\hbox(6.48607+1.94444)x345.0, glue set 298.33327fil
+.....\hbox(0.0+0.0)x15.0
+.....\OT1/cmr/m/n/10 a
+.....\OT1/cmr/m/n/10 a
+.....\glue 3.33333 plus 1.66666 minus 1.11111
+.....\vbox(6.48607+1.94444)x5.00002
+......\hbox(6.48607+0.0)x5.00002
+.......\glue(\tabskip) 0.0
+.......\hbox(6.48607+0.0)x5.00002, glue set 1001.49306fill
+........\glue -1000.0 plus 1.0fill
+........\hbox(3.47221+0.0)x2.01392, shifted -3.01385
+.........\OT1/cmr/m/n/5 `
+........\glue -1000.0 plus 1.0fill
+.......\glue(\tabskip) 0.0
+......\glue(\baselineskip) -4.30554
+......\hbox(4.30554+1.94444)x5.00002
+.......\glue(\tabskip) 0.0
+.......\hbox(4.30554+1.94444)x5.00002
+........\hbox(0.0+0.0)x0.0
+........\OT1/cmr/m/n/10 g
+.......\glue(\tabskip) 0.0
+.....\glue 3.33333 plus 1.66666 minus 1.11111
+.....\OT1/cmr/m/n/10 a
+.....\OT1/cmr/m/n/10 a
+.....\penalty 10000
+.....\glue(\parfillskip) 0.0 plus 1.0fil
+.....\glue(\rightskip) 0.0
+....\glue(\parskip) 0.0 plus 1.0
+....\glue(\parskip) 0.0
+....\glue(\baselineskip) 3.59882
+....\hbox(6.45674+1.94397)x345.0, glue set 298.34106fil
+.....\hbox(0.0+0.0)x15.0
+.....\T1/cmr/m/n/10 a
+.....\T1/cmr/m/n/10 a
+.....\glue 3.33252 plus 1.66626 minus 1.11084
+.....\vbox(6.45674+1.94397)x4.99878
+......\hbox(6.45674+0.0)x4.99878
+.......\glue(\tabskip) 0.0
+.......\hbox(6.45674+0.0)x4.99878, glue set 1001.49269fill
+........\glue -1000.0 plus 1.0fill
+........\hbox(3.4436+0.0)x2.0134, shifted -3.01314
+.........\T1/cmr/m/n/5 `
+........\glue -1000.0 plus 1.0fill
+.......\glue(\tabskip) 0.0
+......\glue(\baselineskip) -4.3045
+......\hbox(4.3045+1.94397)x4.99878
+.......\glue(\tabskip) 0.0
+.......\hbox(4.3045+1.94397)x4.99878
+........\hbox(0.0+0.0)x0.0
+........\T1/cmr/m/n/10 g
+.......\glue(\tabskip) 0.0
+.....\glue 3.33252 plus 1.66626 minus 1.11084
+.....\T1/cmr/m/n/10 a
+.....\T1/cmr/m/n/10 a
+.....\penalty 10000
+.....\glue(\parfillskip) 0.0 plus 1.0fil
+.....\glue(\rightskip) 0.0
+...\glue -1.94397
+...\glue 0.0 plus 1.0fil
+...\glue 0.0
+...\glue 0.0 plus 0.0001fil
+..\glue(\baselineskip) 23.55556
+..\hbox(6.44444+0.0)x345.0
+...\hbox(6.44444+0.0)x345.0, glue set 170.0fil
+....\glue 0.0 plus 1.0fil
+....\OT1/cmr/m/n/10 1
+....\glue 0.0 plus 1.0fil
+
+
+(tlb-commaaccent-001.aux)
+END-TEST-LOG
+ )
+
+Output written on tlb-commaaccent-001.dvi (1 page, 440 bytes).

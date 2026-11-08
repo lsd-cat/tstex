@@ -1,0 +1,181 @@
+entering extended mode
+(tlb0574.lvt
+LaTeX2e <2026-11-01>
+L3 programming layer <2026-09-09>
+(test2e.tex
+OMIT
+TIMO
+(expl3.sty
+Package: expl3 2026-09-09 L3 programming layer (loader)
+ (l3backend-dvips.def
+File: l3backend-dvips.def 2026-09-09 L3 backend support: dvips
+\l__pdfannot_backend_content_box=\box53
+\l__pdfannot_backend_model_box=\box54
+\g__pdfannot_backend_int=\count276
+\g__pdfannot_backend_link_int=\count277
+\g__pdfannot_backend_link_sf_int=\count278
+))) (article.cls
+Document Class: article 2026-06-04 v1.4n Standard LaTeX document class
+(size10.clo
+File: size10.clo 2026-06-04 v1.4n Standard LaTeX file (size option)
+)
+\c@part=\count279
+\c@section=\count280
+\c@subsection=\count281
+\c@subsubsection=\count282
+\c@paragraph=\count283
+\c@subparagraph=\count284
+\c@figure=\count285
+\c@table=\count286
+\abovecaptionskip=\skip49
+\belowcaptionskip=\skip50
+\bibindent=\dimen150
+)
+START-TEST-LOG
+
+This is a generated file for the LaTeX2e validation system.
+
+Don't change this file in any respect.
+
+Author: Alan Jeffrey
+Main Style: article
+OMIT
+No file tlb0574.aux.
+\openout1 = `tlb0574.aux'.
+
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 31.
+LaTeX Font Info:    ... okay on input line 31.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 31.
+LaTeX Font Info:    ... okay on input line 31.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 31.
+LaTeX Font Info:    ... okay on input line 31.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 31.
+LaTeX Font Info:    ... okay on input line 31.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 31.
+LaTeX Font Info:    ... okay on input line 31.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 31.
+LaTeX Font Info:    ... okay on input line 31.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 31.
+LaTeX Font Info:    ... okay on input line 31.
+TIMO
+No file tlb0574.toc.
+\tf@toc=\write3
+\openout3 = `tlb0574.toc'.
+
+
+Completed box being shipped out [1]
+\vbox(633.0+0.0)x407.0
+.\glue 16.0
+.\vbox(617.0+0.0)x345.0, shifted 62.0
+..\vbox(12.0+0.0)x345.0, glue set 12.0fil
+...\glue 0.0 plus 1.0fil
+...\hbox(0.0+0.0)x345.0
+....\hbox(0.0+0.0)x345.0
+..\glue 25.0
+..\glue(\lineskip) 0.0
+..\vbox(550.0+0.0)x345.0, glue set 469.07738fil
+...\write-{}
+...\glue(\topskip) 0.12001
+...\hbox(9.87999+0.0)x345.0, glue set 281.71843fil
+....\hbox(0.0+0.0)x0.0
+.....\glue 0.0
+....\OT1/cmr/bx/n/14.4 C
+....\OT1/cmr/bx/n/14.4 o
+....\OT1/cmr/bx/n/14.4 n
+....\kern-0.45001
+....\OT1/cmr/bx/n/14.4 t
+....\OT1/cmr/bx/n/14.4 e
+....\OT1/cmr/bx/n/14.4 n
+....\kern-0.45001
+....\OT1/cmr/bx/n/14.4 t
+....\OT1/cmr/bx/n/14.4 s
+....\penalty 10000
+....\glue(\parfillskip) 0.0 plus 1.0fil
+....\glue(\rightskip) 0.0
+...\penalty 10000
+...\glue 9.90276 plus 0.86108
+...\glue -9.90276 plus -0.86108
+...\penalty -300
+...\glue 9.90276 plus 0.86108
+...\glue -9.90276 plus -0.86108
+...\glue 15.0694 plus 4.30554 minus 0.86108
+...\glue(\parskip) 0.0 plus 1.0
+...\glue(\parskip) 0.0
+...\glue(\baselineskip) 8.00002
+...\hbox(9.99998+0.0)x345.0, glue set 241.46684fil
+....\hbox(9.27998+0.0)x24.29997
+.....\glue 0.0
+.....\OT1/cmr/bx/n/14.4 1
+.....\glue 16.19998
+....\OT1/cmr/bx/n/14.4 O
+....\OT1/cmr/bx/n/14.4 T
+....\OT1/cmr/bx/n/14.4 1
+....\glue 5.4 plus 2.7 minus 1.79999
+....\kern -1.8 (for accent)
+....\OT1/cmr/bx/n/14.4 ^^?
+....\kern -6.29999 (for accent)
+....\OT1/cmr/bx/n/14.4 ^^P
+....\glue 5.4 plus 2.7 minus 1.79999
+....\kern -1.8 (for accent)
+....\OT1/cmr/bx/n/14.4 ^^?
+....\kern -6.29999 (for accent)
+....\OT1/cmr/bx/n/14.4 ^^P
+....\OT1/cmr/bx/n/14.4 ^^?
+....\glue 5.4 plus 2.7 minus 1.79999
+....\kern -1.8 (for accent)
+....\OT1/cmr/bx/n/14.4 ^^?
+....\kern -6.29999 (for accent)
+....\OT1/cmr/bx/n/14.4 ^^P
+....\glue 5.4 plus 2.7 minus 1.79999
+....\kern -1.8 (for accent)
+....\OT1/cmr/bx/n/14.4 ^^?
+....\kern -6.29999 (for accent)
+....\OT1/cmr/bx/n/14.4 ^^P
+....\penalty 10000
+....\glue(\parfillskip) 0.0 plus 1.0fil
+....\glue(\rightskip) 0.0
+...\write1{\@writefile{toc}{\protect \contentsline {section}{\protect \numberline {1}OT1 \"{\i } \"\i \"{} \"{i} \"i}{\thepage }{}\protected@file@percent }}
+...\penalty 10000
+...\glue 9.90276 plus 0.86108
+...\glue(\parskip) 0.0 plus 1.0
+...\glue(\parskip) 0.0
+...\glue(\baselineskip) 8.06242
+...\hbox(9.93758+0.0)x345.0, glue set 252.16766fil
+....\hbox(9.20918+0.0)x23.75433
+.....\glue 0.0
+.....\T1/cmr/bx/n/14.4 2
+.....\glue 15.83623
+....\T1/cmr/bx/n/14.4 T
+....\T1/cmr/bx/n/14.4 1
+....\glue 5.27875 plus 2.63936 minus 1.75958
+....\T1/cmr/bx/n/14.4 �
+....\glue 5.27875 plus 2.63936 minus 1.75958
+....\T1/cmr/bx/n/14.4 �
+....\T1/cmr/bx/n/14.4 ^^D
+....\glue 5.27875 plus 2.63936 minus 1.75958
+....\T1/cmr/bx/n/14.4 �
+....\glue 5.27875 plus 2.63936 minus 1.75958
+....\T1/cmr/bx/n/14.4 �
+....\penalty 10000
+....\glue(\parfillskip) 0.0 plus 1.0fil
+....\glue(\rightskip) 0.0
+...\write1{\@writefile{toc}{\protect \contentsline {section}{\protect \numberline {2}T1 \"{\i } \"\i \"{} \"{i} \"i}{\thepage }{}\protected@file@percent }}
+...\penalty 10000
+...\penalty 10000
+...\glue 9.90036 plus 0.86089
+...\glue 0.0 plus 1.0fil
+...\glue 0.0
+...\glue 0.0 plus 0.0001fil
+..\glue(\baselineskip) 23.5849
+..\hbox(6.4151+0.0)x345.0
+...\hbox(6.4151+0.0)x345.0, glue set 170.00061fil
+....\glue 0.0 plus 1.0fil
+....\T1/cmr/m/n/10 1
+....\glue 0.0 plus 1.0fil
+
+
+ (tlb0574.aux)
+END-TEST-LOG
+ )
+
+Output written on tlb0574.dvi (1 page, 404 bytes).

@@ -1,0 +1,43 @@
+entering extended mode
+(tlb1873.lvt
+LaTeX2e <2026-11-01>
+L3 programming layer <2026-09-09>
+
+LaTeX Info: Writing file `./tlb1873a.sty'.
+
+\openout15 = `tlb1873a.sty'.
+
+
+
+LaTeX Info: Writing file `./tlb1873b.sty'.
+
+\openout15 = `tlb1873b.sty'.
+
+
+(test2e.tex
+OMIT
+TIMO
+(expl3.sty
+Package: expl3 2026-09-09 L3 programming layer (loader)
+ (l3backend-dvips.def
+File: l3backend-dvips.def 2026-09-09 L3 backend support: dvips
+\l__pdfannot_backend_content_box=\box53
+\l__pdfannot_backend_model_box=\box54
+\g__pdfannot_backend_int=\count276
+\g__pdfannot_backend_link_int=\count277
+\g__pdfannot_backend_link_sf_int=\count278
+)))
+Author: DPC
+START-TEST-LOG
+
+This is a generated file for the LaTeX2e validation system.
+
+Don't change this file in any respect.
+
+(tlb1873a.sty (tlb1873b.sty)
+optionA
+)
+END-TEST-LOG
+ )
+
+No pages of output.

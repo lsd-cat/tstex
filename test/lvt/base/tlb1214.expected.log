@@ -1,0 +1,710 @@
+entering extended mode
+(tlb1214.lvt
+LaTeX2e <2026-11-01>
+L3 programming layer <2026-09-09>
+(test2e.tex
+OMIT
+TIMO
+(expl3.sty
+Package: expl3 2026-09-09 L3 programming layer (loader)
+ (l3backend-dvips.def
+File: l3backend-dvips.def 2026-09-09 L3 backend support: dvips
+\l__pdfannot_backend_content_box=\box53
+\l__pdfannot_backend_model_box=\box54
+\g__pdfannot_backend_int=\count276
+\g__pdfannot_backend_link_int=\count277
+\g__pdfannot_backend_link_sf_int=\count278
+))) (article.cls
+Document Class: article 2026-06-04 v1.4n Standard LaTeX document class
+(size10.clo
+File: size10.clo 2026-06-04 v1.4n Standard LaTeX file (size option)
+)
+\c@part=\count279
+\c@section=\count280
+\c@subsection=\count281
+\c@subsubsection=\count282
+\c@paragraph=\count283
+\c@subparagraph=\count284
+\c@figure=\count285
+\c@table=\count286
+\abovecaptionskip=\skip49
+\belowcaptionskip=\skip50
+\bibindent=\dimen150
+)
+START-TEST-LOG
+
+This is a generated file for the LaTeX2e validation system.
+
+Don't change this file in any respect.
+
+Author: Alan Jeffrey
+Main Style: article
+OMIT
+(ot1cmr.fd
+File: ot1cmr.fd 2024/11/19 v2.5n Standard LaTeX font definitions
+) (ot1cmss.fd
+File: ot1cmss.fd 2024/11/19 v2.5n Standard LaTeX font definitions
+) (ot1cmtt.fd
+File: ot1cmtt.fd 2024/11/19 v2.5n Standard LaTeX font definitions
+)
+No file tlb1214.aux.
+\openout1 = `tlb1214.aux'.
+
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 37.
+LaTeX Font Info:    ... okay on input line 37.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 37.
+LaTeX Font Info:    ... okay on input line 37.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 37.
+LaTeX Font Info:    ... okay on input line 37.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 37.
+LaTeX Font Info:    ... okay on input line 37.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 37.
+LaTeX Font Info:    ... okay on input line 37.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 37.
+LaTeX Font Info:    ... okay on input line 37.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 37.
+LaTeX Font Info:    ... okay on input line 37.
+TIMO
+LaTeX Font Info:    Trying to load font information for OMS+cmr on input line 45.
+(omscmr.fd
+File: omscmr.fd 2024/11/19 v2.5n Standard LaTeX font definitions
+)
+LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <10> not available
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 45.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <7> on input line 47.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <5> on input line 47.
+LaTeX Font Info:    Trying to load font information for OMS+cmss on input line 49.
+LaTeX Font Info:    No file OMScmss.fd. on input line 49.
+
+
+LaTeX Font Warning: Font shape `OMS/cmss/m/n' undefined
+(Font)              using `OMS/cmsy/m/n' instead
+(Font)              for symbol `textbraceleft' on input line 49.
+
+LaTeX Font Info:    Trying to load font information for OMS+cmtt on input line 51.
+LaTeX Font Info:    No file OMScmtt.fd. on input line 51.
+
+LaTeX Font Warning: Font shape `OMS/cmtt/m/n' undefined
+(Font)              using `OMS/cmsy/m/n' instead
+(Font)              for symbol `textbraceleft' on input line 51.
+
+LaTeX Font Info:    Font shape `OT1/cmss/m/it' in size <10> not available
+(Font)              Font shape `OT1/cmss/m/sl' tried instead on input line 53.
+
+LaTeX Font Warning: Font shape `OMS/cmss/m/it' undefined
+(Font)              using `OMS/cmss/m/n' instead
+(Font)              for symbol `textbraceleft' on input line 53.
+
+
+LaTeX Font Warning: Font shape `OMS/cmtt/m/it' undefined
+(Font)              using `OMS/cmtt/m/n' instead
+(Font)              for symbol `textbraceleft' on input line 55.
+
+LaTeX Font Info:    Font shape `OMS/cmr/bx/n' in size <10> not available
+(Font)              Font shape `OMS/cmsy/b/n' tried instead on input line 57.
+
+LaTeX Font Warning: Font shape `OMS/cmss/bx/n' undefined
+(Font)              using `OMS/cmss/m/n' instead
+(Font)              for symbol `textbraceleft' on input line 59.
+
+LaTeX Font Info:    Font shape `OT1/cmtt/bx/n' in size <10> not available
+(Font)              Font shape `OT1/cmtt/m/n' tried instead on input line 61.
+
+LaTeX Font Warning: Font shape `TS1/cmtt/bx/n' undefined
+(Font)              using `TS1/cmtt/m/n' instead
+(Font)              for symbol `textparagraph' on input line 61.
+
+
+LaTeX Font Warning: Font shape `OMS/cmtt/bx/n' undefined
+(Font)              using `OMS/cmtt/m/n' instead
+(Font)              for symbol `textbraceleft' on input line 61.
+
+
+LaTeX Font Warning: Font shape `OT1/cmss/bx/it' undefined
+(Font)              using `OT1/cmss/bx/n' instead on input line 63.
+
+
+LaTeX Font Warning: Font shape `OMS/cmss/bx/it' undefined
+(Font)              using `OMS/cmss/bx/n' instead
+(Font)              for symbol `textbraceleft' on input line 63.
+
+LaTeX Font Info:    Font shape `OT1/cmtt/bx/it' in size <10> not available
+(Font)              Font shape `OT1/cmtt/m/it' tried instead on input line 65.
+
+LaTeX Font Warning: Font shape `TS1/cmtt/bx/it' undefined
+(Font)              using `TS1/cmtt/bx/n' instead
+(Font)              for symbol `textparagraph' on input line 65.
+
+
+LaTeX Font Warning: Font shape `OMS/cmtt/bx/it' undefined
+(Font)              using `OMS/cmtt/bx/n' instead
+(Font)              for symbol `textbraceleft' on input line 65.
+
+
+Completed box being shipped out [1]
+\vbox(633.0+0.0)x407.0
+.\glue 16.0
+.\vbox(617.0+0.0)x345.0, shifted 62.0
+..\vbox(12.0+0.0)x345.0, glue set 12.0fil
+...\glue 0.0 plus 1.0fil
+...\hbox(0.0+0.0)x345.0
+....\hbox(0.0+0.0)x345.0
+..\glue 25.0
+..\glue(\lineskip) 0.0
+..\vbox(550.0+0.0)x345.0, glue set 395.9577fil
+...\write-{}
+...\glue(\topskip) 2.5
+...\hbox(7.5+2.5)x345.0, glue set 235.01854fil
+....\hbox(0.0+0.0)x15.0
+....\U/cmr/m/n/10 I
+....\U/cmr/m/n/10 n
+....\glue 3.33333 plus 1.66666 minus 1.11111
+....\U/cmr/m/n/10 t
+....\U/cmr/m/n/10 e
+....\U/cmr/m/n/10 x
+....\U/cmr/m/n/10 t
+....\U/cmr/m/n/10 :
+....\glue 4.44444 plus 3.33331 minus 0.55556
+....\TS1/cmr/m/n/10 �
+....\TS1/cmr/m/n/10 �
+....\TS1/cmr/m/n/10 �
+....\TS1/cmr/m/n/10 $
+....\TS1/cmr/m/n/10 �
+....\TS1/cmr/m/n/10 �
+....\kern 0.59998
+....\vbox(0.4+0.0)x3.00003
+.....\rule(0.4+0.0)x3.00003
+....\OMS/cmtt/bx/it/10 f
+....\OMS/cmtt/bx/it/10 g
+....\U/cmr/m/n/10 .
+....\kern 1.66666
+....\U/cmr/m/n/10 .
+....\kern 1.66666
+....\U/cmr/m/n/10 .
+....\kern 1.66666
+....\penalty 10000
+....\glue(\parfillskip) 0.0 plus 1.0fil
+....\glue(\rightskip) 0.0
+...\glue(\parskip) 0.0 plus 1.0
+...\glue(\parskip) 0.0
+...\glue(\baselineskip) 2.0
+...\hbox(7.5+2.5)x345.0, glue set 228.43121fil
+....\hbox(0.0+0.0)x15.0
+....\U/cmr/m/n/10 I
+....\U/cmr/m/n/10 n
+....\glue 3.33333 plus 1.66666 minus 1.11111
+....\U/cmr/m/n/10 m
+....\U/cmr/m/n/10 a
+....\U/cmr/m/n/10 t
+....\U/cmr/m/n/10 h
+....\U/cmr/m/n/10 :
+....\glue 4.44444 plus 3.33331 minus 0.55556
+....\mathon
+....\OMS/cmtt/bx/it/10 {
+....\OMS/cmtt/bx/it/10 x
+....\OT1/cmr/m/it/10 $
+....\U/cmr/m/n/10 $
+....\hbox(6.94444+1.94444)x4.44444
+.....\OMS/cmtt/bx/it/10 y
+....\hbox(6.94444+1.94444)x4.44444
+.....\OMS/cmtt/bx/it/10 z
+....\hbox(0.4+0.0)x3.6
+.....\kern 0.59998
+.....\vbox(0.4+0.0)x3.00003
+......\rule(0.4+0.0)x3.00003
+....\OMS/cmtt/bx/it/10 f
+....\OMS/cmtt/bx/it/10 g
+....\glue(\thinmuskip) 1.66663
+....\hbox(1.05554+0.0)x11.66661
+.....\OML/cmm/m/it/10 :
+.....\glue(\thinmuskip) 1.66663
+.....\OML/cmm/m/it/10 :
+.....\glue(\thinmuskip) 1.66663
+.....\OML/cmm/m/it/10 :
+....\mathoff
+....\penalty 10000
+....\glue(\parfillskip) 0.0 plus 1.0fil
+....\glue(\rightskip) 0.0
+...\glue(\parskip) 0.0 plus 1.0
+...\glue(\parskip) 0.0
+...\glue(\baselineskip) 2.0
+...\hbox(7.5+2.5)x345.0, glue set 234.07411fil
+....\hbox(0.0+0.0)x15.0
+....\U/cmr/m/n/10 I
+....\U/cmr/m/n/10 n
+....\glue 3.33333 plus 1.66666 minus 1.11111
+....\U/cmr/m/n/10 s
+....\U/cmr/m/n/10 a
+....\U/cmr/m/n/10 n
+....\U/cmr/m/n/10 s
+....\U/cmr/m/n/10 :
+....\kern 0.0
+....\glue 4.44444 plus 3.33331 minus 0.55556
+....\TS1/cmss/m/n/10 �
+....\TS1/cmss/m/n/10 �
+....\TS1/cmss/m/n/10 �
+....\TS1/cmss/m/n/10 $
+....\TS1/cmss/m/n/10 �
+....\TS1/cmss/m/n/10 �
+....\kern 0.59998
+....\vbox(0.4+0.0)x3.00003
+.....\rule(0.4+0.0)x3.00003
+....\OMS/cmtt/bx/it/10 f
+....\OMS/cmtt/bx/it/10 g
+....\OT1/cmss/m/n/10 .
+....\kern 1.66666
+....\OT1/cmss/m/n/10 .
+....\kern 1.66666
+....\OT1/cmss/m/n/10 .
+....\kern 1.66666
+....\penalty 10000
+....\glue(\parfillskip) 0.0 plus 1.0fil
+....\glue(\rightskip) 0.0
+...\glue(\parskip) 0.0 plus 1.0
+...\glue(\parskip) 0.0
+...\glue(\baselineskip) 2.0
+...\hbox(7.5+2.5)x345.0, glue set 203.92218fil
+....\hbox(0.0+0.0)x15.0
+....\U/cmr/m/n/10 I
+....\U/cmr/m/n/10 n
+....\glue 3.33333 plus 1.66666 minus 1.11111
+....\U/cmr/m/n/10 t
+....\kern-0.27779
+....\U/cmr/m/n/10 y
+....\U/cmr/m/n/10 p
+....\kern0.27779
+....\U/cmr/m/n/10 e
+....\U/cmr/m/n/10 w
+....\U/cmr/m/n/10 r
+....\U/cmr/m/n/10 i
+....\U/cmr/m/n/10 t
+....\U/cmr/m/n/10 e
+....\U/cmr/m/n/10 r
+....\U/cmr/m/n/10 :
+....\kern 0.0
+....\glue 4.44444 plus 3.33331 minus 0.55556
+....\TS1/cmtt/bx/it/10 �
+....\TS1/cmtt/bx/it/10 �
+....\TS1/cmtt/bx/it/10 �
+....\TS1/cmtt/bx/it/10 $
+....\TS1/cmtt/bx/it/10 �
+....\TS1/cmtt/bx/it/10 �
+....\kern 0.62996
+....\vbox(0.4+0.0)x3.15
+.....\rule(0.4+0.0)x3.15
+....\OMS/cmtt/bx/it/10 f
+....\OMS/cmtt/bx/it/10 g
+....\OT1/cmtt/m/n/10 .
+....\kern 0.0
+....\OT1/cmtt/m/n/10 .
+....\kern 0.0
+....\OT1/cmtt/m/n/10 .
+....\kern 0.0
+....\penalty 10000
+....\glue(\parfillskip) 0.0 plus 1.0fil
+....\glue(\rightskip) 0.0
+...\glue(\parskip) 0.0 plus 1.0
+...\glue(\parskip) 0.0
+...\glue(\baselineskip) 2.0
+...\hbox(7.5+2.5)x345.0, glue set 207.923fil
+....\hbox(0.0+0.0)x15.0
+....\U/cmr/m/n/10 I
+....\U/cmr/m/n/10 n
+....\glue 3.33333 plus 1.66666 minus 1.11111
+....\U/cmr/m/n/10 s
+....\U/cmr/m/n/10 a
+....\U/cmr/m/n/10 n
+....\U/cmr/m/n/10 s
+....\glue 3.33333 plus 1.66666 minus 1.11111
+....\U/cmr/m/n/10 i
+....\U/cmr/m/n/10 t
+....\U/cmr/m/n/10 a
+....\U/cmr/m/n/10 l
+....\U/cmr/m/n/10 i
+....\U/cmr/m/n/10 c
+....\U/cmr/m/n/10 :
+....\kern 0.0
+....\glue 4.44444 plus 3.33331 minus 0.55556
+....\TS1/cmss/m/it/10 �
+....\TS1/cmss/m/it/10 �
+....\TS1/cmss/m/it/10 �
+....\TS1/cmss/m/it/10 $
+....\TS1/cmss/m/it/10 �
+....\TS1/cmss/m/it/10 �
+....\kern 0.59998
+....\vbox(0.4+0.0)x3.00003
+.....\rule(0.4+0.0)x3.00003
+....\OMS/cmtt/bx/it/10 f
+....\OMS/cmtt/bx/it/10 g
+....\OT1/cmss/m/sl/10 .
+....\kern 1.66666
+....\OT1/cmss/m/sl/10 .
+....\kern 1.66666
+....\OT1/cmss/m/sl/10 .
+....\kern 1.66666
+....\penalty 10000
+....\glue(\parfillskip) 0.0 plus 1.0fil
+....\glue(\rightskip) 0.0
+...\glue(\parskip) 0.0 plus 1.0
+...\glue(\parskip) 0.0
+...\glue(\baselineskip) 2.0
+...\hbox(7.5+2.5)x345.0, glue set 178.92213fil
+....\hbox(0.0+0.0)x15.0
+....\U/cmr/m/n/10 I
+....\U/cmr/m/n/10 n
+....\glue 3.33333 plus 1.66666 minus 1.11111
+....\U/cmr/m/n/10 t
+....\kern-0.27779
+....\U/cmr/m/n/10 y
+....\U/cmr/m/n/10 p
+....\kern0.27779
+....\U/cmr/m/n/10 e
+....\U/cmr/m/n/10 w
+....\U/cmr/m/n/10 r
+....\U/cmr/m/n/10 i
+....\U/cmr/m/n/10 t
+....\U/cmr/m/n/10 e
+....\U/cmr/m/n/10 r
+....\glue 3.33333 plus 1.66666 minus 1.11111
+....\U/cmr/m/n/10 i
+....\U/cmr/m/n/10 t
+....\U/cmr/m/n/10 a
+....\U/cmr/m/n/10 l
+....\U/cmr/m/n/10 i
+....\U/cmr/m/n/10 c
+....\U/cmr/m/n/10 :
+....\kern 0.0
+....\glue 4.44444 plus 3.33331 minus 0.55556
+....\TS1/cmtt/m/it/10 �
+....\TS1/cmtt/m/it/10 �
+....\TS1/cmtt/m/it/10 �
+....\TS1/cmtt/m/it/10 $
+....\TS1/cmtt/m/it/10 �
+....\TS1/cmtt/m/it/10 �
+....\kern 0.62996
+....\vbox(0.4+0.0)x3.15
+.....\rule(0.4+0.0)x3.15
+....\OMS/cmtt/bx/it/10 f
+....\OMS/cmtt/bx/it/10 g
+....\OT1/cmtt/m/it/10 .
+....\kern 0.0
+....\OT1/cmtt/m/it/10 .
+....\kern 0.0
+....\OT1/cmtt/m/it/10 .
+....\kern 0.0
+....\penalty 10000
+....\glue(\parfillskip) 0.0 plus 1.0fil
+....\glue(\rightskip) 0.0
+...\glue(\parskip) 0.0 plus 1.0
+...\glue(\parskip) 0.0
+...\glue(\baselineskip) 2.0
+...\hbox(7.5+2.5)x345.0, glue set 224.50768fil
+....\hbox(0.0+0.0)x15.0
+....\U/cmr/m/n/10 I
+....\U/cmr/m/n/10 n
+....\glue 3.33333 plus 1.66666 minus 1.11111
+....\U/cmr/m/n/10 b
+....\kern0.27779
+....\U/cmr/m/n/10 o
+....\U/cmr/m/n/10 l
+....\U/cmr/m/n/10 d
+....\U/cmr/m/n/10 :
+....\kern 0.0
+....\glue 4.44444 plus 3.33331 minus 0.55556
+....\TS1/cmr/bx/n/10 �
+....\TS1/cmr/bx/n/10 �
+....\TS1/cmr/bx/n/10 �
+....\TS1/cmr/bx/n/10 $
+....\TS1/cmr/bx/n/10 �
+....\TS1/cmr/bx/n/10 �
+....\kern 0.68996
+....\vbox(0.4+0.0)x3.45001
+.....\rule(0.4+0.0)x3.45001
+....\OMS/cmsy/b/n/10 f
+....\OMS/cmsy/b/n/10 g
+....\OT1/cmr/bx/n/10 .
+....\kern 1.91666
+....\OT1/cmr/bx/n/10 .
+....\kern 1.91666
+....\OT1/cmr/bx/n/10 .
+....\kern 1.91666
+....\penalty 10000
+....\glue(\parfillskip) 0.0 plus 1.0fil
+....\glue(\rightskip) 0.0
+...\glue(\parskip) 0.0 plus 1.0
+...\glue(\parskip) 0.0
+...\glue(\baselineskip) 2.0
+...\hbox(7.5+2.5)x345.0, glue set 206.3537fil
+....\hbox(0.0+0.0)x15.0
+....\U/cmr/m/n/10 I
+....\U/cmr/m/n/10 n
+....\glue 3.33333 plus 1.66666 minus 1.11111
+....\U/cmr/m/n/10 b
+....\kern0.27779
+....\U/cmr/m/n/10 o
+....\U/cmr/m/n/10 l
+....\U/cmr/m/n/10 d
+....\glue 3.33333 plus 1.66666 minus 1.11111
+....\U/cmr/m/n/10 s
+....\U/cmr/m/n/10 a
+....\U/cmr/m/n/10 n
+....\U/cmr/m/n/10 s
+....\U/cmr/m/n/10 :
+....\kern 0.0
+....\glue 4.44444 plus 3.33331 minus 0.55556
+....\TS1/cmss/bx/n/10 �
+....\TS1/cmss/bx/n/10 �
+....\TS1/cmss/bx/n/10 �
+....\TS1/cmss/bx/n/10 $
+....\TS1/cmss/bx/n/10 �
+....\TS1/cmss/bx/n/10 �
+....\kern 0.65997
+....\vbox(0.4+0.0)x3.30005
+.....\rule(0.4+0.0)x3.30005
+....\OMS/cmtt/bx/it/10 f
+....\OMS/cmtt/bx/it/10 g
+....\OT1/cmss/bx/n/10 .
+....\kern 1.83334
+....\OT1/cmss/bx/n/10 .
+....\kern 1.83334
+....\OT1/cmss/bx/n/10 .
+....\kern 1.83334
+....\penalty 10000
+....\glue(\parfillskip) 0.0 plus 1.0fil
+....\glue(\rightskip) 0.0
+...\glue(\parskip) 0.0 plus 1.0
+...\glue(\parskip) 0.0
+...\glue(\baselineskip) 2.0
+...\hbox(7.5+2.5)x345.0, glue set 181.42212fil
+....\hbox(0.0+0.0)x15.0
+....\U/cmr/m/n/10 I
+....\U/cmr/m/n/10 n
+....\glue 3.33333 plus 1.66666 minus 1.11111
+....\U/cmr/m/n/10 b
+....\kern0.27779
+....\U/cmr/m/n/10 o
+....\U/cmr/m/n/10 l
+....\U/cmr/m/n/10 d
+....\glue 3.33333 plus 1.66666 minus 1.11111
+....\U/cmr/m/n/10 t
+....\kern-0.27779
+....\U/cmr/m/n/10 y
+....\U/cmr/m/n/10 p
+....\kern0.27779
+....\U/cmr/m/n/10 e
+....\U/cmr/m/n/10 w
+....\U/cmr/m/n/10 r
+....\U/cmr/m/n/10 i
+....\U/cmr/m/n/10 t
+....\U/cmr/m/n/10 e
+....\U/cmr/m/n/10 r
+....\U/cmr/m/n/10 :
+....\kern 0.0
+....\glue 4.44444 plus 3.33331 minus 0.55556
+....\TS1/cmtt/bx/it/10 �
+....\TS1/cmtt/bx/it/10 �
+....\TS1/cmtt/bx/it/10 �
+....\TS1/cmtt/bx/it/10 $
+....\TS1/cmtt/bx/it/10 �
+....\TS1/cmtt/bx/it/10 �
+....\kern 0.62996
+....\vbox(0.4+0.0)x3.15
+.....\rule(0.4+0.0)x3.15
+....\OMS/cmtt/bx/it/10 f
+....\OMS/cmtt/bx/it/10 g
+....\OT1/cmtt/m/n/10 .
+....\kern 0.0
+....\OT1/cmtt/m/n/10 .
+....\kern 0.0
+....\OT1/cmtt/m/n/10 .
+....\kern 0.0
+....\penalty 10000
+....\glue(\parfillskip) 0.0 plus 1.0fil
+....\glue(\rightskip) 0.0
+...\glue(\parskip) 0.0 plus 1.0
+...\glue(\parskip) 0.0
+...\glue(\baselineskip) 2.0
+...\hbox(7.5+2.5)x345.0, glue set 180.20259fil
+....\hbox(0.0+0.0)x15.0
+....\U/cmr/m/n/10 I
+....\U/cmr/m/n/10 n
+....\glue 3.33333 plus 1.66666 minus 1.11111
+....\U/cmr/m/n/10 b
+....\kern0.27779
+....\U/cmr/m/n/10 o
+....\U/cmr/m/n/10 l
+....\U/cmr/m/n/10 d
+....\glue 3.33333 plus 1.66666 minus 1.11111
+....\U/cmr/m/n/10 s
+....\U/cmr/m/n/10 a
+....\U/cmr/m/n/10 n
+....\U/cmr/m/n/10 s
+....\glue 3.33333 plus 1.66666 minus 1.11111
+....\U/cmr/m/n/10 i
+....\U/cmr/m/n/10 t
+....\U/cmr/m/n/10 a
+....\U/cmr/m/n/10 l
+....\U/cmr/m/n/10 i
+....\U/cmr/m/n/10 c
+....\U/cmr/m/n/10 :
+....\kern 0.0
+....\glue 4.44444 plus 3.33331 minus 0.55556
+....\TS1/cmss/bx/it/10 �
+....\TS1/cmss/bx/it/10 �
+....\TS1/cmss/bx/it/10 �
+....\TS1/cmss/bx/it/10 $
+....\TS1/cmss/bx/it/10 �
+....\TS1/cmss/bx/it/10 �
+....\kern 0.65997
+....\vbox(0.4+0.0)x3.30005
+.....\rule(0.4+0.0)x3.30005
+....\OMS/cmtt/bx/it/10 f
+....\OMS/cmtt/bx/it/10 g
+....\OT1/cmss/bx/n/10 .
+....\kern 1.83334
+....\OT1/cmss/bx/n/10 .
+....\kern 1.83334
+....\OT1/cmss/bx/n/10 .
+....\kern 1.83334
+....\penalty 10000
+....\glue(\parfillskip) 0.0 plus 1.0fil
+....\glue(\rightskip) 0.0
+...\glue(\parskip) 0.0 plus 1.0
+...\glue(\parskip) 0.0
+...\glue(\baselineskip) 2.0
+...\hbox(7.5+2.5)x345.0, glue set 156.42207fil
+....\hbox(0.0+0.0)x15.0
+....\U/cmr/m/n/10 I
+....\U/cmr/m/n/10 n
+....\glue 3.33333 plus 1.66666 minus 1.11111
+....\U/cmr/m/n/10 b
+....\kern0.27779
+....\U/cmr/m/n/10 o
+....\U/cmr/m/n/10 l
+....\U/cmr/m/n/10 d
+....\glue 3.33333 plus 1.66666 minus 1.11111
+....\U/cmr/m/n/10 t
+....\kern-0.27779
+....\U/cmr/m/n/10 y
+....\U/cmr/m/n/10 p
+....\kern0.27779
+....\U/cmr/m/n/10 e
+....\U/cmr/m/n/10 w
+....\U/cmr/m/n/10 r
+....\U/cmr/m/n/10 i
+....\U/cmr/m/n/10 t
+....\U/cmr/m/n/10 e
+....\U/cmr/m/n/10 r
+....\glue 3.33333 plus 1.66666 minus 1.11111
+....\U/cmr/m/n/10 i
+....\U/cmr/m/n/10 t
+....\U/cmr/m/n/10 a
+....\U/cmr/m/n/10 l
+....\U/cmr/m/n/10 i
+....\U/cmr/m/n/10 c
+....\U/cmr/m/n/10 :
+....\kern 0.0
+....\glue 4.44444 plus 3.33331 minus 0.55556
+....\TS1/cmtt/bx/it/10 �
+....\TS1/cmtt/bx/it/10 �
+....\TS1/cmtt/bx/it/10 �
+....\TS1/cmtt/bx/it/10 $
+....\TS1/cmtt/bx/it/10 �
+....\TS1/cmtt/bx/it/10 �
+....\kern 0.62996
+....\vbox(0.4+0.0)x3.15
+.....\rule(0.4+0.0)x3.15
+....\OMS/cmtt/bx/it/10 f
+....\OMS/cmtt/bx/it/10 g
+....\OT1/cmtt/m/it/10 .
+....\kern 0.0
+....\OT1/cmtt/m/it/10 .
+....\kern 0.0
+....\OT1/cmtt/m/it/10 .
+....\kern 0.0
+....\penalty 10000
+....\glue(\parfillskip) 0.0 plus 1.0fil
+....\glue(\rightskip) 0.0
+...\glue(\parskip) 0.0 plus 1.0
+...\glue(\parskip) 0.0
+...\glue(\baselineskip) 2.00183
+...\hbox(7.49817+2.49939)x345.0, glue set 236.12619fil
+....\hbox(0.0+0.0)x15.0
+....\U/cmr/m/n/10 I
+....\U/cmr/m/n/10 n
+....\glue 3.33333 plus 1.66666 minus 1.11111
+....\U/cmr/m/n/10 T
+....\U/cmr/m/n/10 1
+....\U/cmr/m/n/10 :
+....\glue 4.44444 plus 3.33331 minus 0.55556
+....\TS1/cmr/m/n/10 �
+....\T1/cmr/m/n/10 �
+....\T1/cmr/m/n/10 �
+....\T1/cmr/m/n/10 $
+....\TS1/cmr/m/n/10 �
+....\TS1/cmr/m/n/10 �
+....\T1/cmr/m/n/10 _
+....\T1/cmr/m/n/10 {
+....\T1/cmr/m/n/10 }
+....\T1/cmr/m/n/10 .
+....\kern 1.66626
+....\T1/cmr/m/n/10 .
+....\kern 1.66626
+....\T1/cmr/m/n/10 .
+....\kern 1.66626
+....\penalty 10000
+....\glue(\parfillskip) 0.0 plus 1.0fil
+....\glue(\rightskip) 0.0
+...\glue(\parskip) 0.0 plus 1.0
+...\glue(\parskip) 0.0
+...\glue(\baselineskip) 2.00061
+...\hbox(7.5+2.5)x345.0, glue set 246.12968fil
+....\hbox(0.0+0.0)x15.0
+....\U/cmr/m/n/10 I
+....\U/cmr/m/n/10 n
+....\glue 3.33333 plus 1.66666 minus 1.11111
+....\U/cmr/m/n/10 U
+....\U/cmr/m/n/10 :
+....\glue 3.33333 plus 1.66666 minus 1.11111
+....\TS1/cmr/m/n/10 �
+....\TS1/cmr/m/n/10 �
+....\TS1/cmr/m/n/10 �
+....\TS1/cmr/m/n/10 $
+....\TS1/cmr/m/n/10 �
+....\TS1/cmr/m/n/10 �
+....\kern 0.59998
+....\vbox(0.4+0.0)x3.00003
+.....\rule(0.4+0.0)x3.00003
+....\OMS/cmtt/bx/it/10 f
+....\OMS/cmtt/bx/it/10 g
+....\U/cmr/m/n/10 .
+....\kern 1.66666
+....\U/cmr/m/n/10 .
+....\kern 1.66666
+....\U/cmr/m/n/10 .
+....\kern 1.66666
+....\penalty 10000
+....\glue(\parfillskip) 0.0 plus 1.0fil
+....\glue(\rightskip) 0.0
+...\glue -2.5
+...\glue 0.0 plus 1.0fil
+...\glue 0.0
+...\glue 0.0 plus 0.0001fil
+..\glue(\baselineskip) 23.55556
+..\hbox(6.44444+0.0)x345.0
+...\hbox(6.44444+0.0)x345.0, glue set 170.0fil
+....\glue 0.0 plus 1.0fil
+....\U/cmr/m/n/10 1
+....\glue 0.0 plus 1.0fil
+
+
+ (tlb1214.aux)
+
+LaTeX Font Warning: Some font shapes were not available, defaults substituted.
+
+END-TEST-LOG
+ )
+
+Output written on tlb1214.dvi (1 page, 2020 bytes).
