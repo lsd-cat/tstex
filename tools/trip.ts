@@ -54,7 +54,7 @@ for (const f of ['tripin.log', 'trip.log', 'trip.fot', 'trip.typ']) diff(`${root
 if (pdftex) {
   const p = `${out}/pdftex`
   mkdirSync(p, { recursive: true }); copyFileSync(`${root}spec/trip.tex`, `${p}/trip.tex`)
-  const env = { ...process.env, TFMFONTS: `${root}test/texmf:` }
+  const env = { ...process.env, TFMFONTS: `${root}test/texmf:`, SOURCE_DATE_EPOCH: '0', FORCE_SOURCE_DATE: '1' }
   spawnSync(pdftex, ['-ini'], { cwd: p, env, input: '\\input trip\n' })
   copyFileSync(`${p}/trip.log`, `${p}/tripin.log`)
   writeFileSync(`${p}/trip.fot`, spawnSync(pdftex, ['-ini'], { cwd: p, env, input: ' &trip  trip \n' }).stdout)
