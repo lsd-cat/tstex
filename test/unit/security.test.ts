@@ -27,6 +27,14 @@ writeFileSync(join(root, 'rand.tfm'), rand(1000))
 writeFileSync(join(root, 'empty.tfm'), new Uint8Array())
 writeFileSync(join(root, 'lf.tfm'), Uint8Array.from({ length: 24 }, (_, i) => i < 2 ? 0xff : 0))
 writeFileSync(join(root, 'garbage.tcx'), rand(4000))
+// hostile images: a PNG signature or JPEG/PDF header followed by random bytes, a PNG whose IHDR claims a huge image
+const png_sig = [0x89, 0x50, 0x4e, 0x47, 0x0d, 0x0a, 0x1a, 0x0a]
+const ihdr = (w: number, h: number) => [0, 0, 0, 13, ...Buffer.from('IHDR'), w >>> 24, (w >> 16) & 255, (w >> 8) & 255, w & 255,
+  h >>> 24, (h >> 16) & 255, (h >> 8) & 255, h & 255, 8, 2, 0, 0, 0, 0, 0, 0, 0]
+writeFileSync(join(root, 'r.png'), Uint8Array.from([...png_sig, ...rand(3000)]))
+writeFileSync(join(root, 'big.png'), Uint8Array.from([...png_sig, ...ihdr(60000, 60000), 0, 0, 0, 20, ...Buffer.from('IDAT'), ...rand(24), 0, 0, 0, 0, ...Buffer.from('IEND'), 0, 0, 0, 0]))
+writeFileSync(join(root, 'r.jpg'), Uint8Array.from([0xff, 0xd8, 0xff, 0xe1, 0, 40, ...Buffer.from('Exif\0'), ...rand(3000)]))
+writeFileSync(join(root, 'r.pdf'), Uint8Array.from([...Buffer.from('%PDF-1.4\n1 0 obj << /Kids [1 0 R] /Count 5 >> endobj /Root 2 0 R 2 0 obj << /Pages 1 0 R >> endobj '), ...rand(500)]))
 
 const pre = '\\catcode`\\{=1 \\catcode`\\}=2 \\catcode`\\#=6 \\catcode`\\^=7 \\catcode0=12 \\catcode`\\%=12 \\scrollmode '
 async function run(body: string, tcx?: string, limits?: { main_memory: number }): Promise<Engine> {
@@ -95,6 +103,11 @@ for (const f of ['rand', 'empty', 'lf']) test(`hostile TFM: ${f}.tfm is a bad me
 test('hostile TCX: random bytes are tolerated', async () => {
   const e = await run('\\message{ok}', 'garbage.tcx')
   assert.match(e.log, /\(\.\/garbage\.tcx\)/)
+})
+
+for (const f of ['r.png', 'big.png', 'r.jpg', 'r.pdf']) test(`hostile image: ${f} fails cleanly`, async () => {
+  const e = await run(`\\pdfoutput=1 \\pdfcompresslevel=0 \\pdfximage{${f}}\\shipout\\hbox{\\pdfrefximage\\pdflastximage}`)
+  assert.match(e.log, /pdfTeX error|unsupported: |Output written on t\.pdf/)
 })
 
 // Resource exhaustion ends in TeX's capacity errors, not a JS exception
