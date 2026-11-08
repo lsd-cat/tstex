@@ -372,34 +372,65 @@ export function delete_image(e: Engine, img: Img): void {
   if (doc.occurences < 0 && !doc.released) { doc.objs = []; doc.index = new Map(); doc.released = true }
 }
 
-// writepng.c read_png_info (libpng's png_read_info: the chunks before IDAT)
+// writepng.c read_png_info (libpng 1.6.55's png_read_info: the chunks before IDAT). png.chunks holds the chunks libpng stored
+// (its PNG_INFO_* valid flags, which decide copy vs decode): png_handle_chunk's table checks position, duplicates and length,
+// then the png_handle_* routine the content; a rejected ancillary chunk is a benign error, a warning pdfTeX's handler drops.
+// [min length, max length, must precede PLTE (hCOL; hIST's hPLTE is 1.6.55's typo), multiple allowed]
+const png_rules: Record<string, [number, number, boolean, boolean]> = {
+  tRNS: [0, 256, false, false], cHRM: [32, 32, true, false], gAMA: [4, 4, true, false], iCCP: [14, Infinity, true, false],
+  sBIT: [1, 4, true, false], sRGB: [1, 1, true, false], bKGD: [1, 6, false, false], hIST: [0, 1024, true, false],
+  pHYs: [9, 9, false, false], sPLT: [3, Infinity, false, true],
+}
 function read_png_info(e: Engine, img: Img): void {
   const d = img.data, png: Png = { ct: 0, bd: 0, il: 0, palette: new Uint8Array(0), chunks: new Set(), gamma: 0, trns: null, sbit: new Uint8Array(0) }
   img.png = png
+  const fail = (): never => pdftex_fail(e, img.name, 'libpng: internal error')
+  let ihdr = false, plte = false
   for (let i = 8; i + 8 <= d.length;) {
     const len = u32(d, i), t = tag(d, i + 4), b = i + 8
     if (t === 'IDAT') break // png_read_info stops here
-    if (b + len + 4 > d.length) pdftex_fail(e, img.name, 'libpng: internal error')
+    if (b + len + 4 > d.length) fail()
     i = b + len + 4
-    if (crc32(d.subarray(b - 4, b + len)) !== u32(d, b + len)) { // png_crc_finish: an error for critical chunks, ancillary ones are dropped (silent warn)
-      if (t.charCodeAt(0) & 32) continue
-      pdftex_fail(e, img.name, 'libpng: internal error')
+    if (crc32(d.subarray(b - 4, b + len)) !== u32(d, b + len)) { // png_crc_finish: an error for critical chunks, ancillary ones are dropped
+      if (t.charCodeAt(0) & 32 || (t === 'PLTE' && png.ct !== 3)) continue
+      fail()
     }
-    if (t === 'tRNS') { // png_handle_tRNS: a wrong length, a palette without PLTE, a colour type with alpha or a second tRNS: ignored
-      const ok = png.trns === null && (png.ct === 0 ? len === 2 : png.ct === 2 ? len === 6 : png.ct === 3 && len > 0 && len <= 256 && 3 * len <= png.palette.length)
-      if (!ok) continue
-      png.trns = d.subarray(b, b + len)
+    const n_pal = png.palette.length / 3, ct = png.ct, bd = png.bd
+    if (t === 'IHDR') {
+      if (ihdr) fail()
+      ihdr = true; img.width = u32(d, b); img.height = u32(d, b + 4); png.bd = d[b + 8]!; png.ct = d[b + 9]!; png.il = d[b + 12]!
+    } else if (t === 'PLTE') { // png_handle_PLTE: fatal only for palette images
+      if (!ihdr) fail()
+      if (plte || (ct & 2) === 0 || len > 768 || len % 3 !== 0 || (ct !== 3 && (png.chunks.has('tRNS') || png.chunks.has('bKGD')))) { if (ct === 3) fail(); continue }
+      plte = true; png.palette = d.subarray(b, b + 3 * (ct === 3 ? Math.min(len / 3, 1 << bd) : len / 3))
+    } else if (t === 'IEND') break
+    else if (png_rules[t] !== undefined) {
+      const [min, max, before_plte, multiple] = png_rules[t]!
+      if (!ihdr) fail() // "missing IHDR"
+      if ((before_plte && plte) || (!multiple && png.chunks.has(t)) || len < min || len > max) continue
+      const x = d.subarray(b, b + len)
+      if (t === 'tRNS') {
+        if (!(ct === 0 ? len === 2 : ct === 2 ? len === 6 : ct === 3 && plte && len > 0 && len <= n_pal)) continue
+        png.trns = x
+      } else if (t === 'cHRM') { if ([0, 4, 8, 12, 16, 20, 24, 28].some(k => u32(x, k) === 0x80000000)) continue }
+      else if (t === 'gAMA') { if (u32(x, 0) > 0x7fffffff) continue; png.gamma = u32(x, 0) }
+      else if (t === 'sBIT') {
+        const sd = ct === 3 ? 8 : bd
+        if (len !== (ct === 3 ? 3 : [1, 0, 3, 1, 2, 0, 4][ct]!) || x.some(v => v === 0 || v > sd)) continue
+        png.sbit = x
+      } else if (t === 'sRGB') { if (x[0]! > 3) continue }
+      else if (t === 'iCCP') { if (!iccp_valid(e, x, ct)) continue }
+      else if (t === 'bKGD') {
+        if (ct === 3 ? !plte || len !== 1 || (n_pal !== 0 && x[0]! >= n_pal) : ct & 2 ? len !== 6 || (bd <= 8 && (x[0] !== 0 || x[2] !== 0 || x[4] !== 0))
+          : len !== 2 || (bd <= 8 && (x[0] !== 0 || x[1]! >= 1 << bd))) continue
+      } else if (t === 'hIST') { if (len % 2 !== 0 || len / 2 !== n_pal) continue }
+      else if (t === 'pHYs') { if (x[8] === 1) { img.xres = cround(0.0254 * u32(x, 0)); img.yres = cround(0.0254 * u32(x, 4)) } } // png_get_x_pixels_per_meter is 0 unless the unit is the metre
+      else if (t === 'sPLT') { // malformed: no palette name terminator in time, or a length not a multiple of the entry size
+        const z = x.indexOf(0), es = (z < 0 ? len : z) + 1
+        if (len < 2 || es > len - 2 || (len - es - 1) % (x[es] === 8 ? 6 : 10) !== 0) continue
+      }
+      png.chunks.add(t)
     }
-    if (t === 'gAMA') { // png_colorspace_set_gamma: 16..625000000
-      if (len !== 4 || u32(d, b) < 16 || u32(d, b) > 625000000) continue
-      png.gamma = u32(d, b)
-    }
-    if (t === 'sBIT') png.sbit = d.subarray(b, b + Math.min(len, 4))
-    png.chunks.add(t)
-    if (t === 'IHDR') { img.width = u32(d, b); img.height = u32(d, b + 4); png.bd = d[b + 8]!; png.ct = d[b + 9]!; png.il = d[b + 12]! }
-    else if (t === 'pHYs' && d[b + 8] === 1) { img.xres = cround(0.0254 * u32(d, b)); img.yres = cround(0.0254 * u32(d, b + 4)) } // png_get_x_pixels_per_meter is 0 unless the unit is the metre
-    else if (t === 'PLTE') png.palette = d.subarray(b, b + len)
-    else if (t === 'IEND') break
   }
   switch (png.ct) {
     case 3: img.color = IMAGE_COLOR_C | IMAGE_COLOR_I; break
@@ -412,6 +443,26 @@ function read_png_info(e: Engine, img: Img): void {
     if (e.ps.page_group_val === 0) e.ps.page_group_val = e.ps.transparent_page_group // whatever page (or none) is being shipped
     img.group_ref = e.ps.page_group_val
   }
+}
+
+// png_handle_iCCP with png.c's png_icc_check_length/header/tag_table: the profile is stored only if all the checks pass.
+// 1.6.55 subtracts the up-to-81 keyword bytes before its LZ77Min test, so a chunk shorter than 92 bytes never passes.
+// shortcut: the profile is inflated in one go (a truncated or corrupt stream that still yields profile_length bytes passes in libpng, here it fails), upgrade if such a file matters
+function iccp_valid(e: Engine, x: Uint8Array, ct: number): boolean {
+  if (x.length - Math.min(81, x.length) < 11) return false
+  let k = 0
+  while (k < 80 && k < x.length && x[k] !== 0) k++
+  if (k < 1 || k > 79 || x[k + 1] !== 0) return false // bad keyword, bad compression method
+  if (e.fs.inflate === undefined) fatal_error(e, 'unsupported: PNG decoding without an inflater')
+  const p = e.fs.inflate(x.subarray(k + 2), 8000000 + 1)
+  if (p.length < 132) return false
+  const l = u32(p, 0), tags = u32(p, 128), cs = u32(p, 16), cls = u32(p, 12), pcs = u32(p, 20)
+  if (l < 132 || l > 8000000 || (p[8]! > 3 && (l & 3) !== 0) || tags > 357913930 || l < 132 + 12 * tags || u32(p, 64) >= 0xffff) return false
+  if (u32(p, 36) !== 0x61637370 || !(cs === 0x52474220 ? (ct & 2) !== 0 : cs === 0x47524159 && (ct & 2) === 0)) return false // 'acsp'; 'RGB ', 'GRAY'
+  if (cls === 0x61627374 || cls === 0x6c696e6b || (pcs !== 0x58595a20 && pcs !== 0x4c616220)) return false // 'abst', 'link'; 'XYZ ', 'Lab '
+  if (p.length < 132 + 12 * tags) return false
+  for (let i = 0; i < tags; i++) { const st = u32(p, 136 + 12 * i), n = u32(p, 140 + 12 * i); if (st > l || n > l - st) return false }
+  return p.length >= l
 }
 
 // libpng's CRC-32 (ISO 3309) over a chunk's type and data
@@ -524,8 +575,11 @@ function write_png(e: Engine, img: Img): void {
     const png_error = (): never => pdftex_fail(e, img.name, 'libpng: internal error') // pdfTeX's setjmp is gone by now: undefined there
     const screen = convert(ps.fixed_gamma / 1000.0), file = convert(png.gamma !== 0 ? png.gamma * .00001 : 1000.0 / ps.fixed_image_gamma)
     if (file <= 0 || screen <= 0) png_error()
+    // png_set_gamma_fixed's unsupported_gamma (1.6.47+): a value outside 0.01..100 sets neither, and the file's own gamma
+    // (or 1) is then used as screen gamma too: no correction
+    const unsupported = (g: number) => g < 1000 || g > 10000000
     const t = Math.floor(screen * file / 100000 + .5) // png_muldiv
-    if (!(t <= 0x7fffffff) || significant(t)) g = gamma_tables(png, screen, file, strip16)
+    if (!unsupported(file) && !unsupported(screen) && (!(t <= 0x7fffffff) || significant(t))) g = gamma_tables(png, screen, file, strip16)
   }
   let ct = png.ct, bd = png.bd // png_read_update_info
   if (trns) { if (ct === 3) { ct = 6; bd = 8 } else { ct |= 4; if (bd < 8) bd = 8 } }
@@ -541,7 +595,8 @@ function write_png(e: Engine, img: Img): void {
     // copy_png: the IDAT chunks as one stream (a broken IDAT sequence fails)
     const d = img.data, parts: Uint8Array[] = []
     let idat = 0
-    for (let i = 8; i + 8 <= d.length;) {
+    for (let i = 8; ;) {
+      if (i + 8 > d.length) pdftex_fail(e, img.name, 'writepng: reading chunk type failed') // spng_getint (fseek past the end succeeds)
       const len = u32(d, i), t = tag(d, i + 4)
       if (t === 'IEND') break
       if (t === 'IDAT') { if (idat === 2) pdftex_fail(e, img.name, 'writepng: IDAT chunk sequence broken'); idat = 1; parts.push(d.subarray(i + 8, i + 8 + len)) }

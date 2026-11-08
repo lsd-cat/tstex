@@ -1,0 +1,4 @@
+entering extended mode
+(m8-review-png-noiend.tex [0 <./images/rv-noiend2.png (PNG copy)
+!pdfTeX error: pdftex (file ./images/rv-noiend2.png): writepng: reading chunk type failed
+ ==> Fatal error occurred, no output PDF file produced!
