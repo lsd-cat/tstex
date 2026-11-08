@@ -14,6 +14,7 @@ case "${mode:-ini}" in
   latex) args="-fmt pdflatex" ;;
   *) echo "oracle.sh: unknown mode $mode" >&2; exit 1 ;;
 esac
+rm -f "$dir/$name.expected.dvi" "$dir/$name.expected.dvitype" "$dir/$name.expected.out" # no stale artefacts from an earlier version of the test
 tmp=$(mktemp -d); trap 'rm -rf "$tmp"' EXIT
 # every input lives in the temp dir so pdftex prints ./name (path-independent 79-col wrapping)
 cp "$dir"/*.tex "$root"/test/texmf/*.tex "$tmp/"

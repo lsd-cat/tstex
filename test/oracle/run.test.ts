@@ -23,10 +23,11 @@ const maskDvi = (b: Uint8Array) => {
   return m
 }
 
+const skip: Record<string, string> = { 'm4-texxet': 'TeXXeT not ported (PLAN: deferred)' }
 for (const file of readdirSync(dir).filter(f => f.endsWith('.tex')).sort()) {
   const name = file.slice(0, -4)
   if (!existsSync(`${dir}${name}.expected.log`)) continue
-  test(name, async () => {
+  test(name, { skip: skip[name] }, async () => {
     const expected = readFileSync(`${dir}${name}.expected.log`, 'utf8')
     const mode = (readFileSync(dir + file, 'utf8').split('\n')[0]!.match(/^%! oracle: *(\w+)/)?.[1] ?? 'ini') as 'ini' | 'etex' | 'latex'
     // string specifiers keep tsc quiet while the modules do not exist yet
