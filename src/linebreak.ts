@@ -2,6 +2,7 @@
 import { etex_pen_base } from './types.ts'
 // \interlinepenalties etc. are inactive in this engine)
 import type { Engine } from './engine.ts'
+import { no_TeXXeT } from './etex.ts'
 import { print, print_char, print_esc, print_int, print_nl, begin_diagnostic, end_diagnostic } from './print.ts'
 import { badness, inf_bad } from './arith.ts'
 import { error, print_err, help, confusion, fatal_error, normalize_selector } from './error.ts'
@@ -61,6 +62,7 @@ function disc_node_width(e: Engine, s: Node, what: string): number {
 
 // §815 line_break
 export function line_break(e: Engine, d: boolean): void {
+  no_TeXXeT(e) // etex.ch branches on TeXXeT_en here; TeXXeT is not ported
   if (int_par(e, pdf_adjust_spacing_code) !== 0) fatal_error(e, 'unsupported: \\pdfadjustspacing')
   if (int_par(e, pdf_protrude_chars_code) !== 0) fatal_error(e, 'unsupported: \\pdfprotrudechars')
   e.pack_begin_line = e.mode_line

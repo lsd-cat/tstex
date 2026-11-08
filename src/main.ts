@@ -1,6 +1,7 @@
 // §211–219 the semantic nest, §1029–1054 main_control, §1055–1135 building boxes and lists,
 // §1211–1215 prefixed_command, §1236–1240 do_register_command
 import type { Engine } from './engine.ts'
+import { no_TeXXeT } from './etex.ts'
 import { etex_pen_base } from './types.ts'
 import { batch_mode, no_print, term_only } from './types.ts'
 import { Cmd, vmode, hmode, mmode, int_val, dimen_val, glue_val, mu_val, tok_val, new_string } from './types.ts'
@@ -1196,6 +1197,7 @@ function go_into_ordinary_math(e: Engine): void {
 
 // §1138 init_math (e-TeX's prototype box j and direction x stay null and 0: eTeX_ex and TeXXeT are off)
 export function init_math(e: Engine): void {
+  no_TeXXeT(e) // etex.ch branches on TeXXeT_en here; TeXXeT is not ported
   get_token(e) // get_x_token would fail on \ifmmode!
   if (e.cur_cmd !== Cmd.math_shift || e.mode <= 0) { back_input(e); go_into_ordinary_math(e); return }
   // §1145 Go into display math mode
@@ -1414,6 +1416,7 @@ export function check_that_another_dollar_follows(e: Engine): void {
 
 // §1194 after_math
 export function after_math(e: Engine): void {
+  no_TeXXeT(e) // etex.ch branches on TeXXeT_en here; TeXXeT is not ported
   let j: Node | null = null
   if (e.mode === mmode) j = e.eTeX_aux // §1194 Retrieve the prototype box
   let danger = math_fonts_missing(e)

@@ -1,6 +1,9 @@
 // §967–979 breaking vertical lists into pages (prune_page_top, vert_break, vsplit), §980–1028 the page builder,
 // §1054 its_all_over (pdftex.web; e-TeX's \marks classes, \pagediscards and \splitdiscards are inactive outside e-TeX mode)
 import type { Engine } from './engine.ts'
+import { do_marks, vsplit_init, fire_up_init, fire_up_done, find_sa_element, sa, mark_val, saving_vdiscards_code } from './etex.ts'
+import type { MarkNode } from './nodes.ts'
+import { last_box_code, copy_code, vsplit_code } from './main.ts'
 import { vmode } from './types.ts'
 import { print, print_char, print_esc, print_int, print_nl, print_ln, begin_diagnostic, end_diagnostic } from './print.ts'
 import { print_scaled, badness, x_over_n, inf_bad } from './arith.ts'
@@ -40,10 +43,10 @@ const precedes_break = (p: Node) => p.type < math_node // §148
 // box(n)+list_offset: a pseudo node whose link is the box's list
 const list_head = (b: BoxNode): Node => ({ get link() { return b.list_ptr }, set link(v: Node | null) { b.list_ptr = v } }) as unknown as Node
 
-// §968 prune_page_top (s, e-TeX's \savingvdiscards, is always false)
-export function prune_page_top(e: Engine, p: Node | null): Node | null {
+// §968 prune_page_top (etex.ch: with s the discarded nodes go to split_disc)
+export function prune_page_top(e: Engine, p: Node | null, s: boolean): Node | null {
   const temp_head = new_char(0, 0)
-  let prev_p: Node = temp_head
+  let prev_p: Node = temp_head, r: Node | null = null
   temp_head.link = p
   while (p !== null) {
     switch (p.type) {
@@ -58,7 +61,8 @@ export function prune_page_top(e: Engine, p: Node | null): Node | null {
       case glue_node: case kern_node: case penalty_node: {
         const q: Node = p
         p = q.link; q.link = null; prev_p.link = p
-        flush_node_list(e, q)
+        if (s) { if (e.disc_ptr[vsplit_code] === null) e.disc_ptr[vsplit_code] = q; else r!.link = q; r = q }
+        else flush_node_list(e, q)
         break
       }
       default: confusion(e, 'pruning')
@@ -140,6 +144,8 @@ export function vert_break(e: Engine, p: Node | null, h: number, d: number): Nod
 export function vsplit(e: Engine, n: number, h: number): BoxNode | null {
   e.cur_val = n
   const v = box(e, n)
+  flush_node_list(e, e.disc_ptr[vsplit_code]!); e.disc_ptr[vsplit_code] = null // etex.ch
+  do_marks(e, vsplit_init)
   if (e.cur_mark[split_first_mark_code] !== 0) {
     delete_token_ref(e, e.cur_mark[split_first_mark_code]!); e.cur_mark[split_first_mark_code] = 0
     delete_token_ref(e, e.cur_mark[split_bot_mark_code]!); e.cur_mark[split_bot_mark_code] = 0
@@ -157,7 +163,12 @@ export function vsplit(e: Engine, n: number, h: number): BoxNode | null {
   let p = v.list_ptr!
   if (p === q) v.list_ptr = null
   else for (;;) {
-    if (p.type === mark_node) {
+    if (p.type === mark_node && p.mark_class !== 0) { // etex.ch Update the current marks for vsplit
+      const m = sa(e, find_sa_element(e, mark_val, p.mark_class, true)).mark
+      if (m[3] === 0) { m[3] = p.mark_ptr; add_token_ref(e, p.mark_ptr) }
+      else delete_token_ref(e, m[4]!)
+      m[4] = p.mark_ptr; add_token_ref(e, p.mark_ptr)
+    } else if (p.type === mark_node) {
       if (e.cur_mark[split_first_mark_code] === 0) {
         e.cur_mark[split_first_mark_code] = p.mark_ptr; e.cur_mark[split_bot_mark_code] = p.mark_ptr
         e.info[p.mark_ptr]! += 2
@@ -169,7 +180,7 @@ export function vsplit(e: Engine, n: number, h: number): BoxNode | null {
     if (p.link === q) { p.link = null; break }
     p = p.link!
   }
-  q = prune_page_top(e, q)
+  q = prune_page_top(e, q, int_par(e, saving_vdiscards_code) > 0)
   const l = v.list_ptr
   if (q !== null) q = vpack(e, q, 0, additional)
   change_box(e, n, q)
@@ -371,7 +382,10 @@ export function build_page(e: Engine): void {
     }
     // §999 Recycle node p
     e.contrib_head.link = p.link; p.link = null
-    flush_node_list(e, p)
+    if (int_par(e, saving_vdiscards_code) > 0) { // etex.ch: page_disc, tail_page_disc
+      if (e.disc_ptr[last_box_code] === null) e.disc_ptr[last_box_code] = p; else e.disc_ptr[copy_code]!.link = p
+      e.disc_ptr[copy_code] = p
+    } else flush_node_list(e, p)
   } while (e.contrib_head.link !== null)
   // §995 Make the contribution list empty by setting its tail to contrib_head
   set_contrib_tail(e, e.contrib_head)
@@ -447,6 +461,7 @@ function fire_up(e: Engine, c: Node): void {
   const bpb = e.best_page_break!
   if (bpb.type === penalty_node) { geq_word_define(e, int_base + output_penalty_code, bpb.penalty); bpb.penalty = inf_penalty }
   else geq_word_define(e, int_base + output_penalty_code, inf_penalty)
+  do_marks(e, fire_up_init) // etex.ch
   if (m[bot_mark_code] !== 0) {
     if (m[top_mark_code] !== 0) delete_token_ref(e, m[top_mark_code]!)
     m[top_mark_code] = m[bot_mark_code]!; add_token_ref(e, m[top_mark_code]!)
@@ -498,7 +513,7 @@ function fire_up(e: Engine, c: Node): void {
               while (s.link !== r.broken_ptr) s = s.link!
               s.link = null
               e.equiv[glue_base + split_top_skip_code] = pi.split_top_ptr
-              pi.ins_ptr = prune_page_top(e, r.broken_ptr)
+              pi.ins_ptr = prune_page_top(e, r.broken_ptr, false)
               if (pi.ins_ptr !== null) {
                 const t = vpack(e, pi.ins_ptr, 0, additional)
                 pi.height = (t.height + t.depth) | 0
@@ -519,6 +534,11 @@ function fire_up(e: Engine, c: Node): void {
         else delete_glue_ref(e, pi.split_top_ptr)
         p = prev_p
       }
+    } else if (p!.type === mark_node && (p as MarkNode).mark_class !== 0) { // etex.ch Update the current marks for fire_up
+      const x = sa(e, find_sa_element(e, mark_val, (p as MarkNode).mark_class, true)).mark, mp = (p as MarkNode).mark_ptr
+      if (x[1] === 0) { x[1] = mp; add_token_ref(e, mp) }
+      if (x[2] !== 0) delete_token_ref(e, x[2]!)
+      x[2] = mp; add_token_ref(e, mp)
     } else if (p!.type === mark_node) { // §1016 Update the values of first_mark and bot_mark
       if (m[first_mark_code] === 0) { m[first_mark_code] = p!.mark_ptr; add_token_ref(e, p!.mark_ptr) }
       if (m[bot_mark_code] !== 0) delete_token_ref(e, m[bot_mark_code]!)
@@ -542,6 +562,7 @@ function fire_up(e: Engine, c: Node): void {
   start_new_page(e)
   if (q !== hold_head) { e.page_head.link = hold_head.link; e.page_tail = q }
   e.page_ins_head.link = e.page_ins_head // §1019 Delete the page-insertion nodes
+  do_marks(e, fire_up_done) // etex.ch
   if (m[top_mark_code] !== 0 && m[first_mark_code] === 0) { m[first_mark_code] = m[top_mark_code]!; add_token_ref(e, m[top_mark_code]!) }
   if (e.equiv[output_routine_loc] !== 0) {
     if (e.dead_cycles >= int_par(e, max_dead_cycles_code)) { // §1024 Explain that too many dead cycles have occurred in a row
@@ -565,6 +586,7 @@ function fire_up(e: Engine, c: Node): void {
     e.contrib_head.link = e.page_head.link
     e.page_head.link = null; e.page_tail = e.page_head
   }
+  flush_node_list(e, e.disc_ptr[last_box_code]!); e.disc_ptr[last_box_code] = null // etex.ch
   ship_out(e, box(e, 255)!); change_box(e, 255, null)
 }
 
@@ -594,6 +616,7 @@ export function resume_page_builder(e: Engine): void {
     e.contrib_head.link = e.page_head.link
     e.page_head.link = null; e.page_tail = e.page_head
   }
+  flush_node_list(e, e.disc_ptr[last_box_code]!); e.disc_ptr[last_box_code] = null // etex.ch
   pop_nest(e); build_page(e)
 }
 

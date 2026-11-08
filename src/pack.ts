@@ -1,5 +1,6 @@
 // §644–679 packaging: scan_spec, hpack, vpackage, append_to_vlist
 import type { Engine } from './engine.ts'
+import { no_TeXXeT } from './etex.ts'
 import { print, print_ln, print_nl, print_int, begin_diagnostic, end_diagnostic } from './print.ts'
 import { print_scaled, badness } from './arith.ts'
 import { confusion } from './error.ts'
@@ -38,6 +39,7 @@ export function scan_spec(e: Engine, c: number, three_codes: boolean): void {
 
 // §649 hpack (pdftex: no font expansion, m is exactly or additional)
 export function hpack(e: Engine, p: Node | null, w: number, m: number): BoxNode {
+  no_TeXXeT(e) // etex.ch branches on TeXXeT_en here; TeXXeT is not ported
   e.last_badness = 0
   const r = new_null_box()
   r.list_ptr = p
