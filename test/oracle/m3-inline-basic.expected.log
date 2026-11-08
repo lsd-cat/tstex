@@ -1,0 +1,298 @@
+(m3-inline-basic.tex (plain.tex Preloading the plain format: codes, registe
+rs,
+\maxdimen=\dimen10
+\hideskip=\skip10
+\centering=\skip11
+\p@=\dimen11
+\z@=\dimen12
+\z@skip=\skip12
+\voidb@x=\box10
+parameters,
+\smallskipamount=\skip13
+\medskipamount=\skip14
+\bigskipamount=\skip15
+\normalbaselineskip=\skip16
+\normallineskip=\skip17
+\normallineskiplimit=\dimen13
+\jot=\dimen14
+\interdisplaylinepenalty=\count23
+\interfootnotelinepenalty=\count24
+fonts, more fonts,
+\itfam=\fam4
+\slfam=\fam5
+\bffam=\fam6
+\ttfam=\fam7
+macros,
+\strutbox=\box11
+\mscount=\count25
+\tabs=\box12
+\tabsyet=\box13
+\tabsdone=\box14
+math definitions,
+\rootbox=\box15
+\p@renwd=\dimen15
+output routines,
+\headline=\toks10
+\footline=\toks11
+\footins=\insert254
+\topins=\insert253
+hyphenation (hyphen.tex))
+> \box1=
+\hbox(8.14003+2.60292)x99.79405
+.\mathon
+.\teni a
+.\glue(\medmuskip) 2.22217 plus 1.11108 minus 2.22217
+.\tenrm +
+.\glue(\medmuskip) 2.22217 plus 1.11108 minus 2.22217
+.\teni b
+.\glue(\thickmuskip) 2.77771 plus 2.77771
+.\tenrm =
+.\glue(\thickmuskip) 2.77771 plus 2.77771
+.\teni c
+.\mathoff
+.\glue 3.33333 plus 1.66666 minus 1.11111
+.\mathon
+.\teni x
+.\hbox(4.51111+0.0)x4.48613, shifted -3.62892
+..\sevenrm 2
+.\mathoff
+.\glue 3.33333 plus 1.66666 minus 1.11111
+.\mathon
+.\teni x
+.\hbox(4.63193+0.0)x3.32928, shifted 1.49998
+..\seveni i
+.\mathoff
+.\glue 3.33333 plus 1.66666 minus 1.11111
+.\mathon
+.\teni x
+.\hbox(3.01389+1.06111)x8.50432, shifted -3.62892
+..\seveni a
+..\hbox(3.47221+0.0)x3.66667, shifted 1.06111
+...\fivei b
+.\mathoff
+.\glue 3.33333 plus 1.66666 minus 1.11111
+.\mathon
+.\teni x
+.\vbox(10.74295+0.0)x4.48613, shifted 2.60292
+..\hbox(4.51111+0.0)x4.48613
+...\sevenrm 2
+..\kern1.59991
+..\hbox(4.63193+0.0)x3.32928
+...\seveni i
+.\mathoff
+.\glue 3.33333 plus 1.66666 minus 1.11111
+.\mathon
+.\mathoff
+
+! OK.
+l.6 \showbox1
+
+
+> \box2=
+\hbox(6.15079+0.0)x34.11926
+.\mathon, surrounded 2.0
+.\teni a
+.\mathoff, surrounded 2.0
+.\glue 3.33333 plus 1.66666 minus 1.11111
+.\mathon, surrounded 2.0
+.\hbox(6.15079+0.0)x17.50005
+..\tenrm t
+..\tenrm e
+..\tenrm x
+..\tenrm t
+.\mathoff, surrounded 2.0
+
+! OK.
+l.9 \showbox2
+
+
+! Double superscript.
+l.11 \setbox3=\hbox{$x^a^
+                         b$}
+I treat `x^1^2' essentially like `x^1{}^2'.
+
+> \box3=
+\hbox(8.49002+0.0)x14.56958
+.\mathon
+.\teni x
+.\hbox(3.01389+0.0)x4.83765, shifted -3.62892
+..\seveni a
+.\hbox(4.8611+0.0)x4.01666, shifted -3.62892
+..\seveni b
+.\mathoff
+
+! OK.
+l.12 \showbox3
+
+
+! Double subscript.
+l.13 \setbox4=\hbox{$x_a_
+                         b$}
+I treat `x_1_2' essentially like `x_1{}_2'.
+
+> \box4=
+\hbox(4.30554+1.49998)x14.56958
+.\mathon
+.\teni x
+.\hbox(3.01389+0.0)x4.83765, shifted 1.49998
+..\seveni a
+.\hbox(4.8611+0.0)x4.01666, shifted 1.49998
+..\seveni b
+.\mathoff
+
+! OK.
+l.14 \showbox4
+
+
+
+### math mode entered at line 15
+\mathord
+.\fam1 a
+### horizontal mode entered at line 15
+spacefactor 1000
+### vertical mode entered at line 0
+prevdepth ignored
+
+! OK.
+l.15 \noindent $a\showlists
+                           +b^2\hbox{q}$\showlists\par
+
+
+### horizontal mode entered at line 15
+\mathon
+\teni a
+\glue(\medmuskip) 2.22217 plus 1.11108 minus 2.22217
+\tenrm +
+\penalty 700
+\glue(\medmuskip) 2.22217 plus 1.11108 minus 2.22217
+\teni b
+\hbox(4.51111+0.0)x4.48613, shifted -3.62892
+.\sevenrm 2
+\hbox(4.30554+1.94444)x5.27779
+.\tenrm q
+\mathoff
+spacefactor 1000
+### vertical mode entered at line 0
+prevdepth ignored
+
+! OK.
+l.15 \noindent $a\showlists+b^2\hbox{q}$\showlists
+                                                  \par
+
+
+Completed box being shipped out [1]
+\vbox(44.14003+1.49998)x99.79405
+.\hbox(8.14003+2.60292)x99.79405
+..\mathon
+..\teni a
+..\glue(\medmuskip) 2.22217 plus 1.11108 minus 2.22217
+..\tenrm +
+..\glue(\medmuskip) 2.22217 plus 1.11108 minus 2.22217
+..\teni b
+..\glue(\thickmuskip) 2.77771 plus 2.77771
+..\tenrm =
+..\glue(\thickmuskip) 2.77771 plus 2.77771
+..\teni c
+..\mathoff
+..\glue 3.33333 plus 1.66666 minus 1.11111
+..\mathon
+..\teni x
+..\hbox(4.51111+0.0)x4.48613, shifted -3.62892
+...\sevenrm 2
+..\mathoff
+..\glue 3.33333 plus 1.66666 minus 1.11111
+..\mathon
+..\teni x
+..\hbox(4.63193+0.0)x3.32928, shifted 1.49998
+...\seveni i
+..\mathoff
+..\glue 3.33333 plus 1.66666 minus 1.11111
+..\mathon
+..\teni x
+..\hbox(3.01389+1.06111)x8.50432, shifted -3.62892
+...\seveni a
+...\hbox(3.47221+0.0)x3.66667, shifted 1.06111
+....\fivei b
+..\mathoff
+..\glue 3.33333 plus 1.66666 minus 1.11111
+..\mathon
+..\teni x
+..\vbox(10.74295+0.0)x4.48613, shifted 2.60292
+...\hbox(4.51111+0.0)x4.48613
+....\sevenrm 2
+...\kern1.59991
+...\hbox(4.63193+0.0)x3.32928
+....\seveni i
+..\mathoff
+..\glue 3.33333 plus 1.66666 minus 1.11111
+..\mathon
+..\mathoff
+.\glue(\baselineskip) 3.24629
+.\hbox(6.15079+0.0)x34.11926
+..\mathon, surrounded 2.0
+..\teni a
+..\mathoff, surrounded 2.0
+..\glue 3.33333 plus 1.66666 minus 1.11111
+..\mathon, surrounded 2.0
+..\hbox(6.15079+0.0)x17.50005
+...\tenrm t
+...\tenrm e
+...\tenrm x
+...\tenrm t
+..\mathoff, surrounded 2.0
+.\glue(\baselineskip) 3.50998
+.\hbox(8.49002+0.0)x14.56958
+..\mathon
+..\teni x
+..\hbox(3.01389+0.0)x4.83765, shifted -3.62892
+...\seveni a
+..\hbox(4.8611+0.0)x4.01666, shifted -3.62892
+...\seveni b
+..\mathoff
+.\glue(\baselineskip) 7.69446
+.\hbox(4.30554+1.49998)x14.56958
+..\mathon
+..\teni x
+..\hbox(3.01389+0.0)x4.83765, shifted 1.49998
+...\seveni a
+..\hbox(4.8611+0.0)x4.01666, shifted 1.49998
+...\seveni b
+..\mathoff
+
+
+Completed box being shipped out [1]
+\vbox(667.20255+0.0)x200.0
+.\vbox(0.0+0.0)x200.0, glue set 14.0fil
+..\glue -22.5
+..\hbox(8.5+0.0)x200.0, glue set 200.0fil
+...\vbox(8.5+0.0)x0.0
+...\glue 0.0 plus 1.0fil
+..\glue 0.0 plus 1.0fil minus 1.0fil
+.\vbox(643.20255+0.0)x200.0, glue set 631.2581fill
+..\glue(\topskip) 1.85997
+..\hbox(8.14003+1.94444)x200.0, glue set 168.4364fil
+...\mathon
+...\teni a
+...\glue(\medmuskip) 2.22217 plus 1.11108 minus 2.22217
+...\tenrm +
+...\penalty 700
+...\glue(\medmuskip) 2.22217 plus 1.11108 minus 2.22217
+...\teni b
+...\hbox(4.51111+0.0)x4.48613, shifted -3.62892
+....\sevenrm 2
+...\hbox(4.30554+1.94444)x5.27779
+....\tenrm q
+...\mathoff
+...\penalty 10000
+...\glue(\parfillskip) 0.0 plus 1.0fil
+...\glue(\rightskip) 0.0
+..\hbox(0.0+0.0)x200.0
+..\glue 0.0 plus 1.0fill
+.\glue(\baselineskip) 17.55556
+.\hbox(6.44444+0.0)x200.0, glue set 97.5fil
+..\glue 0.0 plus 1.0fil minus 1.0fil
+..\tenrm 1
+..\glue 0.0 plus 1.0fil minus 1.0fil
+
+ )
+Output written on m3-inline-basic.dvi (2 pages, 612 bytes).

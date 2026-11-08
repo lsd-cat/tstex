@@ -1,0 +1,16 @@
+%! oracle: ini
+\input plain
+\tracingonline=0 \showboxbreadth=10000 \showboxdepth=10000 \tracingoutput=1
+\def\nl{\noexpand\par}
+\setbox1=\hbox{$a\mark{m1}\penalty5 b\special{sp}\write-1{wr}\vadjust{\kern1pt}c\-d\discretionary{}{}{}e\discretionary{x}{}{}f\discretionary{}{}{y}g$}
+\showbox1
+\setbox2=\hbox{$a\insert100{x}\penalty-10000 \showlists b\mark{z}$}
+\showbox2
+\hsize=200pt
+\noindent$a\vadjust{\kern2pt}\mark{q}\penalty3\special{s}\showlists b$\par
+\noindent$$a\mark{dm}\penalty4\vadjust{\kern3pt}\showlists$$
+\par
+\setbox3=\hbox{$a\openout3=junk \closeout3 \write16{x} b\immediate\write16{imm}$}
+\showbox3
+\shipout\vbox{\box1\box2\box3}
+\end

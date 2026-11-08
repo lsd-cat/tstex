@@ -1,0 +1,29 @@
+%! oracle: ini
+\input plain
+\tracingonline=0 \showboxbreadth=10000 \showboxdepth=10000 \tracingoutput=1
+\hsize=100pt \parindent=5pt
+\partokencontext=2
+\def\par{\endgraf\message{PAR}}
+\setbox1=\hbox{$\vcenter{
+
+a
+
+b}$}
+\showbox1
+\partokencontext=1
+\setbox2=\hbox{$\vcenter{\hrule
+
+x}$}
+\showbox2
+\partokencontext=0
+\setbox3=\hbox{$\vcenter{a
+
+b}$}
+\showbox3
+\partokencontext=2
+\setbox4=\vbox{\hbox{$\vcenter{\hbox{p}}$}
+
+q}
+\showbox4
+\shipout\vbox{\box1\box2\box3\box4}
+\end

@@ -1,0 +1,19 @@
+%! oracle: ini
+\input plain
+\tracingonline=0 \showboxbreadth=10000 \showboxdepth=10000 \tracingoutput=1
+\setbox1=\hbox{$\radical"270370 x$ $\sqrt{x}$ $\sqrt{\sqrt{x}}$ $\root 3\of x$}
+\showbox1
+\setbox2=\hbox{$\mathaccent"7017 x$ $\hat x$ $\vec x$ $\widehat{xyz}$ $\hat{x_i}$ $\hat x_i$ $\widehat x$}
+\showbox2
+\skewchar\teni=-1
+\setbox3=\hbox{$\hat x$ $\hat f$ $\tilde j$}
+\showbox3
+\skewchar\teni=127
+\setbox4=\hbox{$\hat x$ $\hat f$ $\tilde j$}
+\showbox4
+\setbox5=\hbox{$\underline{x}$ $\overline{x}$ $\overline{\overline{x}}$ $\underline{\overline{x}}$}
+\showbox5
+\setbox6=\hbox{$\sqrt{\vrule height 30pt}$}
+\showbox6
+\shipout\vbox{\box1\box2\box3\box4\box5\box6}
+\end

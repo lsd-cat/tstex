@@ -1,0 +1,18 @@
+%! oracle: ini
+\input plain
+\tracingonline=0 \showboxbreadth=10000 \showboxdepth=10000 \tracingoutput=1
+\hsize=200pt \parindent=5pt \tolerance=10000 \jot=3pt
+\setbox1=\vbox{\noindent Some words $$\halign{#\hfil&$#$\hfil\cr ab&x=y\cr c&z\cr}$$ after.\par\showthe\prevgraf}
+\showbox1
+\setbox2=\vbox{\noindent A long long long long long long long long long long long long long long long long long line $$\halign{#\cr w\cr}$$}
+\showbox2
+\setbox3=\vbox{\noindent $$\displaylines{a=b\cr c+d\cr}$$ \noindent$$\eqalign{a&=b\cr c&=d+e\cr}$$}
+\showbox3
+\setbox4=\vbox{\noindent $$\eqalignno{a&=b&(1)\cr c&=d&(2)\cr}$$ \noindent$$\leqalignno{a&=b&(3)\cr c&=d\cr}$$}
+\showbox4
+\setbox5=\vbox{\openup 2pt \noindent $$\displaylines{a\cr b\cr}$$ \par\showthe\jot \showthe\lineskip}
+\showbox5
+\setbox6=\vbox{\noindent$$\halign{#\cr a\showlists\cr}$$}
+\showbox6
+\shipout\vbox{\box1\box2\box3\box4\box5}
+\end

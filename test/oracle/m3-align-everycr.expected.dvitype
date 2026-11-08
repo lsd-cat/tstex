@@ -1,0 +1,117 @@
+Options selected:
+  Starting page = * 
+  Maximum number of pages = 1000000
+  Output level = 4 (the works)
+  Resolution = 300.00000000 pixels per inch
+numerator/denominator=25400000/473628672
+magnification=1000;       0.00006334 pixels per DVI unit
+'<comment>'
+Postamble starts at byte 219.
+maxv=4319912, maxh=364090, maxstackdepth=3, totalpages=1
+Font 0: cmr10---loaded at size 655360 DVI units 
+ 
+42: beginning of page 1 
+87: down3 1265208 v:=0+1265208=1265208, vv:=80 
+91: push 
+level 0:(h=0,v=1265208,w=0,x=0,y=0,z=0,hh=0,vv=80) 
+92: down3 -917504 v:=1265208-917504=347704, vv:=22 
+96: push 
+level 1:(h=0,v=347704,w=0,x=0,y=0,z=0,hh=0,vv=22) 
+97: push 
+level 2:(h=0,v=347704,w=0,x=0,y=0,z=0,hh=0,vv=22) 
+98: fntdef1 0: cmr10 
+119: fntnum0 current font is cmr10 
+120: setchar97 h:=0+327681=327681, hh:=21 
+[a]
+121: pop 
+level 2:(h=0,v=347704,w=0,x=0,y=0,z=0,hh=0,vv=22) 
+122: pop 
+level 1:(h=0,v=347704,w=0,x=0,y=0,z=0,hh=0,vv=22) 
+123: down3 851968 v:=347704+851968=1199672, vv:=76 
+127: push 
+level 1:(h=0,v=1199672,w=0,x=0,y=0,z=0,hh=0,vv=76) 
+128: push 
+level 2:(h=0,v=1199672,w=0,x=0,y=0,z=0,hh=0,vv=76) 
+129: setchar98 h:=0+364090=364090, hh:=23 
+[b]
+130: pop 
+level 2:(h=0,v=1199672,w=0,x=0,y=0,z=0,hh=0,vv=76) 
+131: pop 
+level 1:(h=0,v=1199672,w=0,x=0,y=0,z=0,hh=0,vv=76) 
+132: pop 
+level 0:(h=0,v=1265208,w=0,x=0,y=0,z=0,hh=0,vv=80) 
+133: y3 1134136 v:=1265208+1134136=2399344, vv:=152 
+137: push 
+level 0:(h=0,v=2399344,w=0,x=0,y=1134136,z=0,hh=0,vv=152) 
+138: down3 -786432 v:=2399344-786432=1612912, vv:=102 
+142: push 
+level 1:(h=0,v=1612912,w=0,x=0,y=1134136,z=0,hh=0,vv=102) 
+143: push 
+level 2:(h=0,v=1612912,w=0,x=0,y=1134136,z=0,hh=0,vv=102) 
+144: setchar97 h:=0+327681=327681, hh:=21 
+[a]
+145: pop 
+level 2:(h=0,v=1612912,w=0,x=0,y=1134136,z=0,hh=0,vv=102) 
+146: pop 
+level 1:(h=0,v=1612912,w=0,x=0,y=1134136,z=0,hh=0,vv=102) 
+147: down3 786432 v:=1612912+786432=2399344, vv:=152 
+151: push 
+level 1:(h=0,v=2399344,w=0,x=0,y=1134136,z=0,hh=0,vv=152) 
+152: push 
+level 2:(h=0,v=2399344,w=0,x=0,y=1134136,z=0,hh=0,vv=152) 
+153: setchar98 h:=0+364090=364090, hh:=23 
+[b]
+154: pop 
+level 2:(h=0,v=2399344,w=0,x=0,y=1134136,z=0,hh=0,vv=152) 
+155: pop 
+level 1:(h=0,v=2399344,w=0,x=0,y=1134136,z=0,hh=0,vv=152) 
+156: pop 
+level 0:(h=0,v=2399344,w=0,x=0,y=1134136,z=0,hh=0,vv=152) 
+157: y0 1134136 v:=2399344+1134136=3533480, vv:=224 
+158: push 
+level 0:(h=0,v=3533480,w=0,x=0,y=1134136,z=0,hh=0,vv=224) 
+159: down3 -786432 v:=3533480-786432=2747048, vv:=174 
+163: push 
+level 1:(h=0,v=2747048,w=0,x=0,y=1134136,z=0,hh=0,vv=174) 
+164: push 
+level 2:(h=0,v=2747048,w=0,x=0,y=1134136,z=0,hh=0,vv=174) 
+165: setchar97 h:=0+327681=327681, hh:=21 
+[a]
+166: pop 
+level 2:(h=0,v=2747048,w=0,x=0,y=1134136,z=0,hh=0,vv=174) 
+167: pop 
+level 1:(h=0,v=2747048,w=0,x=0,y=1134136,z=0,hh=0,vv=174) 
+168: down3 786432 v:=2747048+786432=3533480, vv:=224 
+172: push 
+level 1:(h=0,v=3533480,w=0,x=0,y=1134136,z=0,hh=0,vv=224) 
+173: push 
+level 2:(h=0,v=3533480,w=0,x=0,y=1134136,z=0,hh=0,vv=224) 
+174: setchar98 h:=0+364090=364090, hh:=23 
+[b]
+175: pop 
+level 2:(h=0,v=3533480,w=0,x=0,y=1134136,z=0,hh=0,vv=224) 
+176: pop 
+level 1:(h=0,v=3533480,w=0,x=0,y=1134136,z=0,hh=0,vv=224) 
+177: pop 
+level 0:(h=0,v=3533480,w=0,x=0,y=1134136,z=0,hh=0,vv=224) 
+178: down3 786432 v:=3533480+786432=4319912, vv:=274 
+182: push 
+level 0:(h=0,v=4319912,w=0,x=0,y=1134136,z=0,hh=0,vv=274) 
+183: down3 -439454 v:=4319912-439454=3880458, vv:=246 
+187: putrule height 26214, width 327681 (2x21 pixels) 
+196: down3 413240 v:=3880458+413240=4293698, vv:=272 
+200: push 
+level 1:(h=0,v=4293698,w=0,x=0,y=1134136,z=0,hh=0,vv=272) 
+201: push 
+level 2:(h=0,v=4293698,w=0,x=0,y=1134136,z=0,hh=0,vv=272) 
+202: setchar97 h:=0+327681=327681, hh:=21 
+[a]
+203: pop 
+level 2:(h=0,v=4293698,w=0,x=0,y=1134136,z=0,hh=0,vv=272) 
+204: pop 
+level 1:(h=0,v=4293698,w=0,x=0,y=1134136,z=0,hh=0,vv=272) 
+205: down2 26214 v:=4293698+26214=4319912, vv:=274 
+208: putrule height 26214, width 327681 (2x21 pixels) 
+217: pop 
+level 0:(h=0,v=4319912,w=0,x=0,y=1134136,z=0,hh=0,vv=274) 
+218: eop 

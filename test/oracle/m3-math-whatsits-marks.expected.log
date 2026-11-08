@@ -1,0 +1,281 @@
+(m3-math-whatsits-marks.tex (plain.tex Preloading the plain format: codes,
+registers,
+\maxdimen=\dimen10
+\hideskip=\skip10
+\centering=\skip11
+\p@=\dimen11
+\z@=\dimen12
+\z@skip=\skip12
+\voidb@x=\box10
+parameters,
+\smallskipamount=\skip13
+\medskipamount=\skip14
+\bigskipamount=\skip15
+\normalbaselineskip=\skip16
+\normallineskip=\skip17
+\normallineskiplimit=\dimen13
+\jot=\dimen14
+\interdisplaylinepenalty=\count23
+\interfootnotelinepenalty=\count24
+fonts, more fonts,
+\itfam=\fam4
+\slfam=\fam5
+\bffam=\fam6
+\ttfam=\fam7
+macros,
+\strutbox=\box11
+\mscount=\count25
+\tabs=\box12
+\tabsyet=\box13
+\tabsdone=\box14
+math definitions,
+\rootbox=\box15
+\p@renwd=\dimen15
+output routines,
+\headline=\toks10
+\footline=\toks11
+\footins=\insert254
+\topins=\insert253
+hyphenation (hyphen.tex))
+! Illegal math \discretionary.
+l.5 ...\discretionary{x}{}{}f\discretionary{}{}{y}
+                                                  g$}
+Sorry: The third part of a discretionary break must be
+empty, in math formulas. I had to delete your third part.
+
+> \box1=
+\hbox(6.94444+1.94444)x34.86696
+.\mathon
+.\teni a
+.\mark{m1}
+.\penalty 5
+.\teni b
+.\special{sp}
+.\write-{wr}
+.\vadjust
+..\kern 1.0
+.\teni c
+.\discretionary
+..\tenrm -
+.\teni d
+.\discretionary
+.\teni e
+.\discretionary
+..\tenrm x
+.\teni f
+.\kern1.0764
+.\discretionary
+.\teni g
+.\kern0.35878
+.\mathoff
+
+! OK.
+l.6 \showbox1
+
+
+
+### math mode entered at line 7
+\mathord
+.\fam1 a
+\insert100, natural size 4.30554; split(10.0,16383.99998); float cost 0
+.\hbox(4.30554+0.0)x469.75499, glue set 444.47719fil
+..\hbox(0.0+0.0)x20.0
+..\tenrm x
+..\penalty 10000
+..\glue(\parfillskip) 0.0 plus 1.0fil
+..\glue(\rightskip) 0.0
+\penalty -10000
+### restricted horizontal mode entered at line 7
+spacefactor 1000
+### vertical mode entered at line 0
+prevdepth ignored
+
+! OK.
+l.7 ...ox{$a\insert100{x}\penalty-10000 \showlists
+                                                   b\mark{z}$}
+
+> \box2=
+\hbox(6.94444+0.0)x9.57755
+.\mathon
+.\teni a
+.\insert100, natural size 4.30554; split(10.0,16383.99998); float cost 0
+..\hbox(4.30554+0.0)x469.75499, glue set 444.47719fil
+...\hbox(0.0+0.0)x20.0
+...\tenrm x
+...\penalty 10000
+...\glue(\parfillskip) 0.0 plus 1.0fil
+...\glue(\rightskip) 0.0
+.\penalty -10000
+.\teni b
+.\mark{z}
+.\mathoff
+
+! OK.
+l.8 \showbox2
+
+
+
+### math mode entered at line 10
+\mathord
+.\fam1 a
+\vadjust
+.\kern 2.0
+\mark{q}
+\penalty 3
+\special{s}
+### horizontal mode entered at line 10
+spacefactor 1000
+### vertical mode entered at line 0
+prevdepth ignored
+
+! OK.
+l.10 ...2pt}\mark{q}\penalty3\special{s}\showlists
+                                                   b$\par
+
+
+### display math mode entered at line 11
+\mathord
+.\fam1 a
+\mark{dm}
+\penalty 4
+\vadjust
+.\kern 3.0
+### vertical mode entered at line 0
+### current page:
+\glue(\topskip) 3.05556
+\hbox(6.94444+0.0)x200.0, glue set 190.42245fil
+.\mathon
+.\teni a
+.\penalty 3
+.\special{s}
+.\teni b
+.\mathoff
+.\penalty 10000
+.\glue(\parfillskip) 0.0 plus 1.0fil
+.\glue(\rightskip) 0.0
+\kern 2.0
+\mark{q}
+\glue(\parskip) 0.0 plus 1.0
+total height 12.0 plus 1.0
+ goal height 643.20255
+prevdepth 0.0
+
+! OK.
+l.11 ...k{dm}\penalty4\vadjust{\kern3pt}\showlists
+                                                  $$
+
+imm
+> \box3=
+\hbox(6.94444+0.0)x9.57755
+.\mathon
+.\teni a
+.\openout3=junk
+.\closeout3
+.\write*{x}
+.\teni b
+.\mathoff
+
+! OK.
+l.14 \showbox3
+
+
+
+Completed box being shipped out [1]
+\vbox(30.94444+0.0)x34.86696
+.\hbox(6.94444+1.94444)x34.86696
+..\mathon
+..\teni a
+..\mark{m1}
+..\penalty 5
+..\teni b
+..\special{sp}
+..\write-{wr}
+..\vadjust
+...\kern 1.0
+..\teni c
+..\discretionary
+...\tenrm -
+..\teni d
+..\discretionary
+..\teni e
+..\discretionary
+...\tenrm x
+..\teni f
+..\kern1.0764
+..\discretionary
+..\teni g
+..\kern0.35878
+..\mathoff
+.\glue(\baselineskip) 3.11111
+.\hbox(6.94444+0.0)x9.57755
+..\mathon
+..\teni a
+..\insert100, natural size 4.30554; split(10.0,16383.99998); float cost 0
+...\hbox(4.30554+0.0)x469.75499, glue set 444.47719fil
+....\hbox(0.0+0.0)x20.0
+....\tenrm x
+....\penalty 10000
+....\glue(\parfillskip) 0.0 plus 1.0fil
+....\glue(\rightskip) 0.0
+..\penalty -10000
+..\teni b
+..\mark{z}
+..\mathoff
+.\glue(\baselineskip) 5.05556
+.\hbox(6.94444+0.0)x9.57755
+..\mathon
+..\teni a
+..\openout3=junk
+..\closeout3
+..\write*{x}
+..\teni b
+..\mathoff
+
+wr
+\openout3 = `junk.tex'.
+
+x
+
+Completed box being shipped out [1]
+\vbox(667.20255+0.0)x200.0
+.\vbox(0.0+0.0)x200.0, glue set 14.0fil
+..\glue -22.5
+..\hbox(8.5+0.0)x200.0, glue set 200.0fil
+...\vbox(8.5+0.0)x0.0
+...\glue 0.0 plus 1.0fil
+..\glue 0.0 plus 1.0fil minus 1.0fil
+.\vbox(643.20255+0.0)x200.0, glue set 609.20255fill
+..\glue(\topskip) 3.05556
+..\hbox(6.94444+0.0)x200.0, glue set 190.42245fil
+...\mathon
+...\teni a
+...\penalty 3
+...\special{s}
+...\teni b
+...\mathoff
+...\penalty 10000
+...\glue(\parfillskip) 0.0 plus 1.0fil
+...\glue(\rightskip) 0.0
+..\kern 2.0
+..\mark{q}
+..\glue(\parskip) 0.0 plus 1.0
+..\penalty 10000
+..\glue(\abovedisplayshortskip) 0.0 plus 3.0
+..\glue(\baselineskip) 7.69446
+..\hbox(4.30554+0.0)x5.28589, shifted 97.35706
+...\teni a
+...\penalty 4
+..\mark{dm}
+..\kern 3.0
+..\penalty 0
+..\glue(\belowdisplayshortskip) 7.0 plus 3.0 minus 4.0
+..\hbox(0.0+0.0)x200.0
+..\glue 0.0 plus 1.0fill
+.\glue(\baselineskip) 17.55556
+.\hbox(6.44444+0.0)x200.0, glue set 97.5fil
+..\glue 0.0 plus 1.0fil minus 1.0fil
+..\tenrm 1
+..\glue 0.0 plus 1.0fil minus 1.0fil
+
+ )
+Output written on m3-math-whatsits-marks.dvi (2 pages, 344 bytes).

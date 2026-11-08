@@ -1,0 +1,17 @@
+%! oracle: ini
+\input plain
+\tracingonline=0 \showboxbreadth=10000 \showboxdepth=10000 \tracingoutput=1
+\setbox1=\hbox{\valign{#\vfil&\vfil#\cr \hbox{a}&\hbox{b}\cr \hbox{c}\hbox{d}&\hbox{e}\cr}}
+\showbox1
+\setbox2=\hbox{\valign{#\cr \hbox{a}\cr\noalign{\hskip 5pt}\hbox{b}\cr}}
+\showbox2
+\setbox3=\hbox{x\valign to 20pt{\vfil#\cr \hbox{a}\cr}y}
+\showbox3
+\setbox4=\vbox{\hsize=100pt \noindent x\valign{#\cr \hbox{a}\cr}y\par}
+\showbox4
+\setbox5=\hbox{\valign{#\cr \hbox{a}&\hbox{b}\cr}}
+\showbox5
+\setbox6=\hbox{\valign{#\cr \hbox{a}}}
+\showbox6
+\shipout\vbox{\box1\box2\box3\box4}
+\end

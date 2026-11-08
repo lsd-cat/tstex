@@ -1,0 +1,13 @@
+%! oracle: ini
+\input plain
+\tracingonline=0 \showboxbreadth=10000 \showboxdepth=10000 \tracingoutput=1
+\hsize=100pt \vsize=2in \maxdepth=2pt \baselineskip=12pt \topskip=10pt \parindent=0pt
+\tracingpages=1
+\output={\message{[OUT \the\outputpenalty]}\showbox255 \shipout\box255 \global\advance\count0 1 }
+\count255=0
+\def\rowa{\global\advance\count1 1 \the\count1 &r\cr\noalign{\penalty0}}
+\def\rb{\rowa\rowa\rowa\rowa\rowa\rowa\rowa\rowa\rowa\rowa}
+\def\rc{\rb\rb\rb\rb\rb\rb\rb\rb\rb\rb}
+\halign{#\hfil&\hfil#\cr \rb\rb\rb\rb\rb\rb\noalign{\mark{M1}}x&y\cr \rc\rb\rb\rb\rb\noalign{\mark{M2}\penalty-10000}z&w\cr}
+\showlists
+\end

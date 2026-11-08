@@ -1,0 +1,17 @@
+%! oracle: ini
+\input plain
+\tracingonline=0 \showboxbreadth=10000 \showboxdepth=10000 \tracingoutput=1
+\setbox1=\hbox{$\vcenter{\hbox{a}\hbox{b}}$ $\hbox{x}\vbox{\hbox{y}\hbox{z}}$ $a\raise2pt\hbox{b}\lower3pt\hbox{c}$ $\vrule$ $a\hskip 5pt b$ $a\kern3pt b\mkern3mu c$}
+\showbox1
+\setbox2=\hbox{$\vcenter to 20pt{\hbox{a}\vss}$ $\vcenter spread 5pt{\hbox{a}}$ $\vbox to 10pt{}$}
+\showbox2
+\mathsurround=3pt
+\setbox3=\hbox{$\vcenter{\hbox{a}}\showlists$ $x$}
+\showbox3
+\mathsurround=0pt
+\vcenter{\hbox{a}}
+\showlists
+\setbox4=\hbox{$a\hfil b\hfill c\hskip 2pt plus 1fil d\hss$}
+\showbox4
+\shipout\vbox{\box1\box2\box3\box4}
+\end

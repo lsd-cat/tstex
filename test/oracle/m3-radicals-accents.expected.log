@@ -1,0 +1,586 @@
+(m3-radicals-accents.tex (plain.tex Preloading the plain format: codes, reg
+isters,
+\maxdimen=\dimen10
+\hideskip=\skip10
+\centering=\skip11
+\p@=\dimen11
+\z@=\dimen12
+\z@skip=\skip12
+\voidb@x=\box10
+parameters,
+\smallskipamount=\skip13
+\medskipamount=\skip14
+\bigskipamount=\skip15
+\normalbaselineskip=\skip16
+\normallineskip=\skip17
+\normallineskiplimit=\dimen13
+\jot=\dimen14
+\interdisplaylinepenalty=\count23
+\interfootnotelinepenalty=\count24
+fonts, more fonts,
+\itfam=\fam4
+\slfam=\fam5
+\bffam=\fam6
+\ttfam=\fam7
+macros,
+\strutbox=\box11
+\mscount=\count25
+\tabs=\box12
+\tabsyet=\box13
+\tabsdone=\box14
+math definitions,
+\rootbox=\box15
+\p@renwd=\dimen15
+output routines,
+\headline=\toks10
+\footline=\toks11
+\footins=\insert254
+\topins=\insert253
+hyphenation (hyphen.tex))
+> \box1=
+\hbox(9.65274+2.74734)x76.81964
+.\mathon
+.\hbox(8.00272+2.39725)x14.04863
+..\hbox(0.39998+9.6)x8.33336, shifted -7.20276
+...\tensy p
+..\vbox(8.00272+0.0)x5.71527
+...\kern0.39998
+...\rule(0.39998+0.0)x*
+...\kern2.89722
+...\hbox(4.30554+0.0)x5.71527
+....\teni x
+.\mathoff
+.\glue 3.33333 plus 1.66666 minus 1.11111
+.\mathon
+.\hbox(8.00272+2.39725)x14.04863
+..\hbox(0.39998+9.6)x8.33336, shifted -7.20276
+...\tensy p
+..\vbox(8.00272+0.0)x5.71527
+...\kern0.39998
+...\rule(0.39998+0.0)x*
+...\kern2.89722
+...\hbox(4.30554+0.0)x5.71527
+....\teni x
+.\mathoff
+.\glue 3.33333 plus 1.66666 minus 1.11111
+.\mathon
+.\hbox(9.65274+2.74734)x24.04865
+..\hbox(0.39998+11.60013)x10.00002, shifted -8.85278
+...\tenex p
+..\vbox(9.65274+2.39725)x14.04863
+...\kern0.39998
+...\rule(0.39998+0.0)x*
+...\kern0.85007
+...\hbox(8.00272+2.39725)x14.04863
+....\hbox(0.39998+9.6)x8.33336, shifted -7.20276
+.....\tensy p
+....\vbox(8.00272+0.0)x5.71527
+.....\kern0.39998
+.....\rule(0.39998+0.0)x*
+.....\kern2.89722
+.....\hbox(4.30554+0.0)x5.71527
+......\teni x
+.\mathoff
+.\glue 3.33333 plus 1.66666 minus 1.11111
+.\mathon
+.\kern 2.77771
+.\hbox(3.22221+0.0)x3.40283, shifted -3.36331
+..\mathon
+..\fiverm 3
+..\mathoff
+.\kern -5.55542
+.\hbox(8.00272+2.39725)x14.04863
+..\mathon
+..\hbox(8.00272+2.39725)x14.04863
+...\hbox(0.39998+9.6)x8.33336, shifted -7.20276
+....\tensy p
+...\vbox(8.00272+0.0)x5.71527
+....\kern0.39998
+....\rule(0.39998+0.0)x*
+....\kern2.89722
+....\hbox(4.30554+0.0)x5.71527
+.....\teni x
+..\mathoff
+.\mathoff
+
+! OK.
+l.5 \showbox1
+
+
+> \box2=
+\hbox(7.5+1.94444)x77.01733
+.\mathon
+.\vbox(6.94444+0.0)x5.71527
+..\hbox(6.94444+0.0)x0.0, shifted -0.61458
+...\tenrm ^^W
+..\kern-4.30554
+..\hbox(4.30554+0.0)x5.71527
+...\teni x
+.\mathoff
+.\glue 3.33333 plus 1.66666 minus 1.11111
+.\mathon
+.\vbox(6.94444+0.0)x5.71527
+..\hbox(6.94444+0.0)x0.0, shifted 0.63542
+...\tenrm ^
+..\kern-4.30554
+..\hbox(4.30554+0.0)x5.71527
+...\teni x
+.\mathoff
+.\glue 3.33333 plus 1.66666 minus 1.11111
+.\mathon
+.\vbox(7.14444+0.0)x5.71527
+..\hbox(7.14444+0.0)x0.0, shifted -0.13367
+...\teni ~
+..\kern-4.30554
+..\hbox(4.30554+0.0)x5.71527
+...\teni x
+.\mathoff
+.\glue 3.33333 plus 1.66666 minus 1.11111
+.\mathon
+.\vbox(7.5+1.94444)x16.06717
+..\hbox(7.5+0.0)x0.0, shifted 0.81136
+...\tenex d
+..\kern-4.30554
+..\hbox(4.30554+1.94444)x16.06717
+...\teni x
+...\teni y
+...\kern0.35878
+...\teni z
+...\kern0.4398
+.\mathoff
+.\glue 3.33333 plus 1.66666 minus 1.11111
+.\mathon
+.\vbox(6.94444+1.49998)x9.04456
+..\hbox(6.94444+0.0)x0.0, shifted 2.02228
+...\tenrm ^
+..\kern-4.30554
+..\hbox(4.30554+1.49998)x9.04456
+...\teni x
+...\hbox(4.63193+0.0)x3.32928, shifted 1.49998
+....\seveni i
+.\mathoff
+.\glue 3.33333 plus 1.66666 minus 1.11111
+.\mathon
+.\vbox(6.94444+1.49998)x9.04456
+..\hbox(6.94444+0.0)x0.0, shifted 0.63542
+...\tenrm ^
+..\kern-4.30554
+..\hbox(4.30554+1.49998)x9.04456
+...\teni x
+...\hbox(4.63193+0.0)x3.32928, shifted 1.49998
+....\seveni i
+.\mathoff
+.\glue 3.33333 plus 1.66666 minus 1.11111
+.\mathon
+.\vbox(7.22223+0.0)x5.71527
+..\hbox(7.22223+0.0)x0.0, shifted 0.35764
+...\tenex b
+..\kern-4.30554
+..\hbox(4.30554+0.0)x5.71527
+...\teni x
+.\mathoff
+
+! OK.
+l.7 \showbox2
+
+
+> \box3=
+\hbox(9.58334+1.94444)x23.04468
+.\mathon
+.\vbox(6.94444+0.0)x5.71527
+..\hbox(6.94444+0.0)x0.0, shifted 0.35764
+...\tenrm ^
+..\kern-4.30554
+..\hbox(4.30554+0.0)x5.71527
+...\teni x
+.\mathoff
+.\glue 3.33333 plus 1.66666 minus 1.11111
+.\mathon
+.\vbox(9.58334+1.94444)x5.97226
+..\hbox(6.94444+0.0)x0.0, shifted 0.48613
+...\tenrm ^
+..\kern-4.30554
+..\hbox(6.94444+1.94444)x5.97226
+...\teni f
+.\mathoff
+.\glue 3.33333 plus 1.66666 minus 1.11111
+.\mathon
+.\vbox(8.96829+1.94444)x4.69049
+..\hbox(6.67859+0.0)x0.0, shifted -0.15475
+...\tenrm ~
+..\kern-4.30554
+..\hbox(6.59525+1.94444)x4.69049
+...\teni j
+.\mathoff
+
+! OK.
+l.10 \showbox3
+
+
+> \box4=
+\hbox(9.58334+1.94444)x23.04468
+.\mathon
+.\vbox(6.94444+0.0)x5.71527
+..\hbox(6.94444+0.0)x0.0, shifted 0.63542
+...\tenrm ^
+..\kern-4.30554
+..\hbox(4.30554+0.0)x5.71527
+...\teni x
+.\mathoff
+.\glue 3.33333 plus 1.66666 minus 1.11111
+.\mathon
+.\vbox(9.58334+1.94444)x5.97226
+..\hbox(6.94444+0.0)x0.0, shifted 2.15285
+...\tenrm ^
+..\kern-4.30554
+..\hbox(6.94444+1.94444)x5.97226
+...\teni f
+.\mathoff
+.\glue 3.33333 plus 1.66666 minus 1.11111
+.\mathon
+.\vbox(8.96829+1.94444)x4.69049
+..\hbox(6.67859+0.0)x0.0, shifted -0.15475
+...\tenrm ~
+..\kern-4.30554
+..\hbox(6.59525+1.94444)x4.69049
+...\teni j
+.\mathoff
+
+! OK.
+l.13 \showbox4
+
+
+> \box5=
+\hbox(8.30533+1.9999)x32.86107
+.\mathon
+.\vbox(4.30554+1.9999)x5.71527
+..\hbox(4.30554+0.0)x5.71527
+...\teni x
+..\kern1.19994
+..\rule(0.39998+0.0)x*
+.\mathoff
+.\glue 3.33333 plus 1.66666 minus 1.11111
+.\mathon
+.\vbox(6.30544+0.0)x5.71527
+..\kern0.39998
+..\rule(0.39998+0.0)x*
+..\kern1.19994
+..\hbox(4.30554+0.0)x5.71527
+...\teni x
+.\mathoff
+.\glue 3.33333 plus 1.66666 minus 1.11111
+.\mathon
+.\vbox(8.30533+0.0)x5.71527
+..\kern0.39998
+..\rule(0.39998+0.0)x*
+..\kern1.19994
+..\vbox(6.30544+0.0)x5.71527
+...\kern0.39998
+...\rule(0.39998+0.0)x*
+...\kern1.19994
+...\hbox(4.30554+0.0)x5.71527
+....\teni x
+.\mathoff
+.\glue 3.33333 plus 1.66666 minus 1.11111
+.\mathon
+.\vbox(6.30544+1.9999)x5.71527
+..\vbox(6.30544+0.0)x5.71527
+...\kern0.39998
+...\rule(0.39998+0.0)x*
+...\kern1.19994
+...\hbox(4.30554+0.0)x5.71527
+....\teni x
+..\kern1.19994
+..\rule(0.39998+0.0)x*
+.\mathoff
+
+! OK.
+l.15 \showbox5
+
+
+> \box6=
+\hbox(33.85013+2.5502)x10.95558
+.\mathon
+.\hbox(33.85013+2.5502)x10.95558
+..\vbox(0.39998+35.60037)x10.55559, shifted -33.05017
+...\hbox(0.39998+5.60007)x10.55559
+....\tenex v
+...\hbox(0.0+6.00006)x10.55559
+....\tenex u
+...\hbox(0.0+6.00006)x10.55559
+....\tenex u
+...\hbox(0.0+18.00018)x10.55559
+....\tenex t
+..\vbox(33.85013+0.0)x0.4
+...\kern0.39998
+...\rule(0.39998+0.0)x*
+...\kern3.05017
+...\hbox(30.0+0.0)x0.4
+....\rule(30.0+*)x0.4
+.\mathoff
+
+! OK.
+l.17 \showbox6
+
+
+
+Completed box being shipped out [1]
+\vbox(94.50276+2.5502)x77.01733
+.\hbox(9.65274+2.74734)x76.81964
+..\mathon
+..\hbox(8.00272+2.39725)x14.04863
+...\hbox(0.39998+9.6)x8.33336, shifted -7.20276
+....\tensy p
+...\vbox(8.00272+0.0)x5.71527
+....\kern0.39998
+....\rule(0.39998+0.0)x*
+....\kern2.89722
+....\hbox(4.30554+0.0)x5.71527
+.....\teni x
+..\mathoff
+..\glue 3.33333 plus 1.66666 minus 1.11111
+..\mathon
+..\hbox(8.00272+2.39725)x14.04863
+...\hbox(0.39998+9.6)x8.33336, shifted -7.20276
+....\tensy p
+...\vbox(8.00272+0.0)x5.71527
+....\kern0.39998
+....\rule(0.39998+0.0)x*
+....\kern2.89722
+....\hbox(4.30554+0.0)x5.71527
+.....\teni x
+..\mathoff
+..\glue 3.33333 plus 1.66666 minus 1.11111
+..\mathon
+..\hbox(9.65274+2.74734)x24.04865
+...\hbox(0.39998+11.60013)x10.00002, shifted -8.85278
+....\tenex p
+...\vbox(9.65274+2.39725)x14.04863
+....\kern0.39998
+....\rule(0.39998+0.0)x*
+....\kern0.85007
+....\hbox(8.00272+2.39725)x14.04863
+.....\hbox(0.39998+9.6)x8.33336, shifted -7.20276
+......\tensy p
+.....\vbox(8.00272+0.0)x5.71527
+......\kern0.39998
+......\rule(0.39998+0.0)x*
+......\kern2.89722
+......\hbox(4.30554+0.0)x5.71527
+.......\teni x
+..\mathoff
+..\glue 3.33333 plus 1.66666 minus 1.11111
+..\mathon
+..\kern 2.77771
+..\hbox(3.22221+0.0)x3.40283, shifted -3.36331
+...\mathon
+...\fiverm 3
+...\mathoff
+..\kern -5.55542
+..\hbox(8.00272+2.39725)x14.04863
+...\mathon
+...\hbox(8.00272+2.39725)x14.04863
+....\hbox(0.39998+9.6)x8.33336, shifted -7.20276
+.....\tensy p
+....\vbox(8.00272+0.0)x5.71527
+.....\kern0.39998
+.....\rule(0.39998+0.0)x*
+.....\kern2.89722
+.....\hbox(4.30554+0.0)x5.71527
+......\teni x
+...\mathoff
+..\mathoff
+.\glue(\baselineskip) 1.75266
+.\hbox(7.5+1.94444)x77.01733
+..\mathon
+..\vbox(6.94444+0.0)x5.71527
+...\hbox(6.94444+0.0)x0.0, shifted -0.61458
+....\tenrm ^^W
+...\kern-4.30554
+...\hbox(4.30554+0.0)x5.71527
+....\teni x
+..\mathoff
+..\glue 3.33333 plus 1.66666 minus 1.11111
+..\mathon
+..\vbox(6.94444+0.0)x5.71527
+...\hbox(6.94444+0.0)x0.0, shifted 0.63542
+....\tenrm ^
+...\kern-4.30554
+...\hbox(4.30554+0.0)x5.71527
+....\teni x
+..\mathoff
+..\glue 3.33333 plus 1.66666 minus 1.11111
+..\mathon
+..\vbox(7.14444+0.0)x5.71527
+...\hbox(7.14444+0.0)x0.0, shifted -0.13367
+....\teni ~
+...\kern-4.30554
+...\hbox(4.30554+0.0)x5.71527
+....\teni x
+..\mathoff
+..\glue 3.33333 plus 1.66666 minus 1.11111
+..\mathon
+..\vbox(7.5+1.94444)x16.06717
+...\hbox(7.5+0.0)x0.0, shifted 0.81136
+....\tenex d
+...\kern-4.30554
+...\hbox(4.30554+1.94444)x16.06717
+....\teni x
+....\teni y
+....\kern0.35878
+....\teni z
+....\kern0.4398
+..\mathoff
+..\glue 3.33333 plus 1.66666 minus 1.11111
+..\mathon
+..\vbox(6.94444+1.49998)x9.04456
+...\hbox(6.94444+0.0)x0.0, shifted 2.02228
+....\tenrm ^
+...\kern-4.30554
+...\hbox(4.30554+1.49998)x9.04456
+....\teni x
+....\hbox(4.63193+0.0)x3.32928, shifted 1.49998
+.....\seveni i
+..\mathoff
+..\glue 3.33333 plus 1.66666 minus 1.11111
+..\mathon
+..\vbox(6.94444+1.49998)x9.04456
+...\hbox(6.94444+0.0)x0.0, shifted 0.63542
+....\tenrm ^
+...\kern-4.30554
+...\hbox(4.30554+1.49998)x9.04456
+....\teni x
+....\hbox(4.63193+0.0)x3.32928, shifted 1.49998
+.....\seveni i
+..\mathoff
+..\glue 3.33333 plus 1.66666 minus 1.11111
+..\mathon
+..\vbox(7.22223+0.0)x5.71527
+...\hbox(7.22223+0.0)x0.0, shifted 0.35764
+....\tenex b
+...\kern-4.30554
+...\hbox(4.30554+0.0)x5.71527
+....\teni x
+..\mathoff
+.\glue(\baselineskip) 0.47221
+.\hbox(9.58334+1.94444)x23.04468
+..\mathon
+..\vbox(6.94444+0.0)x5.71527
+...\hbox(6.94444+0.0)x0.0, shifted 0.35764
+....\tenrm ^
+...\kern-4.30554
+...\hbox(4.30554+0.0)x5.71527
+....\teni x
+..\mathoff
+..\glue 3.33333 plus 1.66666 minus 1.11111
+..\mathon
+..\vbox(9.58334+1.94444)x5.97226
+...\hbox(6.94444+0.0)x0.0, shifted 0.48613
+....\tenrm ^
+...\kern-4.30554
+...\hbox(6.94444+1.94444)x5.97226
+....\teni f
+..\mathoff
+..\glue 3.33333 plus 1.66666 minus 1.11111
+..\mathon
+..\vbox(8.96829+1.94444)x4.69049
+...\hbox(6.67859+0.0)x0.0, shifted -0.15475
+....\tenrm ~
+...\kern-4.30554
+...\hbox(6.59525+1.94444)x4.69049
+....\teni j
+..\mathoff
+.\glue(\baselineskip) 0.47221
+.\hbox(9.58334+1.94444)x23.04468
+..\mathon
+..\vbox(6.94444+0.0)x5.71527
+...\hbox(6.94444+0.0)x0.0, shifted 0.63542
+....\tenrm ^
+...\kern-4.30554
+...\hbox(4.30554+0.0)x5.71527
+....\teni x
+..\mathoff
+..\glue 3.33333 plus 1.66666 minus 1.11111
+..\mathon
+..\vbox(9.58334+1.94444)x5.97226
+...\hbox(6.94444+0.0)x0.0, shifted 2.15285
+....\tenrm ^
+...\kern-4.30554
+...\hbox(6.94444+1.94444)x5.97226
+....\teni f
+..\mathoff
+..\glue 3.33333 plus 1.66666 minus 1.11111
+..\mathon
+..\vbox(8.96829+1.94444)x4.69049
+...\hbox(6.67859+0.0)x0.0, shifted -0.15475
+....\tenrm ~
+...\kern-4.30554
+...\hbox(6.59525+1.94444)x4.69049
+....\teni j
+..\mathoff
+.\glue(\baselineskip) 1.75023
+.\hbox(8.30533+1.9999)x32.86107
+..\mathon
+..\vbox(4.30554+1.9999)x5.71527
+...\hbox(4.30554+0.0)x5.71527
+....\teni x
+...\kern1.19994
+...\rule(0.39998+0.0)x*
+..\mathoff
+..\glue 3.33333 plus 1.66666 minus 1.11111
+..\mathon
+..\vbox(6.30544+0.0)x5.71527
+...\kern0.39998
+...\rule(0.39998+0.0)x*
+...\kern1.19994
+...\hbox(4.30554+0.0)x5.71527
+....\teni x
+..\mathoff
+..\glue 3.33333 plus 1.66666 minus 1.11111
+..\mathon
+..\vbox(8.30533+0.0)x5.71527
+...\kern0.39998
+...\rule(0.39998+0.0)x*
+...\kern1.19994
+...\vbox(6.30544+0.0)x5.71527
+....\kern0.39998
+....\rule(0.39998+0.0)x*
+....\kern1.19994
+....\hbox(4.30554+0.0)x5.71527
+.....\teni x
+..\mathoff
+..\glue 3.33333 plus 1.66666 minus 1.11111
+..\mathon
+..\vbox(6.30544+1.9999)x5.71527
+...\vbox(6.30544+0.0)x5.71527
+....\kern0.39998
+....\rule(0.39998+0.0)x*
+....\kern1.19994
+....\hbox(4.30554+0.0)x5.71527
+.....\teni x
+...\kern1.19994
+...\rule(0.39998+0.0)x*
+..\mathoff
+.\glue(\lineskip) 1.0
+.\hbox(33.85013+2.5502)x10.95558
+..\mathon
+..\hbox(33.85013+2.5502)x10.95558
+...\vbox(0.39998+35.60037)x10.55559, shifted -33.05017
+....\hbox(0.39998+5.60007)x10.55559
+.....\tenex v
+....\hbox(0.0+6.00006)x10.55559
+.....\tenex u
+....\hbox(0.0+6.00006)x10.55559
+.....\tenex u
+....\hbox(0.0+18.00018)x10.55559
+.....\tenex t
+...\vbox(33.85013+0.0)x0.4
+....\kern0.39998
+....\rule(0.39998+0.0)x*
+....\kern3.05017
+....\hbox(30.0+0.0)x0.4
+.....\rule(30.0+*)x0.4
+..\mathoff
+
+ )
+Output written on m3-radicals-accents.dvi (1 page, 1088 bytes).

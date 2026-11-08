@@ -1,0 +1,19 @@
+%! oracle: ini
+\input plain
+\tracingonline=0 \showboxbreadth=10000 \showboxdepth=10000 \tracingoutput=1
+\setbox1=\hbox{$\fam1 a1 \fam0 a1 \fam2 A \fam3 + \fam15 a \fam16 b$}
+\showbox1
+\showthe\fam \showthe\fontdimen8\textfont2 \showthe\fontdimen22\textfont2
+\showthe\fontdimen8\textfont3 \showthe\fontdimen5\textfont3 \showthe\fontdimen2\scriptfont2
+\setbox2=\hbox{$\mathcode`a="7141 \mathcode`b="7162 a\fam1 b\fam5 ab \mathchar"7141 \mathchar"7241$}
+\showbox2
+\mathcode`c="0163 \setbox3=\hbox{$\fam2 c\fam0 c$}
+\showbox3
+\setbox4=\hbox{\textfont1=\tenrm $a$ \textfont1=\nullfont $a$ \scriptfont1=\nullfont $a^b$}
+\showbox4
+{\textfont2=\nullfont \setbox5=\hbox{$a^b$}\showbox5}
+{\textfont3=\nullfont \setbox5=\hbox{$a^b$}\showbox5 \setbox5=\hbox{$\left(a\right)$}\showbox5}
+{\scriptfont2=\nullfont \setbox5=\hbox{$a^b$}\showbox5}
+{\scriptscriptfont3=\nullfont \setbox5=\hbox{$a^{b^c}$}\showbox5}
+\shipout\vbox{\box1\box2\box3\box4}
+\end

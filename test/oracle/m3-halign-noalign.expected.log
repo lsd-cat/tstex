@@ -1,0 +1,211 @@
+(m3-halign-noalign.tex (plain.tex Preloading the plain format: codes, regis
+ters,
+\maxdimen=\dimen10
+\hideskip=\skip10
+\centering=\skip11
+\p@=\dimen11
+\z@=\dimen12
+\z@skip=\skip12
+\voidb@x=\box10
+parameters,
+\smallskipamount=\skip13
+\medskipamount=\skip14
+\bigskipamount=\skip15
+\normalbaselineskip=\skip16
+\normallineskip=\skip17
+\normallineskiplimit=\dimen13
+\jot=\dimen14
+\interdisplaylinepenalty=\count23
+\interfootnotelinepenalty=\count24
+fonts, more fonts,
+\itfam=\fam4
+\slfam=\fam5
+\bffam=\fam6
+\ttfam=\fam7
+macros,
+\strutbox=\box11
+\mscount=\count25
+\tabs=\box12
+\tabsyet=\box13
+\tabsdone=\box14
+math definitions,
+\rootbox=\box15
+\p@renwd=\dimen15
+output routines,
+\headline=\toks10
+\footline=\toks11
+\footins=\insert254
+\topins=\insert253
+hyphenation (hyphen.tex))
+%% goal height=40.0, max depth=2.0
+% t=17.34444 g=40.0 b=10000 p=0 c=100000#
+% t=32.34444 g=40.0 b=10000 p=-10000 c=-10000#
+> \box255=
+\vbox(40.0+0.0)x5.55557
+.\glue(\topskip) 5.69446
+.\hbox(4.30554+0.0)x5.55557
+..\glue(\tabskip) 0.0
+..\hbox(4.30554+0.0)x5.55557
+...\tenrm a
+..\glue(\tabskip) 0.0
+.\rule(0.4+0.0)x5.55557
+.\hbox(6.94444+0.0)x5.55557
+..\glue(\tabskip) 0.0
+..\hbox(6.94444+0.0)x5.55557
+...\tenrm b
+..\glue(\tabskip) 0.0
+.\glue 3.0
+.\glue(\baselineskip) 7.69446
+.\hbox(4.30554+0.0)x5.55557
+..\glue(\tabskip) 0.0
+..\hbox(4.30554+0.0)x5.55557
+...\tenrm c
+..\glue(\tabskip) 0.0
+
+! OK.
+<output> {\showbox 255
+                       \setbox 0\box 255 \deadcycles =0}
+l.7 ...00}d\cr e\cr\noalign{\kern2pt\hbox{n}}f\cr}
+
+
+%% goal height=40.0, max depth=2.0
+% t=10.0 g=40.0 b=10000 p=0 c=100000#
+% t=22.0 g=40.0 b=10000 p=0 c=100000#
+% t=36.0 g=40.0 b=10000 p=0 c=100000#
+! Misplaced \noalign.
+l.8 \noalign
+            {\hrule}
+I expect to see \noalign only after the \cr of
+an alignment. Proceed, and I'll ignore this case.
+
+
+### internal vertical mode entered at line 10
+\unsetbox(4.30554+0.0)x5.00002
+.\glue(\tabskip) 0.0
+.\unsetbox(4.30554+0.0)x5.00002
+..\tenrm a
+.\glue(\tabskip) 0.0
+prevdepth 0.0
+### internal vertical mode entered at line 10
+prevdepth ignored
+### vertical mode entered at line 0
+### current page:
+\glue(\topskip) 3.05556
+\hbox(6.94444+0.0)x5.55557
+.\glue(\tabskip) 0.0
+.\hbox(6.94444+0.0)x5.55557
+..\tenrm d
+.\glue(\tabskip) 0.0
+\glue(\baselineskip) 7.69446
+\hbox(4.30554+0.0)x5.55557
+.\glue(\tabskip) 0.0
+.\hbox(4.30554+0.0)x5.55557
+..\tenrm e
+.\glue(\tabskip) 0.0
+\kern 2.0
+\glue(\baselineskip) 7.69446
+\hbox(4.30554+0.0)x5.55557
+.\tenrm n
+\glue(\baselineskip) 5.05556
+\hbox(6.94444+0.0)x5.55557
+.\glue(\tabskip) 0.0
+.\hbox(6.94444+0.0)x5.55557
+..\tenrm f
+.\glue(\tabskip) 0.0
+\rule(0.4+0.0)x*
+\hbox(4.30554+0.0)x5.2778
+.\tenrm x
+total height 52.70554
+ goal height 40.0
+prevdepth 0.0
+
+! OK.
+l.10 ...\vbox{\halign{#\cr a\cr\noalign{\showlists
+                                                  \penalty5}b\cr}}
+
+> \box1=
+\vbox(16.30554+0.0)x5.55557
+.\hbox(4.30554+0.0)x5.55557
+..\glue(\tabskip) 0.0
+..\hbox(4.30554+0.0)x5.55557
+...\tenrm a
+..\glue(\tabskip) 0.0
+.\penalty 5
+.\glue(\baselineskip) 5.05556
+.\hbox(6.94444+0.0)x5.55557
+..\glue(\tabskip) 0.0
+..\hbox(6.94444+0.0)x5.55557
+...\tenrm b
+..\glue(\tabskip) 0.0
+
+! OK.
+l.11 \showbox1
+
+
+! Misplaced \noalign.
+l.12 \setbox1=\vbox{\halign{#\cr a\noalign
+                                          {x}\cr}}
+I expect to see \noalign only after the \cr of
+an alignment. Proceed, and I'll ignore this case.
+
+> \box1=
+\vbox(4.30554+0.0)x10.27782
+.\hbox(4.30554+0.0)x10.27782
+..\glue(\tabskip) 0.0
+..\hbox(4.30554+0.0)x10.27782
+...\tenrm a
+...\tenrm x
+..\glue(\tabskip) 0.0
+
+! OK.
+l.13 \showbox1
+
+
+% t=52.70554 g=40.0 b=* p=-10000 c=*
+> \box255=
+\vbox(40.0+0.0)x5.55557
+.\glue(\topskip) 3.05556
+.\hbox(6.94444+0.0)x5.55557
+..\glue(\tabskip) 0.0
+..\hbox(6.94444+0.0)x5.55557
+...\tenrm d
+..\glue(\tabskip) 0.0
+.\glue(\baselineskip) 7.69446
+.\hbox(4.30554+0.0)x5.55557
+..\glue(\tabskip) 0.0
+..\hbox(4.30554+0.0)x5.55557
+...\tenrm e
+..\glue(\tabskip) 0.0
+.\kern 2.0
+.\glue(\baselineskip) 7.69446
+.\hbox(4.30554+0.0)x5.55557
+..\tenrm n
+
+! OK.
+<output> {\showbox 255
+                       \setbox 0\box 255 \deadcycles =0}
+l.14 \penalty-10000
+
+
+%% goal height=40.0, max depth=2.0
+% t=14.70554 g=40.0 b=10000 p=-10000 c=-10000#
+> \box255=
+\vbox(40.0+0.0)x5.55557
+.\glue(\topskip) 3.05556
+.\hbox(6.94444+0.0)x5.55557
+..\glue(\tabskip) 0.0
+..\hbox(6.94444+0.0)x5.55557
+...\tenrm f
+..\glue(\tabskip) 0.0
+.\rule(0.4+0.0)x*
+.\hbox(4.30554+0.0)x5.2778
+..\tenrm x
+
+! OK.
+<output> {\showbox 255
+                       \setbox 0\box 255 \deadcycles =0}
+l.14 \penalty-10000
+
+
+ )
+No pages of output.

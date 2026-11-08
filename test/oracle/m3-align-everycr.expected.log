@@ -1,0 +1,213 @@
+(m3-align-everycr.tex (plain.tex Preloading the plain format: codes, regist
+ers,
+\maxdimen=\dimen10
+\hideskip=\skip10
+\centering=\skip11
+\p@=\dimen11
+\z@=\dimen12
+\z@skip=\skip12
+\voidb@x=\box10
+parameters,
+\smallskipamount=\skip13
+\medskipamount=\skip14
+\bigskipamount=\skip15
+\normalbaselineskip=\skip16
+\normallineskip=\skip17
+\normallineskiplimit=\dimen13
+\jot=\dimen14
+\interdisplaylinepenalty=\count23
+\interfootnotelinepenalty=\count24
+fonts, more fonts,
+\itfam=\fam4
+\slfam=\fam5
+\bffam=\fam6
+\ttfam=\fam7
+macros,
+\strutbox=\box11
+\mscount=\count25
+\tabs=\box12
+\tabsyet=\box13
+\tabsdone=\box14
+math definitions,
+\rootbox=\box15
+\p@renwd=\dimen15
+output routines,
+\headline=\toks10
+\footline=\toks11
+\footins=\insert254
+\topins=\insert253
+hyphenation (hyphen.tex))
+> \box1=
+\vbox(19.30554+0.0)x5.55557
+.\kern 1.0
+.\hbox(4.30554+0.0)x5.55557
+..\glue(\tabskip) 0.0
+..\hbox(4.30554+0.0)x5.55557
+...\tenrm a
+..\glue(\tabskip) 0.0
+.\kern 1.0
+.\glue(\baselineskip) 5.05556
+.\hbox(6.94444+0.0)x5.55557
+..\glue(\tabskip) 0.0
+..\hbox(6.94444+0.0)x5.55557
+...\tenrm b
+..\glue(\tabskip) 0.0
+.\kern 1.0
+
+! OK.
+l.6 \showbox1
+
+
+EC EC EC
+> \box2=
+\vbox(18.94444+0.0)x10.55559
+.\hbox(6.94444+0.0)x10.55559
+..\glue(\tabskip) 0.0
+..\hbox(6.94444+0.0)x5.00002
+...\tenrm a
+..\glue(\tabskip) 0.0
+..\hbox(6.94444+0.0)x5.55557
+...\tenrm b
+..\glue(\tabskip) 0.0
+.\glue(\baselineskip) 7.69446
+.\hbox(4.30554+0.0)x10.55559
+..\glue(\tabskip) 0.0
+..\hbox(4.30554+0.0)x5.00002
+...\tenrm c
+..\glue(\tabskip) 0.0
+
+! OK.
+l.8 \showbox2
+
+
+> \box3=
+\vbox(16.30554+0.0)x5.55557
+.\hbox(4.30554+0.0)x5.55557
+..\glue(\tabskip) 0.0
+..\hbox(4.30554+0.0)x5.55557
+...\tenrm a
+..\glue(\tabskip) 0.0
+.\glue(\baselineskip) 5.05556
+.\hbox(6.94444+0.0)x5.55557
+..\glue(\tabskip) 0.0
+..\hbox(6.94444+0.0)x5.55557
+...\tenrm b
+..\glue(\tabskip) 0.0
+
+! OK.
+l.10 \showbox3
+
+
+> \box4=
+\vbox(16.30554+0.0)x5.55557
+.\hbox(4.30554+0.0)x5.55557
+..\glue(\tabskip) 0.0
+..\hbox(4.30554+0.0)x5.55557
+...\tenrm a
+..\glue(\tabskip) 0.0
+.\glue(\baselineskip) 5.05556
+.\hbox(6.94444+0.0)x5.55557
+..\glue(\tabskip) 0.0
+..\hbox(6.94444+0.0)x5.55557
+...\tenrm b
+..\glue(\tabskip) 0.0
+
+! OK.
+l.12 \showbox4
+
+
+> \box5=
+\vbox(7.10553+0.0)x5.00002
+.\rule(0.4+0.0)x5.00002
+.\kern 2.0
+.\hbox(4.30554+0.0)x5.00002
+..\glue(\tabskip) 0.0
+..\hbox(4.30554+0.0)x5.00002
+...\tenrm a
+..\glue(\tabskip) 0.0
+.\rule(0.4+0.0)x5.00002
+
+! OK.
+l.14 \showbox5
+
+
+> \box6=
+\vbox(19.30554+0.0)x5.55557
+.\hbox(4.30554+0.0)x5.55557
+..\glue(\tabskip) 0.0
+..\hbox(4.30554+0.0)x5.55557
+...\tenrm a
+..\glue(\tabskip) 0.0
+.\kern 3.0
+.\glue(\baselineskip) 5.05556
+.\hbox(6.94444+0.0)x5.55557
+..\glue(\tabskip) 0.0
+..\hbox(6.94444+0.0)x5.55557
+...\tenrm b
+..\glue(\tabskip) 0.0
+
+! OK.
+l.16 \showbox6
+
+
+> .
+l.17 \showthe\everycr
+
+
+
+Completed box being shipped out [1]
+\vbox(65.91663+0.0)x5.55557
+.\vbox(19.30554+0.0)x5.55557
+..\kern 1.0
+..\hbox(4.30554+0.0)x5.55557
+...\glue(\tabskip) 0.0
+...\hbox(4.30554+0.0)x5.55557
+....\tenrm a
+...\glue(\tabskip) 0.0
+..\kern 1.0
+..\glue(\baselineskip) 5.05556
+..\hbox(6.94444+0.0)x5.55557
+...\glue(\tabskip) 0.0
+...\hbox(6.94444+0.0)x5.55557
+....\tenrm b
+...\glue(\tabskip) 0.0
+..\kern 1.0
+.\glue(\lineskip) 1.0
+.\vbox(16.30554+0.0)x5.55557
+..\hbox(4.30554+0.0)x5.55557
+...\glue(\tabskip) 0.0
+...\hbox(4.30554+0.0)x5.55557
+....\tenrm a
+...\glue(\tabskip) 0.0
+..\glue(\baselineskip) 5.05556
+..\hbox(6.94444+0.0)x5.55557
+...\glue(\tabskip) 0.0
+...\hbox(6.94444+0.0)x5.55557
+....\tenrm b
+...\glue(\tabskip) 0.0
+.\glue(\lineskip) 1.0
+.\vbox(16.30554+0.0)x5.55557
+..\hbox(4.30554+0.0)x5.55557
+...\glue(\tabskip) 0.0
+...\hbox(4.30554+0.0)x5.55557
+....\tenrm a
+...\glue(\tabskip) 0.0
+..\glue(\baselineskip) 5.05556
+..\hbox(6.94444+0.0)x5.55557
+...\glue(\tabskip) 0.0
+...\hbox(6.94444+0.0)x5.55557
+....\tenrm b
+...\glue(\tabskip) 0.0
+.\glue(\baselineskip) 4.89447
+.\vbox(7.10553+0.0)x5.00002
+..\rule(0.4+0.0)x5.00002
+..\kern 2.0
+..\hbox(4.30554+0.0)x5.00002
+...\glue(\tabskip) 0.0
+...\hbox(4.30554+0.0)x5.00002
+....\tenrm a
+...\glue(\tabskip) 0.0
+..\rule(0.4+0.0)x5.00002
+
+ )
+Output written on m3-align-everycr.dvi (1 page, 280 bytes).

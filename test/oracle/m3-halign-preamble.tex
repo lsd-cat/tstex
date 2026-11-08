@@ -1,0 +1,24 @@
+%! oracle: ini
+\input plain
+\tracingonline=0 \showboxbreadth=10000 \showboxdepth=10000 \tracingoutput=1
+\def\x{##\hfil&}
+\def\y{\halign{##\cr a\cr}}
+\setbox1=\vbox{\halign{\span\x\hfil#\cr a&b\cr}}
+\showbox1
+\setbox2=\vbox{\tabskip=1pt \halign{#\tabskip=1pt plus 1fil&\tabskip=5pt#\tabskip=2pt\cr a&b\cr}}
+\showbox2
+\def\z{\halign{##\hfil&\hfil##\cr a&b\cr}}
+\setbox3=\vbox{\z}
+\showbox3
+\setbox4=\vbox{\halign{#&&[#]\cr a&b&c&d\cr \omit e&\omit\cr \omit\hfil f&g\cr}}
+\showbox4
+\setbox5=\vbox{\halign{#&#&#\cr a&b&c\cr \multispan2 ab&c\cr a\span b&c\cr \omit\span\omit x&y\cr}}
+\showbox5
+\setbox7=\vbox{\halign{#\span#&#\cr a&b\cr}}
+\showbox7
+\setbox7=\vbox{\halign{#&a\cr a&b\cr}}
+\showbox7
+\setbox7=\vbox{\halign{#&#a#\cr a&b\cr}}
+\showbox7
+\shipout\vbox{\box1\box2\box3\box4\box5}
+\end

@@ -1,0 +1,5962 @@
+(m3-align-pages.tex (plain.tex Preloading the plain format: codes, register
+s,
+\maxdimen=\dimen10
+\hideskip=\skip10
+\centering=\skip11
+\p@=\dimen11
+\z@=\dimen12
+\z@skip=\skip12
+\voidb@x=\box10
+parameters,
+\smallskipamount=\skip13
+\medskipamount=\skip14
+\bigskipamount=\skip15
+\normalbaselineskip=\skip16
+\normallineskip=\skip17
+\normallineskiplimit=\dimen13
+\jot=\dimen14
+\interdisplaylinepenalty=\count23
+\interfootnotelinepenalty=\count24
+fonts, more fonts,
+\itfam=\fam4
+\slfam=\fam5
+\bffam=\fam6
+\ttfam=\fam7
+macros,
+\strutbox=\box11
+\mscount=\count25
+\tabs=\box12
+\tabsyet=\box13
+\tabsdone=\box14
+math definitions,
+\rootbox=\box15
+\p@renwd=\dimen15
+output routines,
+\headline=\toks10
+\footline=\toks11
+\footins=\insert254
+\topins=\insert253
+hyphenation (hyphen.tex))
+%% goal height=144.54, max depth=2.0
+% t=10.0 g=144.54 b=10000 p=0 c=100000#
+% t=22.0 g=144.54 b=10000 p=0 c=100000#
+% t=34.0 g=144.54 b=10000 p=0 c=100000#
+% t=46.0 g=144.54 b=10000 p=0 c=100000#
+% t=58.0 g=144.54 b=10000 p=0 c=100000#
+% t=70.0 g=144.54 b=10000 p=0 c=100000#
+% t=82.0 g=144.54 b=10000 p=0 c=100000#
+% t=94.0 g=144.54 b=10000 p=0 c=100000#
+% t=106.0 g=144.54 b=10000 p=0 c=100000#
+% t=118.0 g=144.54 b=10000 p=0 c=100000#
+% t=130.0 g=144.54 b=10000 p=0 c=100000#
+% t=142.0 g=144.54 b=10000 p=0 c=100000#
+% t=154.0 g=144.54 b=* p=0 c=*
+[OUT 0]
+> \box255=
+\vbox(144.54+0.0)x22.22227
+.\glue(\topskip) 3.55556
+.\hbox(6.44444+0.0)x22.22227
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x15.00005, glue set 10.00003fil
+...\tenrm 1
+...\glue 0.0 plus 1.0fil
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x7.22223, glue set 3.30556fil
+...\glue 0.0 plus 1.0fil
+...\tenrm r
+..\glue(\tabskip) 0.0
+.\penalty 0
+.\glue(\baselineskip) 5.55556
+.\hbox(6.44444+0.0)x22.22227
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x15.00005, glue set 10.00003fil
+...\tenrm 2
+...\glue 0.0 plus 1.0fil
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x7.22223, glue set 3.30556fil
+...\glue 0.0 plus 1.0fil
+...\tenrm r
+..\glue(\tabskip) 0.0
+.\penalty 0
+.\glue(\baselineskip) 5.55556
+.\hbox(6.44444+0.0)x22.22227
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x15.00005, glue set 10.00003fil
+...\tenrm 3
+...\glue 0.0 plus 1.0fil
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x7.22223, glue set 3.30556fil
+...\glue 0.0 plus 1.0fil
+...\tenrm r
+..\glue(\tabskip) 0.0
+.\penalty 0
+.\glue(\baselineskip) 5.55556
+.\hbox(6.44444+0.0)x22.22227
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x15.00005, glue set 10.00003fil
+...\tenrm 4
+...\glue 0.0 plus 1.0fil
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x7.22223, glue set 3.30556fil
+...\glue 0.0 plus 1.0fil
+...\tenrm r
+..\glue(\tabskip) 0.0
+.\penalty 0
+.\glue(\baselineskip) 5.55556
+.\hbox(6.44444+0.0)x22.22227
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x15.00005, glue set 10.00003fil
+...\tenrm 5
+...\glue 0.0 plus 1.0fil
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x7.22223, glue set 3.30556fil
+...\glue 0.0 plus 1.0fil
+...\tenrm r
+..\glue(\tabskip) 0.0
+.\penalty 0
+.\glue(\baselineskip) 5.55556
+.\hbox(6.44444+0.0)x22.22227
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x15.00005, glue set 10.00003fil
+...\tenrm 6
+...\glue 0.0 plus 1.0fil
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x7.22223, glue set 3.30556fil
+...\glue 0.0 plus 1.0fil
+...\tenrm r
+..\glue(\tabskip) 0.0
+.\penalty 0
+.\glue(\baselineskip) 5.55556
+.\hbox(6.44444+0.0)x22.22227
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x15.00005, glue set 10.00003fil
+...\tenrm 7
+...\glue 0.0 plus 1.0fil
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x7.22223, glue set 3.30556fil
+...\glue 0.0 plus 1.0fil
+...\tenrm r
+..\glue(\tabskip) 0.0
+.\penalty 0
+.\glue(\baselineskip) 5.55556
+.\hbox(6.44444+0.0)x22.22227
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x15.00005, glue set 10.00003fil
+...\tenrm 8
+...\glue 0.0 plus 1.0fil
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x7.22223, glue set 3.30556fil
+...\glue 0.0 plus 1.0fil
+...\tenrm r
+..\glue(\tabskip) 0.0
+.\penalty 0
+.\glue(\baselineskip) 5.55556
+.\hbox(6.44444+0.0)x22.22227
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x15.00005, glue set 10.00003fil
+...\tenrm 9
+...\glue 0.0 plus 1.0fil
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x7.22223, glue set 3.30556fil
+...\glue 0.0 plus 1.0fil
+...\tenrm r
+..\glue(\tabskip) 0.0
+.\penalty 0
+.\glue(\baselineskip) 5.55556
+.\hbox(6.44444+0.0)x22.22227
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x15.00005, glue set 5.00002fil
+...\tenrm 1
+...\tenrm 0
+...\glue 0.0 plus 1.0fil
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x7.22223, glue set 3.30556fil
+...\glue 0.0 plus 1.0fil
+...\tenrm r
+..\glue(\tabskip) 0.0
+.\penalty 0
+.\glue(\baselineskip) 5.55556
+.\hbox(6.44444+0.0)x22.22227
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x15.00005, glue set 5.00002fil
+...\tenrm 1
+...\tenrm 1
+...\glue 0.0 plus 1.0fil
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x7.22223, glue set 3.30556fil
+...\glue 0.0 plus 1.0fil
+...\tenrm r
+..\glue(\tabskip) 0.0
+.\penalty 0
+.\glue(\baselineskip) 5.55556
+.\hbox(6.44444+0.0)x22.22227
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x15.00005, glue set 5.00002fil
+...\tenrm 1
+...\tenrm 2
+...\glue 0.0 plus 1.0fil
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x7.22223, glue set 3.30556fil
+...\glue 0.0 plus 1.0fil
+...\tenrm r
+..\glue(\tabskip) 0.0
+
+! OK.
+<output> ...UT \the \outputpenalty ]}\showbox 255
+                                                  \shipout \box 255 \global ...
+l.11 ...rb\noalign{\mark{M2}\penalty-10000}z&w\cr}
+
+
+
+Completed box being shipped out [1.200]
+\vbox(144.54+0.0)x22.22227
+.\glue(\topskip) 3.55556
+.\hbox(6.44444+0.0)x22.22227
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x15.00005, glue set 10.00003fil
+...\tenrm 1
+...\glue 0.0 plus 1.0fil
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x7.22223, glue set 3.30556fil
+...\glue 0.0 plus 1.0fil
+...\tenrm r
+..\glue(\tabskip) 0.0
+.\penalty 0
+.\glue(\baselineskip) 5.55556
+.\hbox(6.44444+0.0)x22.22227
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x15.00005, glue set 10.00003fil
+...\tenrm 2
+...\glue 0.0 plus 1.0fil
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x7.22223, glue set 3.30556fil
+...\glue 0.0 plus 1.0fil
+...\tenrm r
+..\glue(\tabskip) 0.0
+.\penalty 0
+.\glue(\baselineskip) 5.55556
+.\hbox(6.44444+0.0)x22.22227
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x15.00005, glue set 10.00003fil
+...\tenrm 3
+...\glue 0.0 plus 1.0fil
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x7.22223, glue set 3.30556fil
+...\glue 0.0 plus 1.0fil
+...\tenrm r
+..\glue(\tabskip) 0.0
+.\penalty 0
+.\glue(\baselineskip) 5.55556
+.\hbox(6.44444+0.0)x22.22227
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x15.00005, glue set 10.00003fil
+...\tenrm 4
+...\glue 0.0 plus 1.0fil
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x7.22223, glue set 3.30556fil
+...\glue 0.0 plus 1.0fil
+...\tenrm r
+..\glue(\tabskip) 0.0
+.\penalty 0
+.\glue(\baselineskip) 5.55556
+.\hbox(6.44444+0.0)x22.22227
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x15.00005, glue set 10.00003fil
+...\tenrm 5
+...\glue 0.0 plus 1.0fil
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x7.22223, glue set 3.30556fil
+...\glue 0.0 plus 1.0fil
+...\tenrm r
+..\glue(\tabskip) 0.0
+.\penalty 0
+.\glue(\baselineskip) 5.55556
+.\hbox(6.44444+0.0)x22.22227
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x15.00005, glue set 10.00003fil
+...\tenrm 6
+...\glue 0.0 plus 1.0fil
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x7.22223, glue set 3.30556fil
+...\glue 0.0 plus 1.0fil
+...\tenrm r
+..\glue(\tabskip) 0.0
+.\penalty 0
+.\glue(\baselineskip) 5.55556
+.\hbox(6.44444+0.0)x22.22227
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x15.00005, glue set 10.00003fil
+...\tenrm 7
+...\glue 0.0 plus 1.0fil
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x7.22223, glue set 3.30556fil
+...\glue 0.0 plus 1.0fil
+...\tenrm r
+..\glue(\tabskip) 0.0
+.\penalty 0
+.\glue(\baselineskip) 5.55556
+.\hbox(6.44444+0.0)x22.22227
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x15.00005, glue set 10.00003fil
+...\tenrm 8
+...\glue 0.0 plus 1.0fil
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x7.22223, glue set 3.30556fil
+...\glue 0.0 plus 1.0fil
+...\tenrm r
+..\glue(\tabskip) 0.0
+.\penalty 0
+.\glue(\baselineskip) 5.55556
+.\hbox(6.44444+0.0)x22.22227
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x15.00005, glue set 10.00003fil
+...\tenrm 9
+...\glue 0.0 plus 1.0fil
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x7.22223, glue set 3.30556fil
+...\glue 0.0 plus 1.0fil
+...\tenrm r
+..\glue(\tabskip) 0.0
+.\penalty 0
+.\glue(\baselineskip) 5.55556
+.\hbox(6.44444+0.0)x22.22227
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x15.00005, glue set 5.00002fil
+...\tenrm 1
+...\tenrm 0
+...\glue 0.0 plus 1.0fil
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x7.22223, glue set 3.30556fil
+...\glue 0.0 plus 1.0fil
+...\tenrm r
+..\glue(\tabskip) 0.0
+.\penalty 0
+.\glue(\baselineskip) 5.55556
+.\hbox(6.44444+0.0)x22.22227
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x15.00005, glue set 5.00002fil
+...\tenrm 1
+...\tenrm 1
+...\glue 0.0 plus 1.0fil
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x7.22223, glue set 3.30556fil
+...\glue 0.0 plus 1.0fil
+...\tenrm r
+..\glue(\tabskip) 0.0
+.\penalty 0
+.\glue(\baselineskip) 5.55556
+.\hbox(6.44444+0.0)x22.22227
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x15.00005, glue set 5.00002fil
+...\tenrm 1
+...\tenrm 2
+...\glue 0.0 plus 1.0fil
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x7.22223, glue set 3.30556fil
+...\glue 0.0 plus 1.0fil
+...\tenrm r
+..\glue(\tabskip) 0.0
+
+%% goal height=144.54, max depth=2.0
+% t=10.0 g=144.54 b=10000 p=0 c=100000#
+% t=22.0 g=144.54 b=10000 p=0 c=100000#
+% t=34.0 g=144.54 b=10000 p=0 c=100000#
+% t=46.0 g=144.54 b=10000 p=0 c=100000#
+% t=58.0 g=144.54 b=10000 p=0 c=100000#
+% t=70.0 g=144.54 b=10000 p=0 c=100000#
+% t=82.0 g=144.54 b=10000 p=0 c=100000#
+% t=94.0 g=144.54 b=10000 p=0 c=100000#
+% t=106.0 g=144.54 b=10000 p=0 c=100000#
+% t=118.0 g=144.54 b=10000 p=0 c=100000#
+% t=130.0 g=144.54 b=10000 p=0 c=100000#
+% t=142.0 g=144.54 b=10000 p=0 c=100000#
+% t=154.0 g=144.54 b=* p=0 c=*
+[OUT 0]
+> \box255=
+\vbox(144.54+0.0)x22.22227
+.\glue(\topskip) 3.55556
+.\hbox(6.44444+0.0)x22.22227
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x15.00005, glue set 5.00002fil
+...\tenrm 1
+...\tenrm 3
+...\glue 0.0 plus 1.0fil
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x7.22223, glue set 3.30556fil
+...\glue 0.0 plus 1.0fil
+...\tenrm r
+..\glue(\tabskip) 0.0
+.\penalty 0
+.\glue(\baselineskip) 5.55556
+.\hbox(6.44444+0.0)x22.22227
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x15.00005, glue set 5.00002fil
+...\tenrm 1
+...\tenrm 4
+...\glue 0.0 plus 1.0fil
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x7.22223, glue set 3.30556fil
+...\glue 0.0 plus 1.0fil
+...\tenrm r
+..\glue(\tabskip) 0.0
+.\penalty 0
+.\glue(\baselineskip) 5.55556
+.\hbox(6.44444+0.0)x22.22227
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x15.00005, glue set 5.00002fil
+...\tenrm 1
+...\tenrm 5
+...\glue 0.0 plus 1.0fil
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x7.22223, glue set 3.30556fil
+...\glue 0.0 plus 1.0fil
+...\tenrm r
+..\glue(\tabskip) 0.0
+.\penalty 0
+.\glue(\baselineskip) 5.55556
+.\hbox(6.44444+0.0)x22.22227
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x15.00005, glue set 5.00002fil
+...\tenrm 1
+...\tenrm 6
+...\glue 0.0 plus 1.0fil
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x7.22223, glue set 3.30556fil
+...\glue 0.0 plus 1.0fil
+...\tenrm r
+..\glue(\tabskip) 0.0
+.\penalty 0
+.\glue(\baselineskip) 5.55556
+.\hbox(6.44444+0.0)x22.22227
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x15.00005, glue set 5.00002fil
+...\tenrm 1
+...\tenrm 7
+...\glue 0.0 plus 1.0fil
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x7.22223, glue set 3.30556fil
+...\glue 0.0 plus 1.0fil
+...\tenrm r
+..\glue(\tabskip) 0.0
+.\penalty 0
+.\glue(\baselineskip) 5.55556
+.\hbox(6.44444+0.0)x22.22227
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x15.00005, glue set 5.00002fil
+...\tenrm 1
+...\tenrm 8
+...\glue 0.0 plus 1.0fil
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x7.22223, glue set 3.30556fil
+...\glue 0.0 plus 1.0fil
+...\tenrm r
+..\glue(\tabskip) 0.0
+.\penalty 0
+.\glue(\baselineskip) 5.55556
+.\hbox(6.44444+0.0)x22.22227
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x15.00005, glue set 5.00002fil
+...\tenrm 1
+...\tenrm 9
+...\glue 0.0 plus 1.0fil
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x7.22223, glue set 3.30556fil
+...\glue 0.0 plus 1.0fil
+...\tenrm r
+..\glue(\tabskip) 0.0
+.\penalty 0
+.\glue(\baselineskip) 5.55556
+.\hbox(6.44444+0.0)x22.22227
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x15.00005, glue set 5.00002fil
+...\tenrm 2
+...\tenrm 0
+...\glue 0.0 plus 1.0fil
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x7.22223, glue set 3.30556fil
+...\glue 0.0 plus 1.0fil
+...\tenrm r
+..\glue(\tabskip) 0.0
+.\penalty 0
+.\glue(\baselineskip) 5.55556
+.\hbox(6.44444+0.0)x22.22227
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x15.00005, glue set 5.00002fil
+...\tenrm 2
+...\tenrm 1
+...\glue 0.0 plus 1.0fil
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x7.22223, glue set 3.30556fil
+...\glue 0.0 plus 1.0fil
+...\tenrm r
+..\glue(\tabskip) 0.0
+.\penalty 0
+.\glue(\baselineskip) 5.55556
+.\hbox(6.44444+0.0)x22.22227
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x15.00005, glue set 5.00002fil
+...\tenrm 2
+...\tenrm 2
+...\glue 0.0 plus 1.0fil
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x7.22223, glue set 3.30556fil
+...\glue 0.0 plus 1.0fil
+...\tenrm r
+..\glue(\tabskip) 0.0
+.\penalty 0
+.\glue(\baselineskip) 5.55556
+.\hbox(6.44444+0.0)x22.22227
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x15.00005, glue set 5.00002fil
+...\tenrm 2
+...\tenrm 3
+...\glue 0.0 plus 1.0fil
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x7.22223, glue set 3.30556fil
+...\glue 0.0 plus 1.0fil
+...\tenrm r
+..\glue(\tabskip) 0.0
+.\penalty 0
+.\glue(\baselineskip) 5.55556
+.\hbox(6.44444+0.0)x22.22227
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x15.00005, glue set 5.00002fil
+...\tenrm 2
+...\tenrm 4
+...\glue 0.0 plus 1.0fil
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x7.22223, glue set 3.30556fil
+...\glue 0.0 plus 1.0fil
+...\tenrm r
+..\glue(\tabskip) 0.0
+
+! OK.
+<output> ...UT \the \outputpenalty ]}\showbox 255
+                                                  \shipout \box 255 \global ...
+l.11 ...rb\noalign{\mark{M2}\penalty-10000}z&w\cr}
+
+
+
+Completed box being shipped out [2.200]
+\vbox(144.54+0.0)x22.22227
+.\glue(\topskip) 3.55556
+.\hbox(6.44444+0.0)x22.22227
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x15.00005, glue set 5.00002fil
+...\tenrm 1
+...\tenrm 3
+...\glue 0.0 plus 1.0fil
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x7.22223, glue set 3.30556fil
+...\glue 0.0 plus 1.0fil
+...\tenrm r
+..\glue(\tabskip) 0.0
+.\penalty 0
+.\glue(\baselineskip) 5.55556
+.\hbox(6.44444+0.0)x22.22227
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x15.00005, glue set 5.00002fil
+...\tenrm 1
+...\tenrm 4
+...\glue 0.0 plus 1.0fil
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x7.22223, glue set 3.30556fil
+...\glue 0.0 plus 1.0fil
+...\tenrm r
+..\glue(\tabskip) 0.0
+.\penalty 0
+.\glue(\baselineskip) 5.55556
+.\hbox(6.44444+0.0)x22.22227
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x15.00005, glue set 5.00002fil
+...\tenrm 1
+...\tenrm 5
+...\glue 0.0 plus 1.0fil
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x7.22223, glue set 3.30556fil
+...\glue 0.0 plus 1.0fil
+...\tenrm r
+..\glue(\tabskip) 0.0
+.\penalty 0
+.\glue(\baselineskip) 5.55556
+.\hbox(6.44444+0.0)x22.22227
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x15.00005, glue set 5.00002fil
+...\tenrm 1
+...\tenrm 6
+...\glue 0.0 plus 1.0fil
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x7.22223, glue set 3.30556fil
+...\glue 0.0 plus 1.0fil
+...\tenrm r
+..\glue(\tabskip) 0.0
+.\penalty 0
+.\glue(\baselineskip) 5.55556
+.\hbox(6.44444+0.0)x22.22227
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x15.00005, glue set 5.00002fil
+...\tenrm 1
+...\tenrm 7
+...\glue 0.0 plus 1.0fil
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x7.22223, glue set 3.30556fil
+...\glue 0.0 plus 1.0fil
+...\tenrm r
+..\glue(\tabskip) 0.0
+.\penalty 0
+.\glue(\baselineskip) 5.55556
+.\hbox(6.44444+0.0)x22.22227
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x15.00005, glue set 5.00002fil
+...\tenrm 1
+...\tenrm 8
+...\glue 0.0 plus 1.0fil
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x7.22223, glue set 3.30556fil
+...\glue 0.0 plus 1.0fil
+...\tenrm r
+..\glue(\tabskip) 0.0
+.\penalty 0
+.\glue(\baselineskip) 5.55556
+.\hbox(6.44444+0.0)x22.22227
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x15.00005, glue set 5.00002fil
+...\tenrm 1
+...\tenrm 9
+...\glue 0.0 plus 1.0fil
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x7.22223, glue set 3.30556fil
+...\glue 0.0 plus 1.0fil
+...\tenrm r
+..\glue(\tabskip) 0.0
+.\penalty 0
+.\glue(\baselineskip) 5.55556
+.\hbox(6.44444+0.0)x22.22227
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x15.00005, glue set 5.00002fil
+...\tenrm 2
+...\tenrm 0
+...\glue 0.0 plus 1.0fil
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x7.22223, glue set 3.30556fil
+...\glue 0.0 plus 1.0fil
+...\tenrm r
+..\glue(\tabskip) 0.0
+.\penalty 0
+.\glue(\baselineskip) 5.55556
+.\hbox(6.44444+0.0)x22.22227
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x15.00005, glue set 5.00002fil
+...\tenrm 2
+...\tenrm 1
+...\glue 0.0 plus 1.0fil
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x7.22223, glue set 3.30556fil
+...\glue 0.0 plus 1.0fil
+...\tenrm r
+..\glue(\tabskip) 0.0
+.\penalty 0
+.\glue(\baselineskip) 5.55556
+.\hbox(6.44444+0.0)x22.22227
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x15.00005, glue set 5.00002fil
+...\tenrm 2
+...\tenrm 2
+...\glue 0.0 plus 1.0fil
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x7.22223, glue set 3.30556fil
+...\glue 0.0 plus 1.0fil
+...\tenrm r
+..\glue(\tabskip) 0.0
+.\penalty 0
+.\glue(\baselineskip) 5.55556
+.\hbox(6.44444+0.0)x22.22227
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x15.00005, glue set 5.00002fil
+...\tenrm 2
+...\tenrm 3
+...\glue 0.0 plus 1.0fil
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x7.22223, glue set 3.30556fil
+...\glue 0.0 plus 1.0fil
+...\tenrm r
+..\glue(\tabskip) 0.0
+.\penalty 0
+.\glue(\baselineskip) 5.55556
+.\hbox(6.44444+0.0)x22.22227
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x15.00005, glue set 5.00002fil
+...\tenrm 2
+...\tenrm 4
+...\glue 0.0 plus 1.0fil
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x7.22223, glue set 3.30556fil
+...\glue 0.0 plus 1.0fil
+...\tenrm r
+..\glue(\tabskip) 0.0
+
+%% goal height=144.54, max depth=2.0
+% t=10.0 g=144.54 b=10000 p=0 c=100000#
+% t=22.0 g=144.54 b=10000 p=0 c=100000#
+% t=34.0 g=144.54 b=10000 p=0 c=100000#
+% t=46.0 g=144.54 b=10000 p=0 c=100000#
+% t=58.0 g=144.54 b=10000 p=0 c=100000#
+% t=70.0 g=144.54 b=10000 p=0 c=100000#
+% t=82.0 g=144.54 b=10000 p=0 c=100000#
+% t=94.0 g=144.54 b=10000 p=0 c=100000#
+% t=106.0 g=144.54 b=10000 p=0 c=100000#
+% t=118.0 g=144.54 b=10000 p=0 c=100000#
+% t=130.0 g=144.54 b=10000 p=0 c=100000#
+% t=142.0 g=144.54 b=10000 p=0 c=100000#
+% t=154.0 g=144.54 b=* p=0 c=*
+[OUT 0]
+> \box255=
+\vbox(144.54+0.0)x22.22227
+.\glue(\topskip) 3.55556
+.\hbox(6.44444+0.0)x22.22227
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x15.00005, glue set 5.00002fil
+...\tenrm 2
+...\tenrm 5
+...\glue 0.0 plus 1.0fil
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x7.22223, glue set 3.30556fil
+...\glue 0.0 plus 1.0fil
+...\tenrm r
+..\glue(\tabskip) 0.0
+.\penalty 0
+.\glue(\baselineskip) 5.55556
+.\hbox(6.44444+0.0)x22.22227
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x15.00005, glue set 5.00002fil
+...\tenrm 2
+...\tenrm 6
+...\glue 0.0 plus 1.0fil
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x7.22223, glue set 3.30556fil
+...\glue 0.0 plus 1.0fil
+...\tenrm r
+..\glue(\tabskip) 0.0
+.\penalty 0
+.\glue(\baselineskip) 5.55556
+.\hbox(6.44444+0.0)x22.22227
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x15.00005, glue set 5.00002fil
+...\tenrm 2
+...\tenrm 7
+...\glue 0.0 plus 1.0fil
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x7.22223, glue set 3.30556fil
+...\glue 0.0 plus 1.0fil
+...\tenrm r
+..\glue(\tabskip) 0.0
+.\penalty 0
+.\glue(\baselineskip) 5.55556
+.\hbox(6.44444+0.0)x22.22227
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x15.00005, glue set 5.00002fil
+...\tenrm 2
+...\tenrm 8
+...\glue 0.0 plus 1.0fil
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x7.22223, glue set 3.30556fil
+...\glue 0.0 plus 1.0fil
+...\tenrm r
+..\glue(\tabskip) 0.0
+.\penalty 0
+.\glue(\baselineskip) 5.55556
+.\hbox(6.44444+0.0)x22.22227
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x15.00005, glue set 5.00002fil
+...\tenrm 2
+...\tenrm 9
+...\glue 0.0 plus 1.0fil
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x7.22223, glue set 3.30556fil
+...\glue 0.0 plus 1.0fil
+...\tenrm r
+..\glue(\tabskip) 0.0
+.\penalty 0
+.\glue(\baselineskip) 5.55556
+.\hbox(6.44444+0.0)x22.22227
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x15.00005, glue set 5.00002fil
+...\tenrm 3
+...\tenrm 0
+...\glue 0.0 plus 1.0fil
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x7.22223, glue set 3.30556fil
+...\glue 0.0 plus 1.0fil
+...\tenrm r
+..\glue(\tabskip) 0.0
+.\penalty 0
+.\glue(\baselineskip) 5.55556
+.\hbox(6.44444+0.0)x22.22227
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x15.00005, glue set 5.00002fil
+...\tenrm 3
+...\tenrm 1
+...\glue 0.0 plus 1.0fil
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x7.22223, glue set 3.30556fil
+...\glue 0.0 plus 1.0fil
+...\tenrm r
+..\glue(\tabskip) 0.0
+.\penalty 0
+.\glue(\baselineskip) 5.55556
+.\hbox(6.44444+0.0)x22.22227
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x15.00005, glue set 5.00002fil
+...\tenrm 3
+...\tenrm 2
+...\glue 0.0 plus 1.0fil
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x7.22223, glue set 3.30556fil
+...\glue 0.0 plus 1.0fil
+...\tenrm r
+..\glue(\tabskip) 0.0
+.\penalty 0
+.\glue(\baselineskip) 5.55556
+.\hbox(6.44444+0.0)x22.22227
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x15.00005, glue set 5.00002fil
+...\tenrm 3
+...\tenrm 3
+...\glue 0.0 plus 1.0fil
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x7.22223, glue set 3.30556fil
+...\glue 0.0 plus 1.0fil
+...\tenrm r
+..\glue(\tabskip) 0.0
+.\penalty 0
+.\glue(\baselineskip) 5.55556
+.\hbox(6.44444+0.0)x22.22227
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x15.00005, glue set 5.00002fil
+...\tenrm 3
+...\tenrm 4
+...\glue 0.0 plus 1.0fil
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x7.22223, glue set 3.30556fil
+...\glue 0.0 plus 1.0fil
+...\tenrm r
+..\glue(\tabskip) 0.0
+.\penalty 0
+.\glue(\baselineskip) 5.55556
+.\hbox(6.44444+0.0)x22.22227
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x15.00005, glue set 5.00002fil
+...\tenrm 3
+...\tenrm 5
+...\glue 0.0 plus 1.0fil
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x7.22223, glue set 3.30556fil
+...\glue 0.0 plus 1.0fil
+...\tenrm r
+..\glue(\tabskip) 0.0
+.\penalty 0
+.\glue(\baselineskip) 5.55556
+.\hbox(6.44444+0.0)x22.22227
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x15.00005, glue set 5.00002fil
+...\tenrm 3
+...\tenrm 6
+...\glue 0.0 plus 1.0fil
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x7.22223, glue set 3.30556fil
+...\glue 0.0 plus 1.0fil
+...\tenrm r
+..\glue(\tabskip) 0.0
+
+! OK.
+<output> ...UT \the \outputpenalty ]}\showbox 255
+                                                  \shipout \box 255 \global ...
+l.11 ...rb\noalign{\mark{M2}\penalty-10000}z&w\cr}
+
+
+
+Completed box being shipped out [3.200]
+\vbox(144.54+0.0)x22.22227
+.\glue(\topskip) 3.55556
+.\hbox(6.44444+0.0)x22.22227
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x15.00005, glue set 5.00002fil
+...\tenrm 2
+...\tenrm 5
+...\glue 0.0 plus 1.0fil
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x7.22223, glue set 3.30556fil
+...\glue 0.0 plus 1.0fil
+...\tenrm r
+..\glue(\tabskip) 0.0
+.\penalty 0
+.\glue(\baselineskip) 5.55556
+.\hbox(6.44444+0.0)x22.22227
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x15.00005, glue set 5.00002fil
+...\tenrm 2
+...\tenrm 6
+...\glue 0.0 plus 1.0fil
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x7.22223, glue set 3.30556fil
+...\glue 0.0 plus 1.0fil
+...\tenrm r
+..\glue(\tabskip) 0.0
+.\penalty 0
+.\glue(\baselineskip) 5.55556
+.\hbox(6.44444+0.0)x22.22227
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x15.00005, glue set 5.00002fil
+...\tenrm 2
+...\tenrm 7
+...\glue 0.0 plus 1.0fil
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x7.22223, glue set 3.30556fil
+...\glue 0.0 plus 1.0fil
+...\tenrm r
+..\glue(\tabskip) 0.0
+.\penalty 0
+.\glue(\baselineskip) 5.55556
+.\hbox(6.44444+0.0)x22.22227
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x15.00005, glue set 5.00002fil
+...\tenrm 2
+...\tenrm 8
+...\glue 0.0 plus 1.0fil
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x7.22223, glue set 3.30556fil
+...\glue 0.0 plus 1.0fil
+...\tenrm r
+..\glue(\tabskip) 0.0
+.\penalty 0
+.\glue(\baselineskip) 5.55556
+.\hbox(6.44444+0.0)x22.22227
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x15.00005, glue set 5.00002fil
+...\tenrm 2
+...\tenrm 9
+...\glue 0.0 plus 1.0fil
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x7.22223, glue set 3.30556fil
+...\glue 0.0 plus 1.0fil
+...\tenrm r
+..\glue(\tabskip) 0.0
+.\penalty 0
+.\glue(\baselineskip) 5.55556
+.\hbox(6.44444+0.0)x22.22227
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x15.00005, glue set 5.00002fil
+...\tenrm 3
+...\tenrm 0
+...\glue 0.0 plus 1.0fil
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x7.22223, glue set 3.30556fil
+...\glue 0.0 plus 1.0fil
+...\tenrm r
+..\glue(\tabskip) 0.0
+.\penalty 0
+.\glue(\baselineskip) 5.55556
+.\hbox(6.44444+0.0)x22.22227
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x15.00005, glue set 5.00002fil
+...\tenrm 3
+...\tenrm 1
+...\glue 0.0 plus 1.0fil
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x7.22223, glue set 3.30556fil
+...\glue 0.0 plus 1.0fil
+...\tenrm r
+..\glue(\tabskip) 0.0
+.\penalty 0
+.\glue(\baselineskip) 5.55556
+.\hbox(6.44444+0.0)x22.22227
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x15.00005, glue set 5.00002fil
+...\tenrm 3
+...\tenrm 2
+...\glue 0.0 plus 1.0fil
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x7.22223, glue set 3.30556fil
+...\glue 0.0 plus 1.0fil
+...\tenrm r
+..\glue(\tabskip) 0.0
+.\penalty 0
+.\glue(\baselineskip) 5.55556
+.\hbox(6.44444+0.0)x22.22227
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x15.00005, glue set 5.00002fil
+...\tenrm 3
+...\tenrm 3
+...\glue 0.0 plus 1.0fil
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x7.22223, glue set 3.30556fil
+...\glue 0.0 plus 1.0fil
+...\tenrm r
+..\glue(\tabskip) 0.0
+.\penalty 0
+.\glue(\baselineskip) 5.55556
+.\hbox(6.44444+0.0)x22.22227
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x15.00005, glue set 5.00002fil
+...\tenrm 3
+...\tenrm 4
+...\glue 0.0 plus 1.0fil
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x7.22223, glue set 3.30556fil
+...\glue 0.0 plus 1.0fil
+...\tenrm r
+..\glue(\tabskip) 0.0
+.\penalty 0
+.\glue(\baselineskip) 5.55556
+.\hbox(6.44444+0.0)x22.22227
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x15.00005, glue set 5.00002fil
+...\tenrm 3
+...\tenrm 5
+...\glue 0.0 plus 1.0fil
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x7.22223, glue set 3.30556fil
+...\glue 0.0 plus 1.0fil
+...\tenrm r
+..\glue(\tabskip) 0.0
+.\penalty 0
+.\glue(\baselineskip) 5.55556
+.\hbox(6.44444+0.0)x22.22227
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x15.00005, glue set 5.00002fil
+...\tenrm 3
+...\tenrm 6
+...\glue 0.0 plus 1.0fil
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x7.22223, glue set 3.30556fil
+...\glue 0.0 plus 1.0fil
+...\tenrm r
+..\glue(\tabskip) 0.0
+
+%% goal height=144.54, max depth=2.0
+% t=10.0 g=144.54 b=10000 p=0 c=100000#
+% t=22.0 g=144.54 b=10000 p=0 c=100000#
+% t=34.0 g=144.54 b=10000 p=0 c=100000#
+% t=46.0 g=144.54 b=10000 p=0 c=100000#
+% t=58.0 g=144.54 b=10000 p=0 c=100000#
+% t=70.0 g=144.54 b=10000 p=0 c=100000#
+% t=82.0 g=144.54 b=10000 p=0 c=100000#
+% t=94.0 g=144.54 b=10000 p=0 c=100000#
+% t=106.0 g=144.54 b=10000 p=0 c=100000#
+% t=118.0 g=144.54 b=10000 p=0 c=100000#
+% t=130.0 g=144.54 b=10000 p=0 c=100000#
+% t=142.0 g=144.54 b=10000 p=0 c=100000#
+% t=154.0 g=144.54 b=* p=0 c=*
+[OUT 0]
+> \box255=
+\vbox(144.54+0.0)x22.22227
+.\glue(\topskip) 3.55556
+.\hbox(6.44444+0.0)x22.22227
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x15.00005, glue set 5.00002fil
+...\tenrm 3
+...\tenrm 7
+...\glue 0.0 plus 1.0fil
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x7.22223, glue set 3.30556fil
+...\glue 0.0 plus 1.0fil
+...\tenrm r
+..\glue(\tabskip) 0.0
+.\penalty 0
+.\glue(\baselineskip) 5.55556
+.\hbox(6.44444+0.0)x22.22227
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x15.00005, glue set 5.00002fil
+...\tenrm 3
+...\tenrm 8
+...\glue 0.0 plus 1.0fil
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x7.22223, glue set 3.30556fil
+...\glue 0.0 plus 1.0fil
+...\tenrm r
+..\glue(\tabskip) 0.0
+.\penalty 0
+.\glue(\baselineskip) 5.55556
+.\hbox(6.44444+0.0)x22.22227
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x15.00005, glue set 5.00002fil
+...\tenrm 3
+...\tenrm 9
+...\glue 0.0 plus 1.0fil
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x7.22223, glue set 3.30556fil
+...\glue 0.0 plus 1.0fil
+...\tenrm r
+..\glue(\tabskip) 0.0
+.\penalty 0
+.\glue(\baselineskip) 5.55556
+.\hbox(6.44444+0.0)x22.22227
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x15.00005, glue set 5.00002fil
+...\tenrm 4
+...\tenrm 0
+...\glue 0.0 plus 1.0fil
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x7.22223, glue set 3.30556fil
+...\glue 0.0 plus 1.0fil
+...\tenrm r
+..\glue(\tabskip) 0.0
+.\penalty 0
+.\glue(\baselineskip) 5.55556
+.\hbox(6.44444+0.0)x22.22227
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x15.00005, glue set 5.00002fil
+...\tenrm 4
+...\tenrm 1
+...\glue 0.0 plus 1.0fil
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x7.22223, glue set 3.30556fil
+...\glue 0.0 plus 1.0fil
+...\tenrm r
+..\glue(\tabskip) 0.0
+.\penalty 0
+.\glue(\baselineskip) 5.55556
+.\hbox(6.44444+0.0)x22.22227
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x15.00005, glue set 5.00002fil
+...\tenrm 4
+...\tenrm 2
+...\glue 0.0 plus 1.0fil
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x7.22223, glue set 3.30556fil
+...\glue 0.0 plus 1.0fil
+...\tenrm r
+..\glue(\tabskip) 0.0
+.\penalty 0
+.\glue(\baselineskip) 5.55556
+.\hbox(6.44444+0.0)x22.22227
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x15.00005, glue set 5.00002fil
+...\tenrm 4
+...\tenrm 3
+...\glue 0.0 plus 1.0fil
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x7.22223, glue set 3.30556fil
+...\glue 0.0 plus 1.0fil
+...\tenrm r
+..\glue(\tabskip) 0.0
+.\penalty 0
+.\glue(\baselineskip) 5.55556
+.\hbox(6.44444+0.0)x22.22227
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x15.00005, glue set 5.00002fil
+...\tenrm 4
+...\tenrm 4
+...\glue 0.0 plus 1.0fil
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x7.22223, glue set 3.30556fil
+...\glue 0.0 plus 1.0fil
+...\tenrm r
+..\glue(\tabskip) 0.0
+.\penalty 0
+.\glue(\baselineskip) 5.55556
+.\hbox(6.44444+0.0)x22.22227
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x15.00005, glue set 5.00002fil
+...\tenrm 4
+...\tenrm 5
+...\glue 0.0 plus 1.0fil
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x7.22223, glue set 3.30556fil
+...\glue 0.0 plus 1.0fil
+...\tenrm r
+..\glue(\tabskip) 0.0
+.\penalty 0
+.\glue(\baselineskip) 5.55556
+.\hbox(6.44444+0.0)x22.22227
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x15.00005, glue set 5.00002fil
+...\tenrm 4
+...\tenrm 6
+...\glue 0.0 plus 1.0fil
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x7.22223, glue set 3.30556fil
+...\glue 0.0 plus 1.0fil
+...\tenrm r
+..\glue(\tabskip) 0.0
+.\penalty 0
+.\glue(\baselineskip) 5.55556
+.\hbox(6.44444+0.0)x22.22227
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x15.00005, glue set 5.00002fil
+...\tenrm 4
+...\tenrm 7
+...\glue 0.0 plus 1.0fil
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x7.22223, glue set 3.30556fil
+...\glue 0.0 plus 1.0fil
+...\tenrm r
+..\glue(\tabskip) 0.0
+.\penalty 0
+.\glue(\baselineskip) 5.55556
+.\hbox(6.44444+0.0)x22.22227
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x15.00005, glue set 5.00002fil
+...\tenrm 4
+...\tenrm 8
+...\glue 0.0 plus 1.0fil
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x7.22223, glue set 3.30556fil
+...\glue 0.0 plus 1.0fil
+...\tenrm r
+..\glue(\tabskip) 0.0
+
+! OK.
+<output> ...UT \the \outputpenalty ]}\showbox 255
+                                                  \shipout \box 255 \global ...
+l.11 ...rb\noalign{\mark{M2}\penalty-10000}z&w\cr}
+
+
+
+Completed box being shipped out [4.200]
+\vbox(144.54+0.0)x22.22227
+.\glue(\topskip) 3.55556
+.\hbox(6.44444+0.0)x22.22227
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x15.00005, glue set 5.00002fil
+...\tenrm 3
+...\tenrm 7
+...\glue 0.0 plus 1.0fil
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x7.22223, glue set 3.30556fil
+...\glue 0.0 plus 1.0fil
+...\tenrm r
+..\glue(\tabskip) 0.0
+.\penalty 0
+.\glue(\baselineskip) 5.55556
+.\hbox(6.44444+0.0)x22.22227
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x15.00005, glue set 5.00002fil
+...\tenrm 3
+...\tenrm 8
+...\glue 0.0 plus 1.0fil
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x7.22223, glue set 3.30556fil
+...\glue 0.0 plus 1.0fil
+...\tenrm r
+..\glue(\tabskip) 0.0
+.\penalty 0
+.\glue(\baselineskip) 5.55556
+.\hbox(6.44444+0.0)x22.22227
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x15.00005, glue set 5.00002fil
+...\tenrm 3
+...\tenrm 9
+...\glue 0.0 plus 1.0fil
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x7.22223, glue set 3.30556fil
+...\glue 0.0 plus 1.0fil
+...\tenrm r
+..\glue(\tabskip) 0.0
+.\penalty 0
+.\glue(\baselineskip) 5.55556
+.\hbox(6.44444+0.0)x22.22227
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x15.00005, glue set 5.00002fil
+...\tenrm 4
+...\tenrm 0
+...\glue 0.0 plus 1.0fil
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x7.22223, glue set 3.30556fil
+...\glue 0.0 plus 1.0fil
+...\tenrm r
+..\glue(\tabskip) 0.0
+.\penalty 0
+.\glue(\baselineskip) 5.55556
+.\hbox(6.44444+0.0)x22.22227
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x15.00005, glue set 5.00002fil
+...\tenrm 4
+...\tenrm 1
+...\glue 0.0 plus 1.0fil
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x7.22223, glue set 3.30556fil
+...\glue 0.0 plus 1.0fil
+...\tenrm r
+..\glue(\tabskip) 0.0
+.\penalty 0
+.\glue(\baselineskip) 5.55556
+.\hbox(6.44444+0.0)x22.22227
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x15.00005, glue set 5.00002fil
+...\tenrm 4
+...\tenrm 2
+...\glue 0.0 plus 1.0fil
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x7.22223, glue set 3.30556fil
+...\glue 0.0 plus 1.0fil
+...\tenrm r
+..\glue(\tabskip) 0.0
+.\penalty 0
+.\glue(\baselineskip) 5.55556
+.\hbox(6.44444+0.0)x22.22227
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x15.00005, glue set 5.00002fil
+...\tenrm 4
+...\tenrm 3
+...\glue 0.0 plus 1.0fil
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x7.22223, glue set 3.30556fil
+...\glue 0.0 plus 1.0fil
+...\tenrm r
+..\glue(\tabskip) 0.0
+.\penalty 0
+.\glue(\baselineskip) 5.55556
+.\hbox(6.44444+0.0)x22.22227
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x15.00005, glue set 5.00002fil
+...\tenrm 4
+...\tenrm 4
+...\glue 0.0 plus 1.0fil
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x7.22223, glue set 3.30556fil
+...\glue 0.0 plus 1.0fil
+...\tenrm r
+..\glue(\tabskip) 0.0
+.\penalty 0
+.\glue(\baselineskip) 5.55556
+.\hbox(6.44444+0.0)x22.22227
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x15.00005, glue set 5.00002fil
+...\tenrm 4
+...\tenrm 5
+...\glue 0.0 plus 1.0fil
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x7.22223, glue set 3.30556fil
+...\glue 0.0 plus 1.0fil
+...\tenrm r
+..\glue(\tabskip) 0.0
+.\penalty 0
+.\glue(\baselineskip) 5.55556
+.\hbox(6.44444+0.0)x22.22227
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x15.00005, glue set 5.00002fil
+...\tenrm 4
+...\tenrm 6
+...\glue 0.0 plus 1.0fil
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x7.22223, glue set 3.30556fil
+...\glue 0.0 plus 1.0fil
+...\tenrm r
+..\glue(\tabskip) 0.0
+.\penalty 0
+.\glue(\baselineskip) 5.55556
+.\hbox(6.44444+0.0)x22.22227
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x15.00005, glue set 5.00002fil
+...\tenrm 4
+...\tenrm 7
+...\glue 0.0 plus 1.0fil
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x7.22223, glue set 3.30556fil
+...\glue 0.0 plus 1.0fil
+...\tenrm r
+..\glue(\tabskip) 0.0
+.\penalty 0
+.\glue(\baselineskip) 5.55556
+.\hbox(6.44444+0.0)x22.22227
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x15.00005, glue set 5.00002fil
+...\tenrm 4
+...\tenrm 8
+...\glue 0.0 plus 1.0fil
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x7.22223, glue set 3.30556fil
+...\glue 0.0 plus 1.0fil
+...\tenrm r
+..\glue(\tabskip) 0.0
+
+%% goal height=144.54, max depth=2.0
+% t=10.0 g=144.54 b=10000 p=0 c=100000#
+% t=22.0 g=144.54 b=10000 p=0 c=100000#
+% t=34.0 g=144.54 b=10000 p=0 c=100000#
+% t=46.0 g=144.54 b=10000 p=0 c=100000#
+% t=58.0 g=144.54 b=10000 p=0 c=100000#
+% t=70.0 g=144.54 b=10000 p=0 c=100000#
+% t=82.0 g=144.54 b=10000 p=0 c=100000#
+% t=94.0 g=144.54 b=10000 p=0 c=100000#
+% t=106.0 g=144.54 b=10000 p=0 c=100000#
+% t=118.0 g=144.54 b=10000 p=0 c=100000#
+% t=130.0 g=144.54 b=10000 p=0 c=100000#
+% t=142.0 g=144.54 b=10000 p=0 c=100000#
+% t=142.0 g=144.54 b=10000 p=0 c=100000#
+% t=154.0 g=144.54 b=* p=0 c=*
+[OUT 10000]
+> \box255=
+\vbox(144.54+0.0)x22.22227
+.\glue(\topskip) 3.55556
+.\hbox(6.44444+0.0)x22.22227
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x15.00005, glue set 5.00002fil
+...\tenrm 4
+...\tenrm 9
+...\glue 0.0 plus 1.0fil
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x7.22223, glue set 3.30556fil
+...\glue 0.0 plus 1.0fil
+...\tenrm r
+..\glue(\tabskip) 0.0
+.\penalty 0
+.\glue(\baselineskip) 5.55556
+.\hbox(6.44444+0.0)x22.22227
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x15.00005, glue set 5.00002fil
+...\tenrm 5
+...\tenrm 0
+...\glue 0.0 plus 1.0fil
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x7.22223, glue set 3.30556fil
+...\glue 0.0 plus 1.0fil
+...\tenrm r
+..\glue(\tabskip) 0.0
+.\penalty 0
+.\glue(\baselineskip) 5.55556
+.\hbox(6.44444+0.0)x22.22227
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x15.00005, glue set 5.00002fil
+...\tenrm 5
+...\tenrm 1
+...\glue 0.0 plus 1.0fil
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x7.22223, glue set 3.30556fil
+...\glue 0.0 plus 1.0fil
+...\tenrm r
+..\glue(\tabskip) 0.0
+.\penalty 0
+.\glue(\baselineskip) 5.55556
+.\hbox(6.44444+0.0)x22.22227
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x15.00005, glue set 5.00002fil
+...\tenrm 5
+...\tenrm 2
+...\glue 0.0 plus 1.0fil
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x7.22223, glue set 3.30556fil
+...\glue 0.0 plus 1.0fil
+...\tenrm r
+..\glue(\tabskip) 0.0
+.\penalty 0
+.\glue(\baselineskip) 5.55556
+.\hbox(6.44444+0.0)x22.22227
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x15.00005, glue set 5.00002fil
+...\tenrm 5
+...\tenrm 3
+...\glue 0.0 plus 1.0fil
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x7.22223, glue set 3.30556fil
+...\glue 0.0 plus 1.0fil
+...\tenrm r
+..\glue(\tabskip) 0.0
+.\penalty 0
+.\glue(\baselineskip) 5.55556
+.\hbox(6.44444+0.0)x22.22227
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x15.00005, glue set 5.00002fil
+...\tenrm 5
+...\tenrm 4
+...\glue 0.0 plus 1.0fil
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x7.22223, glue set 3.30556fil
+...\glue 0.0 plus 1.0fil
+...\tenrm r
+..\glue(\tabskip) 0.0
+.\penalty 0
+.\glue(\baselineskip) 5.55556
+.\hbox(6.44444+0.0)x22.22227
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x15.00005, glue set 5.00002fil
+...\tenrm 5
+...\tenrm 5
+...\glue 0.0 plus 1.0fil
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x7.22223, glue set 3.30556fil
+...\glue 0.0 plus 1.0fil
+...\tenrm r
+..\glue(\tabskip) 0.0
+.\penalty 0
+.\glue(\baselineskip) 5.55556
+.\hbox(6.44444+0.0)x22.22227
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x15.00005, glue set 5.00002fil
+...\tenrm 5
+...\tenrm 6
+...\glue 0.0 plus 1.0fil
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x7.22223, glue set 3.30556fil
+...\glue 0.0 plus 1.0fil
+...\tenrm r
+..\glue(\tabskip) 0.0
+.\penalty 0
+.\glue(\baselineskip) 5.55556
+.\hbox(6.44444+0.0)x22.22227
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x15.00005, glue set 5.00002fil
+...\tenrm 5
+...\tenrm 7
+...\glue 0.0 plus 1.0fil
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x7.22223, glue set 3.30556fil
+...\glue 0.0 plus 1.0fil
+...\tenrm r
+..\glue(\tabskip) 0.0
+.\penalty 0
+.\glue(\baselineskip) 5.55556
+.\hbox(6.44444+0.0)x22.22227
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x15.00005, glue set 5.00002fil
+...\tenrm 5
+...\tenrm 8
+...\glue 0.0 plus 1.0fil
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x7.22223, glue set 3.30556fil
+...\glue 0.0 plus 1.0fil
+...\tenrm r
+..\glue(\tabskip) 0.0
+.\penalty 0
+.\glue(\baselineskip) 5.55556
+.\hbox(6.44444+0.0)x22.22227
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x15.00005, glue set 5.00002fil
+...\tenrm 5
+...\tenrm 9
+...\glue 0.0 plus 1.0fil
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x7.22223, glue set 3.30556fil
+...\glue 0.0 plus 1.0fil
+...\tenrm r
+..\glue(\tabskip) 0.0
+.\penalty 0
+.\glue(\baselineskip) 5.55556
+.\hbox(6.44444+0.0)x22.22227
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x15.00005, glue set 5.00002fil
+...\tenrm 6
+...\tenrm 0
+...\glue 0.0 plus 1.0fil
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x7.22223, glue set 3.30556fil
+...\glue 0.0 plus 1.0fil
+...\tenrm r
+..\glue(\tabskip) 0.0
+.\penalty 0
+.\mark{M1}
+
+! OK.
+<output> ...UT \the \outputpenalty ]}\showbox 255
+                                                  \shipout \box 255 \global ...
+l.11 ...rb\noalign{\mark{M2}\penalty-10000}z&w\cr}
+
+
+
+Completed box being shipped out [5.200]
+\vbox(144.54+0.0)x22.22227
+.\glue(\topskip) 3.55556
+.\hbox(6.44444+0.0)x22.22227
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x15.00005, glue set 5.00002fil
+...\tenrm 4
+...\tenrm 9
+...\glue 0.0 plus 1.0fil
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x7.22223, glue set 3.30556fil
+...\glue 0.0 plus 1.0fil
+...\tenrm r
+..\glue(\tabskip) 0.0
+.\penalty 0
+.\glue(\baselineskip) 5.55556
+.\hbox(6.44444+0.0)x22.22227
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x15.00005, glue set 5.00002fil
+...\tenrm 5
+...\tenrm 0
+...\glue 0.0 plus 1.0fil
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x7.22223, glue set 3.30556fil
+...\glue 0.0 plus 1.0fil
+...\tenrm r
+..\glue(\tabskip) 0.0
+.\penalty 0
+.\glue(\baselineskip) 5.55556
+.\hbox(6.44444+0.0)x22.22227
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x15.00005, glue set 5.00002fil
+...\tenrm 5
+...\tenrm 1
+...\glue 0.0 plus 1.0fil
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x7.22223, glue set 3.30556fil
+...\glue 0.0 plus 1.0fil
+...\tenrm r
+..\glue(\tabskip) 0.0
+.\penalty 0
+.\glue(\baselineskip) 5.55556
+.\hbox(6.44444+0.0)x22.22227
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x15.00005, glue set 5.00002fil
+...\tenrm 5
+...\tenrm 2
+...\glue 0.0 plus 1.0fil
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x7.22223, glue set 3.30556fil
+...\glue 0.0 plus 1.0fil
+...\tenrm r
+..\glue(\tabskip) 0.0
+.\penalty 0
+.\glue(\baselineskip) 5.55556
+.\hbox(6.44444+0.0)x22.22227
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x15.00005, glue set 5.00002fil
+...\tenrm 5
+...\tenrm 3
+...\glue 0.0 plus 1.0fil
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x7.22223, glue set 3.30556fil
+...\glue 0.0 plus 1.0fil
+...\tenrm r
+..\glue(\tabskip) 0.0
+.\penalty 0
+.\glue(\baselineskip) 5.55556
+.\hbox(6.44444+0.0)x22.22227
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x15.00005, glue set 5.00002fil
+...\tenrm 5
+...\tenrm 4
+...\glue 0.0 plus 1.0fil
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x7.22223, glue set 3.30556fil
+...\glue 0.0 plus 1.0fil
+...\tenrm r
+..\glue(\tabskip) 0.0
+.\penalty 0
+.\glue(\baselineskip) 5.55556
+.\hbox(6.44444+0.0)x22.22227
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x15.00005, glue set 5.00002fil
+...\tenrm 5
+...\tenrm 5
+...\glue 0.0 plus 1.0fil
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x7.22223, glue set 3.30556fil
+...\glue 0.0 plus 1.0fil
+...\tenrm r
+..\glue(\tabskip) 0.0
+.\penalty 0
+.\glue(\baselineskip) 5.55556
+.\hbox(6.44444+0.0)x22.22227
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x15.00005, glue set 5.00002fil
+...\tenrm 5
+...\tenrm 6
+...\glue 0.0 plus 1.0fil
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x7.22223, glue set 3.30556fil
+...\glue 0.0 plus 1.0fil
+...\tenrm r
+..\glue(\tabskip) 0.0
+.\penalty 0
+.\glue(\baselineskip) 5.55556
+.\hbox(6.44444+0.0)x22.22227
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x15.00005, glue set 5.00002fil
+...\tenrm 5
+...\tenrm 7
+...\glue 0.0 plus 1.0fil
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x7.22223, glue set 3.30556fil
+...\glue 0.0 plus 1.0fil
+...\tenrm r
+..\glue(\tabskip) 0.0
+.\penalty 0
+.\glue(\baselineskip) 5.55556
+.\hbox(6.44444+0.0)x22.22227
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x15.00005, glue set 5.00002fil
+...\tenrm 5
+...\tenrm 8
+...\glue 0.0 plus 1.0fil
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x7.22223, glue set 3.30556fil
+...\glue 0.0 plus 1.0fil
+...\tenrm r
+..\glue(\tabskip) 0.0
+.\penalty 0
+.\glue(\baselineskip) 5.55556
+.\hbox(6.44444+0.0)x22.22227
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x15.00005, glue set 5.00002fil
+...\tenrm 5
+...\tenrm 9
+...\glue 0.0 plus 1.0fil
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x7.22223, glue set 3.30556fil
+...\glue 0.0 plus 1.0fil
+...\tenrm r
+..\glue(\tabskip) 0.0
+.\penalty 0
+.\glue(\baselineskip) 5.55556
+.\hbox(6.44444+0.0)x22.22227
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x15.00005, glue set 5.00002fil
+...\tenrm 6
+...\tenrm 0
+...\glue 0.0 plus 1.0fil
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x7.22223, glue set 3.30556fil
+...\glue 0.0 plus 1.0fil
+...\tenrm r
+..\glue(\tabskip) 0.0
+.\penalty 0
+.\mark{M1}
+
+%% goal height=144.54, max depth=2.0
+% t=10.0 g=144.54 b=10000 p=0 c=100000#
+% t=22.0 g=144.54 b=10000 p=0 c=100000#
+% t=34.0 g=144.54 b=10000 p=0 c=100000#
+% t=46.0 g=144.54 b=10000 p=0 c=100000#
+% t=58.0 g=144.54 b=10000 p=0 c=100000#
+% t=70.0 g=144.54 b=10000 p=0 c=100000#
+% t=82.0 g=144.54 b=10000 p=0 c=100000#
+% t=94.0 g=144.54 b=10000 p=0 c=100000#
+% t=106.0 g=144.54 b=10000 p=0 c=100000#
+% t=118.0 g=144.54 b=10000 p=0 c=100000#
+% t=130.0 g=144.54 b=10000 p=0 c=100000#
+% t=142.0 g=144.54 b=10000 p=0 c=100000#
+% t=154.0 g=144.54 b=* p=0 c=*
+[OUT 0]
+> \box255=
+\vbox(144.54+0.0)x22.22227
+.\glue(\topskip) 5.69446
+.\hbox(4.30554+1.94444)x22.22227
+..\glue(\tabskip) 0.0
+..\hbox(4.30554+1.94444)x15.00005, glue set 9.72224fil
+...\tenrm x
+...\glue 0.0 plus 1.0fil
+..\glue(\tabskip) 0.0
+..\hbox(4.30554+1.94444)x7.22223, glue set 1.94443fil
+...\glue 0.0 plus 1.0fil
+...\tenrm y
+..\glue(\tabskip) 0.0
+.\glue(\baselineskip) 3.61111
+.\hbox(6.44444+0.0)x22.22227
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x15.00005, glue set 5.00002fil
+...\tenrm 6
+...\tenrm 1
+...\glue 0.0 plus 1.0fil
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x7.22223, glue set 3.30556fil
+...\glue 0.0 plus 1.0fil
+...\tenrm r
+..\glue(\tabskip) 0.0
+.\penalty 0
+.\glue(\baselineskip) 5.55556
+.\hbox(6.44444+0.0)x22.22227
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x15.00005, glue set 5.00002fil
+...\tenrm 6
+...\tenrm 2
+...\glue 0.0 plus 1.0fil
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x7.22223, glue set 3.30556fil
+...\glue 0.0 plus 1.0fil
+...\tenrm r
+..\glue(\tabskip) 0.0
+.\penalty 0
+.\glue(\baselineskip) 5.55556
+.\hbox(6.44444+0.0)x22.22227
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x15.00005, glue set 5.00002fil
+...\tenrm 6
+...\tenrm 3
+...\glue 0.0 plus 1.0fil
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x7.22223, glue set 3.30556fil
+...\glue 0.0 plus 1.0fil
+...\tenrm r
+..\glue(\tabskip) 0.0
+.\penalty 0
+.\glue(\baselineskip) 5.55556
+.\hbox(6.44444+0.0)x22.22227
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x15.00005, glue set 5.00002fil
+...\tenrm 6
+...\tenrm 4
+...\glue 0.0 plus 1.0fil
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x7.22223, glue set 3.30556fil
+...\glue 0.0 plus 1.0fil
+...\tenrm r
+..\glue(\tabskip) 0.0
+.\penalty 0
+.\glue(\baselineskip) 5.55556
+.\hbox(6.44444+0.0)x22.22227
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x15.00005, glue set 5.00002fil
+...\tenrm 6
+...\tenrm 5
+...\glue 0.0 plus 1.0fil
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x7.22223, glue set 3.30556fil
+...\glue 0.0 plus 1.0fil
+...\tenrm r
+..\glue(\tabskip) 0.0
+.\penalty 0
+.\glue(\baselineskip) 5.55556
+.\hbox(6.44444+0.0)x22.22227
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x15.00005, glue set 5.00002fil
+...\tenrm 6
+...\tenrm 6
+...\glue 0.0 plus 1.0fil
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x7.22223, glue set 3.30556fil
+...\glue 0.0 plus 1.0fil
+...\tenrm r
+..\glue(\tabskip) 0.0
+.\penalty 0
+.\glue(\baselineskip) 5.55556
+.\hbox(6.44444+0.0)x22.22227
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x15.00005, glue set 5.00002fil
+...\tenrm 6
+...\tenrm 7
+...\glue 0.0 plus 1.0fil
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x7.22223, glue set 3.30556fil
+...\glue 0.0 plus 1.0fil
+...\tenrm r
+..\glue(\tabskip) 0.0
+.\penalty 0
+.\glue(\baselineskip) 5.55556
+.\hbox(6.44444+0.0)x22.22227
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x15.00005, glue set 5.00002fil
+...\tenrm 6
+...\tenrm 8
+...\glue 0.0 plus 1.0fil
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x7.22223, glue set 3.30556fil
+...\glue 0.0 plus 1.0fil
+...\tenrm r
+..\glue(\tabskip) 0.0
+.\penalty 0
+.\glue(\baselineskip) 5.55556
+.\hbox(6.44444+0.0)x22.22227
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x15.00005, glue set 5.00002fil
+...\tenrm 6
+...\tenrm 9
+...\glue 0.0 plus 1.0fil
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x7.22223, glue set 3.30556fil
+...\glue 0.0 plus 1.0fil
+...\tenrm r
+..\glue(\tabskip) 0.0
+.\penalty 0
+.\glue(\baselineskip) 5.55556
+.\hbox(6.44444+0.0)x22.22227
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x15.00005, glue set 5.00002fil
+...\tenrm 7
+...\tenrm 0
+...\glue 0.0 plus 1.0fil
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x7.22223, glue set 3.30556fil
+...\glue 0.0 plus 1.0fil
+...\tenrm r
+..\glue(\tabskip) 0.0
+.\penalty 0
+.\glue(\baselineskip) 5.55556
+.\hbox(6.44444+0.0)x22.22227
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x15.00005, glue set 5.00002fil
+...\tenrm 7
+...\tenrm 1
+...\glue 0.0 plus 1.0fil
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x7.22223, glue set 3.30556fil
+...\glue 0.0 plus 1.0fil
+...\tenrm r
+..\glue(\tabskip) 0.0
+
+! OK.
+<output> ...UT \the \outputpenalty ]}\showbox 255
+                                                  \shipout \box 255 \global ...
+l.11 ...rb\noalign{\mark{M2}\penalty-10000}z&w\cr}
+
+
+
+Completed box being shipped out [6.200]
+\vbox(144.54+0.0)x22.22227
+.\glue(\topskip) 5.69446
+.\hbox(4.30554+1.94444)x22.22227
+..\glue(\tabskip) 0.0
+..\hbox(4.30554+1.94444)x15.00005, glue set 9.72224fil
+...\tenrm x
+...\glue 0.0 plus 1.0fil
+..\glue(\tabskip) 0.0
+..\hbox(4.30554+1.94444)x7.22223, glue set 1.94443fil
+...\glue 0.0 plus 1.0fil
+...\tenrm y
+..\glue(\tabskip) 0.0
+.\glue(\baselineskip) 3.61111
+.\hbox(6.44444+0.0)x22.22227
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x15.00005, glue set 5.00002fil
+...\tenrm 6
+...\tenrm 1
+...\glue 0.0 plus 1.0fil
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x7.22223, glue set 3.30556fil
+...\glue 0.0 plus 1.0fil
+...\tenrm r
+..\glue(\tabskip) 0.0
+.\penalty 0
+.\glue(\baselineskip) 5.55556
+.\hbox(6.44444+0.0)x22.22227
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x15.00005, glue set 5.00002fil
+...\tenrm 6
+...\tenrm 2
+...\glue 0.0 plus 1.0fil
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x7.22223, glue set 3.30556fil
+...\glue 0.0 plus 1.0fil
+...\tenrm r
+..\glue(\tabskip) 0.0
+.\penalty 0
+.\glue(\baselineskip) 5.55556
+.\hbox(6.44444+0.0)x22.22227
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x15.00005, glue set 5.00002fil
+...\tenrm 6
+...\tenrm 3
+...\glue 0.0 plus 1.0fil
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x7.22223, glue set 3.30556fil
+...\glue 0.0 plus 1.0fil
+...\tenrm r
+..\glue(\tabskip) 0.0
+.\penalty 0
+.\glue(\baselineskip) 5.55556
+.\hbox(6.44444+0.0)x22.22227
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x15.00005, glue set 5.00002fil
+...\tenrm 6
+...\tenrm 4
+...\glue 0.0 plus 1.0fil
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x7.22223, glue set 3.30556fil
+...\glue 0.0 plus 1.0fil
+...\tenrm r
+..\glue(\tabskip) 0.0
+.\penalty 0
+.\glue(\baselineskip) 5.55556
+.\hbox(6.44444+0.0)x22.22227
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x15.00005, glue set 5.00002fil
+...\tenrm 6
+...\tenrm 5
+...\glue 0.0 plus 1.0fil
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x7.22223, glue set 3.30556fil
+...\glue 0.0 plus 1.0fil
+...\tenrm r
+..\glue(\tabskip) 0.0
+.\penalty 0
+.\glue(\baselineskip) 5.55556
+.\hbox(6.44444+0.0)x22.22227
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x15.00005, glue set 5.00002fil
+...\tenrm 6
+...\tenrm 6
+...\glue 0.0 plus 1.0fil
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x7.22223, glue set 3.30556fil
+...\glue 0.0 plus 1.0fil
+...\tenrm r
+..\glue(\tabskip) 0.0
+.\penalty 0
+.\glue(\baselineskip) 5.55556
+.\hbox(6.44444+0.0)x22.22227
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x15.00005, glue set 5.00002fil
+...\tenrm 6
+...\tenrm 7
+...\glue 0.0 plus 1.0fil
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x7.22223, glue set 3.30556fil
+...\glue 0.0 plus 1.0fil
+...\tenrm r
+..\glue(\tabskip) 0.0
+.\penalty 0
+.\glue(\baselineskip) 5.55556
+.\hbox(6.44444+0.0)x22.22227
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x15.00005, glue set 5.00002fil
+...\tenrm 6
+...\tenrm 8
+...\glue 0.0 plus 1.0fil
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x7.22223, glue set 3.30556fil
+...\glue 0.0 plus 1.0fil
+...\tenrm r
+..\glue(\tabskip) 0.0
+.\penalty 0
+.\glue(\baselineskip) 5.55556
+.\hbox(6.44444+0.0)x22.22227
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x15.00005, glue set 5.00002fil
+...\tenrm 6
+...\tenrm 9
+...\glue 0.0 plus 1.0fil
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x7.22223, glue set 3.30556fil
+...\glue 0.0 plus 1.0fil
+...\tenrm r
+..\glue(\tabskip) 0.0
+.\penalty 0
+.\glue(\baselineskip) 5.55556
+.\hbox(6.44444+0.0)x22.22227
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x15.00005, glue set 5.00002fil
+...\tenrm 7
+...\tenrm 0
+...\glue 0.0 plus 1.0fil
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x7.22223, glue set 3.30556fil
+...\glue 0.0 plus 1.0fil
+...\tenrm r
+..\glue(\tabskip) 0.0
+.\penalty 0
+.\glue(\baselineskip) 5.55556
+.\hbox(6.44444+0.0)x22.22227
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x15.00005, glue set 5.00002fil
+...\tenrm 7
+...\tenrm 1
+...\glue 0.0 plus 1.0fil
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x7.22223, glue set 3.30556fil
+...\glue 0.0 plus 1.0fil
+...\tenrm r
+..\glue(\tabskip) 0.0
+
+%% goal height=144.54, max depth=2.0
+% t=10.0 g=144.54 b=10000 p=0 c=100000#
+% t=22.0 g=144.54 b=10000 p=0 c=100000#
+% t=34.0 g=144.54 b=10000 p=0 c=100000#
+% t=46.0 g=144.54 b=10000 p=0 c=100000#
+% t=58.0 g=144.54 b=10000 p=0 c=100000#
+% t=70.0 g=144.54 b=10000 p=0 c=100000#
+% t=82.0 g=144.54 b=10000 p=0 c=100000#
+% t=94.0 g=144.54 b=10000 p=0 c=100000#
+% t=106.0 g=144.54 b=10000 p=0 c=100000#
+% t=118.0 g=144.54 b=10000 p=0 c=100000#
+% t=130.0 g=144.54 b=10000 p=0 c=100000#
+% t=142.0 g=144.54 b=10000 p=0 c=100000#
+% t=154.0 g=144.54 b=* p=0 c=*
+[OUT 0]
+> \box255=
+\vbox(144.54+0.0)x22.22227
+.\glue(\topskip) 3.55556
+.\hbox(6.44444+0.0)x22.22227
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x15.00005, glue set 5.00002fil
+...\tenrm 7
+...\tenrm 2
+...\glue 0.0 plus 1.0fil
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x7.22223, glue set 3.30556fil
+...\glue 0.0 plus 1.0fil
+...\tenrm r
+..\glue(\tabskip) 0.0
+.\penalty 0
+.\glue(\baselineskip) 5.55556
+.\hbox(6.44444+0.0)x22.22227
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x15.00005, glue set 5.00002fil
+...\tenrm 7
+...\tenrm 3
+...\glue 0.0 plus 1.0fil
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x7.22223, glue set 3.30556fil
+...\glue 0.0 plus 1.0fil
+...\tenrm r
+..\glue(\tabskip) 0.0
+.\penalty 0
+.\glue(\baselineskip) 5.55556
+.\hbox(6.44444+0.0)x22.22227
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x15.00005, glue set 5.00002fil
+...\tenrm 7
+...\tenrm 4
+...\glue 0.0 plus 1.0fil
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x7.22223, glue set 3.30556fil
+...\glue 0.0 plus 1.0fil
+...\tenrm r
+..\glue(\tabskip) 0.0
+.\penalty 0
+.\glue(\baselineskip) 5.55556
+.\hbox(6.44444+0.0)x22.22227
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x15.00005, glue set 5.00002fil
+...\tenrm 7
+...\tenrm 5
+...\glue 0.0 plus 1.0fil
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x7.22223, glue set 3.30556fil
+...\glue 0.0 plus 1.0fil
+...\tenrm r
+..\glue(\tabskip) 0.0
+.\penalty 0
+.\glue(\baselineskip) 5.55556
+.\hbox(6.44444+0.0)x22.22227
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x15.00005, glue set 5.00002fil
+...\tenrm 7
+...\tenrm 6
+...\glue 0.0 plus 1.0fil
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x7.22223, glue set 3.30556fil
+...\glue 0.0 plus 1.0fil
+...\tenrm r
+..\glue(\tabskip) 0.0
+.\penalty 0
+.\glue(\baselineskip) 5.55556
+.\hbox(6.44444+0.0)x22.22227
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x15.00005, glue set 5.00002fil
+...\tenrm 7
+...\tenrm 7
+...\glue 0.0 plus 1.0fil
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x7.22223, glue set 3.30556fil
+...\glue 0.0 plus 1.0fil
+...\tenrm r
+..\glue(\tabskip) 0.0
+.\penalty 0
+.\glue(\baselineskip) 5.55556
+.\hbox(6.44444+0.0)x22.22227
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x15.00005, glue set 5.00002fil
+...\tenrm 7
+...\tenrm 8
+...\glue 0.0 plus 1.0fil
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x7.22223, glue set 3.30556fil
+...\glue 0.0 plus 1.0fil
+...\tenrm r
+..\glue(\tabskip) 0.0
+.\penalty 0
+.\glue(\baselineskip) 5.55556
+.\hbox(6.44444+0.0)x22.22227
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x15.00005, glue set 5.00002fil
+...\tenrm 7
+...\tenrm 9
+...\glue 0.0 plus 1.0fil
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x7.22223, glue set 3.30556fil
+...\glue 0.0 plus 1.0fil
+...\tenrm r
+..\glue(\tabskip) 0.0
+.\penalty 0
+.\glue(\baselineskip) 5.55556
+.\hbox(6.44444+0.0)x22.22227
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x15.00005, glue set 5.00002fil
+...\tenrm 8
+...\tenrm 0
+...\glue 0.0 plus 1.0fil
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x7.22223, glue set 3.30556fil
+...\glue 0.0 plus 1.0fil
+...\tenrm r
+..\glue(\tabskip) 0.0
+.\penalty 0
+.\glue(\baselineskip) 5.55556
+.\hbox(6.44444+0.0)x22.22227
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x15.00005, glue set 5.00002fil
+...\tenrm 8
+...\tenrm 1
+...\glue 0.0 plus 1.0fil
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x7.22223, glue set 3.30556fil
+...\glue 0.0 plus 1.0fil
+...\tenrm r
+..\glue(\tabskip) 0.0
+.\penalty 0
+.\glue(\baselineskip) 5.55556
+.\hbox(6.44444+0.0)x22.22227
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x15.00005, glue set 5.00002fil
+...\tenrm 8
+...\tenrm 2
+...\glue 0.0 plus 1.0fil
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x7.22223, glue set 3.30556fil
+...\glue 0.0 plus 1.0fil
+...\tenrm r
+..\glue(\tabskip) 0.0
+.\penalty 0
+.\glue(\baselineskip) 5.55556
+.\hbox(6.44444+0.0)x22.22227
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x15.00005, glue set 5.00002fil
+...\tenrm 8
+...\tenrm 3
+...\glue 0.0 plus 1.0fil
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x7.22223, glue set 3.30556fil
+...\glue 0.0 plus 1.0fil
+...\tenrm r
+..\glue(\tabskip) 0.0
+
+! OK.
+<output> ...UT \the \outputpenalty ]}\showbox 255
+                                                  \shipout \box 255 \global ...
+l.11 ...rb\noalign{\mark{M2}\penalty-10000}z&w\cr}
+
+
+
+Completed box being shipped out [7.200]
+\vbox(144.54+0.0)x22.22227
+.\glue(\topskip) 3.55556
+.\hbox(6.44444+0.0)x22.22227
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x15.00005, glue set 5.00002fil
+...\tenrm 7
+...\tenrm 2
+...\glue 0.0 plus 1.0fil
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x7.22223, glue set 3.30556fil
+...\glue 0.0 plus 1.0fil
+...\tenrm r
+..\glue(\tabskip) 0.0
+.\penalty 0
+.\glue(\baselineskip) 5.55556
+.\hbox(6.44444+0.0)x22.22227
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x15.00005, glue set 5.00002fil
+...\tenrm 7
+...\tenrm 3
+...\glue 0.0 plus 1.0fil
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x7.22223, glue set 3.30556fil
+...\glue 0.0 plus 1.0fil
+...\tenrm r
+..\glue(\tabskip) 0.0
+.\penalty 0
+.\glue(\baselineskip) 5.55556
+.\hbox(6.44444+0.0)x22.22227
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x15.00005, glue set 5.00002fil
+...\tenrm 7
+...\tenrm 4
+...\glue 0.0 plus 1.0fil
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x7.22223, glue set 3.30556fil
+...\glue 0.0 plus 1.0fil
+...\tenrm r
+..\glue(\tabskip) 0.0
+.\penalty 0
+.\glue(\baselineskip) 5.55556
+.\hbox(6.44444+0.0)x22.22227
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x15.00005, glue set 5.00002fil
+...\tenrm 7
+...\tenrm 5
+...\glue 0.0 plus 1.0fil
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x7.22223, glue set 3.30556fil
+...\glue 0.0 plus 1.0fil
+...\tenrm r
+..\glue(\tabskip) 0.0
+.\penalty 0
+.\glue(\baselineskip) 5.55556
+.\hbox(6.44444+0.0)x22.22227
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x15.00005, glue set 5.00002fil
+...\tenrm 7
+...\tenrm 6
+...\glue 0.0 plus 1.0fil
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x7.22223, glue set 3.30556fil
+...\glue 0.0 plus 1.0fil
+...\tenrm r
+..\glue(\tabskip) 0.0
+.\penalty 0
+.\glue(\baselineskip) 5.55556
+.\hbox(6.44444+0.0)x22.22227
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x15.00005, glue set 5.00002fil
+...\tenrm 7
+...\tenrm 7
+...\glue 0.0 plus 1.0fil
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x7.22223, glue set 3.30556fil
+...\glue 0.0 plus 1.0fil
+...\tenrm r
+..\glue(\tabskip) 0.0
+.\penalty 0
+.\glue(\baselineskip) 5.55556
+.\hbox(6.44444+0.0)x22.22227
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x15.00005, glue set 5.00002fil
+...\tenrm 7
+...\tenrm 8
+...\glue 0.0 plus 1.0fil
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x7.22223, glue set 3.30556fil
+...\glue 0.0 plus 1.0fil
+...\tenrm r
+..\glue(\tabskip) 0.0
+.\penalty 0
+.\glue(\baselineskip) 5.55556
+.\hbox(6.44444+0.0)x22.22227
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x15.00005, glue set 5.00002fil
+...\tenrm 7
+...\tenrm 9
+...\glue 0.0 plus 1.0fil
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x7.22223, glue set 3.30556fil
+...\glue 0.0 plus 1.0fil
+...\tenrm r
+..\glue(\tabskip) 0.0
+.\penalty 0
+.\glue(\baselineskip) 5.55556
+.\hbox(6.44444+0.0)x22.22227
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x15.00005, glue set 5.00002fil
+...\tenrm 8
+...\tenrm 0
+...\glue 0.0 plus 1.0fil
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x7.22223, glue set 3.30556fil
+...\glue 0.0 plus 1.0fil
+...\tenrm r
+..\glue(\tabskip) 0.0
+.\penalty 0
+.\glue(\baselineskip) 5.55556
+.\hbox(6.44444+0.0)x22.22227
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x15.00005, glue set 5.00002fil
+...\tenrm 8
+...\tenrm 1
+...\glue 0.0 plus 1.0fil
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x7.22223, glue set 3.30556fil
+...\glue 0.0 plus 1.0fil
+...\tenrm r
+..\glue(\tabskip) 0.0
+.\penalty 0
+.\glue(\baselineskip) 5.55556
+.\hbox(6.44444+0.0)x22.22227
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x15.00005, glue set 5.00002fil
+...\tenrm 8
+...\tenrm 2
+...\glue 0.0 plus 1.0fil
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x7.22223, glue set 3.30556fil
+...\glue 0.0 plus 1.0fil
+...\tenrm r
+..\glue(\tabskip) 0.0
+.\penalty 0
+.\glue(\baselineskip) 5.55556
+.\hbox(6.44444+0.0)x22.22227
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x15.00005, glue set 5.00002fil
+...\tenrm 8
+...\tenrm 3
+...\glue 0.0 plus 1.0fil
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x7.22223, glue set 3.30556fil
+...\glue 0.0 plus 1.0fil
+...\tenrm r
+..\glue(\tabskip) 0.0
+
+%% goal height=144.54, max depth=2.0
+% t=10.0 g=144.54 b=10000 p=0 c=100000#
+% t=22.0 g=144.54 b=10000 p=0 c=100000#
+% t=34.0 g=144.54 b=10000 p=0 c=100000#
+% t=46.0 g=144.54 b=10000 p=0 c=100000#
+% t=58.0 g=144.54 b=10000 p=0 c=100000#
+% t=70.0 g=144.54 b=10000 p=0 c=100000#
+% t=82.0 g=144.54 b=10000 p=0 c=100000#
+% t=94.0 g=144.54 b=10000 p=0 c=100000#
+% t=106.0 g=144.54 b=10000 p=0 c=100000#
+% t=118.0 g=144.54 b=10000 p=0 c=100000#
+% t=130.0 g=144.54 b=10000 p=0 c=100000#
+% t=142.0 g=144.54 b=10000 p=0 c=100000#
+% t=154.0 g=144.54 b=* p=0 c=*
+[OUT 0]
+> \box255=
+\vbox(144.54+0.0)x22.22227
+.\glue(\topskip) 3.55556
+.\hbox(6.44444+0.0)x22.22227
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x15.00005, glue set 5.00002fil
+...\tenrm 8
+...\tenrm 4
+...\glue 0.0 plus 1.0fil
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x7.22223, glue set 3.30556fil
+...\glue 0.0 plus 1.0fil
+...\tenrm r
+..\glue(\tabskip) 0.0
+.\penalty 0
+.\glue(\baselineskip) 5.55556
+.\hbox(6.44444+0.0)x22.22227
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x15.00005, glue set 5.00002fil
+...\tenrm 8
+...\tenrm 5
+...\glue 0.0 plus 1.0fil
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x7.22223, glue set 3.30556fil
+...\glue 0.0 plus 1.0fil
+...\tenrm r
+..\glue(\tabskip) 0.0
+.\penalty 0
+.\glue(\baselineskip) 5.55556
+.\hbox(6.44444+0.0)x22.22227
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x15.00005, glue set 5.00002fil
+...\tenrm 8
+...\tenrm 6
+...\glue 0.0 plus 1.0fil
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x7.22223, glue set 3.30556fil
+...\glue 0.0 plus 1.0fil
+...\tenrm r
+..\glue(\tabskip) 0.0
+.\penalty 0
+.\glue(\baselineskip) 5.55556
+.\hbox(6.44444+0.0)x22.22227
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x15.00005, glue set 5.00002fil
+...\tenrm 8
+...\tenrm 7
+...\glue 0.0 plus 1.0fil
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x7.22223, glue set 3.30556fil
+...\glue 0.0 plus 1.0fil
+...\tenrm r
+..\glue(\tabskip) 0.0
+.\penalty 0
+.\glue(\baselineskip) 5.55556
+.\hbox(6.44444+0.0)x22.22227
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x15.00005, glue set 5.00002fil
+...\tenrm 8
+...\tenrm 8
+...\glue 0.0 plus 1.0fil
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x7.22223, glue set 3.30556fil
+...\glue 0.0 plus 1.0fil
+...\tenrm r
+..\glue(\tabskip) 0.0
+.\penalty 0
+.\glue(\baselineskip) 5.55556
+.\hbox(6.44444+0.0)x22.22227
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x15.00005, glue set 5.00002fil
+...\tenrm 8
+...\tenrm 9
+...\glue 0.0 plus 1.0fil
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x7.22223, glue set 3.30556fil
+...\glue 0.0 plus 1.0fil
+...\tenrm r
+..\glue(\tabskip) 0.0
+.\penalty 0
+.\glue(\baselineskip) 5.55556
+.\hbox(6.44444+0.0)x22.22227
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x15.00005, glue set 5.00002fil
+...\tenrm 9
+...\tenrm 0
+...\glue 0.0 plus 1.0fil
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x7.22223, glue set 3.30556fil
+...\glue 0.0 plus 1.0fil
+...\tenrm r
+..\glue(\tabskip) 0.0
+.\penalty 0
+.\glue(\baselineskip) 5.55556
+.\hbox(6.44444+0.0)x22.22227
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x15.00005, glue set 5.00002fil
+...\tenrm 9
+...\tenrm 1
+...\glue 0.0 plus 1.0fil
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x7.22223, glue set 3.30556fil
+...\glue 0.0 plus 1.0fil
+...\tenrm r
+..\glue(\tabskip) 0.0
+.\penalty 0
+.\glue(\baselineskip) 5.55556
+.\hbox(6.44444+0.0)x22.22227
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x15.00005, glue set 5.00002fil
+...\tenrm 9
+...\tenrm 2
+...\glue 0.0 plus 1.0fil
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x7.22223, glue set 3.30556fil
+...\glue 0.0 plus 1.0fil
+...\tenrm r
+..\glue(\tabskip) 0.0
+.\penalty 0
+.\glue(\baselineskip) 5.55556
+.\hbox(6.44444+0.0)x22.22227
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x15.00005, glue set 5.00002fil
+...\tenrm 9
+...\tenrm 3
+...\glue 0.0 plus 1.0fil
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x7.22223, glue set 3.30556fil
+...\glue 0.0 plus 1.0fil
+...\tenrm r
+..\glue(\tabskip) 0.0
+.\penalty 0
+.\glue(\baselineskip) 5.55556
+.\hbox(6.44444+0.0)x22.22227
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x15.00005, glue set 5.00002fil
+...\tenrm 9
+...\tenrm 4
+...\glue 0.0 plus 1.0fil
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x7.22223, glue set 3.30556fil
+...\glue 0.0 plus 1.0fil
+...\tenrm r
+..\glue(\tabskip) 0.0
+.\penalty 0
+.\glue(\baselineskip) 5.55556
+.\hbox(6.44444+0.0)x22.22227
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x15.00005, glue set 5.00002fil
+...\tenrm 9
+...\tenrm 5
+...\glue 0.0 plus 1.0fil
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x7.22223, glue set 3.30556fil
+...\glue 0.0 plus 1.0fil
+...\tenrm r
+..\glue(\tabskip) 0.0
+
+! OK.
+<output> ...UT \the \outputpenalty ]}\showbox 255
+                                                  \shipout \box 255 \global ...
+l.11 ...rb\noalign{\mark{M2}\penalty-10000}z&w\cr}
+
+
+
+Completed box being shipped out [8.200]
+\vbox(144.54+0.0)x22.22227
+.\glue(\topskip) 3.55556
+.\hbox(6.44444+0.0)x22.22227
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x15.00005, glue set 5.00002fil
+...\tenrm 8
+...\tenrm 4
+...\glue 0.0 plus 1.0fil
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x7.22223, glue set 3.30556fil
+...\glue 0.0 plus 1.0fil
+...\tenrm r
+..\glue(\tabskip) 0.0
+.\penalty 0
+.\glue(\baselineskip) 5.55556
+.\hbox(6.44444+0.0)x22.22227
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x15.00005, glue set 5.00002fil
+...\tenrm 8
+...\tenrm 5
+...\glue 0.0 plus 1.0fil
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x7.22223, glue set 3.30556fil
+...\glue 0.0 plus 1.0fil
+...\tenrm r
+..\glue(\tabskip) 0.0
+.\penalty 0
+.\glue(\baselineskip) 5.55556
+.\hbox(6.44444+0.0)x22.22227
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x15.00005, glue set 5.00002fil
+...\tenrm 8
+...\tenrm 6
+...\glue 0.0 plus 1.0fil
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x7.22223, glue set 3.30556fil
+...\glue 0.0 plus 1.0fil
+...\tenrm r
+..\glue(\tabskip) 0.0
+.\penalty 0
+.\glue(\baselineskip) 5.55556
+.\hbox(6.44444+0.0)x22.22227
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x15.00005, glue set 5.00002fil
+...\tenrm 8
+...\tenrm 7
+...\glue 0.0 plus 1.0fil
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x7.22223, glue set 3.30556fil
+...\glue 0.0 plus 1.0fil
+...\tenrm r
+..\glue(\tabskip) 0.0
+.\penalty 0
+.\glue(\baselineskip) 5.55556
+.\hbox(6.44444+0.0)x22.22227
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x15.00005, glue set 5.00002fil
+...\tenrm 8
+...\tenrm 8
+...\glue 0.0 plus 1.0fil
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x7.22223, glue set 3.30556fil
+...\glue 0.0 plus 1.0fil
+...\tenrm r
+..\glue(\tabskip) 0.0
+.\penalty 0
+.\glue(\baselineskip) 5.55556
+.\hbox(6.44444+0.0)x22.22227
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x15.00005, glue set 5.00002fil
+...\tenrm 8
+...\tenrm 9
+...\glue 0.0 plus 1.0fil
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x7.22223, glue set 3.30556fil
+...\glue 0.0 plus 1.0fil
+...\tenrm r
+..\glue(\tabskip) 0.0
+.\penalty 0
+.\glue(\baselineskip) 5.55556
+.\hbox(6.44444+0.0)x22.22227
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x15.00005, glue set 5.00002fil
+...\tenrm 9
+...\tenrm 0
+...\glue 0.0 plus 1.0fil
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x7.22223, glue set 3.30556fil
+...\glue 0.0 plus 1.0fil
+...\tenrm r
+..\glue(\tabskip) 0.0
+.\penalty 0
+.\glue(\baselineskip) 5.55556
+.\hbox(6.44444+0.0)x22.22227
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x15.00005, glue set 5.00002fil
+...\tenrm 9
+...\tenrm 1
+...\glue 0.0 plus 1.0fil
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x7.22223, glue set 3.30556fil
+...\glue 0.0 plus 1.0fil
+...\tenrm r
+..\glue(\tabskip) 0.0
+.\penalty 0
+.\glue(\baselineskip) 5.55556
+.\hbox(6.44444+0.0)x22.22227
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x15.00005, glue set 5.00002fil
+...\tenrm 9
+...\tenrm 2
+...\glue 0.0 plus 1.0fil
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x7.22223, glue set 3.30556fil
+...\glue 0.0 plus 1.0fil
+...\tenrm r
+..\glue(\tabskip) 0.0
+.\penalty 0
+.\glue(\baselineskip) 5.55556
+.\hbox(6.44444+0.0)x22.22227
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x15.00005, glue set 5.00002fil
+...\tenrm 9
+...\tenrm 3
+...\glue 0.0 plus 1.0fil
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x7.22223, glue set 3.30556fil
+...\glue 0.0 plus 1.0fil
+...\tenrm r
+..\glue(\tabskip) 0.0
+.\penalty 0
+.\glue(\baselineskip) 5.55556
+.\hbox(6.44444+0.0)x22.22227
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x15.00005, glue set 5.00002fil
+...\tenrm 9
+...\tenrm 4
+...\glue 0.0 plus 1.0fil
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x7.22223, glue set 3.30556fil
+...\glue 0.0 plus 1.0fil
+...\tenrm r
+..\glue(\tabskip) 0.0
+.\penalty 0
+.\glue(\baselineskip) 5.55556
+.\hbox(6.44444+0.0)x22.22227
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x15.00005, glue set 5.00002fil
+...\tenrm 9
+...\tenrm 5
+...\glue 0.0 plus 1.0fil
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x7.22223, glue set 3.30556fil
+...\glue 0.0 plus 1.0fil
+...\tenrm r
+..\glue(\tabskip) 0.0
+
+%% goal height=144.54, max depth=2.0
+% t=10.0 g=144.54 b=10000 p=0 c=100000#
+% t=22.0 g=144.54 b=10000 p=0 c=100000#
+% t=34.0 g=144.54 b=10000 p=0 c=100000#
+% t=46.0 g=144.54 b=10000 p=0 c=100000#
+% t=58.0 g=144.54 b=10000 p=0 c=100000#
+% t=70.0 g=144.54 b=10000 p=0 c=100000#
+% t=82.0 g=144.54 b=10000 p=0 c=100000#
+% t=94.0 g=144.54 b=10000 p=0 c=100000#
+% t=106.0 g=144.54 b=10000 p=0 c=100000#
+% t=118.0 g=144.54 b=10000 p=0 c=100000#
+% t=130.0 g=144.54 b=10000 p=0 c=100000#
+% t=142.0 g=144.54 b=10000 p=0 c=100000#
+% t=154.0 g=144.54 b=* p=0 c=*
+[OUT 0]
+> \box255=
+\vbox(144.54+0.0)x22.22227
+.\glue(\topskip) 3.55556
+.\hbox(6.44444+0.0)x22.22227
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x15.00005, glue set 5.00002fil
+...\tenrm 9
+...\tenrm 6
+...\glue 0.0 plus 1.0fil
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x7.22223, glue set 3.30556fil
+...\glue 0.0 plus 1.0fil
+...\tenrm r
+..\glue(\tabskip) 0.0
+.\penalty 0
+.\glue(\baselineskip) 5.55556
+.\hbox(6.44444+0.0)x22.22227
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x15.00005, glue set 5.00002fil
+...\tenrm 9
+...\tenrm 7
+...\glue 0.0 plus 1.0fil
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x7.22223, glue set 3.30556fil
+...\glue 0.0 plus 1.0fil
+...\tenrm r
+..\glue(\tabskip) 0.0
+.\penalty 0
+.\glue(\baselineskip) 5.55556
+.\hbox(6.44444+0.0)x22.22227
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x15.00005, glue set 5.00002fil
+...\tenrm 9
+...\tenrm 8
+...\glue 0.0 plus 1.0fil
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x7.22223, glue set 3.30556fil
+...\glue 0.0 plus 1.0fil
+...\tenrm r
+..\glue(\tabskip) 0.0
+.\penalty 0
+.\glue(\baselineskip) 5.55556
+.\hbox(6.44444+0.0)x22.22227
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x15.00005, glue set 5.00002fil
+...\tenrm 9
+...\tenrm 9
+...\glue 0.0 plus 1.0fil
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x7.22223, glue set 3.30556fil
+...\glue 0.0 plus 1.0fil
+...\tenrm r
+..\glue(\tabskip) 0.0
+.\penalty 0
+.\glue(\baselineskip) 5.55556
+.\hbox(6.44444+0.0)x22.22227
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x15.00005
+...\tenrm 1
+...\tenrm 0
+...\tenrm 0
+...\glue 0.0 plus 1.0fil
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x7.22223, glue set 3.30556fil
+...\glue 0.0 plus 1.0fil
+...\tenrm r
+..\glue(\tabskip) 0.0
+.\penalty 0
+.\glue(\baselineskip) 5.55556
+.\hbox(6.44444+0.0)x22.22227
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x15.00005
+...\tenrm 1
+...\tenrm 0
+...\tenrm 1
+...\glue 0.0 plus 1.0fil
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x7.22223, glue set 3.30556fil
+...\glue 0.0 plus 1.0fil
+...\tenrm r
+..\glue(\tabskip) 0.0
+.\penalty 0
+.\glue(\baselineskip) 5.55556
+.\hbox(6.44444+0.0)x22.22227
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x15.00005
+...\tenrm 1
+...\tenrm 0
+...\tenrm 2
+...\glue 0.0 plus 1.0fil
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x7.22223, glue set 3.30556fil
+...\glue 0.0 plus 1.0fil
+...\tenrm r
+..\glue(\tabskip) 0.0
+.\penalty 0
+.\glue(\baselineskip) 5.55556
+.\hbox(6.44444+0.0)x22.22227
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x15.00005
+...\tenrm 1
+...\tenrm 0
+...\tenrm 3
+...\glue 0.0 plus 1.0fil
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x7.22223, glue set 3.30556fil
+...\glue 0.0 plus 1.0fil
+...\tenrm r
+..\glue(\tabskip) 0.0
+.\penalty 0
+.\glue(\baselineskip) 5.55556
+.\hbox(6.44444+0.0)x22.22227
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x15.00005
+...\tenrm 1
+...\tenrm 0
+...\tenrm 4
+...\glue 0.0 plus 1.0fil
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x7.22223, glue set 3.30556fil
+...\glue 0.0 plus 1.0fil
+...\tenrm r
+..\glue(\tabskip) 0.0
+.\penalty 0
+.\glue(\baselineskip) 5.55556
+.\hbox(6.44444+0.0)x22.22227
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x15.00005
+...\tenrm 1
+...\tenrm 0
+...\tenrm 5
+...\glue 0.0 plus 1.0fil
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x7.22223, glue set 3.30556fil
+...\glue 0.0 plus 1.0fil
+...\tenrm r
+..\glue(\tabskip) 0.0
+.\penalty 0
+.\glue(\baselineskip) 5.55556
+.\hbox(6.44444+0.0)x22.22227
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x15.00005
+...\tenrm 1
+...\tenrm 0
+...\tenrm 6
+...\glue 0.0 plus 1.0fil
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x7.22223, glue set 3.30556fil
+...\glue 0.0 plus 1.0fil
+...\tenrm r
+..\glue(\tabskip) 0.0
+.\penalty 0
+.\glue(\baselineskip) 5.55556
+.\hbox(6.44444+0.0)x22.22227
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x15.00005
+...\tenrm 1
+...\tenrm 0
+...\tenrm 7
+...\glue 0.0 plus 1.0fil
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x7.22223, glue set 3.30556fil
+...\glue 0.0 plus 1.0fil
+...\tenrm r
+..\glue(\tabskip) 0.0
+
+! OK.
+<output> ...UT \the \outputpenalty ]}\showbox 255
+                                                  \shipout \box 255 \global ...
+l.11 ...rb\noalign{\mark{M2}\penalty-10000}z&w\cr}
+
+
+
+Completed box being shipped out [9.200]
+\vbox(144.54+0.0)x22.22227
+.\glue(\topskip) 3.55556
+.\hbox(6.44444+0.0)x22.22227
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x15.00005, glue set 5.00002fil
+...\tenrm 9
+...\tenrm 6
+...\glue 0.0 plus 1.0fil
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x7.22223, glue set 3.30556fil
+...\glue 0.0 plus 1.0fil
+...\tenrm r
+..\glue(\tabskip) 0.0
+.\penalty 0
+.\glue(\baselineskip) 5.55556
+.\hbox(6.44444+0.0)x22.22227
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x15.00005, glue set 5.00002fil
+...\tenrm 9
+...\tenrm 7
+...\glue 0.0 plus 1.0fil
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x7.22223, glue set 3.30556fil
+...\glue 0.0 plus 1.0fil
+...\tenrm r
+..\glue(\tabskip) 0.0
+.\penalty 0
+.\glue(\baselineskip) 5.55556
+.\hbox(6.44444+0.0)x22.22227
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x15.00005, glue set 5.00002fil
+...\tenrm 9
+...\tenrm 8
+...\glue 0.0 plus 1.0fil
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x7.22223, glue set 3.30556fil
+...\glue 0.0 plus 1.0fil
+...\tenrm r
+..\glue(\tabskip) 0.0
+.\penalty 0
+.\glue(\baselineskip) 5.55556
+.\hbox(6.44444+0.0)x22.22227
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x15.00005, glue set 5.00002fil
+...\tenrm 9
+...\tenrm 9
+...\glue 0.0 plus 1.0fil
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x7.22223, glue set 3.30556fil
+...\glue 0.0 plus 1.0fil
+...\tenrm r
+..\glue(\tabskip) 0.0
+.\penalty 0
+.\glue(\baselineskip) 5.55556
+.\hbox(6.44444+0.0)x22.22227
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x15.00005
+...\tenrm 1
+...\tenrm 0
+...\tenrm 0
+...\glue 0.0 plus 1.0fil
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x7.22223, glue set 3.30556fil
+...\glue 0.0 plus 1.0fil
+...\tenrm r
+..\glue(\tabskip) 0.0
+.\penalty 0
+.\glue(\baselineskip) 5.55556
+.\hbox(6.44444+0.0)x22.22227
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x15.00005
+...\tenrm 1
+...\tenrm 0
+...\tenrm 1
+...\glue 0.0 plus 1.0fil
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x7.22223, glue set 3.30556fil
+...\glue 0.0 plus 1.0fil
+...\tenrm r
+..\glue(\tabskip) 0.0
+.\penalty 0
+.\glue(\baselineskip) 5.55556
+.\hbox(6.44444+0.0)x22.22227
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x15.00005
+...\tenrm 1
+...\tenrm 0
+...\tenrm 2
+...\glue 0.0 plus 1.0fil
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x7.22223, glue set 3.30556fil
+...\glue 0.0 plus 1.0fil
+...\tenrm r
+..\glue(\tabskip) 0.0
+.\penalty 0
+.\glue(\baselineskip) 5.55556
+.\hbox(6.44444+0.0)x22.22227
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x15.00005
+...\tenrm 1
+...\tenrm 0
+...\tenrm 3
+...\glue 0.0 plus 1.0fil
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x7.22223, glue set 3.30556fil
+...\glue 0.0 plus 1.0fil
+...\tenrm r
+..\glue(\tabskip) 0.0
+.\penalty 0
+.\glue(\baselineskip) 5.55556
+.\hbox(6.44444+0.0)x22.22227
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x15.00005
+...\tenrm 1
+...\tenrm 0
+...\tenrm 4
+...\glue 0.0 plus 1.0fil
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x7.22223, glue set 3.30556fil
+...\glue 0.0 plus 1.0fil
+...\tenrm r
+..\glue(\tabskip) 0.0
+.\penalty 0
+.\glue(\baselineskip) 5.55556
+.\hbox(6.44444+0.0)x22.22227
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x15.00005
+...\tenrm 1
+...\tenrm 0
+...\tenrm 5
+...\glue 0.0 plus 1.0fil
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x7.22223, glue set 3.30556fil
+...\glue 0.0 plus 1.0fil
+...\tenrm r
+..\glue(\tabskip) 0.0
+.\penalty 0
+.\glue(\baselineskip) 5.55556
+.\hbox(6.44444+0.0)x22.22227
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x15.00005
+...\tenrm 1
+...\tenrm 0
+...\tenrm 6
+...\glue 0.0 plus 1.0fil
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x7.22223, glue set 3.30556fil
+...\glue 0.0 plus 1.0fil
+...\tenrm r
+..\glue(\tabskip) 0.0
+.\penalty 0
+.\glue(\baselineskip) 5.55556
+.\hbox(6.44444+0.0)x22.22227
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x15.00005
+...\tenrm 1
+...\tenrm 0
+...\tenrm 7
+...\glue 0.0 plus 1.0fil
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x7.22223, glue set 3.30556fil
+...\glue 0.0 plus 1.0fil
+...\tenrm r
+..\glue(\tabskip) 0.0
+
+%% goal height=144.54, max depth=2.0
+% t=10.0 g=144.54 b=10000 p=0 c=100000#
+% t=22.0 g=144.54 b=10000 p=0 c=100000#
+% t=34.0 g=144.54 b=10000 p=0 c=100000#
+% t=46.0 g=144.54 b=10000 p=0 c=100000#
+% t=58.0 g=144.54 b=10000 p=0 c=100000#
+% t=70.0 g=144.54 b=10000 p=0 c=100000#
+% t=82.0 g=144.54 b=10000 p=0 c=100000#
+% t=94.0 g=144.54 b=10000 p=0 c=100000#
+% t=106.0 g=144.54 b=10000 p=0 c=100000#
+% t=118.0 g=144.54 b=10000 p=0 c=100000#
+% t=130.0 g=144.54 b=10000 p=0 c=100000#
+% t=142.0 g=144.54 b=10000 p=0 c=100000#
+% t=154.0 g=144.54 b=* p=0 c=*
+[OUT 0]
+> \box255=
+\vbox(144.54+0.0)x22.22227
+.\glue(\topskip) 3.55556
+.\hbox(6.44444+0.0)x22.22227
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x15.00005
+...\tenrm 1
+...\tenrm 0
+...\tenrm 8
+...\glue 0.0 plus 1.0fil
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x7.22223, glue set 3.30556fil
+...\glue 0.0 plus 1.0fil
+...\tenrm r
+..\glue(\tabskip) 0.0
+.\penalty 0
+.\glue(\baselineskip) 5.55556
+.\hbox(6.44444+0.0)x22.22227
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x15.00005
+...\tenrm 1
+...\tenrm 0
+...\tenrm 9
+...\glue 0.0 plus 1.0fil
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x7.22223, glue set 3.30556fil
+...\glue 0.0 plus 1.0fil
+...\tenrm r
+..\glue(\tabskip) 0.0
+.\penalty 0
+.\glue(\baselineskip) 5.55556
+.\hbox(6.44444+0.0)x22.22227
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x15.00005
+...\tenrm 1
+...\tenrm 1
+...\tenrm 0
+...\glue 0.0 plus 1.0fil
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x7.22223, glue set 3.30556fil
+...\glue 0.0 plus 1.0fil
+...\tenrm r
+..\glue(\tabskip) 0.0
+.\penalty 0
+.\glue(\baselineskip) 5.55556
+.\hbox(6.44444+0.0)x22.22227
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x15.00005
+...\tenrm 1
+...\tenrm 1
+...\tenrm 1
+...\glue 0.0 plus 1.0fil
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x7.22223, glue set 3.30556fil
+...\glue 0.0 plus 1.0fil
+...\tenrm r
+..\glue(\tabskip) 0.0
+.\penalty 0
+.\glue(\baselineskip) 5.55556
+.\hbox(6.44444+0.0)x22.22227
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x15.00005
+...\tenrm 1
+...\tenrm 1
+...\tenrm 2
+...\glue 0.0 plus 1.0fil
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x7.22223, glue set 3.30556fil
+...\glue 0.0 plus 1.0fil
+...\tenrm r
+..\glue(\tabskip) 0.0
+.\penalty 0
+.\glue(\baselineskip) 5.55556
+.\hbox(6.44444+0.0)x22.22227
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x15.00005
+...\tenrm 1
+...\tenrm 1
+...\tenrm 3
+...\glue 0.0 plus 1.0fil
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x7.22223, glue set 3.30556fil
+...\glue 0.0 plus 1.0fil
+...\tenrm r
+..\glue(\tabskip) 0.0
+.\penalty 0
+.\glue(\baselineskip) 5.55556
+.\hbox(6.44444+0.0)x22.22227
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x15.00005
+...\tenrm 1
+...\tenrm 1
+...\tenrm 4
+...\glue 0.0 plus 1.0fil
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x7.22223, glue set 3.30556fil
+...\glue 0.0 plus 1.0fil
+...\tenrm r
+..\glue(\tabskip) 0.0
+.\penalty 0
+.\glue(\baselineskip) 5.55556
+.\hbox(6.44444+0.0)x22.22227
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x15.00005
+...\tenrm 1
+...\tenrm 1
+...\tenrm 5
+...\glue 0.0 plus 1.0fil
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x7.22223, glue set 3.30556fil
+...\glue 0.0 plus 1.0fil
+...\tenrm r
+..\glue(\tabskip) 0.0
+.\penalty 0
+.\glue(\baselineskip) 5.55556
+.\hbox(6.44444+0.0)x22.22227
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x15.00005
+...\tenrm 1
+...\tenrm 1
+...\tenrm 6
+...\glue 0.0 plus 1.0fil
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x7.22223, glue set 3.30556fil
+...\glue 0.0 plus 1.0fil
+...\tenrm r
+..\glue(\tabskip) 0.0
+.\penalty 0
+.\glue(\baselineskip) 5.55556
+.\hbox(6.44444+0.0)x22.22227
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x15.00005
+...\tenrm 1
+...\tenrm 1
+...\tenrm 7
+...\glue 0.0 plus 1.0fil
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x7.22223, glue set 3.30556fil
+...\glue 0.0 plus 1.0fil
+...\tenrm r
+..\glue(\tabskip) 0.0
+.\penalty 0
+.\glue(\baselineskip) 5.55556
+.\hbox(6.44444+0.0)x22.22227
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x15.00005
+...\tenrm 1
+...\tenrm 1
+...\tenrm 8
+...\glue 0.0 plus 1.0fil
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x7.22223, glue set 3.30556fil
+...\glue 0.0 plus 1.0fil
+...\tenrm r
+..\glue(\tabskip) 0.0
+.\penalty 0
+.\glue(\baselineskip) 5.55556
+.\hbox(6.44444+0.0)x22.22227
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x15.00005
+...\tenrm 1
+...\tenrm 1
+...\tenrm 9
+...\glue 0.0 plus 1.0fil
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x7.22223, glue set 3.30556fil
+...\glue 0.0 plus 1.0fil
+...\tenrm r
+..\glue(\tabskip) 0.0
+
+! OK.
+<output> ...UT \the \outputpenalty ]}\showbox 255
+                                                  \shipout \box 255 \global ...
+l.11 ...rb\noalign{\mark{M2}\penalty-10000}z&w\cr}
+
+
+
+Completed box being shipped out [10.200]
+\vbox(144.54+0.0)x22.22227
+.\glue(\topskip) 3.55556
+.\hbox(6.44444+0.0)x22.22227
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x15.00005
+...\tenrm 1
+...\tenrm 0
+...\tenrm 8
+...\glue 0.0 plus 1.0fil
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x7.22223, glue set 3.30556fil
+...\glue 0.0 plus 1.0fil
+...\tenrm r
+..\glue(\tabskip) 0.0
+.\penalty 0
+.\glue(\baselineskip) 5.55556
+.\hbox(6.44444+0.0)x22.22227
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x15.00005
+...\tenrm 1
+...\tenrm 0
+...\tenrm 9
+...\glue 0.0 plus 1.0fil
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x7.22223, glue set 3.30556fil
+...\glue 0.0 plus 1.0fil
+...\tenrm r
+..\glue(\tabskip) 0.0
+.\penalty 0
+.\glue(\baselineskip) 5.55556
+.\hbox(6.44444+0.0)x22.22227
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x15.00005
+...\tenrm 1
+...\tenrm 1
+...\tenrm 0
+...\glue 0.0 plus 1.0fil
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x7.22223, glue set 3.30556fil
+...\glue 0.0 plus 1.0fil
+...\tenrm r
+..\glue(\tabskip) 0.0
+.\penalty 0
+.\glue(\baselineskip) 5.55556
+.\hbox(6.44444+0.0)x22.22227
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x15.00005
+...\tenrm 1
+...\tenrm 1
+...\tenrm 1
+...\glue 0.0 plus 1.0fil
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x7.22223, glue set 3.30556fil
+...\glue 0.0 plus 1.0fil
+...\tenrm r
+..\glue(\tabskip) 0.0
+.\penalty 0
+.\glue(\baselineskip) 5.55556
+.\hbox(6.44444+0.0)x22.22227
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x15.00005
+...\tenrm 1
+...\tenrm 1
+...\tenrm 2
+...\glue 0.0 plus 1.0fil
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x7.22223, glue set 3.30556fil
+...\glue 0.0 plus 1.0fil
+...\tenrm r
+..\glue(\tabskip) 0.0
+.\penalty 0
+.\glue(\baselineskip) 5.55556
+.\hbox(6.44444+0.0)x22.22227
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x15.00005
+...\tenrm 1
+...\tenrm 1
+...\tenrm 3
+...\glue 0.0 plus 1.0fil
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x7.22223, glue set 3.30556fil
+...\glue 0.0 plus 1.0fil
+...\tenrm r
+..\glue(\tabskip) 0.0
+.\penalty 0
+.\glue(\baselineskip) 5.55556
+.\hbox(6.44444+0.0)x22.22227
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x15.00005
+...\tenrm 1
+...\tenrm 1
+...\tenrm 4
+...\glue 0.0 plus 1.0fil
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x7.22223, glue set 3.30556fil
+...\glue 0.0 plus 1.0fil
+...\tenrm r
+..\glue(\tabskip) 0.0
+.\penalty 0
+.\glue(\baselineskip) 5.55556
+.\hbox(6.44444+0.0)x22.22227
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x15.00005
+...\tenrm 1
+...\tenrm 1
+...\tenrm 5
+...\glue 0.0 plus 1.0fil
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x7.22223, glue set 3.30556fil
+...\glue 0.0 plus 1.0fil
+...\tenrm r
+..\glue(\tabskip) 0.0
+.\penalty 0
+.\glue(\baselineskip) 5.55556
+.\hbox(6.44444+0.0)x22.22227
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x15.00005
+...\tenrm 1
+...\tenrm 1
+...\tenrm 6
+...\glue 0.0 plus 1.0fil
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x7.22223, glue set 3.30556fil
+...\glue 0.0 plus 1.0fil
+...\tenrm r
+..\glue(\tabskip) 0.0
+.\penalty 0
+.\glue(\baselineskip) 5.55556
+.\hbox(6.44444+0.0)x22.22227
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x15.00005
+...\tenrm 1
+...\tenrm 1
+...\tenrm 7
+...\glue 0.0 plus 1.0fil
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x7.22223, glue set 3.30556fil
+...\glue 0.0 plus 1.0fil
+...\tenrm r
+..\glue(\tabskip) 0.0
+.\penalty 0
+.\glue(\baselineskip) 5.55556
+.\hbox(6.44444+0.0)x22.22227
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x15.00005
+...\tenrm 1
+...\tenrm 1
+...\tenrm 8
+...\glue 0.0 plus 1.0fil
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x7.22223, glue set 3.30556fil
+...\glue 0.0 plus 1.0fil
+...\tenrm r
+..\glue(\tabskip) 0.0
+.\penalty 0
+.\glue(\baselineskip) 5.55556
+.\hbox(6.44444+0.0)x22.22227
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x15.00005
+...\tenrm 1
+...\tenrm 1
+...\tenrm 9
+...\glue 0.0 plus 1.0fil
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x7.22223, glue set 3.30556fil
+...\glue 0.0 plus 1.0fil
+...\tenrm r
+..\glue(\tabskip) 0.0
+
+%% goal height=144.54, max depth=2.0
+% t=10.0 g=144.54 b=10000 p=0 c=100000#
+% t=22.0 g=144.54 b=10000 p=0 c=100000#
+% t=34.0 g=144.54 b=10000 p=0 c=100000#
+% t=46.0 g=144.54 b=10000 p=0 c=100000#
+% t=58.0 g=144.54 b=10000 p=0 c=100000#
+% t=70.0 g=144.54 b=10000 p=0 c=100000#
+% t=82.0 g=144.54 b=10000 p=0 c=100000#
+% t=94.0 g=144.54 b=10000 p=0 c=100000#
+% t=106.0 g=144.54 b=10000 p=0 c=100000#
+% t=118.0 g=144.54 b=10000 p=0 c=100000#
+% t=130.0 g=144.54 b=10000 p=0 c=100000#
+% t=142.0 g=144.54 b=10000 p=0 c=100000#
+% t=154.0 g=144.54 b=* p=0 c=*
+[OUT 0]
+> \box255=
+\vbox(144.54+0.0)x22.22227
+.\glue(\topskip) 3.55556
+.\hbox(6.44444+0.0)x22.22227
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x15.00005
+...\tenrm 1
+...\tenrm 2
+...\tenrm 0
+...\glue 0.0 plus 1.0fil
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x7.22223, glue set 3.30556fil
+...\glue 0.0 plus 1.0fil
+...\tenrm r
+..\glue(\tabskip) 0.0
+.\penalty 0
+.\glue(\baselineskip) 5.55556
+.\hbox(6.44444+0.0)x22.22227
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x15.00005
+...\tenrm 1
+...\tenrm 2
+...\tenrm 1
+...\glue 0.0 plus 1.0fil
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x7.22223, glue set 3.30556fil
+...\glue 0.0 plus 1.0fil
+...\tenrm r
+..\glue(\tabskip) 0.0
+.\penalty 0
+.\glue(\baselineskip) 5.55556
+.\hbox(6.44444+0.0)x22.22227
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x15.00005
+...\tenrm 1
+...\tenrm 2
+...\tenrm 2
+...\glue 0.0 plus 1.0fil
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x7.22223, glue set 3.30556fil
+...\glue 0.0 plus 1.0fil
+...\tenrm r
+..\glue(\tabskip) 0.0
+.\penalty 0
+.\glue(\baselineskip) 5.55556
+.\hbox(6.44444+0.0)x22.22227
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x15.00005
+...\tenrm 1
+...\tenrm 2
+...\tenrm 3
+...\glue 0.0 plus 1.0fil
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x7.22223, glue set 3.30556fil
+...\glue 0.0 plus 1.0fil
+...\tenrm r
+..\glue(\tabskip) 0.0
+.\penalty 0
+.\glue(\baselineskip) 5.55556
+.\hbox(6.44444+0.0)x22.22227
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x15.00005
+...\tenrm 1
+...\tenrm 2
+...\tenrm 4
+...\glue 0.0 plus 1.0fil
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x7.22223, glue set 3.30556fil
+...\glue 0.0 plus 1.0fil
+...\tenrm r
+..\glue(\tabskip) 0.0
+.\penalty 0
+.\glue(\baselineskip) 5.55556
+.\hbox(6.44444+0.0)x22.22227
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x15.00005
+...\tenrm 1
+...\tenrm 2
+...\tenrm 5
+...\glue 0.0 plus 1.0fil
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x7.22223, glue set 3.30556fil
+...\glue 0.0 plus 1.0fil
+...\tenrm r
+..\glue(\tabskip) 0.0
+.\penalty 0
+.\glue(\baselineskip) 5.55556
+.\hbox(6.44444+0.0)x22.22227
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x15.00005
+...\tenrm 1
+...\tenrm 2
+...\tenrm 6
+...\glue 0.0 plus 1.0fil
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x7.22223, glue set 3.30556fil
+...\glue 0.0 plus 1.0fil
+...\tenrm r
+..\glue(\tabskip) 0.0
+.\penalty 0
+.\glue(\baselineskip) 5.55556
+.\hbox(6.44444+0.0)x22.22227
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x15.00005
+...\tenrm 1
+...\tenrm 2
+...\tenrm 7
+...\glue 0.0 plus 1.0fil
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x7.22223, glue set 3.30556fil
+...\glue 0.0 plus 1.0fil
+...\tenrm r
+..\glue(\tabskip) 0.0
+.\penalty 0
+.\glue(\baselineskip) 5.55556
+.\hbox(6.44444+0.0)x22.22227
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x15.00005
+...\tenrm 1
+...\tenrm 2
+...\tenrm 8
+...\glue 0.0 plus 1.0fil
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x7.22223, glue set 3.30556fil
+...\glue 0.0 plus 1.0fil
+...\tenrm r
+..\glue(\tabskip) 0.0
+.\penalty 0
+.\glue(\baselineskip) 5.55556
+.\hbox(6.44444+0.0)x22.22227
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x15.00005
+...\tenrm 1
+...\tenrm 2
+...\tenrm 9
+...\glue 0.0 plus 1.0fil
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x7.22223, glue set 3.30556fil
+...\glue 0.0 plus 1.0fil
+...\tenrm r
+..\glue(\tabskip) 0.0
+.\penalty 0
+.\glue(\baselineskip) 5.55556
+.\hbox(6.44444+0.0)x22.22227
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x15.00005
+...\tenrm 1
+...\tenrm 3
+...\tenrm 0
+...\glue 0.0 plus 1.0fil
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x7.22223, glue set 3.30556fil
+...\glue 0.0 plus 1.0fil
+...\tenrm r
+..\glue(\tabskip) 0.0
+.\penalty 0
+.\glue(\baselineskip) 5.55556
+.\hbox(6.44444+0.0)x22.22227
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x15.00005
+...\tenrm 1
+...\tenrm 3
+...\tenrm 1
+...\glue 0.0 plus 1.0fil
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x7.22223, glue set 3.30556fil
+...\glue 0.0 plus 1.0fil
+...\tenrm r
+..\glue(\tabskip) 0.0
+
+! OK.
+<output> ...UT \the \outputpenalty ]}\showbox 255
+                                                  \shipout \box 255 \global ...
+l.11 ...rb\noalign{\mark{M2}\penalty-10000}z&w\cr}
+
+
+
+Completed box being shipped out [11.200]
+\vbox(144.54+0.0)x22.22227
+.\glue(\topskip) 3.55556
+.\hbox(6.44444+0.0)x22.22227
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x15.00005
+...\tenrm 1
+...\tenrm 2
+...\tenrm 0
+...\glue 0.0 plus 1.0fil
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x7.22223, glue set 3.30556fil
+...\glue 0.0 plus 1.0fil
+...\tenrm r
+..\glue(\tabskip) 0.0
+.\penalty 0
+.\glue(\baselineskip) 5.55556
+.\hbox(6.44444+0.0)x22.22227
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x15.00005
+...\tenrm 1
+...\tenrm 2
+...\tenrm 1
+...\glue 0.0 plus 1.0fil
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x7.22223, glue set 3.30556fil
+...\glue 0.0 plus 1.0fil
+...\tenrm r
+..\glue(\tabskip) 0.0
+.\penalty 0
+.\glue(\baselineskip) 5.55556
+.\hbox(6.44444+0.0)x22.22227
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x15.00005
+...\tenrm 1
+...\tenrm 2
+...\tenrm 2
+...\glue 0.0 plus 1.0fil
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x7.22223, glue set 3.30556fil
+...\glue 0.0 plus 1.0fil
+...\tenrm r
+..\glue(\tabskip) 0.0
+.\penalty 0
+.\glue(\baselineskip) 5.55556
+.\hbox(6.44444+0.0)x22.22227
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x15.00005
+...\tenrm 1
+...\tenrm 2
+...\tenrm 3
+...\glue 0.0 plus 1.0fil
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x7.22223, glue set 3.30556fil
+...\glue 0.0 plus 1.0fil
+...\tenrm r
+..\glue(\tabskip) 0.0
+.\penalty 0
+.\glue(\baselineskip) 5.55556
+.\hbox(6.44444+0.0)x22.22227
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x15.00005
+...\tenrm 1
+...\tenrm 2
+...\tenrm 4
+...\glue 0.0 plus 1.0fil
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x7.22223, glue set 3.30556fil
+...\glue 0.0 plus 1.0fil
+...\tenrm r
+..\glue(\tabskip) 0.0
+.\penalty 0
+.\glue(\baselineskip) 5.55556
+.\hbox(6.44444+0.0)x22.22227
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x15.00005
+...\tenrm 1
+...\tenrm 2
+...\tenrm 5
+...\glue 0.0 plus 1.0fil
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x7.22223, glue set 3.30556fil
+...\glue 0.0 plus 1.0fil
+...\tenrm r
+..\glue(\tabskip) 0.0
+.\penalty 0
+.\glue(\baselineskip) 5.55556
+.\hbox(6.44444+0.0)x22.22227
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x15.00005
+...\tenrm 1
+...\tenrm 2
+...\tenrm 6
+...\glue 0.0 plus 1.0fil
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x7.22223, glue set 3.30556fil
+...\glue 0.0 plus 1.0fil
+...\tenrm r
+..\glue(\tabskip) 0.0
+.\penalty 0
+.\glue(\baselineskip) 5.55556
+.\hbox(6.44444+0.0)x22.22227
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x15.00005
+...\tenrm 1
+...\tenrm 2
+...\tenrm 7
+...\glue 0.0 plus 1.0fil
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x7.22223, glue set 3.30556fil
+...\glue 0.0 plus 1.0fil
+...\tenrm r
+..\glue(\tabskip) 0.0
+.\penalty 0
+.\glue(\baselineskip) 5.55556
+.\hbox(6.44444+0.0)x22.22227
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x15.00005
+...\tenrm 1
+...\tenrm 2
+...\tenrm 8
+...\glue 0.0 plus 1.0fil
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x7.22223, glue set 3.30556fil
+...\glue 0.0 plus 1.0fil
+...\tenrm r
+..\glue(\tabskip) 0.0
+.\penalty 0
+.\glue(\baselineskip) 5.55556
+.\hbox(6.44444+0.0)x22.22227
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x15.00005
+...\tenrm 1
+...\tenrm 2
+...\tenrm 9
+...\glue 0.0 plus 1.0fil
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x7.22223, glue set 3.30556fil
+...\glue 0.0 plus 1.0fil
+...\tenrm r
+..\glue(\tabskip) 0.0
+.\penalty 0
+.\glue(\baselineskip) 5.55556
+.\hbox(6.44444+0.0)x22.22227
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x15.00005
+...\tenrm 1
+...\tenrm 3
+...\tenrm 0
+...\glue 0.0 plus 1.0fil
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x7.22223, glue set 3.30556fil
+...\glue 0.0 plus 1.0fil
+...\tenrm r
+..\glue(\tabskip) 0.0
+.\penalty 0
+.\glue(\baselineskip) 5.55556
+.\hbox(6.44444+0.0)x22.22227
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x15.00005
+...\tenrm 1
+...\tenrm 3
+...\tenrm 1
+...\glue 0.0 plus 1.0fil
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x7.22223, glue set 3.30556fil
+...\glue 0.0 plus 1.0fil
+...\tenrm r
+..\glue(\tabskip) 0.0
+
+%% goal height=144.54, max depth=2.0
+% t=10.0 g=144.54 b=10000 p=0 c=100000#
+% t=22.0 g=144.54 b=10000 p=0 c=100000#
+% t=34.0 g=144.54 b=10000 p=0 c=100000#
+% t=46.0 g=144.54 b=10000 p=0 c=100000#
+% t=58.0 g=144.54 b=10000 p=0 c=100000#
+% t=70.0 g=144.54 b=10000 p=0 c=100000#
+% t=82.0 g=144.54 b=10000 p=0 c=100000#
+% t=94.0 g=144.54 b=10000 p=0 c=100000#
+% t=106.0 g=144.54 b=10000 p=0 c=100000#
+% t=118.0 g=144.54 b=10000 p=0 c=100000#
+% t=130.0 g=144.54 b=10000 p=0 c=100000#
+% t=142.0 g=144.54 b=10000 p=0 c=100000#
+% t=154.0 g=144.54 b=* p=0 c=*
+[OUT 0]
+> \box255=
+\vbox(144.54+0.0)x22.22227
+.\glue(\topskip) 3.55556
+.\hbox(6.44444+0.0)x22.22227
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x15.00005
+...\tenrm 1
+...\tenrm 3
+...\tenrm 2
+...\glue 0.0 plus 1.0fil
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x7.22223, glue set 3.30556fil
+...\glue 0.0 plus 1.0fil
+...\tenrm r
+..\glue(\tabskip) 0.0
+.\penalty 0
+.\glue(\baselineskip) 5.55556
+.\hbox(6.44444+0.0)x22.22227
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x15.00005
+...\tenrm 1
+...\tenrm 3
+...\tenrm 3
+...\glue 0.0 plus 1.0fil
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x7.22223, glue set 3.30556fil
+...\glue 0.0 plus 1.0fil
+...\tenrm r
+..\glue(\tabskip) 0.0
+.\penalty 0
+.\glue(\baselineskip) 5.55556
+.\hbox(6.44444+0.0)x22.22227
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x15.00005
+...\tenrm 1
+...\tenrm 3
+...\tenrm 4
+...\glue 0.0 plus 1.0fil
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x7.22223, glue set 3.30556fil
+...\glue 0.0 plus 1.0fil
+...\tenrm r
+..\glue(\tabskip) 0.0
+.\penalty 0
+.\glue(\baselineskip) 5.55556
+.\hbox(6.44444+0.0)x22.22227
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x15.00005
+...\tenrm 1
+...\tenrm 3
+...\tenrm 5
+...\glue 0.0 plus 1.0fil
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x7.22223, glue set 3.30556fil
+...\glue 0.0 plus 1.0fil
+...\tenrm r
+..\glue(\tabskip) 0.0
+.\penalty 0
+.\glue(\baselineskip) 5.55556
+.\hbox(6.44444+0.0)x22.22227
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x15.00005
+...\tenrm 1
+...\tenrm 3
+...\tenrm 6
+...\glue 0.0 plus 1.0fil
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x7.22223, glue set 3.30556fil
+...\glue 0.0 plus 1.0fil
+...\tenrm r
+..\glue(\tabskip) 0.0
+.\penalty 0
+.\glue(\baselineskip) 5.55556
+.\hbox(6.44444+0.0)x22.22227
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x15.00005
+...\tenrm 1
+...\tenrm 3
+...\tenrm 7
+...\glue 0.0 plus 1.0fil
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x7.22223, glue set 3.30556fil
+...\glue 0.0 plus 1.0fil
+...\tenrm r
+..\glue(\tabskip) 0.0
+.\penalty 0
+.\glue(\baselineskip) 5.55556
+.\hbox(6.44444+0.0)x22.22227
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x15.00005
+...\tenrm 1
+...\tenrm 3
+...\tenrm 8
+...\glue 0.0 plus 1.0fil
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x7.22223, glue set 3.30556fil
+...\glue 0.0 plus 1.0fil
+...\tenrm r
+..\glue(\tabskip) 0.0
+.\penalty 0
+.\glue(\baselineskip) 5.55556
+.\hbox(6.44444+0.0)x22.22227
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x15.00005
+...\tenrm 1
+...\tenrm 3
+...\tenrm 9
+...\glue 0.0 plus 1.0fil
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x7.22223, glue set 3.30556fil
+...\glue 0.0 plus 1.0fil
+...\tenrm r
+..\glue(\tabskip) 0.0
+.\penalty 0
+.\glue(\baselineskip) 5.55556
+.\hbox(6.44444+0.0)x22.22227
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x15.00005
+...\tenrm 1
+...\tenrm 4
+...\tenrm 0
+...\glue 0.0 plus 1.0fil
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x7.22223, glue set 3.30556fil
+...\glue 0.0 plus 1.0fil
+...\tenrm r
+..\glue(\tabskip) 0.0
+.\penalty 0
+.\glue(\baselineskip) 5.55556
+.\hbox(6.44444+0.0)x22.22227
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x15.00005
+...\tenrm 1
+...\tenrm 4
+...\tenrm 1
+...\glue 0.0 plus 1.0fil
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x7.22223, glue set 3.30556fil
+...\glue 0.0 plus 1.0fil
+...\tenrm r
+..\glue(\tabskip) 0.0
+.\penalty 0
+.\glue(\baselineskip) 5.55556
+.\hbox(6.44444+0.0)x22.22227
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x15.00005
+...\tenrm 1
+...\tenrm 4
+...\tenrm 2
+...\glue 0.0 plus 1.0fil
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x7.22223, glue set 3.30556fil
+...\glue 0.0 plus 1.0fil
+...\tenrm r
+..\glue(\tabskip) 0.0
+.\penalty 0
+.\glue(\baselineskip) 5.55556
+.\hbox(6.44444+0.0)x22.22227
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x15.00005
+...\tenrm 1
+...\tenrm 4
+...\tenrm 3
+...\glue 0.0 plus 1.0fil
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x7.22223, glue set 3.30556fil
+...\glue 0.0 plus 1.0fil
+...\tenrm r
+..\glue(\tabskip) 0.0
+
+! OK.
+<output> ...UT \the \outputpenalty ]}\showbox 255
+                                                  \shipout \box 255 \global ...
+l.11 ...rb\noalign{\mark{M2}\penalty-10000}z&w\cr}
+
+
+
+Completed box being shipped out [12.200]
+\vbox(144.54+0.0)x22.22227
+.\glue(\topskip) 3.55556
+.\hbox(6.44444+0.0)x22.22227
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x15.00005
+...\tenrm 1
+...\tenrm 3
+...\tenrm 2
+...\glue 0.0 plus 1.0fil
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x7.22223, glue set 3.30556fil
+...\glue 0.0 plus 1.0fil
+...\tenrm r
+..\glue(\tabskip) 0.0
+.\penalty 0
+.\glue(\baselineskip) 5.55556
+.\hbox(6.44444+0.0)x22.22227
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x15.00005
+...\tenrm 1
+...\tenrm 3
+...\tenrm 3
+...\glue 0.0 plus 1.0fil
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x7.22223, glue set 3.30556fil
+...\glue 0.0 plus 1.0fil
+...\tenrm r
+..\glue(\tabskip) 0.0
+.\penalty 0
+.\glue(\baselineskip) 5.55556
+.\hbox(6.44444+0.0)x22.22227
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x15.00005
+...\tenrm 1
+...\tenrm 3
+...\tenrm 4
+...\glue 0.0 plus 1.0fil
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x7.22223, glue set 3.30556fil
+...\glue 0.0 plus 1.0fil
+...\tenrm r
+..\glue(\tabskip) 0.0
+.\penalty 0
+.\glue(\baselineskip) 5.55556
+.\hbox(6.44444+0.0)x22.22227
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x15.00005
+...\tenrm 1
+...\tenrm 3
+...\tenrm 5
+...\glue 0.0 plus 1.0fil
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x7.22223, glue set 3.30556fil
+...\glue 0.0 plus 1.0fil
+...\tenrm r
+..\glue(\tabskip) 0.0
+.\penalty 0
+.\glue(\baselineskip) 5.55556
+.\hbox(6.44444+0.0)x22.22227
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x15.00005
+...\tenrm 1
+...\tenrm 3
+...\tenrm 6
+...\glue 0.0 plus 1.0fil
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x7.22223, glue set 3.30556fil
+...\glue 0.0 plus 1.0fil
+...\tenrm r
+..\glue(\tabskip) 0.0
+.\penalty 0
+.\glue(\baselineskip) 5.55556
+.\hbox(6.44444+0.0)x22.22227
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x15.00005
+...\tenrm 1
+...\tenrm 3
+...\tenrm 7
+...\glue 0.0 plus 1.0fil
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x7.22223, glue set 3.30556fil
+...\glue 0.0 plus 1.0fil
+...\tenrm r
+..\glue(\tabskip) 0.0
+.\penalty 0
+.\glue(\baselineskip) 5.55556
+.\hbox(6.44444+0.0)x22.22227
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x15.00005
+...\tenrm 1
+...\tenrm 3
+...\tenrm 8
+...\glue 0.0 plus 1.0fil
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x7.22223, glue set 3.30556fil
+...\glue 0.0 plus 1.0fil
+...\tenrm r
+..\glue(\tabskip) 0.0
+.\penalty 0
+.\glue(\baselineskip) 5.55556
+.\hbox(6.44444+0.0)x22.22227
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x15.00005
+...\tenrm 1
+...\tenrm 3
+...\tenrm 9
+...\glue 0.0 plus 1.0fil
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x7.22223, glue set 3.30556fil
+...\glue 0.0 plus 1.0fil
+...\tenrm r
+..\glue(\tabskip) 0.0
+.\penalty 0
+.\glue(\baselineskip) 5.55556
+.\hbox(6.44444+0.0)x22.22227
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x15.00005
+...\tenrm 1
+...\tenrm 4
+...\tenrm 0
+...\glue 0.0 plus 1.0fil
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x7.22223, glue set 3.30556fil
+...\glue 0.0 plus 1.0fil
+...\tenrm r
+..\glue(\tabskip) 0.0
+.\penalty 0
+.\glue(\baselineskip) 5.55556
+.\hbox(6.44444+0.0)x22.22227
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x15.00005
+...\tenrm 1
+...\tenrm 4
+...\tenrm 1
+...\glue 0.0 plus 1.0fil
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x7.22223, glue set 3.30556fil
+...\glue 0.0 plus 1.0fil
+...\tenrm r
+..\glue(\tabskip) 0.0
+.\penalty 0
+.\glue(\baselineskip) 5.55556
+.\hbox(6.44444+0.0)x22.22227
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x15.00005
+...\tenrm 1
+...\tenrm 4
+...\tenrm 2
+...\glue 0.0 plus 1.0fil
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x7.22223, glue set 3.30556fil
+...\glue 0.0 plus 1.0fil
+...\tenrm r
+..\glue(\tabskip) 0.0
+.\penalty 0
+.\glue(\baselineskip) 5.55556
+.\hbox(6.44444+0.0)x22.22227
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x15.00005
+...\tenrm 1
+...\tenrm 4
+...\tenrm 3
+...\glue 0.0 plus 1.0fil
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x7.22223, glue set 3.30556fil
+...\glue 0.0 plus 1.0fil
+...\tenrm r
+..\glue(\tabskip) 0.0
+
+%% goal height=144.54, max depth=2.0
+% t=10.0 g=144.54 b=10000 p=0 c=100000#
+% t=22.0 g=144.54 b=10000 p=0 c=100000#
+% t=34.0 g=144.54 b=10000 p=0 c=100000#
+% t=46.0 g=144.54 b=10000 p=0 c=100000#
+% t=58.0 g=144.54 b=10000 p=0 c=100000#
+% t=70.0 g=144.54 b=10000 p=0 c=100000#
+% t=82.0 g=144.54 b=10000 p=0 c=100000#
+% t=94.0 g=144.54 b=10000 p=0 c=100000#
+% t=106.0 g=144.54 b=10000 p=0 c=100000#
+% t=118.0 g=144.54 b=10000 p=0 c=100000#
+% t=130.0 g=144.54 b=10000 p=0 c=100000#
+% t=142.0 g=144.54 b=10000 p=0 c=100000#
+% t=154.0 g=144.54 b=* p=0 c=*
+[OUT 0]
+> \box255=
+\vbox(144.54+0.0)x22.22227
+.\glue(\topskip) 3.55556
+.\hbox(6.44444+0.0)x22.22227
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x15.00005
+...\tenrm 1
+...\tenrm 4
+...\tenrm 4
+...\glue 0.0 plus 1.0fil
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x7.22223, glue set 3.30556fil
+...\glue 0.0 plus 1.0fil
+...\tenrm r
+..\glue(\tabskip) 0.0
+.\penalty 0
+.\glue(\baselineskip) 5.55556
+.\hbox(6.44444+0.0)x22.22227
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x15.00005
+...\tenrm 1
+...\tenrm 4
+...\tenrm 5
+...\glue 0.0 plus 1.0fil
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x7.22223, glue set 3.30556fil
+...\glue 0.0 plus 1.0fil
+...\tenrm r
+..\glue(\tabskip) 0.0
+.\penalty 0
+.\glue(\baselineskip) 5.55556
+.\hbox(6.44444+0.0)x22.22227
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x15.00005
+...\tenrm 1
+...\tenrm 4
+...\tenrm 6
+...\glue 0.0 plus 1.0fil
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x7.22223, glue set 3.30556fil
+...\glue 0.0 plus 1.0fil
+...\tenrm r
+..\glue(\tabskip) 0.0
+.\penalty 0
+.\glue(\baselineskip) 5.55556
+.\hbox(6.44444+0.0)x22.22227
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x15.00005
+...\tenrm 1
+...\tenrm 4
+...\tenrm 7
+...\glue 0.0 plus 1.0fil
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x7.22223, glue set 3.30556fil
+...\glue 0.0 plus 1.0fil
+...\tenrm r
+..\glue(\tabskip) 0.0
+.\penalty 0
+.\glue(\baselineskip) 5.55556
+.\hbox(6.44444+0.0)x22.22227
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x15.00005
+...\tenrm 1
+...\tenrm 4
+...\tenrm 8
+...\glue 0.0 plus 1.0fil
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x7.22223, glue set 3.30556fil
+...\glue 0.0 plus 1.0fil
+...\tenrm r
+..\glue(\tabskip) 0.0
+.\penalty 0
+.\glue(\baselineskip) 5.55556
+.\hbox(6.44444+0.0)x22.22227
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x15.00005
+...\tenrm 1
+...\tenrm 4
+...\tenrm 9
+...\glue 0.0 plus 1.0fil
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x7.22223, glue set 3.30556fil
+...\glue 0.0 plus 1.0fil
+...\tenrm r
+..\glue(\tabskip) 0.0
+.\penalty 0
+.\glue(\baselineskip) 5.55556
+.\hbox(6.44444+0.0)x22.22227
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x15.00005
+...\tenrm 1
+...\tenrm 5
+...\tenrm 0
+...\glue 0.0 plus 1.0fil
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x7.22223, glue set 3.30556fil
+...\glue 0.0 plus 1.0fil
+...\tenrm r
+..\glue(\tabskip) 0.0
+.\penalty 0
+.\glue(\baselineskip) 5.55556
+.\hbox(6.44444+0.0)x22.22227
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x15.00005
+...\tenrm 1
+...\tenrm 5
+...\tenrm 1
+...\glue 0.0 plus 1.0fil
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x7.22223, glue set 3.30556fil
+...\glue 0.0 plus 1.0fil
+...\tenrm r
+..\glue(\tabskip) 0.0
+.\penalty 0
+.\glue(\baselineskip) 5.55556
+.\hbox(6.44444+0.0)x22.22227
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x15.00005
+...\tenrm 1
+...\tenrm 5
+...\tenrm 2
+...\glue 0.0 plus 1.0fil
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x7.22223, glue set 3.30556fil
+...\glue 0.0 plus 1.0fil
+...\tenrm r
+..\glue(\tabskip) 0.0
+.\penalty 0
+.\glue(\baselineskip) 5.55556
+.\hbox(6.44444+0.0)x22.22227
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x15.00005
+...\tenrm 1
+...\tenrm 5
+...\tenrm 3
+...\glue 0.0 plus 1.0fil
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x7.22223, glue set 3.30556fil
+...\glue 0.0 plus 1.0fil
+...\tenrm r
+..\glue(\tabskip) 0.0
+.\penalty 0
+.\glue(\baselineskip) 5.55556
+.\hbox(6.44444+0.0)x22.22227
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x15.00005
+...\tenrm 1
+...\tenrm 5
+...\tenrm 4
+...\glue 0.0 plus 1.0fil
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x7.22223, glue set 3.30556fil
+...\glue 0.0 plus 1.0fil
+...\tenrm r
+..\glue(\tabskip) 0.0
+.\penalty 0
+.\glue(\baselineskip) 5.55556
+.\hbox(6.44444+0.0)x22.22227
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x15.00005
+...\tenrm 1
+...\tenrm 5
+...\tenrm 5
+...\glue 0.0 plus 1.0fil
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x7.22223, glue set 3.30556fil
+...\glue 0.0 plus 1.0fil
+...\tenrm r
+..\glue(\tabskip) 0.0
+
+! OK.
+<output> ...UT \the \outputpenalty ]}\showbox 255
+                                                  \shipout \box 255 \global ...
+l.11 ...rb\noalign{\mark{M2}\penalty-10000}z&w\cr}
+
+
+
+Completed box being shipped out [13.200]
+\vbox(144.54+0.0)x22.22227
+.\glue(\topskip) 3.55556
+.\hbox(6.44444+0.0)x22.22227
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x15.00005
+...\tenrm 1
+...\tenrm 4
+...\tenrm 4
+...\glue 0.0 plus 1.0fil
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x7.22223, glue set 3.30556fil
+...\glue 0.0 plus 1.0fil
+...\tenrm r
+..\glue(\tabskip) 0.0
+.\penalty 0
+.\glue(\baselineskip) 5.55556
+.\hbox(6.44444+0.0)x22.22227
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x15.00005
+...\tenrm 1
+...\tenrm 4
+...\tenrm 5
+...\glue 0.0 plus 1.0fil
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x7.22223, glue set 3.30556fil
+...\glue 0.0 plus 1.0fil
+...\tenrm r
+..\glue(\tabskip) 0.0
+.\penalty 0
+.\glue(\baselineskip) 5.55556
+.\hbox(6.44444+0.0)x22.22227
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x15.00005
+...\tenrm 1
+...\tenrm 4
+...\tenrm 6
+...\glue 0.0 plus 1.0fil
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x7.22223, glue set 3.30556fil
+...\glue 0.0 plus 1.0fil
+...\tenrm r
+..\glue(\tabskip) 0.0
+.\penalty 0
+.\glue(\baselineskip) 5.55556
+.\hbox(6.44444+0.0)x22.22227
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x15.00005
+...\tenrm 1
+...\tenrm 4
+...\tenrm 7
+...\glue 0.0 plus 1.0fil
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x7.22223, glue set 3.30556fil
+...\glue 0.0 plus 1.0fil
+...\tenrm r
+..\glue(\tabskip) 0.0
+.\penalty 0
+.\glue(\baselineskip) 5.55556
+.\hbox(6.44444+0.0)x22.22227
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x15.00005
+...\tenrm 1
+...\tenrm 4
+...\tenrm 8
+...\glue 0.0 plus 1.0fil
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x7.22223, glue set 3.30556fil
+...\glue 0.0 plus 1.0fil
+...\tenrm r
+..\glue(\tabskip) 0.0
+.\penalty 0
+.\glue(\baselineskip) 5.55556
+.\hbox(6.44444+0.0)x22.22227
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x15.00005
+...\tenrm 1
+...\tenrm 4
+...\tenrm 9
+...\glue 0.0 plus 1.0fil
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x7.22223, glue set 3.30556fil
+...\glue 0.0 plus 1.0fil
+...\tenrm r
+..\glue(\tabskip) 0.0
+.\penalty 0
+.\glue(\baselineskip) 5.55556
+.\hbox(6.44444+0.0)x22.22227
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x15.00005
+...\tenrm 1
+...\tenrm 5
+...\tenrm 0
+...\glue 0.0 plus 1.0fil
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x7.22223, glue set 3.30556fil
+...\glue 0.0 plus 1.0fil
+...\tenrm r
+..\glue(\tabskip) 0.0
+.\penalty 0
+.\glue(\baselineskip) 5.55556
+.\hbox(6.44444+0.0)x22.22227
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x15.00005
+...\tenrm 1
+...\tenrm 5
+...\tenrm 1
+...\glue 0.0 plus 1.0fil
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x7.22223, glue set 3.30556fil
+...\glue 0.0 plus 1.0fil
+...\tenrm r
+..\glue(\tabskip) 0.0
+.\penalty 0
+.\glue(\baselineskip) 5.55556
+.\hbox(6.44444+0.0)x22.22227
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x15.00005
+...\tenrm 1
+...\tenrm 5
+...\tenrm 2
+...\glue 0.0 plus 1.0fil
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x7.22223, glue set 3.30556fil
+...\glue 0.0 plus 1.0fil
+...\tenrm r
+..\glue(\tabskip) 0.0
+.\penalty 0
+.\glue(\baselineskip) 5.55556
+.\hbox(6.44444+0.0)x22.22227
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x15.00005
+...\tenrm 1
+...\tenrm 5
+...\tenrm 3
+...\glue 0.0 plus 1.0fil
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x7.22223, glue set 3.30556fil
+...\glue 0.0 plus 1.0fil
+...\tenrm r
+..\glue(\tabskip) 0.0
+.\penalty 0
+.\glue(\baselineskip) 5.55556
+.\hbox(6.44444+0.0)x22.22227
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x15.00005
+...\tenrm 1
+...\tenrm 5
+...\tenrm 4
+...\glue 0.0 plus 1.0fil
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x7.22223, glue set 3.30556fil
+...\glue 0.0 plus 1.0fil
+...\tenrm r
+..\glue(\tabskip) 0.0
+.\penalty 0
+.\glue(\baselineskip) 5.55556
+.\hbox(6.44444+0.0)x22.22227
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x15.00005
+...\tenrm 1
+...\tenrm 5
+...\tenrm 5
+...\glue 0.0 plus 1.0fil
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x7.22223, glue set 3.30556fil
+...\glue 0.0 plus 1.0fil
+...\tenrm r
+..\glue(\tabskip) 0.0
+
+%% goal height=144.54, max depth=2.0
+% t=10.0 g=144.54 b=10000 p=0 c=100000#
+% t=22.0 g=144.54 b=10000 p=0 c=100000#
+% t=34.0 g=144.54 b=10000 p=0 c=100000#
+% t=46.0 g=144.54 b=10000 p=0 c=100000#
+% t=58.0 g=144.54 b=10000 p=0 c=100000#
+% t=70.0 g=144.54 b=10000 p=0 c=100000#
+% t=82.0 g=144.54 b=10000 p=0 c=100000#
+% t=94.0 g=144.54 b=10000 p=0 c=100000#
+% t=106.0 g=144.54 b=10000 p=0 c=100000#
+% t=118.0 g=144.54 b=10000 p=0 c=100000#
+% t=130.0 g=144.54 b=10000 p=0 c=100000#
+% t=142.0 g=144.54 b=10000 p=0 c=100000#
+% t=154.0 g=144.54 b=* p=0 c=*
+[OUT 0]
+> \box255=
+\vbox(144.54+0.0)x22.22227
+.\glue(\topskip) 3.55556
+.\hbox(6.44444+0.0)x22.22227
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x15.00005
+...\tenrm 1
+...\tenrm 5
+...\tenrm 6
+...\glue 0.0 plus 1.0fil
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x7.22223, glue set 3.30556fil
+...\glue 0.0 plus 1.0fil
+...\tenrm r
+..\glue(\tabskip) 0.0
+.\penalty 0
+.\glue(\baselineskip) 5.55556
+.\hbox(6.44444+0.0)x22.22227
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x15.00005
+...\tenrm 1
+...\tenrm 5
+...\tenrm 7
+...\glue 0.0 plus 1.0fil
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x7.22223, glue set 3.30556fil
+...\glue 0.0 plus 1.0fil
+...\tenrm r
+..\glue(\tabskip) 0.0
+.\penalty 0
+.\glue(\baselineskip) 5.55556
+.\hbox(6.44444+0.0)x22.22227
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x15.00005
+...\tenrm 1
+...\tenrm 5
+...\tenrm 8
+...\glue 0.0 plus 1.0fil
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x7.22223, glue set 3.30556fil
+...\glue 0.0 plus 1.0fil
+...\tenrm r
+..\glue(\tabskip) 0.0
+.\penalty 0
+.\glue(\baselineskip) 5.55556
+.\hbox(6.44444+0.0)x22.22227
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x15.00005
+...\tenrm 1
+...\tenrm 5
+...\tenrm 9
+...\glue 0.0 plus 1.0fil
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x7.22223, glue set 3.30556fil
+...\glue 0.0 plus 1.0fil
+...\tenrm r
+..\glue(\tabskip) 0.0
+.\penalty 0
+.\glue(\baselineskip) 5.55556
+.\hbox(6.44444+0.0)x22.22227
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x15.00005
+...\tenrm 1
+...\tenrm 6
+...\tenrm 0
+...\glue 0.0 plus 1.0fil
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x7.22223, glue set 3.30556fil
+...\glue 0.0 plus 1.0fil
+...\tenrm r
+..\glue(\tabskip) 0.0
+.\penalty 0
+.\glue(\baselineskip) 5.55556
+.\hbox(6.44444+0.0)x22.22227
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x15.00005
+...\tenrm 1
+...\tenrm 6
+...\tenrm 1
+...\glue 0.0 plus 1.0fil
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x7.22223, glue set 3.30556fil
+...\glue 0.0 plus 1.0fil
+...\tenrm r
+..\glue(\tabskip) 0.0
+.\penalty 0
+.\glue(\baselineskip) 5.55556
+.\hbox(6.44444+0.0)x22.22227
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x15.00005
+...\tenrm 1
+...\tenrm 6
+...\tenrm 2
+...\glue 0.0 plus 1.0fil
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x7.22223, glue set 3.30556fil
+...\glue 0.0 plus 1.0fil
+...\tenrm r
+..\glue(\tabskip) 0.0
+.\penalty 0
+.\glue(\baselineskip) 5.55556
+.\hbox(6.44444+0.0)x22.22227
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x15.00005
+...\tenrm 1
+...\tenrm 6
+...\tenrm 3
+...\glue 0.0 plus 1.0fil
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x7.22223, glue set 3.30556fil
+...\glue 0.0 plus 1.0fil
+...\tenrm r
+..\glue(\tabskip) 0.0
+.\penalty 0
+.\glue(\baselineskip) 5.55556
+.\hbox(6.44444+0.0)x22.22227
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x15.00005
+...\tenrm 1
+...\tenrm 6
+...\tenrm 4
+...\glue 0.0 plus 1.0fil
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x7.22223, glue set 3.30556fil
+...\glue 0.0 plus 1.0fil
+...\tenrm r
+..\glue(\tabskip) 0.0
+.\penalty 0
+.\glue(\baselineskip) 5.55556
+.\hbox(6.44444+0.0)x22.22227
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x15.00005
+...\tenrm 1
+...\tenrm 6
+...\tenrm 5
+...\glue 0.0 plus 1.0fil
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x7.22223, glue set 3.30556fil
+...\glue 0.0 plus 1.0fil
+...\tenrm r
+..\glue(\tabskip) 0.0
+.\penalty 0
+.\glue(\baselineskip) 5.55556
+.\hbox(6.44444+0.0)x22.22227
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x15.00005
+...\tenrm 1
+...\tenrm 6
+...\tenrm 6
+...\glue 0.0 plus 1.0fil
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x7.22223, glue set 3.30556fil
+...\glue 0.0 plus 1.0fil
+...\tenrm r
+..\glue(\tabskip) 0.0
+.\penalty 0
+.\glue(\baselineskip) 5.55556
+.\hbox(6.44444+0.0)x22.22227
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x15.00005
+...\tenrm 1
+...\tenrm 6
+...\tenrm 7
+...\glue 0.0 plus 1.0fil
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x7.22223, glue set 3.30556fil
+...\glue 0.0 plus 1.0fil
+...\tenrm r
+..\glue(\tabskip) 0.0
+
+! OK.
+<output> ...UT \the \outputpenalty ]}\showbox 255
+                                                  \shipout \box 255 \global ...
+l.11 ...rb\noalign{\mark{M2}\penalty-10000}z&w\cr}
+
+
+
+Completed box being shipped out [14.200]
+\vbox(144.54+0.0)x22.22227
+.\glue(\topskip) 3.55556
+.\hbox(6.44444+0.0)x22.22227
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x15.00005
+...\tenrm 1
+...\tenrm 5
+...\tenrm 6
+...\glue 0.0 plus 1.0fil
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x7.22223, glue set 3.30556fil
+...\glue 0.0 plus 1.0fil
+...\tenrm r
+..\glue(\tabskip) 0.0
+.\penalty 0
+.\glue(\baselineskip) 5.55556
+.\hbox(6.44444+0.0)x22.22227
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x15.00005
+...\tenrm 1
+...\tenrm 5
+...\tenrm 7
+...\glue 0.0 plus 1.0fil
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x7.22223, glue set 3.30556fil
+...\glue 0.0 plus 1.0fil
+...\tenrm r
+..\glue(\tabskip) 0.0
+.\penalty 0
+.\glue(\baselineskip) 5.55556
+.\hbox(6.44444+0.0)x22.22227
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x15.00005
+...\tenrm 1
+...\tenrm 5
+...\tenrm 8
+...\glue 0.0 plus 1.0fil
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x7.22223, glue set 3.30556fil
+...\glue 0.0 plus 1.0fil
+...\tenrm r
+..\glue(\tabskip) 0.0
+.\penalty 0
+.\glue(\baselineskip) 5.55556
+.\hbox(6.44444+0.0)x22.22227
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x15.00005
+...\tenrm 1
+...\tenrm 5
+...\tenrm 9
+...\glue 0.0 plus 1.0fil
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x7.22223, glue set 3.30556fil
+...\glue 0.0 plus 1.0fil
+...\tenrm r
+..\glue(\tabskip) 0.0
+.\penalty 0
+.\glue(\baselineskip) 5.55556
+.\hbox(6.44444+0.0)x22.22227
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x15.00005
+...\tenrm 1
+...\tenrm 6
+...\tenrm 0
+...\glue 0.0 plus 1.0fil
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x7.22223, glue set 3.30556fil
+...\glue 0.0 plus 1.0fil
+...\tenrm r
+..\glue(\tabskip) 0.0
+.\penalty 0
+.\glue(\baselineskip) 5.55556
+.\hbox(6.44444+0.0)x22.22227
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x15.00005
+...\tenrm 1
+...\tenrm 6
+...\tenrm 1
+...\glue 0.0 plus 1.0fil
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x7.22223, glue set 3.30556fil
+...\glue 0.0 plus 1.0fil
+...\tenrm r
+..\glue(\tabskip) 0.0
+.\penalty 0
+.\glue(\baselineskip) 5.55556
+.\hbox(6.44444+0.0)x22.22227
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x15.00005
+...\tenrm 1
+...\tenrm 6
+...\tenrm 2
+...\glue 0.0 plus 1.0fil
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x7.22223, glue set 3.30556fil
+...\glue 0.0 plus 1.0fil
+...\tenrm r
+..\glue(\tabskip) 0.0
+.\penalty 0
+.\glue(\baselineskip) 5.55556
+.\hbox(6.44444+0.0)x22.22227
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x15.00005
+...\tenrm 1
+...\tenrm 6
+...\tenrm 3
+...\glue 0.0 plus 1.0fil
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x7.22223, glue set 3.30556fil
+...\glue 0.0 plus 1.0fil
+...\tenrm r
+..\glue(\tabskip) 0.0
+.\penalty 0
+.\glue(\baselineskip) 5.55556
+.\hbox(6.44444+0.0)x22.22227
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x15.00005
+...\tenrm 1
+...\tenrm 6
+...\tenrm 4
+...\glue 0.0 plus 1.0fil
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x7.22223, glue set 3.30556fil
+...\glue 0.0 plus 1.0fil
+...\tenrm r
+..\glue(\tabskip) 0.0
+.\penalty 0
+.\glue(\baselineskip) 5.55556
+.\hbox(6.44444+0.0)x22.22227
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x15.00005
+...\tenrm 1
+...\tenrm 6
+...\tenrm 5
+...\glue 0.0 plus 1.0fil
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x7.22223, glue set 3.30556fil
+...\glue 0.0 plus 1.0fil
+...\tenrm r
+..\glue(\tabskip) 0.0
+.\penalty 0
+.\glue(\baselineskip) 5.55556
+.\hbox(6.44444+0.0)x22.22227
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x15.00005
+...\tenrm 1
+...\tenrm 6
+...\tenrm 6
+...\glue 0.0 plus 1.0fil
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x7.22223, glue set 3.30556fil
+...\glue 0.0 plus 1.0fil
+...\tenrm r
+..\glue(\tabskip) 0.0
+.\penalty 0
+.\glue(\baselineskip) 5.55556
+.\hbox(6.44444+0.0)x22.22227
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x15.00005
+...\tenrm 1
+...\tenrm 6
+...\tenrm 7
+...\glue 0.0 plus 1.0fil
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x7.22223, glue set 3.30556fil
+...\glue 0.0 plus 1.0fil
+...\tenrm r
+..\glue(\tabskip) 0.0
+
+%% goal height=144.54, max depth=2.0
+% t=10.0 g=144.54 b=10000 p=0 c=100000#
+% t=22.0 g=144.54 b=10000 p=0 c=100000#
+% t=34.0 g=144.54 b=10000 p=0 c=100000#
+% t=46.0 g=144.54 b=10000 p=0 c=100000#
+% t=58.0 g=144.54 b=10000 p=0 c=100000#
+% t=70.0 g=144.54 b=10000 p=0 c=100000#
+% t=82.0 g=144.54 b=10000 p=0 c=100000#
+% t=94.0 g=144.54 b=10000 p=0 c=100000#
+% t=106.0 g=144.54 b=10000 p=0 c=100000#
+% t=118.0 g=144.54 b=10000 p=0 c=100000#
+% t=130.0 g=144.54 b=10000 p=0 c=100000#
+% t=142.0 g=144.54 b=10000 p=0 c=100000#
+% t=154.0 g=144.54 b=* p=0 c=*
+[OUT 0]
+> \box255=
+\vbox(144.54+0.0)x22.22227
+.\glue(\topskip) 3.55556
+.\hbox(6.44444+0.0)x22.22227
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x15.00005
+...\tenrm 1
+...\tenrm 6
+...\tenrm 8
+...\glue 0.0 plus 1.0fil
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x7.22223, glue set 3.30556fil
+...\glue 0.0 plus 1.0fil
+...\tenrm r
+..\glue(\tabskip) 0.0
+.\penalty 0
+.\glue(\baselineskip) 5.55556
+.\hbox(6.44444+0.0)x22.22227
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x15.00005
+...\tenrm 1
+...\tenrm 6
+...\tenrm 9
+...\glue 0.0 plus 1.0fil
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x7.22223, glue set 3.30556fil
+...\glue 0.0 plus 1.0fil
+...\tenrm r
+..\glue(\tabskip) 0.0
+.\penalty 0
+.\glue(\baselineskip) 5.55556
+.\hbox(6.44444+0.0)x22.22227
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x15.00005
+...\tenrm 1
+...\tenrm 7
+...\tenrm 0
+...\glue 0.0 plus 1.0fil
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x7.22223, glue set 3.30556fil
+...\glue 0.0 plus 1.0fil
+...\tenrm r
+..\glue(\tabskip) 0.0
+.\penalty 0
+.\glue(\baselineskip) 5.55556
+.\hbox(6.44444+0.0)x22.22227
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x15.00005
+...\tenrm 1
+...\tenrm 7
+...\tenrm 1
+...\glue 0.0 plus 1.0fil
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x7.22223, glue set 3.30556fil
+...\glue 0.0 plus 1.0fil
+...\tenrm r
+..\glue(\tabskip) 0.0
+.\penalty 0
+.\glue(\baselineskip) 5.55556
+.\hbox(6.44444+0.0)x22.22227
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x15.00005
+...\tenrm 1
+...\tenrm 7
+...\tenrm 2
+...\glue 0.0 plus 1.0fil
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x7.22223, glue set 3.30556fil
+...\glue 0.0 plus 1.0fil
+...\tenrm r
+..\glue(\tabskip) 0.0
+.\penalty 0
+.\glue(\baselineskip) 5.55556
+.\hbox(6.44444+0.0)x22.22227
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x15.00005
+...\tenrm 1
+...\tenrm 7
+...\tenrm 3
+...\glue 0.0 plus 1.0fil
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x7.22223, glue set 3.30556fil
+...\glue 0.0 plus 1.0fil
+...\tenrm r
+..\glue(\tabskip) 0.0
+.\penalty 0
+.\glue(\baselineskip) 5.55556
+.\hbox(6.44444+0.0)x22.22227
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x15.00005
+...\tenrm 1
+...\tenrm 7
+...\tenrm 4
+...\glue 0.0 plus 1.0fil
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x7.22223, glue set 3.30556fil
+...\glue 0.0 plus 1.0fil
+...\tenrm r
+..\glue(\tabskip) 0.0
+.\penalty 0
+.\glue(\baselineskip) 5.55556
+.\hbox(6.44444+0.0)x22.22227
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x15.00005
+...\tenrm 1
+...\tenrm 7
+...\tenrm 5
+...\glue 0.0 plus 1.0fil
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x7.22223, glue set 3.30556fil
+...\glue 0.0 plus 1.0fil
+...\tenrm r
+..\glue(\tabskip) 0.0
+.\penalty 0
+.\glue(\baselineskip) 5.55556
+.\hbox(6.44444+0.0)x22.22227
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x15.00005
+...\tenrm 1
+...\tenrm 7
+...\tenrm 6
+...\glue 0.0 plus 1.0fil
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x7.22223, glue set 3.30556fil
+...\glue 0.0 plus 1.0fil
+...\tenrm r
+..\glue(\tabskip) 0.0
+.\penalty 0
+.\glue(\baselineskip) 5.55556
+.\hbox(6.44444+0.0)x22.22227
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x15.00005
+...\tenrm 1
+...\tenrm 7
+...\tenrm 7
+...\glue 0.0 plus 1.0fil
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x7.22223, glue set 3.30556fil
+...\glue 0.0 plus 1.0fil
+...\tenrm r
+..\glue(\tabskip) 0.0
+.\penalty 0
+.\glue(\baselineskip) 5.55556
+.\hbox(6.44444+0.0)x22.22227
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x15.00005
+...\tenrm 1
+...\tenrm 7
+...\tenrm 8
+...\glue 0.0 plus 1.0fil
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x7.22223, glue set 3.30556fil
+...\glue 0.0 plus 1.0fil
+...\tenrm r
+..\glue(\tabskip) 0.0
+.\penalty 0
+.\glue(\baselineskip) 5.55556
+.\hbox(6.44444+0.0)x22.22227
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x15.00005
+...\tenrm 1
+...\tenrm 7
+...\tenrm 9
+...\glue 0.0 plus 1.0fil
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x7.22223, glue set 3.30556fil
+...\glue 0.0 plus 1.0fil
+...\tenrm r
+..\glue(\tabskip) 0.0
+
+! OK.
+<output> ...UT \the \outputpenalty ]}\showbox 255
+                                                  \shipout \box 255 \global ...
+l.11 ...rb\noalign{\mark{M2}\penalty-10000}z&w\cr}
+
+
+
+Completed box being shipped out [15.200]
+\vbox(144.54+0.0)x22.22227
+.\glue(\topskip) 3.55556
+.\hbox(6.44444+0.0)x22.22227
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x15.00005
+...\tenrm 1
+...\tenrm 6
+...\tenrm 8
+...\glue 0.0 plus 1.0fil
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x7.22223, glue set 3.30556fil
+...\glue 0.0 plus 1.0fil
+...\tenrm r
+..\glue(\tabskip) 0.0
+.\penalty 0
+.\glue(\baselineskip) 5.55556
+.\hbox(6.44444+0.0)x22.22227
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x15.00005
+...\tenrm 1
+...\tenrm 6
+...\tenrm 9
+...\glue 0.0 plus 1.0fil
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x7.22223, glue set 3.30556fil
+...\glue 0.0 plus 1.0fil
+...\tenrm r
+..\glue(\tabskip) 0.0
+.\penalty 0
+.\glue(\baselineskip) 5.55556
+.\hbox(6.44444+0.0)x22.22227
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x15.00005
+...\tenrm 1
+...\tenrm 7
+...\tenrm 0
+...\glue 0.0 plus 1.0fil
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x7.22223, glue set 3.30556fil
+...\glue 0.0 plus 1.0fil
+...\tenrm r
+..\glue(\tabskip) 0.0
+.\penalty 0
+.\glue(\baselineskip) 5.55556
+.\hbox(6.44444+0.0)x22.22227
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x15.00005
+...\tenrm 1
+...\tenrm 7
+...\tenrm 1
+...\glue 0.0 plus 1.0fil
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x7.22223, glue set 3.30556fil
+...\glue 0.0 plus 1.0fil
+...\tenrm r
+..\glue(\tabskip) 0.0
+.\penalty 0
+.\glue(\baselineskip) 5.55556
+.\hbox(6.44444+0.0)x22.22227
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x15.00005
+...\tenrm 1
+...\tenrm 7
+...\tenrm 2
+...\glue 0.0 plus 1.0fil
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x7.22223, glue set 3.30556fil
+...\glue 0.0 plus 1.0fil
+...\tenrm r
+..\glue(\tabskip) 0.0
+.\penalty 0
+.\glue(\baselineskip) 5.55556
+.\hbox(6.44444+0.0)x22.22227
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x15.00005
+...\tenrm 1
+...\tenrm 7
+...\tenrm 3
+...\glue 0.0 plus 1.0fil
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x7.22223, glue set 3.30556fil
+...\glue 0.0 plus 1.0fil
+...\tenrm r
+..\glue(\tabskip) 0.0
+.\penalty 0
+.\glue(\baselineskip) 5.55556
+.\hbox(6.44444+0.0)x22.22227
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x15.00005
+...\tenrm 1
+...\tenrm 7
+...\tenrm 4
+...\glue 0.0 plus 1.0fil
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x7.22223, glue set 3.30556fil
+...\glue 0.0 plus 1.0fil
+...\tenrm r
+..\glue(\tabskip) 0.0
+.\penalty 0
+.\glue(\baselineskip) 5.55556
+.\hbox(6.44444+0.0)x22.22227
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x15.00005
+...\tenrm 1
+...\tenrm 7
+...\tenrm 5
+...\glue 0.0 plus 1.0fil
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x7.22223, glue set 3.30556fil
+...\glue 0.0 plus 1.0fil
+...\tenrm r
+..\glue(\tabskip) 0.0
+.\penalty 0
+.\glue(\baselineskip) 5.55556
+.\hbox(6.44444+0.0)x22.22227
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x15.00005
+...\tenrm 1
+...\tenrm 7
+...\tenrm 6
+...\glue 0.0 plus 1.0fil
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x7.22223, glue set 3.30556fil
+...\glue 0.0 plus 1.0fil
+...\tenrm r
+..\glue(\tabskip) 0.0
+.\penalty 0
+.\glue(\baselineskip) 5.55556
+.\hbox(6.44444+0.0)x22.22227
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x15.00005
+...\tenrm 1
+...\tenrm 7
+...\tenrm 7
+...\glue 0.0 plus 1.0fil
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x7.22223, glue set 3.30556fil
+...\glue 0.0 plus 1.0fil
+...\tenrm r
+..\glue(\tabskip) 0.0
+.\penalty 0
+.\glue(\baselineskip) 5.55556
+.\hbox(6.44444+0.0)x22.22227
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x15.00005
+...\tenrm 1
+...\tenrm 7
+...\tenrm 8
+...\glue 0.0 plus 1.0fil
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x7.22223, glue set 3.30556fil
+...\glue 0.0 plus 1.0fil
+...\tenrm r
+..\glue(\tabskip) 0.0
+.\penalty 0
+.\glue(\baselineskip) 5.55556
+.\hbox(6.44444+0.0)x22.22227
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x15.00005
+...\tenrm 1
+...\tenrm 7
+...\tenrm 9
+...\glue 0.0 plus 1.0fil
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x7.22223, glue set 3.30556fil
+...\glue 0.0 plus 1.0fil
+...\tenrm r
+..\glue(\tabskip) 0.0
+
+%% goal height=144.54, max depth=2.0
+% t=10.0 g=144.54 b=10000 p=0 c=100000#
+% t=22.0 g=144.54 b=10000 p=0 c=100000#
+% t=34.0 g=144.54 b=10000 p=0 c=100000#
+% t=46.0 g=144.54 b=10000 p=0 c=100000#
+% t=58.0 g=144.54 b=10000 p=0 c=100000#
+% t=70.0 g=144.54 b=10000 p=0 c=100000#
+% t=82.0 g=144.54 b=10000 p=0 c=100000#
+% t=94.0 g=144.54 b=10000 p=0 c=100000#
+% t=106.0 g=144.54 b=10000 p=0 c=100000#
+% t=118.0 g=144.54 b=10000 p=0 c=100000#
+% t=130.0 g=144.54 b=10000 p=0 c=100000#
+% t=142.0 g=144.54 b=10000 p=0 c=100000#
+% t=154.0 g=144.54 b=* p=0 c=*
+[OUT 0]
+> \box255=
+\vbox(144.54+0.0)x22.22227
+.\glue(\topskip) 3.55556
+.\hbox(6.44444+0.0)x22.22227
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x15.00005
+...\tenrm 1
+...\tenrm 8
+...\tenrm 0
+...\glue 0.0 plus 1.0fil
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x7.22223, glue set 3.30556fil
+...\glue 0.0 plus 1.0fil
+...\tenrm r
+..\glue(\tabskip) 0.0
+.\penalty 0
+.\glue(\baselineskip) 5.55556
+.\hbox(6.44444+0.0)x22.22227
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x15.00005
+...\tenrm 1
+...\tenrm 8
+...\tenrm 1
+...\glue 0.0 plus 1.0fil
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x7.22223, glue set 3.30556fil
+...\glue 0.0 plus 1.0fil
+...\tenrm r
+..\glue(\tabskip) 0.0
+.\penalty 0
+.\glue(\baselineskip) 5.55556
+.\hbox(6.44444+0.0)x22.22227
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x15.00005
+...\tenrm 1
+...\tenrm 8
+...\tenrm 2
+...\glue 0.0 plus 1.0fil
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x7.22223, glue set 3.30556fil
+...\glue 0.0 plus 1.0fil
+...\tenrm r
+..\glue(\tabskip) 0.0
+.\penalty 0
+.\glue(\baselineskip) 5.55556
+.\hbox(6.44444+0.0)x22.22227
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x15.00005
+...\tenrm 1
+...\tenrm 8
+...\tenrm 3
+...\glue 0.0 plus 1.0fil
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x7.22223, glue set 3.30556fil
+...\glue 0.0 plus 1.0fil
+...\tenrm r
+..\glue(\tabskip) 0.0
+.\penalty 0
+.\glue(\baselineskip) 5.55556
+.\hbox(6.44444+0.0)x22.22227
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x15.00005
+...\tenrm 1
+...\tenrm 8
+...\tenrm 4
+...\glue 0.0 plus 1.0fil
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x7.22223, glue set 3.30556fil
+...\glue 0.0 plus 1.0fil
+...\tenrm r
+..\glue(\tabskip) 0.0
+.\penalty 0
+.\glue(\baselineskip) 5.55556
+.\hbox(6.44444+0.0)x22.22227
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x15.00005
+...\tenrm 1
+...\tenrm 8
+...\tenrm 5
+...\glue 0.0 plus 1.0fil
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x7.22223, glue set 3.30556fil
+...\glue 0.0 plus 1.0fil
+...\tenrm r
+..\glue(\tabskip) 0.0
+.\penalty 0
+.\glue(\baselineskip) 5.55556
+.\hbox(6.44444+0.0)x22.22227
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x15.00005
+...\tenrm 1
+...\tenrm 8
+...\tenrm 6
+...\glue 0.0 plus 1.0fil
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x7.22223, glue set 3.30556fil
+...\glue 0.0 plus 1.0fil
+...\tenrm r
+..\glue(\tabskip) 0.0
+.\penalty 0
+.\glue(\baselineskip) 5.55556
+.\hbox(6.44444+0.0)x22.22227
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x15.00005
+...\tenrm 1
+...\tenrm 8
+...\tenrm 7
+...\glue 0.0 plus 1.0fil
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x7.22223, glue set 3.30556fil
+...\glue 0.0 plus 1.0fil
+...\tenrm r
+..\glue(\tabskip) 0.0
+.\penalty 0
+.\glue(\baselineskip) 5.55556
+.\hbox(6.44444+0.0)x22.22227
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x15.00005
+...\tenrm 1
+...\tenrm 8
+...\tenrm 8
+...\glue 0.0 plus 1.0fil
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x7.22223, glue set 3.30556fil
+...\glue 0.0 plus 1.0fil
+...\tenrm r
+..\glue(\tabskip) 0.0
+.\penalty 0
+.\glue(\baselineskip) 5.55556
+.\hbox(6.44444+0.0)x22.22227
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x15.00005
+...\tenrm 1
+...\tenrm 8
+...\tenrm 9
+...\glue 0.0 plus 1.0fil
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x7.22223, glue set 3.30556fil
+...\glue 0.0 plus 1.0fil
+...\tenrm r
+..\glue(\tabskip) 0.0
+.\penalty 0
+.\glue(\baselineskip) 5.55556
+.\hbox(6.44444+0.0)x22.22227
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x15.00005
+...\tenrm 1
+...\tenrm 9
+...\tenrm 0
+...\glue 0.0 plus 1.0fil
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x7.22223, glue set 3.30556fil
+...\glue 0.0 plus 1.0fil
+...\tenrm r
+..\glue(\tabskip) 0.0
+.\penalty 0
+.\glue(\baselineskip) 5.55556
+.\hbox(6.44444+0.0)x22.22227
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x15.00005
+...\tenrm 1
+...\tenrm 9
+...\tenrm 1
+...\glue 0.0 plus 1.0fil
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x7.22223, glue set 3.30556fil
+...\glue 0.0 plus 1.0fil
+...\tenrm r
+..\glue(\tabskip) 0.0
+
+! OK.
+<output> ...UT \the \outputpenalty ]}\showbox 255
+                                                  \shipout \box 255 \global ...
+l.11 ...rb\noalign{\mark{M2}\penalty-10000}z&w\cr}
+
+
+
+Completed box being shipped out [16.200]
+\vbox(144.54+0.0)x22.22227
+.\glue(\topskip) 3.55556
+.\hbox(6.44444+0.0)x22.22227
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x15.00005
+...\tenrm 1
+...\tenrm 8
+...\tenrm 0
+...\glue 0.0 plus 1.0fil
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x7.22223, glue set 3.30556fil
+...\glue 0.0 plus 1.0fil
+...\tenrm r
+..\glue(\tabskip) 0.0
+.\penalty 0
+.\glue(\baselineskip) 5.55556
+.\hbox(6.44444+0.0)x22.22227
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x15.00005
+...\tenrm 1
+...\tenrm 8
+...\tenrm 1
+...\glue 0.0 plus 1.0fil
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x7.22223, glue set 3.30556fil
+...\glue 0.0 plus 1.0fil
+...\tenrm r
+..\glue(\tabskip) 0.0
+.\penalty 0
+.\glue(\baselineskip) 5.55556
+.\hbox(6.44444+0.0)x22.22227
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x15.00005
+...\tenrm 1
+...\tenrm 8
+...\tenrm 2
+...\glue 0.0 plus 1.0fil
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x7.22223, glue set 3.30556fil
+...\glue 0.0 plus 1.0fil
+...\tenrm r
+..\glue(\tabskip) 0.0
+.\penalty 0
+.\glue(\baselineskip) 5.55556
+.\hbox(6.44444+0.0)x22.22227
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x15.00005
+...\tenrm 1
+...\tenrm 8
+...\tenrm 3
+...\glue 0.0 plus 1.0fil
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x7.22223, glue set 3.30556fil
+...\glue 0.0 plus 1.0fil
+...\tenrm r
+..\glue(\tabskip) 0.0
+.\penalty 0
+.\glue(\baselineskip) 5.55556
+.\hbox(6.44444+0.0)x22.22227
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x15.00005
+...\tenrm 1
+...\tenrm 8
+...\tenrm 4
+...\glue 0.0 plus 1.0fil
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x7.22223, glue set 3.30556fil
+...\glue 0.0 plus 1.0fil
+...\tenrm r
+..\glue(\tabskip) 0.0
+.\penalty 0
+.\glue(\baselineskip) 5.55556
+.\hbox(6.44444+0.0)x22.22227
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x15.00005
+...\tenrm 1
+...\tenrm 8
+...\tenrm 5
+...\glue 0.0 plus 1.0fil
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x7.22223, glue set 3.30556fil
+...\glue 0.0 plus 1.0fil
+...\tenrm r
+..\glue(\tabskip) 0.0
+.\penalty 0
+.\glue(\baselineskip) 5.55556
+.\hbox(6.44444+0.0)x22.22227
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x15.00005
+...\tenrm 1
+...\tenrm 8
+...\tenrm 6
+...\glue 0.0 plus 1.0fil
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x7.22223, glue set 3.30556fil
+...\glue 0.0 plus 1.0fil
+...\tenrm r
+..\glue(\tabskip) 0.0
+.\penalty 0
+.\glue(\baselineskip) 5.55556
+.\hbox(6.44444+0.0)x22.22227
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x15.00005
+...\tenrm 1
+...\tenrm 8
+...\tenrm 7
+...\glue 0.0 plus 1.0fil
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x7.22223, glue set 3.30556fil
+...\glue 0.0 plus 1.0fil
+...\tenrm r
+..\glue(\tabskip) 0.0
+.\penalty 0
+.\glue(\baselineskip) 5.55556
+.\hbox(6.44444+0.0)x22.22227
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x15.00005
+...\tenrm 1
+...\tenrm 8
+...\tenrm 8
+...\glue 0.0 plus 1.0fil
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x7.22223, glue set 3.30556fil
+...\glue 0.0 plus 1.0fil
+...\tenrm r
+..\glue(\tabskip) 0.0
+.\penalty 0
+.\glue(\baselineskip) 5.55556
+.\hbox(6.44444+0.0)x22.22227
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x15.00005
+...\tenrm 1
+...\tenrm 8
+...\tenrm 9
+...\glue 0.0 plus 1.0fil
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x7.22223, glue set 3.30556fil
+...\glue 0.0 plus 1.0fil
+...\tenrm r
+..\glue(\tabskip) 0.0
+.\penalty 0
+.\glue(\baselineskip) 5.55556
+.\hbox(6.44444+0.0)x22.22227
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x15.00005
+...\tenrm 1
+...\tenrm 9
+...\tenrm 0
+...\glue 0.0 plus 1.0fil
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x7.22223, glue set 3.30556fil
+...\glue 0.0 plus 1.0fil
+...\tenrm r
+..\glue(\tabskip) 0.0
+.\penalty 0
+.\glue(\baselineskip) 5.55556
+.\hbox(6.44444+0.0)x22.22227
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x15.00005
+...\tenrm 1
+...\tenrm 9
+...\tenrm 1
+...\glue 0.0 plus 1.0fil
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x7.22223, glue set 3.30556fil
+...\glue 0.0 plus 1.0fil
+...\tenrm r
+..\glue(\tabskip) 0.0
+
+%% goal height=144.54, max depth=2.0
+% t=10.0 g=144.54 b=10000 p=0 c=100000#
+% t=22.0 g=144.54 b=10000 p=0 c=100000#
+% t=34.0 g=144.54 b=10000 p=0 c=100000#
+% t=46.0 g=144.54 b=10000 p=0 c=100000#
+% t=58.0 g=144.54 b=10000 p=0 c=100000#
+% t=70.0 g=144.54 b=10000 p=0 c=100000#
+% t=82.0 g=144.54 b=10000 p=0 c=100000#
+% t=94.0 g=144.54 b=10000 p=0 c=100000#
+% t=106.0 g=144.54 b=10000 p=0 c=100000#
+% t=106.0 g=144.54 b=10000 p=-10000 c=-10000#
+[OUT -10000]
+> \box255=
+\vbox(144.54+0.0)x22.22227
+.\glue(\topskip) 3.55556
+.\hbox(6.44444+0.0)x22.22227
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x15.00005
+...\tenrm 1
+...\tenrm 9
+...\tenrm 2
+...\glue 0.0 plus 1.0fil
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x7.22223, glue set 3.30556fil
+...\glue 0.0 plus 1.0fil
+...\tenrm r
+..\glue(\tabskip) 0.0
+.\penalty 0
+.\glue(\baselineskip) 5.55556
+.\hbox(6.44444+0.0)x22.22227
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x15.00005
+...\tenrm 1
+...\tenrm 9
+...\tenrm 3
+...\glue 0.0 plus 1.0fil
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x7.22223, glue set 3.30556fil
+...\glue 0.0 plus 1.0fil
+...\tenrm r
+..\glue(\tabskip) 0.0
+.\penalty 0
+.\glue(\baselineskip) 5.55556
+.\hbox(6.44444+0.0)x22.22227
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x15.00005
+...\tenrm 1
+...\tenrm 9
+...\tenrm 4
+...\glue 0.0 plus 1.0fil
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x7.22223, glue set 3.30556fil
+...\glue 0.0 plus 1.0fil
+...\tenrm r
+..\glue(\tabskip) 0.0
+.\penalty 0
+.\glue(\baselineskip) 5.55556
+.\hbox(6.44444+0.0)x22.22227
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x15.00005
+...\tenrm 1
+...\tenrm 9
+...\tenrm 5
+...\glue 0.0 plus 1.0fil
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x7.22223, glue set 3.30556fil
+...\glue 0.0 plus 1.0fil
+...\tenrm r
+..\glue(\tabskip) 0.0
+.\penalty 0
+.\glue(\baselineskip) 5.55556
+.\hbox(6.44444+0.0)x22.22227
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x15.00005
+...\tenrm 1
+...\tenrm 9
+...\tenrm 6
+...\glue 0.0 plus 1.0fil
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x7.22223, glue set 3.30556fil
+...\glue 0.0 plus 1.0fil
+...\tenrm r
+..\glue(\tabskip) 0.0
+.\penalty 0
+.\glue(\baselineskip) 5.55556
+.\hbox(6.44444+0.0)x22.22227
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x15.00005
+...\tenrm 1
+...\tenrm 9
+...\tenrm 7
+...\glue 0.0 plus 1.0fil
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x7.22223, glue set 3.30556fil
+...\glue 0.0 plus 1.0fil
+...\tenrm r
+..\glue(\tabskip) 0.0
+.\penalty 0
+.\glue(\baselineskip) 5.55556
+.\hbox(6.44444+0.0)x22.22227
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x15.00005
+...\tenrm 1
+...\tenrm 9
+...\tenrm 8
+...\glue 0.0 plus 1.0fil
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x7.22223, glue set 3.30556fil
+...\glue 0.0 plus 1.0fil
+...\tenrm r
+..\glue(\tabskip) 0.0
+.\penalty 0
+.\glue(\baselineskip) 5.55556
+.\hbox(6.44444+0.0)x22.22227
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x15.00005
+...\tenrm 1
+...\tenrm 9
+...\tenrm 9
+...\glue 0.0 plus 1.0fil
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x7.22223, glue set 3.30556fil
+...\glue 0.0 plus 1.0fil
+...\tenrm r
+..\glue(\tabskip) 0.0
+.\penalty 0
+.\glue(\baselineskip) 5.55556
+.\hbox(6.44444+0.0)x22.22227
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x15.00005
+...\tenrm 2
+...\tenrm 0
+...\tenrm 0
+...\glue 0.0 plus 1.0fil
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x7.22223, glue set 3.30556fil
+...\glue 0.0 plus 1.0fil
+...\tenrm r
+..\glue(\tabskip) 0.0
+.\penalty 0
+.\mark{M2}
+
+! OK.
+<output> ...UT \the \outputpenalty ]}\showbox 255
+                                                  \shipout \box 255 \global ...
+l.11 ...rb\noalign{\mark{M2}\penalty-10000}z&w\cr}
+
+
+
+Completed box being shipped out [17.200]
+\vbox(144.54+0.0)x22.22227
+.\glue(\topskip) 3.55556
+.\hbox(6.44444+0.0)x22.22227
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x15.00005
+...\tenrm 1
+...\tenrm 9
+...\tenrm 2
+...\glue 0.0 plus 1.0fil
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x7.22223, glue set 3.30556fil
+...\glue 0.0 plus 1.0fil
+...\tenrm r
+..\glue(\tabskip) 0.0
+.\penalty 0
+.\glue(\baselineskip) 5.55556
+.\hbox(6.44444+0.0)x22.22227
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x15.00005
+...\tenrm 1
+...\tenrm 9
+...\tenrm 3
+...\glue 0.0 plus 1.0fil
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x7.22223, glue set 3.30556fil
+...\glue 0.0 plus 1.0fil
+...\tenrm r
+..\glue(\tabskip) 0.0
+.\penalty 0
+.\glue(\baselineskip) 5.55556
+.\hbox(6.44444+0.0)x22.22227
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x15.00005
+...\tenrm 1
+...\tenrm 9
+...\tenrm 4
+...\glue 0.0 plus 1.0fil
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x7.22223, glue set 3.30556fil
+...\glue 0.0 plus 1.0fil
+...\tenrm r
+..\glue(\tabskip) 0.0
+.\penalty 0
+.\glue(\baselineskip) 5.55556
+.\hbox(6.44444+0.0)x22.22227
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x15.00005
+...\tenrm 1
+...\tenrm 9
+...\tenrm 5
+...\glue 0.0 plus 1.0fil
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x7.22223, glue set 3.30556fil
+...\glue 0.0 plus 1.0fil
+...\tenrm r
+..\glue(\tabskip) 0.0
+.\penalty 0
+.\glue(\baselineskip) 5.55556
+.\hbox(6.44444+0.0)x22.22227
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x15.00005
+...\tenrm 1
+...\tenrm 9
+...\tenrm 6
+...\glue 0.0 plus 1.0fil
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x7.22223, glue set 3.30556fil
+...\glue 0.0 plus 1.0fil
+...\tenrm r
+..\glue(\tabskip) 0.0
+.\penalty 0
+.\glue(\baselineskip) 5.55556
+.\hbox(6.44444+0.0)x22.22227
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x15.00005
+...\tenrm 1
+...\tenrm 9
+...\tenrm 7
+...\glue 0.0 plus 1.0fil
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x7.22223, glue set 3.30556fil
+...\glue 0.0 plus 1.0fil
+...\tenrm r
+..\glue(\tabskip) 0.0
+.\penalty 0
+.\glue(\baselineskip) 5.55556
+.\hbox(6.44444+0.0)x22.22227
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x15.00005
+...\tenrm 1
+...\tenrm 9
+...\tenrm 8
+...\glue 0.0 plus 1.0fil
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x7.22223, glue set 3.30556fil
+...\glue 0.0 plus 1.0fil
+...\tenrm r
+..\glue(\tabskip) 0.0
+.\penalty 0
+.\glue(\baselineskip) 5.55556
+.\hbox(6.44444+0.0)x22.22227
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x15.00005
+...\tenrm 1
+...\tenrm 9
+...\tenrm 9
+...\glue 0.0 plus 1.0fil
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x7.22223, glue set 3.30556fil
+...\glue 0.0 plus 1.0fil
+...\tenrm r
+..\glue(\tabskip) 0.0
+.\penalty 0
+.\glue(\baselineskip) 5.55556
+.\hbox(6.44444+0.0)x22.22227
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x15.00005
+...\tenrm 2
+...\tenrm 0
+...\tenrm 0
+...\glue 0.0 plus 1.0fil
+..\glue(\tabskip) 0.0
+..\hbox(6.44444+0.0)x7.22223, glue set 3.30556fil
+...\glue 0.0 plus 1.0fil
+...\tenrm r
+..\glue(\tabskip) 0.0
+.\penalty 0
+.\mark{M2}
+
+%% goal height=144.54, max depth=2.0
+
+### vertical mode entered at line 0
+### current page:
+\glue(\topskip) 5.69446
+\hbox(4.30554+0.0)x22.22227
+.\glue(\tabskip) 0.0
+.\hbox(4.30554+0.0)x15.00005, glue set 10.5556fil
+..\tenrm z
+..\glue 0.0 plus 1.0fil
+.\glue(\tabskip) 0.0
+.\hbox(4.30554+0.0)x7.22223
+..\glue 0.0 plus 1.0fil
+..\tenrm w
+.\glue(\tabskip) 0.0
+total height 10.0
+ goal height 144.54
+prevdepth 0.0
+
+! OK.
+l.12 \showlists
+
+
+% t=10.0 g=144.54 b=10000 p=0 c=100000#
+% t=10.0 plus 1.0fill g=144.54 b=0 p=-1073741824 c=-1073741824#
+[OUT -1073741824]
+> \box255=
+\vbox(144.54+0.0)x100.0, glue set 134.54fill
+.\glue(\topskip) 5.69446
+.\hbox(4.30554+0.0)x22.22227
+..\glue(\tabskip) 0.0
+..\hbox(4.30554+0.0)x15.00005, glue set 10.5556fil
+...\tenrm z
+...\glue 0.0 plus 1.0fil
+..\glue(\tabskip) 0.0
+..\hbox(4.30554+0.0)x7.22223
+...\glue 0.0 plus 1.0fil
+...\tenrm w
+..\glue(\tabskip) 0.0
+.\hbox(0.0+0.0)x100.0
+.\glue 0.0 plus 1.0fill
+
+! OK.
+<output> ...UT \the \outputpenalty ]}\showbox 255
+                                                  \shipout \box 255 \global ...
+<to be read again>
+                   \end
+l.13 \end
+
+
+
+Completed box being shipped out [18.200]
+\vbox(144.54+0.0)x100.0, glue set 134.54fill
+.\glue(\topskip) 5.69446
+.\hbox(4.30554+0.0)x22.22227
+..\glue(\tabskip) 0.0
+..\hbox(4.30554+0.0)x15.00005, glue set 10.5556fil
+...\tenrm z
+...\glue 0.0 plus 1.0fil
+..\glue(\tabskip) 0.0
+..\hbox(4.30554+0.0)x7.22223
+...\glue 0.0 plus 1.0fil
+...\tenrm w
+..\glue(\tabskip) 0.0
+.\hbox(0.0+0.0)x100.0
+.\glue 0.0 plus 1.0fill
+
+ )
+Output written on m3-align-pages.dvi (18 pages, 3992 bytes).

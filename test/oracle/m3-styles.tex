@@ -1,0 +1,12 @@
+%! oracle: ini
+\input plain
+\tracingonline=0 \showboxbreadth=10000 \showboxdepth=10000 \tracingoutput=1
+\setbox1=\hbox{$\displaystyle\mathchoice{D}{T}{S}{SS}\textstyle\mathchoice{D}{T}{S}{SS}\scriptstyle\mathchoice{D}{T}{S}{SS}\scriptscriptstyle\mathchoice{D}{T}{S}{SS}$}
+\showbox1
+\setbox2=\hbox{$x^{y^{z^{w}}} \scriptstyle a\nonscript\mskip 6mu b \displaystyle a\nonscript\mskip 6mu b$}
+\showbox2
+\setbox3=\hbox{$\mathchoice{D}{T}{S}{SS}^{\mathchoice{D}{T}{S}{SS}^{\mathchoice{D}{T}{S}{SS}}}$}
+\showbox3
+\showthe\scriptfont0 \showthe\scriptscriptfont1 \showthe\textfont2
+$$\displaystyle a\scriptscriptstyle b\showlists$$
+\end

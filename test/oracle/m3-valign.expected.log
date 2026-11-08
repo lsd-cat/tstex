@@ -1,0 +1,259 @@
+(m3-valign.tex (plain.tex Preloading the plain format: codes, registers,
+\maxdimen=\dimen10
+\hideskip=\skip10
+\centering=\skip11
+\p@=\dimen11
+\z@=\dimen12
+\z@skip=\skip12
+\voidb@x=\box10
+parameters,
+\smallskipamount=\skip13
+\medskipamount=\skip14
+\bigskipamount=\skip15
+\normalbaselineskip=\skip16
+\normallineskip=\skip17
+\normallineskiplimit=\dimen13
+\jot=\dimen14
+\interdisplaylinepenalty=\count23
+\interfootnotelinepenalty=\count24
+fonts, more fonts,
+\itfam=\fam4
+\slfam=\fam5
+\bffam=\fam6
+\ttfam=\fam7
+macros,
+\strutbox=\box11
+\mscount=\count25
+\tabs=\box12
+\tabsyet=\box13
+\tabsdone=\box14
+math definitions,
+\rootbox=\box15
+\p@renwd=\dimen15
+output routines,
+\headline=\toks10
+\footline=\toks11
+\footins=\insert254
+\topins=\insert253
+hyphenation (hyphen.tex))
+> \box1=
+\hbox(23.24998+0.0)x11.11115
+.\vbox(23.24998+0.0)x5.55557
+..\glue(\tabskip) 0.0
+..\vbox(16.30554+0.0)x5.55557, glue set 12.0fil
+...\hbox(4.30554+0.0)x5.00002
+....\tenrm a
+...\glue 0.0 plus 1.0fil
+..\glue(\tabskip) 0.0
+..\vbox(6.94444+0.0)x5.55557
+...\glue 0.0 plus 1.0fil
+...\hbox(6.94444+0.0)x5.55557
+....\tenrm b
+..\glue(\tabskip) 0.0
+.\vbox(23.24998+0.0)x5.55557
+..\glue(\tabskip) 0.0
+..\vbox(16.30554+0.0)x5.55557
+...\hbox(4.30554+0.0)x4.44444
+....\tenrm c
+...\glue(\baselineskip) 5.05556
+...\hbox(6.94444+0.0)x5.55557
+....\tenrm d
+...\glue 0.0 plus 1.0fil
+..\glue(\tabskip) 0.0
+..\vbox(6.94444+0.0)x5.55557, glue set 2.6389fil
+...\glue 0.0 plus 1.0fil
+...\hbox(4.30554+0.0)x4.44444
+....\tenrm e
+..\glue(\tabskip) 0.0
+
+! OK.
+l.5 \showbox1
+
+
+> \box2=
+\hbox(6.94444+0.0)x15.55559
+.\vbox(6.94444+0.0)x5.00002
+..\glue(\tabskip) 0.0
+..\vbox(6.94444+0.0)x5.00002
+...\hbox(4.30554+0.0)x5.00002
+....\tenrm a
+..\glue(\tabskip) 0.0
+.\glue 5.0
+.\vbox(6.94444+0.0)x5.55557
+..\glue(\tabskip) 0.0
+..\vbox(6.94444+0.0)x5.55557
+...\hbox(6.94444+0.0)x5.55557
+....\tenrm b
+..\glue(\tabskip) 0.0
+
+! OK.
+l.7 \showbox2
+
+
+
+Underfull \vbox (badness 10000) in alignment at lines 8--8
+
+\vbox(20.0+0.0)x0.0
+.\glue(\tabskip) 0.0
+.\unsetbox(4.30554+0.0)x0.0
+.\glue(\tabskip) 0.0
+
+> \box3=
+\hbox(20.0+1.94444)x15.55562
+.\tenrm x
+.\vbox(20.0+0.0)x5.00002
+..\glue(\tabskip) 0.0
+..\vbox(4.30554+0.0)x5.00002
+...\glue 0.0 plus 1.0fil
+...\hbox(4.30554+0.0)x5.00002
+....\tenrm a
+..\glue(\tabskip) 0.0
+.\tenrm y
+
+! OK.
+l.9 \showbox3
+
+
+> \box4=
+\vbox(4.30554+1.94444)x100.0
+.\hbox(4.30554+1.94444)x100.0, glue set 84.44438fil
+..\tenrm x
+..\vbox(4.30554+0.0)x5.00002
+...\glue(\tabskip) 0.0
+...\vbox(4.30554+0.0)x5.00002
+....\hbox(4.30554+0.0)x5.00002
+.....\tenrm a
+...\glue(\tabskip) 0.0
+..\tenrm y
+..\penalty 10000
+..\glue(\parfillskip) 0.0 plus 1.0fil
+..\glue(\rightskip) 0.0
+
+! OK.
+l.11 \showbox4
+
+
+! Extra alignment tab has been changed to \cr.
+<template> \endtemplate
+
+l.12 \setbox5=\hbox{\valign{#\cr \hbox{a}&
+                                          \hbox{b}\cr}}
+You have given more \span or & marks than there were
+in the preamble to the \halign or \valign now in progress.
+So I'll assume that you meant to type \cr instead.
+
+> \box5=
+\hbox(6.94444+0.0)x10.55559
+.\vbox(6.94444+0.0)x5.00002
+..\glue(\tabskip) 0.0
+..\vbox(6.94444+0.0)x5.00002
+...\hbox(4.30554+0.0)x5.00002
+....\tenrm a
+..\glue(\tabskip) 0.0
+.\vbox(6.94444+0.0)x5.55557
+..\glue(\tabskip) 0.0
+..\vbox(6.94444+0.0)x5.55557
+...\hbox(6.94444+0.0)x5.55557
+....\tenrm b
+..\glue(\tabskip) 0.0
+
+! OK.
+l.13 \showbox5
+
+
+! Missing \cr inserted.
+<inserted text>
+                \cr
+<to be read again>
+                   }
+l.14 \setbox6=\hbox{\valign{#\cr \hbox{a}}
+                                          }
+I'm guessing that you meant to end an alignment here.
+
+> \box6=
+\hbox(4.30554+0.0)x5.00002
+.\vbox(4.30554+0.0)x5.00002
+..\glue(\tabskip) 0.0
+..\vbox(4.30554+0.0)x5.00002
+...\hbox(4.30554+0.0)x5.00002
+....\tenrm a
+..\glue(\tabskip) 0.0
+
+! OK.
+l.15 \showbox6
+
+
+
+Completed box being shipped out [1]
+\vbox(68.24998+1.94444)x100.0
+.\hbox(23.24998+0.0)x11.11115
+..\vbox(23.24998+0.0)x5.55557
+...\glue(\tabskip) 0.0
+...\vbox(16.30554+0.0)x5.55557, glue set 12.0fil
+....\hbox(4.30554+0.0)x5.00002
+.....\tenrm a
+....\glue 0.0 plus 1.0fil
+...\glue(\tabskip) 0.0
+...\vbox(6.94444+0.0)x5.55557
+....\glue 0.0 plus 1.0fil
+....\hbox(6.94444+0.0)x5.55557
+.....\tenrm b
+...\glue(\tabskip) 0.0
+..\vbox(23.24998+0.0)x5.55557
+...\glue(\tabskip) 0.0
+...\vbox(16.30554+0.0)x5.55557
+....\hbox(4.30554+0.0)x4.44444
+.....\tenrm c
+....\glue(\baselineskip) 5.05556
+....\hbox(6.94444+0.0)x5.55557
+.....\tenrm d
+....\glue 0.0 plus 1.0fil
+...\glue(\tabskip) 0.0
+...\vbox(6.94444+0.0)x5.55557, glue set 2.6389fil
+....\glue 0.0 plus 1.0fil
+....\hbox(4.30554+0.0)x4.44444
+.....\tenrm e
+...\glue(\tabskip) 0.0
+.\glue(\baselineskip) 5.05556
+.\hbox(6.94444+0.0)x15.55559
+..\vbox(6.94444+0.0)x5.00002
+...\glue(\tabskip) 0.0
+...\vbox(6.94444+0.0)x5.00002
+....\hbox(4.30554+0.0)x5.00002
+.....\tenrm a
+...\glue(\tabskip) 0.0
+..\glue 5.0
+..\vbox(6.94444+0.0)x5.55557
+...\glue(\tabskip) 0.0
+...\vbox(6.94444+0.0)x5.55557
+....\hbox(6.94444+0.0)x5.55557
+.....\tenrm b
+...\glue(\tabskip) 0.0
+.\glue(\lineskip) 1.0
+.\hbox(20.0+1.94444)x15.55562
+..\tenrm x
+..\vbox(20.0+0.0)x5.00002
+...\glue(\tabskip) 0.0
+...\vbox(4.30554+0.0)x5.00002
+....\glue 0.0 plus 1.0fil
+....\hbox(4.30554+0.0)x5.00002
+.....\tenrm a
+...\glue(\tabskip) 0.0
+..\tenrm y
+.\glue(\baselineskip) 5.75002
+.\vbox(4.30554+1.94444)x100.0
+..\hbox(4.30554+1.94444)x100.0, glue set 84.44438fil
+...\tenrm x
+...\vbox(4.30554+0.0)x5.00002
+....\glue(\tabskip) 0.0
+....\vbox(4.30554+0.0)x5.00002
+.....\hbox(4.30554+0.0)x5.00002
+......\tenrm a
+....\glue(\tabskip) 0.0
+...\tenrm y
+...\penalty 10000
+...\glue(\parfillskip) 0.0 plus 1.0fil
+...\glue(\rightskip) 0.0
+
+ )
+Output written on m3-valign.dvi (1 page, 312 bytes).

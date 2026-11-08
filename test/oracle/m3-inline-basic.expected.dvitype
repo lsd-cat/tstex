@@ -1,0 +1,242 @@
+Options selected:
+  Starting page = * 
+  Maximum number of pages = 1000000
+  Output level = 4 (the works)
+  Resolution = 300.00000000 pixels per inch
+numerator/denominator=25400000/473628672
+magnification=1000;       0.00006334 pixels per DVI unit
+'<comment>'
+Postamble starts at byte 467.
+maxv=43725786, maxh=13107200, maxstackdepth=3, totalpages=2
+Font 11: cmmi5---loaded at size 327680 DVI units 
+Font 9: cmmi7---loaded at size 458752 DVI units 
+Font 6: cmmi10---loaded at size 655360 DVI units 
+Font 3: cmr7---loaded at size 458752 DVI units 
+Font 0: cmr10---loaded at size 655360 DVI units 
+ 
+42: beginning of page 1 
+87: down3 533465 v:=0+533465=533465, vv:=34 
+91: push 
+level 0:(h=0,v=533465,w=0,x=0,y=0,z=0,hh=0,vv=34) 
+92: fntdef1 6: cmmi10 
+114: fntnum6 current font is cmmi10 
+115: setchar97 h:=0+346416=346416, hh:=22 
+116: w3 145632 h:=346416+145632=492048, hh:=31 
+[a ]
+120: fntdef1 0: cmr10 
+141: fntnum0 current font is cmr10 
+142: setchar43 h:=492048+509726=1001774, hh:=63 
+143: w0 145632 h:=1001774+145632=1147406, hh:=73 
+[+ ]
+144: fntnum6 current font is cmmi10 
+145: setchar98 h:=1147406+281258=1428664, hh:=91 
+146: w3 182040 h:=1428664+182040=1610704, hh:=102 
+[b ]
+150: fntnum0 current font is cmr10 
+151: setchar61 h:=1610704+509726=2120430, hh:=134 
+152: w0 182040 h:=2120430+182040=2302470, hh:=146 
+[= ]
+153: fntnum6 current font is cmmi10 
+154: setchar99 h:=2302470+283611=2586081, hh:=164 
+155: right3 218453 h:=2586081+218453=2804534, hh:=178 
+159: setchar120 h:=2804534+374556=3179090, hh:=202 
+[c x]
+160: push 
+level 1:(h=3179090,v=533465,w=182040,x=0,y=0,z=0,hh=202,vv=34) 
+161: down3 -237825 v:=533465-237825=295640, vv:=19 
+165: fntdef1 3: cmr7 
+185: fntnum3 current font is cmr7 
+186: setchar50 h:=3179090+261235=3440325, hh:=219 
+[2]
+187: pop 
+level 1:(h=3179090,v=533465,w=182040,x=0,y=0,z=0,hh=202,vv=34) 
+188: right3 512456 h:=3179090+512456=3691546, hh:=234 
+[ ]
+192: fntnum6 current font is cmmi10 
+193: setchar120 h:=3691546+374556=4066102, hh:=258 
+[x]
+194: push 
+level 1:(h=4066102,v=533465,w=182040,x=0,y=0,z=0,hh=258,vv=34) 
+195: down3 98303 v:=533465+98303=631768, vv:=40 
+199: fntdef1 9: cmmi7 
+220: fntnum9 current font is cmmi7 
+221: setchar105 h:=4066102+185420=4251522, hh:=270 
+[i]
+222: pop 
+level 1:(h=4066102,v=533465,w=182040,x=0,y=0,z=0,hh=258,vv=34) 
+223: right3 436641 h:=4066102+436641=4502743, hh:=285 
+[ ]
+227: fntnum6 current font is cmmi10 
+228: setchar120 h:=4502743+374556=4877299, hh:=309 
+[x]
+229: push 
+level 1:(h=4877299,v=533465,w=182040,x=0,y=0,z=0,hh=309,vv=34) 
+230: down3 -237825 v:=533465-237825=295640, vv:=19 
+234: fntnum9 current font is cmmi7 
+235: setchar97 h:=4877299+284272=5161571, hh:=327 
+[a]
+236: push 
+level 2:(h=5161571,v=295640,w=182040,x=0,y=0,z=0,hh=327,vv=19) 
+237: down3 69541 v:=295640+69541=365181, vv:=23 
+241: fntdef1 11: cmmi5 
+262: fntnum11 current font is cmmi5 
+263: setchar98 h:=5161571+207531=5369102, hh:=340 
+[b]
+264: pop 
+level 2:(h=5161571,v=295640,w=182040,x=0,y=0,z=0,hh=327,vv=19) 
+265: pop 
+level 1:(h=4877299,v=533465,w=182040,x=0,y=0,z=0,hh=309,vv=34) 
+266: right3 775792 h:=4877299+775792=5653091, hh:=358 
+[ ]
+270: fntnum6 current font is cmmi10 
+271: setchar120 h:=5653091+374556=6027647, hh:=382 
+[x]
+272: push 
+level 1:(h=6027647,v=533465,w=182040,x=0,y=0,z=0,hh=382,vv=34) 
+273: down3 -237825 v:=533465-237825=295640, vv:=19 
+277: push 
+level 2:(h=6027647,v=295640,w=182040,x=0,y=0,z=0,hh=382,vv=19) 
+278: fntnum3 current font is cmr7 
+279: setchar50 h:=6027647+261235=6288882, hh:=399 
+[2]
+280: pop 
+level 2:(h=6027647,v=295640,w=182040,x=0,y=0,z=0,hh=382,vv=19) 
+281: down3 408410 v:=295640+408410=704050, vv:=45 
+285: push 
+level 2:(h=6027647,v=704050,w=182040,x=0,y=0,z=0,hh=382,vv=45) 
+286: fntnum9 current font is cmmi7 
+287: setchar105 h:=6027647+185420=6213067, hh:=394 
+[i]
+288: pop 
+level 2:(h=6027647,v=704050,w=182040,x=0,y=0,z=0,hh=382,vv=45) 
+289: pop 
+level 1:(h=6027647,v=533465,w=182040,x=0,y=0,z=0,hh=382,vv=34) 
+290: pop 
+level 0:(h=0,v=533465,w=0,x=0,y=0,z=0,hh=0,vv=34) 
+291: y3 786432 v:=533465+786432=1319897, vv:=84 
+295: push 
+level 0:(h=0,v=1319897,w=0,x=0,y=786432,z=0,hh=0,vv=84) 
+296: right3 131072 h:=0+131072=131072, hh:=8 
+[ ]
+300: fntnum6 current font is cmmi10 
+301: setchar97 h:=131072+346416=477488, hh:=30 
+[a]
+302: push 
+level 1:(h=477488,v=1319897,w=0,x=0,y=786432,z=0,hh=30,vv=84) 
+303: right3 480597 h:=477488+480597=958085, hh:=61 
+[ ]
+307: fntnum0 current font is cmr10 
+308: setchar116 h:=958085+254863=1212948, hh:=77 
+309: setchar101 h:=1212948+291271=1504219, hh:=95 
+310: setchar120 h:=1504219+345886=1850105, hh:=117 
+311: setchar116 h:=1850105+254863=2104968, hh:=133 
+[text]
+312: pop 
+level 1:(h=477488,v=1319897,w=0,x=0,y=786432,z=0,hh=30,vv=84) 
+313: pop 
+level 0:(h=0,v=1319897,w=0,x=0,y=786432,z=0,hh=0,vv=84) 
+314: y0 786432 v:=1319897+786432=2106329, vv:=133 
+315: push 
+level 0:(h=0,v=2106329,w=0,x=0,y=786432,z=0,hh=0,vv=133) 
+316: fntnum6 current font is cmmi10 
+317: setchar120 h:=0+374556=374556, hh:=24 
+[x]
+318: push 
+level 1:(h=374556,v=2106329,w=0,x=0,y=786432,z=0,hh=24,vv=133) 
+319: down3 -237825 v:=2106329-237825=1868504, vv:=118 
+323: fntnum9 current font is cmmi7 
+324: setchar97 h:=374556+284272=658828, hh:=42 
+[a]
+325: pop 
+level 1:(h=374556,v=2106329,w=0,x=0,y=786432,z=0,hh=24,vv=133) 
+326: push 
+level 1:(h=374556,v=2106329,w=0,x=0,y=786432,z=0,hh=24,vv=133) 
+327: right3 317040 h:=374556+317040=691596, hh:=44 
+[ ]
+331: down3 -237825 v:=2106329-237825=1868504, vv:=118 
+335: setchar98 h:=691596+230468=922064, hh:=59 
+[b]
+336: pop 
+level 1:(h=374556,v=2106329,w=0,x=0,y=786432,z=0,hh=24,vv=133) 
+337: pop 
+level 0:(h=0,v=2106329,w=0,x=0,y=786432,z=0,hh=0,vv=133) 
+338: y0 786432 v:=2106329+786432=2892761, vv:=183 
+339: push 
+level 0:(h=0,v=2892761,w=0,x=0,y=786432,z=0,hh=0,vv=183) 
+340: fntnum6 current font is cmmi10 
+341: setchar120 h:=0+374556=374556, hh:=24 
+[x]
+342: push 
+level 1:(h=374556,v=2892761,w=0,x=0,y=786432,z=0,hh=24,vv=183) 
+343: down3 98303 v:=2892761+98303=2991064, vv:=189 
+347: fntnum9 current font is cmmi7 
+348: setchar97 h:=374556+284272=658828, hh:=42 
+[a]
+349: pop 
+level 1:(h=374556,v=2892761,w=0,x=0,y=786432,z=0,hh=24,vv=183) 
+350: push 
+level 1:(h=374556,v=2892761,w=0,x=0,y=786432,z=0,hh=24,vv=183) 
+351: right3 317040 h:=374556+317040=691596, hh:=44 
+[ ]
+355: down3 98303 v:=2892761+98303=2991064, vv:=189 
+359: setchar98 h:=691596+230468=922064, hh:=59 
+[b]
+360: pop 
+level 1:(h=374556,v=2892761,w=0,x=0,y=786432,z=0,hh=24,vv=183) 
+361: pop 
+level 0:(h=0,v=2892761,w=0,x=0,y=786432,z=0,hh=0,vv=183) 
+362: eop 
+ 
+363: beginning of page 1 
+408: push 
+level 0:(h=0,v=0,w=0,x=0,y=0,z=0,hh=0,vv=0) 
+409: down3 -917504 v:=0-917504=-917504, vv:=-58 
+413: pop 
+level 0:(h=0,v=0,w=0,x=0,y=0,z=0,hh=0,vv=0) 
+414: down4 42152922 v:=0+42152922=42152922, vv:=2670 
+419: push 
+level 0:(h=0,v=42152922,w=0,x=0,y=0,z=0,hh=0,vv=2670) 
+420: down4 -41497562 v:=42152922-41497562=655360, vv:=42 
+425: push 
+level 1:(h=0,v=655360,w=0,x=0,y=0,z=0,hh=0,vv=42) 
+426: fntnum6 current font is cmmi10 
+427: setchar97 h:=0+346416=346416, hh:=22 
+428: w3 145632 h:=346416+145632=492048, hh:=31 
+[a ]
+432: fntnum0 current font is cmr10 
+433: setchar43 h:=492048+509726=1001774, hh:=63 
+434: w0 145632 h:=1001774+145632=1147406, hh:=73 
+[+ ]
+435: fntnum6 current font is cmmi10 
+436: setchar98 h:=1147406+281258=1428664, hh:=91 
+[b]
+437: push 
+level 2:(h=1428664,v=655360,w=145632,x=0,y=0,z=0,hh=91,vv=42) 
+438: down3 -237825 v:=655360-237825=417535, vv:=27 
+442: fntnum3 current font is cmr7 
+443: setchar50 h:=1428664+261235=1689899, hh:=108 
+[2]
+444: pop 
+level 2:(h=1428664,v=655360,w=145632,x=0,y=0,z=0,hh=91,vv=42) 
+445: push 
+level 2:(h=1428664,v=655360,w=145632,x=0,y=0,z=0,hh=91,vv=42) 
+446: right3 294003 h:=1428664+294003=1722667, hh:=109 
+[ ]
+450: fntnum0 current font is cmr10 
+451: setchar113 h:=1722667+345885=2068552, hh:=131 
+[q]
+452: pop 
+level 2:(h=1428664,v=655360,w=145632,x=0,y=0,z=0,hh=91,vv=42) 
+453: pop 
+level 1:(h=0,v=655360,w=0,x=0,y=0,z=0,hh=0,vv=42) 
+454: pop 
+level 0:(h=0,v=42152922,w=0,x=0,y=0,z=0,hh=0,vv=2670) 
+455: down3 1572864 v:=42152922+1572864=43725786, vv:=2770 
+459: push 
+level 0:(h=0,v=43725786,w=0,x=0,y=0,z=0,hh=0,vv=2770) 
+460: right3 6389760 h:=0+6389760=6389760, hh:=405 
+464: setchar49 h:=6389760+327681=6717441, hh:=426 
+[ 1]
+465: pop 
+level 0:(h=0,v=43725786,w=0,x=0,y=0,z=0,hh=0,vv=2770) 
+466: eop 

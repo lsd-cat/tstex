@@ -1,0 +1,23 @@
+%! oracle: ini
+\input plain
+\tracingonline=0 \showboxbreadth=10000 \showboxdepth=10000 \tracingoutput=1
+\tracingcommands=0
+\setbox1=\vbox{\halign{#&#\cr a&b&c\cr d&e\cr}}
+\showbox1
+& \cr
+\par
+\setbox2=\hbox{a\halign{#\cr x\cr}}
+\showbox2
+\setbox3=\vbox{\halign{#\cr \vbox{\halign{#&#\cr p&q\cr}}\cr}}
+\showbox3
+\setbox4=\vbox{\noindent a\halign{#\cr x\cr}b}
+\showbox4
+\setbox7=\vbox{\noalign{x}}
+\showbox7
+\setbox8=\vbox{\halign{#\cr \hbox{a}\cr \cr\crcr}}
+\showbox8
+\setbox6=\vbox{\noindent$$\halign{#\cr a\cr}x\par}
+\showbox6
+\setbox5=\vbox{\halign{#\cr a}}
+\showbox5
+\end

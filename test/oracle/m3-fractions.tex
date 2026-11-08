@@ -1,0 +1,16 @@
+%! oracle: ini
+\input plain
+\tracingonline=0 \showboxbreadth=10000 \showboxdepth=10000 \tracingoutput=1
+\setbox1=\hbox{$a\over b$ $a\atop b$ $a\above 2pt b$ $a\overwithdelims() b$ $a\atopwithdelims[] b$ $a\abovewithdelims\{\}1pt b$}
+\showbox1
+\setbox2=\vbox{\hsize=100pt \noindent$${a\over b}+{a\over b}\showlists$$}
+\showbox2
+\setbox3=\hbox{$a\over b\over c$}
+\showbox3
+\def\frac#1#2{{#1\over#2}}
+\setbox4=\hbox{$\frac12+\frac{x}{y}$ ${n\choose k}$ $\displaystyle\frac12$ $\scriptstyle\frac12$}
+\showbox4
+\setbox5=\hbox{$\displaystyle{{a\over b}\over{c\over d}}$}
+\showbox5
+\shipout\vbox{\box1\box4\box5}
+\end

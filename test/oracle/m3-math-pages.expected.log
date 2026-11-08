@@ -1,0 +1,825 @@
+(m3-math-pages.tex (plain.tex Preloading the plain format: codes, registers
+,
+\maxdimen=\dimen10
+\hideskip=\skip10
+\centering=\skip11
+\p@=\dimen11
+\z@=\dimen12
+\z@skip=\skip12
+\voidb@x=\box10
+parameters,
+\smallskipamount=\skip13
+\medskipamount=\skip14
+\bigskipamount=\skip15
+\normalbaselineskip=\skip16
+\normallineskip=\skip17
+\normallineskiplimit=\dimen13
+\jot=\dimen14
+\interdisplaylinepenalty=\count23
+\interfootnotelinepenalty=\count24
+fonts, more fonts,
+\itfam=\fam4
+\slfam=\fam5
+\bffam=\fam6
+\ttfam=\fam7
+macros,
+\strutbox=\box11
+\mscount=\count25
+\tabs=\box12
+\tabsyet=\box13
+\tabsdone=\box14
+math definitions,
+\rootbox=\box15
+\p@renwd=\dimen15
+output routines,
+\headline=\toks10
+\footline=\toks11
+\footins=\insert254
+\topins=\insert253
+hyphenation (hyphen.tex))
+@firstpass
+[]\tenrm Aaa bbb ccc ddd eee fff ggg hhh
+@ via @@0 b=1 p=0 d=121
+@@1: line 1.2 t=121 -> @@0
+iii jjj kkk lll mmm nnn ooo ppp
+@ via @@1 b=86 p=0 d=9216
+@@2: line 2.1 t=9337 -> @@1
+qqq
+@ via @@1 b=74 p=0 d=7056
+@@3: line 2.3 t=7177 -> @@1
+rrr
+@\par via @@2 b=0 p=-10000 d=100
+@\par via @@3 b=0 p=-10000 d=100
+@@4: line 3.2- t=7277 -> @@3
+
+%% goal height=60.0, max depth=2.0
+% t=10.0 g=60.0 b=10000 p=60 c=100000#
+% t=22.0 g=60.0 b=10000 p=333 c=100000#
+% t=34.0 g=60.0 b=10000 p=111 c=100000#
+% t=46.0 plus 3.0 g=60.0 b=10000 p=222 c=100000#
+@firstpass
+@secondpass
+\tenrm and
+@ via @@0 b=10000 p=0 d=100010000
+@@1: line 7.0 t=100010000 -> @@0
+more
+@ via @@0 b=10000 p=0 d=100010000
+@ via @@1 b=10000 p=0 d=100000000
+@@2: line 7.0 t=100010000 -> @@0
+text
+@ via @@0 b=10000 p=0 d=100010000
+@ via @@1 b=10000 p=0 d=100000000
+@ via @@2 b=10000 p=0 d=100000000
+@@3: line 7.0 t=100010000 -> @@0
+af-
+@\discretionary via @@0 b=10000 p=50 d=100012500
+@\discretionary via @@1 b=10000 p=50 d=100002500
+@\discretionary via @@2 b=10000 p=50 d=100002500
+@\discretionary via @@3 b=10000 p=50 d=100002500
+@@4: line 7.0- t=100012500 -> @@0
+ter
+@ via @@0 b=10000 p=0 d=100010000
+@ via @@1 b=10000 p=0 d=100000000
+@ via @@2 b=10000 p=0 d=100000000
+@ via @@3 b=10000 p=0 d=100000000
+@ via @@4 b=10000 p=0 d=100000000
+@@5: line 7.0 t=100010000 -> @@0
+the
+@ via @@0 b=10000 p=0 d=100010000
+@ via @@1 b=10000 p=0 d=100000000
+@ via @@2 b=10000 p=0 d=100000000
+@ via @@3 b=10000 p=0 d=100000000
+@ via @@4 b=10000 p=0 d=100000000
+@ via @@5 b=10000 p=0 d=100000000
+@@6: line 7.0 t=100010000 -> @@0
+dis-
+@\discretionary via @@0 b=3872 p=50 d=15082424
+@\discretionary via @@1 b=10000 p=50 d=100002500
+@\discretionary via @@2 b=10000 p=50 d=100002500
+@\discretionary via @@3 b=10000 p=50 d=100002500
+@\discretionary via @@4 b=10000 p=50 d=100012500
+@\discretionary via @@5 b=10000 p=50 d=100002500
+@\discretionary via @@6 b=10000 p=50 d=100002500
+@@7: line 7.0- t=15082424 -> @@0
+play
+@ via @@0 b=399 p=0 d=177281
+@ via @@1 b=10000 p=0 d=100000000
+@ via @@2 b=10000 p=0 d=100000000
+@ via @@3 b=10000 p=0 d=100000000
+@ via @@4 b=10000 p=0 d=100000000
+@ via @@5 b=10000 p=0 d=100000000
+@ via @@6 b=10000 p=0 d=100000000
+@ via @@7 b=10000 p=0 d=100000000
+@@8: line 7.0 t=177281 -> @@0
+that
+@ via @@1 b=230 p=0 d=57600
+@ via @@2 b=10000 p=0 d=100000000
+@ via @@3 b=10000 p=0 d=100000000
+@ via @@4 b=10000 p=0 d=100000000
+@ via @@5 b=10000 p=0 d=100000000
+@ via @@6 b=10000 p=0 d=100000000
+@ via @@7 b=10000 p=0 d=100000000
+@ via @@8 b=10000 p=0 d=100000000
+@@9: line 8.0 t=100067600 -> @@1
+con-
+@\discretionary via @@2 b=509 p=50 d=271861
+@\discretionary via @@3 b=10000 p=50 d=100002500
+@\discretionary via @@4 b=10000 p=50 d=100012500
+@\discretionary via @@5 b=10000 p=50 d=100002500
+@\discretionary via @@6 b=10000 p=50 d=100002500
+@\discretionary via @@7 b=10000 p=50 d=100012500
+@\discretionary via @@8 b=10000 p=50 d=100002500
+@\discretionary via @@9 b=10000 p=50 d=100002500
+@@10: line 8.0- t=100179781 -> @@8
+tin-
+@\discretionary via @@2 b=2 p=50 d=12644
+@\discretionary via @@3 b=4229 p=50 d=17971621
+@\discretionary via @@4 b=10000 p=50 d=100012500
+@\discretionary via @@5 b=10000 p=50 d=100002500
+@\discretionary via @@6 b=10000 p=50 d=100002500
+@\discretionary via @@7 b=10000 p=50 d=100012500
+@\discretionary via @@8 b=10000 p=50 d=100002500
+@\discretionary via @@9 b=10000 p=50 d=100002500
+@\discretionary via @@10 b=10000 p=50 d=100012500
+@@11: line 8.2- t=100022644 -> @@2
+ues
+@ via @@3 b=725 p=0 d=540225
+@ via @@4 b=3108 p=0 d=9721924
+@ via @@5 b=10000 p=0 d=100000000
+@ via @@6 b=10000 p=0 d=100000000
+@ via @@7 b=10000 p=0 d=100000000
+@ via @@8 b=10000 p=0 d=100000000
+@ via @@9 b=10000 p=0 d=100000000
+@ via @@10 b=10000 p=0 d=100000000
+@ via @@11 b=10000 p=0 d=100010000
+@@12: line 8.0 t=100177281 -> @@8
+for
+@ via @@3 b=8 p=0 d=10324
+@ via @@4 b=31 p=0 d=1681
+@ via @@5 b=3229 p=0 d=10491121
+@ via @@6 b=10000 p=0 d=100000000
+@ via @@7 b=10000 p=0 d=100000000
+@ via @@8 b=10000 p=0 d=100000000
+@ via @@9 b=10000 p=0 d=100000000
+@ via @@10 b=10000 p=0 d=100000000
+@ via @@11 b=10000 p=0 d=100010000
+@ via @@12 b=10000 p=0 d=100000000
+@@13: line 8.1 t=100014181 -> @@4
+@@14: line 8.2 t=100020324 -> @@3
+two
+@ via @@5 b=2 p=0 d=10144
+@ via @@6 b=2529 p=0 d=6446521
+@ via @@7 b=10000 p=0 d=100000000
+@ via @@8 b=10000 p=0 d=100000000
+@ via @@9 b=10000 p=0 d=100000000
+@ via @@10 b=10000 p=0 d=100000000
+@ via @@11 b=10000 p=0 d=100010000
+@ via @@12 b=10000 p=0 d=100000000
+@ via @@13 b=10000 p=0 d=100000000
+@ via @@14 b=10000 p=0 d=100010000
+@@15: line 8.2 t=100020144 -> @@5
+or
+@ via @@6 b=68 p=0 d=6084
+@ via @@7 b=1297 p=0 d=1708249
+@ via @@8 b=10000 p=0 d=100000000
+@ via @@9 b=10000 p=0 d=100000000
+@ via @@10 b=10000 p=0 d=100000000
+@ via @@11 b=10000 p=0 d=100010000
+@ via @@12 b=10000 p=0 d=100000000
+@ via @@13 b=10000 p=0 d=100000000
+@ via @@14 b=10000 p=0 d=100010000
+@ via @@15 b=10000 p=0 d=100010000
+@@16: line 8.0 t=16790673 -> @@7
+three
+@ via @@7 b=72 p=0 d=16724
+@ via @@8 b=666 p=0 d=456976
+@ via @@9 b=10000 p=0 d=100000000
+@ via @@10 b=10000 p=0 d=100000000
+@ via @@11 b=10000 p=0 d=100010000
+@ via @@12 b=10000 p=0 d=100000000
+@ via @@13 b=10000 p=0 d=100000000
+@ via @@14 b=10000 p=0 d=100010000
+@ via @@15 b=10000 p=0 d=100010000
+@ via @@16 b=10000 p=0 d=100000000
+@@17: line 8.0 t=634257 -> @@8
+lines
+@ via @@9 b=527 p=0 d=288369
+@ via @@10 b=4316 p=0 d=18714276
+@ via @@11 b=10000 p=0 d=100010000
+@ via @@12 b=10000 p=0 d=100000000
+@ via @@13 b=10000 p=0 d=100000000
+@ via @@14 b=10000 p=0 d=100010000
+@ via @@15 b=10000 p=0 d=100010000
+@ via @@16 b=10000 p=0 d=100000000
+@ via @@17 b=10000 p=0 d=100000000
+@@18: line 9.0 t=100355969 -> @@9
+of
+@ via @@9 b=3 p=0 d=10169
+@ via @@10 b=568 p=0 d=334084
+@ via @@11 b=2644 p=0 d=7053716
+@ via @@12 b=10000 p=0 d=100000000
+@ via @@13 b=10000 p=0 d=100000000
+@ via @@14 b=10000 p=0 d=100010000
+@ via @@15 b=10000 p=0 d=100010000
+@ via @@16 b=10000 p=0 d=100000000
+@ via @@17 b=10000 p=0 d=100000000
+@ via @@18 b=10000 p=0 d=100000000
+@@19: line 9.2 t=100077769 -> @@9
+the
+@ via @@10 b=0 p=0 d=10100
+@ via @@11 b=125 p=0 d=28225
+@ via @@12 b=2653 p=0 d=7091569
+@ via @@13 b=10000 p=0 d=100000000
+@ via @@14 b=10000 p=0 d=100010000
+@ via @@15 b=10000 p=0 d=100010000
+@ via @@16 b=10000 p=0 d=100000000
+@ via @@17 b=10000 p=0 d=100000000
+@ via @@18 b=10000 p=0 d=100000000
+@ via @@19 b=10000 p=0 d=100010000
+@@20: line 9.0 t=100050869 -> @@11
+para-
+@\discretionary via @@12 b=3 p=50 d=12669
+@\discretionary via @@13 b=688 p=50 d=489704
+@\discretionary via @@14 b=688 p=50 d=499704
+@\discretionary via @@15 b=10000 p=50 d=100012500
+@\discretionary via @@16 b=10000 p=50 d=100002500
+@\discretionary via @@17 b=10000 p=50 d=100002500
+@\discretionary via @@18 b=10000 p=50 d=100002500
+@\discretionary via @@19 b=10000 p=50 d=100012500
+@\discretionary via @@20 b=10000 p=50 d=100002500
+@@21: line 9.2- t=100189950 -> @@12
+graph.
+@\par via @@13 b=54 p=-10000 d=14096
+@\par via @@14 b=54 p=-10000 d=4096
+@\par via @@15 b=0 p=-10000 d=100
+@\par via @@16 b=0 p=-10000 d=10100
+@\par via @@17 b=0 p=-10000 d=10100
+@\par via @@18 b=0 p=-10000 d=10100
+@\par via @@19 b=0 p=-10000 d=100
+@\par via @@20 b=0 p=-10000 d=10100
+@\par via @@21 b=0 p=-10000 d=5100
+@@22: line 9.2- t=644357 -> @@17
+
+% t=65.0 plus 6.0 minus 4.0 g=60.0 b=* p=60 c=*
+> \box255=
+\vbox(60.0+0.0)x150.0, glue set 4.66667
+.\glue(\topskip) 3.05556
+.\hbox(6.94444+1.94444)x150.0, glue set - 0.1786
+..\hbox(0.0+0.0)x10.0
+..\tenrm A
+..\tenrm a
+..\tenrm a
+..\glue 3.33333 plus 1.66666 minus 1.11111
+..\tenrm b
+..\tenrm b
+..\tenrm b
+..\glue 3.33333 plus 1.66666 minus 1.11111
+..\tenrm c
+..\tenrm c
+..\tenrm c
+..\glue 3.33333 plus 1.66666 minus 1.11111
+..\tenrm d
+..\tenrm d
+..\tenrm d
+..\glue 3.33333 plus 1.66666 minus 1.11111
+..\tenrm e
+..\tenrm e
+..\tenrm e
+..\glue 3.33333 plus 1.66666 minus 1.11111
+..\tenrm ^^K (ligature ff)
+..\tenrm f
+..\glue 3.33333 plus 1.66666 minus 1.11111
+..\tenrm g
+..\tenrm g
+..\tenrm g
+..\glue 3.33333 plus 1.66666 minus 1.11111
+..\tenrm h
+..\tenrm h
+..\tenrm h
+..\glue(\rightskip) 0.0
+.\penalty 60
+.\glue(\baselineskip) 3.11111
+.\hbox(6.94444+1.94444)x150.0, glue set - 0.9063
+..\tenrm i
+..\tenrm i
+..\tenrm i
+..\glue 3.33333 plus 1.66666 minus 1.11111
+..\tenrm j
+..\tenrm j
+..\tenrm j
+..\glue 3.33333 plus 1.66666 minus 1.11111
+..\tenrm k
+..\tenrm k
+..\tenrm k
+..\glue 3.33333 plus 1.66666 minus 1.11111
+..\tenrm l
+..\tenrm l
+..\tenrm l
+..\glue 3.33333 plus 1.66666 minus 1.11111
+..\tenrm m
+..\tenrm m
+..\tenrm m
+..\glue 3.33333 plus 1.66666 minus 1.11111
+..\tenrm n
+..\tenrm n
+..\tenrm n
+..\glue 3.33333 plus 1.66666 minus 1.11111
+..\tenrm o
+..\kern0.27779
+..\tenrm o
+..\kern0.27779
+..\tenrm o
+..\glue 3.33333 plus 1.66666 minus 1.11111
+..\tenrm p
+..\tenrm p
+..\tenrm p
+..\glue 3.33333 plus 1.66666 minus 1.11111
+..\tenrm q
+..\tenrm q
+..\tenrm q
+..\glue(\rightskip) 0.0
+.\penalty 333
+.\glue(\baselineskip) 5.75002
+.\hbox(4.30554+0.0)x150.0, glue set 138.24998fil
+..\tenrm r
+..\tenrm r
+..\tenrm r
+..\penalty 10000
+..\glue(\parfillskip) 0.0 plus 1.0fil
+..\glue(\rightskip) 0.0
+.\penalty 111
+.\glue(\abovedisplayshortskip) 0.0 plus 3.0
+.\glue(\baselineskip) 5.05556
+.\hbox(6.94444+0.0)x22.91077, shifted 63.54462
+..\teni a
+..\glue(\thickmuskip) 2.77771 plus 2.77771
+..\tenrm =
+..\glue(\thickmuskip) 2.77771 plus 2.77771
+..\teni b
+
+! OK.
+<output> {\showbox 255
+                       \setbox 0\box 255 \deadcycles =0}
+l.8 ...or two or three lines of the paragraph.\par
+
+
+%% goal height=60.0, max depth=2.0
+% t=10.0 g=60.0 b=10000 p=60 c=100000#
+% t=22.0 g=60.0 b=10000 p=50 c=100000#
+> 1.94444pt.
+l.9 \showthe\prevdepth
+
+
+% t=34.0 g=60.0 b=10000 p=0 c=100000#
+@firstpass
+\tenrm Back
+@\par via @@0 b=0 p=-10000 d=100
+@@1: line 1.2- t=100 -> @@0
+
+% t=46.0 plus 1.0 g=60.0 b=10000 p=111 c=100000#
+% t=70.5 plus 4.0 g=60.0 b=* p=222 c=*
+> \box255=
+\vbox(60.0+0.0)x150.0, glue set 14.0
+.\glue(\topskip) 3.05556
+.\hbox(6.94444+1.94444)x150.0, glue set 1.58664
+..\tenrm a
+..\tenrm n
+..\tenrm d
+..\glue 3.33333 plus 1.66666 minus 1.11111
+..\tenrm m
+..\tenrm o
+..\tenrm r
+..\tenrm e
+..\glue 3.33333 plus 1.66666 minus 1.11111
+..\tenrm t
+..\tenrm e
+..\tenrm x
+..\tenrm t
+..\glue 3.33333 plus 1.66666 minus 1.11111
+..\tenrm a
+..\tenrm f
+..\discretionary
+...\tenrm -
+..\tenrm t
+..\tenrm e
+..\tenrm r
+..\glue 3.33333 plus 1.66666 minus 1.11111
+..\tenrm t
+..\tenrm h
+..\tenrm e
+..\glue 3.33333 plus 1.66666 minus 1.11111
+..\tenrm d
+..\tenrm i
+..\tenrm s
+..\discretionary
+...\tenrm -
+..\tenrm p
+..\tenrm l
+..\tenrm a
+..\kern-0.27779
+..\tenrm y
+..\glue(\rightskip) 0.0
+.\penalty 60
+.\glue(\baselineskip) 3.11111
+.\hbox(6.94444+0.0)x150.0, glue set 1.88332
+..\tenrm t
+..\tenrm h
+..\tenrm a
+..\tenrm t
+..\glue 3.33333 plus 1.66666 minus 1.11111
+..\tenrm c
+..\tenrm o
+..\discretionary replacing 2
+...\tenrm n
+...\tenrm -
+..\tenrm n
+..\kern-0.27779
+..\tenrm t
+..\tenrm i
+..\discretionary replacing 2
+...\tenrm n
+...\tenrm -
+..\tenrm n
+..\kern-0.27779
+..\tenrm u
+..\tenrm e
+..\tenrm s
+..\glue 3.33333 plus 1.66666 minus 1.11111
+..\tenrm f
+..\tenrm o
+..\tenrm r
+..\glue 3.33333 plus 1.66666 minus 1.11111
+..\tenrm t
+..\kern-0.27779
+..\tenrm w
+..\kern-0.27779
+..\tenrm o
+..\glue 3.33333 plus 1.66666 minus 1.11111
+..\tenrm o
+..\tenrm r
+..\glue 3.33333 plus 1.66666 minus 1.11111
+..\tenrm t
+..\tenrm h
+..\tenrm r
+..\tenrm e
+..\tenrm e
+..\glue(\rightskip) 0.0
+.\penalty 50
+.\glue(\baselineskip) 5.05556
+.\hbox(6.94444+1.94444)x150.0, glue set 51.27757fil
+..\tenrm l
+..\tenrm i
+..\tenrm n
+..\tenrm e
+..\tenrm s
+..\glue 3.33333 plus 1.66666 minus 1.11111
+..\tenrm o
+..\tenrm f
+..\glue 3.33333 plus 1.66666 minus 1.11111
+..\tenrm t
+..\tenrm h
+..\tenrm e
+..\glue 3.33333 plus 1.66666 minus 1.11111
+..\tenrm p
+..\tenrm a
+..\tenrm r
+..\tenrm a
+..\discretionary
+...\tenrm -
+..\tenrm g
+..\tenrm r
+..\tenrm a
+..\tenrm p
+..\tenrm h
+..\tenrm .
+..\penalty 10000
+..\glue(\parfillskip) 0.0 plus 1.0fil
+..\glue(\rightskip) 0.0
+.\glue(\parskip) 0.0 plus 1.0
+.\glue(\baselineskip) 3.11111
+.\hbox(6.94444+0.0)x150.0, glue set 128.47217fil
+..\tenrm B
+..\tenrm a
+..\tenrm c
+..\kern-0.27779
+..\tenrm k
+..\penalty 10000
+..\glue(\parfillskip) 0.0 plus 1.0fil
+..\glue(\rightskip) 0.0
+
+! OK.
+<output> {\showbox 255
+                       \setbox 0\box 255 \deadcycles =0}
+l.10 ...234567890123456789012345678901234567890)$$
+
+
+%% goal height=60.0, max depth=2.0
+% t=22.5 g=60.0 b=10000 p=222 c=100000#
+@firstpass
+\tenrm after
+@\par via @@0 b=0 p=-10000 d=100
+@@1: line 5.2- t=100 -> @@0
+
+% t=34.0 g=60.0 b=10000 p=0 c=100000#
+@firstpass
+$\teni a \tenrm + \teni b \tenrm + \teni c \tenrm + \teni d \tenrm =
+@\penalty via @@0 b=11 p=77 d=6370
+@@1: line 1.2 t=6370 -> @@0
+ \teni e \tenrm + \teni f \tenrm + \teni g \tenrm + \teni h \tenrm =
+@\penalty via @@1 b=28 p=77 d=7373
+@@2: line 2.3 t=13743 -> @@1
+ \teni i \tenrm + \teni j \tenrm + \teni k \tenrm + \teni l \tenrm =
+@\penalty via @@2 b=3 p=77 d=6098
+@@3: line 3.2 t=19841 -> @@2
+ \teni m \tenrm + \teni n \tenrm + \teni o \tenrm + \teni p$
+@\par via @@3 b=0 p=-10000 d=100
+@@4: line 4.2- t=19941 -> @@3
+
+% t=46.0 plus 1.0 g=60.0 b=10000 p=60 c=100000#
+% t=58.0 plus 1.0 g=60.0 b=800 p=0 c=800#
+% t=70.0 plus 1.0 g=60.0 b=* p=50 c=*
+> \box255=
+\vbox(60.0+1.94444)x150.0, glue set 2.0
+.\glue(\topskip) 5.69446
+.\hbox(4.30554+0.0)x5.71527, shifted 72.14236
+..\teni x
+.\penalty 10000
+.\glue(\baselineskip) 4.5
+.\hbox(7.5+2.5)x507.77933, shifted -357.77933
+..\tenrm (
+..\tenrm 1
+..\tenrm 2
+..\tenrm 3
+..\tenrm 4
+..\tenrm 5
+..\tenrm 6
+..\tenrm 7
+..\tenrm 8
+..\tenrm 9
+..\tenrm 0
+..\tenrm 1
+..\tenrm 2
+..\tenrm 3
+..\tenrm 4
+..\tenrm 5
+..\tenrm 6
+..\tenrm 7
+..\tenrm 8
+..\tenrm 9
+..\tenrm 0
+..\tenrm 1
+..\tenrm 2
+..\tenrm 3
+..\tenrm 4
+..\tenrm 5
+..\tenrm 6
+..\tenrm 7
+..\tenrm 8
+..\tenrm 9
+..\tenrm 0
+..\tenrm 1
+..\tenrm 2
+..\tenrm 3
+..\tenrm 4
+..\tenrm 5
+..\tenrm 6
+..\tenrm 7
+..\tenrm 8
+..\tenrm 9
+..\tenrm 0
+..\tenrm 1
+..\tenrm 2
+..\tenrm 3
+..\tenrm 4
+..\tenrm 5
+..\tenrm 6
+..\tenrm 7
+..\tenrm 8
+..\tenrm 9
+..\tenrm 0
+..\tenrm 1
+..\tenrm 2
+..\tenrm 3
+..\tenrm 4
+..\tenrm 5
+..\tenrm 6
+..\tenrm 7
+..\tenrm 8
+..\tenrm 9
+..\tenrm 0
+..\tenrm 1
+..\tenrm 2
+..\tenrm 3
+..\tenrm 4
+..\tenrm 5
+..\tenrm 6
+..\tenrm 7
+..\tenrm 8
+..\tenrm 9
+..\tenrm 0
+..\tenrm 1
+..\tenrm 2
+..\tenrm 3
+..\tenrm 4
+..\tenrm 5
+..\tenrm 6
+..\tenrm 7
+..\tenrm 8
+..\tenrm 9
+..\tenrm 0
+..\tenrm 1
+..\tenrm 2
+..\tenrm 3
+..\tenrm 4
+..\tenrm 5
+..\tenrm 6
+..\tenrm 7
+..\tenrm 8
+..\tenrm 9
+..\tenrm 0
+..\tenrm 1
+..\tenrm 2
+..\tenrm 3
+..\tenrm 4
+..\tenrm 5
+..\tenrm 6
+..\tenrm 7
+..\tenrm 8
+..\tenrm 9
+..\tenrm 0
+..\tenrm )
+.\penalty 222
+.\glue(\baselineskip) 2.55556
+.\hbox(6.94444+0.0)x150.0, glue set 129.6944fil
+..\tenrm a
+..\tenrm f
+..\tenrm t
+..\tenrm e
+..\tenrm r
+..\penalty 10000
+..\glue(\parfillskip) 0.0 plus 1.0fil
+..\glue(\rightskip) 0.0
+.\glue(\parskip) 0.0 plus 1.0
+.\glue(\baselineskip) 5.05556
+.\hbox(6.94444+0.83333)x60.0, glue set - 0.4749
+..\mathon
+..\teni a
+..\glue(\medmuskip) 2.22217 plus 1.11108 minus 2.22217
+..\tenrm +
+..\penalty 88
+..\glue(\medmuskip) 2.22217 plus 1.11108 minus 2.22217
+..\teni b
+..\glue(\medmuskip) 2.22217 plus 1.11108 minus 2.22217
+..\tenrm +
+..\penalty 88
+..\glue(\medmuskip) 2.22217 plus 1.11108 minus 2.22217
+..\teni c
+..\glue(\medmuskip) 2.22217 plus 1.11108 minus 2.22217
+..\tenrm +
+..\penalty 88
+..\glue(\medmuskip) 2.22217 plus 1.11108 minus 2.22217
+..\teni d
+..\glue(\thickmuskip) 2.77771 plus 2.77771
+..\tenrm =
+..\penalty 77
+..\glue(\rightskip) 0.0
+.\penalty 60
+.\glue(\baselineskip) 4.22223
+.\hbox(6.94444+1.94444)x60.0, glue set - 0.65555
+..\teni e
+..\glue(\medmuskip) 2.22217 plus 1.11108 minus 2.22217
+..\tenrm +
+..\penalty 88
+..\glue(\medmuskip) 2.22217 plus 1.11108 minus 2.22217
+..\teni f
+..\kern1.0764
+..\glue(\medmuskip) 2.22217 plus 1.11108 minus 2.22217
+..\tenrm +
+..\penalty 88
+..\glue(\medmuskip) 2.22217 plus 1.11108 minus 2.22217
+..\teni g
+..\kern0.35878
+..\glue(\medmuskip) 2.22217 plus 1.11108 minus 2.22217
+..\tenrm +
+..\penalty 88
+..\glue(\medmuskip) 2.22217 plus 1.11108 minus 2.22217
+..\teni h
+..\glue(\thickmuskip) 2.77771 plus 2.77771
+..\tenrm =
+..\penalty 77
+..\glue(\rightskip) 0.0
+
+! OK.
+<output> {\showbox 255
+                       \setbox 0\box 255 \deadcycles =0}
+l.13 ...dent $a+b+c+d=e+f+g+h=i+j+k+l=m+n+o+p$\par
+
+
+%% goal height=60.0, max depth=2.0
+% t=10.0 g=60.0 b=10000 p=50 c=100000#
+> 1.94444pt.
+l.14 \showthe\prevdepth
+
+
+> \box1=
+\vbox(72.0+0.0)x100.0
+.\penalty 111
+.\glue(\abovedisplayshortskip) 0.0 plus 3.0
+.\hbox(0.0+0.0)x90.0, shifted 5.0
+..\hbox(0.0+0.0)x90.0
+.\penalty 10000
+.\glue(\baselineskip) 4.5
+.\hbox(7.5+2.5)x12.77782, shifted 87.22218
+..\tenrm (
+..\tenrm 1
+..\tenrm )
+.\penalty 222
+.\penalty 111
+.\glue(\abovedisplayshortskip) 0.0 plus 3.0
+.\glue(\baselineskip) 9.5
+.\hbox(0.0+0.0)x99.0, shifted 0.5
+..\hbox(0.0+0.0)x99.0
+.\penalty 10000
+.\glue(\baselineskip) 4.5
+.\hbox(7.5+2.5)x12.77782, shifted 87.22218
+..\tenrm (
+..\tenrm 1
+..\tenrm )
+.\penalty 222
+.\penalty 111
+.\glue(\baselineskip) 2.0
+.\hbox(7.5+2.5)x12.77782
+..\tenrm (
+..\tenrm 1
+..\tenrm )
+.\penalty 10000
+.\glue(\baselineskip) 9.5
+.\hbox(0.0+0.0)x99.0, shifted 0.5
+..\hbox(0.0+0.0)x99.0
+.\penalty 222
+.\glue(\belowdisplayskip) 12.0 plus 3.0 minus 9.0
+
+! OK.
+l.16 \showbox1
+
+
+% t=22.0 g=60.0 b=10000 p=-10000 c=-10000#
+> \box255=
+\vbox(60.0+1.94444)x60.0
+.\glue(\topskip) 3.05556
+.\hbox(6.94444+1.94444)x60.0, glue set - 0.30443
+..\teni i
+..\glue(\medmuskip) 2.22217 plus 1.11108 minus 2.22217
+..\tenrm +
+..\penalty 88
+..\glue(\medmuskip) 2.22217 plus 1.11108 minus 2.22217
+..\teni j
+..\kern0.57243
+..\glue(\medmuskip) 2.22217 plus 1.11108 minus 2.22217
+..\tenrm +
+..\penalty 88
+..\glue(\medmuskip) 2.22217 plus 1.11108 minus 2.22217
+..\teni k
+..\kern0.3148
+..\glue(\medmuskip) 2.22217 plus 1.11108 minus 2.22217
+..\tenrm +
+..\penalty 88
+..\glue(\medmuskip) 2.22217 plus 1.11108 minus 2.22217
+..\teni l
+..\kern0.19678
+..\glue(\thickmuskip) 2.77771 plus 2.77771
+..\tenrm =
+..\penalty 77
+..\glue(\rightskip) 0.0
+.\penalty 50
+.\glue(\baselineskip) 4.22223
+.\hbox(5.83333+1.94444)x60.0, glue set - 0.09955
+..\teni m
+..\glue(\medmuskip) 2.22217 plus 1.11108 minus 2.22217
+..\tenrm +
+..\penalty 88
+..\glue(\medmuskip) 2.22217 plus 1.11108 minus 2.22217
+..\teni n
+..\glue(\medmuskip) 2.22217 plus 1.11108 minus 2.22217
+..\tenrm +
+..\penalty 88
+..\glue(\medmuskip) 2.22217 plus 1.11108 minus 2.22217
+..\teni o
+..\glue(\medmuskip) 2.22217 plus 1.11108 minus 2.22217
+..\tenrm +
+..\penalty 88
+..\glue(\medmuskip) 2.22217 plus 1.11108 minus 2.22217
+..\teni p
+..\mathoff
+..\penalty 10000
+..\glue(\parfillskip) 0.0 plus 1.0fil
+..\glue(\rightskip) 0.0
+
+! OK.
+<output> {\showbox 255
+                       \setbox 0\box 255 \deadcycles =0}
+l.17 \penalty-10000
+
+
+ )
+No pages of output.

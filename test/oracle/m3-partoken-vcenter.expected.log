@@ -1,0 +1,201 @@
+(m3-partoken-vcenter.tex (plain.tex Preloading the plain format: codes, reg
+isters,
+\maxdimen=\dimen10
+\hideskip=\skip10
+\centering=\skip11
+\p@=\dimen11
+\z@=\dimen12
+\z@skip=\skip12
+\voidb@x=\box10
+parameters,
+\smallskipamount=\skip13
+\medskipamount=\skip14
+\bigskipamount=\skip15
+\normalbaselineskip=\skip16
+\normallineskip=\skip17
+\normallineskiplimit=\dimen13
+\jot=\dimen14
+\interdisplaylinepenalty=\count23
+\interfootnotelinepenalty=\count24
+fonts, more fonts,
+\itfam=\fam4
+\slfam=\fam5
+\bffam=\fam6
+\ttfam=\fam7
+macros,
+\strutbox=\box11
+\mscount=\count25
+\tabs=\box12
+\tabsyet=\box13
+\tabsdone=\box14
+math definitions,
+\rootbox=\box15
+\p@renwd=\dimen15
+output routines,
+\headline=\toks10
+\footline=\toks11
+\footins=\insert254
+\topins=\insert253
+hyphenation (hyphen.tex)) PAR PAR PAR
+> \box1=
+\hbox(10.65277+5.65277)x100.0
+.\mathon
+.\vbox(10.65277+5.65277)x100.0
+..\hbox(4.30554+0.0)x100.0, glue set 89.99998fil
+...\hbox(0.0+0.0)x5.0
+...\tenrm a
+...\penalty 10000
+...\glue(\parfillskip) 0.0 plus 1.0fil
+...\glue(\rightskip) 0.0
+..\glue(\parskip) 0.0 plus 1.0
+..\glue(\baselineskip) 5.05556
+..\hbox(6.94444+0.0)x100.0, glue set 89.44443fil
+...\hbox(0.0+0.0)x5.0
+...\tenrm b
+...\penalty 10000
+...\glue(\parfillskip) 0.0 plus 1.0fil
+...\glue(\rightskip) 0.0
+.\mathoff
+
+! OK.
+l.12 \showbox1
+
+
+PAR PAR
+> \box2=
+\hbox(4.85277+0.0)x100.0
+.\mathon
+.\vbox(4.85277+-0.14723)x100.0
+..\rule(0.4+0.0)x*
+..\glue(\parskip) 0.0 plus 1.0
+..\hbox(4.30554+0.0)x100.0, glue set 89.7222fil
+...\hbox(0.0+0.0)x5.0
+...\tenrm x
+...\penalty 10000
+...\glue(\parfillskip) 0.0 plus 1.0fil
+...\glue(\rightskip) 0.0
+.\mathoff
+
+! OK.
+l.17 \showbox2
+
+
+PAR
+> \box3=
+\hbox(10.65277+5.65277)x100.0
+.\mathon
+.\vbox(10.65277+5.65277)x100.0
+..\hbox(4.30554+0.0)x100.0, glue set 89.99998fil
+...\hbox(0.0+0.0)x5.0
+...\tenrm a
+...\penalty 10000
+...\glue(\parfillskip) 0.0 plus 1.0fil
+...\glue(\rightskip) 0.0
+..\glue(\parskip) 0.0 plus 1.0
+..\glue(\baselineskip) 5.05556
+..\hbox(6.94444+0.0)x100.0, glue set 89.44443fil
+...\hbox(0.0+0.0)x5.0
+...\tenrm b
+...\penalty 10000
+...\glue(\parfillskip) 0.0 plus 1.0fil
+...\glue(\rightskip) 0.0
+.\mathoff
+
+! OK.
+l.22 \showbox3
+
+
+PAR PAR
+> \box4=
+\vbox(17.625+1.94444)x100.0
+.\hbox(5.625+0.62498)x5.55557
+..\mathon
+..\vbox(5.625+0.62498)x5.55557
+...\hbox(4.30554+1.94444)x5.55557
+....\tenrm p
+..\mathoff
+.\glue(\parskip) 0.0 plus 1.0
+.\glue(\baselineskip) 7.06947
+.\hbox(4.30554+1.94444)x100.0, glue set 89.72221fil
+..\hbox(0.0+0.0)x5.0
+..\tenrm q
+..\penalty 10000
+..\glue(\parfillskip) 0.0 plus 1.0fil
+..\glue(\rightskip) 0.0
+
+! OK.
+l.27 \showbox4
+
+
+
+Completed box being shipped out [1]
+\vbox(58.93054+1.94444)x100.0
+.\hbox(10.65277+5.65277)x100.0
+..\mathon
+..\vbox(10.65277+5.65277)x100.0
+...\hbox(4.30554+0.0)x100.0, glue set 89.99998fil
+....\hbox(0.0+0.0)x5.0
+....\tenrm a
+....\penalty 10000
+....\glue(\parfillskip) 0.0 plus 1.0fil
+....\glue(\rightskip) 0.0
+...\glue(\parskip) 0.0 plus 1.0
+...\glue(\baselineskip) 5.05556
+...\hbox(6.94444+0.0)x100.0, glue set 89.44443fil
+....\hbox(0.0+0.0)x5.0
+....\tenrm b
+....\penalty 10000
+....\glue(\parfillskip) 0.0 plus 1.0fil
+....\glue(\rightskip) 0.0
+..\mathoff
+.\glue(\baselineskip) 1.49446
+.\hbox(4.85277+0.0)x100.0
+..\mathon
+..\vbox(4.85277+-0.14723)x100.0
+...\rule(0.4+0.0)x*
+...\glue(\parskip) 0.0 plus 1.0
+...\hbox(4.30554+0.0)x100.0, glue set 89.7222fil
+....\hbox(0.0+0.0)x5.0
+....\tenrm x
+....\penalty 10000
+....\glue(\parfillskip) 0.0 plus 1.0fil
+....\glue(\rightskip) 0.0
+..\mathoff
+.\glue(\baselineskip) 1.34723
+.\hbox(10.65277+5.65277)x100.0
+..\mathon
+..\vbox(10.65277+5.65277)x100.0
+...\hbox(4.30554+0.0)x100.0, glue set 89.99998fil
+....\hbox(0.0+0.0)x5.0
+....\tenrm a
+....\penalty 10000
+....\glue(\parfillskip) 0.0 plus 1.0fil
+....\glue(\rightskip) 0.0
+...\glue(\parskip) 0.0 plus 1.0
+...\glue(\baselineskip) 5.05556
+...\hbox(6.94444+0.0)x100.0, glue set 89.44443fil
+....\hbox(0.0+0.0)x5.0
+....\tenrm b
+....\penalty 10000
+....\glue(\parfillskip) 0.0 plus 1.0fil
+....\glue(\rightskip) 0.0
+..\mathoff
+.\glue(\lineskip) 1.0
+.\vbox(17.625+1.94444)x100.0
+..\hbox(5.625+0.62498)x5.55557
+...\mathon
+...\vbox(5.625+0.62498)x5.55557
+....\hbox(4.30554+1.94444)x5.55557
+.....\tenrm p
+...\mathoff
+..\glue(\parskip) 0.0 plus 1.0
+..\glue(\baselineskip) 7.06947
+..\hbox(4.30554+1.94444)x100.0, glue set 89.72221fil
+...\hbox(0.0+0.0)x5.0
+...\tenrm q
+...\penalty 10000
+...\glue(\parfillskip) 0.0 plus 1.0fil
+...\glue(\rightskip) 0.0
+
+ )
+Output written on m3-partoken-vcenter.dvi (1 page, 288 bytes).

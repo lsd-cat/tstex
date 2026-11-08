@@ -1,0 +1,17 @@
+%! oracle: ini
+\input plain
+\tracingonline=0 \showboxbreadth=10000 \showboxdepth=10000 \tracingoutput=1
+\hsize=200pt \parindent=5pt \tolerance=10000
+\setbox1=\hbox{$a+b=c$ $x^2$ $x_i$ $x^{a_b}$ $x_i^2$ $ $}
+\showbox1
+\mathsurround=2pt
+\setbox2=\hbox{$a$ $\hbox{text}$}
+\showbox2
+\mathsurround=0pt
+\setbox3=\hbox{$x^a^b$}
+\showbox3
+\setbox4=\hbox{$x_a_b$}
+\showbox4
+\noindent $a\showlists+b^2\hbox{q}$\showlists\par
+\shipout\vbox{\box1\box2\box3\box4}
+\end

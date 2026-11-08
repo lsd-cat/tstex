@@ -1,0 +1,14 @@
+%! oracle: ini
+\input plain
+\tracingonline=0 \showboxbreadth=10000 \showboxdepth=10000 \tracingoutput=1
+\def\fooo#1#2{\hbox{\string#1:#2}}
+\setbox1=\hbox{$a\phantom{xyz}b$ $a\vphantom{\vrule height 10pt}b$ $a\hphantom{xyz}b$ $a\smash{\vrule height 10pt}b$ $\mathstrut$ $\buildrel\rm def\over=$}
+\showbox1
+\setbox2=\hbox{$\mathpalette\fooo{x}$ $a\rlap{b}c$ $a\llap{b}c$ $\not=$ $\not\in$ $\cong$ $\overbrace{abc}^n$ $\underbrace{abc}_n$ $a\sb b\sp c$}
+\showbox2
+\setbox3=\hbox{$\mathpalette\fooo{x}$ ${\scriptstyle\mathpalette\fooo{x}}$}
+\showbox3
+\setbox4=\vbox{\hsize=200pt \noindent$$\overbrace{a+b+c}^{n}\underbrace{x}_{m}\showlists$$}
+\showbox4
+\shipout\vbox{\box1\box2\box3\box4}
+\end

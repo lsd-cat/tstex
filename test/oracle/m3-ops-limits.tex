@@ -1,0 +1,13 @@
+%! oracle: ini
+\input plain
+\tracingonline=0 \showboxbreadth=10000 \showboxdepth=10000 \tracingoutput=1
+\setbox1=\hbox{$\sum_a^b$ $\sum\limits_a^b$ $\sum\nolimits_a^b$ $\sum\displaylimits_a^b$ $\int_a^b$ $\int\limits_a^b$}
+\showbox1
+\setbox2=\vbox{\hsize=200pt \noindent$$\sum_a^b \sum\limits_a^b \sum\nolimits_a^b \int_a^b \lim_{x\to0}\showlists$$}
+\showbox2
+\setbox3=\hbox{$\mathop{\rm lim}\limits_{x\to0}$ $\mathop{\rm lim}_{x\to0}$ $\mathop{x}\limits^2_3$ $\mathop{\rm ab}\nolimits^2$}
+\showbox3
+\setbox4=\hbox{$\displaystyle\sum_a^b \prod_{i} \bigcup^n \mathop{f}_a$}
+\showbox4
+\shipout\vbox{\box1\box2\box3\box4}
+\end

@@ -1,0 +1,19 @@
+%! oracle: ini
+\input plain
+\tracingonline=0 \showboxbreadth=10000 \showboxdepth=10000 \tracingoutput=1
+\hsize=100pt \parindent=0pt
+\setbox1=\vbox{\everycr{\noalign{\kern1pt}}\halign{#\cr a\cr b\cr}}
+\showbox1
+\setbox2=\vbox{\everycr{\noalign{\message{EC}}}\halign{#&#\cr a&b\cr c\cr}}
+\showbox2
+\setbox3=\vbox{\halign{#\cr a\cr\crcr b\cr\crcr}}
+\showbox3
+\setbox4=\vbox{\halign{#\crcr a\cr b\crcr}}
+\showbox4
+\setbox5=\vbox{\everycr{\noalign{\hrule}}\halign{#\cr\noalign{\kern2pt}a\cr\crcr}}
+\showbox5
+\setbox6=\vbox{\halign{#\cr a\cr\noalign{\kern3pt}\crcr b\cr}}
+\showbox6
+\showthe\everycr
+\shipout\vbox{\box1\box3\box4\box5}
+\end

@@ -1,0 +1,17 @@
+%! oracle: ini
+\input plain
+\tracingonline=0 \showboxbreadth=10000 \showboxdepth=10000 \tracingoutput=1
+\hsize=200pt \parindent=5pt \tolerance=10000 \vsize=300pt
+\abovedisplayskip=11pt plus 3pt \belowdisplayskip=12pt plus 4pt
+\abovedisplayshortskip=1pt plus 1pt \belowdisplayshortskip=7pt plus 2pt
+\everydisplay{\message{ED}} \everymath{\message{EM}}
+\noindent Short line $$a=b\showlists$$
+\noindent A long long long long long long long long long long long long long long long long long line of text $$a=b$$
+\par
+Para $$a\eqno(1)$$ more $$b\leqno(2)$$
+\par\hangindent=20pt \hangafter=-3 \noindent hang $$x\showthe\displaywidth\showthe\displayindent\showthe\predisplaysize$$
+\par
+\noindent Err $$a=b$ $ \par
+\showlists
+\output={\showbox255 \setbox0\box255 \deadcycles=0}\penalty-10000
+\end

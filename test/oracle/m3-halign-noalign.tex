@@ -1,0 +1,15 @@
+%! oracle: ini
+\input plain
+\tracingonline=0 \showboxbreadth=10000 \showboxdepth=10000 \tracingoutput=1
+\hsize=100pt \vsize=40pt \parindent=0pt \baselineskip=12pt \topskip=10pt \maxdepth=2pt
+\tracingpages=1
+\output={\showbox255 \setbox0\box255 \deadcycles=0}
+\halign{#\cr a\cr\noalign{\hrule}b\cr\noalign{\vskip 3pt}c\cr\noalign{\penalty-10000}d\cr e\cr\noalign{\kern2pt\hbox{n}}f\cr}
+\noalign{\hrule}
+\hbox{x}
+\setbox1=\vbox{\halign{#\cr a\cr\noalign{\showlists\penalty5}b\cr}}
+\showbox1
+\setbox1=\vbox{\halign{#\cr a\noalign{x}\cr}}
+\showbox1
+\penalty-10000
+\end

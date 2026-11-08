@@ -1,0 +1,1101 @@
+(m3-matrices-cases.tex (plain.tex Preloading the plain format: codes, regis
+ters,
+\maxdimen=\dimen10
+\hideskip=\skip10
+\centering=\skip11
+\p@=\dimen11
+\z@=\dimen12
+\z@skip=\skip12
+\voidb@x=\box10
+parameters,
+\smallskipamount=\skip13
+\medskipamount=\skip14
+\bigskipamount=\skip15
+\normalbaselineskip=\skip16
+\normallineskip=\skip17
+\normallineskiplimit=\dimen13
+\jot=\dimen14
+\interdisplaylinepenalty=\count23
+\interfootnotelinepenalty=\count24
+fonts, more fonts,
+\itfam=\fam4
+\slfam=\fam5
+\bffam=\fam6
+\ttfam=\fam7
+macros,
+\strutbox=\box11
+\mscount=\count25
+\tabs=\box12
+\tabsyet=\box13
+\tabsdone=\box14
+math definitions,
+\rootbox=\box15
+\p@renwd=\dimen15
+output routines,
+\headline=\toks10
+\footline=\toks11
+\footins=\insert254
+\topins=\insert253
+hyphenation (hyphen.tex))
+> \box1=
+\hbox(28.5001+9.50012)x118.56248
+.\mathon
+.\hbox(0.0+0.0)x0.0
+.\glue 1.66663
+.\vbox(13.5+8.5)x20.49077
+..\hbox(7.5+2.5)x20.49077
+...\glue(\tabskip) 0.0
+...\hbox(7.5+2.5)x5.28589, glue set 2.64294fil
+....\glue 0.0 plus 1.0fil
+....\mathon
+....\hbox(7.5+2.5)x0.0
+....\mathoff
+....\glue 0.0 plus 1.0fil
+...\glue(\tabskip) 0.0
+..\kern -12.0
+..\glue(\baselineskip) 2.55556
+..\hbox(6.94444+0.0)x20.49077
+...\glue(\tabskip) 0.0
+...\hbox(6.94444+0.0)x5.28589
+....\glue 0.0 plus 1.0fil
+....\mathon
+....\teni a
+....\mathoff
+....\glue 0.0 plus 1.0fil
+...\glue(\tabskip) 0.0
+...\hbox(6.94444+0.0)x15.20488, glue set 0.4566fil
+....\glue 10.00002
+....\glue 0.0 plus 1.0fil
+....\mathon
+....\teni b
+....\mathoff
+....\glue 0.0 plus 1.0fil
+...\glue(\tabskip) 0.0
+..\glue(\baselineskip) 5.05556
+..\hbox(6.94444+0.0)x20.49077
+...\glue(\tabskip) 0.0
+...\hbox(6.94444+0.0)x5.28589, glue set 0.47917fil
+....\glue 0.0 plus 1.0fil
+....\mathon
+....\teni c
+....\mathoff
+....\glue 0.0 plus 1.0fil
+...\glue(\tabskip) 0.0
+...\hbox(6.94444+0.0)x15.20488
+....\glue 10.00002
+....\glue 0.0 plus 1.0fil
+....\mathon
+....\teni d
+....\mathoff
+....\glue 0.0 plus 1.0fil
+...\glue(\tabskip) 0.0
+..\glue(\baselineskip) 4.5
+..\hbox(7.5+2.5)x20.49077
+...\glue(\tabskip) 0.0
+...\hbox(7.5+2.5)x5.28589, glue set 2.64294fil
+....\glue 0.0 plus 1.0fil
+....\mathon
+....\hbox(7.5+2.5)x0.0
+....\mathoff
+....\glue 0.0 plus 1.0fil
+...\glue(\tabskip) 0.0
+..\kern -12.0
+.\glue 1.66663
+.\mathoff
+.\glue 3.33333 plus 1.66666 minus 1.11111
+.\mathon
+.\hbox(14.5001+9.50012)x38.54631
+..\hbox(0.39998+23.60025)x7.36115, shifted -14.10013
+...\tenex ^^R
+..\hbox(0.0+0.0)x0.0
+..\glue 1.66663
+..\vbox(13.5+8.5)x20.49077
+...\hbox(7.5+2.5)x20.49077
+....\glue(\tabskip) 0.0
+....\hbox(7.5+2.5)x5.28589, glue set 2.64294fil
+.....\glue 0.0 plus 1.0fil
+.....\mathon
+.....\hbox(7.5+2.5)x0.0
+.....\mathoff
+.....\glue 0.0 plus 1.0fil
+....\glue(\tabskip) 0.0
+...\kern -12.0
+...\glue(\baselineskip) 2.55556
+...\hbox(6.94444+0.0)x20.49077
+....\glue(\tabskip) 0.0
+....\hbox(6.94444+0.0)x5.28589
+.....\glue 0.0 plus 1.0fil
+.....\mathon
+.....\teni a
+.....\mathoff
+.....\glue 0.0 plus 1.0fil
+....\glue(\tabskip) 0.0
+....\hbox(6.94444+0.0)x15.20488, glue set 0.4566fil
+.....\glue 10.00002
+.....\glue 0.0 plus 1.0fil
+.....\mathon
+.....\teni b
+.....\mathoff
+.....\glue 0.0 plus 1.0fil
+....\glue(\tabskip) 0.0
+...\glue(\baselineskip) 5.05556
+...\hbox(6.94444+0.0)x20.49077
+....\glue(\tabskip) 0.0
+....\hbox(6.94444+0.0)x5.28589, glue set 0.47917fil
+.....\glue 0.0 plus 1.0fil
+.....\mathon
+.....\teni c
+.....\mathoff
+.....\glue 0.0 plus 1.0fil
+....\glue(\tabskip) 0.0
+....\hbox(6.94444+0.0)x15.20488
+.....\glue 10.00002
+.....\glue 0.0 plus 1.0fil
+.....\mathon
+.....\teni d
+.....\mathoff
+.....\glue 0.0 plus 1.0fil
+....\glue(\tabskip) 0.0
+...\glue(\baselineskip) 4.5
+...\hbox(7.5+2.5)x20.49077
+....\glue(\tabskip) 0.0
+....\hbox(7.5+2.5)x5.28589, glue set 2.64294fil
+.....\glue 0.0 plus 1.0fil
+.....\mathon
+.....\hbox(7.5+2.5)x0.0
+.....\mathoff
+.....\glue 0.0 plus 1.0fil
+....\glue(\tabskip) 0.0
+...\kern -12.0
+..\glue 1.66663
+..\hbox(0.39998+23.60025)x7.36115, shifted -14.10013
+...\tenex ^^S
+.\mathoff
+.\glue 3.33333 plus 1.66666 minus 1.11111
+.\mathon
+.\hbox(0.0+0.0)x0.0
+.\glue 2.77771 plus 2.77771
+.\vbox(28.5001+9.50012)x46.74779
+..\kern 14.0
+..\hbox(14.5001+9.50012)x46.74779
+...\mathon
+...\kern 16.46529
+...\kern -8.75002
+...\hbox(14.5001+9.50012)x39.03252
+....\hbox(0.39998+23.60025)x7.36115, shifted -14.10013
+.....\tenex ^^R
+....\kern -16.46529
+....\vbox(14.5+9.5)x39.10889
+.....\kern -14.0
+.....\hbox(8.5+3.5)x39.10889
+......\glue(\tabskip) 0.0
+......\hbox(8.5+3.5)x16.46529, glue set 16.46529fil
+.......\rule(8.5+3.5)x0.0
+.......\glue 0.0 plus 1.0fil
+......\glue(\tabskip) 0.0
+.....\kern -12.0
+.....\glue(\baselineskip) 4.19446
+.....\hbox(4.30554+1.94444)x39.10889
+......\glue(\tabskip) 0.0
+......\hbox(4.30554+1.94444)x16.46529, glue set 5.71527fil
+.......\mathon
+.......\mathoff
+.......\glue 0.0 plus 1.0fil
+.......\kern 2.0
+.......\kern 8.75002
+......\glue(\tabskip) 0.0
+......\hbox(4.30554+1.94444)x7.38199
+.......\kern 1.66672
+.......\glue 0.0 plus 1.0fil
+.......\mathon
+.......\teni x
+.......\mathoff
+.......\glue 0.0 plus 1.0fil
+......\glue(\tabskip) 0.0
+......\hbox(4.30554+1.94444)x15.26161
+.......\glue 10.00002
+.......\glue 0.0 plus 1.0fil
+.......\mathon
+.......\teni y
+.......\kern0.35878
+.......\mathoff
+.......\glue 0.0 plus 1.0fil
+......\glue(\tabskip) 0.0
+.....\kern 2.0
+.....\glue(\baselineskip) 3.61111
+.....\hbox(6.44444+0.0)x39.10889
+......\glue(\tabskip) 0.0
+......\hbox(6.44444+0.0)x16.46529
+.......\mathon
+.......\teni x
+.......\mathoff
+.......\glue 0.0 plus 1.0fil
+.......\kern 2.0
+.......\kern 8.75002
+......\glue(\tabskip) 0.0
+......\hbox(6.44444+0.0)x7.38199, glue set 0.35764fil
+.......\kern 1.66672
+.......\glue 0.0 plus 1.0fil
+.......\mathon
+.......\tenrm 1
+.......\mathoff
+.......\glue 0.0 plus 1.0fil
+......\glue(\tabskip) 0.0
+......\hbox(6.44444+0.0)x15.26161, glue set 0.1308fil
+.......\glue 10.00002
+.......\glue 0.0 plus 1.0fil
+.......\mathon
+.......\tenrm 0
+.......\mathoff
+.......\glue 0.0 plus 1.0fil
+......\glue(\tabskip) 0.0
+.....\glue(\baselineskip) 5.55556
+.....\hbox(6.44444+1.94444)x39.10889
+......\glue(\tabskip) 0.0
+......\hbox(6.44444+1.94444)x16.46529, glue set 0.45367fil
+.......\mathon
+.......\teni y
+.......\kern0.35878
+.......\mathoff
+.......\glue 0.0 plus 1.0fil
+.......\kern 2.0
+.......\kern 8.75002
+......\glue(\tabskip) 0.0
+......\hbox(6.44444+1.94444)x7.38199, glue set 0.35764fil
+.......\kern 1.66672
+.......\glue 0.0 plus 1.0fil
+.......\mathon
+.......\tenrm 0
+.......\mathoff
+.......\glue 0.0 plus 1.0fil
+......\glue(\tabskip) 0.0
+......\hbox(6.44444+1.94444)x15.26161, glue set 0.1308fil
+.......\glue 10.00002
+.......\glue 0.0 plus 1.0fil
+.......\mathon
+.......\tenrm 1
+.......\mathoff
+.......\glue 0.0 plus 1.0fil
+......\glue(\tabskip) 0.0
+.....\glue(\baselineskip) 1.55556
+.....\hbox(8.5+3.5)x39.10889
+......\glue(\tabskip) 0.0
+......\hbox(8.5+3.5)x16.46529
+.......\rule(8.5+3.5)x0.0
+......\glue(\tabskip) 0.0
+.....\kern -12.0
+....\glue 1.66663
+....\hbox(0.39998+23.60025)x7.36115, shifted -14.10013
+.....\tenex ^^S
+...\mathoff
+.\mathoff
+
+! OK.
+l.6 \showbox1
+
+
+> \box2=
+\hbox(11.97223+6.97221)x101.30418
+.\mathon
+.\teni f
+.\kern1.0764
+.\tenrm (
+.\teni x
+.\tenrm )
+.\glue(\thickmuskip) 2.77771 plus 2.77771
+.\tenrm =
+.\glue(\thickmuskip) 2.77771 plus 2.77771
+.\hbox(11.97223+6.97221)x68.50563
+..\hbox(0.39998+17.60019)x6.66669, shifted -11.1001
+...\tenex n
+..\glue 1.66663
+..\vbox(11.97223+6.97221)x58.97232
+...\hbox(6.94444+1.94444)x58.97232
+....\glue(\tabskip) 0.0
+....\hbox(6.94444+1.94444)x5.00002
+.....\mathon
+.....\tenrm 0
+.....\glue 0.0 plus 1.0fil
+.....\mathoff
+....\glue(\tabskip) 0.0
+....\hbox(6.94444+1.94444)x53.9723, glue set 7.97931fil
+.....\glue 10.00002
+.....\tenrm i
+.....\tenrm f
+.....\glue 3.33333 plus 1.66666 minus 1.11111
+.....\mathon
+.....\teni x
+.....\glue(\thickmuskip) 2.77771 plus 2.77771
+.....\teni <
+.....\glue(\thickmuskip) 2.77771 plus 2.77771
+.....\tenrm 0
+.....\mathoff
+.....\tenrm ,
+.....\glue 0.0 plus 1.0fil
+....\glue(\tabskip) 0.0
+...\glue(\baselineskip) 3.11111
+...\hbox(6.94444+0.0)x58.97232
+....\glue(\tabskip) 0.0
+....\hbox(6.94444+0.0)x5.00002
+.....\mathon
+.....\tenrm 1
+.....\glue 0.0 plus 1.0fil
+.....\mathoff
+....\glue(\tabskip) 0.0
+....\hbox(6.94444+0.0)x53.9723
+.....\glue 10.00002
+.....\tenrm o
+.....\tenrm t
+.....\tenrm h
+.....\tenrm e
+.....\tenrm r
+.....\tenrm w
+.....\tenrm i
+.....\tenrm s
+.....\tenrm e
+.....\tenrm .
+.....\glue 0.0 plus 1.0fil
+....\glue(\tabskip) 0.0
+..\hbox(0.0+0.0)x1.2, shifted -2.5
+.\mathoff
+
+! OK.
+l.8 \showbox2
+
+
+> \box3=
+\hbox(14.5001+9.50012)x47.43521
+.\mathon
+.\hbox(14.5001+9.50012)x38.54631
+..\hbox(0.39998+23.60025)x7.36115, shifted -14.10013
+...\tenex ^^R
+..\hbox(0.0+0.0)x0.0
+..\glue 1.66663
+..\vbox(13.5+8.5)x20.49077
+...\hbox(7.5+2.5)x20.49077
+....\glue(\tabskip) 0.0
+....\hbox(7.5+2.5)x5.28589, glue set 2.64294fil
+.....\glue 0.0 plus 1.0fil
+.....\mathon
+.....\hbox(7.5+2.5)x0.0
+.....\mathoff
+.....\glue 0.0 plus 1.0fil
+....\glue(\tabskip) 0.0
+...\kern -12.0
+...\glue(\baselineskip) 2.55556
+...\hbox(6.94444+0.0)x20.49077
+....\glue(\tabskip) 0.0
+....\hbox(6.94444+0.0)x5.28589
+.....\glue 0.0 plus 1.0fil
+.....\mathon
+.....\teni a
+.....\mathoff
+.....\glue 0.0 plus 1.0fil
+....\glue(\tabskip) 0.0
+....\hbox(6.94444+0.0)x15.20488, glue set 0.4566fil
+.....\glue 10.00002
+.....\glue 0.0 plus 1.0fil
+.....\mathon
+.....\teni b
+.....\mathoff
+.....\glue 0.0 plus 1.0fil
+....\glue(\tabskip) 0.0
+...\glue(\baselineskip) 5.05556
+...\hbox(6.94444+0.0)x20.49077
+....\glue(\tabskip) 0.0
+....\hbox(6.94444+0.0)x5.28589, glue set 0.47917fil
+.....\glue 0.0 plus 1.0fil
+.....\mathon
+.....\teni c
+.....\mathoff
+.....\glue 0.0 plus 1.0fil
+....\glue(\tabskip) 0.0
+....\hbox(6.94444+0.0)x15.20488
+.....\glue 10.00002
+.....\glue 0.0 plus 1.0fil
+.....\mathon
+.....\teni d
+.....\mathoff
+.....\glue 0.0 plus 1.0fil
+....\glue(\tabskip) 0.0
+...\glue(\baselineskip) 4.5
+...\hbox(7.5+2.5)x20.49077
+....\glue(\tabskip) 0.0
+....\hbox(7.5+2.5)x5.28589, glue set 2.64294fil
+.....\glue 0.0 plus 1.0fil
+.....\mathon
+.....\hbox(7.5+2.5)x0.0
+.....\mathoff
+.....\glue 0.0 plus 1.0fil
+....\glue(\tabskip) 0.0
+...\kern -12.0
+..\glue 1.66663
+..\hbox(0.39998+23.60025)x7.36115, shifted -14.10013
+...\tenex ^^S
+.\mathoff
+.\glue 3.33333 plus 1.66666 minus 1.11111
+.\mathon
+.\vbox(10.65277+5.65277)x5.55557
+..\hbox(4.30554+0.0)x5.55557
+...\glue(\tabskip) 0.0
+...\hbox(4.30554+0.0)x5.55557
+....\tenrm a
+...\glue(\tabskip) 0.0
+..\glue(\baselineskip) 5.05556
+..\hbox(6.94444+0.0)x5.55557
+...\glue(\tabskip) 0.0
+...\hbox(6.94444+0.0)x5.55557
+....\tenrm b
+...\glue(\tabskip) 0.0
+.\mathoff
+
+! OK.
+l.10 \showbox3
+
+
+
+### display math mode entered at line 11
+\mathord
+.\fam1 A
+\mathrel
+.\fam0 =
+\mathinner
+.\left"28300
+.\mathord
+..\hbox(0.0+0.0)x0.0
+.\glue(\mskip) 3.0mu
+.\vcenter
+..\vbox(22.0+0.0)x20.00005
+...\hbox(7.5+2.5)x20.00005
+....\glue(\tabskip) 0.0
+....\hbox(7.5+2.5)x5.00002, glue set 2.50002fil
+.....\glue 0.0 plus 1.0fil
+.....\mathon
+.....\hbox(7.5+2.5)x0.0
+.....\mathoff
+.....\glue 0.0 plus 1.0fil
+....\glue(\tabskip) 0.0
+...\kern -12.0
+...\glue(\baselineskip) 3.05556
+...\hbox(6.44444+0.0)x20.00005
+....\glue(\tabskip) 0.0
+....\hbox(6.44444+0.0)x5.00002
+.....\glue 0.0 plus 1.0fil
+.....\mathon
+.....\tenrm 1
+.....\mathoff
+.....\glue 0.0 plus 1.0fil
+....\glue(\tabskip) 0.0
+....\hbox(6.44444+0.0)x15.00003
+.....\glue 10.00002
+.....\glue 0.0 plus 1.0fil
+.....\mathon
+.....\tenrm 2
+.....\mathoff
+.....\glue 0.0 plus 1.0fil
+....\glue(\tabskip) 0.0
+...\glue(\baselineskip) 5.55556
+...\hbox(6.44444+0.0)x20.00005
+....\glue(\tabskip) 0.0
+....\hbox(6.44444+0.0)x5.00002
+.....\glue 0.0 plus 1.0fil
+.....\mathon
+.....\tenrm 3
+.....\mathoff
+.....\glue 0.0 plus 1.0fil
+....\glue(\tabskip) 0.0
+....\hbox(6.44444+0.0)x15.00003
+.....\glue 10.00002
+.....\glue 0.0 plus 1.0fil
+.....\mathon
+.....\tenrm 4
+.....\mathoff
+.....\glue 0.0 plus 1.0fil
+....\glue(\tabskip) 0.0
+...\glue(\baselineskip) 4.5
+...\hbox(7.5+2.5)x20.00005
+....\glue(\tabskip) 0.0
+....\hbox(7.5+2.5)x5.00002, glue set 2.50002fil
+.....\glue 0.0 plus 1.0fil
+.....\mathon
+.....\hbox(7.5+2.5)x0.0
+.....\mathoff
+.....\glue 0.0 plus 1.0fil
+....\glue(\tabskip) 0.0
+...\kern -12.0
+.\glue(\mskip) 3.0mu
+.\right"29301
+### internal vertical mode entered at line 11
+prevdepth ignored
+### vertical mode entered at line 0
+prevdepth ignored
+
+! OK.
+l.11 ...ndent$$A=\pmatrix{1&2\cr 3&4\cr}\showlists
+                                                  $$}
+
+> \box4=
+\vbox(31.00023+0.0)x129.44441
+.\penalty 10000
+.\glue(\abovedisplayshortskip) 0.0 plus 3.0
+.\hbox(14.5001+9.50012)x58.88882, shifted 70.55559
+..\teni A
+..\glue(\thickmuskip) 2.77771 plus 2.77771
+..\tenrm =
+..\glue(\thickmuskip) 2.77771 plus 2.77771
+..\hbox(14.5001+9.50012)x38.05559
+...\hbox(0.39998+23.60025)x7.36115, shifted -14.10013
+....\tenex ^^R
+...\hbox(0.0+0.0)x0.0
+...\glue 1.66663
+...\vbox(13.5+8.5)x20.00005
+....\hbox(7.5+2.5)x20.00005
+.....\glue(\tabskip) 0.0
+.....\hbox(7.5+2.5)x5.00002, glue set 2.50002fil
+......\glue 0.0 plus 1.0fil
+......\mathon
+......\hbox(7.5+2.5)x0.0
+......\mathoff
+......\glue 0.0 plus 1.0fil
+.....\glue(\tabskip) 0.0
+....\kern -12.0
+....\glue(\baselineskip) 3.05556
+....\hbox(6.44444+0.0)x20.00005
+.....\glue(\tabskip) 0.0
+.....\hbox(6.44444+0.0)x5.00002
+......\glue 0.0 plus 1.0fil
+......\mathon
+......\tenrm 1
+......\mathoff
+......\glue 0.0 plus 1.0fil
+.....\glue(\tabskip) 0.0
+.....\hbox(6.44444+0.0)x15.00003
+......\glue 10.00002
+......\glue 0.0 plus 1.0fil
+......\mathon
+......\tenrm 2
+......\mathoff
+......\glue 0.0 plus 1.0fil
+.....\glue(\tabskip) 0.0
+....\glue(\baselineskip) 5.55556
+....\hbox(6.44444+0.0)x20.00005
+.....\glue(\tabskip) 0.0
+.....\hbox(6.44444+0.0)x5.00002
+......\glue 0.0 plus 1.0fil
+......\mathon
+......\tenrm 3
+......\mathoff
+......\glue 0.0 plus 1.0fil
+.....\glue(\tabskip) 0.0
+.....\hbox(6.44444+0.0)x15.00003
+......\glue 10.00002
+......\glue 0.0 plus 1.0fil
+......\mathon
+......\tenrm 4
+......\mathoff
+......\glue 0.0 plus 1.0fil
+.....\glue(\tabskip) 0.0
+....\glue(\baselineskip) 4.5
+....\hbox(7.5+2.5)x20.00005
+.....\glue(\tabskip) 0.0
+.....\hbox(7.5+2.5)x5.00002, glue set 2.50002fil
+......\glue 0.0 plus 1.0fil
+......\mathon
+......\hbox(7.5+2.5)x0.0
+......\mathoff
+......\glue 0.0 plus 1.0fil
+.....\glue(\tabskip) 0.0
+....\kern -12.0
+...\glue 1.66663
+...\hbox(0.39998+23.60025)x7.36115, shifted -14.10013
+....\tenex ^^S
+.\penalty 0
+.\glue(\belowdisplayshortskip) 7.0 plus 3.0 minus 4.0
+
+! OK.
+l.12 \showbox4
+
+
+
+Completed box being shipped out [1]
+\vbox(114.94513+0.0)x129.44441
+.\hbox(28.5001+9.50012)x118.56248
+..\mathon
+..\hbox(0.0+0.0)x0.0
+..\glue 1.66663
+..\vbox(13.5+8.5)x20.49077
+...\hbox(7.5+2.5)x20.49077
+....\glue(\tabskip) 0.0
+....\hbox(7.5+2.5)x5.28589, glue set 2.64294fil
+.....\glue 0.0 plus 1.0fil
+.....\mathon
+.....\hbox(7.5+2.5)x0.0
+.....\mathoff
+.....\glue 0.0 plus 1.0fil
+....\glue(\tabskip) 0.0
+...\kern -12.0
+...\glue(\baselineskip) 2.55556
+...\hbox(6.94444+0.0)x20.49077
+....\glue(\tabskip) 0.0
+....\hbox(6.94444+0.0)x5.28589
+.....\glue 0.0 plus 1.0fil
+.....\mathon
+.....\teni a
+.....\mathoff
+.....\glue 0.0 plus 1.0fil
+....\glue(\tabskip) 0.0
+....\hbox(6.94444+0.0)x15.20488, glue set 0.4566fil
+.....\glue 10.00002
+.....\glue 0.0 plus 1.0fil
+.....\mathon
+.....\teni b
+.....\mathoff
+.....\glue 0.0 plus 1.0fil
+....\glue(\tabskip) 0.0
+...\glue(\baselineskip) 5.05556
+...\hbox(6.94444+0.0)x20.49077
+....\glue(\tabskip) 0.0
+....\hbox(6.94444+0.0)x5.28589, glue set 0.47917fil
+.....\glue 0.0 plus 1.0fil
+.....\mathon
+.....\teni c
+.....\mathoff
+.....\glue 0.0 plus 1.0fil
+....\glue(\tabskip) 0.0
+....\hbox(6.94444+0.0)x15.20488
+.....\glue 10.00002
+.....\glue 0.0 plus 1.0fil
+.....\mathon
+.....\teni d
+.....\mathoff
+.....\glue 0.0 plus 1.0fil
+....\glue(\tabskip) 0.0
+...\glue(\baselineskip) 4.5
+...\hbox(7.5+2.5)x20.49077
+....\glue(\tabskip) 0.0
+....\hbox(7.5+2.5)x5.28589, glue set 2.64294fil
+.....\glue 0.0 plus 1.0fil
+.....\mathon
+.....\hbox(7.5+2.5)x0.0
+.....\mathoff
+.....\glue 0.0 plus 1.0fil
+....\glue(\tabskip) 0.0
+...\kern -12.0
+..\glue 1.66663
+..\mathoff
+..\glue 3.33333 plus 1.66666 minus 1.11111
+..\mathon
+..\hbox(14.5001+9.50012)x38.54631
+...\hbox(0.39998+23.60025)x7.36115, shifted -14.10013
+....\tenex ^^R
+...\hbox(0.0+0.0)x0.0
+...\glue 1.66663
+...\vbox(13.5+8.5)x20.49077
+....\hbox(7.5+2.5)x20.49077
+.....\glue(\tabskip) 0.0
+.....\hbox(7.5+2.5)x5.28589, glue set 2.64294fil
+......\glue 0.0 plus 1.0fil
+......\mathon
+......\hbox(7.5+2.5)x0.0
+......\mathoff
+......\glue 0.0 plus 1.0fil
+.....\glue(\tabskip) 0.0
+....\kern -12.0
+....\glue(\baselineskip) 2.55556
+....\hbox(6.94444+0.0)x20.49077
+.....\glue(\tabskip) 0.0
+.....\hbox(6.94444+0.0)x5.28589
+......\glue 0.0 plus 1.0fil
+......\mathon
+......\teni a
+......\mathoff
+......\glue 0.0 plus 1.0fil
+.....\glue(\tabskip) 0.0
+.....\hbox(6.94444+0.0)x15.20488, glue set 0.4566fil
+......\glue 10.00002
+......\glue 0.0 plus 1.0fil
+......\mathon
+......\teni b
+......\mathoff
+......\glue 0.0 plus 1.0fil
+.....\glue(\tabskip) 0.0
+....\glue(\baselineskip) 5.05556
+....\hbox(6.94444+0.0)x20.49077
+.....\glue(\tabskip) 0.0
+.....\hbox(6.94444+0.0)x5.28589, glue set 0.47917fil
+......\glue 0.0 plus 1.0fil
+......\mathon
+......\teni c
+......\mathoff
+......\glue 0.0 plus 1.0fil
+.....\glue(\tabskip) 0.0
+.....\hbox(6.94444+0.0)x15.20488
+......\glue 10.00002
+......\glue 0.0 plus 1.0fil
+......\mathon
+......\teni d
+......\mathoff
+......\glue 0.0 plus 1.0fil
+.....\glue(\tabskip) 0.0
+....\glue(\baselineskip) 4.5
+....\hbox(7.5+2.5)x20.49077
+.....\glue(\tabskip) 0.0
+.....\hbox(7.5+2.5)x5.28589, glue set 2.64294fil
+......\glue 0.0 plus 1.0fil
+......\mathon
+......\hbox(7.5+2.5)x0.0
+......\mathoff
+......\glue 0.0 plus 1.0fil
+.....\glue(\tabskip) 0.0
+....\kern -12.0
+...\glue 1.66663
+...\hbox(0.39998+23.60025)x7.36115, shifted -14.10013
+....\tenex ^^S
+..\mathoff
+..\glue 3.33333 plus 1.66666 minus 1.11111
+..\mathon
+..\hbox(0.0+0.0)x0.0
+..\glue 2.77771 plus 2.77771
+..\vbox(28.5001+9.50012)x46.74779
+...\kern 14.0
+...\hbox(14.5001+9.50012)x46.74779
+....\mathon
+....\kern 16.46529
+....\kern -8.75002
+....\hbox(14.5001+9.50012)x39.03252
+.....\hbox(0.39998+23.60025)x7.36115, shifted -14.10013
+......\tenex ^^R
+.....\kern -16.46529
+.....\vbox(14.5+9.5)x39.10889
+......\kern -14.0
+......\hbox(8.5+3.5)x39.10889
+.......\glue(\tabskip) 0.0
+.......\hbox(8.5+3.5)x16.46529, glue set 16.46529fil
+........\rule(8.5+3.5)x0.0
+........\glue 0.0 plus 1.0fil
+.......\glue(\tabskip) 0.0
+......\kern -12.0
+......\glue(\baselineskip) 4.19446
+......\hbox(4.30554+1.94444)x39.10889
+.......\glue(\tabskip) 0.0
+.......\hbox(4.30554+1.94444)x16.46529, glue set 5.71527fil
+........\mathon
+........\mathoff
+........\glue 0.0 plus 1.0fil
+........\kern 2.0
+........\kern 8.75002
+.......\glue(\tabskip) 0.0
+.......\hbox(4.30554+1.94444)x7.38199
+........\kern 1.66672
+........\glue 0.0 plus 1.0fil
+........\mathon
+........\teni x
+........\mathoff
+........\glue 0.0 plus 1.0fil
+.......\glue(\tabskip) 0.0
+.......\hbox(4.30554+1.94444)x15.26161
+........\glue 10.00002
+........\glue 0.0 plus 1.0fil
+........\mathon
+........\teni y
+........\kern0.35878
+........\mathoff
+........\glue 0.0 plus 1.0fil
+.......\glue(\tabskip) 0.0
+......\kern 2.0
+......\glue(\baselineskip) 3.61111
+......\hbox(6.44444+0.0)x39.10889
+.......\glue(\tabskip) 0.0
+.......\hbox(6.44444+0.0)x16.46529
+........\mathon
+........\teni x
+........\mathoff
+........\glue 0.0 plus 1.0fil
+........\kern 2.0
+........\kern 8.75002
+.......\glue(\tabskip) 0.0
+.......\hbox(6.44444+0.0)x7.38199, glue set 0.35764fil
+........\kern 1.66672
+........\glue 0.0 plus 1.0fil
+........\mathon
+........\tenrm 1
+........\mathoff
+........\glue 0.0 plus 1.0fil
+.......\glue(\tabskip) 0.0
+.......\hbox(6.44444+0.0)x15.26161, glue set 0.1308fil
+........\glue 10.00002
+........\glue 0.0 plus 1.0fil
+........\mathon
+........\tenrm 0
+........\mathoff
+........\glue 0.0 plus 1.0fil
+.......\glue(\tabskip) 0.0
+......\glue(\baselineskip) 5.55556
+......\hbox(6.44444+1.94444)x39.10889
+.......\glue(\tabskip) 0.0
+.......\hbox(6.44444+1.94444)x16.46529, glue set 0.45367fil
+........\mathon
+........\teni y
+........\kern0.35878
+........\mathoff
+........\glue 0.0 plus 1.0fil
+........\kern 2.0
+........\kern 8.75002
+.......\glue(\tabskip) 0.0
+.......\hbox(6.44444+1.94444)x7.38199, glue set 0.35764fil
+........\kern 1.66672
+........\glue 0.0 plus 1.0fil
+........\mathon
+........\tenrm 0
+........\mathoff
+........\glue 0.0 plus 1.0fil
+.......\glue(\tabskip) 0.0
+.......\hbox(6.44444+1.94444)x15.26161, glue set 0.1308fil
+........\glue 10.00002
+........\glue 0.0 plus 1.0fil
+........\mathon
+........\tenrm 1
+........\mathoff
+........\glue 0.0 plus 1.0fil
+.......\glue(\tabskip) 0.0
+......\glue(\baselineskip) 1.55556
+......\hbox(8.5+3.5)x39.10889
+.......\glue(\tabskip) 0.0
+.......\hbox(8.5+3.5)x16.46529
+........\rule(8.5+3.5)x0.0
+.......\glue(\tabskip) 0.0
+......\kern -12.0
+.....\glue 1.66663
+.....\hbox(0.39998+23.60025)x7.36115, shifted -14.10013
+......\tenex ^^S
+....\mathoff
+..\mathoff
+.\glue(\lineskip) 1.0
+.\hbox(11.97223+6.97221)x101.30418
+..\mathon
+..\teni f
+..\kern1.0764
+..\tenrm (
+..\teni x
+..\tenrm )
+..\glue(\thickmuskip) 2.77771 plus 2.77771
+..\tenrm =
+..\glue(\thickmuskip) 2.77771 plus 2.77771
+..\hbox(11.97223+6.97221)x68.50563
+...\hbox(0.39998+17.60019)x6.66669, shifted -11.1001
+....\tenex n
+...\glue 1.66663
+...\vbox(11.97223+6.97221)x58.97232
+....\hbox(6.94444+1.94444)x58.97232
+.....\glue(\tabskip) 0.0
+.....\hbox(6.94444+1.94444)x5.00002
+......\mathon
+......\tenrm 0
+......\glue 0.0 plus 1.0fil
+......\mathoff
+.....\glue(\tabskip) 0.0
+.....\hbox(6.94444+1.94444)x53.9723, glue set 7.97931fil
+......\glue 10.00002
+......\tenrm i
+......\tenrm f
+......\glue 3.33333 plus 1.66666 minus 1.11111
+......\mathon
+......\teni x
+......\glue(\thickmuskip) 2.77771 plus 2.77771
+......\teni <
+......\glue(\thickmuskip) 2.77771 plus 2.77771
+......\tenrm 0
+......\mathoff
+......\tenrm ,
+......\glue 0.0 plus 1.0fil
+.....\glue(\tabskip) 0.0
+....\glue(\baselineskip) 3.11111
+....\hbox(6.94444+0.0)x58.97232
+.....\glue(\tabskip) 0.0
+.....\hbox(6.94444+0.0)x5.00002
+......\mathon
+......\tenrm 1
+......\glue 0.0 plus 1.0fil
+......\mathoff
+.....\glue(\tabskip) 0.0
+.....\hbox(6.94444+0.0)x53.9723
+......\glue 10.00002
+......\tenrm o
+......\tenrm t
+......\tenrm h
+......\tenrm e
+......\tenrm r
+......\tenrm w
+......\tenrm i
+......\tenrm s
+......\tenrm e
+......\tenrm .
+......\glue 0.0 plus 1.0fil
+.....\glue(\tabskip) 0.0
+...\hbox(0.0+0.0)x1.2, shifted -2.5
+..\mathoff
+.\glue(\lineskip) 1.0
+.\hbox(14.5001+9.50012)x47.43521
+..\mathon
+..\hbox(14.5001+9.50012)x38.54631
+...\hbox(0.39998+23.60025)x7.36115, shifted -14.10013
+....\tenex ^^R
+...\hbox(0.0+0.0)x0.0
+...\glue 1.66663
+...\vbox(13.5+8.5)x20.49077
+....\hbox(7.5+2.5)x20.49077
+.....\glue(\tabskip) 0.0
+.....\hbox(7.5+2.5)x5.28589, glue set 2.64294fil
+......\glue 0.0 plus 1.0fil
+......\mathon
+......\hbox(7.5+2.5)x0.0
+......\mathoff
+......\glue 0.0 plus 1.0fil
+.....\glue(\tabskip) 0.0
+....\kern -12.0
+....\glue(\baselineskip) 2.55556
+....\hbox(6.94444+0.0)x20.49077
+.....\glue(\tabskip) 0.0
+.....\hbox(6.94444+0.0)x5.28589
+......\glue 0.0 plus 1.0fil
+......\mathon
+......\teni a
+......\mathoff
+......\glue 0.0 plus 1.0fil
+.....\glue(\tabskip) 0.0
+.....\hbox(6.94444+0.0)x15.20488, glue set 0.4566fil
+......\glue 10.00002
+......\glue 0.0 plus 1.0fil
+......\mathon
+......\teni b
+......\mathoff
+......\glue 0.0 plus 1.0fil
+.....\glue(\tabskip) 0.0
+....\glue(\baselineskip) 5.05556
+....\hbox(6.94444+0.0)x20.49077
+.....\glue(\tabskip) 0.0
+.....\hbox(6.94444+0.0)x5.28589, glue set 0.47917fil
+......\glue 0.0 plus 1.0fil
+......\mathon
+......\teni c
+......\mathoff
+......\glue 0.0 plus 1.0fil
+.....\glue(\tabskip) 0.0
+.....\hbox(6.94444+0.0)x15.20488
+......\glue 10.00002
+......\glue 0.0 plus 1.0fil
+......\mathon
+......\teni d
+......\mathoff
+......\glue 0.0 plus 1.0fil
+.....\glue(\tabskip) 0.0
+....\glue(\baselineskip) 4.5
+....\hbox(7.5+2.5)x20.49077
+.....\glue(\tabskip) 0.0
+.....\hbox(7.5+2.5)x5.28589, glue set 2.64294fil
+......\glue 0.0 plus 1.0fil
+......\mathon
+......\hbox(7.5+2.5)x0.0
+......\mathoff
+......\glue 0.0 plus 1.0fil
+.....\glue(\tabskip) 0.0
+....\kern -12.0
+...\glue 1.66663
+...\hbox(0.39998+23.60025)x7.36115, shifted -14.10013
+....\tenex ^^S
+..\mathoff
+..\glue 3.33333 plus 1.66666 minus 1.11111
+..\mathon
+..\vbox(10.65277+5.65277)x5.55557
+...\hbox(4.30554+0.0)x5.55557
+....\glue(\tabskip) 0.0
+....\hbox(4.30554+0.0)x5.55557
+.....\tenrm a
+....\glue(\tabskip) 0.0
+...\glue(\baselineskip) 5.05556
+...\hbox(6.94444+0.0)x5.55557
+....\glue(\tabskip) 0.0
+....\hbox(6.94444+0.0)x5.55557
+.....\tenrm b
+....\glue(\tabskip) 0.0
+..\mathoff
+.\glue(\lineskip) 1.0
+.\vbox(31.00023+0.0)x129.44441
+..\penalty 10000
+..\glue(\abovedisplayshortskip) 0.0 plus 3.0
+..\hbox(14.5001+9.50012)x58.88882, shifted 70.55559
+...\teni A
+...\glue(\thickmuskip) 2.77771 plus 2.77771
+...\tenrm =
+...\glue(\thickmuskip) 2.77771 plus 2.77771
+...\hbox(14.5001+9.50012)x38.05559
+....\hbox(0.39998+23.60025)x7.36115, shifted -14.10013
+.....\tenex ^^R
+....\hbox(0.0+0.0)x0.0
+....\glue 1.66663
+....\vbox(13.5+8.5)x20.00005
+.....\hbox(7.5+2.5)x20.00005
+......\glue(\tabskip) 0.0
+......\hbox(7.5+2.5)x5.00002, glue set 2.50002fil
+.......\glue 0.0 plus 1.0fil
+.......\mathon
+.......\hbox(7.5+2.5)x0.0
+.......\mathoff
+.......\glue 0.0 plus 1.0fil
+......\glue(\tabskip) 0.0
+.....\kern -12.0
+.....\glue(\baselineskip) 3.05556
+.....\hbox(6.44444+0.0)x20.00005
+......\glue(\tabskip) 0.0
+......\hbox(6.44444+0.0)x5.00002
+.......\glue 0.0 plus 1.0fil
+.......\mathon
+.......\tenrm 1
+.......\mathoff
+.......\glue 0.0 plus 1.0fil
+......\glue(\tabskip) 0.0
+......\hbox(6.44444+0.0)x15.00003
+.......\glue 10.00002
+.......\glue 0.0 plus 1.0fil
+.......\mathon
+.......\tenrm 2
+.......\mathoff
+.......\glue 0.0 plus 1.0fil
+......\glue(\tabskip) 0.0
+.....\glue(\baselineskip) 5.55556
+.....\hbox(6.44444+0.0)x20.00005
+......\glue(\tabskip) 0.0
+......\hbox(6.44444+0.0)x5.00002
+.......\glue 0.0 plus 1.0fil
+.......\mathon
+.......\tenrm 3
+.......\mathoff
+.......\glue 0.0 plus 1.0fil
+......\glue(\tabskip) 0.0
+......\hbox(6.44444+0.0)x15.00003
+.......\glue 10.00002
+.......\glue 0.0 plus 1.0fil
+.......\mathon
+.......\tenrm 4
+.......\mathoff
+.......\glue 0.0 plus 1.0fil
+......\glue(\tabskip) 0.0
+.....\glue(\baselineskip) 4.5
+.....\hbox(7.5+2.5)x20.00005
+......\glue(\tabskip) 0.0
+......\hbox(7.5+2.5)x5.00002, glue set 2.50002fil
+.......\glue 0.0 plus 1.0fil
+.......\mathon
+.......\hbox(7.5+2.5)x0.0
+.......\mathoff
+.......\glue 0.0 plus 1.0fil
+......\glue(\tabskip) 0.0
+.....\kern -12.0
+....\glue 1.66663
+....\hbox(0.39998+23.60025)x7.36115, shifted -14.10013
+.....\tenex ^^S
+..\penalty 0
+..\glue(\belowdisplayshortskip) 7.0 plus 3.0 minus 4.0
+
+ )
+Output written on m3-matrices-cases.dvi (1 page, 780 bytes).

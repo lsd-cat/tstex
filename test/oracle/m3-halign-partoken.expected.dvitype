@@ -1,0 +1,140 @@
+Options selected:
+  Starting page = * 
+  Maximum number of pages = 1000000
+  Output level = 4 (the works)
+  Resolution = 300.00000000 pixels per inch
+numerator/denominator=25400000/473628672
+magnification=1000;       0.00006334 pixels per DVI unit
+'<comment>'
+Postamble starts at byte 227.
+maxv=4562032, maxh=6553600, maxstackdepth=5, totalpages=1
+Font 0: cmr10---loaded at size 655360 DVI units 
+ 
+42: beginning of page 1 
+87: down3 1068600 v:=0+1068600=1068600, vv:=68 
+91: push 
+level 0:(h=0,v=1068600,w=0,x=0,y=0,z=0,hh=0,vv=68) 
+92: push 
+level 1:(h=0,v=1068600,w=0,x=0,y=0,z=0,hh=0,vv=68) 
+93: push 
+level 2:(h=0,v=1068600,w=0,x=0,y=0,z=0,hh=0,vv=68) 
+94: push 
+level 3:(h=0,v=1068600,w=0,x=0,y=0,z=0,hh=0,vv=68) 
+95: down3 -786432 v:=1068600-786432=282168, vv:=18 
+99: push 
+level 4:(h=0,v=282168,w=0,x=0,y=0,z=0,hh=0,vv=18) 
+100: right3 327680 h:=0+327680=327680, hh:=21 
+[ ]
+104: fntdef1 0: cmr10 
+125: fntnum0 current font is cmr10 
+126: setchar97 h:=327680+327681=655361, hh:=42 
+[a]
+127: pop 
+level 4:(h=0,v=282168,w=0,x=0,y=0,z=0,hh=0,vv=18) 
+128: down3 786432 v:=282168+786432=1068600, vv:=68 
+132: push 
+level 4:(h=0,v=1068600,w=0,x=0,y=0,z=0,hh=0,vv=68) 
+133: right3 327680 h:=0+327680=327680, hh:=21 
+137: setchar98 h:=327680+364090=691770, hh:=44 
+[ b]
+138: pop 
+level 4:(h=0,v=1068600,w=0,x=0,y=0,z=0,hh=0,vv=68) 
+139: pop 
+level 3:(h=0,v=1068600,w=0,x=0,y=0,z=0,hh=0,vv=68) 
+140: pop 
+level 2:(h=0,v=1068600,w=0,x=0,y=0,z=0,hh=0,vv=68) 
+141: pop 
+level 1:(h=0,v=1068600,w=0,x=0,y=0,z=0,hh=0,vv=68) 
+142: pop 
+level 0:(h=0,v=1068600,w=0,x=0,y=0,z=0,hh=0,vv=68) 
+143: y3 786432 v:=1068600+786432=1855032, vv:=117 
+147: push 
+level 0:(h=0,v=1855032,w=0,x=0,y=786432,z=0,hh=0,vv=117) 
+148: push 
+level 1:(h=0,v=1855032,w=0,x=0,y=786432,z=0,hh=0,vv=117) 
+149: push 
+level 2:(h=0,v=1855032,w=0,x=0,y=786432,z=0,hh=0,vv=117) 
+150: push 
+level 3:(h=0,v=1855032,w=0,x=0,y=786432,z=0,hh=0,vv=117) 
+151: push 
+level 4:(h=0,v=1855032,w=0,x=0,y=786432,z=0,hh=0,vv=117) 
+152: right3 327680 h:=0+327680=327680, hh:=21 
+156: setchar97 h:=327680+327681=655361, hh:=42 
+[ a]
+157: pop 
+level 4:(h=0,v=1855032,w=0,x=0,y=786432,z=0,hh=0,vv=117) 
+158: pop 
+level 3:(h=0,v=1855032,w=0,x=0,y=786432,z=0,hh=0,vv=117) 
+159: pop 
+level 2:(h=0,v=1855032,w=0,x=0,y=786432,z=0,hh=0,vv=117) 
+160: pop 
+level 1:(h=0,v=1855032,w=0,x=0,y=786432,z=0,hh=0,vv=117) 
+161: pop 
+level 0:(h=0,v=1855032,w=0,x=0,y=786432,z=0,hh=0,vv=117) 
+162: y0 786432 v:=1855032+786432=2641464, vv:=167 
+163: push 
+level 0:(h=0,v=2641464,w=0,x=0,y=786432,z=0,hh=0,vv=167) 
+164: push 
+level 1:(h=0,v=2641464,w=0,x=0,y=786432,z=0,hh=0,vv=167) 
+165: push 
+level 2:(h=0,v=2641464,w=0,x=0,y=786432,z=0,hh=0,vv=167) 
+166: push 
+level 3:(h=0,v=2641464,w=0,x=0,y=786432,z=0,hh=0,vv=167) 
+167: down3 -282168 v:=2641464-282168=2359296, vv:=149 
+171: putrule height 26214, width 6553600 (2x416 pixels) 
+180: down3 282168 v:=2359296+282168=2641464, vv:=167 
+184: push 
+level 4:(h=0,v=2641464,w=0,x=0,y=786432,z=0,hh=0,vv=167) 
+185: right3 327680 h:=0+327680=327680, hh:=21 
+189: setchar97 h:=327680+327681=655361, hh:=42 
+[ a]
+190: pop 
+level 4:(h=0,v=2641464,w=0,x=0,y=786432,z=0,hh=0,vv=167) 
+191: pop 
+level 3:(h=0,v=2641464,w=0,x=0,y=786432,z=0,hh=0,vv=167) 
+192: pop 
+level 2:(h=0,v=2641464,w=0,x=0,y=786432,z=0,hh=0,vv=167) 
+193: pop 
+level 1:(h=0,v=2641464,w=0,x=0,y=786432,z=0,hh=0,vv=167) 
+194: pop 
+level 0:(h=0,v=2641464,w=0,x=0,y=786432,z=0,hh=0,vv=167) 
+195: down3 1920568 v:=2641464+1920568=4562032, vv:=289 
+199: push 
+level 0:(h=0,v=4562032,w=0,x=0,y=786432,z=0,hh=0,vv=289) 
+200: down3 -1572864 v:=4562032-1572864=2989168, vv:=189 
+204: push 
+level 1:(h=0,v=2989168,w=0,x=0,y=786432,z=0,hh=0,vv=189) 
+205: push 
+level 2:(h=0,v=2989168,w=0,x=0,y=786432,z=0,hh=0,vv=189) 
+206: setchar97 h:=0+327681=327681, hh:=21 
+[a]
+207: pop 
+level 2:(h=0,v=2989168,w=0,x=0,y=786432,z=0,hh=0,vv=189) 
+208: pop 
+level 1:(h=0,v=2989168,w=0,x=0,y=786432,z=0,hh=0,vv=189) 
+209: y0 786432 v:=2989168+786432=3775600, vv:=239 
+210: push 
+level 1:(h=0,v=3775600,w=0,x=0,y=786432,z=0,hh=0,vv=239) 
+211: push 
+level 2:(h=0,v=3775600,w=0,x=0,y=786432,z=0,hh=0,vv=239) 
+212: right3 327680 h:=0+327680=327680, hh:=21 
+216: setchar113 h:=327680+345885=673565, hh:=43 
+[ q]
+217: pop 
+level 2:(h=0,v=3775600,w=0,x=0,y=786432,z=0,hh=0,vv=239) 
+218: pop 
+level 1:(h=0,v=3775600,w=0,x=0,y=786432,z=0,hh=0,vv=239) 
+219: y0 786432 v:=3775600+786432=4562032, vv:=289 
+220: push 
+level 1:(h=0,v=4562032,w=0,x=0,y=786432,z=0,hh=0,vv=289) 
+221: push 
+level 2:(h=0,v=4562032,w=0,x=0,y=786432,z=0,hh=0,vv=289) 
+222: setchar98 h:=0+364090=364090, hh:=23 
+[b]
+223: pop 
+level 2:(h=0,v=4562032,w=0,x=0,y=786432,z=0,hh=0,vv=289) 
+224: pop 
+level 1:(h=0,v=4562032,w=0,x=0,y=786432,z=0,hh=0,vv=289) 
+225: pop 
+level 0:(h=0,v=4562032,w=0,x=0,y=786432,z=0,hh=0,vv=289) 
+226: eop 

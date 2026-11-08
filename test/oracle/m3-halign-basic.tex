@@ -1,0 +1,16 @@
+%! oracle: ini
+\input plain
+\tracingonline=0 \showboxbreadth=10000 \showboxdepth=10000 \tracingoutput=1
+\hsize=200pt \parindent=0pt
+\setbox1=\vbox{\tabskip=2pt \halign{#\hfil&\hfil#\cr a&b\cr aa&bb\cr aaa&\showlists b\cr}}
+\showbox1
+\setbox2=\vbox{\halign to 100pt{\tabskip=1pt plus 1fil#\hfil&#\hfil\tabskip=3pt plus 2fil\cr a&b\cr aa&bb\cr}}
+\showbox2
+\setbox3=\vbox{\tabskip=0pt \halign spread 20pt{#\tabskip=1pt plus 1pt&#\cr x&y\cr}}
+\showbox3
+\setbox4=\vbox{\offinterlineskip\halign{\hfil#\hfil&&[#]\cr a\cr b&c&d\cr}}
+\showbox4
+\setbox5=\vbox{\halign{#\cr}}
+\showbox5
+\shipout\vbox{\box1\box2\box3\box4}
+\end

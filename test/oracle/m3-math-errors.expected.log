@@ -1,0 +1,476 @@
+(m3-math-errors.tex (plain.tex Preloading the plain format: codes, register
+s,
+\maxdimen=\dimen10
+\hideskip=\skip10
+\centering=\skip11
+\p@=\dimen11
+\z@=\dimen12
+\z@skip=\skip12
+\voidb@x=\box10
+parameters,
+\smallskipamount=\skip13
+\medskipamount=\skip14
+\bigskipamount=\skip15
+\normalbaselineskip=\skip16
+\normallineskip=\skip17
+\normallineskiplimit=\dimen13
+\jot=\dimen14
+\interdisplaylinepenalty=\count23
+\interfootnotelinepenalty=\count24
+fonts, more fonts,
+\itfam=\fam4
+\slfam=\fam5
+\bffam=\fam6
+\ttfam=\fam7
+macros,
+\strutbox=\box11
+\mscount=\count25
+\tabs=\box12
+\tabsyet=\box13
+\tabsdone=\box14
+math definitions,
+\rootbox=\box15
+\p@renwd=\dimen15
+output routines,
+\headline=\toks10
+\footline=\toks11
+\footins=\insert254
+\topins=\insert253
+hyphenation (hyphen.tex))
+
+### math mode entered at line 4
+\mathord
+.\fam1 a
+### horizontal mode entered at line 4
+\hbox(0.0+0.0)x20.0
+spacefactor 1000
+### vertical mode entered at line 0
+prevdepth ignored
+
+! OK.
+l.4 $a\showlists
+                 $ x
+
+! You can't use `\eqno' in math mode.
+l.5 \setbox1=\hbox{$$a$$ $a\eqno
+                                 b$ $\left(a$ a}$ }
+Sorry, but I'm not programmed to handle this case;
+I'll just pretend that you didn't ask for it.
+If you're in the wrong mode, you might be able to
+return to the right one by typing `I}' or `I$' or `I\par'.
+
+! Missing \right. inserted.
+<inserted text>
+                \right .
+<to be read again>
+                   $
+l.5 \setbox1=\hbox{$$a$$ $a\eqno b$ $\left(a$
+                                              a}$ }
+I've inserted something that you may have forgotten.
+(See the <inserted text> above.)
+With luck, this will get me unwedged. But if you
+really didn't forget anything, try typing `2' now; then
+my insertion and my current dilemma will both disappear.
+
+! Extra }, or forgotten $.
+l.5 ...box1=\hbox{$$a$$ $a\eqno b$ $\left(a$ a}$ }
+
+I've deleted a group-closing symbol because it seems to be
+spurious, as in `$x}$'. But perhaps the } is legitimate and
+you forgot something else, as in `\hbox{$x}'. In such cases
+the way to recover is to insert both the forgotten and the
+deleted material, e.g., by typing `I$}'.
+
+> \box1=
+\hbox(7.5+2.5)x39.95235
+.\mathon
+.\mathoff
+.\tenrm a
+.\mathon
+.\mathoff
+.\glue 3.33333 plus 1.66666 minus 1.11111
+.\mathon
+.\teni a
+.\teni b
+.\mathoff
+.\glue 3.33333 plus 1.66666 minus 1.11111
+.\mathon
+.\hbox(7.5+2.5)x10.37479
+..\hbox(7.5+2.5)x3.8889
+...\tenrm (
+..\teni a
+..\hbox(0.0+0.0)x1.2, shifted -2.5
+.\mathoff
+.\glue 3.33333 plus 1.66666 minus 1.11111
+.\tenrm a
+
+! OK.
+l.6 \showbox1
+
+
+! Extra }, or forgotten $.
+l.7 \hbox{$a}
+             \over b\over c$}
+I've deleted a group-closing symbol because it seems to be
+spurious, as in `$x}$'. But perhaps the } is legitimate and
+you forgot something else, as in `\hbox{$x}'. In such cases
+the way to recover is to insert both the forgotten and the
+deleted material, e.g., by typing `I$}'.
+
+! Ambiguous; you need another { and }.
+l.7 \hbox{$a}\over b\over
+                          c$}
+I'm ignoring this fraction specification, since I don't
+know whether a construction like `x \over y \over z'
+means `{x \over y} \over z' or `x \over {y \over z}'.
+
+! Missing $ inserted.
+<inserted text>
+                $
+<to be read again>
+                   _
+l.8 \setbox2=\hbox{_
+                     a ^ b $x^\hbox{q}$ $\left. a$ $a\over b\over c$}
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+! Missing $ inserted.
+<inserted text>
+                $
+<to be read again>
+                   ^
+l.8 \setbox2=\hbox{_ a ^ b $x^
+                              \hbox{q}$ $\left. a$ $a\over b\over c$}
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+! Missing { inserted.
+<to be read again>
+                   \hbox
+l.8 \setbox2=\hbox{_ a ^ b $x^\hbox
+                                   {q}$ $\left. a$ $a\over b\over c$}
+A left brace was mandatory here, so I've put one in.
+You might want to delete and/or insert some corrections
+so that I will find a matching right brace soon.
+(If you're confused by all this, try typing `I}' now.)
+
+! Missing } inserted.
+<inserted text>
+                }
+<to be read again>
+                   $
+l.8 \setbox2=\hbox{_ a ^ b $x^\hbox{q}$
+                                        $\left. a$ $a\over b\over c$}
+I've inserted something that you may have forgotten.
+(See the <inserted text> above.)
+With luck, this will get me unwedged. But if you
+really didn't forget anything, try typing `2' now; then
+my insertion and my current dilemma will both disappear.
+
+! Missing \right. inserted.
+<inserted text>
+                \right .
+<to be read again>
+                   $
+l.8 \setbox2=\hbox{_ a ^ b $x^\hbox{q}$ $\left. a$
+                                                   $a\over b\over c$}
+I've inserted something that you may have forgotten.
+(See the <inserted text> above.)
+With luck, this will get me unwedged. But if you
+really didn't forget anything, try typing `2' now; then
+my insertion and my current dilemma will both disappear.
+
+! Ambiguous; you need another { and }.
+l.8 ... ^ b $x^\hbox{q}$ $\left. a$ $a\over b\over
+                                                   c$}
+I'm ignoring this fraction specification, since I don't
+know whether a construction like `x \over y \over z'
+means `{x \over y} \over z' or `x \over {y \over z}'.
+
+> \box2=
+\hbox(8.49002+3.44841)x39.73618
+.\mathon
+.\vbox(10.96219+0.0)x4.83765, shifted 2.47217
+..\hbox(4.8611+0.0)x4.01666
+...\seveni b
+..\kern3.0872
+..\hbox(3.01389+0.0)x4.83765
+...\seveni a
+.\mathoff
+.\tenrm x
+.\mathon
+.\hbox(4.30554+1.94444)x5.77779, shifted -3.62892
+..\tenrm q
+.\mathoff
+.\glue 3.33333 plus 1.66666 minus 1.11111
+.\mathon
+.\hbox(4.30554+0.0)x7.68588
+..\hbox(0.0+0.0)x1.2, shifted -2.5
+..\teni a
+..\hbox(0.0+0.0)x1.2, shifted -2.5
+.\mathoff
+.\glue 3.33333 plus 1.66666 minus 1.11111
+.\mathon
+.\hbox(6.9512+3.44841)x9.4904
+..\hbox(0.0+0.0)x1.2, shifted -2.5
+..\vbox(6.9512+3.44841)x7.09041
+...\hbox(3.01389+0.0)x7.09041, glue set 1.37639fil
+....\glue 0.0 plus 1.0fil minus 1.0fil
+....\seveni a
+....\glue 0.0 plus 1.0fil minus 1.0fil
+...\kern1.23732
+...\rule(0.39998+0.0)x*
+...\kern0.88731
+...\hbox(4.8611+0.0)x7.09041
+....\seveni b
+....\seveni c
+..\hbox(0.0+0.0)x1.2, shifted -2.5
+.\mathoff
+
+! OK.
+l.9 \showbox2
+
+
+! Missing { inserted.
+<to be read again>
+                   \vrule
+l.10 \setbox3=\hbox{$x^\vrule
+                             $ $x^\mathchar"141 $ $x^{}_{}$ $\fam$}
+A left brace was mandatory here, so I've put one in.
+You might want to delete and/or insert some corrections
+so that I will find a matching right brace soon.
+(If you're confused by all this, try typing `I}' now.)
+
+! Missing } inserted.
+<inserted text>
+                }
+<to be read again>
+                   $
+l.10 \setbox3=\hbox{$x^\vrule$
+                               $x^\mathchar"141 $ $x^{}_{}$ $\fam$}
+I've inserted something that you may have forgotten.
+(See the <inserted text> above.)
+With luck, this will get me unwedged. But if you
+really didn't forget anything, try typing `2' now; then
+my insertion and my current dilemma will both disappear.
+
+! Missing number, treated as zero.
+<to be read again>
+                   $
+l.10 ...vrule$ $x^\mathchar"141 $ $x^{}_{}$ $\fam$
+                                                  }
+A number should have been here; I inserted `0'.
+(If you can't figure out why I needed to see a number,
+look up `weird error' in the index to The TeXbook.)
+
+> \box3=
+\hbox(8.41226+2.47217)x35.05971
+.\mathon
+.\teni x
+.\hbox(0.0+0.0)x0.9, shifted -3.62892
+..\rule(*+*)x0.4
+.\mathoff
+.\glue 3.33333 plus 1.66666 minus 1.11111
+.\mathon
+.\teni x
+.\hbox(4.78334+0.0)x6.51392, shifted -3.62892
+..\seveni A
+.\mathoff
+.\glue 3.33333 plus 1.66666 minus 1.11111
+.\mathon
+.\teni x
+.\vbox(6.10109+0.0)x0.5, shifted 2.47217
+..\hbox(0.0+0.0)x0.5
+..\kern6.10109
+..\hbox(0.0+0.0)x0.5
+.\mathoff
+.\glue 3.33333 plus 1.66666 minus 1.11111
+.\mathon
+.\mathoff
+
+! OK.
+l.11 \showbox3
+
+
+! Missing $ inserted.
+<inserted text>
+                $
+<to be read again>
+                   \par
+l.12 $$ a \par
+               b $$
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+! Missing $ inserted.
+<inserted text>
+                $
+<to be read again>
+                   \par
+l.13 \par
+         \showlists
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+! Display math should end with $$.
+<to be read again>
+                   \par
+l.13 \par
+         \showlists
+The `$' that I just saw supposedly matches a previous `$$'.
+So I shall assume that you typed `$$' both times.
+
+
+### vertical mode entered at line 0
+### current page:
+\glue(\topskip) 3.0488
+\hbox(6.9512+3.44841)x469.75499, glue set 417.74835fil
+.\hbox(0.0+0.0)x20.0
+.\mathon
+.\teni a
+.\mathoff
+.\glue 3.33333 plus 1.66666 minus 1.11111
+.\tenrm x
+.\glue 3.33333 plus 1.66666 minus 1.11111
+.\mathon
+.\hbox(6.9512+3.44841)x9.4904
+..\mathon
+..\hbox(6.9512+3.44841)x9.4904
+...\hbox(0.0+0.0)x1.2, shifted -2.5
+...\vbox(6.9512+3.44841)x7.09041
+....\hbox(3.01389+0.0)x7.09041, glue set 1.37639fil
+.....\glue 0.0 plus 1.0fil minus 1.0fil
+.....\seveni a
+.....\glue 0.0 plus 1.0fil minus 1.0fil
+....\kern1.23732
+....\rule(0.39998+0.0)x*
+....\kern0.88731
+....\hbox(4.8611+0.0)x7.09041
+.....\seveni b
+.....\seveni c
+...\hbox(0.0+0.0)x1.2, shifted -2.5
+..\mathoff
+.\mathoff
+.\mathon
+.\teni a
+.\mathoff
+.\penalty 10000
+.\glue(\parfillskip) 0.0 plus 1.0fil
+.\glue(\rightskip) 0.0
+\glue(\parskip) 0.0 plus 1.0
+\glue(\baselineskip) 1.60715
+\hbox(6.94444+0.0)x469.75499, glue set 444.19942fil
+.\hbox(0.0+0.0)x20.0
+.\tenrm b
+.\penalty 10000
+.\glue(\parfillskip) 0.0 plus 1.0fil
+.\glue(\rightskip) 0.0
+\penalty 10000
+\glue(\abovedisplayshortskip) 0.0 plus 3.0
+\glue(\baselineskip) 12.0
+\hbox(0.0+0.0)x0.0, shifted 234.8775
+\penalty 0
+\glue(\belowdisplayshortskip) 7.0 plus 3.0 minus 4.0
+total height 41.0 plus 7.0 minus 4.0
+ goal height 643.20255
+prevdepth 0.0, prevgraf 4 lines
+
+! OK.
+l.13 \par\showlists
+
+
+! You can't use `\eqno' in math mode.
+l.14 $$a\leqno b\eqno
+                      c$$
+Sorry, but I'm not programmed to handle this case;
+I'll just pretend that you didn't ask for it.
+If you're in the wrong mode, you might be able to
+return to the right one by typing `I}' or `I$' or `I\par'.
+
+
+Completed box being shipped out [1]
+\vbox(667.20255+0.0)x469.75499
+.\vbox(0.0+0.0)x469.75499, glue set 14.0fil
+..\glue -22.5
+..\hbox(8.5+0.0)x469.75499, glue set 469.75499fil
+...\vbox(8.5+0.0)x0.0
+...\glue 0.0 plus 1.0fil
+..\glue 0.0 plus 1.0fil minus 1.0fil
+.\vbox(643.20255+0.0)x469.75499, glue set 554.20255fill
+..\glue(\topskip) 3.0488
+..\hbox(6.9512+3.44841)x469.75499, glue set 417.74835fil
+...\hbox(0.0+0.0)x20.0
+...\mathon
+...\teni a
+...\mathoff
+...\glue 3.33333 plus 1.66666 minus 1.11111
+...\tenrm x
+...\glue 3.33333 plus 1.66666 minus 1.11111
+...\mathon
+...\hbox(6.9512+3.44841)x9.4904
+....\mathon
+....\hbox(6.9512+3.44841)x9.4904
+.....\hbox(0.0+0.0)x1.2, shifted -2.5
+.....\vbox(6.9512+3.44841)x7.09041
+......\hbox(3.01389+0.0)x7.09041, glue set 1.37639fil
+.......\glue 0.0 plus 1.0fil minus 1.0fil
+.......\seveni a
+.......\glue 0.0 plus 1.0fil minus 1.0fil
+......\kern1.23732
+......\rule(0.39998+0.0)x*
+......\kern0.88731
+......\hbox(4.8611+0.0)x7.09041
+.......\seveni b
+.......\seveni c
+.....\hbox(0.0+0.0)x1.2, shifted -2.5
+....\mathoff
+...\mathoff
+...\mathon
+...\teni a
+...\mathoff
+...\penalty 10000
+...\glue(\parfillskip) 0.0 plus 1.0fil
+...\glue(\rightskip) 0.0
+..\glue(\parskip) 0.0 plus 1.0
+..\glue(\baselineskip) 1.60715
+..\hbox(6.94444+0.0)x469.75499, glue set 444.19942fil
+...\hbox(0.0+0.0)x20.0
+...\tenrm b
+...\penalty 10000
+...\glue(\parfillskip) 0.0 plus 1.0fil
+...\glue(\rightskip) 0.0
+..\penalty 10000
+..\glue(\abovedisplayshortskip) 0.0 plus 3.0
+..\glue(\baselineskip) 12.0
+..\hbox(0.0+0.0)x0.0, shifted 234.8775
+..\penalty 0
+..\glue(\belowdisplayshortskip) 7.0 plus 3.0 minus 4.0
+..\glue(\parskip) 0.0 plus 1.0
+..\glue(\baselineskip) 12.0
+..\hbox(0.0+0.0)x469.75499, glue set 449.75499fil
+...\hbox(0.0+0.0)x20.0
+...\penalty 10000
+...\glue(\parfillskip) 0.0 plus 1.0fil
+...\glue(\rightskip) 0.0
+..\penalty 10000
+..\glue(\abovedisplayskip) 12.0 plus 3.0 minus 9.0
+..\glue(\baselineskip) 5.05556
+..\hbox(6.94444+0.0)x237.52043
+...\hbox(6.94444+0.0)x8.61922
+....\teni b
+....\teni c
+...\kern223.61533
+...\hbox(4.30554+0.0)x5.28589
+....\teni a
+..\penalty 0
+..\glue(\belowdisplayskip) 12.0 plus 3.0 minus 9.0
+..\hbox(0.0+0.0)x469.75499
+..\glue 0.0 plus 1.0fill
+.\glue(\baselineskip) 17.55556
+.\hbox(6.44444+0.0)x469.75499, glue set 232.37749fil
+..\glue 0.0 plus 1.0fil minus 1.0fil
+..\tenrm 1
+..\glue 0.0 plus 1.0fil minus 1.0fil
+
+ )
+Output written on m3-math-errors.dvi (1 page, 384 bytes).

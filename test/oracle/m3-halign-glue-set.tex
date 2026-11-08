@@ -1,0 +1,19 @@
+%! oracle: ini
+\input plain
+\tracingonline=0 \showboxbreadth=10000 \showboxdepth=10000 \tracingoutput=1
+\hsize=100pt \parindent=0pt
+\setbox1=\vbox{\halign to\hsize{\tabskip=0pt plus 1fil#&#\tabskip=0pt\cr a&b\cr aaa&\hfil bbb\cr}}
+\showbox1
+\setbox2=\vbox{\halign to\hsize{\hfil#\tabskip=0pt plus 1fil&\hfil#\cr a&b\cr}}
+\showbox2
+\hbadness=0 \hfuzz=0pt
+\setbox3=\vbox{\halign to 10pt{#\tabskip=1pt&#\cr aaaa&bbbb\cr}}
+\showbox3
+\setbox4=\vbox{\halign to 100pt{#\tabskip=1pt plus 1pt&#\cr a&b\cr}}
+\showbox4
+\setbox5=\vbox{\halign spread 5pt{#\tabskip=1pt minus 1pt&#\cr a&b\cr}}
+\showbox5
+\setbox6=\vbox{\halign to 100pt{#\tabskip=0pt plus 1fil&\hskip 0pt minus 2pt#\cr a&b\cr}}
+\showbox6
+\shipout\vbox{\box1\box2\box3\box4}
+\end

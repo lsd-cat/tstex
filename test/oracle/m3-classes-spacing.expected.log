@@ -1,0 +1,456 @@
+(m3-classes-spacing.tex (plain.tex Preloading the plain format: codes, regi
+sters,
+\maxdimen=\dimen10
+\hideskip=\skip10
+\centering=\skip11
+\p@=\dimen11
+\z@=\dimen12
+\z@skip=\skip12
+\voidb@x=\box10
+parameters,
+\smallskipamount=\skip13
+\medskipamount=\skip14
+\bigskipamount=\skip15
+\normalbaselineskip=\skip16
+\normallineskip=\skip17
+\normallineskiplimit=\dimen13
+\jot=\dimen14
+\interdisplaylinepenalty=\count23
+\interfootnotelinepenalty=\count24
+fonts, more fonts,
+\itfam=\fam4
+\slfam=\fam5
+\bffam=\fam6
+\ttfam=\fam7
+macros,
+\strutbox=\box11
+\mscount=\count25
+\tabs=\box12
+\tabsyet=\box13
+\tabsdone=\box14
+math definitions,
+\rootbox=\box15
+\p@renwd=\dimen15
+output routines,
+\headline=\toks10
+\footline=\toks11
+\footins=\insert254
+\topins=\insert253
+hyphenation (hyphen.tex))
+> \box1=
+\hbox(6.94444+1.94444)x51.18384
+.\mathon
+.\teni a
+.\glue(\thinmuskip) 1.66663
+.\hbox(6.94444+0.0)x4.29166, shifted 0.97223
+..\teni b
+.\glue(\thinmuskip) 1.66663
+.\teni c
+.\glue(\thickmuskip) 2.77771 plus 2.77771
+.\teni d
+.\glue(\thickmuskip) 2.77771 plus 2.77771
+.\teni e
+.\teni f
+.\kern1.0764
+.\teni g
+.\kern0.35878
+.\glue(\thinmuskip) 1.66663
+.\teni h
+.\mathoff
+
+! OK.
+l.5 \showbox1
+
+
+> \box2=
+\hbox(7.5+2.5)x242.62169
+.\mathon
+.\teni a
+.\glue(\medmuskip) 2.22217 plus 1.11108 minus 2.22217
+.\tenrm +
+.\glue(\medmuskip) 2.22217 plus 1.11108 minus 2.22217
+.\teni b
+.\mathoff
+.\glue 3.33333 plus 1.66666 minus 1.11111
+.\mathon
+.\teni a
+.\glue(\thickmuskip) 2.77771 plus 2.77771
+.\tenrm =
+.\glue(\thickmuskip) 2.77771 plus 2.77771
+.\teni b
+.\mathoff
+.\glue 3.33333 plus 1.66666 minus 1.11111
+.\mathon
+.\teni a
+.\teni ;
+.\glue(\thinmuskip) 1.66663
+.\teni b
+.\mathoff
+.\glue 3.33333 plus 1.66666 minus 1.11111
+.\mathon
+.\tenrm (
+.\teni a
+.\tenrm )
+.\mathoff
+.\glue 3.33333 plus 1.66666 minus 1.11111
+.\mathon
+.\teni a
+.\glue(\thinmuskip) 1.66663
+.\teni x
+.\glue(\thinmuskip) 1.66663
+.\teni b
+.\mathoff
+.\glue 3.33333 plus 1.66666 minus 1.11111
+.\mathon
+.\tenrm +
+.\teni a
+.\mathoff
+.\glue 3.33333 plus 1.66666 minus 1.11111
+.\mathon
+.\teni a
+.\glue(\medmuskip) 2.22217 plus 1.11108 minus 2.22217
+.\tenrm +
+.\glue(\medmuskip) 2.22217 plus 1.11108 minus 2.22217
+.\tensy ^^@
+.\teni b
+.\mathoff
+.\glue 3.33333 plus 1.66666 minus 1.11111
+.\mathon
+.\teni a
+.\tenrm +
+.\glue(\thickmuskip) 2.77771 plus 2.77771
+.\tenrm =
+.\glue(\thickmuskip) 2.77771 plus 2.77771
+.\teni b
+.\mathoff
+.\glue 3.33333 plus 1.66666 minus 1.11111
+.\mathon
+.\teni a
+.\glue(\thinmuskip) 1.66663
+.\hbox(4.30554+0.0)x5.71527, shifted -0.34723
+..\teni x
+.\glue(\thinmuskip) 1.66663
+.\teni b
+.\mathoff
+.\glue 3.33333 plus 1.66666 minus 1.11111
+.\mathon
+.\seveni a
+.\sevenrm +
+.\seveni b
+.\sevenrm =
+.\seveni c
+.\seveni ;
+.\seveni d
+.\mathoff
+
+! OK.
+l.7 \showbox2
+
+
+> 1446656.
+<to be read again>
+                   }
+l.9 ...$\x$ \delcode`(="161300 \showthe\delcode`(}
+
+
+> \box3=
+\hbox(6.94444+0.0)x36.99419
+.\mathon
+.\teni a
+.\tenrm -
+.\teni b
+.\mathoff
+.\glue 3.33333 plus 1.66666 minus 1.11111
+.\mathon
+.\teni A
+.\mathoff
+.\glue 3.33333 plus 1.66666 minus 1.11111
+.\mathon
+.\teni !
+.\kern0.35878
+.\mathoff
+.\glue 3.33333 plus 1.66666 minus 1.11111
+
+! OK.
+l.10 \showbox3
+
+
+> 1446754.
+l.11 \delcode`x="161362 \showthe\delcode`x
+
+
+
+### math mode entered at line 12
+\mathord
+.\fam1 a
+\glue(\mskip) 3.0mu plus 1.0mu
+\mathord
+.\fam1 b
+\mkern2.0mu
+\mathord
+.\fam1 c
+### restricted horizontal mode entered at line 12
+spacefactor 1000
+### vertical mode entered at line 0
+prevdepth ignored
+
+! OK.
+l.12 ...mskip 3mu plus 1mu b\mkern 2mu c\showlists
+                                                  $}
+
+> \box4=
+\hbox(6.94444+0.0)x16.68282
+.\mathon
+.\teni a
+.\glue 1.66663 plus 0.55554
+.\teni b
+.\kern 1.11108
+.\teni c
+.\mathoff
+
+! OK.
+l.13 \showbox4
+
+
+> \box5=
+\hbox(7.5+2.5)x72.51595
+.\mathon
+.\teni a
+.\glue(\medmuskip) 2.77771 plus 0.55554
+.\tenrm +
+.\glue(\medmuskip) 2.77771 plus 0.55554
+.\teni b
+.\glue(\thickmuskip) 4.99988 minus 1.11108
+.\tenrm =
+.\glue(\thickmuskip) 4.99988 minus 1.11108
+.\teni c
+.\teni ;
+.\glue(\thinmuskip) 0.55554
+.\teni d
+.\tenrm (
+.\teni e
+.\tenrm )
+.\glue(\thinmuskip) 0.55554
+.\teni f
+.\kern1.0764
+.\mathoff
+
+! OK.
+l.16 \showbox5
+
+
+! Missing $ inserted.
+<inserted text>
+                $
+<to be read again>
+                   \mskip
+l.17 \mskip
+            3mu
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+
+### math mode entered at line 17
+\glue(\mskip) 3.0mu
+\mkern2.0mu
+### horizontal mode entered at line 17
+\hbox(0.0+0.0)x20.0
+spacefactor 1000
+### vertical mode entered at line 0
+prevdepth ignored
+
+! OK.
+l.19 \showlists
+
+
+
+Completed box being shipped out [1]
+\vbox(54.94444+2.5)x242.62169
+.\hbox(6.94444+1.94444)x51.18384
+..\mathon
+..\teni a
+..\glue(\thinmuskip) 1.66663
+..\hbox(6.94444+0.0)x4.29166, shifted 0.97223
+...\teni b
+..\glue(\thinmuskip) 1.66663
+..\teni c
+..\glue(\thickmuskip) 2.77771 plus 2.77771
+..\teni d
+..\glue(\thickmuskip) 2.77771 plus 2.77771
+..\teni e
+..\teni f
+..\kern1.0764
+..\teni g
+..\kern0.35878
+..\glue(\thinmuskip) 1.66663
+..\teni h
+..\mathoff
+.\glue(\baselineskip) 2.55556
+.\hbox(7.5+2.5)x242.62169
+..\mathon
+..\teni a
+..\glue(\medmuskip) 2.22217 plus 1.11108 minus 2.22217
+..\tenrm +
+..\glue(\medmuskip) 2.22217 plus 1.11108 minus 2.22217
+..\teni b
+..\mathoff
+..\glue 3.33333 plus 1.66666 minus 1.11111
+..\mathon
+..\teni a
+..\glue(\thickmuskip) 2.77771 plus 2.77771
+..\tenrm =
+..\glue(\thickmuskip) 2.77771 plus 2.77771
+..\teni b
+..\mathoff
+..\glue 3.33333 plus 1.66666 minus 1.11111
+..\mathon
+..\teni a
+..\teni ;
+..\glue(\thinmuskip) 1.66663
+..\teni b
+..\mathoff
+..\glue 3.33333 plus 1.66666 minus 1.11111
+..\mathon
+..\tenrm (
+..\teni a
+..\tenrm )
+..\mathoff
+..\glue 3.33333 plus 1.66666 minus 1.11111
+..\mathon
+..\teni a
+..\glue(\thinmuskip) 1.66663
+..\teni x
+..\glue(\thinmuskip) 1.66663
+..\teni b
+..\mathoff
+..\glue 3.33333 plus 1.66666 minus 1.11111
+..\mathon
+..\tenrm +
+..\teni a
+..\mathoff
+..\glue 3.33333 plus 1.66666 minus 1.11111
+..\mathon
+..\teni a
+..\glue(\medmuskip) 2.22217 plus 1.11108 minus 2.22217
+..\tenrm +
+..\glue(\medmuskip) 2.22217 plus 1.11108 minus 2.22217
+..\tensy ^^@
+..\teni b
+..\mathoff
+..\glue 3.33333 plus 1.66666 minus 1.11111
+..\mathon
+..\teni a
+..\tenrm +
+..\glue(\thickmuskip) 2.77771 plus 2.77771
+..\tenrm =
+..\glue(\thickmuskip) 2.77771 plus 2.77771
+..\teni b
+..\mathoff
+..\glue 3.33333 plus 1.66666 minus 1.11111
+..\mathon
+..\teni a
+..\glue(\thinmuskip) 1.66663
+..\hbox(4.30554+0.0)x5.71527, shifted -0.34723
+...\teni x
+..\glue(\thinmuskip) 1.66663
+..\teni b
+..\mathoff
+..\glue 3.33333 plus 1.66666 minus 1.11111
+..\mathon
+..\seveni a
+..\sevenrm +
+..\seveni b
+..\sevenrm =
+..\seveni c
+..\seveni ;
+..\seveni d
+..\mathoff
+.\glue(\baselineskip) 2.55556
+.\hbox(6.94444+0.0)x36.99419
+..\mathon
+..\teni a
+..\tenrm -
+..\teni b
+..\mathoff
+..\glue 3.33333 plus 1.66666 minus 1.11111
+..\mathon
+..\teni A
+..\mathoff
+..\glue 3.33333 plus 1.66666 minus 1.11111
+..\mathon
+..\teni !
+..\kern0.35878
+..\mathoff
+..\glue 3.33333 plus 1.66666 minus 1.11111
+.\glue(\baselineskip) 5.05556
+.\hbox(6.94444+0.0)x16.68282
+..\mathon
+..\teni a
+..\glue 1.66663 plus 0.55554
+..\teni b
+..\kern 1.11108
+..\teni c
+..\mathoff
+.\glue(\baselineskip) 4.5
+.\hbox(7.5+2.5)x72.51595
+..\mathon
+..\teni a
+..\glue(\medmuskip) 2.77771 plus 0.55554
+..\tenrm +
+..\glue(\medmuskip) 2.77771 plus 0.55554
+..\teni b
+..\glue(\thickmuskip) 4.99988 minus 1.11108
+..\tenrm =
+..\glue(\thickmuskip) 4.99988 minus 1.11108
+..\teni c
+..\teni ;
+..\glue(\thinmuskip) 0.55554
+..\teni d
+..\tenrm (
+..\teni e
+..\tenrm )
+..\glue(\thinmuskip) 0.55554
+..\teni f
+..\kern1.0764
+..\mathoff
+
+! Missing $ inserted.
+<inserted text>
+                $
+<to be read again>
+                   \end
+l.21 \end
+
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+
+Completed box being shipped out [1]
+\vbox(667.20255+0.0)x469.75499
+.\vbox(0.0+0.0)x469.75499, glue set 14.0fil
+..\glue -22.5
+..\hbox(8.5+0.0)x469.75499, glue set 469.75499fil
+...\vbox(8.5+0.0)x0.0
+...\glue 0.0 plus 1.0fil
+..\glue 0.0 plus 1.0fil minus 1.0fil
+.\vbox(643.20255+0.0)x469.75499, glue set 633.20255fill
+..\glue(\topskip) 10.0
+..\hbox(0.0+0.0)x469.75499, glue set 446.97728fil
+...\hbox(0.0+0.0)x20.0
+...\mathon
+...\glue 1.66663
+...\kern 1.11108
+...\mathoff
+...\penalty 10000
+...\glue(\parfillskip) 0.0 plus 1.0fil
+...\glue(\rightskip) 0.0
+..\hbox(0.0+0.0)x469.75499
+..\glue 0.0 plus 1.0fill
+.\glue(\baselineskip) 17.55556
+.\hbox(6.44444+0.0)x469.75499, glue set 232.37749fil
+..\glue 0.0 plus 1.0fil minus 1.0fil
+..\tenrm 1
+..\glue 0.0 plus 1.0fil minus 1.0fil
+
+ )
+Output written on m3-classes-spacing.dvi (2 pages, 640 bytes).

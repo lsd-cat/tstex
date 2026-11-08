@@ -1,0 +1,67 @@
+Options selected:
+  Starting page = * 
+  Maximum number of pages = 1000000
+  Output level = 4 (the works)
+  Resolution = 300.00000000 pixels per inch
+numerator/denominator=25400000/473628672
+magnification=1000;       0.00006334 pixels per DVI unit
+'<comment>'
+Postamble starts at byte 161.
+maxv=1855032, maxh=691771, maxstackdepth=3, totalpages=1
+Font 0: cmr10---loaded at size 655360 DVI units 
+ 
+42: beginning of page 1 
+87: down3 1068600 v:=0+1068600=1068600, vv:=68 
+91: push 
+level 0:(h=0,v=1068600,w=0,x=0,y=0,z=0,hh=0,vv=68) 
+92: down3 -786432 v:=1068600-786432=282168, vv:=18 
+96: push 
+level 1:(h=0,v=282168,w=0,x=0,y=0,z=0,hh=0,vv=18) 
+97: push 
+level 2:(h=0,v=282168,w=0,x=0,y=0,z=0,hh=0,vv=18) 
+98: fntdef1 0: cmr10 
+119: fntnum0 current font is cmr10 
+120: setchar97 h:=0+327681=327681, hh:=21 
+[a]
+121: xxx 'sp' 
+125: pop 
+level 2:(h=0,v=282168,w=0,x=0,y=0,z=0,hh=0,vv=18) 
+126: pop 
+level 1:(h=0,v=282168,w=0,x=0,y=0,z=0,hh=0,vv=18) 
+127: xxx 'nsp' 
+132: down3 786432 v:=282168+786432=1068600, vv:=68 
+136: push 
+level 1:(h=0,v=1068600,w=0,x=0,y=0,z=0,hh=0,vv=68) 
+137: push 
+level 2:(h=0,v=1068600,w=0,x=0,y=0,z=0,hh=0,vv=68) 
+138: setchar98 h:=0+364090=364090, hh:=23 
+[b]
+139: pop 
+level 2:(h=0,v=1068600,w=0,x=0,y=0,z=0,hh=0,vv=68) 
+140: pop 
+level 1:(h=0,v=1068600,w=0,x=0,y=0,z=0,hh=0,vv=68) 
+141: pop 
+level 0:(h=0,v=1068600,w=0,x=0,y=0,z=0,hh=0,vv=68) 
+142: down3 786432 v:=1068600+786432=1855032, vv:=117 
+146: push 
+level 0:(h=0,v=1855032,w=0,x=0,y=0,z=0,hh=0,vv=117) 
+147: push 
+level 1:(h=0,v=1855032,w=0,x=0,y=0,z=0,hh=0,vv=117) 
+148: push 
+level 2:(h=0,v=1855032,w=0,x=0,y=0,z=0,hh=0,vv=117) 
+149: setchar97 h:=0+327681=327681, hh:=21 
+[a]
+150: pop 
+level 2:(h=0,v=1855032,w=0,x=0,y=0,z=0,hh=0,vv=117) 
+151: push 
+level 2:(h=0,v=1855032,w=0,x=0,y=0,z=0,hh=0,vv=117) 
+152: right3 327681 h:=0+327681=327681, hh:=21 
+156: setchar98 h:=327681+364090=691771, hh:=44 
+[ b]
+157: pop 
+level 2:(h=0,v=1855032,w=0,x=0,y=0,z=0,hh=0,vv=117) 
+158: pop 
+level 1:(h=0,v=1855032,w=0,x=0,y=0,z=0,hh=0,vv=117) 
+159: pop 
+level 0:(h=0,v=1855032,w=0,x=0,y=0,z=0,hh=0,vv=117) 
+160: eop 

@@ -1,0 +1,286 @@
+(m3-halign-errors.tex (plain.tex Preloading the plain format: codes, regist
+ers,
+\maxdimen=\dimen10
+\hideskip=\skip10
+\centering=\skip11
+\p@=\dimen11
+\z@=\dimen12
+\z@skip=\skip12
+\voidb@x=\box10
+parameters,
+\smallskipamount=\skip13
+\medskipamount=\skip14
+\bigskipamount=\skip15
+\normalbaselineskip=\skip16
+\normallineskip=\skip17
+\normallineskiplimit=\dimen13
+\jot=\dimen14
+\interdisplaylinepenalty=\count23
+\interfootnotelinepenalty=\count24
+fonts, more fonts,
+\itfam=\fam4
+\slfam=\fam5
+\bffam=\fam6
+\ttfam=\fam7
+macros,
+\strutbox=\box11
+\mscount=\count25
+\tabs=\box12
+\tabsyet=\box13
+\tabsdone=\box14
+math definitions,
+\rootbox=\box15
+\p@renwd=\dimen15
+output routines,
+\headline=\toks10
+\footline=\toks11
+\footins=\insert254
+\topins=\insert253
+hyphenation (hyphen.tex))
+! Extra alignment tab has been changed to \cr.
+<recently read> \endtemplate
+
+<template> \endtemplate
+
+l.5 \setbox1=\vbox{\halign{#&#\cr a&b&
+                                      c\cr d&e\cr}}
+You have given more \span or & marks than there were
+in the preamble to the \halign or \valign now in progress.
+So I'll assume that you meant to type \cr instead.
+
+> \box1=
+\vbox(30.94444+0.0)x11.11115
+.\hbox(6.94444+0.0)x11.11115
+..\glue(\tabskip) 0.0
+..\hbox(6.94444+0.0)x5.55557
+...\tenrm a
+..\glue(\tabskip) 0.0
+..\hbox(6.94444+0.0)x5.55557
+...\tenrm b
+..\glue(\tabskip) 0.0
+.\glue(\baselineskip) 7.69446
+.\hbox(4.30554+0.0)x11.11115
+..\glue(\tabskip) 0.0
+..\hbox(4.30554+0.0)x5.55557
+...\tenrm c
+..\glue(\tabskip) 0.0
+.\glue(\baselineskip) 5.05556
+.\hbox(6.94444+0.0)x11.11115
+..\glue(\tabskip) 0.0
+..\hbox(6.94444+0.0)x5.55557
+...\tenrm d
+..\glue(\tabskip) 0.0
+..\hbox(6.94444+0.0)x5.55557
+...\tenrm e
+..\glue(\tabskip) 0.0
+
+! OK.
+l.6 \showbox1
+
+
+! Misplaced alignment tab character &.
+l.7 &
+      \cr
+I can't figure out why you would want to use a tab mark
+here. If you just want an ampersand, the remedy is
+simple: Just type `I\&' now. But if some right brace
+up above has ended a previous alignment prematurely,
+you're probably due for more error messages, and you
+might try typing `S' now just to see what is salvageable.
+
+! Misplaced \cr.
+l.7 & \cr
+
+I can't figure out why you would want to use a tab mark
+or \cr or \span just now. If something like a right brace
+up above has ended a previous alignment prematurely,
+you're probably due for more error messages, and you
+might try typing `S' now just to see what is salvageable.
+
+! Missing } inserted.
+<inserted text>
+                }
+<to be read again>
+                   \halign
+l.9 \setbox2=\hbox{a\halign
+                           {#\cr x\cr}}
+I've inserted something that you may have forgotten.
+(See the <inserted text> above.)
+With luck, this will get me unwedged. But if you
+really didn't forget anything, try typing `2' now; then
+my insertion and my current dilemma will both disappear.
+
+! Too many }'s.
+l.9 \setbox2=\hbox{a\halign{#\cr x\cr}}
+
+You've closed more groups than you opened.
+Such booboos are generally harmless, so keep going.
+
+> \box2=
+\hbox(4.30554+0.0)x5.00002
+.\tenrm a
+
+! OK.
+l.10 \showbox2
+
+
+> \box3=
+\vbox(4.30554+1.94444)x10.83336
+.\hbox(4.30554+1.94444)x10.83336
+..\glue(\tabskip) 0.0
+..\hbox(4.30554+1.94444)x10.83336
+...\vbox(4.30554+1.94444)x10.83336
+....\hbox(4.30554+1.94444)x10.83336
+.....\glue(\tabskip) 0.0
+.....\hbox(4.30554+1.94444)x5.55557
+......\tenrm p
+.....\glue(\tabskip) 0.0
+.....\hbox(4.30554+1.94444)x5.27779
+......\tenrm q
+.....\glue(\tabskip) 0.0
+..\glue(\tabskip) 0.0
+
+! OK.
+l.12 \showbox3
+
+
+> \box4=
+\vbox(28.30554+0.0)x469.75499
+.\hbox(4.30554+0.0)x469.75499, glue set 464.75497fil
+..\tenrm a
+..\penalty 10000
+..\glue(\parfillskip) 0.0 plus 1.0fil
+..\glue(\rightskip) 0.0
+.\glue(\baselineskip) 7.69446
+.\hbox(4.30554+0.0)x5.2778
+..\glue(\tabskip) 0.0
+..\hbox(4.30554+0.0)x5.2778
+...\tenrm x
+..\glue(\tabskip) 0.0
+.\glue(\parskip) 0.0 plus 1.0
+.\glue(\baselineskip) 5.05556
+.\hbox(6.94444+0.0)x469.75499, glue set 444.19942fil
+..\hbox(0.0+0.0)x20.0
+..\tenrm b
+..\penalty 10000
+..\glue(\parfillskip) 0.0 plus 1.0fil
+..\glue(\rightskip) 0.0
+
+! OK.
+l.14 \showbox4
+
+
+! Misplaced \noalign.
+l.15 \setbox7=\vbox{\noalign
+                            {x}}
+I expect to see \noalign only after the \cr of
+an alignment. Proceed, and I'll ignore this case.
+
+> \box7=
+\vbox(4.30554+0.0)x469.75499
+.\hbox(4.30554+0.0)x469.75499, glue set 444.47719fil
+..\hbox(0.0+0.0)x20.0
+..\tenrm x
+..\penalty 10000
+..\glue(\parfillskip) 0.0 plus 1.0fil
+..\glue(\rightskip) 0.0
+
+! OK.
+l.16 \showbox7
+
+
+> \box8=
+\vbox(16.30554+0.0)x5.00002
+.\hbox(4.30554+0.0)x5.00002
+..\glue(\tabskip) 0.0
+..\hbox(4.30554+0.0)x5.00002
+...\hbox(4.30554+0.0)x5.00002
+....\tenrm a
+..\glue(\tabskip) 0.0
+.\glue(\baselineskip) 12.0
+.\hbox(0.0+0.0)x5.00002
+..\glue(\tabskip) 0.0
+..\hbox(0.0+0.0)x5.00002
+..\glue(\tabskip) 0.0
+
+! OK.
+l.18 \showbox8
+
+
+! Missing $$ inserted.
+<to be read again>
+                   x
+l.19 \setbox6=\vbox{\noindent$$\halign{#\cr a\cr}x
+                                                  \par}
+Displays can use special alignments (like \eqalignno)
+only if nothing but the alignment itself is between $$'s.
+
+> \box6=
+\vbox(40.30554+0.0)x469.75499
+.\penalty 10000
+.\glue(\abovedisplayskip) 12.0 plus 3.0 minus 9.0
+.\hbox(4.30554+0.0)x5.00002
+..\glue(\tabskip) 0.0
+..\hbox(4.30554+0.0)x5.00002
+...\tenrm a
+..\glue(\tabskip) 0.0
+.\penalty 0
+.\glue(\belowdisplayskip) 12.0 plus 3.0 minus 9.0
+.\glue(\baselineskip) 7.69446
+.\hbox(4.30554+0.0)x469.75499, glue set 464.47719fil
+..\tenrm x
+..\penalty 10000
+..\glue(\parfillskip) 0.0 plus 1.0fil
+..\glue(\rightskip) 0.0
+
+! OK.
+l.20 \showbox6
+
+
+! Missing \cr inserted.
+<inserted text>
+                \cr
+<to be read again>
+                   }
+l.21 \setbox5=\vbox{\halign{#\cr a}
+                                   }
+I'm guessing that you meant to end an alignment here.
+
+> \box5=
+\vbox(4.30554+0.0)x5.00002
+.\hbox(4.30554+0.0)x5.00002
+..\glue(\tabskip) 0.0
+..\hbox(4.30554+0.0)x5.00002
+...\tenrm a
+..\glue(\tabskip) 0.0
+
+! OK.
+l.22 \showbox5
+
+
+
+Completed box being shipped out [1]
+\vbox(667.20255+0.0)x469.75499
+.\vbox(0.0+0.0)x469.75499, glue set 14.0fil
+..\glue -22.5
+..\hbox(8.5+0.0)x469.75499, glue set 469.75499fil
+...\vbox(8.5+0.0)x0.0
+...\glue 0.0 plus 1.0fil
+..\glue 0.0 plus 1.0fil minus 1.0fil
+.\vbox(643.20255+0.0)x469.75499, glue set 633.20255fill
+..\glue(\topskip) 5.69446
+..\hbox(4.30554+0.0)x5.2778
+...\glue(\tabskip) 0.0
+...\hbox(4.30554+0.0)x5.2778
+....\tenrm x
+...\glue(\tabskip) 0.0
+..\hbox(0.0+0.0)x469.75499
+..\glue 0.0 plus 1.0fill
+.\glue(\baselineskip) 17.55556
+.\hbox(6.44444+0.0)x469.75499, glue set 232.37749fil
+..\glue 0.0 plus 1.0fil minus 1.0fil
+..\tenrm 1
+..\glue 0.0 plus 1.0fil minus 1.0fil
+
+ )
+Output written on m3-halign-errors.dvi (1 page, 208 bytes).

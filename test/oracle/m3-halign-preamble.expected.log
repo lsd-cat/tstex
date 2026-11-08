@@ -1,0 +1,389 @@
+(m3-halign-preamble.tex (plain.tex Preloading the plain format: codes, regi
+sters,
+\maxdimen=\dimen10
+\hideskip=\skip10
+\centering=\skip11
+\p@=\dimen11
+\z@=\dimen12
+\z@skip=\skip12
+\voidb@x=\box10
+parameters,
+\smallskipamount=\skip13
+\medskipamount=\skip14
+\bigskipamount=\skip15
+\normalbaselineskip=\skip16
+\normallineskip=\skip17
+\normallineskiplimit=\dimen13
+\jot=\dimen14
+\interdisplaylinepenalty=\count23
+\interfootnotelinepenalty=\count24
+fonts, more fonts,
+\itfam=\fam4
+\slfam=\fam5
+\bffam=\fam6
+\ttfam=\fam7
+macros,
+\strutbox=\box11
+\mscount=\count25
+\tabs=\box12
+\tabsyet=\box13
+\tabsdone=\box14
+math definitions,
+\rootbox=\box15
+\p@renwd=\dimen15
+output routines,
+\headline=\toks10
+\footline=\toks11
+\footins=\insert254
+\topins=\insert253
+hyphenation (hyphen.tex))
+> \box1=
+\vbox(6.94444+0.0)x10.55559
+.\hbox(6.94444+0.0)x10.55559
+..\glue(\tabskip) 0.0
+..\hbox(6.94444+0.0)x5.00002
+...\tenrm a
+...\glue 0.0 plus 1.0fil
+..\glue(\tabskip) 0.0
+..\hbox(6.94444+0.0)x5.55557
+...\glue 0.0 plus 1.0fil
+...\tenrm b
+..\glue(\tabskip) 0.0
+
+! OK.
+l.7 \showbox1
+
+
+> \box2=
+\vbox(6.94444+0.0)x14.55559
+.\hbox(6.94444+0.0)x14.55559
+..\glue(\tabskip) 1.0
+..\hbox(6.94444+0.0)x5.00002
+...\tenrm a
+..\glue(\tabskip) 1.0 plus 1.0fil
+..\hbox(6.94444+0.0)x5.55557
+...\tenrm b
+..\glue(\tabskip) 2.0
+
+! OK.
+l.9 \showbox2
+
+
+> \box3=
+\vbox(6.94444+0.0)x10.55559
+.\hbox(6.94444+0.0)x10.55559
+..\glue(\tabskip) 0.0
+..\hbox(6.94444+0.0)x5.00002
+...\tenrm a
+...\glue 0.0 plus 1.0fil
+..\glue(\tabskip) 0.0
+..\hbox(6.94444+0.0)x5.55557
+...\glue 0.0 plus 1.0fil
+...\tenrm b
+..\glue(\tabskip) 0.0
+
+! OK.
+l.12 \showbox3
+
+
+> \box4=
+\vbox(31.5+2.5)x37.22232
+.\hbox(7.5+2.5)x37.22232
+..\glue(\tabskip) 0.0
+..\hbox(7.5+2.5)x5.00002
+...\tenrm a
+..\glue(\tabskip) 0.0
+..\hbox(7.5+2.5)x11.11115
+...\tenrm [
+...\tenrm b
+...\tenrm ]
+..\glue(\tabskip) 0.0
+..\hbox(7.5+2.5)x10.00002
+...\tenrm [
+...\tenrm c
+...\tenrm ]
+..\glue(\tabskip) 0.0
+..\hbox(7.5+2.5)x11.11115
+...\tenrm [
+...\tenrm d
+...\tenrm ]
+..\glue(\tabskip) 0.0
+.\glue(\baselineskip) 5.19446
+.\hbox(4.30554+0.0)x37.22232
+..\glue(\tabskip) 0.0
+..\hbox(4.30554+0.0)x5.00002
+...\tenrm e
+..\glue(\tabskip) 0.0
+..\hbox(4.30554+0.0)x11.11115
+..\glue(\tabskip) 0.0
+.\glue(\baselineskip) 4.5
+.\hbox(7.5+2.5)x37.22232
+..\glue(\tabskip) 0.0
+..\hbox(7.5+2.5)x5.00002, glue set 1.94444fil
+...\glue 0.0 plus 1.0fil
+...\tenrm f
+..\glue(\tabskip) 0.0
+..\hbox(7.5+2.5)x11.11115
+...\tenrm [
+...\tenrm g
+...\tenrm ]
+..\glue(\tabskip) 0.0
+
+! OK.
+l.14 \showbox4
+
+
+> \box5=
+\vbox(42.94444+1.94444)x19.16672
+.\hbox(6.94444+0.0)x19.16672
+..\glue(\tabskip) 0.0
+..\hbox(6.94444+0.0)x5.00002
+...\tenrm a
+..\glue(\tabskip) 0.0
+..\hbox(6.94444+0.0)x8.8889
+...\tenrm b
+..\glue(\tabskip) 0.0
+..\hbox(6.94444+0.0)x5.2778
+...\tenrm c
+..\glue(\tabskip) 0.0
+.\glue(\baselineskip) 5.05556
+.\hbox(6.94444+0.0)x19.16672
+..\glue(\tabskip) 0.0
+..\hbox(6.94444+0.0)x5.00002
+...\glue 3.33333 plus 1.66666 minus 1.11111
+...\tenrm a
+...\tenrm b
+..\glue(\tabskip) 0.0
+..\hbox(0.0+0.0)x8.8889
+..\glue(\tabskip) 0.0
+..\hbox(6.94444+0.0)x5.2778
+...\tenrm c
+..\glue(\tabskip) 0.0
+.\glue(\baselineskip) 5.05556
+.\hbox(6.94444+0.0)x19.16672
+..\glue(\tabskip) 0.0
+..\hbox(6.94444+0.0)x5.00002
+...\tenrm a
+...\tenrm b
+..\glue(\tabskip) 0.0
+..\hbox(0.0+0.0)x8.8889
+..\glue(\tabskip) 0.0
+..\hbox(6.94444+0.0)x5.2778
+...\tenrm c
+..\glue(\tabskip) 0.0
+.\glue(\baselineskip) 7.69446
+.\hbox(4.30554+1.94444)x19.16672
+..\glue(\tabskip) 0.0
+..\hbox(4.30554+1.94444)x5.00002
+...\tenrm x
+..\glue(\tabskip) 0.0
+..\hbox(0.0+0.0)x8.8889
+..\glue(\tabskip) 0.0
+..\hbox(4.30554+1.94444)x5.2778
+...\tenrm y
+..\glue(\tabskip) 0.0
+
+! OK.
+l.16 \showbox5
+
+
+! Only one # is allowed per tab.
+l.17 \setbox7=\vbox{\halign{#\span#
+                                   &#\cr a&b\cr}}
+There should be exactly one # between &'s, when an
+\halign or \valign is being set up. In this case you had
+more than one, so I'm ignoring all but the first.
+
+> \box7=
+\vbox(6.94444+0.0)x10.55559
+.\hbox(6.94444+0.0)x10.55559
+..\glue(\tabskip) 0.0
+..\hbox(6.94444+0.0)x5.00002
+...\tenrm a
+..\glue(\tabskip) 0.0
+..\hbox(6.94444+0.0)x5.55557
+...\tenrm b
+..\glue(\tabskip) 0.0
+
+! OK.
+l.18 \showbox7
+
+
+! Missing # inserted in alignment preamble.
+<to be read again>
+                   \cr
+l.19 \setbox7=\vbox{\halign{#&a\cr
+                                   a&b\cr}}
+There should be exactly one # between &'s, when an
+\halign or \valign is being set up. In this case you had
+none, so I've put one in; maybe that will work.
+
+> \box7=
+\vbox(6.94444+0.0)x15.5556
+.\hbox(6.94444+0.0)x15.5556
+..\glue(\tabskip) 0.0
+..\hbox(6.94444+0.0)x5.00002
+...\tenrm a
+..\glue(\tabskip) 0.0
+..\hbox(6.94444+0.0)x10.55559
+...\tenrm a
+...\tenrm b
+..\glue(\tabskip) 0.0
+
+! OK.
+l.20 \showbox7
+
+
+! Only one # is allowed per tab.
+l.21 \setbox7=\vbox{\halign{#&#a#
+                                 \cr a&b\cr}}
+There should be exactly one # between &'s, when an
+\halign or \valign is being set up. In this case you had
+more than one, so I'm ignoring all but the first.
+
+> \box7=
+\vbox(6.94444+0.0)x15.5556
+.\hbox(6.94444+0.0)x15.5556
+..\glue(\tabskip) 0.0
+..\hbox(6.94444+0.0)x5.00002
+...\tenrm a
+..\glue(\tabskip) 0.0
+..\hbox(6.94444+0.0)x10.55559
+...\tenrm b
+...\tenrm a
+..\glue(\tabskip) 0.0
+
+! OK.
+l.22 \showbox7
+
+
+
+Completed box being shipped out [1]
+\vbox(109.88889+1.94444)x37.22232
+.\vbox(6.94444+0.0)x10.55559
+..\hbox(6.94444+0.0)x10.55559
+...\glue(\tabskip) 0.0
+...\hbox(6.94444+0.0)x5.00002
+....\tenrm a
+....\glue 0.0 plus 1.0fil
+...\glue(\tabskip) 0.0
+...\hbox(6.94444+0.0)x5.55557
+....\glue 0.0 plus 1.0fil
+....\tenrm b
+...\glue(\tabskip) 0.0
+.\glue(\baselineskip) 5.05556
+.\vbox(6.94444+0.0)x14.55559
+..\hbox(6.94444+0.0)x14.55559
+...\glue(\tabskip) 1.0
+...\hbox(6.94444+0.0)x5.00002
+....\tenrm a
+...\glue(\tabskip) 1.0 plus 1.0fil
+...\hbox(6.94444+0.0)x5.55557
+....\tenrm b
+...\glue(\tabskip) 2.0
+.\glue(\baselineskip) 5.05556
+.\vbox(6.94444+0.0)x10.55559
+..\hbox(6.94444+0.0)x10.55559
+...\glue(\tabskip) 0.0
+...\hbox(6.94444+0.0)x5.00002
+....\tenrm a
+....\glue 0.0 plus 1.0fil
+...\glue(\tabskip) 0.0
+...\hbox(6.94444+0.0)x5.55557
+....\glue 0.0 plus 1.0fil
+....\tenrm b
+...\glue(\tabskip) 0.0
+.\glue(\lineskip) 1.0
+.\vbox(31.5+2.5)x37.22232
+..\hbox(7.5+2.5)x37.22232
+...\glue(\tabskip) 0.0
+...\hbox(7.5+2.5)x5.00002
+....\tenrm a
+...\glue(\tabskip) 0.0
+...\hbox(7.5+2.5)x11.11115
+....\tenrm [
+....\tenrm b
+....\tenrm ]
+...\glue(\tabskip) 0.0
+...\hbox(7.5+2.5)x10.00002
+....\tenrm [
+....\tenrm c
+....\tenrm ]
+...\glue(\tabskip) 0.0
+...\hbox(7.5+2.5)x11.11115
+....\tenrm [
+....\tenrm d
+....\tenrm ]
+...\glue(\tabskip) 0.0
+..\glue(\baselineskip) 5.19446
+..\hbox(4.30554+0.0)x37.22232
+...\glue(\tabskip) 0.0
+...\hbox(4.30554+0.0)x5.00002
+....\tenrm e
+...\glue(\tabskip) 0.0
+...\hbox(4.30554+0.0)x11.11115
+...\glue(\tabskip) 0.0
+..\glue(\baselineskip) 4.5
+..\hbox(7.5+2.5)x37.22232
+...\glue(\tabskip) 0.0
+...\hbox(7.5+2.5)x5.00002, glue set 1.94444fil
+....\glue 0.0 plus 1.0fil
+....\tenrm f
+...\glue(\tabskip) 0.0
+...\hbox(7.5+2.5)x11.11115
+....\tenrm [
+....\tenrm g
+....\tenrm ]
+...\glue(\tabskip) 0.0
+.\glue(\lineskip) 1.0
+.\vbox(42.94444+1.94444)x19.16672
+..\hbox(6.94444+0.0)x19.16672
+...\glue(\tabskip) 0.0
+...\hbox(6.94444+0.0)x5.00002
+....\tenrm a
+...\glue(\tabskip) 0.0
+...\hbox(6.94444+0.0)x8.8889
+....\tenrm b
+...\glue(\tabskip) 0.0
+...\hbox(6.94444+0.0)x5.2778
+....\tenrm c
+...\glue(\tabskip) 0.0
+..\glue(\baselineskip) 5.05556
+..\hbox(6.94444+0.0)x19.16672
+...\glue(\tabskip) 0.0
+...\hbox(6.94444+0.0)x5.00002
+....\glue 3.33333 plus 1.66666 minus 1.11111
+....\tenrm a
+....\tenrm b
+...\glue(\tabskip) 0.0
+...\hbox(0.0+0.0)x8.8889
+...\glue(\tabskip) 0.0
+...\hbox(6.94444+0.0)x5.2778
+....\tenrm c
+...\glue(\tabskip) 0.0
+..\glue(\baselineskip) 5.05556
+..\hbox(6.94444+0.0)x19.16672
+...\glue(\tabskip) 0.0
+...\hbox(6.94444+0.0)x5.00002
+....\tenrm a
+....\tenrm b
+...\glue(\tabskip) 0.0
+...\hbox(0.0+0.0)x8.8889
+...\glue(\tabskip) 0.0
+...\hbox(6.94444+0.0)x5.2778
+....\tenrm c
+...\glue(\tabskip) 0.0
+..\glue(\baselineskip) 7.69446
+..\hbox(4.30554+1.94444)x19.16672
+...\glue(\tabskip) 0.0
+...\hbox(4.30554+1.94444)x5.00002
+....\tenrm x
+...\glue(\tabskip) 0.0
+...\hbox(0.0+0.0)x8.8889
+...\glue(\tabskip) 0.0
+...\hbox(4.30554+1.94444)x5.2778
+....\tenrm y
+...\glue(\tabskip) 0.0
+
+ )
+Output written on m3-halign-preamble.dvi (1 page, 368 bytes).

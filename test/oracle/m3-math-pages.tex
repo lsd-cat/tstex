@@ -1,0 +1,18 @@
+%! oracle: ini
+\input plain
+\tracingonline=0 \showboxbreadth=10000 \showboxdepth=10000 \tracingoutput=1
+\hsize=150pt \parindent=10pt \tolerance=10000 \vsize=60pt \maxdepth=2pt \baselineskip=12pt \topskip=10pt
+\predisplaypenalty=111 \postdisplaypenalty=222 \displaywidowpenalty=333 \widowpenalty=50 \clubpenalty=60
+\tracingparagraphs=1 \tracingpages=1
+\output={\showbox255 \setbox0\box255 \deadcycles=0}
+Aaa bbb ccc ddd eee fff ggg hhh iii jjj kkk lll mmm nnn ooo ppp qqq rrr $$a=b$$ and more text after the display that continues for two or three lines of the paragraph.\par
+\showthe\prevdepth
+\noindent Back $$x\eqno(1234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890)$$
+\noindent after\par
+\relpenalty=77 \binoppenalty=88 \hsize=60pt
+\noindent $a+b+c+d=e+f+g+h=i+j+k+l=m+n+o+p$\par
+\showthe\prevdepth
+\setbox1=\vbox{\hsize=100pt \noindent$$\hbox to 90pt{}\eqno(1)$$ \noindent$$\hbox to 99pt{}\eqno(1)$$ \noindent$$\hbox to 99pt{}\leqno(1)$$}
+\showbox1
+\penalty-10000
+\end

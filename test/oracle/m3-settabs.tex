@@ -1,0 +1,12 @@
+%! oracle: ini
+\input plain
+\tracingonline=0 \showboxbreadth=10000 \showboxdepth=10000 \tracingoutput=1
+\hsize=200pt \parindent=0pt
+\setbox1=\vbox{\settabs 4\columns \+a&b&c&d\cr \+aa&&cc\cr}
+\showbox1
+\setbox2=\vbox{\settabs\+Name&Value&\cr \+Name&Value&x\cr \+\hfill Aa&\hfill B&C\cr \+x\&y&z\cr \cleartabs \+q&r\cr}
+\showbox2
+\setbox3=\vbox{\settabs 2\columns \+\hfill a&\hfill b\cr \+c&d\cr \settabs 3\columns \+e&f&g\cr}
+\showbox3
+\shipout\vbox{\box1\box2\box3}
+\end

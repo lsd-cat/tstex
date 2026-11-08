@@ -1,0 +1,293 @@
+(m3-math-fonts.tex (plain.tex Preloading the plain format: codes, registers
+,
+\maxdimen=\dimen10
+\hideskip=\skip10
+\centering=\skip11
+\p@=\dimen11
+\z@=\dimen12
+\z@skip=\skip12
+\voidb@x=\box10
+parameters,
+\smallskipamount=\skip13
+\medskipamount=\skip14
+\bigskipamount=\skip15
+\normalbaselineskip=\skip16
+\normallineskip=\skip17
+\normallineskiplimit=\dimen13
+\jot=\dimen14
+\interdisplaylinepenalty=\count23
+\interfootnotelinepenalty=\count24
+fonts, more fonts,
+\itfam=\fam4
+\slfam=\fam5
+\bffam=\fam6
+\ttfam=\fam7
+macros,
+\strutbox=\box11
+\mscount=\count25
+\tabs=\box12
+\tabsyet=\box13
+\tabsdone=\box14
+math definitions,
+\rootbox=\box15
+\p@renwd=\dimen15
+output routines,
+\headline=\toks10
+\footline=\toks11
+\footins=\insert254
+\topins=\insert253
+hyphenation (hyphen.tex))
+! \textfont 15 is undefined (character a).
+l.4 ...\fam0 a1 \fam2 A \fam3 + \fam15 a \fam16 b$
+                                                  }
+Somewhere in the math formula just ended, you used the
+stated character from an undefined font family. For example,
+plain TeX doesn't allow \it or \sl in subscripts. Proceed,
+and I'll try to forget that I needed that character.
+
+> \box1=
+\hbox(6.94444+0.83333)x44.78444
+.\mathon
+.\teni a
+.\teni 1
+.\tenrm a
+.\tenrm 1
+.\tensy A
+.\glue(\medmuskip) 2.22217 plus 1.11108 minus 2.22217
+.\tenrm +
+.\glue(\medmuskip) 2.22217 plus 1.11108 minus 2.22217
+.\teni b
+.\mathoff
+
+! OK.
+l.5 \showbox1
+
+
+> 0.
+l.6 \showthe\fam
+                 \showthe\fontdimen8\textfont2 \showthe\fontdimen22\textfont2
+
+> 6.76508pt.
+l.6 \showthe\fam \showthe\fontdimen8\textfont2
+                                               \showthe\fontdimen22\textfont2
+
+> 2.5pt.
+l.6 ...n8\textfont2 \showthe\fontdimen22\textfont2
+
+
+> 0.39998pt.
+l.7 \showthe\fontdimen8\textfont3
+                                  \showthe\fontdimen5\textfont3 \showthe\fon...
+
+
+> 4.30554pt.
+l.7 ...n8\textfont3 \showthe\fontdimen5\textfont3
+                                                  \showthe\fontdimen2\script...
+
+
+> 0.0pt.
+l.7 ...5\textfont3 \showthe\fontdimen2\scriptfont2
+
+
+> \box2=
+\hbox(6.94444+0.0)x39.84729
+.\mathon
+.\teni A
+.\teni b
+.\tensl A
+.\tensl b
+.\tensl A
+.\tensl A
+.\mathoff
+
+! OK.
+l.9 \showbox2
+
+
+> \box3=
+\hbox(4.30554+0.0)x8.65512
+.\mathon
+.\teni c
+.\teni c
+.\mathoff
+
+! OK.
+l.11 \showbox3
+
+
+! \textfont 1 is undefined (character a).
+l.12 ...tfont1=\tenrm $a$ \textfont1=\nullfont $a$
+                                                   \scriptfont1=\nullfont $a...
+Somewhere in the math formula just ended, you used the
+stated character from an undefined font family. For example,
+plain TeX doesn't allow \it or \sl in subscripts. Proceed,
+and I'll try to forget that I needed that character.
+
+! \textfont 1 is undefined (character a).
+l.12 ...\nullfont $a$ \scriptfont1=\nullfont $a^b$
+                                                  }
+Somewhere in the math formula just ended, you used the
+stated character from an undefined font family. For example,
+plain TeX doesn't allow \it or \sl in subscripts. Proceed,
+and I'll try to forget that I needed that character.
+
+! \scriptfont 1 is undefined (character b).
+l.12 ...\nullfont $a$ \scriptfont1=\nullfont $a^b$
+                                                  }
+Somewhere in the math formula just ended, you used the
+stated character from an undefined font family. For example,
+plain TeX doesn't allow \it or \sl in subscripts. Proceed,
+and I'll try to forget that I needed that character.
+
+> \box4=
+\hbox(4.30554+0.0)x12.16667
+.\mathon
+.\tenrm a
+.\mathoff
+.\glue 3.33333 plus 1.66666 minus 1.11111
+.\mathon
+.\mathoff
+.\glue 3.33333 plus 1.66666 minus 1.11111
+.\mathon
+.\hbox(0.0+0.0)x0.5, shifted -3.62892
+.\mathoff
+
+! OK.
+l.13 \showbox4
+
+
+! Math formula deleted: Insufficient symbol fonts.
+l.14 {\textfont2=\nullfont \setbox5=\hbox{$a^b$
+                                               }\showbox5}
+Sorry, but I can't typeset math unless \textfont 2
+and \scriptfont 2 and \scriptscriptfont 2 have all
+the \fontdimen values needed in math symbol fonts.
+
+> \box5=
+\hbox(0.0+0.0)x0.0
+.\mathon
+.\mathoff
+
+! OK.
+<to be read again>
+                   }
+l.14 ...=\nullfont \setbox5=\hbox{$a^b$}\showbox5}
+
+
+! Math formula deleted: Insufficient extension fonts.
+l.15 {\textfont3=\nullfont \setbox5=\hbox{$a^b$
+                                               }\showbox5 \setbox5=\hbox{$\l...
+Sorry, but I can't typeset math unless \textfont 3
+and \scriptfont 3 and \scriptscriptfont 3 have all
+the \fontdimen values needed in math extension fonts.
+
+> \box5=
+\hbox(0.0+0.0)x0.0
+.\mathon
+.\mathoff
+
+! OK.
+l.15 ...=\nullfont \setbox5=\hbox{$a^b$}\showbox5
+                                                  \setbox5=\hbox{$\left(a\ri...
+
+
+! Math formula deleted: Insufficient extension fonts.
+l.15 ...}\showbox5 \setbox5=\hbox{$\left(a\right)$
+                                                  }\showbox5}
+Sorry, but I can't typeset math unless \textfont 3
+and \scriptfont 3 and \scriptscriptfont 3 have all
+the \fontdimen values needed in math extension fonts.
+
+> \box5=
+\hbox(0.0+0.0)x0.0
+.\mathon
+.\mathoff
+
+! OK.
+<to be read again>
+                   }
+l.15 ...\setbox5=\hbox{$\left(a\right)$}\showbox5}
+
+
+! Math formula deleted: Insufficient symbol fonts.
+l.16 {\scriptfont2=\nullfont \setbox5=\hbox{$a^b$
+                                                 }\showbox5}
+Sorry, but I can't typeset math unless \textfont 2
+and \scriptfont 2 and \scriptscriptfont 2 have all
+the \fontdimen values needed in math symbol fonts.
+
+> \box5=
+\hbox(0.0+0.0)x0.0
+.\mathon
+.\mathoff
+
+! OK.
+<to be read again>
+                   }
+l.16 ...=\nullfont \setbox5=\hbox{$a^b$}\showbox5}
+
+
+! Math formula deleted: Insufficient extension fonts.
+l.17 ...ptfont3=\nullfont \setbox5=\hbox{$a^{b^c}$
+                                                  }\showbox5}
+Sorry, but I can't typeset math unless \textfont 3
+and \scriptfont 3 and \scriptscriptfont 3 have all
+the \fontdimen values needed in math extension fonts.
+
+> \box5=
+\hbox(0.0+0.0)x0.0
+.\mathon
+.\mathoff
+
+! OK.
+<to be read again>
+                   }
+l.17 ...llfont \setbox5=\hbox{$a^{b^c}$}\showbox5}
+
+
+
+Completed box being shipped out [1]
+\vbox(42.94444+0.0)x44.78444
+.\hbox(6.94444+0.83333)x44.78444
+..\mathon
+..\teni a
+..\teni 1
+..\tenrm a
+..\tenrm 1
+..\tensy A
+..\glue(\medmuskip) 2.22217 plus 1.11108 minus 2.22217
+..\tenrm +
+..\glue(\medmuskip) 2.22217 plus 1.11108 minus 2.22217
+..\teni b
+..\mathoff
+.\glue(\baselineskip) 4.22223
+.\hbox(6.94444+0.0)x39.84729
+..\mathon
+..\teni A
+..\teni b
+..\tensl A
+..\tensl b
+..\tensl A
+..\tensl A
+..\mathoff
+.\glue(\baselineskip) 7.69446
+.\hbox(4.30554+0.0)x8.65512
+..\mathon
+..\teni c
+..\teni c
+..\mathoff
+.\glue(\baselineskip) 7.69446
+.\hbox(4.30554+0.0)x12.16667
+..\mathon
+..\tenrm a
+..\mathoff
+..\glue 3.33333 plus 1.66666 minus 1.11111
+..\mathon
+..\mathoff
+..\glue 3.33333 plus 1.66666 minus 1.11111
+..\mathon
+..\hbox(0.0+0.0)x0.5, shifted -3.62892
+..\mathoff
+
+ )
+Output written on m3-math-fonts.dvi (1 page, 348 bytes).

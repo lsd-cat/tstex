@@ -1,0 +1,252 @@
+(m3-halign-glue-set.tex (plain.tex Preloading the plain format: codes, regi
+sters,
+\maxdimen=\dimen10
+\hideskip=\skip10
+\centering=\skip11
+\p@=\dimen11
+\z@=\dimen12
+\z@skip=\skip12
+\voidb@x=\box10
+parameters,
+\smallskipamount=\skip13
+\medskipamount=\skip14
+\bigskipamount=\skip15
+\normalbaselineskip=\skip16
+\normallineskip=\skip17
+\normallineskiplimit=\dimen13
+\jot=\dimen14
+\interdisplaylinepenalty=\count23
+\interfootnotelinepenalty=\count24
+fonts, more fonts,
+\itfam=\fam4
+\slfam=\fam5
+\bffam=\fam6
+\ttfam=\fam7
+macros,
+\strutbox=\box11
+\mscount=\count25
+\tabs=\box12
+\tabsyet=\box13
+\tabsdone=\box14
+math definitions,
+\rootbox=\box15
+\p@renwd=\dimen15
+output routines,
+\headline=\toks10
+\footline=\toks11
+\footins=\insert254
+\topins=\insert253
+hyphenation (hyphen.tex))
+> \box1=
+\vbox(18.94444+0.0)x100.0
+.\hbox(6.94444+0.0)x100.0, glue set 68.33324fil
+..\glue(\tabskip) 0.0
+..\hbox(6.94444+0.0)x15.00005
+...\tenrm a
+..\glue(\tabskip) 0.0 plus 1.0fil
+..\hbox(6.94444+0.0)x16.66672
+...\tenrm b
+..\glue(\tabskip) 0.0
+.\glue(\baselineskip) 5.05556
+.\hbox(6.94444+0.0)x100.0, glue set 68.33324fil
+..\glue(\tabskip) 0.0
+..\hbox(6.94444+0.0)x15.00005
+...\tenrm a
+...\tenrm a
+...\tenrm a
+..\glue(\tabskip) 0.0 plus 1.0fil
+..\hbox(6.94444+0.0)x16.66672
+...\glue 0.0 plus 1.0fil
+...\tenrm b
+...\tenrm b
+...\tenrm b
+..\glue(\tabskip) 0.0
+
+! OK.
+l.6 \showbox1
+
+
+> \box2=
+\vbox(6.94444+0.0)x100.0
+.\hbox(6.94444+0.0)x100.0, glue set 44.72221fil
+..\glue(\tabskip) 0.0
+..\hbox(6.94444+0.0)x5.00002
+...\glue 0.0 plus 1.0fil
+...\tenrm a
+..\glue(\tabskip) 0.0 plus 1.0fil
+..\hbox(6.94444+0.0)x5.55557
+...\glue 0.0 plus 1.0fil
+...\tenrm b
+..\glue(\tabskip) 0.0 plus 1.0fil
+
+! OK.
+l.8 \showbox2
+
+
+
+Overfull \hbox (34.22235pt too wide) in alignment at lines 10--10
+[] []
+
+\hbox(0.0+0.0)x10.0
+.\glue(\tabskip) 0.0
+.\unsetbox(0.0+0.0)x20.00006
+.\glue(\tabskip) 1.0
+.\unsetbox(0.0+0.0)x22.22229
+.\glue(\tabskip) 1.0
+
+> \box3=
+\vbox(6.94444+0.0)x10.0
+.\hbox(6.94444+0.0)x10.0
+..\glue(\tabskip) 0.0
+..\hbox(6.94444+0.0)x20.00006
+...\tenrm a
+...\tenrm a
+...\tenrm a
+...\tenrm a
+..\glue(\tabskip) 1.0
+..\hbox(6.94444+0.0)x22.22229
+...\tenrm b
+...\tenrm b
+...\tenrm b
+...\tenrm b
+..\glue(\tabskip) 1.0
+
+! OK.
+l.11 \showbox3
+
+
+
+Underfull \hbox (badness 10000) in alignment at lines 12--12
+[] []
+
+\hbox(0.0+0.0)x100.0, glue set 43.72221
+.\glue(\tabskip) 0.0
+.\unsetbox(0.0+0.0)x5.00002
+.\glue(\tabskip) 1.0 plus 1.0
+.\unsetbox(0.0+0.0)x5.55557
+.\glue(\tabskip) 1.0 plus 1.0
+
+> \box4=
+\vbox(6.94444+0.0)x100.0
+.\hbox(6.94444+0.0)x100.0, glue set 43.72221
+..\glue(\tabskip) 0.0
+..\hbox(6.94444+0.0)x5.00002
+...\tenrm a
+..\glue(\tabskip) 1.0 plus 1.0
+..\hbox(6.94444+0.0)x5.55557
+...\tenrm b
+..\glue(\tabskip) 1.0 plus 1.0
+
+! OK.
+l.13 \showbox4
+
+
+
+Underfull \hbox (badness 10000) in alignment at lines 14--14
+[] []
+
+\hbox(0.0+0.0)x17.55559
+.\glue(\tabskip) 0.0
+.\unsetbox(0.0+0.0)x5.00002
+.\glue(\tabskip) 1.0 minus 1.0
+.\unsetbox(0.0+0.0)x5.55557
+.\glue(\tabskip) 1.0 minus 1.0
+
+> \box5=
+\vbox(6.94444+0.0)x17.55559
+.\hbox(6.94444+0.0)x17.55559
+..\glue(\tabskip) 0.0
+..\hbox(6.94444+0.0)x5.00002
+...\tenrm a
+..\glue(\tabskip) 1.0 minus 1.0
+..\hbox(6.94444+0.0)x5.55557
+...\tenrm b
+..\glue(\tabskip) 1.0 minus 1.0
+
+! OK.
+l.15 \showbox5
+
+
+> \box6=
+\vbox(6.94444+0.0)x100.0
+.\hbox(6.94444+0.0)x100.0, glue set 44.72221fil
+..\glue(\tabskip) 0.0
+..\hbox(6.94444+0.0)x5.00002
+...\tenrm a
+..\glue(\tabskip) 0.0 plus 1.0fil
+..\hbox(6.94444+0.0)x5.55557
+...\glue 0.0 minus 2.0
+...\tenrm b
+..\glue(\tabskip) 0.0 plus 1.0fil
+
+! OK.
+l.17 \showbox6
+
+
+
+Completed box being shipped out [1]
+\vbox(54.94444+0.0)x100.0
+.\vbox(18.94444+0.0)x100.0
+..\hbox(6.94444+0.0)x100.0, glue set 68.33324fil
+...\glue(\tabskip) 0.0
+...\hbox(6.94444+0.0)x15.00005
+....\tenrm a
+...\glue(\tabskip) 0.0 plus 1.0fil
+...\hbox(6.94444+0.0)x16.66672
+....\tenrm b
+...\glue(\tabskip) 0.0
+..\glue(\baselineskip) 5.05556
+..\hbox(6.94444+0.0)x100.0, glue set 68.33324fil
+...\glue(\tabskip) 0.0
+...\hbox(6.94444+0.0)x15.00005
+....\tenrm a
+....\tenrm a
+....\tenrm a
+...\glue(\tabskip) 0.0 plus 1.0fil
+...\hbox(6.94444+0.0)x16.66672
+....\glue 0.0 plus 1.0fil
+....\tenrm b
+....\tenrm b
+....\tenrm b
+...\glue(\tabskip) 0.0
+.\glue(\baselineskip) 5.05556
+.\vbox(6.94444+0.0)x100.0
+..\hbox(6.94444+0.0)x100.0, glue set 44.72221fil
+...\glue(\tabskip) 0.0
+...\hbox(6.94444+0.0)x5.00002
+....\glue 0.0 plus 1.0fil
+....\tenrm a
+...\glue(\tabskip) 0.0 plus 1.0fil
+...\hbox(6.94444+0.0)x5.55557
+....\glue 0.0 plus 1.0fil
+....\tenrm b
+...\glue(\tabskip) 0.0 plus 1.0fil
+.\glue(\baselineskip) 5.05556
+.\vbox(6.94444+0.0)x10.0
+..\hbox(6.94444+0.0)x10.0
+...\glue(\tabskip) 0.0
+...\hbox(6.94444+0.0)x20.00006
+....\tenrm a
+....\tenrm a
+....\tenrm a
+....\tenrm a
+...\glue(\tabskip) 1.0
+...\hbox(6.94444+0.0)x22.22229
+....\tenrm b
+....\tenrm b
+....\tenrm b
+....\tenrm b
+...\glue(\tabskip) 1.0
+.\glue(\baselineskip) 5.05556
+.\vbox(6.94444+0.0)x100.0
+..\hbox(6.94444+0.0)x100.0, glue set 43.72221
+...\glue(\tabskip) 0.0
+...\hbox(6.94444+0.0)x5.00002
+....\tenrm a
+...\glue(\tabskip) 1.0 plus 1.0
+...\hbox(6.94444+0.0)x5.55557
+....\tenrm b
+...\glue(\tabskip) 1.0 plus 1.0
+
+ )
+Output written on m3-halign-glue-set.dvi (1 page, 268 bytes).

@@ -1,0 +1,604 @@
+(m3-display-basic.tex (plain.tex Preloading the plain format: codes, regist
+ers,
+\maxdimen=\dimen10
+\hideskip=\skip10
+\centering=\skip11
+\p@=\dimen11
+\z@=\dimen12
+\z@skip=\skip12
+\voidb@x=\box10
+parameters,
+\smallskipamount=\skip13
+\medskipamount=\skip14
+\bigskipamount=\skip15
+\normalbaselineskip=\skip16
+\normallineskip=\skip17
+\normallineskiplimit=\dimen13
+\jot=\dimen14
+\interdisplaylinepenalty=\count23
+\interfootnotelinepenalty=\count24
+fonts, more fonts,
+\itfam=\fam4
+\slfam=\fam5
+\bffam=\fam6
+\ttfam=\fam7
+macros,
+\strutbox=\box11
+\mscount=\count25
+\tabs=\box12
+\tabsyet=\box13
+\tabsdone=\box14
+math definitions,
+\rootbox=\box15
+\p@renwd=\dimen15
+output routines,
+\headline=\toks10
+\footline=\toks11
+\footins=\insert254
+\topins=\insert253
+hyphenation (hyphen.tex)) ED
+
+### display math mode entered at line 8
+\mathord
+.\fam1 a
+\mathrel
+.\fam0 =
+\mathord
+.\fam1 b
+### vertical mode entered at line 0
+### current page:
+\glue(\topskip) 3.05556
+\hbox(6.94444+0.0)x200.0, glue set 157.19435fil
+.\tenrm S
+.\tenrm h
+.\tenrm o
+.\tenrm r
+.\tenrm t
+.\glue 3.33333 plus 1.66666 minus 1.11111
+.\tenrm l
+.\tenrm i
+.\tenrm n
+.\tenrm e
+.\penalty 10000
+.\glue(\parfillskip) 0.0 plus 1.0fil
+.\glue(\rightskip) 0.0
+total height 10.0
+ goal height 300.0
+prevdepth 0.0, prevgraf 1 line
+
+! OK.
+l.8 \noindent Short line $$a=b\showlists
+                                        $$
+
+ED ED EM ED EM ED
+> 180.0pt.
+l.12 ...-3 \noindent hang $$x\showthe\displaywidth
+                                                  \showthe\displayindent\sho...
+
+
+> 20.0pt.
+l.12 ...showthe\displaywidth\showthe\displayindent
+                                                  \showthe\predisplaysize$$
+
+> 61.1112pt.
+l.12 ...owthe\displayindent\showthe\predisplaysize
+                                                  $$
+
+ED
+! Display math should end with $$.
+<to be read again>
+
+l.14 \noindent Err $$a=b$
+                          $ \par
+The `$' that I just saw supposedly matches a previous `$$'.
+So I shall assume that you typed `$$' both times.
+
+EM
+! Missing $ inserted.
+<inserted text>
+                $
+<to be read again>
+                   \par
+l.14 \noindent Err $$a=b$ $ \par
+
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+
+### vertical mode entered at line 0
+### current page:
+\glue(\topskip) 3.05556
+\hbox(6.94444+0.0)x200.0, glue set 157.19435fil
+.\tenrm S
+.\tenrm h
+.\tenrm o
+.\tenrm r
+.\tenrm t
+.\glue 3.33333 plus 1.66666 minus 1.11111
+.\tenrm l
+.\tenrm i
+.\tenrm n
+.\tenrm e
+.\penalty 10000
+.\glue(\parfillskip) 0.0 plus 1.0fil
+.\glue(\rightskip) 0.0
+\penalty 10000
+\glue(\abovedisplayshortskip) 1.0 plus 1.0
+\glue(\baselineskip) 5.05556
+\hbox(6.94444+0.0)x22.91077, shifted 88.54462
+.\teni a
+.\glue(\thickmuskip) 2.77771 plus 2.77771
+.\tenrm =
+.\glue(\thickmuskip) 2.77771 plus 2.77771
+.\teni b
+\penalty 0
+\glue(\belowdisplayshortskip) 7.0 plus 2.0
+\glue(\baselineskip) 5.05556
+\hbox(6.94444+1.94444)x200.0, glue set - 0.25002
+.\tenrm A
+.\glue 3.33333 plus 1.66498 minus 1.11221
+.\tenrm l
+.\tenrm o
+.\tenrm n
+.\tenrm g
+.\glue 3.33333 plus 1.66666 minus 1.11111
+.\tenrm l
+.\tenrm o
+.\tenrm n
+.\tenrm g
+.\glue 3.33333 plus 1.66666 minus 1.11111
+.\tenrm l
+.\tenrm o
+.\tenrm n
+.\tenrm g
+.\glue 3.33333 plus 1.66666 minus 1.11111
+.\tenrm l
+.\tenrm o
+.\tenrm n
+.\tenrm g
+.\glue 3.33333 plus 1.66666 minus 1.11111
+.\tenrm l
+.\tenrm o
+.\tenrm n
+.\tenrm g
+.\glue 3.33333 plus 1.66666 minus 1.11111
+.\tenrm l
+.\tenrm o
+.\tenrm n
+.\tenrm g
+.\glue 3.33333 plus 1.66666 minus 1.11111
+.\tenrm l
+.\tenrm o
+.\tenrm n
+.\tenrm g
+.\glue 3.33333 plus 1.66666 minus 1.11111
+.\tenrm l
+.\tenrm o
+.\tenrm n
+.\tenrm g
+.\glue 3.33333 plus 1.66666 minus 1.11111
+.\tenrm l
+.\tenrm o
+.\tenrm n
+.\tenrm g
+.\glue(\rightskip) 0.0
+\penalty 150
+\glue(\baselineskip) 3.11111
+\hbox(6.94444+1.94444)x200.0, glue set - 0.02782
+.\tenrm l
+.\tenrm o
+.\tenrm n
+.\tenrm g
+.\glue 3.33333 plus 1.66666 minus 1.11111
+.\tenrm l
+.\tenrm o
+.\tenrm n
+.\tenrm g
+.\glue 3.33333 plus 1.66666 minus 1.11111
+.\tenrm l
+.\tenrm o
+.\tenrm n
+.\tenrm g
+.\glue 3.33333 plus 1.66666 minus 1.11111
+.\tenrm l
+.\tenrm o
+.\tenrm n
+.\tenrm g
+.\glue 3.33333 plus 1.66666 minus 1.11111
+.\tenrm l
+.\tenrm o
+.\tenrm n
+.\tenrm g
+.\glue 3.33333 plus 1.66666 minus 1.11111
+.\tenrm l
+.\tenrm o
+.\tenrm n
+.\tenrm g
+.\glue 3.33333 plus 1.66666 minus 1.11111
+.\tenrm l
+.\tenrm o
+.\tenrm n
+.\tenrm g
+.\glue 3.33333 plus 1.66666 minus 1.11111
+.\tenrm l
+.\tenrm o
+.\tenrm n
+.\tenrm g
+.\glue 3.33333 plus 1.66666 minus 1.11111
+.\tenrm l
+.\tenrm i
+.\tenrm n
+.\tenrm e
+.\glue 3.33333 plus 1.66666 minus 1.11111
+.\tenrm o
+.\tenrm f
+.\glue(\rightskip) 0.0
+\penalty 50
+\glue(\baselineskip) 3.90477
+\hbox(6.15079+0.0)x200.0, glue set 182.49995fil
+.\tenrm t
+.\tenrm e
+.\tenrm x
+.\tenrm t
+.\penalty 10000
+.\glue(\parfillskip) 0.0 plus 1.0fil
+.\glue(\rightskip) 0.0
+\penalty 10000
+\glue(\abovedisplayshortskip) 1.0 plus 1.0
+\glue(\baselineskip) 5.05556
+\hbox(6.94444+0.0)x22.91077, shifted 88.54462
+.\teni a
+.\glue(\thickmuskip) 2.77771 plus 2.77771
+.\tenrm =
+.\glue(\thickmuskip) 2.77771 plus 2.77771
+.\teni b
+\penalty 0
+\glue(\belowdisplayshortskip) 7.0 plus 2.0
+\glue(\parskip) 0.0 plus 1.0
+\glue(\baselineskip) 5.16669
+\hbox(6.83331+0.0)x200.0, glue set 174.55551fil
+.\hbox(0.0+0.0)x5.0
+.\tenrm P
+.\kern-0.27779
+.\tenrm a
+.\tenrm r
+.\tenrm a
+.\penalty 10000
+.\glue(\parfillskip) 0.0 plus 1.0fil
+.\glue(\rightskip) 0.0
+\penalty 10000
+\glue(\abovedisplayshortskip) 1.0 plus 1.0
+\glue(\baselineskip) 4.5
+\hbox(7.5+2.5)x102.64294, shifted 97.35706
+.\hbox(4.30554+0.0)x5.28589
+..\teni a
+.\kern84.57924
+.\hbox(7.5+2.5)x12.77782
+..\tenrm (
+..\tenrm 1
+..\tenrm )
+\penalty 0
+\glue(\belowdisplayshortskip) 7.0 plus 2.0
+\glue(\baselineskip) 5.19446
+\hbox(4.30554+0.0)x200.0, glue set 178.30551fil
+.\tenrm m
+.\tenrm o
+.\tenrm r
+.\tenrm e
+.\penalty 10000
+.\glue(\parfillskip) 0.0 plus 1.0fil
+.\glue(\rightskip) 0.0
+\penalty 10000
+\glue(\abovedisplayskip) 11.0 plus 3.0
+\glue(\baselineskip) 4.5
+\hbox(7.5+2.5)x102.14583
+.\hbox(7.5+2.5)x12.77782
+..\tenrm (
+..\tenrm 2
+..\tenrm )
+.\kern85.07635
+.\hbox(6.94444+0.0)x4.29166
+..\teni b
+\penalty 0
+\glue(\belowdisplayskip) 12.0 plus 4.0
+\glue(\parskip) 0.0 plus 1.0
+\glue(\baselineskip) 2.55556
+\hbox(6.94444+1.94444)x180.0, glue set 158.88882fil, shifted 20.0
+.\tenrm h
+.\tenrm a
+.\tenrm n
+.\tenrm g
+.\penalty 10000
+.\glue(\parfillskip) 0.0 plus 1.0fil
+.\glue(\rightskip) 0.0
+\penalty 10000
+\glue(\abovedisplayshortskip) 1.0 plus 1.0
+\glue(\baselineskip) 5.75002
+\hbox(4.30554+0.0)x5.71527, shifted 107.14236
+.\teni x
+\penalty 0
+\glue(\belowdisplayshortskip) 7.0 plus 2.0
+\glue(\parskip) 0.0 plus 1.0
+\glue(\baselineskip) 5.16669
+\hbox(6.83331+0.0)x200.0, glue set 185.36108fil
+.\tenrm E
+.\tenrm r
+.\tenrm r
+.\penalty 10000
+.\glue(\parfillskip) 0.0 plus 1.0fil
+.\glue(\rightskip) 0.0
+\penalty 10000
+\glue(\abovedisplayshortskip) 1.0 plus 1.0
+\glue(\baselineskip) 5.05556
+\hbox(6.94444+0.0)x22.91077, shifted 88.54462
+.\teni a
+.\glue(\thickmuskip) 2.77771 plus 2.77771
+.\tenrm =
+.\glue(\thickmuskip) 2.77771 plus 2.77771
+.\teni b
+\penalty 0
+\glue(\belowdisplayshortskip) 7.0 plus 2.0
+\glue(\baselineskip) 12.0
+\hbox(0.0+0.0)x200.0, glue set 200.0fil
+.\mathon
+.\mathoff
+.\penalty 10000
+.\glue(\parfillskip) 0.0 plus 1.0fil
+.\glue(\rightskip) 0.0
+total height 241.0 plus 25.0
+ goal height 300.0
+prevdepth 0.0, prevgraf 5 lines
+
+! OK.
+l.15 \showlists
+
+
+> \box255=
+\vbox(300.0+0.0)x200.0, glue set 2.36
+.\glue(\topskip) 3.05556
+.\hbox(6.94444+0.0)x200.0, glue set 157.19435fil
+..\tenrm S
+..\tenrm h
+..\tenrm o
+..\tenrm r
+..\tenrm t
+..\glue 3.33333 plus 1.66666 minus 1.11111
+..\tenrm l
+..\tenrm i
+..\tenrm n
+..\tenrm e
+..\penalty 10000
+..\glue(\parfillskip) 0.0 plus 1.0fil
+..\glue(\rightskip) 0.0
+.\penalty 10000
+.\glue(\abovedisplayshortskip) 1.0 plus 1.0
+.\glue(\baselineskip) 5.05556
+.\hbox(6.94444+0.0)x22.91077, shifted 88.54462
+..\teni a
+..\glue(\thickmuskip) 2.77771 plus 2.77771
+..\tenrm =
+..\glue(\thickmuskip) 2.77771 plus 2.77771
+..\teni b
+.\penalty 0
+.\glue(\belowdisplayshortskip) 7.0 plus 2.0
+.\glue(\baselineskip) 5.05556
+.\hbox(6.94444+1.94444)x200.0, glue set - 0.25002
+..\tenrm A
+..\glue 3.33333 plus 1.66498 minus 1.11221
+..\tenrm l
+..\tenrm o
+..\tenrm n
+..\tenrm g
+..\glue 3.33333 plus 1.66666 minus 1.11111
+..\tenrm l
+..\tenrm o
+..\tenrm n
+..\tenrm g
+..\glue 3.33333 plus 1.66666 minus 1.11111
+..\tenrm l
+..\tenrm o
+..\tenrm n
+..\tenrm g
+..\glue 3.33333 plus 1.66666 minus 1.11111
+..\tenrm l
+..\tenrm o
+..\tenrm n
+..\tenrm g
+..\glue 3.33333 plus 1.66666 minus 1.11111
+..\tenrm l
+..\tenrm o
+..\tenrm n
+..\tenrm g
+..\glue 3.33333 plus 1.66666 minus 1.11111
+..\tenrm l
+..\tenrm o
+..\tenrm n
+..\tenrm g
+..\glue 3.33333 plus 1.66666 minus 1.11111
+..\tenrm l
+..\tenrm o
+..\tenrm n
+..\tenrm g
+..\glue 3.33333 plus 1.66666 minus 1.11111
+..\tenrm l
+..\tenrm o
+..\tenrm n
+..\tenrm g
+..\glue 3.33333 plus 1.66666 minus 1.11111
+..\tenrm l
+..\tenrm o
+..\tenrm n
+..\tenrm g
+..\glue(\rightskip) 0.0
+.\penalty 150
+.\glue(\baselineskip) 3.11111
+.\hbox(6.94444+1.94444)x200.0, glue set - 0.02782
+..\tenrm l
+..\tenrm o
+..\tenrm n
+..\tenrm g
+..\glue 3.33333 plus 1.66666 minus 1.11111
+..\tenrm l
+..\tenrm o
+..\tenrm n
+..\tenrm g
+..\glue 3.33333 plus 1.66666 minus 1.11111
+..\tenrm l
+..\tenrm o
+..\tenrm n
+..\tenrm g
+..\glue 3.33333 plus 1.66666 minus 1.11111
+..\tenrm l
+..\tenrm o
+..\tenrm n
+..\tenrm g
+..\glue 3.33333 plus 1.66666 minus 1.11111
+..\tenrm l
+..\tenrm o
+..\tenrm n
+..\tenrm g
+..\glue 3.33333 plus 1.66666 minus 1.11111
+..\tenrm l
+..\tenrm o
+..\tenrm n
+..\tenrm g
+..\glue 3.33333 plus 1.66666 minus 1.11111
+..\tenrm l
+..\tenrm o
+..\tenrm n
+..\tenrm g
+..\glue 3.33333 plus 1.66666 minus 1.11111
+..\tenrm l
+..\tenrm o
+..\tenrm n
+..\tenrm g
+..\glue 3.33333 plus 1.66666 minus 1.11111
+..\tenrm l
+..\tenrm i
+..\tenrm n
+..\tenrm e
+..\glue 3.33333 plus 1.66666 minus 1.11111
+..\tenrm o
+..\tenrm f
+..\glue(\rightskip) 0.0
+.\penalty 50
+.\glue(\baselineskip) 3.90477
+.\hbox(6.15079+0.0)x200.0, glue set 182.49995fil
+..\tenrm t
+..\tenrm e
+..\tenrm x
+..\tenrm t
+..\penalty 10000
+..\glue(\parfillskip) 0.0 plus 1.0fil
+..\glue(\rightskip) 0.0
+.\penalty 10000
+.\glue(\abovedisplayshortskip) 1.0 plus 1.0
+.\glue(\baselineskip) 5.05556
+.\hbox(6.94444+0.0)x22.91077, shifted 88.54462
+..\teni a
+..\glue(\thickmuskip) 2.77771 plus 2.77771
+..\tenrm =
+..\glue(\thickmuskip) 2.77771 plus 2.77771
+..\teni b
+.\penalty 0
+.\glue(\belowdisplayshortskip) 7.0 plus 2.0
+.\glue(\parskip) 0.0 plus 1.0
+.\glue(\baselineskip) 5.16669
+.\hbox(6.83331+0.0)x200.0, glue set 174.55551fil
+..\hbox(0.0+0.0)x5.0
+..\tenrm P
+..\kern-0.27779
+..\tenrm a
+..\tenrm r
+..\tenrm a
+..\penalty 10000
+..\glue(\parfillskip) 0.0 plus 1.0fil
+..\glue(\rightskip) 0.0
+.\penalty 10000
+.\glue(\abovedisplayshortskip) 1.0 plus 1.0
+.\glue(\baselineskip) 4.5
+.\hbox(7.5+2.5)x102.64294, shifted 97.35706
+..\hbox(4.30554+0.0)x5.28589
+...\teni a
+..\kern84.57924
+..\hbox(7.5+2.5)x12.77782
+...\tenrm (
+...\tenrm 1
+...\tenrm )
+.\penalty 0
+.\glue(\belowdisplayshortskip) 7.0 plus 2.0
+.\glue(\baselineskip) 5.19446
+.\hbox(4.30554+0.0)x200.0, glue set 178.30551fil
+..\tenrm m
+..\tenrm o
+..\tenrm r
+..\tenrm e
+..\penalty 10000
+..\glue(\parfillskip) 0.0 plus 1.0fil
+..\glue(\rightskip) 0.0
+.\penalty 10000
+.\glue(\abovedisplayskip) 11.0 plus 3.0
+.\glue(\baselineskip) 4.5
+.\hbox(7.5+2.5)x102.14583
+..\hbox(7.5+2.5)x12.77782
+...\tenrm (
+...\tenrm 2
+...\tenrm )
+..\kern85.07635
+..\hbox(6.94444+0.0)x4.29166
+...\teni b
+.\penalty 0
+.\glue(\belowdisplayskip) 12.0 plus 4.0
+.\glue(\parskip) 0.0 plus 1.0
+.\glue(\baselineskip) 2.55556
+.\hbox(6.94444+1.94444)x180.0, glue set 158.88882fil, shifted 20.0
+..\tenrm h
+..\tenrm a
+..\tenrm n
+..\tenrm g
+..\penalty 10000
+..\glue(\parfillskip) 0.0 plus 1.0fil
+..\glue(\rightskip) 0.0
+.\penalty 10000
+.\glue(\abovedisplayshortskip) 1.0 plus 1.0
+.\glue(\baselineskip) 5.75002
+.\hbox(4.30554+0.0)x5.71527, shifted 107.14236
+..\teni x
+.\penalty 0
+.\glue(\belowdisplayshortskip) 7.0 plus 2.0
+.\glue(\parskip) 0.0 plus 1.0
+.\glue(\baselineskip) 5.16669
+.\hbox(6.83331+0.0)x200.0, glue set 185.36108fil
+..\tenrm E
+..\tenrm r
+..\tenrm r
+..\penalty 10000
+..\glue(\parfillskip) 0.0 plus 1.0fil
+..\glue(\rightskip) 0.0
+.\penalty 10000
+.\glue(\abovedisplayshortskip) 1.0 plus 1.0
+.\glue(\baselineskip) 5.05556
+.\hbox(6.94444+0.0)x22.91077, shifted 88.54462
+..\teni a
+..\glue(\thickmuskip) 2.77771 plus 2.77771
+..\tenrm =
+..\glue(\thickmuskip) 2.77771 plus 2.77771
+..\teni b
+.\penalty 0
+.\glue(\belowdisplayshortskip) 7.0 plus 2.0
+.\glue(\baselineskip) 12.0
+.\hbox(0.0+0.0)x200.0, glue set 200.0fil
+..\mathon
+..\mathoff
+..\penalty 10000
+..\glue(\parfillskip) 0.0 plus 1.0fil
+..\glue(\rightskip) 0.0
+
+! OK.
+<output> {\showbox 255
+                       \setbox 0\box 255 \deadcycles =0}
+l.16 ...etbox0\box255 \deadcycles=0}\penalty-10000
+
+
+ )
+No pages of output.

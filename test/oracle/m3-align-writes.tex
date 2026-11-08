@@ -1,0 +1,20 @@
+%! oracle: ini
+\input plain
+\tracingonline=0 \showboxbreadth=10000 \showboxdepth=10000 \tracingoutput=1
+\hsize=100pt \parindent=0pt \vsize=50pt
+\output={\showbox255 \setbox0\box255 \deadcycles=0}
+\setbox1=\vbox{\halign{#\cr a\write-1{w1}\special{sp}\mark{m}\cr\noalign{\write-1{nw}\special{nsp}\mark{nm}}b\showlists\cr}}
+\showbox1
+\tracingcommands=2 \tracingonline=1
+\setbox2=\vbox{\halign{#\hfil&\hfil#\cr a&b\cr}}
+\tracingcommands=0 \tracingonline=0
+\showbox2
+\tracingmacros=2 \tracingonline=1
+\def\ms{\span\omit}
+\setbox3=\vbox{\halign{#&#\cr x\ms y\cr}}
+\def\pre{##\hfil&}
+\setbox4=\vbox{\halign{\span\expandafter\relax\pre\hfil#\cr 1&2\cr}}
+\tracingmacros=0 \tracingonline=0
+\showbox3 \showbox4
+\shipout\vbox{\box1\box2}
+\end

@@ -1,0 +1,14 @@
+%! oracle: ini
+\input plain
+\tracingonline=0 \showboxbreadth=10000 \showboxdepth=10000 \tracingoutput=1
+\hsize=200pt \parindent=0pt
+\setbox1=\hbox{$\matrix{a&b\cr c&d\cr}$ $\pmatrix{a&b\cr c&d\cr}$ $\bordermatrix{&x&y\cr x&1&0\cr y&0&1\cr}$}
+\showbox1
+\setbox2=\hbox{$f(x)=\cases{0&if $x<0$,\cr 1&otherwise.\cr}$}
+\showbox2
+\setbox3=\hbox{$\left(\matrix{a&b\cr c&d\cr}\right)$ $\vcenter{\halign{#\cr a\cr b\cr}}$}
+\showbox3
+\setbox4=\vbox{\noindent$$A=\pmatrix{1&2\cr 3&4\cr}\showlists$$}
+\showbox4
+\shipout\vbox{\box1\box2\box3\box4}
+\end

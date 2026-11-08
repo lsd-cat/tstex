@@ -1,0 +1,16 @@
+%! oracle: ini
+\input plain
+\tracingonline=0 \showboxbreadth=10000 \showboxdepth=10000 \tracingoutput=1
+$a\showlists $ x
+\setbox1=\hbox{$$a$$ $a\eqno b$ $\left(a$ a}$ }
+\showbox1
+\hbox{$a}\over b\over c$}
+\setbox2=\hbox{_ a ^ b $x^\hbox{q}$ $\left. a$ $a\over b\over c$}
+\showbox2
+\setbox3=\hbox{$x^\vrule$ $x^\mathchar"141 $ $x^{}_{}$ $\fam$}
+\showbox3
+$$ a \par b $$
+\par\showlists
+$$a\leqno b\eqno c$$
+\par
+\end

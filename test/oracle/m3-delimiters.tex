@@ -1,0 +1,19 @@
+%! oracle: ini
+\input plain
+\tracingonline=0 \showboxbreadth=10000 \showboxdepth=10000 \tracingoutput=1
+\setbox1=\hbox{$\left(a\over b\right)$ $\left.x\right|$ $\left\{\vrule height 10pt depth 10pt\right\}$ $\left(\vrule height 40pt\right)$}
+\showbox1
+\setbox2=\hbox{$\left[\vrule height 90pt depth 60pt\right]$ $\left\{\vrule height 250pt\right\}$ $\left\delimiter"4262304 x\right\delimiter"5263305$}
+\showbox2
+\delimiterfactor=700 \delimitershortfall=1pt
+\setbox3=\hbox{$\left(\vrule height 20pt\right)$}
+\showbox3
+\delimiterfactor=901 \delimitershortfall=5pt
+\setbox4=\hbox{$\bigl(\Bigl(\biggl(\Biggl(x\Biggr)\biggr)\Bigr)\bigr)$ $\bigm|\big/$}
+\showbox4
+\setbox5=\hbox{$\left(\left[a\over b\right]+\left\{c\right\}\right)$}
+\showbox5
+\setbox6=\hbox{$\right) a$ $\left(a$ $\left( \showlists a\right) $}
+\showbox6
+\shipout\vbox{\box1\box2\box3\box4\box5\box6}
+\end

@@ -1,0 +1,76 @@
+Options selected:
+  Starting page = * 
+  Maximum number of pages = 1000000
+  Output level = 4 (the works)
+  Resolution = 300.00000000 pixels per inch
+numerator/denominator=25400000/473628672
+magnification=1000;       0.00006334 pixels per DVI unit
+'<comment>'
+Postamble starts at byte 222.
+maxv=2814407, maxh=2934993, maxstackdepth=1, totalpages=1
+Font 33: cmsl10---loaded at size 655360 DVI units 
+Font 12: cmsy10---loaded at size 655360 DVI units 
+Font 6: cmmi10---loaded at size 655360 DVI units 
+Font 0: cmr10---loaded at size 655360 DVI units 
+ 
+42: beginning of page 1 
+87: down3 455111 v:=0+455111=455111, vv:=29 
+91: push 
+level 0:(h=0,v=455111,w=0,x=0,y=0,z=0,hh=0,vv=29) 
+92: fntdef1 6: cmmi10 
+114: fntnum6 current font is cmmi10 
+115: setchar97 h:=0+346416=346416, hh:=22 
+116: setchar49 h:=346416+327681=674097, hh:=43 
+[a1]
+117: fntdef1 0: cmr10 
+138: fntnum0 current font is cmr10 
+139: setchar97 h:=674097+327681=1001778, hh:=64 
+140: setchar49 h:=1001778+327681=1329459, hh:=85 
+[a1]
+141: fntdef1 12: cmsy10 
+163: fntnum12 current font is cmsy10 
+164: setchar65 h:=1329459+523286=1852745, hh:=118 
+165: w3 145632 h:=1852745+145632=1998377, hh:=127 
+[A ]
+169: fntnum0 current font is cmr10 
+170: setchar43 h:=1998377+509726=2508103, hh:=159 
+171: w0 145632 h:=2508103+145632=2653735, hh:=168 
+[+ ]
+172: fntnum6 current font is cmmi10 
+173: setchar98 h:=2653735+281258=2934993, hh:=186 
+[b]
+174: pop 
+level 0:(h=0,v=455111,w=0,x=0,y=0,z=0,hh=0,vv=29) 
+175: y3 786432 v:=455111+786432=1241543, vv:=79 
+179: push 
+level 0:(h=0,v=1241543,w=0,x=0,y=786432,z=0,hh=0,vv=79) 
+180: setchar65 h:=0+491521=491521, hh:=31 
+181: setchar98 h:=491521+281258=772779, hh:=49 
+[Ab]
+182: fntdef1 33: cmsl10 
+204: fntnum33 current font is cmsl10 
+205: setchar65 h:=772779+491521=1264300, hh:=80 
+206: setchar98 h:=1264300+364090=1628390, hh:=103 
+207: setchar65 h:=1628390+491521=2119911, hh:=134 
+208: setchar65 h:=2119911+491521=2611432, hh:=165 
+[AbAA]
+209: pop 
+level 0:(h=0,v=1241543,w=0,x=0,y=786432,z=0,hh=0,vv=79) 
+210: y0 786432 v:=1241543+786432=2027975, vv:=128 
+211: push 
+level 0:(h=0,v=2027975,w=0,x=0,y=786432,z=0,hh=0,vv=128) 
+212: fntnum6 current font is cmmi10 
+213: setchar99 h:=0+283611=283611, hh:=18 
+214: setchar99 h:=283611+283611=567222, hh:=36 
+[cc]
+215: pop 
+level 0:(h=0,v=2027975,w=0,x=0,y=786432,z=0,hh=0,vv=128) 
+216: y0 786432 v:=2027975+786432=2814407, vv:=178 
+217: push 
+level 0:(h=0,v=2814407,w=0,x=0,y=786432,z=0,hh=0,vv=178) 
+218: fntnum0 current font is cmr10 
+219: setchar97 h:=0+327681=327681, hh:=21 
+[a]
+220: pop 
+level 0:(h=0,v=2814407,w=0,x=0,y=786432,z=0,hh=0,vv=178) 
+221: eop 

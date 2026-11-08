@@ -1,0 +1,602 @@
+(m3-fractions.tex (plain.tex Preloading the plain format: codes, registers,
+\maxdimen=\dimen10
+\hideskip=\skip10
+\centering=\skip11
+\p@=\dimen11
+\z@=\dimen12
+\z@skip=\skip12
+\voidb@x=\box10
+parameters,
+\smallskipamount=\skip13
+\medskipamount=\skip14
+\bigskipamount=\skip15
+\normalbaselineskip=\skip16
+\normallineskip=\skip17
+\normallineskiplimit=\dimen13
+\jot=\dimen14
+\interdisplaylinepenalty=\count23
+\interfootnotelinepenalty=\count24
+fonts, more fonts,
+\itfam=\fam4
+\slfam=\fam5
+\bffam=\fam6
+\ttfam=\fam7
+macros,
+\strutbox=\box11
+\mscount=\count25
+\tabs=\box12
+\tabsyet=\box13
+\tabsdone=\box14
+math definitions,
+\rootbox=\box15
+\p@renwd=\dimen15
+output routines,
+\headline=\toks10
+\footline=\toks11
+\footins=\insert254
+\topins=\insert253
+hyphenation (hyphen.tex))
+> \box1=
+\hbox(8.51389+5.3611)x79.05931
+.\mathon
+.\hbox(6.9512+3.44841)x6.73764
+..\hbox(0.0+0.0)x1.2, shifted -2.5
+..\vbox(6.9512+3.44841)x4.33765
+...\hbox(3.01389+0.0)x4.33765
+....\seveni a
+...\kern1.23732
+...\rule(0.39998+0.0)x*
+...\kern0.88731
+...\hbox(4.8611+0.0)x4.33765, glue set 0.41049fil
+....\glue 0.0 plus 1.0fil minus 1.0fil
+....\seveni b
+....\glue 0.0 plus 1.0fil minus 1.0fil
+..\hbox(0.0+0.0)x1.2, shifted -2.5
+.\mathoff
+.\glue 3.33333 plus 1.66666 minus 1.11111
+.\mathon
+.\hbox(7.45119+3.44841)x6.73764
+..\hbox(0.0+0.0)x1.2, shifted -2.5
+..\vbox(7.45119+3.44841)x4.33765
+...\hbox(3.01389+0.0)x4.33765
+....\seveni a
+...\kern3.02461
+...\hbox(4.8611+0.0)x4.33765, glue set 0.41049fil
+....\glue 0.0 plus 1.0fil minus 1.0fil
+....\seveni b
+....\glue 0.0 plus 1.0fil minus 1.0fil
+..\hbox(0.0+0.0)x1.2, shifted -2.5
+.\mathoff
+.\glue 3.33333 plus 1.66666 minus 1.11111
+.\mathon
+.\hbox(8.51389+5.3611)x6.73764
+..\hbox(0.0+0.0)x1.2, shifted -2.5
+..\vbox(8.51389+5.3611)x4.33765
+...\hbox(3.01389+0.0)x4.33765
+....\seveni a
+...\kern2.0
+...\rule(2.0+0.0)x*
+...\kern2.0
+...\hbox(4.8611+0.0)x4.33765, glue set 0.41049fil
+....\glue 0.0 plus 1.0fil minus 1.0fil
+....\seveni b
+....\glue 0.0 plus 1.0fil minus 1.0fil
+..\hbox(0.0+0.0)x1.2, shifted -2.5
+.\mathoff
+.\glue 3.33333 plus 1.66666 minus 1.11111
+.\mathon
+.\hbox(8.50005+3.50006)x13.50436
+..\hbox(0.39998+11.60013)x4.58336, shifted -8.10007
+...\tenex ^^@
+..\vbox(6.9512+3.44841)x4.33765
+...\hbox(3.01389+0.0)x4.33765
+....\seveni a
+...\kern1.23732
+...\rule(0.39998+0.0)x*
+...\kern0.88731
+...\hbox(4.8611+0.0)x4.33765, glue set 0.41049fil
+....\glue 0.0 plus 1.0fil minus 1.0fil
+....\seveni b
+....\glue 0.0 plus 1.0fil minus 1.0fil
+..\hbox(0.39998+11.60013)x4.58336, shifted -8.10007
+...\tenex ^^A
+.\mathoff
+.\glue 3.33333 plus 1.66666 minus 1.11111
+.\mathon
+.\hbox(8.50005+3.50006)x12.67102
+..\hbox(0.39998+11.60013)x4.16669, shifted -8.10007
+...\tenex ^^B
+..\vbox(7.45119+3.44841)x4.33765
+...\hbox(3.01389+0.0)x4.33765
+....\seveni a
+...\kern3.02461
+...\hbox(4.8611+0.0)x4.33765, glue set 0.41049fil
+....\glue 0.0 plus 1.0fil minus 1.0fil
+....\seveni b
+....\glue 0.0 plus 1.0fil minus 1.0fil
+..\hbox(0.39998+11.60013)x4.16669, shifted -8.10007
+...\tenex ^^C
+.\mathoff
+.\glue 3.33333 plus 1.66666 minus 1.11111
+.\mathon
+.\hbox(8.50005+3.8611)x16.00436
+..\hbox(0.39998+11.60013)x5.83336, shifted -8.10007
+...\tenex ^^H
+..\vbox(7.01389+3.8611)x4.33765
+...\hbox(3.01389+0.0)x4.33765
+....\seveni a
+...\kern1.0
+...\rule(1.0+0.0)x*
+...\kern1.0
+...\hbox(4.8611+0.0)x4.33765, glue set 0.41049fil
+....\glue 0.0 plus 1.0fil minus 1.0fil
+....\seveni b
+....\glue 0.0 plus 1.0fil minus 1.0fil
+..\hbox(0.39998+11.60013)x5.83336, shifted -8.10007
+...\tenex ^^I
+.\mathoff
+
+! OK.
+l.5 \showbox1
+
+
+
+### display math mode entered at line 6
+\mathord
+.\fraction, thickness = default
+.\\mathord
+.\.\fam1 a
+./\mathord
+./.\fam1 b
+\mathbin
+.\fam0 +
+\mathord
+.\fraction, thickness = default
+.\\mathord
+.\.\fam1 a
+./\mathord
+./.\fam1 b
+### internal vertical mode entered at line 6
+prevdepth ignored
+### vertical mode entered at line 0
+prevdepth ignored
+
+! OK.
+l.6 ... \noindent$${a\over b}+{a\over b}\showlists
+                                                  $$}
+
+> \box2=
+\vbox(24.93013+0.0)x63.79695
+.\penalty 10000
+.\glue(\abovedisplayshortskip) 0.0 plus 3.0
+.\hbox(11.07062+6.85951)x27.5939, shifted 36.20305
+..\hbox(11.07062+6.85951)x7.68588
+...\hbox(11.07062+6.85951)x7.68588
+....\hbox(0.0+0.0)x1.2, shifted -2.5
+....\vbox(11.07062+6.85951)x5.28589
+.....\hbox(4.30554+0.0)x5.28589
+......\teni a
+.....\kern4.06508
+.....\rule(0.39998+0.0)x*
+.....\kern2.21507
+.....\hbox(6.94444+0.0)x5.28589, glue set 0.49712fil
+......\glue 0.0 plus 1.0fil minus 1.0fil
+......\teni b
+......\glue 0.0 plus 1.0fil minus 1.0fil
+....\hbox(0.0+0.0)x1.2, shifted -2.5
+..\glue(\medmuskip) 2.22217 plus 1.11108 minus 2.22217
+..\tenrm +
+..\glue(\medmuskip) 2.22217 plus 1.11108 minus 2.22217
+..\hbox(11.07062+6.85951)x7.68588
+...\hbox(11.07062+6.85951)x7.68588
+....\hbox(0.0+0.0)x1.2, shifted -2.5
+....\vbox(11.07062+6.85951)x5.28589
+.....\hbox(4.30554+0.0)x5.28589
+......\teni a
+.....\kern4.06508
+.....\rule(0.39998+0.0)x*
+.....\kern2.21507
+.....\hbox(6.94444+0.0)x5.28589, glue set 0.49712fil
+......\glue 0.0 plus 1.0fil minus 1.0fil
+......\teni b
+......\glue 0.0 plus 1.0fil minus 1.0fil
+....\hbox(0.0+0.0)x1.2, shifted -2.5
+.\penalty 0
+.\glue(\belowdisplayshortskip) 7.0 plus 3.0 minus 4.0
+
+! OK.
+l.7 \showbox2
+
+
+! Ambiguous; you need another { and }.
+l.8 \setbox3=\hbox{$a\over b\over
+                                  c$}
+I'm ignoring this fraction specification, since I don't
+know whether a construction like `x \over y \over z'
+means `{x \over y} \over z' or `x \over {y \over z}'.
+
+> \box3=
+\hbox(6.9512+3.44841)x9.4904
+.\mathon
+.\hbox(6.9512+3.44841)x9.4904
+..\hbox(0.0+0.0)x1.2, shifted -2.5
+..\vbox(6.9512+3.44841)x7.09041
+...\hbox(3.01389+0.0)x7.09041, glue set 1.37639fil
+....\glue 0.0 plus 1.0fil minus 1.0fil
+....\seveni a
+....\glue 0.0 plus 1.0fil minus 1.0fil
+...\kern1.23732
+...\rule(0.39998+0.0)x*
+...\kern0.88731
+...\hbox(4.8611+0.0)x7.09041
+....\seveni b
+....\seveni c
+..\hbox(0.0+0.0)x1.2, shifted -2.5
+.\mathoff
+
+! OK.
+l.9 \showbox3
+
+
+> \box4=
+\hbox(13.20952+6.85951)x62.85585
+.\mathon
+.\hbox(8.44843+3.44841)x6.38612
+..\hbox(8.44843+3.44841)x6.38612
+...\hbox(0.0+0.0)x1.2, shifted -2.5
+...\vbox(8.44843+3.44841)x3.98613
+....\hbox(4.51111+0.0)x3.98613
+.....\sevenrm 1
+....\kern1.23732
+....\rule(0.39998+0.0)x*
+....\kern1.2373
+....\hbox(4.51111+0.0)x3.98613
+.....\sevenrm 2
+...\hbox(0.0+0.0)x1.2, shifted -2.5
+.\glue(\medmuskip) 2.22217 plus 1.11108 minus 2.22217
+.\tenrm +
+.\glue(\medmuskip) 2.22217 plus 1.11108 minus 2.22217
+.\hbox(6.9512+4.80951)x6.93472
+..\hbox(6.9512+4.80951)x6.93472
+...\hbox(0.0+0.0)x1.2, shifted -2.5
+...\vbox(6.9512+4.80951)x4.53473
+....\hbox(3.01389+0.0)x4.53473
+.....\seveni x
+....\kern1.23732
+....\rule(0.39998+0.0)x*
+....\kern2.73453
+....\hbox(3.01389+1.3611)x4.53473, glue set 0.114fil
+.....\glue 0.0 plus 1.0fil minus 1.0fil
+.....\seveni y
+.....\kern0.25116
+.....\glue 0.0 plus 1.0fil minus 1.0fil
+...\hbox(0.0+0.0)x1.2, shifted -2.5
+.\mathoff
+.\glue 3.33333 plus 1.66666 minus 1.11111
+.\mathon
+.\hbox(8.50005+3.50006)x14.11005
+..\hbox(8.50005+3.50006)x14.11005
+...\hbox(0.39998+11.60013)x4.58336, shifted -8.10007
+....\tenex ^^@
+...\vbox(7.45119+3.44841)x4.94333
+....\hbox(3.01389+0.0)x4.94333
+.....\seveni n
+....\kern3.02461
+....\hbox(4.8611+0.0)x4.94333, glue set 0.26158fil
+.....\glue 0.0 plus 1.0fil minus 1.0fil
+.....\seveni k
+.....\kern0.16898
+.....\glue 0.0 plus 1.0fil minus 1.0fil
+...\hbox(0.39998+11.60013)x4.58336, shifted -8.10007
+....\tenex ^^A
+.\mathoff
+.\glue 3.33333 plus 1.66666 minus 1.11111
+.\mathon
+.\hbox(13.20952+6.85951)x7.40001
+..\hbox(13.20952+6.85951)x7.40001
+...\hbox(0.0+0.0)x1.2, shifted -2.5
+...\vbox(13.20952+6.85951)x5.00002
+....\hbox(6.44444+0.0)x5.00002
+.....\tenrm 1
+....\kern4.06508
+....\rule(0.39998+0.0)x*
+....\kern2.71507
+....\hbox(6.44444+0.0)x5.00002
+.....\tenrm 2
+...\hbox(0.0+0.0)x1.2, shifted -2.5
+.\mathoff
+.\glue 3.33333 plus 1.66666 minus 1.11111
+.\mathon
+.\hbox(5.90953+2.4095)x5.80283
+..\hbox(5.90953+2.4095)x5.80283
+...\hbox(0.0+0.0)x1.2, shifted -1.75
+...\vbox(5.90953+2.4095)x3.40283
+....\hbox(3.22221+0.0)x3.40283
+.....\fiverm 1
+....\kern0.73732
+....\rule(0.39998+0.0)x*
+....\kern0.73729
+....\hbox(3.22221+0.0)x3.40283
+.....\fiverm 2
+...\hbox(0.0+0.0)x1.2, shifted -1.75
+.\mathoff
+
+! OK.
+l.12 \showbox4
+
+
+> \box5=
+\hbox(14.29955+10.30792)x9.13763
+.\mathon
+.\hbox(14.29955+10.30792)x9.13763
+..\hbox(14.29955+10.30792)x9.13763
+...\hbox(0.0+0.0)x1.2, shifted -2.5
+...\vbox(14.29955+10.30792)x6.73764
+....\hbox(6.9512+3.44841)x6.73764
+.....\hbox(6.9512+3.44841)x6.73764
+......\hbox(0.0+0.0)x1.2, shifted -2.5
+......\vbox(6.9512+3.44841)x4.33765
+.......\hbox(3.01389+0.0)x4.33765
+........\seveni a
+.......\kern1.23732
+.......\rule(0.39998+0.0)x*
+.......\kern0.88731
+.......\hbox(4.8611+0.0)x4.33765, glue set 0.41049fil
+........\glue 0.0 plus 1.0fil minus 1.0fil
+........\seveni b
+........\glue 0.0 plus 1.0fil minus 1.0fil
+......\hbox(0.0+0.0)x1.2, shifted -2.5
+....\kern1.19994
+....\rule(0.39998+0.0)x*
+....\kern2.20831
+....\hbox(6.9512+3.44841)x6.73764, glue set 0.08739fil
+.....\glue 0.0 plus 1.0fil minus 1.0fil
+.....\hbox(6.9512+3.44841)x6.56287
+......\hbox(0.0+0.0)x1.2, shifted -2.5
+......\vbox(6.9512+3.44841)x4.16287
+.......\hbox(3.01389+0.0)x4.16287, glue set 0.29457fil
+........\glue 0.0 plus 1.0fil minus 1.0fil
+........\seveni c
+........\glue 0.0 plus 1.0fil minus 1.0fil
+.......\kern1.23732
+.......\rule(0.39998+0.0)x*
+.......\kern0.88731
+.......\hbox(4.8611+0.0)x4.16287
+........\seveni d
+......\hbox(0.0+0.0)x1.2, shifted -2.5
+.....\glue 0.0 plus 1.0fil minus 1.0fil
+...\hbox(0.0+0.0)x1.2, shifted -2.5
+.\mathoff
+
+! OK.
+l.14 \showbox5
+
+
+
+Completed box being shipped out [1]
+\vbox(50.24356+10.30792)x79.05931
+.\hbox(8.51389+5.3611)x79.05931
+..\mathon
+..\hbox(6.9512+3.44841)x6.73764
+...\hbox(0.0+0.0)x1.2, shifted -2.5
+...\vbox(6.9512+3.44841)x4.33765
+....\hbox(3.01389+0.0)x4.33765
+.....\seveni a
+....\kern1.23732
+....\rule(0.39998+0.0)x*
+....\kern0.88731
+....\hbox(4.8611+0.0)x4.33765, glue set 0.41049fil
+.....\glue 0.0 plus 1.0fil minus 1.0fil
+.....\seveni b
+.....\glue 0.0 plus 1.0fil minus 1.0fil
+...\hbox(0.0+0.0)x1.2, shifted -2.5
+..\mathoff
+..\glue 3.33333 plus 1.66666 minus 1.11111
+..\mathon
+..\hbox(7.45119+3.44841)x6.73764
+...\hbox(0.0+0.0)x1.2, shifted -2.5
+...\vbox(7.45119+3.44841)x4.33765
+....\hbox(3.01389+0.0)x4.33765
+.....\seveni a
+....\kern3.02461
+....\hbox(4.8611+0.0)x4.33765, glue set 0.41049fil
+.....\glue 0.0 plus 1.0fil minus 1.0fil
+.....\seveni b
+.....\glue 0.0 plus 1.0fil minus 1.0fil
+...\hbox(0.0+0.0)x1.2, shifted -2.5
+..\mathoff
+..\glue 3.33333 plus 1.66666 minus 1.11111
+..\mathon
+..\hbox(8.51389+5.3611)x6.73764
+...\hbox(0.0+0.0)x1.2, shifted -2.5
+...\vbox(8.51389+5.3611)x4.33765
+....\hbox(3.01389+0.0)x4.33765
+.....\seveni a
+....\kern2.0
+....\rule(2.0+0.0)x*
+....\kern2.0
+....\hbox(4.8611+0.0)x4.33765, glue set 0.41049fil
+.....\glue 0.0 plus 1.0fil minus 1.0fil
+.....\seveni b
+.....\glue 0.0 plus 1.0fil minus 1.0fil
+...\hbox(0.0+0.0)x1.2, shifted -2.5
+..\mathoff
+..\glue 3.33333 plus 1.66666 minus 1.11111
+..\mathon
+..\hbox(8.50005+3.50006)x13.50436
+...\hbox(0.39998+11.60013)x4.58336, shifted -8.10007
+....\tenex ^^@
+...\vbox(6.9512+3.44841)x4.33765
+....\hbox(3.01389+0.0)x4.33765
+.....\seveni a
+....\kern1.23732
+....\rule(0.39998+0.0)x*
+....\kern0.88731
+....\hbox(4.8611+0.0)x4.33765, glue set 0.41049fil
+.....\glue 0.0 plus 1.0fil minus 1.0fil
+.....\seveni b
+.....\glue 0.0 plus 1.0fil minus 1.0fil
+...\hbox(0.39998+11.60013)x4.58336, shifted -8.10007
+....\tenex ^^A
+..\mathoff
+..\glue 3.33333 plus 1.66666 minus 1.11111
+..\mathon
+..\hbox(8.50005+3.50006)x12.67102
+...\hbox(0.39998+11.60013)x4.16669, shifted -8.10007
+....\tenex ^^B
+...\vbox(7.45119+3.44841)x4.33765
+....\hbox(3.01389+0.0)x4.33765
+.....\seveni a
+....\kern3.02461
+....\hbox(4.8611+0.0)x4.33765, glue set 0.41049fil
+.....\glue 0.0 plus 1.0fil minus 1.0fil
+.....\seveni b
+.....\glue 0.0 plus 1.0fil minus 1.0fil
+...\hbox(0.39998+11.60013)x4.16669, shifted -8.10007
+....\tenex ^^C
+..\mathoff
+..\glue 3.33333 plus 1.66666 minus 1.11111
+..\mathon
+..\hbox(8.50005+3.8611)x16.00436
+...\hbox(0.39998+11.60013)x5.83336, shifted -8.10007
+....\tenex ^^H
+...\vbox(7.01389+3.8611)x4.33765
+....\hbox(3.01389+0.0)x4.33765
+.....\seveni a
+....\kern1.0
+....\rule(1.0+0.0)x*
+....\kern1.0
+....\hbox(4.8611+0.0)x4.33765, glue set 0.41049fil
+.....\glue 0.0 plus 1.0fil minus 1.0fil
+.....\seveni b
+.....\glue 0.0 plus 1.0fil minus 1.0fil
+...\hbox(0.39998+11.60013)x5.83336, shifted -8.10007
+....\tenex ^^I
+..\mathoff
+.\glue(\lineskip) 1.0
+.\hbox(13.20952+6.85951)x62.85585
+..\mathon
+..\hbox(8.44843+3.44841)x6.38612
+...\hbox(8.44843+3.44841)x6.38612
+....\hbox(0.0+0.0)x1.2, shifted -2.5
+....\vbox(8.44843+3.44841)x3.98613
+.....\hbox(4.51111+0.0)x3.98613
+......\sevenrm 1
+.....\kern1.23732
+.....\rule(0.39998+0.0)x*
+.....\kern1.2373
+.....\hbox(4.51111+0.0)x3.98613
+......\sevenrm 2
+....\hbox(0.0+0.0)x1.2, shifted -2.5
+..\glue(\medmuskip) 2.22217 plus 1.11108 minus 2.22217
+..\tenrm +
+..\glue(\medmuskip) 2.22217 plus 1.11108 minus 2.22217
+..\hbox(6.9512+4.80951)x6.93472
+...\hbox(6.9512+4.80951)x6.93472
+....\hbox(0.0+0.0)x1.2, shifted -2.5
+....\vbox(6.9512+4.80951)x4.53473
+.....\hbox(3.01389+0.0)x4.53473
+......\seveni x
+.....\kern1.23732
+.....\rule(0.39998+0.0)x*
+.....\kern2.73453
+.....\hbox(3.01389+1.3611)x4.53473, glue set 0.114fil
+......\glue 0.0 plus 1.0fil minus 1.0fil
+......\seveni y
+......\kern0.25116
+......\glue 0.0 plus 1.0fil minus 1.0fil
+....\hbox(0.0+0.0)x1.2, shifted -2.5
+..\mathoff
+..\glue 3.33333 plus 1.66666 minus 1.11111
+..\mathon
+..\hbox(8.50005+3.50006)x14.11005
+...\hbox(8.50005+3.50006)x14.11005
+....\hbox(0.39998+11.60013)x4.58336, shifted -8.10007
+.....\tenex ^^@
+....\vbox(7.45119+3.44841)x4.94333
+.....\hbox(3.01389+0.0)x4.94333
+......\seveni n
+.....\kern3.02461
+.....\hbox(4.8611+0.0)x4.94333, glue set 0.26158fil
+......\glue 0.0 plus 1.0fil minus 1.0fil
+......\seveni k
+......\kern0.16898
+......\glue 0.0 plus 1.0fil minus 1.0fil
+....\hbox(0.39998+11.60013)x4.58336, shifted -8.10007
+.....\tenex ^^A
+..\mathoff
+..\glue 3.33333 plus 1.66666 minus 1.11111
+..\mathon
+..\hbox(13.20952+6.85951)x7.40001
+...\hbox(13.20952+6.85951)x7.40001
+....\hbox(0.0+0.0)x1.2, shifted -2.5
+....\vbox(13.20952+6.85951)x5.00002
+.....\hbox(6.44444+0.0)x5.00002
+......\tenrm 1
+.....\kern4.06508
+.....\rule(0.39998+0.0)x*
+.....\kern2.71507
+.....\hbox(6.44444+0.0)x5.00002
+......\tenrm 2
+....\hbox(0.0+0.0)x1.2, shifted -2.5
+..\mathoff
+..\glue 3.33333 plus 1.66666 minus 1.11111
+..\mathon
+..\hbox(5.90953+2.4095)x5.80283
+...\hbox(5.90953+2.4095)x5.80283
+....\hbox(0.0+0.0)x1.2, shifted -1.75
+....\vbox(5.90953+2.4095)x3.40283
+.....\hbox(3.22221+0.0)x3.40283
+......\fiverm 1
+.....\kern0.73732
+.....\rule(0.39998+0.0)x*
+.....\kern0.73729
+.....\hbox(3.22221+0.0)x3.40283
+......\fiverm 2
+....\hbox(0.0+0.0)x1.2, shifted -1.75
+..\mathoff
+.\glue(\lineskip) 1.0
+.\hbox(14.29955+10.30792)x9.13763
+..\mathon
+..\hbox(14.29955+10.30792)x9.13763
+...\hbox(14.29955+10.30792)x9.13763
+....\hbox(0.0+0.0)x1.2, shifted -2.5
+....\vbox(14.29955+10.30792)x6.73764
+.....\hbox(6.9512+3.44841)x6.73764
+......\hbox(6.9512+3.44841)x6.73764
+.......\hbox(0.0+0.0)x1.2, shifted -2.5
+.......\vbox(6.9512+3.44841)x4.33765
+........\hbox(3.01389+0.0)x4.33765
+.........\seveni a
+........\kern1.23732
+........\rule(0.39998+0.0)x*
+........\kern0.88731
+........\hbox(4.8611+0.0)x4.33765, glue set 0.41049fil
+.........\glue 0.0 plus 1.0fil minus 1.0fil
+.........\seveni b
+.........\glue 0.0 plus 1.0fil minus 1.0fil
+.......\hbox(0.0+0.0)x1.2, shifted -2.5
+.....\kern1.19994
+.....\rule(0.39998+0.0)x*
+.....\kern2.20831
+.....\hbox(6.9512+3.44841)x6.73764, glue set 0.08739fil
+......\glue 0.0 plus 1.0fil minus 1.0fil
+......\hbox(6.9512+3.44841)x6.56287
+.......\hbox(0.0+0.0)x1.2, shifted -2.5
+.......\vbox(6.9512+3.44841)x4.16287
+........\hbox(3.01389+0.0)x4.16287, glue set 0.29457fil
+.........\glue 0.0 plus 1.0fil minus 1.0fil
+.........\seveni c
+.........\glue 0.0 plus 1.0fil minus 1.0fil
+........\kern1.23732
+........\rule(0.39998+0.0)x*
+........\kern0.88731
+........\hbox(4.8611+0.0)x4.16287
+.........\seveni d
+.......\hbox(0.0+0.0)x1.2, shifted -2.5
+......\glue 0.0 plus 1.0fil minus 1.0fil
+....\hbox(0.0+0.0)x1.2, shifted -2.5
+..\mathoff
+
+ )
+Output written on m3-fractions.dvi (1 page, 996 bytes).

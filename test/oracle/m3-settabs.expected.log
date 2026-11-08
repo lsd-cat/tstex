@@ -1,0 +1,331 @@
+(m3-settabs.tex (plain.tex Preloading the plain format: codes, registers,
+\maxdimen=\dimen10
+\hideskip=\skip10
+\centering=\skip11
+\p@=\dimen11
+\z@=\dimen12
+\z@skip=\skip12
+\voidb@x=\box10
+parameters,
+\smallskipamount=\skip13
+\medskipamount=\skip14
+\bigskipamount=\skip15
+\normalbaselineskip=\skip16
+\normallineskip=\skip17
+\normallineskiplimit=\dimen13
+\jot=\dimen14
+\interdisplaylinepenalty=\count23
+\interfootnotelinepenalty=\count24
+fonts, more fonts,
+\itfam=\fam4
+\slfam=\fam5
+\bffam=\fam6
+\ttfam=\fam7
+macros,
+\strutbox=\box11
+\mscount=\count25
+\tabs=\box12
+\tabsyet=\box13
+\tabsdone=\box14
+math definitions,
+\rootbox=\box15
+\p@renwd=\dimen15
+output routines,
+\headline=\toks10
+\footline=\toks11
+\footins=\insert254
+\topins=\insert253
+hyphenation (hyphen.tex))
+> \box1=
+\vbox(18.94444+0.0)x155.55557
+.\hbox(6.94444+0.0)x155.55557
+..\glue(\tabskip) 0.0
+..\hbox(6.94444+0.0)x50.0
+...\hbox(4.30554+0.0)x50.0, glue set 44.99998fil
+....\tenrm a
+....\glue 0.0 plus 1.0fil minus 1.0fil
+..\glue(\tabskip) 0.0
+..\hbox(6.94444+0.0)x50.0
+...\hbox(6.94444+0.0)x50.0, glue set 44.44443fil
+....\tenrm b
+....\glue 0.0 plus 1.0fil minus 1.0fil
+..\glue(\tabskip) 0.0
+..\hbox(6.94444+0.0)x50.0
+...\hbox(4.30554+0.0)x50.0, glue set 45.55556fil
+....\tenrm c
+....\glue 0.0 plus 1.0fil minus 1.0fil
+..\glue(\tabskip) 0.0
+..\hbox(6.94444+0.0)x5.55557
+...\hbox(6.94444+0.0)x5.55557
+....\tenrm d
+..\glue(\tabskip) 0.0
+.\glue(\baselineskip) 7.69446
+.\hbox(4.30554+0.0)x108.88889
+..\glue(\tabskip) 0.0
+..\hbox(4.30554+0.0)x50.0
+...\hbox(4.30554+0.0)x50.0, glue set 39.99997fil
+....\tenrm a
+....\tenrm a
+....\glue 0.0 plus 1.0fil minus 1.0fil
+..\glue(\tabskip) 0.0
+..\hbox(4.30554+0.0)x50.0
+...\hbox(0.0+0.0)x50.0, glue set 50.0fil
+....\glue 0.0 plus 1.0fil minus 1.0fil
+..\glue(\tabskip) 0.0
+..\hbox(4.30554+0.0)x8.88889
+...\hbox(4.30554+0.0)x8.88889
+....\tenrm c
+....\tenrm c
+..\glue(\tabskip) 0.0
+
+! OK.
+l.6 \showbox1
+
+
+> \box2=
+\vbox(42.94444+1.94444)x56.94455
+.\hbox(6.94444+0.0)x55.00012
+..\glue(\tabskip) 0.0
+..\hbox(6.94444+0.0)x25.27783
+...\hbox(6.83331+0.0)x25.27783
+....\tenrm N
+....\tenrm a
+....\tenrm m
+....\tenrm e
+....\glue 0.0 plus 1.0fil minus 1.0fil
+..\glue(\tabskip) 0.0
+..\hbox(6.94444+0.0)x24.44449
+...\hbox(6.94444+0.0)x24.44449
+....\tenrm V
+....\kern-0.83334
+....\tenrm a
+....\tenrm l
+....\tenrm u
+....\tenrm e
+....\glue 0.0 plus 1.0fil minus 1.0fil
+..\glue(\tabskip) 0.0
+..\hbox(6.94444+0.0)x5.2778
+...\hbox(4.30554+0.0)x5.2778
+....\tenrm x
+..\glue(\tabskip) 0.0
+.\glue(\baselineskip) 5.16669
+.\hbox(6.83331+0.0)x56.94455
+..\glue(\tabskip) 0.0
+..\hbox(6.83331+0.0)x25.27783
+...\hbox(6.83331+0.0)x25.27783, glue set 12.7778fill
+....\glue 0.0 plus 1.0fill
+....\tenrm A
+....\tenrm a
+....\glue 0.0 plus 1.0fil minus 1.0fil
+..\glue(\tabskip) 0.0
+..\hbox(6.83331+0.0)x24.44449
+...\hbox(6.83331+0.0)x24.44449, glue set 17.36113fill
+....\glue 0.0 plus 1.0fill
+....\tenrm B
+....\glue 0.0 plus 1.0fil minus 1.0fil
+..\glue(\tabskip) 0.0
+..\hbox(6.83331+0.0)x7.22223
+...\hbox(6.83331+0.0)x7.22223
+....\tenrm C
+..\glue(\tabskip) 0.0
+.\glue(\baselineskip) 5.05556
+.\hbox(6.94444+1.94444)x29.72227
+..\glue(\tabskip) 0.0
+..\hbox(6.94444+1.94444)x25.27783
+...\hbox(6.94444+1.94444)x25.27783, glue set 6.94443fil
+....\tenrm x
+....\tenrm &
+....\tenrm y
+....\glue 0.0 plus 1.0fil minus 1.0fil
+..\glue(\tabskip) 0.0
+..\hbox(6.94444+1.94444)x4.44444
+...\hbox(4.30554+0.0)x4.44444
+....\tenrm z
+..\glue(\tabskip) 0.0
+.\glue(\baselineskip) 5.75002
+.\hbox(4.30554+1.94444)x9.19446
+..\glue(\tabskip) 0.0
+..\hbox(4.30554+1.94444)x5.27779
+...\hbox(4.30554+1.94444)x5.27779
+....\tenrm q
+....\glue 0.0 plus 1.0fil minus 1.0fil
+..\glue(\tabskip) 0.0
+..\hbox(4.30554+1.94444)x3.91667
+...\hbox(4.30554+0.0)x3.91667
+....\tenrm r
+..\glue(\tabskip) 0.0
+
+! OK.
+l.8 \showbox2
+
+
+> \box3=
+\vbox(30.94444+1.94444)x138.33334
+.\hbox(6.94444+0.0)x105.55557
+..\glue(\tabskip) 0.0
+..\hbox(6.94444+0.0)x100.0
+...\hbox(4.30554+0.0)x100.0, glue set 94.99998fill
+....\glue 0.0 plus 1.0fill
+....\tenrm a
+....\glue 0.0 plus 1.0fil minus 1.0fil
+..\glue(\tabskip) 0.0
+..\hbox(6.94444+0.0)x5.55557
+...\hbox(6.94444+0.0)x5.55557
+....\glue 0.0 plus 1.0fill
+....\tenrm b
+..\glue(\tabskip) 0.0
+.\glue(\baselineskip) 5.05556
+.\hbox(6.94444+0.0)x105.55557
+..\glue(\tabskip) 0.0
+..\hbox(6.94444+0.0)x100.0
+...\hbox(4.30554+0.0)x100.0, glue set 95.55556fil
+....\tenrm c
+....\glue 0.0 plus 1.0fil minus 1.0fil
+..\glue(\tabskip) 0.0
+..\hbox(6.94444+0.0)x5.55557
+...\hbox(6.94444+0.0)x5.55557
+....\tenrm d
+..\glue(\tabskip) 0.0
+.\glue(\baselineskip) 5.05556
+.\hbox(6.94444+1.94444)x138.33334
+..\glue(\tabskip) 0.0
+..\hbox(6.94444+1.94444)x66.66666
+...\hbox(4.30554+0.0)x66.66666, glue set 62.22221fil
+....\tenrm e
+....\glue 0.0 plus 1.0fil minus 1.0fil
+..\glue(\tabskip) 0.0
+..\hbox(6.94444+1.94444)x66.66667
+...\hbox(6.94444+0.0)x66.66667, glue set 63.6111fil
+....\tenrm f
+....\glue 0.0 plus 1.0fil minus 1.0fil
+..\glue(\tabskip) 0.0
+..\hbox(6.94444+1.94444)x5.00002
+...\hbox(4.30554+1.94444)x5.00002
+....\tenrm g
+..\glue(\tabskip) 0.0
+
+! OK.
+l.10 \showbox3
+
+
+
+Completed box being shipped out [1]
+\vbox(76.83333+1.94444)x138.33334
+.\vbox(42.94444+1.94444)x56.94455
+..\hbox(6.94444+0.0)x55.00012
+...\glue(\tabskip) 0.0
+...\hbox(6.94444+0.0)x25.27783
+....\hbox(6.83331+0.0)x25.27783
+.....\tenrm N
+.....\tenrm a
+.....\tenrm m
+.....\tenrm e
+.....\glue 0.0 plus 1.0fil minus 1.0fil
+...\glue(\tabskip) 0.0
+...\hbox(6.94444+0.0)x24.44449
+....\hbox(6.94444+0.0)x24.44449
+.....\tenrm V
+.....\kern-0.83334
+.....\tenrm a
+.....\tenrm l
+.....\tenrm u
+.....\tenrm e
+.....\glue 0.0 plus 1.0fil minus 1.0fil
+...\glue(\tabskip) 0.0
+...\hbox(6.94444+0.0)x5.2778
+....\hbox(4.30554+0.0)x5.2778
+.....\tenrm x
+...\glue(\tabskip) 0.0
+..\glue(\baselineskip) 5.16669
+..\hbox(6.83331+0.0)x56.94455
+...\glue(\tabskip) 0.0
+...\hbox(6.83331+0.0)x25.27783
+....\hbox(6.83331+0.0)x25.27783, glue set 12.7778fill
+.....\glue 0.0 plus 1.0fill
+.....\tenrm A
+.....\tenrm a
+.....\glue 0.0 plus 1.0fil minus 1.0fil
+...\glue(\tabskip) 0.0
+...\hbox(6.83331+0.0)x24.44449
+....\hbox(6.83331+0.0)x24.44449, glue set 17.36113fill
+.....\glue 0.0 plus 1.0fill
+.....\tenrm B
+.....\glue 0.0 plus 1.0fil minus 1.0fil
+...\glue(\tabskip) 0.0
+...\hbox(6.83331+0.0)x7.22223
+....\hbox(6.83331+0.0)x7.22223
+.....\tenrm C
+...\glue(\tabskip) 0.0
+..\glue(\baselineskip) 5.05556
+..\hbox(6.94444+1.94444)x29.72227
+...\glue(\tabskip) 0.0
+...\hbox(6.94444+1.94444)x25.27783
+....\hbox(6.94444+1.94444)x25.27783, glue set 6.94443fil
+.....\tenrm x
+.....\tenrm &
+.....\tenrm y
+.....\glue 0.0 plus 1.0fil minus 1.0fil
+...\glue(\tabskip) 0.0
+...\hbox(6.94444+1.94444)x4.44444
+....\hbox(4.30554+0.0)x4.44444
+.....\tenrm z
+...\glue(\tabskip) 0.0
+..\glue(\baselineskip) 5.75002
+..\hbox(4.30554+1.94444)x9.19446
+...\glue(\tabskip) 0.0
+...\hbox(4.30554+1.94444)x5.27779
+....\hbox(4.30554+1.94444)x5.27779
+.....\tenrm q
+.....\glue 0.0 plus 1.0fil minus 1.0fil
+...\glue(\tabskip) 0.0
+...\hbox(4.30554+1.94444)x3.91667
+....\hbox(4.30554+0.0)x3.91667
+.....\tenrm r
+...\glue(\tabskip) 0.0
+.\glue(\lineskip) 1.0
+.\vbox(30.94444+1.94444)x138.33334
+..\hbox(6.94444+0.0)x105.55557
+...\glue(\tabskip) 0.0
+...\hbox(6.94444+0.0)x100.0
+....\hbox(4.30554+0.0)x100.0, glue set 94.99998fill
+.....\glue 0.0 plus 1.0fill
+.....\tenrm a
+.....\glue 0.0 plus 1.0fil minus 1.0fil
+...\glue(\tabskip) 0.0
+...\hbox(6.94444+0.0)x5.55557
+....\hbox(6.94444+0.0)x5.55557
+.....\glue 0.0 plus 1.0fill
+.....\tenrm b
+...\glue(\tabskip) 0.0
+..\glue(\baselineskip) 5.05556
+..\hbox(6.94444+0.0)x105.55557
+...\glue(\tabskip) 0.0
+...\hbox(6.94444+0.0)x100.0
+....\hbox(4.30554+0.0)x100.0, glue set 95.55556fil
+.....\tenrm c
+.....\glue 0.0 plus 1.0fil minus 1.0fil
+...\glue(\tabskip) 0.0
+...\hbox(6.94444+0.0)x5.55557
+....\hbox(6.94444+0.0)x5.55557
+.....\tenrm d
+...\glue(\tabskip) 0.0
+..\glue(\baselineskip) 5.05556
+..\hbox(6.94444+1.94444)x138.33334
+...\glue(\tabskip) 0.0
+...\hbox(6.94444+1.94444)x66.66666
+....\hbox(4.30554+0.0)x66.66666, glue set 62.22221fil
+.....\tenrm e
+.....\glue 0.0 plus 1.0fil minus 1.0fil
+...\glue(\tabskip) 0.0
+...\hbox(6.94444+1.94444)x66.66667
+....\hbox(6.94444+0.0)x66.66667, glue set 63.6111fil
+.....\tenrm f
+.....\glue 0.0 plus 1.0fil minus 1.0fil
+...\glue(\tabskip) 0.0
+...\hbox(6.94444+1.94444)x5.00002
+....\hbox(4.30554+1.94444)x5.00002
+.....\tenrm g
+...\glue(\tabskip) 0.0
+
+ )
+Output written on m3-settabs.dvi (1 page, 364 bytes).

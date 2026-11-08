@@ -1,0 +1,331 @@
+(m3-halign-basic.tex (plain.tex Preloading the plain format: codes, registe
+rs,
+\maxdimen=\dimen10
+\hideskip=\skip10
+\centering=\skip11
+\p@=\dimen11
+\z@=\dimen12
+\z@skip=\skip12
+\voidb@x=\box10
+parameters,
+\smallskipamount=\skip13
+\medskipamount=\skip14
+\bigskipamount=\skip15
+\normalbaselineskip=\skip16
+\normallineskip=\skip17
+\normallineskiplimit=\dimen13
+\jot=\dimen14
+\interdisplaylinepenalty=\count23
+\interfootnotelinepenalty=\count24
+fonts, more fonts,
+\itfam=\fam4
+\slfam=\fam5
+\bffam=\fam6
+\ttfam=\fam7
+macros,
+\strutbox=\box11
+\mscount=\count25
+\tabs=\box12
+\tabsyet=\box13
+\tabsdone=\box14
+math definitions,
+\rootbox=\box15
+\p@renwd=\dimen15
+output routines,
+\headline=\toks10
+\footline=\toks11
+\footins=\insert254
+\topins=\insert253
+hyphenation (hyphen.tex))
+
+### restricted horizontal mode entered at line 5
+\glue 0.0 plus 1.0fil
+spacefactor 1000
+### restricted horizontal mode entered at line 5
+\glue(\tabskip) 2.0
+\unsetbox(4.30554+0.0)x15.00005, stretch 1.0fil
+.\tenrm a
+.\tenrm a
+.\tenrm a
+.\glue 0.0 plus 1.0fil
+\glue(\tabskip) 2.0
+spacefactor 0
+### internal vertical mode entered at line 5
+\unsetbox(6.94444+0.0)x16.55559
+.\glue(\tabskip) 2.0
+.\unsetbox(4.30554+0.0)x5.00002, stretch 1.0fil
+..\tenrm a
+..\glue 0.0 plus 1.0fil
+.\glue(\tabskip) 2.0
+.\unsetbox(6.94444+0.0)x5.55557, stretch 1.0fil
+..\glue 0.0 plus 1.0fil
+..\tenrm b
+.\glue(\tabskip) 2.0
+\glue(\baselineskip) 5.05556
+\unsetbox(6.94444+0.0)x27.11118
+.\glue(\tabskip) 2.0
+.\unsetbox(4.30554+0.0)x10.00003, stretch 1.0fil
+..\tenrm a
+..\tenrm a
+..\glue 0.0 plus 1.0fil
+.\glue(\tabskip) 2.0
+.\unsetbox(6.94444+0.0)x11.11115, stretch 1.0fil
+..\glue 0.0 plus 1.0fil
+..\tenrm b
+..\tenrm b
+.\glue(\tabskip) 2.0
+prevdepth 0.0
+### internal vertical mode entered at line 5
+prevdepth ignored
+### vertical mode entered at line 0
+prevdepth ignored
+
+! OK.
+<recently read> \showlists
+
+l.5 ...il&\hfil#\cr a&b\cr aa&bb\cr aaa&\showlists
+                                                   b\cr}}
+
+> \box1=
+\vbox(30.94444+0.0)x32.11119
+.\hbox(6.94444+0.0)x32.11119
+..\glue(\tabskip) 2.0
+..\hbox(6.94444+0.0)x15.00005, glue set 10.00003fil
+...\tenrm a
+...\glue 0.0 plus 1.0fil
+..\glue(\tabskip) 2.0
+..\hbox(6.94444+0.0)x11.11115, glue set 5.55557fil
+...\glue 0.0 plus 1.0fil
+...\tenrm b
+..\glue(\tabskip) 2.0
+.\glue(\baselineskip) 5.05556
+.\hbox(6.94444+0.0)x32.11119
+..\glue(\tabskip) 2.0
+..\hbox(6.94444+0.0)x15.00005, glue set 5.00002fil
+...\tenrm a
+...\tenrm a
+...\glue 0.0 plus 1.0fil
+..\glue(\tabskip) 2.0
+..\hbox(6.94444+0.0)x11.11115
+...\glue 0.0 plus 1.0fil
+...\tenrm b
+...\tenrm b
+..\glue(\tabskip) 2.0
+.\glue(\baselineskip) 5.05556
+.\hbox(6.94444+0.0)x32.11119
+..\glue(\tabskip) 2.0
+..\hbox(6.94444+0.0)x15.00005
+...\tenrm a
+...\tenrm a
+...\tenrm a
+...\glue 0.0 plus 1.0fil
+..\glue(\tabskip) 2.0
+..\hbox(6.94444+0.0)x11.11115, glue set 5.55557fil
+...\glue 0.0 plus 1.0fil
+...\tenrm b
+..\glue(\tabskip) 2.0
+
+! OK.
+l.6 \showbox1
+
+
+> \box2=
+\vbox(18.94444+0.0)x100.0
+.\hbox(6.94444+0.0)x100.0, glue set 24.96294fil
+..\glue(\tabskip) 0.0
+..\hbox(6.94444+0.0)x10.00003, glue set 5.00002fil
+...\tenrm a
+...\glue 0.0 plus 1.0fil
+..\glue(\tabskip) 1.0 plus 1.0fil
+..\hbox(6.94444+0.0)x11.11115, glue set 5.55557fil
+...\tenrm b
+...\glue 0.0 plus 1.0fil
+..\glue(\tabskip) 3.0 plus 2.0fil
+.\glue(\baselineskip) 5.05556
+.\hbox(6.94444+0.0)x100.0, glue set 24.96294fil
+..\glue(\tabskip) 0.0
+..\hbox(6.94444+0.0)x10.00003
+...\tenrm a
+...\tenrm a
+...\glue 0.0 plus 1.0fil
+..\glue(\tabskip) 1.0 plus 1.0fil
+..\hbox(6.94444+0.0)x11.11115
+...\tenrm b
+...\tenrm b
+...\glue 0.0 plus 1.0fil
+..\glue(\tabskip) 3.0 plus 2.0fil
+
+! OK.
+l.8 \showbox2
+
+
+
+Underfull \hbox (badness 10000) in alignment at lines 9--9
+[] []
+
+\hbox(0.0+0.0)x32.5556, glue set 10.0
+.\glue(\tabskip) 0.0
+.\unsetbox(0.0+0.0)x5.2778
+.\glue(\tabskip) 1.0 plus 1.0
+.\unsetbox(0.0+0.0)x5.2778
+.\glue(\tabskip) 1.0 plus 1.0
+
+> \box3=
+\vbox(4.30554+1.94444)x32.5556
+.\hbox(4.30554+1.94444)x32.5556, glue set 10.0
+..\glue(\tabskip) 0.0
+..\hbox(4.30554+1.94444)x5.2778
+...\tenrm x
+..\glue(\tabskip) 1.0 plus 1.0
+..\hbox(4.30554+1.94444)x5.2778
+...\tenrm y
+..\glue(\tabskip) 1.0 plus 1.0
+
+! OK.
+l.10 \showbox3
+
+
+> \box4=
+\vbox(11.80554+2.5)x26.66673
+.\hbox(4.30554+0.0)x26.66673
+..\glue(\tabskip) 0.0
+..\hbox(4.30554+0.0)x5.55557, glue set 0.27779fil
+...\glue 0.0 plus 1.0fil
+...\tenrm a
+...\glue 0.0 plus 1.0fil
+..\glue(\tabskip) 0.0
+.\glue(\lineskip) 0.0
+.\hbox(7.5+2.5)x26.66673
+..\glue(\tabskip) 0.0
+..\hbox(7.5+2.5)x5.55557
+...\glue 0.0 plus 1.0fil
+...\tenrm b
+...\glue 0.0 plus 1.0fil
+..\glue(\tabskip) 0.0
+..\hbox(7.5+2.5)x10.00002
+...\tenrm [
+...\tenrm c
+...\tenrm ]
+..\glue(\tabskip) 0.0
+..\hbox(7.5+2.5)x11.11115
+...\tenrm [
+...\tenrm d
+...\tenrm ]
+..\glue(\tabskip) 0.0
+
+! OK.
+l.12 \showbox4
+
+
+> \box5=
+\vbox(0.0+0.0)x0.0
+
+! OK.
+l.14 \showbox5
+
+
+
+Completed box being shipped out [1]
+\vbox(77.63887+2.5)x100.0
+.\vbox(30.94444+0.0)x32.11119
+..\hbox(6.94444+0.0)x32.11119
+...\glue(\tabskip) 2.0
+...\hbox(6.94444+0.0)x15.00005, glue set 10.00003fil
+....\tenrm a
+....\glue 0.0 plus 1.0fil
+...\glue(\tabskip) 2.0
+...\hbox(6.94444+0.0)x11.11115, glue set 5.55557fil
+....\glue 0.0 plus 1.0fil
+....\tenrm b
+...\glue(\tabskip) 2.0
+..\glue(\baselineskip) 5.05556
+..\hbox(6.94444+0.0)x32.11119
+...\glue(\tabskip) 2.0
+...\hbox(6.94444+0.0)x15.00005, glue set 5.00002fil
+....\tenrm a
+....\tenrm a
+....\glue 0.0 plus 1.0fil
+...\glue(\tabskip) 2.0
+...\hbox(6.94444+0.0)x11.11115
+....\glue 0.0 plus 1.0fil
+....\tenrm b
+....\tenrm b
+...\glue(\tabskip) 2.0
+..\glue(\baselineskip) 5.05556
+..\hbox(6.94444+0.0)x32.11119
+...\glue(\tabskip) 2.0
+...\hbox(6.94444+0.0)x15.00005
+....\tenrm a
+....\tenrm a
+....\tenrm a
+....\glue 0.0 plus 1.0fil
+...\glue(\tabskip) 2.0
+...\hbox(6.94444+0.0)x11.11115, glue set 5.55557fil
+....\glue 0.0 plus 1.0fil
+....\tenrm b
+...\glue(\tabskip) 2.0
+.\glue(\lineskip) 1.0
+.\vbox(18.94444+0.0)x100.0
+..\hbox(6.94444+0.0)x100.0, glue set 24.96294fil
+...\glue(\tabskip) 0.0
+...\hbox(6.94444+0.0)x10.00003, glue set 5.00002fil
+....\tenrm a
+....\glue 0.0 plus 1.0fil
+...\glue(\tabskip) 1.0 plus 1.0fil
+...\hbox(6.94444+0.0)x11.11115, glue set 5.55557fil
+....\tenrm b
+....\glue 0.0 plus 1.0fil
+...\glue(\tabskip) 3.0 plus 2.0fil
+..\glue(\baselineskip) 5.05556
+..\hbox(6.94444+0.0)x100.0, glue set 24.96294fil
+...\glue(\tabskip) 0.0
+...\hbox(6.94444+0.0)x10.00003
+....\tenrm a
+....\tenrm a
+....\glue 0.0 plus 1.0fil
+...\glue(\tabskip) 1.0 plus 1.0fil
+...\hbox(6.94444+0.0)x11.11115
+....\tenrm b
+....\tenrm b
+....\glue 0.0 plus 1.0fil
+...\glue(\tabskip) 3.0 plus 2.0fil
+.\glue(\baselineskip) 7.69446
+.\vbox(4.30554+1.94444)x32.5556
+..\hbox(4.30554+1.94444)x32.5556, glue set 10.0
+...\glue(\tabskip) 0.0
+...\hbox(4.30554+1.94444)x5.2778
+....\tenrm x
+...\glue(\tabskip) 1.0 plus 1.0
+...\hbox(4.30554+1.94444)x5.2778
+....\tenrm y
+...\glue(\tabskip) 1.0 plus 1.0
+.\glue(\lineskip) 1.0
+.\vbox(11.80554+2.5)x26.66673
+..\hbox(4.30554+0.0)x26.66673
+...\glue(\tabskip) 0.0
+...\hbox(4.30554+0.0)x5.55557, glue set 0.27779fil
+....\glue 0.0 plus 1.0fil
+....\tenrm a
+....\glue 0.0 plus 1.0fil
+...\glue(\tabskip) 0.0
+..\glue(\lineskip) 0.0
+..\hbox(7.5+2.5)x26.66673
+...\glue(\tabskip) 0.0
+...\hbox(7.5+2.5)x5.55557
+....\glue 0.0 plus 1.0fil
+....\tenrm b
+....\glue 0.0 plus 1.0fil
+...\glue(\tabskip) 0.0
+...\hbox(7.5+2.5)x10.00002
+....\tenrm [
+....\tenrm c
+....\tenrm ]
+...\glue(\tabskip) 0.0
+...\hbox(7.5+2.5)x11.11115
+....\tenrm [
+....\tenrm d
+....\tenrm ]
+...\glue(\tabskip) 0.0
+
+ )
+Output written on m3-halign-basic.dvi (1 page, 340 bytes).

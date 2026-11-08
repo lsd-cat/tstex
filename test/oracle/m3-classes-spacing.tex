@@ -1,0 +1,21 @@
+%! oracle: ini
+\input plain
+\tracingonline=0 \showboxbreadth=10000 \showboxdepth=10000 \tracingoutput=1
+\setbox1=\hbox{$\mathord{a}\mathop{b}\mathbin{c}\mathrel{d}\mathopen{e}\mathclose{f}\mathpunct{g}\mathinner{h}$}
+\showbox1
+\setbox2=\hbox{$a+b$ $a=b$ $a,b$ $(a)$ $a\mathinner{x}b$ $+a$ $a+-b$ $a+=b$ $a\mathop{x}b$ $\scriptstyle a+b=c,d$}
+\showbox2
+\catcode`\~=\active \mathcode`\~="8000 \def~{\mathchar"2D}
+\setbox3=\hbox{$a~b$ $\mathchar"141$ \mathchardef\x="7121 $\x$ \delcode`(="161300 \showthe\delcode`(}
+\showbox3
+\delcode`x="161362 \showthe\delcode`x
+\setbox4=\hbox{$a\mskip 3mu plus 1mu b\mkern 2mu c\showlists$}
+\showbox4
+\thinmuskip=1mu \medmuskip=5mu plus 1mu \thickmuskip=9mu minus 2mu
+\setbox5=\hbox{$a+b=c,d(e)\mathinner{f}$}
+\showbox5
+\mskip 3mu
+\mkern 2mu
+\showlists
+\shipout\vbox{\box1\box2\box3\box4\box5}
+\end

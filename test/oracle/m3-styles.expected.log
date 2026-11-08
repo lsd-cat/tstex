@@ -1,0 +1,171 @@
+(m3-styles.tex (plain.tex Preloading the plain format: codes, registers,
+\maxdimen=\dimen10
+\hideskip=\skip10
+\centering=\skip11
+\p@=\dimen11
+\z@=\dimen12
+\z@skip=\skip12
+\voidb@x=\box10
+parameters,
+\smallskipamount=\skip13
+\medskipamount=\skip14
+\bigskipamount=\skip15
+\normalbaselineskip=\skip16
+\normallineskip=\skip17
+\normallineskiplimit=\dimen13
+\jot=\dimen14
+\interdisplaylinepenalty=\count23
+\interfootnotelinepenalty=\count24
+fonts, more fonts,
+\itfam=\fam4
+\slfam=\fam5
+\bffam=\fam6
+\ttfam=\fam7
+macros,
+\strutbox=\box11
+\mscount=\count25
+\tabs=\box12
+\tabsyet=\box13
+\tabsdone=\box14
+math definitions,
+\rootbox=\box15
+\p@renwd=\dimen15
+output routines,
+\headline=\toks10
+\footline=\toks11
+\footins=\insert254
+\topins=\insert253
+hyphenation (hyphen.tex))
+> \box1=
+\hbox(6.83331+0.0)x30.15219
+.\mathon
+.\teni D
+.\kern0.27779
+.\teni T
+.\kern1.3889
+.\seveni S
+.\kern0.38263
+.\fivei S
+.\kern0.25345
+.\fivei S
+.\kern0.25345
+.\mathoff
+
+! OK.
+l.5 \showbox1
+
+
+> \box2=
+\hbox(10.81725+0.0)x41.09508
+.\mathon
+.\teni x
+.\hbox(7.18832+1.3611)x14.6147, shifted -3.62892
+..\seveni y
+..\kern0.25116
+..\hbox(4.17053+0.0)x9.80795, shifted -3.01779
+...\fivei z
+...\kern0.18517
+...\hbox(2.15277+0.0)x5.67947, shifted -2.01776
+....\fivei w
+.\seveni a
+.\glue(\nonscript)
+.\seveni b
+.\teni a
+.\glue(\nonscript)
+.\glue 3.33325
+.\teni b
+.\mathoff
+
+! OK.
+l.7 \showbox2
+
+
+> \box3=
+\hbox(10.06339+0.0)x22.59525
+.\mathon
+.\teni T
+.\kern1.3889
+.\hbox(6.43446+0.0)x15.3626, shifted -3.62892
+..\seveni S
+..\kern0.38263
+..\hbox(3.41667+0.0)x9.56952, shifted -3.01779
+...\fivei S
+...\kern0.25345
+...\fivei S
+...\kern0.25345
+.\mathoff
+
+! OK.
+l.9 \showbox3
+
+
+> \sevenrm .
+l.10 \showthe\scriptfont0
+                          \showthe\scriptscriptfont1 \showthe\textfont2
+
+> \fivei .
+l.10 ...he\scriptfont0 \showthe\scriptscriptfont1
+                                                  \showthe\textfont2
+
+> \tensy .
+l.10 ...owthe\scriptscriptfont1 \showthe\textfont2
+
+
+
+### display math mode entered at line 11
+\displaystyle
+\mathord
+.\fam1 a
+\scriptscriptstyle
+\mathord
+.\fam1 b
+### vertical mode entered at line 0
+### current page:
+\glue(\topskip) 10.0
+\hbox(0.0+0.0)x469.75499, glue set 449.75499fil
+.\hbox(0.0+0.0)x20.0
+.\penalty 10000
+.\glue(\parfillskip) 0.0 plus 1.0fil
+.\glue(\rightskip) 0.0
+total height 10.0
+ goal height 643.20255
+prevdepth 0.0, prevgraf 1 line
+
+! OK.
+l.11 ...splaystyle a\scriptscriptstyle b\showlists
+                                                  $$
+
+
+Completed box being shipped out [1]
+\vbox(667.20255+0.0)x469.75499
+.\vbox(0.0+0.0)x469.75499, glue set 14.0fil
+..\glue -22.5
+..\hbox(8.5+0.0)x469.75499, glue set 469.75499fil
+...\vbox(8.5+0.0)x0.0
+...\glue 0.0 plus 1.0fil
+..\glue 0.0 plus 1.0fil minus 1.0fil
+.\vbox(643.20255+0.0)x469.75499, glue set 614.20255fill
+..\glue(\topskip) 10.0
+..\hbox(0.0+0.0)x469.75499, glue set 449.75499fil
+...\hbox(0.0+0.0)x20.0
+...\penalty 10000
+...\glue(\parfillskip) 0.0 plus 1.0fil
+...\glue(\rightskip) 0.0
+..\penalty 10000
+..\glue(\abovedisplayshortskip) 0.0 plus 3.0
+..\glue(\baselineskip) 7.69446
+..\hbox(4.30554+0.0)x8.45256, shifted 230.65121
+...\teni a
+...\fivei b
+..\penalty 0
+..\glue(\belowdisplayshortskip) 7.0 plus 3.0 minus 4.0
+..\hbox(0.0+0.0)x469.75499
+..\glue 0.0 plus 1.0fill
+.\glue(\baselineskip) 17.55556
+.\hbox(6.44444+0.0)x469.75499, glue set 232.37749fil
+..\glue 0.0 plus 1.0fil minus 1.0fil
+..\tenrm 1
+..\glue 0.0 plus 1.0fil minus 1.0fil
+
+ )
+Output written on m3-styles.dvi (1 page, 304 bytes).
