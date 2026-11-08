@@ -1,0 +1,159 @@
+// tstex demo editor: plain ESM, no build. Layout and usage: web/README.md.
+import { createTeX } from '../dist/index.js'
+
+const ARTICLE = String.raw`\documentclass{article}
+\usepackage{graphicx}
+\usepackage[colorlinks]{hyperref}
+\begin{document}
+\section{Introduction}\label{intro}
+This is a demo of tstex, pdfLaTeX running in your browser.\footnote{No server involved.}
+See Section~\ref{math}.
+\begin{itemize}
+  \item First point
+  \item Second point
+\end{itemize}
+\section{Mathematics}\label{math}
+\begin{equation}
+  e^{i\pi} + 1 = 0
+\end{equation}
+\includegraphics[width=3cm]{fig.png}
+\end{document}
+`
+const BEAMER = String.raw`\documentclass{beamer}
+\usepackage{tikz}
+\title{Title}\author{Me}
+\begin{document}
+\begin{frame}\titlepage\end{frame}
+\begin{frame}{Items}
+  \begin{itemize}\item One\pause\item Two\pause\item Three\end{itemize}
+\end{frame}
+\begin{frame}{Picture}
+  \begin{tikzpicture}\draw (0,0) circle (1);\draw[->] (0,0) -- (2,1);\end{tikzpicture}
+\end{frame}
+\end{document}
+`
+const $ = id => document.getElementById(id)
+const ed = $('ed'), gutter = $('gutter'), logEl = $('log'), state = $('state'), stats = $('stats'), pdf = $('pdf')
+const esc = s => s.replace(/[&<>]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;' })[c])
+const isText = n => /\.(tex|bib|sty|cls|bst|txt|cfg|def)$/i.test(n)
+let name = 'article', files = {}, cur = 'main.tex', errLine = 0, pdfBytes = null, pdfUrl = null
+let tex = null, texKey = '', ctl = null, timer = 0, total = 0
+
+// persistence: text in localStorage, binary files in one IndexedDB record per project
+const db = new Promise((res, rej) => {
+  const r = indexedDB.open('tstex-demo', 1)
+  r.onupgradeneeded = () => r.result.createObjectStore('bin')
+  r.onsuccess = () => res(r.result); r.onerror = () => rej(r.error)
+})
+const idb = async (mode, f) => { const d = await db; return new Promise((res, rej) => { const r = f(d.transaction('bin', mode).objectStore('bin')); r.onsuccess = () => res(r.result); r.onerror = () => rej(r.error) }) }
+const saveText = () => localStorage.setItem('tstex:' + name, JSON.stringify({ cur, text: Object.fromEntries(Object.entries(files).filter(([, v]) => typeof v === 'string')) }))
+const saveBin = () => idb('readwrite', s => s.put(Object.fromEntries(Object.entries(files).filter(([, v]) => typeof v !== 'string')), name))
+const save = () => { saveText(); return saveBin() }
+
+async function load(n) {
+  name = n
+  const saved = JSON.parse(localStorage.getItem('tstex:' + n) ?? 'null')
+  if (saved) files = { ...saved.text, ...(await idb('readonly', s => s.get(n)) ?? {}) }, cur = saved.cur in files ? saved.cur : Object.keys(files)[0]
+  else {
+    files = { 'main.tex': n === 'beamer' ? BEAMER : ARTICLE }; cur = 'main.tex'
+    if (n === 'article') files['fig.png'] = new Uint8Array(await (await fetch(new URL('./samples/fig.png', import.meta.url))).arrayBuffer())
+    await save()
+  }
+  errLine = 0; show()
+}
+
+// UI
+function renderFiles() {
+  const ul = $('files'); ul.textContent = ''
+  for (const f of Object.keys(files)) {
+    const li = document.createElement('li'), b = document.createElement('button')
+    li.tabIndex = 0; li.textContent = f; li.className = f === cur ? 'cur' : ''
+    b.textContent = '×'; b.setAttribute('aria-label', 'Delete ' + f); b.disabled = f === 'main.tex'
+    b.onclick = e => { e.stopPropagation(); delete files[f]; if (cur === f) cur = 'main.tex'; save(); show() }
+    li.onclick = () => { cur = f; saveText(); errLine = 0; show() }
+    li.onkeydown = e => { if (e.key === 'Enter') li.click() }
+    li.ondblclick = () => {
+      const to = f !== 'main.tex' && prompt('Rename to', f)
+      if (to && to !== f && !(to in files)) { files = Object.fromEntries(Object.entries(files).map(([k, v]) => [k === f ? to : k, v])); if (cur === f) cur = to; save(); show() }
+    }
+    li.append(b); ul.append(li)
+  }
+}
+function show() {
+  renderFiles()
+  const t = files[cur]
+  ed.disabled = typeof t !== 'string'
+  ed.value = ed.disabled ? `(binary file, ${t.length} bytes)` : t
+  renderGutter()
+}
+function renderGutter() {
+  const n = ed.value.split('\n').length
+  gutter.innerHTML = Array.from({ length: n }, (_, i) => `<div${i + 1 === errLine ? ' class="err"' : ''}>${i + 1}</div>`).join('')
+  gutter.scrollTop = ed.scrollTop
+}
+function gotoLine(n) {
+  const at = ed.value.split('\n').slice(0, n - 1).reduce((a, l) => a + l.length + 1, 0)
+  ed.focus(); ed.setSelectionRange(at, at + (ed.value.split('\n')[n - 1] ?? '').length)
+  ed.scrollTop = Math.max(0, (n - 3) * 18)
+}
+ed.oninput = () => { files[cur] = ed.value; saveText(); renderGutter(); clearTimeout(timer); if ($('auto').checked) timer = setTimeout(compile, 700) }
+ed.onscroll = () => { gutter.scrollTop = ed.scrollTop }
+ed.onkeydown = e => { if (e.key === 'Tab' && !e.shiftKey) { e.preventDefault(); ed.setRangeText('  ', ed.selectionStart, ed.selectionEnd, 'end'); ed.oninput() } }
+document.onkeydown = e => { if ((e.ctrlKey || e.metaKey) && (e.key === 's' || e.key === 'Enter')) { e.preventDefault(); compile() } }
+$('new').onclick = () => { const n = prompt('File name', 'chapter.tex'); if (n && !(n in files)) { files[n] = ''; cur = n; save(); show() } }
+$('upload').onchange = async e => {
+  for (const f of e.target.files) files[f.name] = isText(f.name) ? await f.text() : new Uint8Array(await f.arrayBuffer())
+  e.target.value = ''; await save(); show()
+}
+$('project').onchange = e => load(e.target.value).then(compile)
+$('compile').onclick = () => compile()
+$('clear').onclick = async e => { e.preventDefault(); await getTeX().cache.clear(); stats.textContent = 'cache cleared' }
+const download = (data, n) => { const a = document.createElement('a'); a.href = URL.createObjectURL(new Blob([data])); a.download = n; a.click(); setTimeout(() => URL.revokeObjectURL(a.href), 1e4) }
+$('dlpdf').onclick = () => pdfBytes && download(pdfBytes, 'main.pdf')
+$('dlfile').onclick = () => download(files[cur], cur)
+
+function renderLog(log) {
+  logEl.innerHTML = log.split('\n').map(l => {
+    const m = /^l\.(\d+)/.exec(l)
+    return l.startsWith('!') ? `<span class="bang">${esc(l)}</span>` : m ? `<span class="ln" data-line="${m[1]}" tabindex="0" role="link">${esc(l)}</span>` : esc(l)
+  }).join('\n')
+  const m = /^l\.(\d+)/m.exec(log)
+  errLine = /^!/m.test(log) && m ? +m[1] : 0
+  renderGutter()
+}
+logEl.onclick = e => { const n = e.target.dataset?.line; if (n) gotoLine(+n) }
+logEl.onkeydown = e => { if (e.key === 'Enter') logEl.onclick(e) }
+
+// compile: one createTeX per (texmf, cache) setting; a new compile aborts the running one
+function getTeX() {
+  const key = $('texmf').value + '|' + $('persist').checked
+  if (key !== texKey) { tex?.dispose(); tex = createTeX({ texmf: $('texmf').value, cache: $('persist').checked ? 'persistent' : 'http' }); texKey = key }
+  return tex
+}
+const kb = b => Math.round(b / 1024) + ' KB'
+async function compile() {
+  clearTimeout(timer); ctl?.abort(); const mine = ctl = new AbortController()
+  let nf = 0, nb = 0, run = 0; const t0 = performance.now()
+  state.textContent = 'compiling'; state.className = ''
+  try {
+    const r = await getTeX().compile({ files: { ...files }, main: 'main.tex', runs: 'auto', signal: mine.signal, onProgress: p => {
+      if (p.type === 'fetch' && !p.cached) { nf++; nb += p.bytes } else if (p.type === 'run') run = p.n
+      stats.textContent = `run ${run} · fetched ${nf} files, ${kb(nb)}`
+    } })
+    total += r.fetched
+    renderLog(r.log)
+    stats.textContent = `fetched ${nf} files, ${kb(r.fetched)} · ${r.runs} runs · ${Math.round(performance.now() - t0)} ms`
+    stats.dataset.total = total
+    state.textContent = r.ok ? 'idle' : 'error'; state.className = r.ok ? '' : 'error'
+    if (r.pdf) {
+      pdfBytes = r.pdf; if (pdfUrl) URL.revokeObjectURL(pdfUrl)
+      pdfUrl = URL.createObjectURL(new Blob([r.pdf], { type: 'application/pdf' }))
+      pdf.src = pdfUrl; $('dlpdf').disabled = false // shortcut: viewer reloads at page 1, no #page= restore (can't read the viewer's page)
+    }
+  } catch (err) {
+    if (mine.signal.aborted) return
+    state.textContent = 'error'; state.className = 'error'; stats.textContent = String(err.message ?? err)
+  }
+}
+
+await load('article'); compile()

@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="en"><meta charset="utf-8"><title>tstex editor</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="stylesheet" href="style.css">
+<header>
+  <label>Project <select id="project"><option value="article">article</option><option value="beamer">beamer</option></select></label>
+  <button id="compile">Compile</button>
+  <label><input type="checkbox" id="auto"> auto</label>
+  <button id="dlpdf" disabled>Download PDF</button>
+  <button id="dlfile">Download file</button>
+  <label>texmf <input id="texmf" value="../build/texmf/" size="28"></label>
+  <label><input type="checkbox" id="persist"> persistent cache</label>
+  <a href="#" id="clear">clear cache</a>
+</header>
+<main>
+  <nav aria-label="Files"><ul id="files"></ul>
+    <button id="new">+ New file</button>
+    <label class="btn">Upload <input type="file" id="upload" multiple hidden></label></nav>
+  <section class="editor"><div id="gutter" aria-hidden="true"></div>
+    <textarea id="ed" aria-label="Editor" spellcheck="false" wrap="off"></textarea></section>
+  <iframe id="pdf" title="PDF preview"></iframe>
+</main>
+<details id="logbox" open><summary>Log</summary><pre id="log" role="log" aria-live="polite"></pre></details>
+<footer><b id="state">idle</b> <span id="stats"></span></footer>
+<script type="module" src="app.js"></script>
+</html>

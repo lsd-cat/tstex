@@ -1,0 +1,22 @@
+* { box-sizing: border-box }
+html, body { height: 100%; margin: 0 }
+body { display: grid; grid-template-rows: auto 1fr auto auto; font: 14px system-ui, sans-serif }
+:focus-visible { outline: 2px solid #06c; outline-offset: -2px }
+header, footer { display: flex; gap: 12px; align-items: center; padding: 4px 8px; background: #eee; flex-wrap: wrap }
+main { display: grid; grid-template-columns: 160px 1fr 1fr; min-height: 0 }
+nav { border-right: 1px solid #ccc; overflow: auto; padding: 4px }
+nav ul { list-style: none; margin: 0 0 8px; padding: 0 }
+nav li { display: flex; justify-content: space-between; padding: 3px 6px; cursor: pointer; border-radius: 3px }
+nav li.cur { background: #cde }
+nav li button { border: 0; background: none; cursor: pointer }
+.btn { display: inline-block; border: 1px solid #888; border-radius: 3px; padding: 1px 6px; cursor: pointer }
+.editor { display: flex; min-height: 0; font: 13px/18px ui-monospace, Menlo, monospace }
+#gutter { overflow: hidden; background: #f4f4f4; color: #888; text-align: right; padding: 4px 6px; user-select: none; min-width: 3.5em }
+#gutter div.err { background: #f99; color: #000 }
+#ed { flex: 1; border: 0; resize: none; padding: 4px; font: inherit; tab-size: 2; white-space: pre; overflow: auto }
+#pdf { width: 100%; height: 100%; border: 0; border-left: 1px solid #ccc }
+#logbox { border-top: 1px solid #ccc; max-height: 30vh; overflow: auto }
+#log { margin: 0; padding: 4px 8px; font: 12px ui-monospace, Menlo, monospace; white-space: pre-wrap }
+#log .bang { color: #b00; font-weight: bold }
+#log .ln { color: #06c; cursor: pointer; text-decoration: underline }
+footer.error #state, #state.error { color: #b00 }

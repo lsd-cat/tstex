@@ -27,6 +27,7 @@
     "test": "node --test test/oracle/ test/unit/",
     "test:lvt": "node --test test/lvt/",
     "test:browser": "node --test test/browser/",
+    "test:demo": "node --test test/browser/demo.test.ts",
     "pack": "node tools/pack-texmf.ts",
     "typecheck": "tsc --noEmit"
   },
