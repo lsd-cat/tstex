@@ -13,6 +13,7 @@ test('createTeX compiles m6-latex-article with runs: auto like pdflatex', async 
   const tex = createTeX({ texmf: root + 'build/texmf' }), runs: number[] = []
   const r = await tex.compile({ files: { 'm6-latex-article.tex': readFileSync(oracle + 'm6-latex-article.tex') }, main: 'm6-latex-article.tex', date: new Date(0), onProgress: p => { if (p.type === 'run') runs.push(p.n) } })
   assert.ok(r.ok, r.log)
+  assert.deepStrictEqual(r.log.split('\n').filter(l => l.startsWith('!')), [])
   assert.deepStrictEqual(runs, [1, 2])
   assert.strictEqual(normalizePdf(r.pdf!), normalizePdf(readFileSync(oracle + 'm6-latex-article.expected.pdf')))
 })

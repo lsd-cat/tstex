@@ -12,7 +12,7 @@ const real = (p: string) => { try { return realpathSync(p) } catch { return null
 const inside = (p: string, root: string | null) => { const r = real(p); return r !== null && root !== null && (r === root || r.startsWith(root + sep)) }
 const is_file = (p: string) => { try { return statSync(p, { throwIfNoEntry: false })?.isFile() === true } catch { return false } }
 
-// opts.record collects every texmf-tree file found (tools/pack-texmf.ts's `minimal' preset)
+// opts.record collects the texmf-tree file every found name resolves to (tools/pack-texmf.ts's `minimal' preset)
 export function nodeFS(roots: string[], texmfRoots: string[] = [], opts: { record?: Set<string> } = {}): TexFS {
   const trees = texmfRoots.map(root => ({ root, real_root: real(root), db: parse_ls_r(readFileSync(join(root, 'ls-R'), 'latin1')) }))
   const real_roots = roots.map(real), dbs = trees.map(t => (b: string) => t.db.get(b))
@@ -21,14 +21,14 @@ export function nodeFS(roots: string[], texmfRoots: string[] = [], opts: { recor
   const locate = (name: string, kind: string): { file: string, shown: string } | null => {
     if (name === '/dev/null') return { file: name, shown: name } // kpathsea finds it (expl3 sets \c_sys_platform_str to unix); no other absolute path escapes
     if (escapes(name)) return null // no path escape from the roots
+    const tree = () => { for (const [i, rel] of tree_matches(name, kind, dbs)) { const file = join(trees[i]!.root, rel); if (inside(file, trees[i]!.real_root)) return file } return null }
+    if (opts.record) { const t = tree(); if (t !== null) opts.record.add(t) } // also when a root shadows it (test/texmf has TL's TFMs)
     for (const [i, root] of roots.entries()) for (const n of candidates(name, kind)) {
       const file = join(root, n)
       if (is_file(file) && inside(file, real_roots[i] ?? null)) return { file, shown: /^\.?\//.test(n) ? n : './' + n } // kpathsea prints an absolute or explicitly relative name as given
     }
-    for (const [i, rel] of tree_matches(name, kind, dbs)) {
-      const file = join(trees[i]!.root, rel)
-      if (inside(file, trees[i]!.real_root)) { opts.record?.add(file); return { file, shown: file } }
-    }
+    const file = tree()
+    if (file !== null) return { file, shown: file }
     return null
   }
   return {
