@@ -206,8 +206,18 @@ export function epdf_create_fontdescriptor(e: Engine, fm: FmEntry, stemv: number
 // epdf.c epdf_mark_glyphs (the included font's /CharSet, split at `/' after its first character) or embed_whole_font
 export function epdf_mark_glyphs(e: Engine, fm: FmEntry, fd: FdEntry, charset: string | null): void {
   if (charset === null || !is_subsetted(fm)) { fd.all_glyphs = true; return }
-  charset = charset.split('\0')[0]! // getCString
-  for (const g of charset.slice(1).split('/')) fd.gl_tree.add(g)
+  const sp = (c: string | undefined) => c === ' ' || c === '\t' || c === '\n' || c === '\r' || c === '\f' // Isgenericspace
+  const b = [...charset.split('\0')[0]!] // getCString; the loop writes NULs into its copy
+  let i = 0
+  while (sp(b[i])) i++
+  const cs = b.slice(i), q = cs.length, nul = (k: number) => k >= q || cs[k] === '\0'
+  for (let s = 1, p = 1; s < q; s = p + 1) {
+    for (p = s; !nul(p) && cs[p] !== '/' && !sp(cs[p]); p++);
+    if (sp(cs[p])) { cs[p] = '\0'; p++; while (sp(cs[p])) p++ }
+    cs[p] = '\0' // also overwrites the first character after the spaces
+    let t = s; while (!nul(t)) t++
+    fd.gl_tree.add(cs.slice(s, t).join(''))
+  }
 }
 export const get_fn_objnum = (e: Engine, fd: FdEntry) => fd.fn_objnum !== 0 ? fd.fn_objnum : (fd.fn_objnum = pdf_new_objnum(e))
 
