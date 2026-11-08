@@ -11,7 +11,7 @@
 //   }
 import { test } from 'node:test'
 import assert from 'node:assert'
-import { readdirSync, readFileSync, existsSync } from 'node:fs'
+import { readdirSync, readFileSync, existsSync, appendFileSync } from 'node:fs'
 import { normalizeLog } from '../../tools/normalize-log.ts'
 import { normalizePdf } from '../../tools/pdf-normalize.ts'
 
@@ -29,6 +29,9 @@ const maskDvi = (b: Uint8Array) => {
   return m
 }
 
+// TSTEX_RECORD=FILE appends every texmf-tree file opened (tools/pack-texmf.ts --record)
+const record = process.env.TSTEX_RECORD ? new Set<string>() : undefined
+if (record) process.on('exit', () => appendFileSync(process.env.TSTEX_RECORD!, [...record].map(f => f + '\n').join('')))
 const skip: Record<string, string> = { 'm4-texxet': 'TeXXeT not ported (PLAN: deferred)' }
 for (const file of readdirSync(dir).filter(f => f.endsWith('.tex')).sort()) {
   const name = file.slice(0, -4)
@@ -44,12 +47,12 @@ for (const file of readdirSync(dir).filter(f => f.endsWith('.tex')).sort()) {
       import('../../src/platform/node' + '.ts').catch(() => assert.fail('src/platform/node.ts missing')),
       import('../../src/format' + '.ts').catch(() => ({ loadFormat: undefined })),
     ])
-    let format, fs = pdfMode ? nodeFS([dir, texmf, lvt], [TEXMFVAR, TEXMFDIST]) : nodeFS([dir, texmf, lvt]), runs = 1, limits = pdfMode ? { max_print_line: 9999 } : {}
+    let format, fs = pdfMode ? nodeFS([dir, texmf, lvt], [TEXMFVAR, TEXMFDIST], { record }) : nodeFS([dir, texmf, lvt]), runs = 1, limits = pdfMode ? { max_print_line: 9999 } : {}
     if (mode === 'latex' || mode === 'pdflatex') {
       if (!existsSync(fmtPath)) assert.fail('build/latex.fmt missing: run `node tools/build-format.ts --out build/latex.fmt` first')
       assert.ok(loadFormat, 'src/format.ts missing')
       format = loadFormat(readFileSync(fmtPath))
-      fs = nodeFS([dir, texmf, lvt], [TEXMFVAR, TEXMFDIST])
+      fs = nodeFS([dir, texmf, lvt], [TEXMFVAR, TEXMFDIST], { record })
       runs = Number(readFileSync(dir + file, 'utf8').match(/^%! runs: *(\d+)/m)?.[1] ?? 1)
       limits = { max_print_line: 9999 }
     }

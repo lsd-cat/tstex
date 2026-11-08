@@ -3,7 +3,7 @@
 // Expected files come from tools/gen-lvt.sh (pdftex oracle); tests listed in skip.txt are meaningless (missing support file).
 import { test } from 'node:test'
 import assert from 'node:assert'
-import { readdirSync, readFileSync, existsSync } from 'node:fs'
+import { readdirSync, readFileSync, existsSync, appendFileSync } from 'node:fs'
 import { normalizeLog } from '../../tools/normalize-log.ts'
 
 const dir = new URL('.', import.meta.url).pathname
@@ -14,6 +14,9 @@ const skip = new Map(readFileSync(dir + 'skip.txt', 'utf8').split('\n').filter(B
 const only = process.env.LVT?.split(',')
 const maskDvi = (b: Uint8Array) => { const m = Uint8Array.from(b); m.fill(0, 15, 15 + (m[14] ?? 0)); return m }
 
+// TSTEX_RECORD=FILE appends every texmf-tree file opened (tools/pack-texmf.ts --record)
+const record = process.env.TSTEX_RECORD ? new Set<string>() : undefined
+if (record) process.on('exit', () => appendFileSync(process.env.TSTEX_RECORD!, [...record].map(f => f + '\n').join('')))
 for (const pkg of readdirSync(dir).filter(p => existsSync(`${dir}${p}/`) && !p.startsWith('_') && p !== 'node_modules').sort()) {
   for (const file of readdirSync(dir + pkg).filter(f => f.endsWith('.lvt')).sort()) {
     const name = file.slice(0, -4), id = `${pkg}/${name}`, base = `${dir}${pkg}/${name}`
@@ -25,7 +28,7 @@ for (const pkg of readdirSync(dir).filter(p => existsSync(`${dir}${p}/`) && !p.s
         import('../../src/platform/node' + '.ts').catch(() => assert.fail('src/platform/node.ts missing')),
         import('../../src/format' + '.ts').catch(() => assert.fail('src/format.ts missing')),
       ])
-      const fs = nodeFS([dir + pkg, dir], [TEXMFVAR, TEXMFDIST])
+      const fs = nodeFS([dir + pkg, dir], [TEXMFVAR, TEXMFDIST], { record })
       const engine = new Engine({ fs, format: loadFormat(readFileSync(fmtPath)), limits: { max_print_line: 9999 } })
       await engine.run({ jobname: name, mode: 'latex', file: name + '.lvt' })
       assert.strictEqual(normalizeLog(engine.log), readFileSync(`${base}.expected.log`, 'latin1'))
