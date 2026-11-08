@@ -94,7 +94,7 @@ pdfTeX warning (dest): name{nowhere} has been referenced but does not exist, rep
 pdfTeX warning (\pdffontattr): fonts \tenrm and \big have conflicting attributes; I will ignore the attributes assigned to \tenrm
 
 <cmr10.pfb>
-Output written on m6-pdf-threads-matrix.pdf (1 page, * bytes).
+Output written on m6-pdf-threads-matrix.pdf (1 page, 21044 bytes).
 PDF statistics:
  33 PDF objects out of 1000 (max. 8388607)
  3 named destinations out of 1000 (max. 500000)

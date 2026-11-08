@@ -15,7 +15,6 @@ export function normalizeLog(text: string): string {
       .replace(/(^|[ (<{])\/[^ ()<>{}]*\//g, '$1') // absolute path -> basename
       .replace(/^\d+ strings of total length \d+$/, '* strings of total length *') // §1309 \dump: pool and mem figures we do not replicate
       .replace(/^\d+ memory locations dumped; current usage is \d+&\d+$/, '* memory locations dumped; current usage is *&*') // §1311
-      .replace(/^(Output written on .*\.pdf \(\d+ pages?, )\d+ bytes\)\.$/, '$1* bytes).') // expected logs were stored this way (fonts were whole before M8)
       .trimEnd())
     .join('\n')
     .replace(/\n*$/, '\n')
