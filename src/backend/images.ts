@@ -78,7 +78,7 @@ function read_pdf_info(e: Engine, img: Img, page_num: number, pagebox_spec: numb
   img.doc = doc
   const found = Math.fround(pdf.version), wanted = Math.fround(e.ps.fixed_major + e.ps.fixed_minor * 0.1), level = e.equiv[int_base + 78]!
   if (found > wanted + 0.01) {
-    const msg = `PDF inclusion: found PDF version <${found.toFixed(1)}>, but at most version <${wanted.toFixed(1)}> allowed`
+    const msg = `PDF inclusion: found PDF version <${c_fixed(found, 1)}>, but at most version <${c_fixed(wanted, 1)}> allowed` // printf %.1f: exact ties to even
     if (level > 0) pdftex_fail(e, img.name, msg); else if (level === 0) pdftex_warn(e, img.name, msg)
   }
   img.pages = pdf.num_pages
