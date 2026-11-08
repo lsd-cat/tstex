@@ -145,7 +145,7 @@ export function scan_something_internal(e: Engine, level: number, negative: bool
       else e.cur_val = e.page_so_far[m]!
       e.cur_val_level = dimen_val
       break
-    case Cmd.set_shape: // §423 Fetch the par_shape size (e-TeX's penalty arrays are unsupported)
+    case Cmd.set_shape: // §423 Fetch the par_shape size
       if (m > par_shape_loc) { // etex.ch Fetch a penalties array element
         scan_int(e)
         const q = e.shapes[e.equiv[m]!]
