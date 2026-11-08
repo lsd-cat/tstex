@@ -2,7 +2,8 @@
 import { test, before, after } from 'node:test'
 import assert from 'node:assert'
 import { createServer, type Server } from 'node:http'
-import { readFileSync, existsSync, statSync } from 'node:fs'
+import { readFileSync, existsSync, statSync, mkdtempSync, mkdirSync, writeFileSync, copyFileSync } from 'node:fs'
+import { tmpdir } from 'node:os'
 import { join, normalize, extname } from 'node:path'
 import { execFileSync } from 'node:child_process'
 import { chromium } from 'playwright'
@@ -51,5 +52,25 @@ test('demo editor', { timeout: 600_000 }, async () => {
     await idle()
     assert.match(await log(), /Output written/)
     assert.ok(+(await page.getAttribute('#stats', 'data-total'))! > total, 'beamer fetched more bytes')
+  } finally { await browser.close() }
+})
+
+test('demo editor: project folder', { timeout: 600_000 }, async () => {
+  const dir = mkdtempSync(join(tmpdir(), 'proj-')) + '/proj'
+  mkdirSync(dir + '/sections', { recursive: true }); mkdirSync(dir + '/figs')
+  writeFileSync(dir + '/main.tex', '\\documentclass{article}\\usepackage{graphicx}\\begin{document}\\input{sections/intro}\\includegraphics[width=1in]{figs/fig.png}\\end{document}')
+  writeFileSync(dir + '/sections/intro.tex', 'Hello from a subfolder.\n')
+  copyFileSync(root + 'test/texmf/images/fig.png', dir + '/figs/fig.png')
+  const browser = await chromium.launch(), page = await browser.newPage()
+  try {
+    await page.goto(url)
+    await page.setInputFiles('#folder', dir)
+    await page.waitForFunction(() => document.getElementById('state')!.textContent === 'compiling')
+    await page.waitForFunction(() => document.getElementById('state')!.textContent !== 'compiling', null, { timeout: 300_000 })
+    assert.strictEqual(await page.inputValue('#main'), 'main.tex')
+    const tree = await page.locator('#files').innerText()
+    assert.match(tree, /sections\//); assert.match(tree, /figs\//); assert.match(tree, /intro\.tex/)
+    assert.match(await page.locator('#log').innerText(), /Output written on main\.pdf/)
+    assert.match(await page.locator('#pdf').getAttribute('src') ?? '', /^blob:/)
   } finally { await browser.close() }
 })

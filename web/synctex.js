@@ -19,7 +19,10 @@ export function parseSynctex(text) {
 }
 
 // the tags whose Input name is `file' (./main.tex, /abs/dir/./main.tex or main.tex)
-const tagsOf = (sx, file) => new Set([...sx.inputs].filter(([, n]) => n === file || n.endsWith('/' + file)).map(([t]) => t))
+// engine names are ./sections/a.tex or /abs/dir/./a.tex: reduce to the project-relative path, then compare exactly
+const rel = n => n.includes('/./') ? n.slice(n.lastIndexOf('/./') + 3) : n.replace(/^\.\//, '')
+const same = (n, file) => { const r = rel(n); return r === file || r.startsWith('/') && r.endsWith('/' + file) }
+const tagsOf = (sx, file) => new Set([...sx.inputs].filter(([, n]) => same(n, file)).map(([t]) => t))
 
 // source -> PDF: the page of the first record on (file, line), else of the nearest earlier line in that file; 0 if none
 export function pageOf(sx, file, line) {
@@ -38,7 +41,7 @@ export function sourceOf(sx, page, files) {
   let best = null
   for (const r of sx.records) {
     if (r.page !== page) continue
-    const n = sx.inputs.get(r.tag) ?? '', file = files.find(f => n === f || n.endsWith('/' + f))
+    const n = sx.inputs.get(r.tag) ?? '', file = files.find(f => same(n, f))
     if (file && (best === null || file === best.file && r.line < best.line)) best = { file, line: r.line }
   }
   return best

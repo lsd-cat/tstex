@@ -20,3 +20,5 @@ nav li button { border: 0; background: none; cursor: pointer }
 #log .bang { color: #b00; font-weight: bold }
 #log .ln { color: #06c; cursor: pointer; text-decoration: underline }
 footer.error #state, #state.error { color: #b00 }
+nav summary { cursor: pointer; padding: 3px 6px }
+nav details ul { margin: 0 }

@@ -4,6 +4,7 @@
 <link rel="stylesheet" href="style.css">
 <header>
   <label>Project <select id="project"><option value="article">article</option><option value="beamer">beamer</option></select></label>
+  <label>main <select id="main"></select></label>
   <button id="compile">Compile</button>
   <label><input type="checkbox" id="auto"> auto</label>
   <button id="dlpdf" disabled>Download PDF</button>
@@ -16,7 +17,8 @@
 <main>
   <nav aria-label="Files"><ul id="files"></ul>
     <button id="new">+ New file</button>
-    <label class="btn">Upload <input type="file" id="upload" multiple hidden></label></nav>
+    <label class="btn">Upload <input type="file" id="upload" multiple hidden></label>
+    <label class="btn">Open folder <input type="file" id="folder" webkitdirectory multiple hidden></label></nav>
   <section class="editor"><div id="gutter" aria-hidden="true"></div>
     <textarea id="ed" aria-label="Editor" spellcheck="false" wrap="off"></textarea></section>
   <iframe id="pdf" title="PDF preview"></iframe>

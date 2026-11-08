@@ -36,8 +36,8 @@ const BEAMER = String.raw`\documentclass{beamer}
 const $ = id => document.getElementById(id)
 const ed = $('ed'), gutter = $('gutter'), logEl = $('log'), state = $('state'), stats = $('stats'), pdf = $('pdf')
 const esc = s => s.replace(/[&<>]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;' })[c])
-const isText = n => /\.(tex|bib|sty|cls|bst|txt|cfg|def)$/i.test(n)
-let name = 'article', files = {}, cur = 'main.tex', errLine = 0, pdfBytes = null, pdfUrl = null
+const isText = n => /\.(tex|sty|cls|bib|bbl|aux|cfg|def|clo|fd|txt|md|csv|bst)$/i.test(n)
+let name = 'article', files = {}, cur = 'main.tex', main = 'main.tex', errLine = 0, pdfBytes = null, pdfUrl = null
 let tex = null, texKey = '', ctl = null, timer = 0, total = 0, sx = null // sx: the last compile's SyncTeX (web/synctex.js)
 
 // persistence: text in localStorage, binary files in one IndexedDB record per project
@@ -47,16 +47,16 @@ const db = new Promise((res, rej) => {
   r.onsuccess = () => res(r.result); r.onerror = () => rej(r.error)
 })
 const idb = async (mode, f) => { const d = await db; return new Promise((res, rej) => { const r = f(d.transaction('bin', mode).objectStore('bin')); r.onsuccess = () => res(r.result); r.onerror = () => rej(r.error) }) }
-const saveText = () => localStorage.setItem('tstex:' + name, JSON.stringify({ cur, text: Object.fromEntries(Object.entries(files).filter(([, v]) => typeof v === 'string')) }))
+const saveText = () => localStorage.setItem('tstex:' + name, JSON.stringify({ cur, main, text: Object.fromEntries(Object.entries(files).filter(([, v]) => typeof v === 'string')) }))
 const saveBin = () => idb('readwrite', s => s.put(Object.fromEntries(Object.entries(files).filter(([, v]) => typeof v !== 'string')), name))
 const save = () => { saveText(); return saveBin() }
 
 async function load(n) {
   name = n
   const saved = JSON.parse(localStorage.getItem('tstex:' + n) ?? 'null')
-  if (saved) files = { ...saved.text, ...(await idb('readonly', s => s.get(n)) ?? {}) }, cur = saved.cur in files ? saved.cur : Object.keys(files)[0]
+  if (saved) files = { ...saved.text, ...(await idb('readonly', s => s.get(n)) ?? {}) }, cur = saved.cur in files ? saved.cur : Object.keys(files)[0], main = saved.main in files ? saved.main : detectMain()
   else {
-    files = { 'main.tex': n === 'beamer' ? BEAMER : ARTICLE }; cur = 'main.tex'
+    files = { 'main.tex': n === 'beamer' ? BEAMER : ARTICLE }; cur = main = 'main.tex'
     if (n === 'article') files['fig.png'] = new Uint8Array(await (await fetch(new URL('./samples/fig.png', import.meta.url))).arrayBuffer())
     await save()
   }
@@ -65,21 +65,34 @@ async function load(n) {
 
 // UI
 function renderFiles() {
-  const ul = $('files'); ul.textContent = ''
-  for (const f of Object.keys(files)) {
-    const li = document.createElement('li'), b = document.createElement('button')
-    li.tabIndex = 0; li.textContent = f; li.className = f === cur ? 'cur' : ''
-    b.textContent = '×'; b.setAttribute('aria-label', 'Delete ' + f); b.disabled = f === 'main.tex'
-    b.onclick = e => { e.stopPropagation(); delete files[f]; if (cur === f) cur = 'main.tex'; save(); show() }
-    li.onclick = () => { cur = f; saveText(); errLine = 0; show() }
-    li.onkeydown = e => { if (e.key === 'Enter') li.click() }
-    li.ondblclick = () => {
-      const to = f !== 'main.tex' && prompt('Rename to', f)
-      if (to && to !== f && !(to in files)) { files = Object.fromEntries(Object.entries(files).map(([k, v]) => [k === f ? to : k, v])); if (cur === f) cur = to; save(); show() }
+  const root = {} // path -> nested objects; leaves are the full path string
+  for (const f of Object.keys(files)) f.split('/').reduce((d, p, i, a) => d[p] ??= i === a.length - 1 ? f : {}, root)
+  const walk = (d, ul, depth) => {
+    for (const k of Object.keys(d).sort((a, b) => (typeof d[a] === 'string') - (typeof d[b] === 'string') || a.localeCompare(b))) {
+      if (typeof d[k] !== 'string') {
+        const det = document.createElement('details'), sum = document.createElement('summary'), u = document.createElement('ul')
+        det.open = true; sum.textContent = k + '/'; sum.style.paddingLeft = depth * 12 + 'px'; det.append(sum, u); ul.append(det); walk(d[k], u, depth + 1); continue
+      }
+      const f = d[k], li = document.createElement('li'), b = document.createElement('button')
+      li.tabIndex = 0; li.textContent = k; li.title = f; li.className = f === cur ? 'cur' : ''; li.style.paddingLeft = depth * 12 + 6 + 'px'
+      b.textContent = '×'; b.setAttribute('aria-label', 'Delete ' + f); b.disabled = f === main
+      b.onclick = e => { e.stopPropagation(); delete files[f]; if (cur === f) cur = main; save(); show() }
+      li.onclick = () => { cur = f; saveText(); errLine = 0; show() }
+      li.onkeydown = e => { if (e.key === 'Enter') li.click() }
+      li.ondblclick = () => {
+        const to = f !== main && prompt('Rename to', f)
+        if (to && to !== f && !(to in files)) { files = Object.fromEntries(Object.entries(files).map(([k, v]) => [k === f ? to : k, v])); if (cur === f) cur = to; save(); show() }
+      }
+      li.append(b); ul.append(li)
     }
-    li.append(b); ul.append(li)
   }
+  $('files').textContent = ''; walk(root, $('files'), 0)
+  const m = $('main'); m.textContent = ''
+  for (const f of Object.keys(files).filter(f => /\.tex$/i.test(f))) m.add(new Option(f, f, false, f === main))
 }
+// main file: shallowest .tex with \documentclass, main.tex first among equals
+const detectMain = () => Object.keys(files).filter(f => /\.tex$/i.test(f) && /\\documentclass/.test(files[f]))
+  .sort((a, b) => a.split('/').length - b.split('/').length || (b.endsWith('main.tex') - a.endsWith('main.tex')))[0] ?? 'main.tex'
 function show() {
   renderFiles()
   const t = files[cur]
@@ -102,16 +115,44 @@ ed.onscroll = () => { gutter.scrollTop = ed.scrollTop }
 ed.onkeydown = e => { if (e.key === 'Tab' && !e.shiftKey) { e.preventDefault(); ed.setRangeText('  ', ed.selectionStart, ed.selectionEnd, 'end'); ed.oninput() } }
 document.onkeydown = e => { if ((e.ctrlKey || e.metaKey) && (e.key === 's' || e.key === 'Enter')) { e.preventDefault(); compile() } }
 $('new').onclick = () => { const n = prompt('File name', 'chapter.tex'); if (n && !(n in files)) { files[n] = ''; cur = n; save(); show() } }
-$('upload').onchange = async e => {
-  for (const f of e.target.files) files[f.name] = isText(f.name) ? await f.text() : new Uint8Array(await f.arrayBuffer())
-  e.target.value = ''; await save(); show()
+// [relative path, File] pairs -> project files. Skips .git/node_modules, files > 20 MB, binaries beyond 50 MB total.
+async function addFiles(pairs, folder) {
+  let skipped = 0, bin = 0
+  if (folder) { name = folder; files = {}; if (![...$('project').options].some(o => o.value === name)) $('project').add(new Option(name, name)); $('project').value = name }
+  for (const [p, f] of pairs) {
+    if (/(^|\/)(\.git|node_modules)\//.test(p) || f.size > 20e6 || !isText(p) && (bin += f.size) > 50e6) { skipped++; continue }
+    files[p] = isText(p) ? await f.text() : new Uint8Array(await f.arrayBuffer())
+  }
+  if (folder) { main = detectMain(); cur = main }
+  await save(); show(); state.textContent = skipped ? `skipped ${skipped} files (.git, node_modules, size limits)` : state.textContent
+  if (folder) compile()
+}
+const strip = p => p.split('/').slice(1).join('/')
+$('upload').onchange = async e => { await addFiles([...e.target.files].map(f => [f.name, f])); e.target.value = '' }
+$('folder').onchange = async e => {
+  const fs = [...e.target.files]; if (fs.length) await addFiles(fs.map(f => [strip(f.webkitRelativePath), f]), fs[0].webkitRelativePath.split('/')[0]); e.target.value = ''
+}
+$('main').onchange = e => { main = e.target.value; saveText() }
+const walkEntry = async (en, path = '') => { // readEntries returns batches until empty
+  if (en.isFile) return [[path + en.name, await new Promise((r, j) => en.file(r, j))]]
+  const rd = en.createReader(), out = []
+  for (let b; (b = await new Promise((r, j) => rd.readEntries(r, j))).length;) for (const c of b) out.push(...await walkEntry(c, path + en.name + '/'))
+  return out
+}
+const nav = document.querySelector('nav')
+nav.ondragover = e => e.preventDefault()
+nav.ondrop = async e => {
+  e.preventDefault()
+  const ens = [...e.dataTransfer.items].map(i => i.webkitGetAsEntry?.()).filter(Boolean) // read now: items die after the first await
+  const pairs = (await Promise.all(ens.map(en => walkEntry(en)))).flat()
+  if (ens.length === 1 && ens[0].isDirectory) await addFiles(pairs.map(([p, f]) => [strip(p), f]), ens[0].name); else await addFiles(pairs)
 }
 $('project').onchange = e => load(e.target.value).then(compile)
 $('compile').onclick = () => compile()
 $('clear').onclick = async e => { e.preventDefault(); await getTeX().cache.clear(); stats.textContent = 'cache cleared' }
 const download = (data, n) => { const a = document.createElement('a'); a.href = URL.createObjectURL(new Blob([data])); a.download = n; a.click(); setTimeout(() => URL.revokeObjectURL(a.href), 1e4) }
 $('dlpdf').onclick = () => pdfBytes && download(pdfBytes, 'main.pdf')
-$('dlfile').onclick = () => download(files[cur], cur)
+$('dlfile').onclick = () => download(files[cur], cur.split('/').pop())
 
 function renderLog(log) {
   logEl.innerHTML = log.split('\n').map(l => {
@@ -149,7 +190,7 @@ async function compile() {
   let nf = 0, nb = 0, run = 0; const t0 = performance.now()
   state.textContent = 'compiling'; state.className = ''
   try {
-    const r = await getTeX().compile({ files: { ...files }, main: 'main.tex', runs: 'auto', synctex: -1, signal: mine.signal, onProgress: p => {
+    const r = await getTeX().compile({ files: { ...files }, main, runs: 'auto', synctex: -1, signal: mine.signal, onProgress: p => {
       if (p.type === 'fetch' && !p.cached) { nf++; nb += p.bytes } else if (p.type === 'run') run = p.n
       stats.textContent = `run ${run} · fetched ${nf} files, ${kb(nb)}`
     } })
