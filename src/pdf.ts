@@ -1872,7 +1872,7 @@ function pdf_print_info(e: Engine): void {
   pdf_new_dict(e, obj_type_others, 0, 3)
   let s = ''
   if (st.info_toks !== 0) s = str(tokens_to_string(e, st.info_toks))
-  const given = (k: string) => s.includes(k) // substr_of_str
+  const given = (k: string) => s.slice(0, -1).includes(k) // substr_of_str: a match must end before the last character
   if (!given('/Producer')) pdf_print_ln(e, '/Producer (pdfTeX-1.40.29)') // Print the Producer key: pdftex_version div 100 . mod 100 . pdftex_revision
   if (st.info_toks !== 0) {
     if (s.length > 0) pdf_print_ln(e, s)
