@@ -91,10 +91,12 @@ function prepare(doc: Doc, to: string) {
   if (doc.main !== JOB + '.tex' && existsSync(join(to, JOB + '.tex'))) throw new Error(`directory contains ${JOB}.tex`)
 }
 const runSide = (kind: string, dir: string, main: string, timeout: number) => new Promise<{ ms: number, runs?: number, crash?: string, timeout?: boolean }>(res => {
-  const t0 = Date.now(), p = spawn(process.execPath, [fileURLToPath(import.meta.url), '--side', kind, dir, main], { env: { ...env, CORPUS_TIMEOUT: String(timeout) }, stdio: ['ignore', 'pipe', 'pipe'] })
+  // ulimit -t: the kernel stops a side after `timeout' CPU seconds even when this process's timers run late (a background
+  // QoS process on macOS had its kill timer fire after 17 minutes)
+  const t0 = Date.now(), p = spawn('/bin/sh', ['-c', `ulimit -t ${timeout + 10}; exec "$0" "$@"`, process.execPath, fileURLToPath(import.meta.url), '--side', kind, dir, main], { env: { ...env, CORPUS_TIMEOUT: String(timeout) }, stdio: ['ignore', 'pipe', 'pipe'] })
   let out = '', err = ''; p.stdout.on('data', d => out += d); p.stderr.on('data', d => err += d)
   const timer = setTimeout(() => { p.kill('SIGKILL'); res({ ms: Date.now() - t0, timeout: true }) }, (timeout + 10) * 1000)
-  p.on('close', () => { clearTimeout(timer); try { const r = JSON.parse(out); res(r.crash === 'timeout' ? { ms: r.ms || Date.now() - t0, timeout: true } : r) } catch { res({ ms: Date.now() - t0, crash: (err.trim().split('\n').pop() ?? 'no output').slice(0, 200) }) } })
+  p.on('close', (_code, signal) => { clearTimeout(timer); if (signal !== null) { res({ ms: Date.now() - t0, timeout: true }); return } try { const r = JSON.parse(out); res(r.crash === 'timeout' ? { ms: r.ms || Date.now() - t0, timeout: true } : r) } catch { res({ ms: Date.now() - t0, crash: (err.trim().split('\n').pop() ?? 'no output').slice(0, 200) }) } })
 })
 
 const { normalizeLog } = await import('./normalize-log.ts'), { normalizePdf } = await import('./pdf-normalize.ts')
