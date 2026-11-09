@@ -2,6 +2,7 @@
 # usage: tools/gen-lvt.sh [pkg/name ...]  (default: all) -> test/lvt/<pkg>/<name>.expected.{log,dvi}, oracle-status.txt, skip.txt
 set -u
 root=$(cd "$(dirname "$0")/.." && pwd); lvt=$root/test/lvt
+keep=$(grep -v ": oracle:" "$lvt/skip.txt" 2>/dev/null || true) # manual skip entries survive regeneration
 export SOURCE_DATE_EPOCH=0 FORCE_SOURCE_DATE=1 # fixed date: \today and dates in the DVI must not depend on the run day
 pdftex=$(command -v pdftex || ls /Users/g/texlive/2026/bin/*/pdftex | head -1)
 if [ "${1:-}" = --one ]; then # worker: --one pkg/name outdir
@@ -29,8 +30,7 @@ if [ $# -gt 0 ]; then printf '%s\n' "$@"; else (cd "$lvt" && ls */*.lvt | sed 's
   xargs -P 8 -I{} sh "$0" --one {} "$out"
 if [ $# -eq 0 ]; then # partial runs leave the summaries alone
   cat "$out"/*.st | sort > "$lvt/oracle-status.txt"
-  cat "$out"/*.sk 2>/dev/null | sort > "$lvt/skip.txt"; : > /dev/null
+  { cat "$out"/*.sk 2>/dev/null; [ -n "$keep" ] && printf "%s\n" "$keep"; } | sort -u > "$lvt/skip.txt"
 fi
 cat "$out"/*.st | sed 's/^\([^/]*\)\/[^:]*: \([a-z-]*\).*/\1 \2/' | sort | uniq -c
 rm -rf "$out"
-[ -n "$keep" ] && printf "%s\n" "$keep" >> "$lvt/skip.txt"
