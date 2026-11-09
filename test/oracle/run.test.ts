@@ -16,13 +16,26 @@ import { gunzipSync } from 'node:zlib'
 import { normalizeLog } from '../../tools/normalize-log.ts'
 import { normalizePdf } from '../../tools/pdf-normalize.ts'
 import { candidates } from '../../src/platform/lookup.ts'
+import { bundleFS } from '../../src/platform/browser.ts'
 
 const dir = new URL('.', import.meta.url).pathname
 const lvt = new URL('../lvt/', import.meta.url).pathname
-const fmtPath = new URL('../../build/latex.fmt', import.meta.url).pathname
+const bundle = new URL('../../bundles/minimal/', import.meta.url).pathname // committed fallback when there is no TeX Live / build/latex.fmt
+const fmtPath = existsSync(new URL('../../build/latex.fmt', import.meta.url)) ? new URL('../../build/latex.fmt', import.meta.url).pathname : bundle + 'fmt/latex.fmt'
 const TEXMFDIST = process.env.TEXMFDIST ?? '/Users/g/texlive/2026/texmf-dist'
 const TEXMFVAR = process.env.TEXMFVAR ?? '/Users/g/texlive/2026/texmf-var'
 const texmf = new URL('../texmf/', import.meta.url).pathname
+const haveTL = existsSync(TEXMFDIST + '/ls-R') && existsSync(TEXMFVAR + '/ls-R')
+const index = haveTL ? null : JSON.parse(gunzipSync(readFileSync(bundle + 'index.json.gz')).toString())
+// the bundle's files print as in the reference TeX Live tree (SyncTeX records the path, and its byte count depends on the length)
+const SHOWN = '/Users/g/texlive/2026/texmf-dist/'
+// local roots first, then TeX Live (or the minimal bundle)
+const texFS = (nodeFS: any, record?: Set<string>) => {
+  if (haveTL) return nodeFS([dir, texmf, lvt], [TEXMFVAR, TEXMFDIST], { record })
+  const base = nodeFS([dir, texmf, lvt]), b = bundleFS(index, (p: string) => { try { return new Uint8Array(readFileSync(bundle + p)) } catch { return null } })
+  return { ...b, find: (n: string, k: string) => base.find(n, k) ?? b.find(n, k), path: (n: string, k: string) => base.path!(n, k) ?? (p => p && SHOWN + p)(b.path!(n, k)),
+    stat: (n: string, k: string) => base.stat!(n, k) ?? b.stat!(n, k), writable: base.writable, compress: base.compress, inflate: base.inflate }
+}
 
 // zero the k preamble comment bytes (§617: 247 id num den mag k comment)
 const maskDvi = (b: Uint8Array) => {
@@ -49,12 +62,12 @@ for (const file of readdirSync(dir).filter(f => f.endsWith('.tex')).sort()) {
       import('../../src/platform/node' + '.ts').catch(() => assert.fail('src/platform/node.ts missing')),
       import('../../src/format' + '.ts').catch(() => ({ loadFormat: undefined })),
     ])
-    let format, fs = pdfMode ? nodeFS([dir, texmf, lvt], [TEXMFVAR, TEXMFDIST], { record }) : nodeFS([dir, texmf, lvt]), runs = 1, limits = pdfMode ? { max_print_line: 9999 } : {}
+    let format, fs = pdfMode ? texFS(nodeFS, record) : nodeFS([dir, texmf, lvt]), runs = 1, limits = pdfMode ? { max_print_line: 9999 } : {}
     if (mode === 'latex' || mode === 'pdflatex') {
       if (!existsSync(fmtPath)) assert.fail('build/latex.fmt missing: run `node tools/build-format.ts --out build/latex.fmt` first')
       assert.ok(loadFormat, 'src/format.ts missing')
       format = loadFormat(readFileSync(fmtPath))
-      fs = nodeFS([dir, texmf, lvt], [TEXMFVAR, TEXMFDIST], { record })
+      fs = texFS(nodeFS, record)
       runs = Number(readFileSync(dir + file, 'utf8').match(/^%! runs: *(\d+)/m)?.[1] ?? 1)
       limits = { max_print_line: 9999 }
     }

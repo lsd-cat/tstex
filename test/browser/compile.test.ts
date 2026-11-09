@@ -1,9 +1,9 @@
 // M7 exit test: the library in Chromium, Firefox and WebKit (Playwright, a devDependency only for this test) from a
-// static server with the `minimal' bundle. Builds dist/ and build/texmf/ first if missing. `npm run test:browser`.
+// static server with the `minimal' bundle. Builds dist/ first if missing; serves bundles/minimal/ (CI_BROWSERS=chromium: Chromium only). `npm run test:browser`.
 import { test, before, after } from 'node:test'
 import assert from 'node:assert'
 import { createServer, type Server } from 'node:http'
-import { readFileSync, existsSync, mkdtempSync, copyFileSync } from 'node:fs'
+import { readFileSync, existsSync, mkdtempSync, copyFileSync, writeFileSync } from 'node:fs'
 import { join, normalize, extname } from 'node:path'
 import { tmpdir } from 'node:os'
 import { createHash } from 'node:crypto'
@@ -19,16 +19,19 @@ const expected = new Map<string, string>() // the Node CLI's PDF hashes (over Te
 
 before(async () => {
   if (!existsSync(root + 'dist/index.js')) execFileSync('npx', ['tsc', '-p', 'tsconfig.browser.json'], { cwd: root })
-  if (!existsSync(root + 'build/texmf/index.json.gz')) execFileSync(process.execPath, ['tools/pack-texmf.ts', '--preset', 'minimal', '--out', 'build/texmf'], { cwd: root })
   const tmp = mkdtempSync(join(tmpdir(), 'tstex-'))
   for (const d of docs) {
     copyFileSync(root + 'test/oracle/' + d, join(tmp, d))
-    execFileSync(process.execPath, [root + 'bin/tstex.ts', '--fmt', root + 'build/latex.fmt', '--pdf', '--texmf-tree', TEXMFVAR, '--texmf-tree', TEXMFDIST, '--runs', 'auto', join(tmp, d)], { env: { ...process.env, SOURCE_DATE_EPOCH: '0' } })
+    if (existsSync(TEXMFDIST) && existsSync(root + 'build/latex.fmt')) execFileSync(process.execPath, [root + 'bin/tstex.ts', '--fmt', root + 'build/latex.fmt', '--pdf', '--texmf-tree', TEXMFVAR, '--texmf-tree', TEXMFDIST, '--runs', 'auto', join(tmp, d)], { env: { ...process.env, SOURCE_DATE_EPOCH: '0' } })
+    else { // no TeX Live (CI): the Node API over the same bundle
+      const { createTeX } = await import('../../src/node.ts')
+      writeFileSync(join(tmp, d.replace('.tex', '.pdf')), (await createTeX({ texmf: root + 'bundles/minimal' }).compile({ files: { [d]: readFileSync(join(tmp, d)) }, main: d, runs: "auto", date: new Date(0) })).pdf!)
+    }
     expected.set(d, createHash('sha256').update(readFileSync(join(tmp, d.replace('.tex', '.pdf')))).digest('hex'))
   }
   server = createServer((req, res) => {
     const p = normalize(decodeURIComponent(new URL(req.url!, 'http://x').pathname))
-    const file = p === '/' ? null : p.startsWith('/dist/') ? root + p.slice(1) : p.startsWith('/texmf/') ? root + 'build/' + p.slice(1) : undefined
+    const file = p === '/' ? null : p.startsWith('/dist/') ? root + p.slice(1) : p.startsWith('/texmf/') ? root + 'bundles/minimal/' + p.slice('/texmf/'.length) : undefined
     if (file === undefined || (file !== null && !existsSync(file))) { res.writeHead(404).end(); return }
     const body = file === null ? Buffer.from(harness) : readFileSync(file)
     if (p.startsWith('/texmf/')) served += body.length
@@ -40,7 +43,7 @@ before(async () => {
 })
 after(() => server.close())
 
-for (const [name, type] of Object.entries({ chromium, firefox, webkit })) {
+for (const [name, type] of Object.entries(process.env.CI_BROWSERS === 'chromium' ? { chromium } : { chromium, firefox, webkit })) {
   test(name, { timeout: 600_000 }, async () => {
     const browser = await type.launch(), context = await browser.newContext(), page = await context.newPage()
     let requests = 0

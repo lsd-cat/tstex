@@ -1,4 +1,4 @@
-// web/ demo editor in Chromium, served statically from the repo root (build/texmf/ = the `minimal' bundle). `npm run test:demo`.
+// web/ demo editor in Chromium, served statically from the repo root (bundles/minimal/ = the `minimal' bundle). `npm run test:demo`.
 import { test, before, after } from 'node:test'
 import assert from 'node:assert'
 import { createServer, type Server } from 'node:http'
@@ -14,7 +14,6 @@ let server: Server, url = ''
 
 before(async () => {
   if (!existsSync(root + 'dist/index.js')) execFileSync('npx', ['tsc', '-p', 'tsconfig.browser.json'], { cwd: root })
-  if (!existsSync(root + 'build/texmf/index.json.gz')) execFileSync(process.execPath, ['tools/pack-texmf.ts', '--preset', 'minimal', '--out', 'build/texmf'], { cwd: root })
   server = createServer((req, res) => {
     let file = join(root, normalize(decodeURIComponent(new URL(req.url!, 'http://x').pathname)))
     if (file.endsWith('/')) file += 'index.html'
