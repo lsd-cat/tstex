@@ -11,7 +11,7 @@ Goal: a `pdflatex` replacement in TypeScript, zero runtime dependencies, running
 | Output | DVI first (M2), PDF later (M6). |
 | Fonts | TFM metrics; embed whole Type1 `.pfb`. No subsetting. |
 | Arithmetic | 32‑bit ints (`|0`, `Math.imul`) in scaled points. Port §99–109 verbatim. Glue ratio is a JS double, same as pdftex/web2c. |
-| Data model | Lists stay singly linked (`link`), as in tex.web, so every algorithm ports 1:1. Token lists live in numeric `info`/`link` arrays with a free list (pointer‑heavy, hot path, keeps `cur_chr`/`loc` integers). Box/glue/char nodes are TS objects with a `type` discriminant, no `mem` array for them. |
+| Data model | Lists stay singly linked (`link`), as in tex.web, so every algorithm ports 1:1. Token lists live in numeric `info`/`link` arrays with a free list (pointer‑heavy, hot path, keeps `cur_chr`/`loc` integers). Box/glue/char nodes are TS objects with a `type` discriminant, no `mem` array for them. Control-sequence names live in a byte `str_pool` with §259's hash chains in Int32Arrays (M10); eqtb, the hash and the input buffer are typed arrays. The format file is a binary encoding of these tables (typed arrays raw), gzipped. |
 | State | `eqtb`, save stack, registers as plain data so `\dump` is serialisation and `structuredClone` works. |
 | Unicode | 8‑bit input like pdftex. No XeTeX/LuaTeX. |
 | Runtime split | Only `src/platform/*` differs between Node/Bun/browser: file lookup and reading. `TexFS.find` is synchronous because TeX is; the browser implementation reads with synchronous XHR inside a Worker (M7); Node over an HTTP bundle restarts the run on a miss. Everything else is pure. |
