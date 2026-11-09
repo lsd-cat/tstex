@@ -153,8 +153,11 @@ function t1_write(e: Engine, fd: T1Target, b: Uint8Array, path: string, subsette
   const out: number[] = []
   const fail = (m: string): never => pdftex_fail(e, path, m), warn = (m: string) => pdftex_warn(e, path, m)
   const getchar = () => { if (pos < b.length) return b[pos++]!; at_eof = true; return -1 }
+  const pfa = b[0] !== 128 // t1_check_pfa
+  let last_hexbyte = 0
   const getbyte = (): number => { // t1_getbyte: PFB segments
     let c = getchar()
+    if (pfa) return c
     if (block === 0) {
       if (c !== 128) fail('invalid marker')
       c = getchar()
@@ -165,7 +168,14 @@ function t1_write(e: Engine, fd: T1Target, b: Uint8Array, path: string, subsette
     block--
     return c
   }
-  const edecrypt = (c: number) => { c &= 255; const p = c ^ (dr >> 8); dr = ((c + dr) * 52845 + 22719) & 0xffff; return p }
+  const hexval = (c: number) => c >= 65 && c <= 70 ? c - 55 : c >= 97 && c <= 102 ? c - 87 : c >= 48 && c <= 57 ? c - 48 : -1
+  const edecrypt = (c: number) => {
+    if (pfa) { // two hex digits per byte, line ends skipped
+      while (c === 10 || c === 13) c = getbyte()
+      last_hexbyte = c = ((hexval(c) << 4) + hexval(getbyte())) & 255
+    }
+    c &= 255; const p = c ^ (dr >> 8); dr = ((c + dr) * 52845 + 22719) & 0xffff; return p
+  }
   const eencrypt = (p: number) => { const c = (p ^ (er >> 8)) & 255; er = ((c + er) * 52845 + 22719) & 0xffff; return c }
   const str = () => { const k = line.indexOf(0); return latin1(k < 0 ? line : line.slice(0, k)) } // the line as a C string
   const prefix = (s: string) => str().startsWith(s)
@@ -193,7 +203,7 @@ function t1_write(e: Engine, fd: T1Target, b: Uint8Array, path: string, subsette
         if (c === 13 || c === -1) c = 10
         if (c !== 32 || (line.length > 0 && line[line.length - 1] !== 32)) line.push(c)
         if (in_eexec === 0 && eexec_scan >= 0 && eexec_scan < 17) eexec_scan = line[eexec_scan] === 'currentfile eexec'.charCodeAt(eexec_scan) ? eexec_scan + 1 : -1
-        if (c === 10) break
+        if (c === 10 || (pfa && eexec_scan === 17 && c === 32)) break
         if (t1_cs && cslen === 0 && line.length > 4 && (suffix(' RD ') || suffix(' -| '))) {
           let p = line.length - 5
           while (p >= 0 && line[p] !== 32) p--
@@ -222,12 +232,20 @@ function t1_write(e: Engine, fd: T1Target, b: Uint8Array, path: string, subsette
   let length1 = 0, length2 = 0
   const start_eexec = () => {
     length1 = out.length
-    check_block_len(false)
+    if (!pfa) check_block_len(false)
     line = []
     for (let i = 0; i < 4; i++) { edecrypt(getbyte()); line.push(0) }
     encrypt = true; putline()
   }
-  const stop_eexec = () => { length2 = out.length - length1; encrypt = false; check_block_len(true); t1_cs = false; in_eexec = 2 }
+  const stop_eexec = () => {
+    length2 = out.length - length1; encrypt = false
+    if (!pfa) check_block_len(true)
+    else {
+      const c = edecrypt(getbyte())
+      if (!(c === 10 || c === 13)) { if (last_hexbyte === 0) puts('00'); else fail('unexpected data after eexec') }
+    }
+    t1_cs = false; in_eexec = 2
+  }
   // t1_scan_param, t1_scan_keys
   const scan_param = () => {
     if (!t1_scan || line[0] !== 47) return
@@ -575,7 +593,6 @@ export function writet1(e: Engine, fd: T1Target, ff_name: string, subsetted: boo
   if (b === null) pdftex_fail(e, ff_name, 'cannot open Type 1 font file for reading')
   const path = e.fs.path?.(ff_name, 'type1') ?? ff_name
   print(e, subsetted ? '<' : '<<'); print(e, path)
-  if (b[0] !== 128) pdftex_fail(e, path, 'unsupported: PFA font files') // shortcut: PFB only; port t1_getbyte's PFA branch if a map names a .pfa
   const r = t1_write(e, fd, b, path, subsetted)
   print(e, subsetted ? '>' : '>>')
   return r
