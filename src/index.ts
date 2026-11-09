@@ -1,7 +1,7 @@
 // tstex in the browser: createTeX spawns the engine's Worker (worker.ts) over a texmf bundle URL (tools/pack-texmf.ts).
 //   const tex = createTeX({ texmf: 'https://example.org/texmf/2026-1/' })
 //   const { pdf, log } = await tex.compile({ files: { 'main.tex': source }, main: 'main.tex', runs: 'auto' })
-// Node: import from 'tstex' resolves to node.ts (same API, in-process).
+// Node: import from '@lsd-cat/tstex' resolves to node.ts (same API, in-process).
 export type Progress = { type: 'fetch', name: string, bytes: number, cached?: boolean } | { type: 'run', n: number } | { type: 'done' }
 export interface CompileOptions {
   files: Record<string, string | Uint8Array> // the job directory; strings are UTF-8 encoded
