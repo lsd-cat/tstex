@@ -5,7 +5,7 @@ import { print, print_char, print_ln, print_nl, print_int, begin_diagnostic, end
 import { error, print_err, help, overflow, token_list, v_template, macro, inserted, output_text } from './error.ts'
 import { int_par, tracing_stack_levels_code, tracing_macros_code, tracing_commands_code, frozen_endv, frozen_relax } from './eqtb.ts'
 import { print_cs, sprint_cs } from './hash.ts'
-import { get_avail, free_avail, flush_list, temp_head, backup_head } from './nodes.ts'
+import { store_new_token, get_avail, free_avail, flush_list, temp_head, backup_head } from './nodes.ts'
 import { protected_token } from './types.ts'
 import { cs_token_flag, left_brace_limit, right_brace_limit, match_token, end_match_token, space_token, show_token_list, token_show, show_cur_cmd_chr } from './tokens.ts'
 import { get_next, get_token, back_input, back_error, ins_error, end_token_list, begin_token_list, runaway, matching } from './input.ts'
@@ -82,6 +82,18 @@ export function x_token(e: Engine): void {
   e.cur_tok = e.cur_cs === 0 ? e.cur_cmd * 0o400 + e.cur_chr : cs_token_flag + e.cur_cs
 }
 
+// §396 Report a runaway argument and abort (macro_call's; a function, not a closure, so macro_call allocates no context)
+function runaway_abort(e: Engine, n: number, unbalance: number): void {
+  if (e.long_state === Cmd.call) {
+    runaway(e); print_err(e, 'Paragraph ended before '); sprint_cs(e, e.warning_index); print(e, ' was complete')
+    help(e, "I suspect you've forgotten a `}', causing me to apply this",
+      'control sequence to too much text. How can we recover?', 'My plan is to forget the whole thing and hope for the best.')
+    back_error(e)
+  }
+  e.pstack[n] = e.link[temp_head]!; e.align_state -= unbalance
+  for (let k = 0; k <= n; k++) flush_list(e, e.pstack[k]!)
+}
+
 // §389 macro_call
 export function macro_call(e: Engine): void {
   const save_scanner_status = e.scanner_status, save_warning_index = e.warning_index
@@ -89,7 +101,6 @@ export function macro_call(e: Engine): void {
   const ref_count = e.cur_chr
   let r = e.link[ref_count]!, n = 0
   let p = 0, s = 0, m = 0, rbrace_ptr = 0, unbalance = 0, match_chr = 0
-  const store_new_token = (x: number) => { const q = get_avail(e); e.link[p] = q; e.info[q] = x; p = q }
   if (int_par(e, tracing_macros_code) > 0) { // §401
     begin_diagnostic(e)
     const tsl = int_par(e, tracing_stack_levels_code) // tracingstacklevels.ch
@@ -109,17 +120,6 @@ export function macro_call(e: Engine): void {
       e.scanner_status = matching; unbalance = 0
       e.long_state = e.eq_type[e.cur_cs]!
       if (e.long_state >= Cmd.outer_call) e.long_state -= 2
-      // §396 Report a runaway argument and abort
-      const runaway_abort = () => {
-        if (e.long_state === Cmd.call) {
-          runaway(e); print_err(e, 'Paragraph ended before '); sprint_cs(e, e.warning_index); print(e, ' was complete')
-          help(e, "I suspect you've forgotten a `}', causing me to apply this",
-            'control sequence to too much text. How can we recover?', 'My plan is to forget the whole thing and hope for the best.')
-          back_error(e)
-        }
-        e.pstack[n] = e.link[temp_head]!; e.align_state -= unbalance
-        for (let k = 0; k <= n; k++) flush_list(e, e.pstack[k]!)
-      }
       do {
         e.link[temp_head] = 0
         if (e.info[r]! > match_token + 255 || e.info[r]! < match_token) s = 0
@@ -145,7 +145,7 @@ export function macro_call(e: Engine): void {
             }
             let t = s
             do {
-              store_new_token(e.info[t]!); m++
+              p = store_new_token(e, p, e.info[t]!); m++
               let u = e.link[t]!, v = s
               for (;;) {
                 if (u === r) {
@@ -159,19 +159,19 @@ export function macro_call(e: Engine): void {
             } while (t !== r)
             r = s
           }
-          if (e.cur_tok === e.par_token && e.long_state !== Cmd.long_call) { runaway_abort(); break exit }
+          if (e.cur_tok === e.par_token && e.long_state !== Cmd.long_call) { runaway_abort(e, n, unbalance); break exit }
           if (e.cur_tok < right_brace_limit) {
             if (e.cur_tok < left_brace_limit) { // §399 Contribute an entire group to the current parameter
               unbalance = 1
               for (;;) {
-                store_new_token(e.cur_tok); get_token(e)
-                if (e.cur_tok === e.par_token && e.long_state !== Cmd.long_call) { runaway_abort(); break exit }
+                p = store_new_token(e, p, e.cur_tok); get_token(e)
+                if (e.cur_tok === e.par_token && e.long_state !== Cmd.long_call) { runaway_abort(e, n, unbalance); break exit }
                 if (e.cur_tok < right_brace_limit) {
                   if (e.cur_tok < left_brace_limit) unbalance++
                   else { unbalance--; if (unbalance === 0) break }
                 }
               }
-              rbrace_ptr = p; store_new_token(e.cur_tok)
+              rbrace_ptr = p; p = store_new_token(e, p, e.cur_tok)
             } else { // §395 Report an extra right brace and goto continue
               back_input(e); print_err(e, 'Argument of '); sprint_cs(e, e.warning_index); print(e, ' has an extra }')
               help(e, "I've run across a `}' that doesn't seem to match anything.", "For example, `\\def\\a#1{...}' and `\\a}' would produce",
@@ -182,7 +182,7 @@ export function macro_call(e: Engine): void {
             }
           } else { // §393 Store the current token, but goto continue if it is a blank space that would become an undelimited parameter
             if (e.cur_tok === space_token && e.info[r]! <= end_match_token && e.info[r]! >= match_token) continue cont
-            store_new_token(e.cur_tok)
+            p = store_new_token(e, p, e.cur_tok)
           }
           m++
           if (e.info[r]! > end_match_token) continue cont

@@ -72,7 +72,8 @@ export function push_input(e: Engine): void {
     if (e.input_ptr === e.lim.stack_size) overflow(e, 'input stack size', e.lim.stack_size)
   }
   e.input_stack[e.input_ptr] = e.cur_input
-  e.cur_input = { ...e.cur_input }
+  const c = e.cur_input // a literal, not a spread: V8 builds it with no generic clone
+  e.cur_input = { state: c.state, index: c.index, start: c.start, loc: c.loc, limit: c.limit, name: c.name, synctex_tag: c.synctex_tag }
   e.input_ptr++
 }
 

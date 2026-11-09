@@ -28,6 +28,13 @@ export function get_avail(e: Engine): number {
 
 function mem_overflow(e: Engine): never { e.mem_end--; runaway(e); overflow(e, 'main memory size', e.lim.main_memory) } // kept out of get_avail, which stays small enough to inline
 
+// §371 store_new_token: a new token x after p; returns it (the new p). A function, not a closure over p, so that
+// macro_call and scan_toks allocate no context per call
+export function store_new_token(e: Engine, p: number, x: number): number {
+  const q = get_avail(e); e.link[p] = q; e.info[q] = x
+  return q
+}
+
 // §121 free_avail
 export function free_avail(e: Engine, p: number): void {
   e.link[p] = e.avail; e.avail = p
@@ -384,7 +391,11 @@ export function copy_node_list(e: Engine, p: Node | null): Node | null {
       case mark_node: add_token_ref(e, p.mark_ptr); r = { ...p }; break
       case adjust_node: r = { ...p, adjust_ptr: copy_node_list(e, p.adjust_ptr) }; break
       case rule_node: r = { ...p, ...sync() }; break // synctex-rec.ch0: a copied rule keeps get_node's tag and line
-      case char_node: case kern_node: case math_node: case penalty_node: r = { ...p }; break
+      // one spread per type: a shared site would see every node shape and clone generically (megamorphic)
+      case char_node: r = { ...p }; break
+      case kern_node: r = { ...p }; break
+      case math_node: r = { ...p }; break
+      case penalty_node: r = { ...p }; break
       case margin_kern_node: r = { ...p, margin_char: { ...p.margin_char } }; break
       default: confusion(e, 'copying')
     }

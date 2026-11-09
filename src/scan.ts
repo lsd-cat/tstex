@@ -11,7 +11,7 @@ import type { Node } from './nodes.ts'
 import { scan_font_ident, find_font_dimen, param, quad_code, x_height_code, test_no_ligatures, get_tag_code, get_font_code, no_lig_code, tag_code } from './tfm.ts'
 import { sprint_cs, prim_lookup_cs } from './hash.ts'
 import { prim_eqtb_base, frozen_primitive, frozen_relax } from './types.ts'
-import { get_avail, free_avail, flush_list, temp_head, backup_head, new_spec, add_glue_ref, delete_glue_ref, print_spec, zero_glue, fil, filll } from './nodes.ts'
+import { store_new_token, get_avail, free_avail, flush_list, temp_head, backup_head, new_spec, add_glue_ref, delete_glue_ref, print_spec, zero_glue, fil, filll } from './nodes.ts'
 import { unsupported } from './main.ts'
 import { protected_token } from './types.ts'
 import { cs_token_flag, left_brace_token, left_brace_limit, right_brace_limit, other_token, letter_token, space_token, end_match_token, match_token, out_param_token, print_cmd_chr } from './tokens.ts'
@@ -626,9 +626,8 @@ export function the_toks(e: Engine): number {
   if (e.cur_val_level >= ident_val) { // §466 Copy the token list
     let p = temp_head
     e.link[p] = 0
-    const store_new_token = (x: number) => { const q = get_avail(e); e.link[p] = q; e.info[q] = x; p = q }
-    if (e.cur_val_level === ident_val) store_new_token(cs_token_flag + e.cur_val)
-    else if (e.cur_val !== 0) for (let r = e.link[e.cur_val]!; r !== 0; r = e.link[r]!) store_new_token(e.info[r]!)
+    if (e.cur_val_level === ident_val) p = store_new_token(e, p, cs_token_flag + e.cur_val)
+    else if (e.cur_val !== 0) for (let r = e.link[e.cur_val]!; r !== 0; r = e.link[r]!) p = store_new_token(e, p, e.info[r]!)
     return p
   }
   const old_setting = e.selector; e.selector = new_string
@@ -648,7 +647,6 @@ export function scan_toks(e: Engine, macro_def: boolean, xpand: boolean): number
   e.scanner_status = macro_def ? defining : absorbing
   e.warning_index = e.cur_cs; e.def_ref = get_avail(e); e.info[e.def_ref] = 0
   let p = e.def_ref, hash_brace = 0, t = zero_token, unbalance: number
-  const store_new_token = (x: number) => { const q = get_avail(e); e.link[p] = q; e.info[q] = x; p = q }
   found: {
     if (macro_def) {
       // §474 Scan and build the parameter part of the macro definition
@@ -662,7 +660,7 @@ export function scan_toks(e: Engine, macro_def: boolean, xpand: boolean): number
             get_token(e)
             if (e.cur_tok < left_brace_limit) {
               hash_brace = e.cur_tok
-              store_new_token(e.cur_tok); store_new_token(end_match_token)
+              p = store_new_token(e, p, e.cur_tok); p = store_new_token(e, p, end_match_token)
               break done
             }
             if (t === zero_token + 9) {
@@ -677,9 +675,9 @@ export function scan_toks(e: Engine, macro_def: boolean, xpand: boolean): number
             }
             e.cur_tok = s
           }
-          store_new_token(e.cur_tok)
+          p = store_new_token(e, p, e.cur_tok)
         }
-        store_new_token(end_match_token)
+        p = store_new_token(e, p, end_match_token)
         if (e.cur_cmd === Cmd.right_brace) { // §475 Express shock at the missing left brace
           print_err(e, 'Missing { inserted'); e.align_state++
           help(e, "Where was the left brace? You said something like `\\def\\a}',", "which I'm going to interpret as `\\def\\a{}'."); error(e)
@@ -720,11 +718,11 @@ export function scan_toks(e: Engine, macro_def: boolean, xpand: boolean): number
           } else e.cur_tok = out_param_token - 48 + e.cur_chr
         }
       }
-      store_new_token(e.cur_tok)
+      p = store_new_token(e, p, e.cur_tok)
     }
   }
   e.scanner_status = normal
-  if (hash_brace !== 0) store_new_token(hash_brace)
+  if (hash_brace !== 0) p = store_new_token(e, p, hash_brace)
   return p
 }
 
@@ -733,8 +731,7 @@ export function read_toks(e: Engine, n: number, r: number, j: number): void {
   e.scanner_status = defining; e.warning_index = r
   e.def_ref = get_avail(e); e.info[e.def_ref] = 0
   let p = e.def_ref
-  const store_new_token = (x: number) => { const q = get_avail(e); e.link[p] = q; e.info[q] = x; p = q }
-  store_new_token(end_match_token)
+  p = store_new_token(e, p, end_match_token)
   const m = n < 0 || n > 15 ? 16 : n
   const s = e.align_state; e.align_state = 1000000
   do {
@@ -769,7 +766,7 @@ export function read_toks(e: Engine, n: number, r: number, j: number): void {
         do get_token(e); while (e.cur_tok !== 0)
         e.align_state = 1000000; break
       }
-      store_new_token(e.cur_tok)
+      p = store_new_token(e, p, e.cur_tok)
     }
     end_file_reading(e)
   } while (e.align_state !== 1000000)
