@@ -14,3 +14,4 @@ Differential runs of whole documents: TeX Live `pdftex -fmt pdflatex` vs this en
   skip without being listed; `--update-skip` appends those findings so they can be edited by hand.
 - `samples.txt`: curated paths (relative to texmf-dist, or the repo for `test/`); `slow` entries need `--slow`.
 - Needs `build/latex.fmt`. Timings are wall time per side, measured while `--jobs` documents run concurrently.
+- On macOS run it under `caffeinate -i -s` (idle sleep froze whole runs; times and timeouts then meant nothing).
