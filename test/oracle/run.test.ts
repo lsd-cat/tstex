@@ -79,7 +79,8 @@ for (const file of readdirSync(dir).filter(f => f.endsWith('.tex')).sort()) {
       assert.strictEqual(Buffer.from(got).toString('latin1'), wantSynctex)
     } else assert.strictEqual(engine!.synctex, null, 'pdftex wrote no SyncTeX file')
     const wantPdf = `${dir}${name}.expected.pdf`
-    if (pdfMode && !(existsSync(wantPdf) && readFileSync(wantPdf).length)) assert.strictEqual(engine!.pdf, null, 'pdftex wrote no PDF') // none or empty (no pages)
+    if (pdfMode && !existsSync(wantPdf)) assert.strictEqual(engine!.pdf, null, 'pdftex wrote no PDF')
+    else if (pdfMode && readFileSync(wantPdf).length === 0) assert.strictEqual(engine!.pdf?.length, 0, 'pdftex wrote an empty PDF (opened, no pages)')
     else if (pdfMode) {
       assert.ok(engine!.pdf, 'no PDF produced')
       assert.strictEqual(normalizePdf(engine!.pdf), normalizePdf(readFileSync(wantPdf)))

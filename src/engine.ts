@@ -133,7 +133,12 @@ export class Engine {
   font_expand_ratio = 0; prev_char_p: Node | null = null; last_leftmost_char: Node | null = null; last_rightmost_char: Node | null = null
   cur_font_step = 0; max_stretch_ratio = 0; max_shrink_ratio = 0; save_tail: Node | null = null; prev_tail: Node = contrib_head0
   ps = pdf_state(); fm = font_state(); glyph_unicode = new Map<string, number | string>(); start_time = 0
-  get pdf(): Uint8Array | null { return this.fixed_pdfoutput !== null && this.fixed_pdfoutput > 0 && this.total_pages > 0 && this.history !== fatal_error_stop && this.ps.fixed_draftmode === 0 ? this.ps.op_buf.slice(0, this.ps.os_mode ? this.ps.op_ptr : this.ps.ptr) : null }
+  // without pages pdfTeX still leaves the file ensure_pdf_open created, empty (nothing was flushed to it)
+  get pdf(): Uint8Array | null {
+    if (this.fixed_pdfoutput === null || this.fixed_pdfoutput <= 0 || this.history === fatal_error_stop || this.ps.fixed_draftmode !== 0) return null
+    if (this.total_pages === 0) return this.ps.output_file_name !== '' && this.ps.gone === 0 ? new Uint8Array(0) : null
+    return this.ps.op_buf.slice(0, this.ps.os_mode ? this.ps.op_ptr : this.ps.ptr)
+  }
   last_match: ([number, string] | null)[] = [] // utils.c pmatch for \pdflastmatch
   cur_page_height = 0; pdf_last_x_pos = 0; pdf_last_y_pos = 0 // pdftex.web \pdfsavepos
   // §1342 \write streams; written files are collected here (TexFS is read-only)
