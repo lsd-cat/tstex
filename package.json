@@ -45,14 +45,14 @@
   },
   "scripts": {
     "build": "tsc -p tsconfig.browser.json && tsc -p tsconfig.node.json && cp tools/minimal-files.txt dist-node/tools/",
-    "test": "node --test test/oracle/ test/unit/",
-    "test:lvt": "node --test test/lvt/",
+    "test": "node --test \"test/unit/*.test.ts\" \"test/oracle/*.test.ts\"",
+    "test:lvt": "node --test \"test/lvt/*.test.ts\"",
     "corpus": "node tools/corpus.ts",
-    "test:browser": "node --test test/browser/",
-    "test:demo": "node --test test/browser/demo.test.ts",
+    "test:browser": "node --test \"test/browser/*.test.ts\"",
+    "test:demo": "node --test \"test/browser/demo.test.ts\"",
     "pack": "node tools/pack-texmf.ts",
     "typecheck": "tsc --noEmit",
-    "prepublishOnly": "npm run build && node --test test/unit/"
+    "prepublishOnly": "npm run build && node --test \"test/unit/*.test.ts\""
   },
   "devDependencies": {
     "@types/node": "^26.6.6",

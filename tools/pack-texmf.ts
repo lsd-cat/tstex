@@ -1,4 +1,5 @@
 // Build a static texmf bundle (the M7 resource protocol, see README.md):
+//   node tools/pack-texmf.ts --list-extra   (prints the packages `basic' adds to scheme-basic)
 //   node tools/pack-texmf.ts --preset minimal|basic|full [--shard] [--texmf-dist DIR] [--texmf-var DIR] [--fmt build/latex.fmt] --out DIR
 // DIR/index.json.gz = { version, files: { basename: { path, size } } }, or { version, sharded: true } with the same map split
 // into DIR/index/<shard>.json.gz (shard_of in lookup.ts) when there are more than 20000 files or with --shard; DIR/fmt/latex.fmt,
@@ -40,6 +41,7 @@ function tlpdb_files(tlpdb: string, roots: string[]): string[] {
 }
 
 export function pack(argv: string[]): void {
+  if (argv.includes('--list-extra')) { process.stdout.write(extra.join('\n') + '\n'); return } // the workflows install these with tlmgr
   const opt: Record<string, string> = {
     'texmf-dist': process.env.TEXMFDIST ?? '/Users/g/texlive/2026/texmf-dist', 'texmf-var': process.env.TEXMFVAR ?? '/Users/g/texlive/2026/texmf-var',
     fmt: 'build/latex.fmt',
