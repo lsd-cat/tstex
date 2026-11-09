@@ -125,6 +125,25 @@ class Writer {
       if (wide) { this.v.setUint16(this.n, c, true); this.n += 2 } else this.b[this.n++] = c
     }
   }
+  // an Int32Array as runs: (zeros, n, n values)…, where only 16 or more zeros end a run (the hash and eqtb tables are mostly 0)
+  sparse(a: Int32Array) {
+    this.i32(a.length)
+    for (let i = 0; i < a.length;) {
+      let z = i
+      while (z < a.length && a[z] === 0) z++
+      let j = z
+      while (j < a.length) {
+        if (a[j] !== 0) { j++; continue }
+        let k = j
+        while (k < a.length && a[k] === 0 && k - j < 16) k++
+        if (k - j >= 16 || k === a.length) break
+        j = k
+      }
+      this.i32(z - i); this.i32(j - z); this.room(4 * (j - z))
+      for (let k = z; k < j; k++) { this.v.setInt32(this.n, a[k]!, true); this.n += 4 }
+      i = j
+    }
+  }
   ints(a: ArrayLike<number>) { this.i32(a.length); this.room(4 * a.length); for (let i = 0; i < a.length; i++) { this.v.setInt32(this.n, a[i]!, true); this.n += 4 } }
   put(x: unknown): void {
     if (typeof x === 'number') { if ((x | 0) === x && !Object.is(x, -0)) { this.u8(T_INT); this.i32(x) } else { this.u8(T_F64); this.room(8); this.v.setFloat64(this.n, x, true); this.n += 8 } return }
@@ -142,7 +161,7 @@ class Writer {
       if (ints) { this.u8(T_IARR); this.ints(x) } else { this.u8(T_ARR); this.i32(x.length); for (let i = 0; i < x.length; i++) this.put(x[i]) } // holes become undefined
     } else if (x instanceof Map) { this.u8(T_MAP); this.i32(x.size); for (const [k, v] of x) { this.put(k); this.put(v) } }
     else if (x instanceof Uint8Array) { this.u8(T_U8); this.i32(x.length); this.room(x.length); this.b.set(x, this.n); this.n += x.length }
-    else if (x instanceof Int32Array) { this.u8(T_I32); this.ints(x) }
+    else if (x instanceof Int32Array) { this.u8(T_I32); this.sparse(x) }
     else if (Object.getPrototypeOf(x) === Object.prototype) {
       const keys = Object.keys(x), sig = keys.join('\0')
       let s = this.shapes.get(sig)
@@ -181,7 +200,16 @@ class Reader {
       case T_IARR: { const n = this.i32(), a: number[] = []; this.refs.push(a); this.need(4 * n); for (let i = 0; i < n; i++, this.p += 4) a.push(this.v.getInt32(this.p, true)); return a }
       case T_MAP: { const n = this.i32(), m = new Map(); this.refs.push(m); for (let i = 0; i < n; i++) m.set(this.get(), this.get()); return m }
       case T_U8: { const n = this.i32(); this.need(n); const a = this.b.slice(this.p, this.p + n); this.refs.push(a); this.p += n; return a }
-      case T_I32: { const n = this.i32(); this.need(4 * n); const a = new Int32Array(n); this.refs.push(a); for (let i = 0; i < n; i++, this.p += 4) a[i] = this.v.getInt32(this.p, true); return a }
+      case T_I32: {
+        const n = this.i32(); this.need(0); const a = new Int32Array(n); this.refs.push(a)
+        for (let i = 0; i < n;) {
+          i += this.i32(); const m = this.i32()
+          if (!(i >= 0 && m >= 0 && i + m <= n)) throw new Error('bad run')
+          this.need(4 * m)
+          for (const end = i + m; i < end; i++, this.p += 4) a[i] = this.v.getInt32(this.p, true)
+        }
+        return a
+      }
       case T_OBJ: {
         const s = this.i32()
         if (s === this.shapes.length) { const n = this.i32(); this.need(n); const keys: string[] = []; for (let i = 0; i < n; i++) keys.push(this.key()); this.shapes.push(keys) }
@@ -196,7 +224,7 @@ class Reader {
   }
 }
 const decode = (data: Uint8Array): Snapshot => new Reader(data).get() as Snapshot
-const fmt_magic = 'tstex format 3' // §1307 format_ident check: bump when fmt_keys or the encoding change
+const fmt_magic = 'tstex format 4' // §1307 format_ident check: bump when fmt_keys or the encoding change
 const fmt_max = 128 << 20 // decompressed bytes accepted (latex.fmt: 14 MB); a gzip bomb stops here
 const pipe = async (b: Uint8Array, s: CompressionStream | DecompressionStream, max = Infinity) => {
   const r = new Blob([b as Uint8Array<ArrayBuffer>]).stream().pipeThrough(s).getReader(), parts: Uint8Array[] = []

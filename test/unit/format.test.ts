@@ -48,7 +48,7 @@ test('format bytes: round trip, then corrupt formats fail cleanly', async () => 
   assert.strictEqual((await loadFormat(good)).format_ident, e1.fmt_file!.format_ident)
   const gz = async (s: string | Uint8Array<ArrayBuffer>) => new Uint8Array(await new Response(new Blob([s]).stream().pipeThrough(new CompressionStream('gzip'))).arrayBuffer())
   const i32 = (n: number) => [n & 255, (n >> 8) & 255, (n >> 16) & 255, n >>> 24]
-  const bin = (...parts: number[][]) => Uint8Array.from([...'tstex format 3'].map(c => c.charCodeAt(0)).concat(parts.flat()))
+  const bin = (...parts: number[][]) => Uint8Array.from([...'tstex format 4'].map(c => c.charCodeAt(0)).concat(parts.flat()))
   const bad: [string, Uint8Array][] = [
     ['truncated gzip', good.slice(0, good.length >> 1)],
     ['not gzip', new TextEncoder().encode('hello')],
