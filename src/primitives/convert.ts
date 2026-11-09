@@ -91,6 +91,23 @@ export function run(e: Engine, chr: number): void {
     append(e.cur_str, r)
     e.link[garbage] = str_toks(e, b); ins_list(e, e.link[temp_head]!); return
   }
+  else if (c === 26) { // pdftex.web pdf_file_dump_code, texmfmp.c getfiledump: `length' bytes from `offset' as uppercase hex
+    const ss = e.scanner_status, wi = e.warning_index, dr = e.def_ref
+    const num = (key: string, msg: string, what: string) => {
+      e.cur_val = 0
+      if (scan_keyword(e, key)) {
+        scan_int(e)
+        if (e.cur_val < 0) { print_err(e, msg); help(e, `A ${what} must be between 0 and 2^{31}-1,`, 'I changed this one to zero.'); int_error(e, e.cur_val); e.cur_val = 0 }
+      }
+      return e.cur_val
+    }
+    const off = num('offset', 'Bad file offset', 'file offset'), len = num('length', 'Bad dump length', 'dump length')
+    const name = str(scan_ext_string(e)).replaceAll('"', '')
+    e.def_ref = dr; e.warning_index = wi; e.scanner_status = ss
+    const f = len === 0 ? null : find_tex_file(e, name) // shortcut: no pool-size check (pdfTeX gives `pool size' for 2*length beyond it)
+    if (f !== null) for (const x of f.subarray(off, off + len)) append(e.cur_str, x.toString(16).toUpperCase().padStart(2, '0'))
+    e.link[garbage] = str_toks(e, b); ins_list(e, e.link[temp_head]!); return
+  }
   else if (c === pdf_match_code) { // pdftex.web; utils.c matchstrings: 1, 0, or -1 for a bad pattern (the last match is kept)
     const ss = e.scanner_status, wi = e.warning_index, dr = e.def_ref
     const icase = scan_keyword(e, 'icase')

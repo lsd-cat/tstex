@@ -1,0 +1,16 @@
+(m9-review-filedump.tex [5C6D6573736167657B] [6D657373] [] [726561645D7D0A] [
+] []
+! Bad file offset (-1).
+l.9 \message{[\pdffiledump offset -1
+                                     length -2 {m9-x.ltd.tex}]}
+A file offset must be between 0 and 2^{31}-1,
+I changed this one to zero.
+
+! Bad dump length (-2).
+l.9 \message{[\pdffiledump offset -1 length -2
+                                               {m9-x.ltd.tex}]}
+A dump length must be between 0 and 2^{31}-1,
+I changed this one to zero.
+
+[] )
+No pages of output.
