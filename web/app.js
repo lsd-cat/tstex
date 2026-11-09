@@ -33,6 +33,31 @@ const BEAMER = String.raw`\documentclass{beamer}
 \end{frame}
 \end{document}
 `
+const TIKZ = String.raw`\documentclass{article}
+\usepackage{tikz}
+\begin{document}
+\begin{center}
+\begin{tikzpicture}[scale=1.5]
+  \draw[thick,->] (-1.2,0) -- (3.5,0) node[right]{$x$};
+  \draw[thick,->] (0,-1.2) -- (0,1.2) node[above]{$y$};
+  \draw[blue,domain=0:3.14,samples=60] plot (\x,{sin(\x r)});
+  \fill[red] (1.57,1) circle (2pt) node[above right]{max};
+\end{tikzpicture}
+\end{center}
+\end{document}
+`
+const LETTER = String.raw`\documentclass{letter}
+\signature{Ada}
+\address{12 Analytical Way \\ London}
+\begin{document}
+\begin{letter}{Charles Babbage \\ 1 Engine Street}
+\opening{Dear Charles,}
+Your machine compiles this letter without a server.
+\closing{Yours sincerely,}
+\end{letter}
+\end{document}
+`
+const SAMPLES = { article: ARTICLE, beamer: BEAMER, tikz: TIKZ, letter: LETTER }
 const $ = id => document.getElementById(id)
 const ed = $('ed'), gutter = $('gutter'), logEl = $('log'), state = $('state'), stats = $('stats'), pdf = $('pdf')
 const esc = s => s.replace(/[&<>]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;' })[c])
@@ -56,7 +81,7 @@ async function load(n) {
   const saved = JSON.parse(localStorage.getItem('tstex:' + n) ?? 'null')
   if (saved) files = { ...saved.text, ...(await idb('readonly', s => s.get(n)) ?? {}) }, cur = saved.cur in files ? saved.cur : Object.keys(files)[0], main = saved.main in files ? saved.main : detectMain()
   else {
-    files = { 'main.tex': n === 'beamer' ? BEAMER : ARTICLE }; cur = main = 'main.tex'
+    files = { 'main.tex': SAMPLES[n] ?? ARTICLE }; cur = main = 'main.tex'
     if (n === 'article') files['fig.png'] = new Uint8Array(await (await fetch(new URL('./samples/fig.png', import.meta.url))).arrayBuffer())
     await save()
   }
@@ -188,7 +213,7 @@ const kb = b => Math.round(b / 1024) + ' KB'
 async function compile() {
   clearTimeout(timer); ctl?.abort(); const mine = ctl = new AbortController()
   let nf = 0, nb = 0, run = 0; const t0 = performance.now()
-  state.textContent = 'compiling'; state.className = ''
+  state.textContent = 'compiling'; state.className = 'pill compiling'; document.body.classList.add('busy'); $('errline').textContent = ''
   try {
     const r = await getTeX().compile({ files: { ...files }, main, runs: 'auto', synctex: -1, signal: mine.signal, onProgress: p => {
       if (p.type === 'fetch' && !p.cached) { nf++; nb += p.bytes } else if (p.type === 'run') run = p.n
@@ -198,7 +223,8 @@ async function compile() {
     renderLog(r.log)
     stats.textContent = `fetched ${nf} files, ${kb(r.fetched)} · ${r.runs} runs · ${Math.round(performance.now() - t0)} ms`
     stats.dataset.total = total
-    state.textContent = r.ok ? 'idle' : 'error'; state.className = r.ok ? '' : 'error'
+    state.textContent = r.ok ? 'idle' : 'error'; state.className = 'pill ' + (r.ok ? '' : 'error')
+    $('errline').textContent = r.ok ? '' : /^!.*/m.exec(r.log)?.[0] ?? ''
     if (r.pdf) {
       pdfBytes = r.pdf; if (pdfUrl) URL.revokeObjectURL(pdfUrl)
       pdfUrl = URL.createObjectURL(new Blob([r.pdf], { type: 'application/pdf' }))
@@ -207,10 +233,18 @@ async function compile() {
     }
   } catch (err) {
     if (mine.signal.aborted) return
-    state.textContent = 'error'; state.className = 'error'; stats.textContent = String(err.message ?? err)
-  }
+    state.textContent = 'error'; state.className = 'pill error'; stats.textContent = String(err.message ?? err)
+  } finally { if (ctl === mine) document.body.classList.remove('busy') }
 }
 
-// prefer the full 'basic' bundle when it is served next to the minimal one (local use); CI only packs minimal
-if ((await fetch('../build/texmf-basic/index.json.gz', { method: 'HEAD' }).catch(() => ({ ok: false }))).ok) $('texmf').value = '../build/texmf-basic/'
+// bundle selector: `basic' is offered when a build is served next to the page (Pages, or a local build/texmf-basic)
+const have = async u => (await fetch(u + 'index.json.gz', { method: 'HEAD' }).catch(() => ({ ok: false }))).ok
+const basic = await have('../build/texmf-basic/') ? '../build/texmf-basic/' : await have('../bundles/basic/') ? '../bundles/basic/' : ''
+if (basic) { $('basicopt').value = basic; $('basicopt').disabled = false; $('bundle').value = basic; $('texmf').value = basic }
+$('bundle').onchange = e => { $('texmf').hidden = e.target.value !== ''; if (e.target.value) $('texmf').value = e.target.value; compile() }
+$('texmf').onchange = () => compile()
+$('aboutbtn').onclick = e => { const o = $('about').hidden; $('about').hidden = !o; e.target.setAttribute('aria-expanded', o) }
+$('kbd').textContent = /Mac/.test(navigator.platform) ? '⌘↵' : 'Ctrl+↵'
+const sp = $('split'); sp.onpointerdown = e => sp.setPointerCapture(e.pointerId) // capture: the PDF iframe would swallow moves
+sp.onpointermove = e => sp.hasPointerCapture(e.pointerId) && document.querySelector('main').style.setProperty('--ed', Math.max(200, e.clientX - 160) + 'px')
 await load('article'); compile()

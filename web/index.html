@@ -3,17 +3,29 @@
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <link rel="stylesheet" href="style.css">
 <header>
-  <label>Project <select id="project"><option value="article">article</option><option value="beamer">beamer</option></select></label>
+  <h1>tstex</h1><span class="tag">pdfLaTeX in your browser — no server</span>
+  <a href="https://github.com/lsd-cat/tstex">GitHub</a> <a href="https://www.npmjs.com/package/tstex">npm</a>
+  <button id="aboutbtn" aria-expanded="false" aria-controls="about">About</button>
+</header>
+<section id="about" hidden>
+  <p><b>Works:</b> Type 1 fonts, PNG/JPEG/PDF figures, hyperref, TikZ/pgf, beamer, microtype, SyncTeX, multi-run builds.
+  <b>Does not:</b> XeLaTeX/LuaLaTeX, OpenType/TrueType, shell escape (<code>minted</code>), EPS, Biber, BibTeX (not yet), PK fonts.
+  Output is byte-identical to <code>pdflatex</code>. Letters need the basic bundle.</p>
+</section>
+<div id="bar">
+  <label>Sample <select id="project"><option>article</option><option>beamer</option><option>tikz</option><option>letter</option></select></label>
   <label>main <select id="main"></select></label>
-  <button id="compile">Compile</button>
+  <button id="compile"><i class="spin"></i>Compile <kbd id="kbd"></kbd></button>
   <label><input type="checkbox" id="auto"> auto</label>
+  <span id="state" class="pill">idle</span> <span id="errline"></span> <span id="stats"></span>
   <button id="dlpdf" disabled>Download PDF</button>
   <button id="dlfile">Download file</button>
   <label title="SyncTeX: Cmd/Ctrl+click a line to show its page; a page number here opens its first source line">page <input id="syncpage" type="number" min="1" style="width:4em"></label>
-  <label>texmf <input id="texmf" value="../bundles/minimal/" size="28"></label>
+  <label>Bundle <select id="bundle"><option value="../bundles/minimal/">minimal</option><option value="../bundles/basic/" id="basicopt" disabled>basic</option><option value="">custom URL</option></select></label>
+  <input id="texmf" value="../bundles/minimal/" size="28" aria-label="texmf URL" hidden>
   <label><input type="checkbox" id="persist"> persistent cache</label>
   <a href="#" id="clear">clear cache</a>
-</header>
+</div>
 <main>
   <nav aria-label="Files"><ul id="files"></ul>
     <button id="new">+ New file</button>
@@ -21,9 +33,9 @@
     <label class="btn">Open folder <input type="file" id="folder" webkitdirectory multiple hidden></label></nav>
   <section class="editor"><div id="gutter" aria-hidden="true"></div>
     <textarea id="ed" aria-label="Editor" spellcheck="false" wrap="off"></textarea></section>
+  <div id="split" role="separator" aria-orientation="vertical" title="Drag to resize"></div>
   <iframe id="pdf" title="PDF preview"></iframe>
 </main>
 <details id="logbox" open><summary>Log</summary><pre id="log" role="log" aria-live="polite"></pre></details>
-<footer><b id="state">idle</b> <span id="stats"></span></footer>
 <script type="module" src="app.js"></script>
 </html>
