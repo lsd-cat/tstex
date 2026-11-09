@@ -1,7 +1,27 @@
 {
   "name": "tstex",
-  "version": "0.7.0",
+  "version": "0.1.0",
   "description": "pdfLaTeX in pure TypeScript",
+  "license": "GPL-3.0-or-later",
+  "author": "lsd-cat",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lsd-cat/tstex.git"
+  },
+  "homepage": "https://lsd-cat.github.io/tstex/",
+  "bugs": {
+    "url": "https://github.com/lsd-cat/tstex/issues"
+  },
+  "keywords": [
+    "tex",
+    "latex",
+    "pdflatex",
+    "pdftex",
+    "typesetting",
+    "pdf",
+    "browser",
+    "wasm-free"
+  ],
   "type": "module",
   "exports": {
     ".": {
@@ -17,7 +37,8 @@
   "files": [
     "dist",
     "dist-node",
-    "README.md"
+    "README.md",
+    "LICENSE"
   ],
   "engines": {
     "node": ">=22.18"
@@ -30,11 +51,13 @@
     "test:browser": "node --test test/browser/",
     "test:demo": "node --test test/browser/demo.test.ts",
     "pack": "node tools/pack-texmf.ts",
-    "typecheck": "tsc --noEmit"
+    "typecheck": "tsc --noEmit",
+    "prepublishOnly": "npm run build && node --test test/unit/"
   },
   "devDependencies": {
     "@types/node": "^26.6.6",
     "playwright": "^1.65.0",
     "typescript": "latest"
-  }
+  },
+  "sideEffects": false
 }
