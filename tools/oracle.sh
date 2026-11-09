@@ -24,7 +24,8 @@ export max_print_line=9999 # TeX Live texmf.cnf variable; only used by the latex
 case "${mode:-ini}" in latex|pdflatex|pdftex) ;; *) unset max_print_line ;; esac
 # PDF modes: fixed date so the PDF (incl. /ID, /CreationDate) is reproducible; no -output-format=dvi
 fmt="-output-format=dvi"
-case "${mode:-ini}" in pdflatex|pdftex) fmt=""; export SOURCE_DATE_EPOCH=0 FORCE_SOURCE_DATE=1 ;; esac
+export SOURCE_DATE_EPOCH=0 FORCE_SOURCE_DATE=1 # every mode: \today and format dates must not depend on the run day
+case "${mode:-ini}" in pdflatex|pdftex) fmt="" ;; esac
 rm -f "$dir/$name.expected.pdf" "$dir/$name.expected.dvi" "$dir/$name.expected.dvitype" "$dir/$name.expected.out" "$dir/$name.expected.synctex" # no stale artefacts from an earlier version of the test
 tmp=$(mktemp -d); trap 'rm -rf "$tmp"' EXIT
 # every input lives in the temp dir so pdftex prints ./name (path-independent 79-col wrapping)

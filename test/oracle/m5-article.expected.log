@@ -118,7 +118,7 @@ Completed box being shipped out [1]
 ....\hbox(0.0+0.0)x345.0
 ..\glue 25.0
 ..\glue(\lineskip) 0.0
-..\vbox(550.0+0.0)x345.0, glue set 57.0139fil
+..\vbox(550.0+0.0)x345.0, glue set 57.1472fil
 ...\write-{}
 ...\glue(\topskip) 10.0
 ...\hbox(0.0+0.0)x0.0
@@ -190,29 +190,25 @@ Completed box being shipped out [1]
 ...\glue(\parskip) 0.0 plus 1.0
 ...\glue(\parskip) 0.0
 ...\glue(\lineskip) 1.0
-...\hbox(8.33331+2.33331)x345.0, glue set 126.48174fil
+...\hbox(8.2+2.33331)x345.0, glue set 131.62126fil
 ....\glue(\leftskip) 0.0 plus 1.0fil
 ....\hbox(0.0+0.0)x0.0
-....\OT1/cmr/m/n/12 N
-....\OT1/cmr/m/n/12 o
+....\OT1/cmr/m/n/12 J
+....\OT1/cmr/m/n/12 a
+....\OT1/cmr/m/n/12 n
 ....\kern-0.32639
-....\OT1/cmr/m/n/12 v
-....\kern-0.32639
-....\OT1/cmr/m/n/12 e
-....\OT1/cmr/m/n/12 m
-....\kern-0.32639
-....\OT1/cmr/m/n/12 b
-....\kern0.32639
-....\OT1/cmr/m/n/12 e
+....\OT1/cmr/m/n/12 u
+....\OT1/cmr/m/n/12 a
 ....\OT1/cmr/m/n/12 r
+....\OT1/cmr/m/n/12 y
 ....\glue 3.91663 plus 1.95831 minus 1.30554
-....\OT1/cmr/m/n/12 8
+....\OT1/cmr/m/n/12 1
 ....\OT1/cmr/m/n/12 ,
 ....\glue 3.91663 plus 2.44789 minus 1.04443
-....\OT1/cmr/m/n/12 2
+....\OT1/cmr/m/n/12 1
+....\OT1/cmr/m/n/12 9
+....\OT1/cmr/m/n/12 7
 ....\OT1/cmr/m/n/12 0
-....\OT1/cmr/m/n/12 2
-....\OT1/cmr/m/n/12 6
 ....\penalty 10000
 ....\glue(\parfillskip) 0.0
 ....\glue(\rightskip) 0.0 plus 1.0fil
@@ -3090,4 +3086,4 @@ L3 programming layer <2026-09-09>
  ***********
  )
 
-Output written on m5-article.dvi (2 pages, 3892 bytes).
+Output written on m5-article.dvi (2 pages, 3888 bytes).

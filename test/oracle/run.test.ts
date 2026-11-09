@@ -68,7 +68,7 @@ for (const file of readdirSync(dir).filter(f => f.endsWith('.tex')).sort()) {
     let engine
     for (let i = 0; i < runs; i++) {
       engine = new Engine({ fs, format, limits })
-      await engine.run({ jobname: name, mode, ...(pdfMode && { date: new Date(0) }), ...(!isNaN(synctex) && { synctex }), cwd })
+      await engine.run({ jobname: name, mode, date: new Date(0), ...(!isNaN(synctex) && { synctex }), cwd })
       for (const [n, v] of engine.outputFiles) overlay.set(n, v)
     }
     assert.strictEqual(normalizeLog(engine!.log), expected)
