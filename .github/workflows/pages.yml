@@ -8,7 +8,6 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     environment: { name: github-pages, url: '${{ steps.deploy.outputs.page_url }}' }
-    env: { TL: '${{ runner.temp }}/tl' }
     steps:
       - uses: actions/checkout@v7
       - uses: actions/setup-node@v7
@@ -19,8 +18,8 @@ jobs:
         run: echo "list=$(node tools/pack-texmf.ts --list-extra | tr '\n' ' ')" >> "$GITHUB_OUTPUT"
       - uses: ./.github/actions/texlive
         with: { scheme: scheme-basic, packages: '${{ steps.extra.outputs.list }}' }
-      - run: node tools/build-format.ts --texmf "$TL/texmf-var" --texmf "$TL/texmf-dist" --out build/latex.fmt
-      - run: node tools/pack-texmf.ts --preset basic --texmf-dist "$TL/texmf-dist" --texmf-var "$TL/texmf-var" --fmt build/latex.fmt --out site/bundles/basic
+      - run: node tools/build-format.ts --texmf "$RUNNER_TEMP/tl/texmf-var" --texmf "$RUNNER_TEMP/tl/texmf-dist" --out build/latex.fmt
+      - run: node tools/pack-texmf.ts --preset basic --texmf-dist "$RUNNER_TEMP/tl/texmf-dist" --texmf-var "$RUNNER_TEMP/tl/texmf-var" --fmt build/latex.fmt --out site/bundles/basic
       - run: |
           mkdir -p site/bundles
           cp -r web dist site/ && cp -r bundles/minimal site/bundles/
