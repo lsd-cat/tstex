@@ -26,7 +26,8 @@ nav li button { border: 0; background: none; color: inherit; cursor: pointer }
 #gutter div.err { background: #f99; color: #000 }
 #ed { flex: 1; border: 0; resize: none; padding: 4px; font: inherit; tab-size: 2; white-space: pre; overflow: auto; background: var(--bg); color: var(--fg) }
 #pdf { width: 100%; height: 100%; border: 0; background: #fff }
-#logbox { border-top: 1px solid var(--line); max-height: 30vh; overflow: auto }
+#logbox { flex: 0 0 auto; height: 24vh; min-height: 3.5em; max-height: 70vh; overflow: auto; resize: nonl; border-top: 1px solid var(--line) }
+#logbox:not([open]) { height: auto; min-height: 0; resize: none }
 #log { margin: 0; padding: 4px 8px; font: 12px ui-monospace, Menlo, monospace; white-space: pre-wrap; resize: vertical; overflow: auto }
 #log .bang { color: var(--err); font-weight: bold }
 #log .ln { color: var(--acc); cursor: pointer; text-decoration: underline }
