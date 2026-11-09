@@ -1,5 +1,5 @@
 {
-  "name": "tstex",
+  "name": "@lsd-cat/tstex",
   "version": "0.1.0",
   "description": "pdfLaTeX in pure TypeScript",
   "license": "GPL-3.0-or-later",

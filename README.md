@@ -1,7 +1,7 @@
 # tstex
 
 [![ci](https://github.com/lsd-cat/tstex/actions/workflows/ci.yml/badge.svg)](https://github.com/lsd-cat/tstex/actions/workflows/ci.yml)
-[![npm](https://img.shields.io/npm/v/tstex)](https://www.npmjs.com/package/tstex)
+[![npm](https://img.shields.io/npm/v/@lsd-cat/tstex)](https://www.npmjs.com/package/@lsd-cat/tstex)
 [![licence](https://img.shields.io/badge/licence-GPL--3.0--or--later-blue)](LICENSE)
 
 pdfLaTeX in TypeScript, for browsers (in a Web Worker) and Node 22.18 or later, with no runtime dependencies.
@@ -12,17 +12,17 @@ https://lsd-cat.github.io/tstex/ compiles in your browser; nothing is uploaded.
 
 ## Install / Usage
 
-Node (`npm install tstex`); CLI: `tstex --fmt latex.fmt --pdf --runs auto file.tex` over a TeX Live tree (`TEXMFDIST`):
+Node (`npm install @lsd-cat/tstex`); CLI: `tstex --fmt latex.fmt --pdf --runs auto file.tex` over a TeX Live tree (`TEXMFDIST`):
 
 ```js
-import { createTeX } from 'tstex'
+import { createTeX } from '@lsd-cat/tstex'
 const tex = createTeX({ texmf: '/path/to/bundle' })   // or an https:// URL: files are cached in ~/.cache/tstex
 const { pdf, log } = await tex.compile({ files: { 'main.tex': source }, main: 'main.tex', runs: 'auto' })
 ```
 Browser (bundlers must emit `dist/worker.js` next to `dist/index.js`):
 
 ```js
-import { createTeX } from 'tstex'
+import { createTeX } from '@lsd-cat/tstex'
 const tex = createTeX({ texmf: 'https://example.org/texmf/2026-1/', cache: 'persistent' })
 const { pdf, log, outputs, fetched } = await tex.compile({
   files: { 'main.tex': source, 'fig.png': pngBytes }, main: 'main.tex',
