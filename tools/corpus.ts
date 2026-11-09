@@ -121,6 +121,7 @@ async function runDoc(doc: Doc, timeout: number): Promise<Res> {
     const logEq = nl(pl) !== null && nl(pl) === nl(el)
     const np = pp && normalizePdf(pp), ne = ep && normalizePdf(ep), pdfEq = np !== null && np === ne
     if (logEq && pdfEq) return { cat: 'identical', detail: `raw-pdf-bytes ${Buffer.compare(pp!, ep!) === 0 ? 'equal' : 'differ'}, runs ${p.runs}/${e.runs}`, ...t }
+    if (logEq && !pp && !ep) return { cat: 'identical', detail: `no pdf on either side, runs ${p.runs}/${e.runs}`, ...t }
     if (pe && ee && pe === ee) return { cat: 'both-error', detail: pe, ...t }
     if (pe && !ee) return { cat: 'pdftex-error', detail: pe, ...t }
     if (ee) return { cat: 'engine-error', detail: (el && unsup(el)) ? 'unsupported: ' + unsup(el)!.slice(12).trim() : ee, ...t }
