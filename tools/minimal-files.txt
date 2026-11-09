@@ -513,3 +513,5 @@ texmf-dist/tex/latex/totpages/totpages.sty
 texmf-dist/tex/latex/trimspaces/trimspaces.sty
 texmf-dist/tex/latex/upquote/upquote.sty
 texmf-dist/tex/latex/xkeyval/xkeyval.sty
+# demo samples
+texmf-dist/tex/latex/base/letter.cls
