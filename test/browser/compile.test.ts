@@ -65,7 +65,7 @@ for (const [name, type] of Object.entries(process.env.CI_BROWSERS === 'chromium'
       const first = await compile(docs[0]!)
       process.stdout.write(`# ${name} ${docs[0]}: ${first.requests} requests, ${first.served} bytes, ${first.runs} runs\n`)
       assert.ok(first.requests > 0, 'Playwright saw the worker requests')
-      assert.ok(first.served < 6e6, `first compile fetched ${first.served} bytes`)
+      assert.ok(first.served < 14e6, /* bundles/minimal is 21 MB (pdftex.map alone 5.6 MB, latex.fmt 3 MB): demand-driven, not the whole bundle */ `first compile fetched ${first.served} bytes`)
       for (const d of [docs[0]!, docs[1]!]) {
         const r = d === docs[0] ? first : await compile(d)
         if (d !== docs[0]) process.stdout.write(`# ${name} ${d}: ${r.requests} requests, ${r.served} bytes\n`)

@@ -87,7 +87,7 @@ test('CLI writes only inside the job directory, never through a symlink', () => 
   symlinkSync(top, join(job, 'up'))
   writeFileSync(join(job, 't.tex'), pre.replace('\\scrollmode ', '') + '\\immediate\\openout1=ok \\immediate\\write1{ok}' +
     '\\immediate\\openout2=up/escaped \\immediate\\openout3=../escaped \\immediate\\openout4=/tmp/escaped\\end\n')
-  const r = spawnSync(process.execPath, [tstex, '--texmf', texmf, join(job, 't.tex')], { encoding: 'latin1' })
+  const r = spawnSync(process.execPath, [tstex, '--texmf', texmf, join(job, 't.tex')], { encoding: 'latin1', env: { ...process.env, TEXMFDIST: '' } })
   assert.strictEqual(r.status, 1)
   assert.match(r.stderr, /not writing "t\.log"/)
   assert.strictEqual(readFileSync(join(top, 'victim.log'), 'latin1'), 'untouched')
@@ -153,8 +153,7 @@ for (const [name, pdf] of Object.entries(hostile_pdfs)) test(`hostile PDF: ${nam
 })
 
 // hostile Type 1 fonts for the subsetter (writet1.c): cmr10.pfb with its eexec part edited
-const TEXMFDIST = process.env.TEXMFDIST ?? '/Users/g/texlive/2026/texmf-dist'
-const pfb = readFileSync(join(TEXMFDIST, 'fonts/type1/public/amsfonts/cm/cmr10.pfb'))
+const pfb = readFileSync(new URL('../../bundles/minimal/fonts/type1/public/amsfonts/cm/cmr10.pfb', import.meta.url))
 const segs: Buffer[] = [] // PFB: 128, type, 4-byte length, data; types 1 (text), 2 (binary), 3 (end)
 for (let i = 0; pfb[i] === 128 && pfb[i + 1] !== 3; i += 6 + pfb.readUInt32LE(i + 2)) segs.push(pfb.subarray(i + 6, i + 6 + pfb.readUInt32LE(i + 2)))
 const crypt = (b: Uint8Array, r: number, enc: boolean) => Uint8Array.from(b, c => { const p = c ^ (r >> 8); r = (((enc ? p : c) + r) * 52845 + 22719) & 0xffff; return p })
