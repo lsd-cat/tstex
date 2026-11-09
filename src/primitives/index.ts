@@ -1,7 +1,7 @@
 // §1336 init_prim: registry of the per-command files, keyed by command code
 import type { Engine } from '../engine.ts'
 import { Cmd } from '../types.ts'
-import { primitive } from '../hash.ts'
+import { primitive, set_text } from '../hash.ts'
 import { frozen_relax, frozen_end_group, frozen_fi, frozen_null_font, frozen_cr, frozen_right, frozen_endv,
   frozen_end_template, end_write, level_one } from '../eqtb.ts'
 import { null_list, omit_template } from '../nodes.ts'
@@ -145,15 +145,15 @@ export function init_prim(e: Engine, etex = false): void {
     if (name === 'write') e.write_loc = loc // §1344
     const f = frozen[name]
     if (f !== undefined) {
-      e.text.set(f, name); e.eq_type[f] = e.eq_type[loc]!; e.eq_level[f] = e.eq_level[loc]!; e.equiv[f] = e.equiv[loc]!
+      set_text(e, f, name); e.eq_type[f] = e.eq_type[loc]!; e.eq_level[f] = e.eq_level[loc]!; e.equiv[f] = e.equiv[loc]!
     }
   }
   // §780
-  e.text.set(frozen_end_template, 'endtemplate'); e.text.set(frozen_endv, 'endtemplate')
+  set_text(e, frozen_end_template, 'endtemplate'); set_text(e, frozen_endv, 'endtemplate')
   e.eq_type[frozen_endv] = Cmd.endv; e.equiv[frozen_endv] = null_list; e.eq_level[frozen_endv] = level_one
   e.eq_type[frozen_end_template] = Cmd.end_template; e.equiv[frozen_end_template] = null_list; e.eq_level[frozen_end_template] = level_one
   e.info[omit_template] = cs_token_flag + frozen_end_template // §790
   // §1369
-  e.text.set(end_write, 'endwrite'); e.eq_level[end_write] = level_one; e.eq_type[end_write] = Cmd.outer_call; e.equiv[end_write] = 0
+  set_text(e, end_write, 'endwrite'); e.eq_level[end_write] = level_one; e.eq_type[end_write] = Cmd.outer_call; e.equiv[end_write] = 0
   e.no_new_control_sequence = true
 }

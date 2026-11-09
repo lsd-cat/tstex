@@ -6,7 +6,7 @@ import { print, print_char, print_int, print_nl, print_esc, print_hex, slow_prin
 import { print_scaled, xn_over_d, unity } from './arith.ts'
 import { error, print_err, help, overflow } from './error.ts'
 import { int_par, font_id_base, int_base, tracing_online_code, hash_base, single_base, null_cs, active_base } from './eqtb.ts'
-import { sprint_cs } from './hash.ts'
+import { sprint_cs, text, set_text } from './hash.ts'
 import { print_file_name } from './files.ts'
 import { delete_glue_ref, new_char } from './nodes.ts'
 import type { CharNode } from './nodes.ts'
@@ -274,7 +274,7 @@ export function find_font_dimen(e: Engine, writing: boolean): void {
     } else e.cur_val = n + e.param_base[f]!
   }
   if (e.cur_val === e.fmem_ptr) { // §579
-    print_err(e, 'Font '); print_esc(e, e.text.get(font_id_base + f) ?? 0)
+    print_err(e, 'Font '); print_esc(e, text(e, font_id_base + f) ?? 0)
     print(e, ' has only '); print_int(e, e.font_params[f]!); print(e, ' fontdimen parameters')
     help(e, 'To increase the number of font parameters, you must', 'use \\fontdimen immediately after the \\font is loaded.')
     error(e)
@@ -367,7 +367,7 @@ export function auto_expand_font(e: Engine, f: number, x: number): number {
   const k = ++e.font_ptr, fi = e.font_info
   if (e.font_ptr >= e.lim.font_max) overflow(e, 'maximum internal font number (font_max)', e.lim.font_max)
   e.font_name[k] = expand_font_name(e, f, x); e.font_area[k] = e.font_area[f]!; e.font_check[k] = 0 // pdftex leaves font_check unset (uninitialised memory in its DVI fnt_def)
-  const t = e.text.get(font_id_base + f); if (t !== undefined) e.text.set(font_id_base + k, t)
+  const t = text(e, font_id_base + f); if (t !== undefined) set_text(e, font_id_base + k, t)
   e.hyphen_char[k] = e.hyphen_char[f]!; e.skew_char[k] = e.skew_char[f]!
   e.font_bchar[k] = e.font_bchar[f]!; e.font_false_bchar[k] = e.font_false_bchar[f]!
   e.font_bc[k] = e.font_bc[f]!; e.font_ec[k] = e.font_ec[f]!; e.font_size[k] = e.font_size[f]!; e.font_dsize[k] = e.font_dsize[f]!
@@ -557,7 +557,7 @@ function copy_font_info(e: Engine, f: number): number {
 export function new_letterspaced_font(e: Engine, a: number, copy: boolean): void {
   get_r_token(e); const u = e.cur_cs
   let t: string
-  if (u >= hash_base) t = e.text.get(u) ?? ''
+  if (u >= hash_base) t = text(e, u) ?? ''
   else if (u >= single_base) t = u === null_cs ? 'FONT' : String.fromCharCode(u - single_base)
   else {
     const old_setting = e.selector, b = e.cur_str.length
@@ -571,5 +571,5 @@ export function new_letterspaced_font(e: Engine, a: number, copy: boolean): void
   else { scan_int(e); f = letter_space_font(e, u, k, fix_int(e.cur_val, -1000, 1000)) }
   e.equiv[u] = f
   e.eq_type[font_id_base + f] = e.eq_type[u]!; e.eq_level[font_id_base + f] = e.eq_level[u]!; e.equiv[font_id_base + f] = e.equiv[u]!
-  e.text.set(font_id_base + f, t)
+  set_text(e, font_id_base + f, t)
 }

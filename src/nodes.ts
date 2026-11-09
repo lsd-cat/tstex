@@ -1,4 +1,5 @@
 // §115–123 one-word token nodes, §150–153 and §177–178 glue specifications, §162 fixed list heads, §200–203 reference counts
+import { text } from './hash.ts'
 // Token lists keep TeX's numeric pointers (info/link arrays, null=0) so that equiv, cur_chr,
 // loc and cur_val stay integers as in tex.web; box/glue nodes are objects.
 import type { Engine } from './engine.ts'
@@ -395,7 +396,7 @@ export function copy_node_list(e: Engine, p: Node | null): Node | null {
 
 // §174 print_font_identifier (pdftex.web: an expanded font shows its base font's name, and its ratio unless \pdftracingfonts>0)
 export function print_font_identifier(e: Engine, f: number): void {
-  print_esc(e, e.text.get(font_id_base + (e.pdf_font_blink[f] === 0 ? f : e.pdf_font_blink[f]!)) ?? 0)
+  print_esc(e, text(e, font_id_base + (e.pdf_font_blink[f] === 0 ? f : e.pdf_font_blink[f]!)) ?? 0)
   if (e.equiv[int_base + pdf_tracing_fonts_code]! > 0) {
     print(e, ' ('); print(e, e.font_name[f]!)
     if (e.font_size[f] !== e.font_dsize[f]) { print(e, '@'); print_scaled(e, e.font_size[f]!); print(e, 'pt') }

@@ -5,7 +5,8 @@ import type { InState } from './types.ts'
 import { tracing_stats_code, pdf_output_code } from './types.ts'
 import { print, print_nl, print_char, print_esc, print_int, print_ln } from './print.ts'
 import { JumpOut, fatal_error, overflow, print_err, token_list } from './error.ts'
-import { init_eqtb, fix_date_and_time, eqtb_size, int_base, new_line_char_code, end_line_char_code, cat_code_base, level_one } from './eqtb.ts'
+import { hash_prime } from './hash.ts'
+import { init_eqtb, fix_date_and_time, eqtb_size, undefined_control_sequence, int_base, new_line_char_code, end_line_char_code, cat_code_base, level_one } from './eqtb.ts'
 import { init_prim } from './primitives/index.ts'
 import { new_line, end_token_list, end_file_reading, normal, term_line } from './input.ts'
 import type { InputFile } from './input.ts'
@@ -65,7 +66,11 @@ export class Engine {
   // §253 eqtb, §256 hash
   eq_level = new Uint8Array(eqtb_size + 1); eq_type = new Uint8Array(eqtb_size + 1)
   equiv = new Int32Array(eqtb_size + 1); xeq_level = new Uint8Array(eqtb_size + 1)
-  hash = new Map<string, number>(); text = new Map<number, string>()
+  // §256 hash_head[h] (h<hash_prime) starts the chain of locations with hash h, linked by hash_next; text_start/text_len locate
+  // text(p) in str_pool, whose byte 0 is unused so that text_start=0 is TeX's text(p)=0
+  hash_head = new Int32Array(hash_prime); hash_next = new Int32Array(undefined_control_sequence + 1)
+  text_start = new Int32Array(undefined_control_sequence + 1); text_len = new Int32Array(undefined_control_sequence + 1)
+  str_pool = new Uint8Array(1 << 16); pool_ptr = 1
   prim = new Map<string, number>(); prim_text: (string | number)[] = [0] // pdftex.web primitives table; 0 is undefined_primitive
   hash_used = 0; no_new_control_sequence = true; cs_count = 0
   // §271 save stack
@@ -154,7 +159,7 @@ export class Engine {
   scanner_status = normal; warning_index = 0; def_ref = 0
   param_stack: number[] = []; param_ptr = 0; max_param_stack = 0; align_state = 1000000; base_ptr = 0
   par_loc = 0; par_token = 0; force_eof = false; write_loc = 0
-  buffer: number[] = []; first = 0; last = 0; max_buf_stack = 0
+  buffer!: Uint8Array; first = 0; last = 0; max_buf_stack = 0
   // §410 scanning
   cur_val = 0; cur_val_level = int_val; radix = 0; cur_order = 0; expand_depth_count = 0
   // §387–388 macro_call
@@ -194,6 +199,7 @@ export class Engine {
     this.fs = opts.fs; this.format = opts.format ?? null
     if (opts.tcx !== undefined) read_tcx_file(this, opts.tcx)
     this.lim = { ...default_limits, ...opts.limits }; this.dvi_limit = this.lim.dvi_buf_size
+    this.buffer = new Uint8Array(this.lim.buf_size + 1) // §30 buffer: array[0..buf_size] of ASCII_code
     const n = this.lim.font_max + 1
     this.pdf_font_type = new Uint8Array(n); this.pdf_font_auto_expand = new Uint8Array(n)
     this.pdf_font_blink = new Int32Array(n); this.pdf_font_elink = new Int32Array(n); this.pdf_font_stretch = new Int32Array(n)

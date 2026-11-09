@@ -1,4 +1,5 @@
 // §1299–1329 \dump and undump: the format is an in-memory snapshot of the tables TeX dumps
+import { text } from './hash.ts'
 import type { Engine } from './engine.ts'
 import { batch_mode, log_only, term_and_log, new_string } from './types.ts'
 import { print, print_char, print_nl, print_ln, print_int, print_esc, slow_print } from './print.ts'
@@ -11,11 +12,11 @@ import { etex_ext_vars } from './engine.ts'
 
 // What §1307–1327 dump: dynamic memory (token lists, nodes, glue specs, \parshape arrays), eqtb (xeq_level is constant
 // at level one), par_loc/write_loc, the hash and primitive tables, the fonts, the hyphenation tables, interaction, format_ident.
-// The string pool has no counterpart: names live in `text`/`hash`, file names are JS strings.
+// The string pool holds control-sequence names only (str_pool, text_start/text_len); other strings are JS strings.
 const fmt_keys = [
   'info', 'link', 'avail', 'mem_end', 'nodes', 'nodes_free', 'spec', 'spec_avail', 'shapes',
   'eq_level', 'eq_type', 'equiv', 'par_loc', 'par_token', 'write_loc',
-  'hash', 'text', 'prim', 'prim_text', 'hash_used', 'cs_count',
+  'hash_head', 'hash_next', 'text_start', 'text_len', 'str_pool', 'pool_ptr', 'prim', 'prim_text', 'hash_used', 'cs_count',
   'font_info', 'fmem_ptr', 'font_ptr', 'font_check', 'font_size', 'font_dsize', 'font_params', 'font_name', 'font_area',
   'font_bc', 'font_ec', 'font_glue', 'hyphen_char', 'skew_char', 'bchar_label', 'font_bchar', 'font_false_bchar',
   'char_base', 'width_base', 'height_base', 'depth_base', 'italic_base', 'lig_kern_base', 'kern_base', 'exten_base', 'param_base',
@@ -76,7 +77,7 @@ export function store_fmt_file(e: Engine): void {
   print_ln(e); print_int(e, e.cs_count); print(e, ' multiletter control sequences')
   // §1320, §1322 the fonts
   for (let k = 0; k <= e.font_ptr; k++) {
-    print_nl(e, '\\font'); print_esc(e, e.text.get(font_id_base + k) ?? 0); print_char(e, 61)
+    print_nl(e, '\\font'); print_esc(e, text(e, font_id_base + k) ?? 0); print_char(e, 61)
     print_file_name(e, e.font_name[k]!, e.font_area[k]!, '')
     if (e.font_size[k] !== e.font_dsize[k]) { print(e, ' at '); print_scaled(e, e.font_size[k]!); print(e, 'pt') }
   }
@@ -195,7 +196,7 @@ class Reader {
   }
 }
 const decode = (data: Uint8Array): Snapshot => new Reader(data).get() as Snapshot
-const fmt_magic = 'tstex format 2' // §1307 format_ident check: bump when fmt_keys or the encoding change
+const fmt_magic = 'tstex format 3' // §1307 format_ident check: bump when fmt_keys or the encoding change
 const fmt_max = 128 << 20 // decompressed bytes accepted (latex.fmt: 14 MB); a gzip bomb stops here
 const pipe = async (b: Uint8Array, s: CompressionStream | DecompressionStream, max = Infinity) => {
   const r = new Blob([b as Uint8Array<ArrayBuffer>]).stream().pipeThrough(s).getReader(), parts: Uint8Array[] = []

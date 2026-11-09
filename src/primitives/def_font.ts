@@ -1,4 +1,5 @@
 // §1256–1260 \font: new_font
+import { text, set_text } from '../hash.ts'
 import type { Engine } from '../engine.ts'
 import { Cmd, new_string } from '../types.ts'
 import { print, print_esc } from '../print.ts'
@@ -19,7 +20,7 @@ export function assign(e: Engine, a: number): void {
   if (e.job_name === '') open_log_file(e)
   get_r_token(e); const u = e.cur_cs
   let t: string
-  if (u >= hash_base) t = e.text.get(u) ?? ''
+  if (u >= hash_base) t = text(e, u) ?? ''
   else if (u >= single_base) t = u === null_cs ? 'FONT' : String.fromCharCode(u - single_base)
   else {
     const old_setting = e.selector, b = e.cur_str.length
@@ -59,5 +60,5 @@ export function assign(e: Engine, a: number): void {
   if (f < 0) f = read_font_info(e, u, e.cur_name, e.cur_area, s)
   define(e, a, u, Cmd.set_font, f)
   e.eq_type[font_id_base + f] = e.eq_type[u]!; e.eq_level[font_id_base + f] = e.eq_level[u]!; e.equiv[font_id_base + f] = e.equiv[u]!
-  e.text.set(font_id_base + f, t)
+  set_text(e, font_id_base + f, t)
 }

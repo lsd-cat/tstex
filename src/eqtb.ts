@@ -3,7 +3,7 @@ import type { Engine } from './engine.ts'
 import { Cmd } from './types.ts'
 import { print, print_char, print_esc, print_int, print_nl, begin_diagnostic, end_diagnostic } from './print.ts'
 import { print_scaled } from './arith.ts'
-import { sprint_cs } from './hash.ts'
+import { sprint_cs, text, set_text } from './hash.ts'
 import { print_cmd_chr, show_token_list } from './tokens.ts'
 import { delete_token_ref, delete_glue_ref, print_spec, zero_glue, flush_node_list, node_at, node_free, show_node_list } from './nodes.ts'
 import { back_input } from './input.ts'
@@ -95,10 +95,10 @@ export function init_eqtb(e: Engine): void {
   e.xeq_level.fill(level_one, int_base)
   // §258, §1216
   e.hash_used = frozen_control_sequence; e.cs_count = 0
-  e.eq_type[frozen_dont_expand] = Cmd.dont_expand; e.text.set(frozen_dont_expand, 'notexpanded:')
+  e.eq_type[frozen_dont_expand] = Cmd.dont_expand; set_text(e, frozen_dont_expand, 'notexpanded:')
   e.eq_type[frozen_primitive] = Cmd.ignore_spaces; e.equiv[frozen_primitive] = 1 // pdftex.web
-  e.eq_level[frozen_primitive] = level_one; e.text.set(frozen_primitive, 'pdfprimitive')
-  e.text.set(frozen_protection, 'inaccessible')
+  e.eq_level[frozen_primitive] = level_one; set_text(e, frozen_primitive, 'pdfprimitive')
+  set_text(e, frozen_protection, 'inaccessible')
 }
 
 // §241 fix_date_and_time (web2c takes the system clock)
@@ -150,7 +150,7 @@ export function show_eqtb(e: Engine, n: number): void {
       else if (n < math_font_base + 16) { print_esc(e, 'textfont'); print_int(e, n - math_font_base) }
       else if (n < math_font_base + 32) { print_esc(e, 'scriptfont'); print_int(e, n - math_font_base - 16) }
       else { print_esc(e, 'scriptscriptfont'); print_int(e, n - math_font_base - 32) }
-      print_char(e, 61); print_esc(e, e.text.get(font_id_base + e.equiv[n]!) ?? 0)
+      print_char(e, 61); print_esc(e, text(e, font_id_base + e.equiv[n]!) ?? 0)
     }
     else if (n < math_code_base) { // §235
       if (n < lc_code_base) { print_esc(e, 'catcode'); print_int(e, n - cat_code_base) }
