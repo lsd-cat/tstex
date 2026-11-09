@@ -1,33 +1,30 @@
 # Corpus status
 
-Engine 0e824cf; pdfTeX 3.141592653-2.6-1.40.29 (TeX Live 2026); 4060 documents (partial rerun merged; timings are from this run only).
+Engine 2a87147; pdfTeX 3.141592653-2.6-1.40.29 (TeX Live 2026); 4060 documents (partial rerun merged; timings are from this run only).
 
 | category | count |
 |---|---|
-| identical | 2990 |
-| both-error | 46 |
-| pdf-differs | 11 |
+| identical | 3014 |
+| both-error | 42 |
+| pdf-differs | 7 |
 | log-differs-only | 0 |
-| engine-error | 108 |
+| engine-error | 90 |
 | pdftex-error | 0 |
-| timeout | 30 |
+| timeout | 32 |
 | skipped | 875 |
 
-| side | p50 | p95 | (this run, documents run: 2801) |
+| side | p50 | p95 | (this run, documents run: 195) |
 |---|---|---|---|
-| pdftex | 3.1 s | 18.9 s | |
-| engine | 10.9 s | 66.9 s | |
+| pdftex | 4.7 s | 333.5 s | |
+| engine | 12.6 s | 386.9 s | |
 
 ## engine-error by message
 
 - 62x unsupported: bitmap (PK
 - 11x ! Font T2A/cmr/m/n/14.4=larm1440 at 14.4pt not loadable: Metric (TFM) file not found.
-- 10x unsupported: \pdffiledump
-- 6x no pdf written
 - 4x unsupported: TeXXeT
 - 2x unsupported: TrueType/OpenType font files
 - 2x ! Font T2A/cmr/b/n/10=larb1000 at 10.0pt not loadable: Metric (TFM) file not found.
-- 2x ! Infinite glue shrinkage found in box being split.
 - 2x ! Critical Class ctexbook Error: CTeX fontset `fandol' is unavailable in
 - 2x ! Critical Class ctexrep Error: CTeX fontset `fandol' is unavailable in
 - 1x ! Font T2A/lmr/bx/n/8=labx0800 at 8.0pt not loadable: Metric (TFM) file not found.
@@ -50,6 +47,7 @@ identical | doc/bibtex/alpha-persian/xelatexsample.tex | no pdf on either side, 
 identical | doc/bibtex/apacite/apacxmpl.tex | raw-pdf-bytes equal, runs 4/4
 identical | doc/bibtex/apalike-ejor/example.tex | raw-pdf-bytes equal, runs 3/3
 identical | doc/bibtex/babelbib/babelbibtest.tex | raw-pdf-bytes equal, runs 3/3
+identical | doc/bibtex/babelbib/getversion.tex | raw-pdf-bytes equal, runs 1/1
 identical | doc/bibtex/bestpapers/bestpapers-guide.tex | raw-pdf-bytes equal, runs 2/2
 identical | doc/bibtex/bibupdate/bibupdate.tex | raw-pdf-bytes equal, runs 3/3
 identical | doc/bibtex/bookdb/bookdb.tex | raw-pdf-bytes equal, runs 2/2
@@ -447,6 +445,8 @@ identical | doc/latex/a5comb/a5comb.tex | raw-pdf-bytes equal, runs 2/2
 identical | doc/latex/aastex/aastex701-sample.tex | raw-pdf-bytes equal, runs 4/4
 identical | doc/latex/abc/example.tex | raw-pdf-bytes equal, runs 2/2
 identical | doc/latex/abc/mupexa.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/latex/abntex2/abntex2cite-alf.tex | raw-pdf-bytes equal, runs 4/4
+identical | doc/latex/abntex2/abntex2cite.tex | raw-pdf-bytes equal, runs 4/4
 identical | doc/latex/abntex2/examples/abntex2-modelo-artigo.tex | raw-pdf-bytes equal, runs 3/3
 identical | doc/latex/abntex2/examples/abntex2-modelo-glossarios.tex | raw-pdf-bytes equal, runs 4/4
 identical | doc/latex/abntex2/examples/abntex2-modelo-projeto-pesquisa.tex | raw-pdf-bytes equal, runs 4/4
@@ -614,6 +614,7 @@ identical | doc/latex/authorarchive/examples/brucker-authorarchive-2016-llncs-a4
 identical | doc/latex/authorarchive/examples/brucker-authorarchive-2016-llncs.tex | no pdf on either side, runs 1/1
 identical | doc/latex/authorarchive/examples/brucker-authorarchive-2016-lni.tex | no pdf on either side, runs 1/1
 identical | doc/latex/authorarchive/examples/brucker-authorarchive-2016.tex | no pdf on either side, runs 1/1
+identical | doc/latex/authorindex/authorindex.tex | raw-pdf-bytes equal, runs 2/2
 identical | doc/latex/autoarea/autodemo/autodemo.tex | raw-pdf-bytes equal, runs 1/1
 identical | doc/latex/autonum/test-autonum.tex | raw-pdf-bytes equal, runs 3/3
 identical | doc/latex/autonum/test-freeze.tex | no pdf on either side, runs 2/2
@@ -773,6 +774,7 @@ identical | doc/latex/bgteubner/beispiel1.tex | no pdf on either side, runs 2/2
 identical | doc/latex/bgteubner/bgteubner-with-hyperref.tex | no pdf on either side, runs 1/1
 identical | doc/latex/bgteubner/bgteubner.tex | no pdf on either side, runs 1/1
 identical | doc/latex/bgteubner/cdcover.tex | no pdf on either side, runs 1/1
+identical | doc/latex/bgteubner/getversion.tex | raw-pdf-bytes equal, runs 1/1
 identical | doc/latex/bgteubner/installation.tex | no pdf on either side, runs 1/1
 identical | doc/latex/bgteubner/math.tex | no pdf on either side, runs 1/1
 identical | doc/latex/bgteubner/testquick.tex | no pdf on either side, runs 1/1
@@ -782,6 +784,9 @@ identical | doc/latex/bgteubner/umbruch2.tex | no pdf on either side, runs 1/1
 identical | doc/latex/bgteubner/umbruch3.tex | no pdf on either side, runs 1/1
 identical | doc/latex/bibarts/ba-short.tex | raw-pdf-bytes equal, runs 2/2
 identical | doc/latex/bibarts/bibarts.tex | raw-pdf-bytes equal, runs 3/3
+identical | doc/latex/biblatex-abnt/NBR10520-2002_test.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/latex/biblatex-abnt/NBR6023-2002_test.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/latex/biblatex-abnt/NBR6023-2018_test.tex | raw-pdf-bytes equal, runs 2/2
 identical | doc/latex/biblatex-abnt/results.tex | no pdf on either side, runs 2/2
 identical | doc/latex/biblatex-chem/biblatex-chem.tex | raw-pdf-bytes equal, runs 2/2
 identical | doc/latex/biblatex-lni/mwe-de.tex | raw-pdf-bytes equal, runs 3/3
@@ -869,6 +874,7 @@ identical | doc/latex/bxpdfver/sample-bxpdfver.tex | raw-pdf-bytes equal, runs 2
 identical | doc/latex/bytefield/bf-example.tex | raw-pdf-bytes equal, runs 2/2
 identical | doc/latex/cachepic/cachepic.tex | raw-pdf-bytes equal, runs 2/2
 identical | doc/latex/calctab/calctab_manual.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/latex/calculatoritems/calculatoritems-doc.tex | raw-pdf-bytes equal, runs 2/2
 identical | doc/latex/calendar-grid/calendar-grid-doc.tex | raw-pdf-bytes equal, runs 3/3
 identical | doc/latex/calendar-grid/calendar-grid-example-basic-month.tex | raw-pdf-bytes equal, runs 2/2
 identical | doc/latex/calendar-grid/calendar-grid-example-events.tex | raw-pdf-bytes equal, runs 2/2
@@ -909,6 +915,8 @@ identical | doc/latex/cellspace/cellspace.tex | raw-pdf-bytes equal, runs 2/2
 identical | doc/latex/censor/censor.tex | raw-pdf-bytes equal, runs 2/2
 identical | doc/latex/cesenaexam/cesenaexam_example.tex | raw-pdf-bytes equal, runs 2/2
 identical | doc/latex/cfr-initials/cfr-initials.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/latex/changebar/cbtest1.tex | raw-pdf-bytes equal, runs 3/3
+identical | doc/latex/changebar/cbtest2.tex | raw-pdf-bytes equal, runs 3/3
 identical | doc/latex/changelayout/changelayout-guide.tex | no pdf on either side, runs 1/1
 identical | doc/latex/changelog/example.tex | raw-pdf-bytes equal, runs 2/2
 identical | doc/latex/changes/examples/changes.example.addedmarkup.bf.tex | raw-pdf-bytes equal, runs 2/2
@@ -1105,6 +1113,7 @@ identical | doc/latex/cmdstring/cmdstring.tex | no pdf on either side, runs 1/1
 identical | doc/latex/cmpj/template.tex | raw-pdf-bytes equal, runs 3/3
 identical | doc/latex/cmpj/template_win.tex | raw-pdf-bytes equal, runs 3/3
 identical | doc/latex/cntformats/cntformats_en.tex | no pdf on either side, runs 1/1
+identical | doc/latex/cntperchap/cntperchap_doc.tex | raw-pdf-bytes equal, runs 3/3
 identical | doc/latex/cntperchap/cntperchap_example.tex | raw-pdf-bytes equal, runs 3/3
 identical | doc/latex/codedoc/CodeDoc-manual.tex | no pdf on either side, runs 2/2
 identical | doc/latex/coffeestains/coffeestains-en.tex | raw-pdf-bytes equal, runs 3/3
@@ -1123,6 +1132,7 @@ identical | doc/latex/comicneue/comicneue-otf-specimen.tex | no pdf on either si
 identical | doc/latex/comicneue/comicneue-type1-specimen.tex | raw-pdf-bytes equal, runs 2/2
 identical | doc/latex/comicneue/comicneue.tex | raw-pdf-bytes equal, runs 2/2
 identical | doc/latex/comma/comma.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/latex/commalists-tools/commalists-tools-doc.tex | raw-pdf-bytes equal, runs 2/2
 identical | doc/latex/commath/commath.tex | raw-pdf-bytes equal, runs 3/3
 identical | doc/latex/commedit/sample.tex | raw-pdf-bytes equal, runs 2/2
 identical | doc/latex/comment/comm_bug.tex | raw-pdf-bytes equal, runs 2/2
@@ -1550,6 +1560,7 @@ identical | doc/latex/drawstack/stack-example.tex | raw-pdf-bytes equal, runs 2/
 identical | doc/latex/drs/drsdoc.tex | raw-pdf-bytes equal, runs 2/2
 identical | doc/latex/dsptricks/dspTricksManual.tex | no pdf on either side, runs 2/2
 identical | doc/latex/dtk/dtk-ruecken.tex | no pdf on either side, runs 2/2
+identical | doc/latex/dtxtut/dtxtut.tex | raw-pdf-bytes equal, runs 2/2
 identical | doc/latex/duckuments/example-image-duck-portrait.tex | raw-pdf-bytes equal, runs 2/2
 identical | doc/latex/duckuments/example-image-duck.tex | raw-pdf-bytes equal, runs 2/2
 identical | doc/latex/duerer-latex/duerer.tex | raw-pdf-bytes equal, runs 2/2
@@ -1683,6 +1694,7 @@ identical | doc/latex/eurion/eurion.tex | raw-pdf-bytes equal, runs 2/2
 identical | doc/latex/eurion/example-corner.tex | raw-pdf-bytes equal, runs 2/2
 identical | doc/latex/eurion/example-manual.tex | raw-pdf-bytes equal, runs 2/2
 identical | doc/latex/eurion/example.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/latex/euromoney/euromoney-doc.tex | raw-pdf-bytes equal, runs 2/2
 identical | doc/latex/europasscv/example/europasscv_en.tex | raw-pdf-bytes equal, runs 2/2
 identical | doc/latex/europasscv2025/europasscv2025_en.tex | raw-pdf-bytes equal, runs 3/3
 identical | doc/latex/europecv/europecv.tex | raw-pdf-bytes equal, runs 2/2
@@ -1721,6 +1733,7 @@ identical | doc/latex/examdesign/exampleb.tex | raw-pdf-bytes equal, runs 2/2
 identical | doc/latex/examdesign/examplec.tex | raw-pdf-bytes equal, runs 2/2
 identical | doc/latex/examplep/eurotex_2005_examplep.tex | raw-pdf-bytes equal, runs 2/2
 identical | doc/latex/excludeonly/excludeonly.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/latex/exercisebank/exercisebank-doc.tex | raw-pdf-bytes equal, runs 3/3
 identical | doc/latex/exercisepoints/exercisepoints.tex | raw-pdf-bytes equal, runs 2/2
 identical | doc/latex/exercisesheets/examples/exshexample-embedded.tex | raw-pdf-bytes equal, runs 2/2
 identical | doc/latex/exercisesheets/exercisesheets-doc.tex | raw-pdf-bytes equal, runs 2/2
@@ -2443,6 +2456,7 @@ identical | doc/latex/ha-prosper/HAPIntroduction.tex | raw-pdf-bytes equal, runs
 identical | doc/latex/hackthefootline/doc/hackthefootline-examples.tex | raw-pdf-bytes equal, runs 2/2
 identical | doc/latex/halloweenmath/halloweenmath-man.tex | raw-pdf-bytes equal, runs 2/2
 identical | doc/latex/handin/example.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/latex/handin/handin-doc.tex | raw-pdf-bytes equal, runs 3/3
 identical | doc/latex/handout/examples/example1-minimal.tex | no pdf on either side, runs 1/1
 identical | doc/latex/handout/examples/example2-cancel-quotation.tex | no pdf on either side, runs 1/1
 identical | doc/latex/handout/examples/example3-defined-path.tex | no pdf on either side, runs 1/1
@@ -2463,9 +2477,11 @@ identical | doc/latex/he-she/he-she.tex | raw-pdf-bytes equal, runs 2/2
 identical | doc/latex/hep-acronym/hep-acronym-documentation.tex | raw-pdf-bytes equal, runs 3/3
 identical | doc/latex/hep-acronym/hep-acronym-test.tex | raw-pdf-bytes equal, runs 2/2
 identical | doc/latex/hep-bibliography/hep-bibliography-documentation.tex | raw-pdf-bytes equal, runs 3/3
+identical | doc/latex/hep-bibliography/hep-bibliography-test.tex | raw-pdf-bytes equal, runs 3/3
 identical | doc/latex/hep-float/hep-float-documentation.tex | raw-pdf-bytes equal, runs 3/3
 identical | doc/latex/hep-float/hep-float-test.tex | raw-pdf-bytes equal, runs 2/2
 identical | doc/latex/hep-graphic/hep-graphic-documentation.tex | raw-pdf-bytes equal, runs 3/3
+identical | doc/latex/hep-graphic/hep-graphic-test.tex | raw-pdf-bytes equal, runs 2/2
 identical | doc/latex/hep-math/hep-math-documentation.tex | raw-pdf-bytes equal, runs 3/3
 identical | doc/latex/hep-math/hep-math-test.tex | raw-pdf-bytes equal, runs 2/2
 identical | doc/latex/hep-paper/hep-paper-documentation.tex | raw-pdf-bytes equal, runs 3/3
@@ -2494,7 +2510,9 @@ identical | doc/latex/hepthesis/example/mwe.tex | no pdf on either side, runs 2/
 identical | doc/latex/hepunits/hepunits.tex | raw-pdf-bytes equal, runs 2/2
 identical | doc/latex/hereapplies/hereapplies-doc.tex | raw-pdf-bytes equal, runs 2/2
 identical | doc/latex/hereapplies/hereapplies-example.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/latex/hexdumptikz/hexdumptikz.tex | raw-pdf-bytes equal, runs 2/2
 identical | doc/latex/hexgame/hexgame.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/latex/hhtensor/getversion.tex | raw-pdf-bytes equal, runs 1/1
 identical | doc/latex/hicite/helpers/driver.tex | no pdf on either side, runs 1/1
 identical | doc/latex/hideproofs/hideproofs-doc.tex | raw-pdf-bytes equal, runs 2/2
 identical | doc/latex/hindawi-latex-template/hindawi_latex_template.tex | raw-pdf-bytes equal, runs 2/2
@@ -2559,6 +2577,7 @@ identical | doc/latex/infufrgs/infufrgs-doc.tex | raw-pdf-bytes equal, runs 3/3
 identical | doc/latex/infufrgs/infufrgs-example.tex | raw-pdf-bytes equal, runs 3/3
 identical | doc/latex/inline-images/examples/example.tex | raw-pdf-bytes equal, runs 2/2
 identical | doc/latex/inlinedef/inlinetest.tex | no pdf on either side, runs 2/2
+identical | doc/latex/inlinegraphicx/inlinegraphicx-doc.tex | raw-pdf-bytes equal, runs 2/2
 identical | doc/latex/install-latex-guide-zh-cn/chapter/macos.tex | raw-pdf-bytes equal, runs 2/2
 identical | doc/latex/install-latex-guide-zh-cn/chapter/wsl.tex | raw-pdf-bytes equal, runs 2/2
 identical | doc/latex/integramme/example-basic.tex | raw-pdf-bytes equal, runs 2/2
@@ -2597,9 +2616,11 @@ identical | doc/latex/iodhbwm/examples/references/iodhbwm-hyperref.tex | raw-pdf
 identical | doc/latex/iodhbwm/examples/references/iodhbwm-references.tex | raw-pdf-bytes equal, runs 3/3
 identical | doc/latex/iodhbwm/examples/titlepages/iodhbwm-custom-titlepage.tex | raw-pdf-bytes equal, runs 2/2
 identical | doc/latex/iodhbwm/examples/titlepages/iodhbwm-titlepage-logo.tex | no pdf on either side, runs 2/2
+identical | doc/latex/iodhbwm/iodhbwm.tex | raw-pdf-bytes equal, runs 3/3
 identical | doc/latex/ionumbers/ionumbers_test.tex | raw-pdf-bytes equal, runs 2/2
 identical | doc/latex/ipsum/ipsum-doc.tex | raw-pdf-bytes equal, runs 2/2
 identical | doc/latex/iso/isoman.tex | no pdf on either side, runs 3/3
+identical | doc/latex/isodate/getversion.tex | raw-pdf-bytes equal, runs 1/1
 identical | doc/latex/isodate/testdate.tex | raw-pdf-bytes equal, runs 2/2
 identical | doc/latex/isodate/testisodate_without_babel.tex | raw-pdf-bytes equal, runs 2/2
 identical | doc/latex/isomath/isomath-test.tex | raw-pdf-bytes equal, runs 2/2
@@ -3033,9 +3054,6 @@ both-error | doc/bibtex/gost/examples/cp1251/gost.tex | ! Undefined control sequ
 both-error | doc/bibtex/gost/examples/utf8/ugost.tex | ! Undefined control sequence.
 both-error | doc/fonts/boisik/example/boisik.tex | ! Font \logo=bskrlogo10 at 30.0pt not loadable: Metric (TFM) file not found.
 both-error | doc/fonts/bookhands/auncial-tryfont.tex | ! LaTeX Error: Encoding scheme `B1' unknown.
-both-error | doc/latex/biblatex-abnt/NBR10520-2002_test.tex | ! Package pdfpagediff Error: Not all PDF docs are available, exiting ....
-both-error | doc/latex/biblatex-abnt/NBR6023-2002_test.tex | ! Package pdfpagediff Error: Not all PDF docs are available, exiting ....
-both-error | doc/latex/biblatex-abnt/NBR6023-2018_test.tex | ! Package pdfpagediff Error: Not all PDF docs are available, exiting ....
 both-error | doc/latex/bjfuthesis/documentation/bjfuthesis.tex | ! Class bjfuthesis Error: XeLaTeX is required to compile this document.
 both-error | doc/latex/bxcjkjatype/bxcjkjatype-ja.tex | ! Package luatexja-core Error: This package requires Lua(HB)(La)TeX.
 both-error | doc/latex/bxcjkjatype/bxcjkvert-ja.tex | ! Package luatexja-core Error: This package requires Lua(HB)(La)TeX.
@@ -3043,7 +3061,6 @@ both-error | doc/latex/bxcoloremoji/bxcoloremoji-ja.tex | ! Package luatexja-cor
 both-error | doc/latex/bxjalipsum/sample-bxjalipsum-1.tex | ! Package luatexja-core Error: This package requires Lua(HB)(La)TeX.
 both-error | doc/latex/casyl/casyldoc.tex | ! You can't use `\raise' in vertical mode.
 both-error | doc/latex/cjk/examples/CEF_test.tex | ! Misplaced alignment tab character &.
-both-error | doc/latex/cntperchap/cntperchap_doc.tex | ! Undefined control sequence.
 both-error | doc/latex/dataref/dataref-doc.tex | ! Extra }, or forgotten \endgroup.
 both-error | doc/latex/dental-palmer/dental-palmer-doc.tex | ! Package luatexja-core Error: This package requires Lua(HB)(La)TeX.
 both-error | doc/latex/eskdx/manual/example.tex | ! LaTeX Error: Command \theHpoint already defined.
@@ -3076,17 +3093,12 @@ both-error | doc/xelatex/hithesis/examples/hitart/reportplus/report.tex | ! Crit
 both-error | doc/xelatex/hithesis/examples/hitart/reports/report.tex | ! Critical Class ctexart Error: CTeX fontset `fandol' is unavailable in
 both-error | doc/xelatex/hithesis/examples/hitbook/english/thesis.tex | ! Critical Class ctexbook Error: CTeX fontset `fandol' is unavailable in
 pdf-differs | doc/generic/hologo/hologo-example.tex | obj 6: "\n/D [2 0 R /XYZ 56.687 4137.39 null]\n>>\n\nendobj\n7 obj\n<<\n/D [2 0 R /XYZ 57.551 56.693 null]\n>>\n\nendo" vs "\n/D [2 0 R /XYZ 56.693 56.693 null]\n>>\n\nendobj\n7 obj\n<<\n/D [2 0 R /XYZ 56.693 56.693 null]\n>>\n\nendob" [page1 pixels differing: 0.00%]
-pdf-differs | doc/latex/abntex2/abntex2cite-alf.tex | obj 166: "6 obj\n<<\n/Length 7844 \n>>\nstream\n0 g 0 G\n0 g 0 G\n0.16078 0.0196 0.7647 rg 0.16078 0.0196 0.7647" vs "6 obj\n<<\n/Length 7847 \n>>\nstream\n0 g 0 G\n0 g 0 G\n0.16078 0.0196 0.7647 rg 0.16078 0.0196 0.7647" [page1 pixels differing: 0.00%]
-pdf-differs | doc/latex/abntex2/abntex2cite.tex | obj 409: "409 obj\n<<\n/Length 8609 \n>>\nstream\n0 g 0 G\n0 g 0 G\nBT\n/F41 9.9626 Tf 1.011 0 0 1 144.727 706.12" vs "409 obj\n<<\n/Length 8598 \n>>\nstream\n0 g 0 G\n0 g 0 G\nBT\n/F41 9.9626 Tf 1.011 0 0 1 144.727 706.12" [page1 pixels differing: 0.00%]
-pdf-differs | doc/latex/authorindex/authorindex.tex | obj 22: "chmidt,)-388(R.)]TJ 0.99 0 0 1 124.802 670.263 Tm [(Musil,)-280(K.)-280(May)135(,)-280(and)-280(N.)-" vs "chmidt,)-388(R.)]TJ 1.02 0 0 1 124.802 670.263 Tm [(Musil,)-315(K.)-306(May)131(,)-315(and)-307(N.)-" [page1 pixels differing: 0.00%]
-pdf-differs | doc/latex/dtxtut/dtxtut.tex | obj 113: "13 obj\n<<\n/Length 5538 \n>>\nstream\nBT\n/F64 9.9626 Tf 146.72 651.258 Td [(%%)]TJ 0 -11.955 Td [(%" vs "13 obj\n<<\n/Length 5525 \n>>\nstream\nBT\n/F64 9.9626 Tf 146.72 651.258 Td [(%%)]TJ 0 -11.955 Td [(%" [page1 pixels differing: 0.00%]
 pdf-differs | doc/latex/graphicnovel/graphicnovel-manual.tex | obj 166: "<\n/D [480 0 R /XYZ 63.302 62.362 null]\n>>\n\nendobj\n483 obj\n<<\n/D [480 0 R /XYZ 80.763 4143.06 null]\n>" vs "<\n/D [480 0 R /XYZ 62.362 62.362 null]\n>>\n\nendobj\n483 obj\n<<\n/D [480 0 R /XYZ 84.124 62.362 null]\n>>" [page1 pixels differing: 0.00%]
 pdf-differs | doc/latex/heria/heria-proposal-3.2.tex | obj 133: "<\n/D [130 0 R /XYZ 66.892 4141.15 null]\n>>\n\nendobj\n134 obj\n<<\n/D [130 0 R /XYZ 66.948 4381.3 null]\n>" vs "<\n/D [130 0 R /XYZ 67.304 60.452 null]\n>>\n\nendobj\n134 obj\n<<\n/D [130 0 R /XYZ 67.304 300.603 null]\n>" [page1 pixels differing: 0.00%]
 pdf-differs | doc/latex/heria/heria-proposal-3.3.tex | obj 133: "<\n/D [130 0 R /XYZ 66.892 4141.15 null]\n>>\n\nendobj\n134 obj\n<<\n/D [130 0 R /XYZ 66.948 4381.3 null]\n>" vs "<\n/D [130 0 R /XYZ 67.304 60.452 null]\n>>\n\nendobj\n134 obj\n<<\n/D [130 0 R /XYZ 67.304 300.603 null]\n>" [page1 pixels differing: 0.00%]
 pdf-differs | doc/latex/heria/heria-proposal-3.4.tex | obj 133: "<\n/D [130 0 R /XYZ 66.892 4141.15 null]\n>>\n\nendobj\n134 obj\n<<\n/D [130 0 R /XYZ 66.948 4381.3 null]\n>" vs "<\n/D [130 0 R /XYZ 67.304 60.452 null]\n>>\n\nendobj\n134 obj\n<<\n/D [130 0 R /XYZ 67.304 300.603 null]\n>" [page1 pixels differing: 0.00%]
 pdf-differs | doc/latex/heria/heria-proposal-4.0.tex | obj 123: "/D [120 0 R /XYZ 67.043 4141.15 null]\n>>\n\nendobj\n124 obj\n<<\n/D [120 0 R /XYZ 66.994 4381.3 null]\n>>\n" vs "/D [120 0 R /XYZ 67.304 60.452 null]\n>>\n\nendobj\n124 obj\n<<\n/D [120 0 R /XYZ 67.304 300.603 null]\n>>\n" [page1 pixels differing: 0.00%]
 pdf-differs | doc/latex/heria/heria-proposal-5.1.tex | obj 118: "/D [115 0 R /XYZ 67.036 4141.15 null]\n>>\n\nendobj\n119 obj\n<<\n/D [115 0 R /XYZ 66.903 4381.3 null]\n>>\n" vs "/D [115 0 R /XYZ 67.304 60.452 null]\n>>\n\nendobj\n119 obj\n<<\n/D [115 0 R /XYZ 67.304 300.603 null]\n>>\n" [page1 pixels differing: 0.00%]
-engine-error | doc/bibtex/babelbib/getversion.tex | no pdf written
 engine-error | doc/bibtex/gbt7714/gbt7714-example.tex | unsupported: bitmap (PK
 engine-error | doc/etex/base/etex_man.tex | unsupported: TeXXeT
 engine-error | doc/fonts/archaic/viking-try_vik.tex | unsupported: bitmap (PK
@@ -3136,24 +3148,17 @@ engine-error | doc/latex/bangtex/manual.tex | unsupported: bitmap (PK
 engine-error | doc/latex/bangtex/samplett.tex | unsupported: bitmap (PK
 engine-error | doc/latex/base/encguide.tex | unsupported: bitmap (PK
 engine-error | doc/latex/beamertheme-epyt/epyt-demo-cn.tex | unsupported: bitmap (PK
-engine-error | doc/latex/bgteubner/getversion.tex | no pdf written
 engine-error | doc/latex/bmstu-iu8/bmstu-example.tex | ! Font T2A/cmr/m/n/14=larm1440 at 14.0pt not loadable: Metric (TFM) file not found.
 engine-error | doc/latex/bmstu/examples/bmstu-examples.tex | ! Font T2A/cmr/m/n/14.4=larm1440 at 14.4pt not loadable: Metric (TFM) file not found.
 engine-error | doc/latex/bxcjkjatype/sample-bxcjkjatype.tex | unsupported: bitmap (PK
-engine-error | doc/latex/calculatoritems/calculatoritems-doc.tex | unsupported: \pdffiledump
 engine-error | doc/latex/cdcmd/cdcmd-cn.tex | unsupported: bitmap (PK
-engine-error | doc/latex/changebar/cbtest1.tex | ! Infinite glue shrinkage found in box being split.
-engine-error | doc/latex/changebar/cbtest2.tex | ! Infinite glue shrinkage found in box being split.
 engine-error | doc/latex/chinesechess/chinesechess.tex | unsupported: bitmap (PK
 engine-error | doc/latex/circledtext/circledtext.tex | unsupported: bitmap (PK
-engine-error | doc/latex/circularglyphs/circularglyphs-doc.tex | unsupported: \pdffiledump
 engine-error | doc/latex/cjhebrew/cjhebtst.tex | unsupported: TeXXeT
 engine-error | doc/latex/cjk/examples/UTF8.tex | unsupported: bitmap (PK
 engine-error | doc/latex/cjkpunct/examples/example-CJKfntef.tex | unsupported: bitmap (PK
 engine-error | doc/latex/cjkpunct/examples/example-gbk.tex | unsupported: bitmap (PK
 engine-error | doc/latex/clock/clockdoc.tex | unsupported: bitmap (PK
-engine-error | doc/latex/commalists-tools/commalists-tools-doc.tex | unsupported: \pdffiledump
-engine-error | doc/latex/commalists-tools/commalists-tools-l3-doc.tex | unsupported: \pdffiledump
 engine-error | doc/latex/cqjtuthesis/cqjtuthesis-doc.tex | unsupported: bitmap (PK
 engine-error | doc/latex/cquthesis/main.tex | ! Critical Class ctexbook Error: CTeX fontset `fandol' is unavailable in
 engine-error | doc/latex/cryst/cryst1.tex | unsupported: bitmap (PK
@@ -3166,31 +3171,21 @@ engine-error | doc/latex/disser/templates/doctor/thesis.tex | ! Font T2A/cmr/m/n
 engine-error | doc/latex/disser/templates/master/thesis.tex | ! Font T2A/cmr/m/n/14.4=larm1440 at 14.4pt not loadable: Metric (TFM) file not found.
 engine-error | doc/latex/disser/templates/specialist/thesis.tex | ! Font T2A/cmr/m/n/14.4=larm1440 at 14.4pt not loadable: Metric (TFM) file not found.
 engine-error | doc/latex/ebong/eb_tex.tex | unsupported: bitmap (PK
-engine-error | doc/latex/euromoney/euromoney-doc.tex | unsupported: \pdffiledump
 engine-error | doc/latex/europecv/examples/bulgarian-utf8.tex | ! Font T2A/cmr/m/n/14.4=larm1440 at 14.4pt not loadable: Metric (TFM) file not found.
-engine-error | doc/latex/exercisebank/exercisebank-doc.tex | unsupported: \pdffiledump
 engine-error | doc/latex/exercisesheets/examples/exshexample.tex | unsupported: TeXXeT
 engine-error | doc/latex/floatrow/sample-longtable-rus.tex | ! Font T2A/cmr/m/n/20.74=larm2074 at 20.74pt not loadable: Metric (TFM) file not found.
-engine-error | doc/latex/handin/handin-doc.tex | unsupported: \pdffiledump
 engine-error | doc/latex/hduthesis/example/hduthesis-bachelor.tex | ! Critical Class ctexrep Error: CTeX fontset `fandol' is unavailable in
 engine-error | doc/latex/hduthesis/example/hduthesis-mphil.tex | ! Critical Class ctexrep Error: CTeX fontset `fandol' is unavailable in
-engine-error | doc/latex/hep-bibliography/hep-bibliography-test.tex | no pdf written
-engine-error | doc/latex/hep-graphic/hep-graphic-test.tex | no pdf written
 engine-error | doc/latex/hepthesis/hepthesis.tex | unsupported: bitmap (PK
-engine-error | doc/latex/hexdumptikz/hexdumptikz.tex | unsupported: \pdffiledump
 engine-error | doc/latex/hfutexam/hfutexam.tex | ! Critical Class ctexart Error: CTeX fontset `fandol' is unavailable in
 engine-error | doc/latex/hfutexam/hfutexam_cankaodaan.tex | unsupported: bitmap (PK
 engine-error | doc/latex/hfutexam/hfutexam_datizhi.tex | unsupported: bitmap (PK
 engine-error | doc/latex/hfutexam/hfutexam_shijuan.tex | unsupported: bitmap (PK
 engine-error | doc/latex/hfutexam/hfutexam_simple.tex | unsupported: bitmap (PK
-engine-error | doc/latex/hhtensor/getversion.tex | no pdf written
 engine-error | doc/latex/hitszbeamer/main.tex | unsupported: bitmap (PK
 engine-error | doc/latex/hitszthesis/hitszthesis-example.tex | ! Critical Class ctexbook Error: CTeX fontset `fandol' is unavailable in
 engine-error | doc/latex/inkpaper/inkpaper-cn.tex | unsupported: bitmap (PK
 engine-error | doc/latex/inkpaper/inkpaper-en.tex | unsupported: bitmap (PK
-engine-error | doc/latex/inlinegraphicx/inlinegraphicx-doc.tex | unsupported: \pdffiledump
-engine-error | doc/latex/iodhbwm/iodhbwm.tex | unsupported: \pdffiledump
-engine-error | doc/latex/isodate/getversion.tex | no pdf written
 engine-error | doc/latex/jnuexam/examfc-a-answer.tex | unsupported: bitmap (PK
 engine-error | doc/latex/jnuexam/jnuexam.tex | unsupported: bitmap (PK
 engine-error | doc/latex/joinbox/joinbox.tex | unsupported: bitmap (PK
@@ -3205,9 +3200,11 @@ timeout | doc/latex/bxcoloremoji/bxcoloremoji-shortnames.tex | engine > 240s
 timeout | doc/latex/cahierprof/cahierprof-exemple.tex | engine > 240s
 timeout | doc/latex/cbcoptic/testcop.tex | pdftex+engine > 240s
 timeout | doc/latex/ciad-beamertheme/ciadbeamer-documentation.tex | engine > 240s
+timeout | doc/latex/circularglyphs/circularglyphs-doc.tex | engine > 240s
 timeout | doc/latex/circularglyphs/circularglyphs-sample.tex | engine > 240s
 timeout | doc/latex/codehigh/codehigh.tex | pdftex+engine > 240s
 timeout | doc/latex/coffeestains/coffeestains-fr.tex | engine > 240s
+timeout | doc/latex/commalists-tools/commalists-tools-l3-doc.tex | engine > 240s
 timeout | doc/latex/couleurs-fr/couleurs-fr-doc.tex | engine > 240s
 timeout | doc/latex/datatool/samples/sample-dict.tex | engine > 240s
 timeout | doc/latex/datatool/samples/sample-gidx.tex | engine > 240s
