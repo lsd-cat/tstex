@@ -1,0 +1,12 @@
+%! oracle: pdftex
+\pdfoutput=1 \input plain
+\pdfcompresslevel=0 \pdfobjcompresslevel=0
+% expansion with protrusion: a ligature at a margin is lig_char(p), not a char node, so cal_margin_kern_var's left_pw of it is 0
+\pdfadjustspacing=2 \pdfprotrudechars=2 \pdffontexpand\tenrm 20 20 1 autoexpand
+\rpcode\tenrm`\.=700 \rpcode\tenrm`\,=700 \rpcode\tenrm"22=500 \rpcode\tenrm"0C=300
+\lpcode\tenrm"5C=500 \lpcode\tenrm"0C=300 \lpcode\tenrm`A=50
+\tracingparagraphs=1 \tracingonline=0 \parfillskip=0pt plus 20pt
+\def\t{only Schmidt will.  This usage is similar to the ``et al.'' commonly used in bibliographies, ``final'' ``fine'' fish
+  first ``A'' fluffy ``office'' affirms ``sufficient'' figures.''\par}
+\hsize=150pt \t \hsize=180pt \t \hsize=200pt \t \hsize=230pt \t \hsize=260pt \t
+\bye

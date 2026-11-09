@@ -366,13 +366,17 @@ export function line_break(e: Engine, d: boolean): void {
         let margin_kern_stretch = 0, margin_kern_shrink = 0
         if (protrude_chars > 1) { // Calculate variations of marginal kerns; cal_margin_kern_var uses left_pw for both sides
           const lp = e.last_leftmost_char, rp = e.last_rightmost_char
+          // For a ligature, last_*most_char is lig_char(p), a word inside the ligature node: not is_char_node, and its `type'
+          // is the font number, so left_pw of it is 0 (shortcut: unless that font is number 6, ligature_node, which pdfTeX
+          // follows into garbage; never seen)
+          const pw = (m: Node) => m.type === ligature_node ? 0 : char_pw(e, m, left_side)
           const cal = (m: Node) => {
             const n = m as CharNode, cp = new_char(n.font, n.character)
             do_subst_font(e, cp, 1000)
-            if (cp.font !== n.font) margin_kern_stretch = (margin_kern_stretch + char_pw(e, n, left_side) - char_pw(e, cp, left_side)) | 0
+            if (cp.font !== n.font) margin_kern_stretch = (margin_kern_stretch + pw(n) - char_pw(e, cp, left_side)) | 0
             cp.font = n.font
             do_subst_font(e, cp, -1000)
-            if (cp.font !== n.font) margin_kern_shrink = (margin_kern_shrink + char_pw(e, cp, left_side) - char_pw(e, n, left_side)) | 0
+            if (cp.font !== n.font) margin_kern_shrink = (margin_kern_shrink + char_pw(e, cp, left_side) - pw(n)) | 0
           }
           if (lp !== null) cal(lp)
           if (rp !== null) cal(rp)
