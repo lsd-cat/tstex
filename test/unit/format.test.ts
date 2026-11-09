@@ -47,16 +47,21 @@ test('format bytes: round trip, then corrupt formats fail cleanly', async () => 
   const good = await dumpFormat(e1.fmt_file!)
   assert.strictEqual((await loadFormat(good)).format_ident, e1.fmt_file!.format_ident)
   const gz = async (s: string | Uint8Array<ArrayBuffer>) => new Uint8Array(await new Response(new Blob([s]).stream().pipeThrough(new CompressionStream('gzip'))).arrayBuffer())
+  const i32 = (n: number) => [n & 255, (n >> 8) & 255, (n >> 16) & 255, n >>> 24]
+  const bin = (...parts: number[][]) => Uint8Array.from([...'tstex format 2'].map(c => c.charCodeAt(0)).concat(parts.flat()))
   const bad: [string, Uint8Array][] = [
     ['truncated gzip', good.slice(0, good.length >> 1)],
     ['not gzip', new TextEncoder().encode('hello')],
     ['empty', new Uint8Array()],
-    ['gzip of non-JSON', await gz('\x00\x01 not json')],
-    ['wrong magic', await gz(JSON.stringify(['tstex format 0', {}]))],
-    ['bare object (old format)', await gz('{"$o":{}}')],
-    ['missing tables', await gz(JSON.stringify(['tstex format 1', { $o: { info: [] } }]))],
-    ['unknown typed array', await gz(JSON.stringify(['tstex format 1', { $t: 'Float64Array', d: [1] }]))],
-    ['deep nesting', await gz('["tstex format 1",' + '['.repeat(200000) + ']'.repeat(200000) + ']')],
+    ['gzip of garbage', await gz('\x00\x01 not a format')],
+    ['wrong magic', await gz('tstex format 1[]')],
+    ['JSON format (old encoding)', await gz(JSON.stringify(['tstex format 1', {}]))],
+    ['missing tables', await gz(bin([14, ...i32(0), ...i32(1), 6, ...i32(4), ...'info'].map(c => typeof c === 'string' ? c.charCodeAt(0) : c), [10, ...i32(0)]))],
+    ['unknown tag', await gz(bin([99]))],
+    ['truncated', await gz(bin([10, ...i32(1000)]))],
+    ['trailing bytes', await gz(bin([1, 1]))],
+    ['bad reference', await gz(bin([9, ...i32(1), 8, ...i32(7)]))],
+    ['deep nesting', await gz(bin(Array.from({ length: 200000 }, () => [9, ...i32(1)]).flat()))],
     ['gzip bomb', await gz(new Uint8Array(130 << 20).fill(32))],
   ]
   for (const [what, b] of bad) await assert.rejects(loadFormat(b), /^Error: Fatal format file error; I'm stymied/, what)
