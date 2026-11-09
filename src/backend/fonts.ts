@@ -84,7 +84,11 @@ function fm_scan_line(e: Engine, s: string, mode: number, file: string | null): 
   const fm: FmEntry = { tfm_name: '', ps_name: null, fd_flags: FD_FLAGS_NOT_SET_IN_MAPLINE, slant: 0, extend: 0, encname: null,
     ff_name: null, type: 0, pid: -1, in_use: false }
   let r = 0
-  const read_field = () => { const q = r; while (r < s.length && !' <"'.includes(s[r]!)) r++; const b = s.slice(q, r); if (s[r] === ' ') r++; return b }
+  const read_field = () => { // up to a space, `<' or `"'
+    const q = r
+    for (let c; r < s.length && (c = s.charCodeAt(r)) !== 32 && c !== 60 && c !== 34;) r++
+    const b = s.slice(q, r); if (s.charCodeAt(r) === 32) r++; return b
+  }
   const isdigit = (c: string | undefined) => c !== undefined && c >= '0' && c <= '9'
   done: {
     let buf = read_field()
@@ -113,10 +117,10 @@ function fm_scan_line(e: Engine, s: string, mode: number, file: string | null): 
             if (s.startsWith('SlantFont', t)) { fm.slant = rnd; r = t + 9 }
             else if (s.startsWith('ExtendFont', t)) { fm.extend = rnd === 1000 ? 0 : rnd; r = t + 10 }
             else {
-              r = t; while (r < s.length && s[r] !== ' ' && s[r] !== '"') r++
+              r = t; while (r < s.length && s.charCodeAt(r) !== 32 && s.charCodeAt(r) !== 34) r++
               pdftex_warn(e, file, `invalid entry for \`${fm.tfm_name}': unknown name \`${s.slice(t, r)}' ignored`)
             }
-          } else while (r < s.length && s[r] !== ' ' && s[r] !== '"') r++
+          } else while (r < s.length && s.charCodeAt(r) !== 32 && s.charCodeAt(r) !== 34) r++
         } while (s[r] === ' ')
         if (s[r] === '"') r++
         else { pdftex_warn(e, file, `invalid entry for \`${fm.tfm_name}': closing quote missing`); return }
@@ -255,9 +259,8 @@ function fm_read_info(e: Engine): void {
   const lines = text.split(/\r|\n/)
   if (lines[lines.length - 1] === '') lines.pop()
   for (const raw of lines) {
-    let l = ''
-    for (let c of raw) { if (c === '\t') c = ' '; if (c !== ' ' || (l.length > 0 && l[l.length - 1] !== ' ')) l += c }
-    fm_scan_line(e, l, mode, path)
+    const l = raw.replace(/[\t ]+/g, ' ')
+    fm_scan_line(e, l.charCodeAt(0) === 32 ? l.slice(1) : l, mode, path)
   }
   print(e, '}')
 }
