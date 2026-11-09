@@ -2,33 +2,35 @@
 
 // §207 catcode commands, §208 ordinary commands, §209 assignment commands, §210 expandable commands
 // (pdftex.web numbering: letterspace_font and pdf_copy_font raise max_command to 102, partoken-102.ch to 103)
-export const Cmd = {
-  relax: 0, escape: 0, left_brace: 1, right_brace: 2, math_shift: 3, tab_mark: 4,
-  car_ret: 5, out_param: 5, mac_param: 6, sup_mark: 7, sub_mark: 8, ignore: 9, endv: 9,
-  spacer: 10, letter: 11, other_char: 12, active_char: 13, par_end: 13, match: 13,
-  comment: 14, end_match: 14, stop: 14, invalid_char: 15, delim_num: 15, max_char_code: 15,
-  char_num: 16, math_char_num: 17, mark: 18, xray: 19, make_box: 20, hmove: 21, vmove: 22,
-  un_hbox: 23, un_vbox: 24, remove_item: 25, hskip: 26, vskip: 27, mskip: 28, kern: 29,
-  mkern: 30, leader_ship: 31, halign: 32, valign: 33, no_align: 34, vrule: 35, hrule: 36,
-  insert: 37, vadjust: 38, ignore_spaces: 39, after_assignment: 40, after_group: 41,
-  break_penalty: 42, start_par: 43, ital_corr: 44, accent: 45, math_accent: 46,
-  discretionary: 47, eq_no: 48, left_right: 49, math_comp: 50, limit_switch: 51, above: 52,
-  math_style: 53, math_choice: 54, non_script: 55, vcenter: 56, case_shift: 57, message: 58,
-  extension: 59, in_stream: 60, begin_group: 61, end_group: 62, omit: 63, ex_space: 64,
-  no_boundary: 65, radical: 66, end_cs_name: 67, min_internal: 68, char_given: 68,
-  math_given: 69, last_item: 70, max_non_prefixed_command: 70,
-  toks_register: 71, assign_toks: 72, assign_int: 73, assign_dimen: 74, assign_glue: 75,
-  assign_mu_glue: 76, assign_font_dimen: 77, assign_font_int: 78, set_aux: 79,
-  set_prev_graf: 80, set_page_dimen: 81, set_page_int: 82, set_box_dimen: 83, set_shape: 84,
-  def_code: 85, def_family: 86, set_font: 87, def_font: 88, register: 89, max_internal: 89,
-  advance: 90, multiply: 91, divide: 92, prefix: 93, let: 94, shorthand_def: 95,
-  read_to_cs: 96, def: 97, set_box: 98, hyph_data: 99, set_interaction: 100, letterspace_font: 101,
-  pdf_copy_font: 102, partoken_name: 103, max_command: 103, // partoken-102.ch
-  undefined_cs: 104, expand_after: 105, no_expand: 106, input: 107, if_test: 108,
-  fi_or_else: 109, cs_name: 110, convert: 111, the: 112, top_bot_mark: 113, call: 114,
-  long_call: 115, outer_call: 116, long_outer_call: 117, end_template: 118, dont_expand: 119,
-  glue_ref: 120, shape_ref: 121, box_ref: 122, data: 123,
-} as const
+// a class instance, not an object literal: V8 keeps a literal of more than 128 properties in dictionary mode, which made
+// every Cmd.x a hash lookup on the hot path (get_next's comparisons)
+export const Cmd = new class {
+  readonly relax = 0; readonly escape = 0; readonly left_brace = 1; readonly right_brace = 2; readonly math_shift = 3; readonly tab_mark = 4;
+  readonly car_ret = 5; readonly out_param = 5; readonly mac_param = 6; readonly sup_mark = 7; readonly sub_mark = 8; readonly ignore = 9; readonly endv = 9;
+  readonly spacer = 10; readonly letter = 11; readonly other_char = 12; readonly active_char = 13; readonly par_end = 13; readonly match = 13;
+  readonly comment = 14; readonly end_match = 14; readonly stop = 14; readonly invalid_char = 15; readonly delim_num = 15; readonly max_char_code = 15;
+  readonly char_num = 16; readonly math_char_num = 17; readonly mark = 18; readonly xray = 19; readonly make_box = 20; readonly hmove = 21; readonly vmove = 22;
+  readonly un_hbox = 23; readonly un_vbox = 24; readonly remove_item = 25; readonly hskip = 26; readonly vskip = 27; readonly mskip = 28; readonly kern = 29;
+  readonly mkern = 30; readonly leader_ship = 31; readonly halign = 32; readonly valign = 33; readonly no_align = 34; readonly vrule = 35; readonly hrule = 36;
+  readonly insert = 37; readonly vadjust = 38; readonly ignore_spaces = 39; readonly after_assignment = 40; readonly after_group = 41;
+  readonly break_penalty = 42; readonly start_par = 43; readonly ital_corr = 44; readonly accent = 45; readonly math_accent = 46;
+  readonly discretionary = 47; readonly eq_no = 48; readonly left_right = 49; readonly math_comp = 50; readonly limit_switch = 51; readonly above = 52;
+  readonly math_style = 53; readonly math_choice = 54; readonly non_script = 55; readonly vcenter = 56; readonly case_shift = 57; readonly message = 58;
+  readonly extension = 59; readonly in_stream = 60; readonly begin_group = 61; readonly end_group = 62; readonly omit = 63; readonly ex_space = 64;
+  readonly no_boundary = 65; readonly radical = 66; readonly end_cs_name = 67; readonly min_internal = 68; readonly char_given = 68;
+  readonly math_given = 69; readonly last_item = 70; readonly max_non_prefixed_command = 70;
+  readonly toks_register = 71; readonly assign_toks = 72; readonly assign_int = 73; readonly assign_dimen = 74; readonly assign_glue = 75;
+  readonly assign_mu_glue = 76; readonly assign_font_dimen = 77; readonly assign_font_int = 78; readonly set_aux = 79;
+  readonly set_prev_graf = 80; readonly set_page_dimen = 81; readonly set_page_int = 82; readonly set_box_dimen = 83; readonly set_shape = 84;
+  readonly def_code = 85; readonly def_family = 86; readonly set_font = 87; readonly def_font = 88; readonly register = 89; readonly max_internal = 89;
+  readonly advance = 90; readonly multiply = 91; readonly divide = 92; readonly prefix = 93; readonly let = 94; readonly shorthand_def = 95;
+  readonly read_to_cs = 96; readonly def = 97; readonly set_box = 98; readonly hyph_data = 99; readonly set_interaction = 100; readonly letterspace_font = 101;
+  readonly pdf_copy_font = 102; readonly partoken_name = 103; readonly max_command = 103; // partoken-102.ch
+  readonly undefined_cs = 104; readonly expand_after = 105; readonly no_expand = 106; readonly input = 107; readonly if_test = 108;
+  readonly fi_or_else = 109; readonly cs_name = 110; readonly convert = 111; readonly the = 112; readonly top_bot_mark = 113; readonly call = 114;
+  readonly long_call = 115; readonly outer_call = 116; readonly long_outer_call = 117; readonly end_template = 118; readonly dont_expand = 119;
+  readonly glue_ref = 120; readonly shape_ref = 121; readonly box_ref = 122; readonly data = 123;
+}()
 
 // §211
 export const vmode = 1
