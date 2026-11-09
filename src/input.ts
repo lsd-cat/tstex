@@ -1,6 +1,7 @@
 // §31 input_ln, §300–365 input stacks and get_next
 import type { Engine } from './engine.ts'
 import { Cmd, log_only, nonstop_mode } from './types.ts'
+import type { InState } from './types.ts'
 import { print, print_char, print_nl, print_ln, print_esc, print_int, begin_diagnostic, end_diagnostic } from './print.ts'
 import { every_eof_text } from './error.ts'
 import { error, print_err, help, fatal_error, overflow, token_list, parameter, u_template, v_template, backed_up, inserted, macro, output_text, mark_text, write_text } from './error.ts'
@@ -249,145 +250,21 @@ function reduce_expanded(e: Engine, k: number, cat: number): boolean {
   return false
 }
 
-// §341 get_next
+// §341 get_next; the token-list case (§357) is inline, a file line (§343) is next_from_file, which keeps get_next small
+// enough for V8 to inline into get_token and get_x_token
 export function get_next(e: Engine): void {
   restart: for (;;) {
     e.cur_cs = 0
     const ci = e.cur_input
-    if (ci.state !== token_list) {
-      // §343 Input from external file, goto restart if no input found
-      sw: for (;;) {
-        if (ci.loc <= ci.limit) {
-          e.cur_chr = e.buffer[ci.loc++]!
-          reswitch: for (;;) {
-            e.cur_cmd = cat_code(e, e.cur_chr)
-            // §344 Change state if necessary, and goto switch if the current character should be ignored
-            const c = e.cur_cmd
-            if (c === Cmd.ignore || (c === Cmd.spacer && ci.state !== mid_line)) continue sw
-            switch (c) {
-              case Cmd.escape: { // §354 Scan a control sequence
-                if (ci.loc > ci.limit) e.cur_cs = null_cs
-                else start_cs: for (;;) {
-                  let k = ci.loc
-                  e.cur_chr = e.buffer[k]!; let cat = cat_code(e, e.cur_chr); k++
-                  ci.state = cat === Cmd.letter || cat === Cmd.spacer ? skip_blanks : mid_line
-                  if (cat === Cmd.letter && k <= ci.limit) {
-                    // §356 Scan ahead in the buffer until finding a nonletter
-                    do { e.cur_chr = e.buffer[k]!; cat = cat_code(e, e.cur_chr); k++ } while (cat === Cmd.letter && k <= ci.limit)
-                    if (reduce_expanded(e, k, cat)) continue start_cs
-                    if (cat !== Cmd.letter) k--
-                    if (k > ci.loc + 1) { e.cur_cs = id_lookup(e, ci.loc, k - ci.loc); ci.loc = k; break }
-                  } else if (reduce_expanded(e, k, cat)) continue start_cs
-                  e.cur_cs = single_base + e.buffer[ci.loc]!; ci.loc++
-                  break
-                }
-                e.cur_cmd = e.eq_type[e.cur_cs]!; e.cur_chr = e.equiv[e.cur_cs]!
-                if (e.cur_cmd >= Cmd.outer_call) check_outer_validity(e)
-                break
-              }
-              case Cmd.active_char: // §353
-                e.cur_cs = e.cur_chr + active_base
-                e.cur_cmd = e.eq_type[e.cur_cs]!; e.cur_chr = e.equiv[e.cur_cs]!; ci.state = mid_line
-                if (e.cur_cmd >= Cmd.outer_call) check_outer_validity(e)
-                break
-              case Cmd.sup_mark: // §352
-                if (e.cur_chr === e.buffer[ci.loc] && ci.loc < ci.limit) {
-                  const c1 = e.buffer[ci.loc + 1]!
-                  if (c1 < 0o200) {
-                    ci.loc += 2
-                    if (is_hex(c1) && ci.loc <= ci.limit) {
-                      const cc = e.buffer[ci.loc]!
-                      if (is_hex(cc)) { ci.loc++; e.cur_chr = 16 * hex_val(c1) + hex_val(cc); continue reswitch }
-                    }
-                    e.cur_chr = c1 < 0o100 ? c1 + 0o100 : c1 - 0o100
-                    continue reswitch
-                  }
-                }
-                ci.state = mid_line
-                break
-              case Cmd.invalid_char: // §346
-                print_err(e, 'Text line contains an invalid character')
-                help(e, "A funny symbol that I can't read has just been input.", "Continue, and I'll forget that it ever happened.")
-                e.deletions_allowed = false; error(e); e.deletions_allowed = true
-                continue restart
-              case Cmd.spacer: // §349 (mid_line only)
-                ci.state = skip_blanks; e.cur_chr = 32
-                break
-              case Cmd.car_ret:
-                if (ci.state === mid_line) { ci.loc = ci.limit + 1; e.cur_cmd = Cmd.spacer; e.cur_chr = 32 } // §348
-                else if (ci.state === skip_blanks) { ci.loc = ci.limit + 1; continue sw } // §350
-                else { // §351
-                  ci.loc = ci.limit + 1; e.cur_cs = e.par_loc; e.cur_cmd = e.eq_type[e.cur_cs]!; e.cur_chr = e.equiv[e.cur_cs]!
-                  if (e.cur_cmd >= Cmd.outer_call) check_outer_validity(e)
-                }
-                break
-              case Cmd.comment: ci.loc = ci.limit + 1; continue sw
-              case Cmd.left_brace: ci.state = mid_line; e.align_state++; break
-              case Cmd.right_brace: ci.state = mid_line; e.align_state--; break
-              case Cmd.math_shift: case Cmd.tab_mark: case Cmd.mac_param: case Cmd.sub_mark:
-              case Cmd.letter: case Cmd.other_char:
-                ci.state = mid_line; break
-            }
-            break sw
-          }
-        } else {
-          ci.state = new_line
-          // §360 Move to next line of file, or goto restart if there is no next line
-          if (ci.name > 17) {
-            // §362 Read next line of file into buffer, or goto restart if the file has ended
-            e.line++; e.first = ci.start
-            if (!e.force_eof) { // etex.ch: pseudo files and \everyeof
-              if (ci.name <= 19 ? pseudo_input(e) : input_ln(e, e.input_file[ci.index]!)) firm_up_the_line(e)
-              else if (e.equiv[every_eof_loc] !== 0 && !e.eof_seen[ci.index]) {
-                ci.limit = e.first - 1; e.eof_seen[ci.index] = true // fake one empty line
-                begin_token_list(e, e.equiv[every_eof_loc]!, every_eof_text); continue restart
-              } else e.force_eof = true
-            }
-            if (e.force_eof) {
-              if (int_par(e, tracing_nesting_code) > 0 &&
-                (e.grp_stack[e.in_open] !== e.cur_boundary || e.if_stack[e.in_open] !== e.cond_ptr)) file_warning(e)
-              if (ci.name >= 19) { print_char(e, 41); e.open_parens-- }
-              e.force_eof = false
-              end_file_reading(e)
-              check_outer_validity(e); continue restart
-            }
-            if (end_line_char_inactive(e)) ci.limit--
-            else e.buffer[ci.limit] = int_par(e, end_line_char_code)
-            e.first = ci.limit + 1; ci.loc = ci.start
-          } else {
-            if (ci.name !== 0) { e.cur_cmd = 0; e.cur_chr = 0; return }
-            if (e.input_ptr > 0) { end_file_reading(e); continue restart }
-            if (e.selector < log_only) open_log_file(e)
-            if (e.interaction > nonstop_mode) {
-              if (end_line_char_inactive(e)) ci.limit++
-              if (ci.limit === ci.start) print_nl(e, "(Please type a command or say `\\end')")
-              print_ln(e); e.first = ci.start
-              prompt_input(e, '*')
-              ci.limit = e.last
-              if (end_line_char_inactive(e)) ci.limit--
-              else e.buffer[ci.limit] = int_par(e, end_line_char_code)
-              e.first = ci.limit + 1; ci.loc = ci.start
-            } else fatal_error(e, '*** (job aborted, no legal \\end found)')
-          }
-        }
-      }
-    } else {
+    if (ci.state !== token_list) { if (next_from_file(e, ci)) continue restart }
+    else {
       // §357 Input from token list, goto restart if end of list or if a parameter needs to be expanded
       if (ci.loc !== 0) {
         const t = e.info[ci.loc]!; ci.loc = e.link[ci.loc]!
         if (t >= cs_token_flag) {
           e.cur_cs = t - cs_token_flag
           e.cur_cmd = e.eq_type[e.cur_cs]!; e.cur_chr = e.equiv[e.cur_cs]!
-          if (e.cur_cmd >= Cmd.outer_call) {
-            if (e.cur_cmd === Cmd.dont_expand) { // §358 Get the next token, suppressing expansion
-              e.cur_cs = e.info[ci.loc]! - cs_token_flag; ci.loc = 0
-              e.cur_cmd = e.eq_type[e.cur_cs]!; e.cur_chr = e.equiv[e.cur_cs]!
-              if (e.cur_cmd > Cmd.max_command) { e.cur_cmd = Cmd.relax; e.cur_chr = 257 }
-            } else {
-              if (e.cur_cs === end_write && e.mode === 0) fatal_error(e, 'Unbalanced write command') // unbalanced-braces.ch
-              check_outer_validity(e)
-            }
-          }
+          if (e.cur_cmd >= Cmd.outer_call) outer_or_dont_expand(e, ci)
         } else {
           e.cur_cmd = t >> 8; e.cur_chr = t & 0xff
           if (e.cur_cmd === Cmd.left_brace) e.align_state++
@@ -402,6 +279,137 @@ export function get_next(e: Engine): void {
     // §342 If an alignment entry has just ended, take appropriate action
     if (e.cur_cmd <= Cmd.car_ret && e.cur_cmd >= Cmd.tab_mark && e.align_state === 0) { insert_v_template(e); continue restart }
     return
+  }
+}
+
+// §357 an outer control sequence or (§358) the frozen \notexpanded: from a token list (out of get_next to keep it small)
+function outer_or_dont_expand(e: Engine, ci: InState): void {
+  if (e.cur_cmd === Cmd.dont_expand) { // §358 Get the next token, suppressing expansion
+    e.cur_cs = e.info[ci.loc]! - cs_token_flag; ci.loc = 0
+    e.cur_cmd = e.eq_type[e.cur_cs]!; e.cur_chr = e.equiv[e.cur_cs]!
+    if (e.cur_cmd > Cmd.max_command) { e.cur_cmd = Cmd.relax; e.cur_chr = 257 }
+  } else {
+    if (e.cur_cs === end_write && e.mode === 0) fatal_error(e, 'Unbalanced write command') // unbalanced-braces.ch
+    check_outer_validity(e)
+  }
+}
+
+// §343 Input from external file, goto restart if no input found: true means goto restart
+function next_from_file(e: Engine, ci: InState): boolean {
+  sw: for (;;) {
+    if (ci.loc <= ci.limit) {
+      e.cur_chr = e.buffer[ci.loc++]!
+      reswitch: for (;;) {
+        e.cur_cmd = cat_code(e, e.cur_chr)
+        // §344 Change state if necessary, and goto switch if the current character should be ignored
+        const c = e.cur_cmd
+        if (c === Cmd.ignore || (c === Cmd.spacer && ci.state !== mid_line)) continue sw
+        switch (c) {
+          case Cmd.escape: { // §354 Scan a control sequence
+            if (ci.loc > ci.limit) e.cur_cs = null_cs
+            else start_cs: for (;;) {
+              let k = ci.loc
+              e.cur_chr = e.buffer[k]!; let cat = cat_code(e, e.cur_chr); k++
+              ci.state = cat === Cmd.letter || cat === Cmd.spacer ? skip_blanks : mid_line
+              if (cat === Cmd.letter && k <= ci.limit) {
+                // §356 Scan ahead in the buffer until finding a nonletter
+                do { e.cur_chr = e.buffer[k]!; cat = cat_code(e, e.cur_chr); k++ } while (cat === Cmd.letter && k <= ci.limit)
+                if (reduce_expanded(e, k, cat)) continue start_cs
+                if (cat !== Cmd.letter) k--
+                if (k > ci.loc + 1) { e.cur_cs = id_lookup(e, ci.loc, k - ci.loc); ci.loc = k; break }
+              } else if (reduce_expanded(e, k, cat)) continue start_cs
+              e.cur_cs = single_base + e.buffer[ci.loc]!; ci.loc++
+              break
+            }
+            e.cur_cmd = e.eq_type[e.cur_cs]!; e.cur_chr = e.equiv[e.cur_cs]!
+            if (e.cur_cmd >= Cmd.outer_call) check_outer_validity(e)
+            break
+          }
+          case Cmd.active_char: // §353
+            e.cur_cs = e.cur_chr + active_base
+            e.cur_cmd = e.eq_type[e.cur_cs]!; e.cur_chr = e.equiv[e.cur_cs]!; ci.state = mid_line
+            if (e.cur_cmd >= Cmd.outer_call) check_outer_validity(e)
+            break
+          case Cmd.sup_mark: // §352
+            if (e.cur_chr === e.buffer[ci.loc] && ci.loc < ci.limit) {
+              const c1 = e.buffer[ci.loc + 1]!
+              if (c1 < 0o200) {
+                ci.loc += 2
+                if (is_hex(c1) && ci.loc <= ci.limit) {
+                  const cc = e.buffer[ci.loc]!
+                  if (is_hex(cc)) { ci.loc++; e.cur_chr = 16 * hex_val(c1) + hex_val(cc); continue reswitch }
+                }
+                e.cur_chr = c1 < 0o100 ? c1 + 0o100 : c1 - 0o100
+                continue reswitch
+              }
+            }
+            ci.state = mid_line
+            break
+          case Cmd.invalid_char: // §346
+            print_err(e, 'Text line contains an invalid character')
+            help(e, "A funny symbol that I can't read has just been input.", "Continue, and I'll forget that it ever happened.")
+            e.deletions_allowed = false; error(e); e.deletions_allowed = true
+            return true
+          case Cmd.spacer: // §349 (mid_line only)
+            ci.state = skip_blanks; e.cur_chr = 32
+            break
+          case Cmd.car_ret:
+            if (ci.state === mid_line) { ci.loc = ci.limit + 1; e.cur_cmd = Cmd.spacer; e.cur_chr = 32 } // §348
+            else if (ci.state === skip_blanks) { ci.loc = ci.limit + 1; continue sw } // §350
+            else { // §351
+              ci.loc = ci.limit + 1; e.cur_cs = e.par_loc; e.cur_cmd = e.eq_type[e.cur_cs]!; e.cur_chr = e.equiv[e.cur_cs]!
+              if (e.cur_cmd >= Cmd.outer_call) check_outer_validity(e)
+            }
+            break
+          case Cmd.comment: ci.loc = ci.limit + 1; continue sw
+          case Cmd.left_brace: ci.state = mid_line; e.align_state++; break
+          case Cmd.right_brace: ci.state = mid_line; e.align_state--; break
+          case Cmd.math_shift: case Cmd.tab_mark: case Cmd.mac_param: case Cmd.sub_mark:
+          case Cmd.letter: case Cmd.other_char:
+            ci.state = mid_line; break
+        }
+        return false
+      }
+    } else {
+      ci.state = new_line
+      // §360 Move to next line of file, or goto restart if there is no next line
+      if (ci.name > 17) {
+        // §362 Read next line of file into buffer, or goto restart if the file has ended
+        e.line++; e.first = ci.start
+        if (!e.force_eof) { // etex.ch: pseudo files and \everyeof
+          if (ci.name <= 19 ? pseudo_input(e) : input_ln(e, e.input_file[ci.index]!)) firm_up_the_line(e)
+          else if (e.equiv[every_eof_loc] !== 0 && !e.eof_seen[ci.index]) {
+            ci.limit = e.first - 1; e.eof_seen[ci.index] = true // fake one empty line
+            begin_token_list(e, e.equiv[every_eof_loc]!, every_eof_text); return true
+          } else e.force_eof = true
+        }
+        if (e.force_eof) {
+          if (int_par(e, tracing_nesting_code) > 0 &&
+            (e.grp_stack[e.in_open] !== e.cur_boundary || e.if_stack[e.in_open] !== e.cond_ptr)) file_warning(e)
+          if (ci.name >= 19) { print_char(e, 41); e.open_parens-- }
+          e.force_eof = false
+          end_file_reading(e)
+          check_outer_validity(e); return true
+        }
+        if (end_line_char_inactive(e)) ci.limit--
+        else e.buffer[ci.limit] = int_par(e, end_line_char_code)
+        e.first = ci.limit + 1; ci.loc = ci.start
+      } else {
+        if (ci.name !== 0) { e.cur_cmd = 0; e.cur_chr = 0; return false } // §342 does not apply to cur_cmd=0
+        if (e.input_ptr > 0) { end_file_reading(e); return true }
+        if (e.selector < log_only) open_log_file(e)
+        if (e.interaction > nonstop_mode) {
+          if (end_line_char_inactive(e)) ci.limit++
+          if (ci.limit === ci.start) print_nl(e, "(Please type a command or say `\\end')")
+          print_ln(e); e.first = ci.start
+          prompt_input(e, '*')
+          ci.limit = e.last
+          if (end_line_char_inactive(e)) ci.limit--
+          else e.buffer[ci.limit] = int_par(e, end_line_char_code)
+          e.first = ci.limit + 1; ci.loc = ci.start
+        } else fatal_error(e, '*** (job aborted, no legal \\end found)')
+      }
+    }
   }
 }
 
