@@ -1,37 +1,40 @@
 # Corpus status
 
-Engine 2a87147; pdfTeX 3.141592653-2.6-1.40.29 (TeX Live 2026); 4060 documents (partial rerun merged; timings are from this run only).
+Engine 2a87147; pdfTeX 3.141592653-2.6-1.40.29 (TeX Live 2026); 6255 documents (partial rerun merged; timings are from this run only).
 
 | category | count |
 |---|---|
-| identical | 3014 |
-| both-error | 42 |
-| pdf-differs | 7 |
-| log-differs-only | 0 |
-| engine-error | 90 |
+| identical | 3970 |
+| both-error | 52 |
+| pdf-differs | 11 |
+| log-differs-only | 3 |
+| engine-error | 150 |
 | pdftex-error | 0 |
-| timeout | 32 |
-| skipped | 875 |
+| timeout | 45 |
+| skipped | 2024 |
 
-| side | p50 | p95 | (this run, documents run: 195) |
+| side | p50 | p95 | (this run, documents run: 1077) |
 |---|---|---|---|
-| pdftex | 4.7 s | 333.5 s | |
-| engine | 12.6 s | 386.9 s | |
+| pdftex | 2.5 s | 41.3 s | |
+| engine | 7.6 s | 127.2 s | |
 
 ## engine-error by message
 
-- 62x unsupported: bitmap (PK
+- 81x unsupported: bitmap (PK
+- 30x crash: Fatal format file error; I'm stymied (not a tstex format 4 file)
 - 11x ! Font T2A/cmr/m/n/14.4=larm1440 at 14.4pt not loadable: Metric (TFM) file not found.
-- 4x unsupported: TeXXeT
-- 2x unsupported: TrueType/OpenType font files
+- 9x unsupported: TrueType/OpenType font files
+- 5x unsupported: TeXXeT
 - 2x ! Font T2A/cmr/b/n/10=larb1000 at 10.0pt not loadable: Metric (TFM) file not found.
 - 2x ! Critical Class ctexbook Error: CTeX fontset `fandol' is unavailable in
 - 2x ! Critical Class ctexrep Error: CTeX fontset `fandol' is unavailable in
+- 2x ! Font OT2/cmr/m/n/10=wnr10 at 10.0pt not loadable: Metric (TFM) file not found.
 - 1x ! Font T2A/lmr/bx/n/8=labx0800 at 8.0pt not loadable: Metric (TFM) file not found.
 - 1x ! Font OT1/cmr5/m/it/12=cmti5 at 12.0pt not loadable: Metric (TFM) file not found.
 - 1x ! Font T2A/cmr/m/n/14=larm1440 at 14.0pt not loadable: Metric (TFM) file not found.
 - 1x ! Font T2A/cmr/m/n/20.74=larm2074 at 20.74pt not loadable: Metric (TFM) file not found.
 - 1x ! Critical Class ctexart Error: CTeX fontset `fandol' is unavailable in
+- 1x !pdfTeX error: pdftex (file NCXMathMI): cannot open Type 1 font file for reading
 
 ## Documents
 
@@ -88,6 +91,11 @@ identical | doc/bibtex/iopart-num/iopart-num.tex | no pdf on either side, runs 2
 identical | doc/bibtex/iran-bibtex/iran-bibtex-pattern.tex | no pdf on either side, runs 1/1
 identical | doc/bibtex/jieeetran/jieeetran-en.tex | raw-pdf-bytes equal, runs 2/2
 identical | doc/bibtex/jieeetran/jieeetran.tex | no pdf on either side, runs 1/1
+identical | doc/bibtex/newcastle-bst/newcastle-bst.tex | raw-pdf-bytes equal, runs 3/3
+identical | doc/bibtex/tamethebeast/ttb_en.tex | no pdf on either side, runs 2/2
+identical | doc/bibtex/urlbst/urlbst.tex | raw-pdf-bytes equal, runs 3/3
+identical | doc/bibtex/vancouver/vancouver.tex | raw-pdf-bytes equal, runs 3/3
+identical | doc/bibtex/zootaxa-bst/example.tex | raw-pdf-bytes equal, runs 4/4
 identical | doc/bibtexu/examples/test.tex | raw-pdf-bytes equal, runs 3/3
 identical | doc/context/third/enigma/enigma/enigma_manual.tex | raw-pdf-bytes equal, runs 1/1
 identical | doc/context/third/enigma/enigma/examples/enigma-example-latex.tex | raw-pdf-bytes equal, runs 2/2
@@ -341,6 +349,158 @@ identical | doc/fonts/kurier/kurier-latex-math.tex | raw-pdf-bytes equal, runs 2
 identical | doc/fonts/kurier/kurier-latex-pl.tex | raw-pdf-bytes equal, runs 2/2
 identical | doc/fonts/kurier/kurier-latex-t2a.tex | raw-pdf-bytes equal, runs 2/2
 identical | doc/fonts/kurier/kurier-latex-t5.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/fonts/lexend/lexend.tex | no pdf on either side, runs 1/1
+identical | doc/fonts/lh/samples/lh-lcy.tex | no pdf on either side, runs 1/1
+identical | doc/fonts/lh/samples/lh-lcytext.tex | no pdf on either side, runs 1/1
+identical | doc/fonts/lh/samples/lh-t2a.tex | no pdf on either side, runs 1/1
+identical | doc/fonts/lh/samples/lh-t2atext.tex | no pdf on either side, runs 1/1
+identical | doc/fonts/libertine/libertine-samples.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/fonts/libertinegc/libertinegc-doc.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/fonts/libertinus-otf/libertinus-otf-doc.tex | no pdf on either side, runs 1/1
+identical | doc/fonts/libertinus-type1/libertinus-samples.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/fonts/libertinus-type1/libertinus-type1.tex | raw-pdf-bytes equal, runs 3/3
+identical | doc/fonts/libertinus/libertinus-doc.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/fonts/libertinust1math/LibertinusT1Math-doc.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/fonts/libertinust1math/sample1.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/fonts/libertinust1math/sample10.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/fonts/libertinust1math/sample11.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/fonts/libertinust1math/sample2.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/fonts/libertinust1math/sample3.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/fonts/libertinust1math/sample4.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/fonts/libertinust1math/sample5.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/fonts/libertinust1math/sample6.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/fonts/libertinust1math/sample7.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/fonts/libertinust1math/sample8.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/fonts/libertinust1math/sample9.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/fonts/librebaskerville/librebaskerville-samples.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/fonts/librebodoni/librebodoni-samples.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/fonts/librecaslon/librecaslon-samples.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/fonts/librefranklin/librefranklin-samples.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/fonts/libris/libris-tables.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/fonts/libris/librisadf-example.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/fonts/linguisticspro/linguisticspro-samples.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/fonts/lm/tstlmot1.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/fonts/lm/tstlmot4.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/fonts/lm/tstlmqx.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/fonts/lm/tstlmt1.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/fonts/lm/tstlmts1.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/fonts/lobster2/lobster2-samples.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/fonts/logix/logix.tex | no pdf on either side, runs 2/2
+identical | doc/fonts/lxfonts/LXfonts-demo.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/fonts/magra/Magra-samples.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/fonts/marcellus/marcellus-samples.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/fonts/marvosym/marvodoc.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/fonts/marvosym/marvosym-doc.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/fonts/mathdesign/mathdesign-doc.tex | raw-pdf-bytes equal, runs 3/3
+identical | doc/fonts/memdesign/memdesign.tex | no pdf on either side, runs 2/2
+identical | doc/fonts/merriweather/merriweather-samples.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/fonts/mintspirit/mintspirit-samples.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/fonts/mintspirit/mintspirit2-samples.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/fonts/missaali/missaali.tex | no pdf on either side, runs 2/2
+identical | doc/fonts/musixtex-fonts/musixtex-fonts-install.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/fonts/mxedruli/alphabets.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/fonts/mxedruli/mxeddoc.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/fonts/mxedruli/ossetic.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/fonts/mxedruli/vepxis.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/fonts/mystyletau/mystyletau.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/fonts/nanumtype1/nanum-sampler.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/fonts/newcomputermodern/colored-diacritics.tex | no pdf on either side, runs 1/1
+identical | doc/fonts/newcomputermodern/integral.tex | no pdf on either side, runs 1/1
+identical | doc/fonts/newcomputermodern/mathscript.tex | no pdf on either side, runs 1/1
+identical | doc/fonts/newcomputermodern/testmath-newcm-sans.tex | no pdf on either side, runs 1/1
+identical | doc/fonts/newtx/mathnotes.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/fonts/newtxtt/newtxtt-doc.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/fonts/noto/noto-samples.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/fonts/notomath/notomath-doc.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/fonts/nunito/nunito-samples.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/fonts/oinuit/book.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/fonts/old-arrows/old-arrows-italian.tex | raw-pdf-bytes equal, runs 3/3
+identical | doc/fonts/old-arrows/old-arrows.tex | raw-pdf-bytes equal, runs 3/3
+identical | doc/fonts/oldlatin/oldlatin.tex | raw-pdf-bytes equal, runs 3/3
+identical | doc/fonts/oldstandard/oldstandard-samples.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/fonts/oswald/Oswald-samples.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/fonts/overlock/overlock-samples.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/fonts/pagella-otf/pagella-otf-doc.tex | no pdf on either side, runs 1/1
+identical | doc/fonts/paratype/paratype-sample.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/fonts/paratype/paratype.tex | raw-pdf-bytes equal, runs 3/3
+identical | doc/fonts/parsimatn/parsimatn-example-of-use.tex | no pdf on either side, runs 1/1
+identical | doc/fonts/parsinevis/parsinevis-sample.tex | no pdf on either side, runs 1/1
+identical | doc/fonts/pigpen/pigpendoc.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/fonts/pl46-fonts/pl46-fonts-doc.tex | no pdf on either side, runs 1/1
+identical | doc/fonts/pl46-fonts/pl46-fonts-table.tex | no pdf on either side, runs 1/1
+identical | doc/fonts/playfair/playfair-samples.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/fonts/plex/plex-samples.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/fonts/plimsoll/plimsoll.tex | no pdf on either side, runs 1/1
+identical | doc/fonts/poiretone/poiret-samples.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/fonts/poltawski/tstapot1.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/fonts/poltawski/tstapot4.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/fonts/poltawski/tstapqx.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/fonts/poltawski/tstapt1.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/fonts/poltawski/tstapts1.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/fonts/prodint/prodint.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/fonts/ptex-fontmaps/examples/otf-sample-04.tex | no pdf on either side, runs 2/2
+identical | doc/fonts/ptex-fontmaps/examples/otf-sample.tex | no pdf on either side, runs 2/2
+identical | doc/fonts/ptex-fontmaps/examples/ptex-sample.tex | no pdf on either side, runs 2/2
+identical | doc/fonts/ptex-fontmaps/examples/series-compare.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/fonts/ptex-fontmaps/kanji-config-updmap.tex | no pdf on either side, runs 1/1
+identical | doc/fonts/pxfonts/pxfontsdoc.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/fonts/pxfonts/pxfontsdocA4.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/fonts/pxtxalfa/pxtxalfa-doc.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/fonts/qpxqtx/qpxtest.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/fonts/qpxqtx/qtxtest.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/fonts/quattrocento/quattrocento-samples.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/fonts/rit-fonts/font-example.tex | no pdf on either side, runs 1/1
+identical | doc/fonts/rit-fonts/rit-fonts-doc.tex | no pdf on either side, runs 1/1
+identical | doc/fonts/roboto/roboto-samples.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/fonts/romandeadf/romande-tables.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/fonts/romandeadf/romandeadf-example.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/fonts/romandeadf/romandeadf-tables.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/fonts/rsfso/rsfso-doc.tex | no pdf on either side, runs 1/1
+identical | doc/fonts/sansmathaccent/sansmathaccent.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/fonts/sansmathfonts/sansmathfonts.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/fonts/schola-otf/schola-otf-doc.tex | no pdf on either side, runs 1/1
+identical | doc/fonts/simpleicons/simpleicons.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/fonts/skaknew/SkakNew.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/fonts/spectral/spectral-samples.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/fonts/srbtiks/srbtiks.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/fonts/starfont/starfont.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/fonts/step/step-fonts.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/fonts/stickstoo/stickstoo-doc.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/fonts/talos/talos-doc.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/fonts/termes-otf/termes-otf-doc.tex | no pdf on either side, runs 1/1
+identical | doc/fonts/tex-gyre/qbk-test.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/fonts/tex-gyre/qcr-test.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/fonts/tex-gyre/qcs-test.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/fonts/tex-gyre/qhv-test.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/fonts/tex-gyre/qtm-test.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/fonts/tex-gyre/qzc-test.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/fonts/tfrupee/tfrupee.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/fonts/theanodidot/theanodidot-samples.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/fonts/theanomodern/theanomodern-samples.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/fonts/theanooldstyle/theanooldstyle-samples.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/fonts/tinos/tinos-samples.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/fonts/tipa/tipaman.tex | raw-pdf-bytes equal, runs 3/3
+identical | doc/fonts/tipa/vowel.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/fonts/txfonts/txfontsdoc.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/fonts/txfonts/txfontsdocA4.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/fonts/txfontsb/txfontsb.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/fonts/txuprcal/txuprcal-doc.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/fonts/typicons/typicons.tex | no pdf on either side, runs 1/1
+identical | doc/fonts/universalis/universalis-samples.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/fonts/uppunctlm/always_upright_punctuation_marks.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/fonts/urwchancal/urwchancal-doc.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/fonts/variablelm/control_scaling_lm_fonts.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/fonts/venturisadf/venturis-example.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/fonts/venturisadf/venturis2-example.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/fonts/venturisadf/venturisadf-tables.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/fonts/venturisadf/venturisold-example.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/fonts/venturisadf/venturissans-example.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/fonts/venturisadf/venturissans2-example.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/fonts/wadalab/wadalab-sampler.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/fonts/xq/bugs-0-3.tex | no pdf on either side, runs 1/1
+identical | doc/fonts/ysabeau/ysabeau-doc-en.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/fonts/zhmetrics-uptex/upzhfandolfonts-test.tex | no pdf on either side, runs 2/2
+identical | doc/fonts/zlmtt/zlmtt-doc.tex | no pdf on either side, runs 1/1
 identical | doc/generic/2up/2up-doc.tex | no pdf on either side, runs 1/1
 identical | doc/generic/antique-spanish-units/antique-spanish-units.tex | no pdf on either side, runs 1/1
 identical | doc/generic/armenian/examples/latex/alphabet.tex | raw-pdf-bytes equal, runs 2/2
@@ -381,6 +541,81 @@ identical | doc/generic/hlist/hlist-fr.tex | no pdf on either side, runs 1/1
 identical | doc/generic/ifxptex/ifxptex-doc.tex | raw-pdf-bytes equal, runs 2/2
 identical | doc/generic/latex-notes-zh-cn/src/basics.tex | raw-pdf-bytes equal, runs 2/2
 identical | doc/generic/latex-notes-zh-cn/src/i18n.tex | no pdf on either side, runs 2/2
+identical | doc/generic/listofitems/listofitems-en.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/generic/listofitems/listofitems-fr.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/generic/listofitems/test/listofitems-test-latex.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/generic/localloc/localtst.tex | no pdf on either side, runs 2/2
+identical | doc/generic/lpform/lpform-doc.tex | raw-pdf-bytes equal, runs 3/3
+identical | doc/generic/m-tx/mtx-install.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/generic/m-tx/mtxindex.tex | no pdf on either side, runs 2/2
+identical | doc/generic/mathdots/mdotest.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/generic/memoize/memoize-code.tex | no pdf on either side, runs 1/1
+identical | doc/generic/mfpic/examples/lapictures.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/generic/mfpic/mfpguide.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/generic/mfpic/mfpic-doc.tex | no pdf on either side, runs 1/1
+identical | doc/generic/multido/multido-doc.tex | no pdf on either side, runs 1/1
+identical | doc/generic/musixtex/musixlyr/mxlyrdoc.tex | raw-pdf-bytes equal, runs 3/3
+identical | doc/generic/musixtex/musixtex-install.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/generic/musixtex/notationMistakes/sottieng.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/generic/musixtex/notationMistakes/sottiger.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/generic/musixtex/notationMistakes/sottigra.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/generic/path/path-doc.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/generic/petri-nets/pndoc.tex | raw-pdf-bytes equal, runs 3/3
+identical | doc/generic/pgf/pgfmanual-en-base-external.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/generic/pgf/pgfmanual-en-drivers.tex | no pdf on either side, runs 1/1
+identical | doc/generic/pgf/pgfmanual-en-pages.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/generic/pgf/pgfmanual-en-tutorial-nodes.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/generic/pgf/pgfmanual-en-tutorial.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/generic/pgf/pgfmanual-test.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/generic/pmx/pmx-install.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/generic/pmx/ref300.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/generic/poster-mac/poster-doc.tex | no pdf on either side, runs 1/1
+identical | doc/generic/pst-marble/pst-marble-commands.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/generic/pst-mirror/createEPS/xa.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/generic/pst-pad/pst-pad-doc.tex | no pdf on either side, runs 2/2
+identical | doc/generic/pst-pad/pst-pad-docDE.tex | no pdf on either side, runs 2/2
+identical | doc/generic/randomlist/test-fr.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/generic/randomlist/test.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/generic/simplekv/simplekv-fr.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/generic/t2/etc/utf-8/test-utf8.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/generic/t2/examples/example1.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/generic/t2/examples/example3.tex | no pdf on either side, runs 2/2
+identical | doc/generic/t2/examples/example5.tex | no pdf on either side, runs 2/2
+identical | doc/generic/tds/tds.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/generic/tex-locale/samples/sample-locale-xeltx2.tex | no pdf on either side, runs 1/1
+identical | doc/generic/tex-locale/samples/sample-locale-xeltx3.tex | no pdf on either side, runs 1/1
+identical | doc/generic/tex-locale/samples/sample-locale2.tex | no pdf on either side, runs 1/1
+identical | doc/generic/tex4ht/jhsample.tex | no pdf on either side, runs 2/2
+identical | doc/generic/textmerg/tmexamp1.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/generic/textmerg/tmexamp2.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/generic/tokcycle/tokcycle-doc.tex | raw-pdf-bytes equal, runs 3/3
+identical | doc/generic/tokcycle/tokcycle-examples.tex | raw-pdf-bytes equal, runs 3/3
+identical | doc/generic/tokstools/tokstools-en.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/generic/tokstools/tokstools-fr.tex | no pdf on either side, runs 2/2
+identical | doc/generic/tracklang/samples/animals/sample-animals-babel.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/generic/tracklang/samples/animals/sample-animals-de.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/generic/tracklang/samples/animals/sample-animals.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/generic/tracklang/samples/animals/sample-animals2-de.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/generic/tracklang/samples/animals/sample-animals2-de2.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/generic/tracklang/samples/animals/sample-animals2-de3.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/generic/tracklang/samples/animals/sample-animals2.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/generic/tracklang/samples/regions/sample-regions.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/generic/tracklang/samples/regions/sample-regions2-manx.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/generic/tracklang/samples/regions/sample-regions2-map.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/generic/tracklang/samples/regions/sample-regions2-map2.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/generic/tracklang/samples/regions/sample-regions2-map3.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/generic/tracklang/samples/regions/sample-regions2-nomap.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/generic/tracklang/samples/regions/sample-regions2.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/generic/tracklang/samples/sample-tracklang.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/generic/tracklang/samples/sample-tracklang2.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/generic/tracklang/samples/sample-tracklang3.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/generic/tracklang/samples/sample-tracklang5.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/generic/upzhkinsoku/upzhkinsoku-doc.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/generic/variations/docvariations.tex | raw-pdf-bytes equal, runs 1/1
+identical | doc/generic/vaucanson-g/VCManual-src/VCManual.tex | no pdf on either side, runs 2/2
+identical | doc/generic/visualtoks/visualtoks-doc.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/generic/witharrows/witharrows-french.tex | no pdf on either side, runs 1/1
+identical | doc/generic/xstring/test_latex.tex | raw-pdf-bytes equal, runs 2/2
 identical | doc/latex-dev/amsmath/amsldoc.tex | raw-pdf-bytes equal, runs 3/3
 identical | doc/latex-dev/amsmath/subeqn.tex | raw-pdf-bytes equal, runs 3/3
 identical | doc/latex-dev/amsmath/technote.tex | raw-pdf-bytes equal, runs 2/2
@@ -1064,6 +1299,7 @@ identical | doc/latex/circuit-macros/examples/psfrag/examplespsfrag.tex | no pdf
 identical | doc/latex/circuit-macros/examples/tst.tex | no pdf on either side, runs 2/2
 identical | doc/latex/circuit-macros/examples/tst1.tex | raw-pdf-bytes equal, runs 2/2
 identical | doc/latex/circuitikz/compatibility.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/latex/circularglyphs/circularglyphs-doc.tex | raw-pdf-bytes equal, runs 2/2
 identical | doc/latex/cistercian/cistercian-doc.tex | no pdf on either side, runs 1/1
 identical | doc/latex/citeright/citeright.tex | raw-pdf-bytes equal, runs 3/3
 identical | doc/latex/cje/cjetemplate.tex | no pdf on either side, runs 2/2
@@ -2899,6 +3135,729 @@ identical | doc/latex/latex-uni8/example_pm.tex | raw-pdf-bytes equal, runs 2/2
 identical | doc/latex/latex-uni8/example_pmr.tex | raw-pdf-bytes equal, runs 2/2
 identical | doc/latex/latex-uni8/example_pu.tex | raw-pdf-bytes equal, runs 2/2
 identical | doc/latex/latex-uni8/example_pur.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/latex/latex-via-exemplos/latex-via-exemplos-certificado.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/latex/latex-via-exemplos/latex-via-exemplos-cracha.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/latex/latex-via-exemplos/latex-via-exemplos-fig.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/latex/latex-via-exemplos/latex-via-exemplos-flowfram.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/latex/latex-via-exemplos/latex-via-exemplos-todonotes.tex | raw-pdf-bytes equal, runs 3/3
+identical | doc/latex/latex-web-companion/apa/latexexa.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/latex/latex-web-companion/apb/inv2.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/latex/latex-web-companion/apc/invitationfr.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/latex/latex-web-companion/apc/invitationfrraw.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/latex/latex-web-companion/ch2/latexexa.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/latex/latex-web-companion/ch3/ex20.tex | no pdf on either side, runs 1/1
+identical | doc/latex/latex-web-companion/ch3/ex21.tex | no pdf on either side, runs 1/1
+identical | doc/latex/latex-web-companion/ch3/ex22.tex | no pdf on either side, runs 1/1
+identical | doc/latex/latex-web-companion/ch3/ex2bib.tex | no pdf on either side, runs 1/1
+identical | doc/latex/latex-web-companion/ch3/ex30.tex | no pdf on either side, runs 1/1
+identical | doc/latex/latex-web-companion/ch3/sampleAMS.tex | no pdf on either side, runs 1/1
+identical | doc/latex/latex-web-companion/ch3/sampleMath.tex | no pdf on either side, runs 1/1
+identical | doc/latex/latex-web-companion/ch3/sampleMathImages.tex | no pdf on either side, runs 1/1
+identical | doc/latex/latex-web-companion/ch3/sampleMathThumb.tex | no pdf on either side, runs 1/1
+identical | doc/latex/latex-web-companion/ch4/latexexa.tex | no pdf on either side, runs 2/2
+identical | doc/latex/latex4musicians/Figures/chords.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/latex/latex4musicians/Figures/gchords.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/latex/latex4musicians/Figures/gcschemes.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/latex/latex4musicians/Figures/gdiagram.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/latex/latex4musicians/Figures/glyphs.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/latex/latex4musicians/Figures/glyphs_ls.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/latex/latex4musicians/Figures/gtrcrd.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/latex/latex4musicians/Figures/guitar.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/latex/latex4musicians/Figures/guitartabs.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/latex/latex4musicians/Figures/kyrie.tex | no pdf on either side, runs 1/1
+identical | doc/latex/latex4musicians/Figures/leadsheets.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/latex/latex4musicians/Figures/musicography.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/latex/latex4musicians/Figures/musixguit.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/latex/latex4musicians/Figures/sample-abc.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/latex/latex4musicians/Figures/sample-all.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/latex/latex4musicians/Figures/sample-lyluatex.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/latex/latex4musicians/Figures/sample-mlatex.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/latex/latex4musicians/Figures/sample-songbook.orig.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/latex/latex4musicians/Figures/sample-songbook.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/latex/latex4musicians/Figures/songbook.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/latex/latex4musicians/Figures/songs.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/latex/latex4musicians/Figures/songs_all.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/latex/latex4musicians/Figures/songs_g.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/latex/latex4musicians/Figures/verses-chords.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/latex/latex4wp-it/tbx.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/latex/latex4wp/latex4wp.tex | raw-pdf-bytes equal, runs 3/3
+identical | doc/latex/latex4wp/tbx.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/latex/latexcheat-de/latexsheet-de.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/latex/latexcheat-esmx/latexsheet-esmx.tex | no pdf on either side, runs 2/2
+identical | doc/latex/latexcheat-ptbr/latexsheet-ptbr.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/latex/latexcheat/latexsheet.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/latex/lazylist/lazylist.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/latex/lcd/example.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/latex/lcyw/example-lcyw.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/latex/lectures/example.tex | raw-pdf-bytes equal, runs 3/3
+identical | doc/latex/lectureslides/lectureslides-doc.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/latex/ledmac/djd17nov.tex | raw-pdf-bytes equal, runs 3/3
+identical | doc/latex/ledmac/djdpoems.tex | raw-pdf-bytes equal, runs 3/3
+identical | doc/latex/ledmac/egarab.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/latex/ledmac/egarabpar.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/latex/ledmac/ledarden.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/latex/ledmac/ledbraonain.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/latex/ledmac/ledeasy.tex | raw-pdf-bytes equal, runs 3/3
+identical | doc/latex/ledmac/ledekker.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/latex/ledmac/ledfeat.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/latex/ledmac/ledioc.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/latex/ledmac/villon.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/latex/leftindex/leftindex.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/latex/leporello/doc/flow.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/latex/leporello/doc/layout.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/latex/leporello/leporello-doc.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/latex/lettre/letex1.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/latex/lettre/letex2.tex | raw-pdf-bytes equal, runs 3/3
+identical | doc/latex/lettre/letex3.tex | raw-pdf-bytes equal, runs 3/3
+identical | doc/latex/lettre/letex4.tex | raw-pdf-bytes equal, runs 3/3
+identical | doc/latex/lettre/letex5.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/latex/lettre/letex6.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/latex/lettre/letex7.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/latex/lettre/letex8.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/latex/lettre/lettre.tex | no pdf on either side, runs 3/3
+identical | doc/latex/lettre/testfaxd.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/latex/lettre/testfaxe.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/latex/lettre/testfaxf.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/latex/lexikon/lexikon-doc.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/latex/lexikon/lexikon.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/latex/lexref/lexref.tex | raw-pdf-bytes equal, runs 3/3
+identical | doc/latex/liederbuch/liederbuch-demo-project/liederbuch-demo-projekt.tex | raw-pdf-bytes equal, runs 3/3
+identical | doc/latex/liederbuch/liederbuch-demo-project/printTestLiederbuch.tex | no pdf on either side, runs 1/1
+identical | doc/latex/liederbuch/liederbuch-documentation.tex | raw-pdf-bytes equal, runs 3/3
+identical | doc/latex/lilyglyphs/documentation/lilyglyphs-example.tex | no pdf on either side, runs 1/1
+identical | doc/latex/limecv/examples/mwe-latex.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/latex/limecv/examples/mwe-lualatex.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/latex/limecv/examples/mwe-xelatex.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/latex/lineno/fnlineno.tex | no pdf on either side, runs 2/2
+identical | doc/latex/lineno/lineno.tex | raw-pdf-bytes equal, runs 3/3
+identical | doc/latex/lineno/lnosuppl.tex | raw-pdf-bytes equal, runs 3/3
+identical | doc/latex/lineno/ulineno.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/latex/linesys/linesys-manual.tex | raw-pdf-bytes equal, runs 3/3
+identical | doc/latex/linesys/linesys-regression.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/latex/ling-macros/ling-macros-doc.tex | raw-pdf-bytes equal, runs 3/3
+identical | doc/latex/linguex/linguex-doc.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/latex/linguex/ps-trees-doc.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/latex/linkedthm/linkedthm-doc.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/latex/linkedthm/linkedthm-example.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/latex/linop/linop.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/latex/lion-msc/lion-msc.tex | raw-pdf-bytes equal, runs 3/3
+identical | doc/latex/lion-msc/minimal.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/latex/lisp-on-tex/examples/fact.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/latex/lisp-on-tex/examples/nqueen.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/latex/lisp-on-tex/examples/repl.tex | no pdf on either side, runs 2/2
+identical | doc/latex/lisp-on-tex/examples/rocket.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/latex/lisp-on-tex/examples/showfont.tex | no pdf on either side, runs 1/1
+identical | doc/latex/listing/listing.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/latex/listings-ext/getversion.tex | raw-pdf-bytes equal, runs 1/1
+identical | doc/latex/listings-ext/listings-ext_test_a.tex | no pdf on either side, runs 2/2
+identical | doc/latex/listings-ext/listings-ext_test_d.tex | no pdf on either side, runs 2/2
+identical | doc/latex/listparskip/listparskip_example.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/latex/listparskip/listparskip_user_guide.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/latex/litetable/litetable-demo.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/latex/lithuanian/testlt-urw.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/latex/lithuanian/testlt.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/latex/liturg/test.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/latex/lkproof/lkproof-doc.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/latex/llncs/llncsdoc.tex | no pdf on either side, runs 1/1
+identical | doc/latex/llncsconf/example/example.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/latex/lni/lni-author-template.tex | raw-pdf-bytes equal, runs 3/3
+identical | doc/latex/logictools/logictools-documentation.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/latex/logoetalab/logoetalab-doc.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/latex/logpap/example.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/latex/logreq/examples/01-basic.tex | no pdf on either side, runs 2/2
+identical | doc/latex/logreq/examples/02-index.tex | no pdf on either side, runs 2/2
+identical | doc/latex/logreq/examples/03-biblatex+bibtex8.tex | no pdf on either side, runs 2/2
+identical | doc/latex/longdivision/longdivision_manual.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/latex/longtwocolumn/longtwocolumn-example.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/latex/loops/loops-pokayoke1.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/latex/lpic/instructions.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/latex/lps/lpstemplate.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/latex/lsc/lsc.tex | no pdf on either side, runs 2/2
+identical | doc/latex/lshort-chinese/src/chap/app.B.error.help.tex | no pdf on either side, runs 1/1
+identical | doc/latex/lshort-chinese/src/chap/chap.01.basics.tex | no pdf on either side, runs 1/1
+identical | doc/latex/lshort-chinese/src/chap/chap.02.text.tex | no pdf on either side, runs 1/1
+identical | doc/latex/lshort-chinese/src/chap/chap.03.elements.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/latex/lshort-czech/src/spec.tex | no pdf on either side, runs 1/1
+identical | doc/latex/lshort-czech/src/things.tex | no pdf on either side, runs 1/1
+identical | doc/latex/lshort-czech/src/typeset.tex | no pdf on either side, runs 1/1
+identical | doc/latex/lshort-estonian/src/things.tex | no pdf on either side, runs 1/1
+identical | doc/latex/lshort-finnish/src/asiat.tex | no pdf on either side, runs 1/1
+identical | doc/latex/lshort-finnish/src/ladonta.tex | no pdf on either side, runs 1/1
+identical | doc/latex/lshort-finnish/src/lyhyt2e.tex | no pdf on either side, runs 1/1
+identical | doc/latex/lshort-finnish/src/typeset.tex | no pdf on either side, runs 1/1
+identical | doc/latex/lshort-german/eingabefile.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/latex/lshort-german/l2kurz.tex | raw-pdf-bytes equal, runs 3/3
+identical | doc/latex/lshort-mongol/src/spec.tex | no pdf on either side, runs 1/1
+identical | doc/latex/lshort-mongol/src/things.tex | no pdf on either side, runs 1/1
+identical | doc/latex/lshort-mongol/src/typeset.tex | no pdf on either side, runs 1/1
+identical | doc/latex/lshort-persian/spec.tex | no pdf on either side, runs 1/1
+identical | doc/latex/lshort-persian/things.tex | no pdf on either side, runs 1/1
+identical | doc/latex/lshort-slovenian/src/spec.tex | no pdf on either side, runs 1/1
+identical | doc/latex/lshort-slovenian/src/things.tex | no pdf on either side, runs 1/1
+identical | doc/latex/lshort-slovenian/src/typeset.tex | no pdf on either side, runs 1/1
+identical | doc/latex/lshort-spanish/fuente/src/things.tex | no pdf on either side, runs 1/1
+identical | doc/latex/lshort-vietnamese/src/lshort-vi.tex | no pdf on either side, runs 1/1
+identical | doc/latex/lshort-vietnamese/src/spec.tex | no pdf on either side, runs 1/1
+identical | doc/latex/lshort-vietnamese/src/things.tex | no pdf on either side, runs 1/1
+identical | doc/latex/lshort-vietnamese/src/typeset.tex | no pdf on either side, runs 1/1
+identical | doc/latex/lstbayes/examples.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/latex/lt3graph/lt3graph.tex | no pdf on either side, runs 1/1
+identical | doc/latex/ltablex/ltablex.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/latex/ltabptch/ltabptch.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/latex/ltabptch/ltabtest.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/latex/ltb2bib/doltb2bib.tex | no pdf on either side, runs 2/2
+identical | doc/latex/ltx-talk/background-image-single-frame.tex | raw-pdf-bytes equal, runs 3/3
+identical | doc/latex/ltx-talk/background-image.tex | raw-pdf-bytes equal, runs 3/3
+identical | doc/latex/ltx-talk/float-centering.tex | raw-pdf-bytes equal, runs 3/3
+identical | doc/latex/ltx-talk/footer-text.tex | raw-pdf-bytes equal, runs 3/3
+identical | doc/latex/ltx-talk/header-footer-color.tex | raw-pdf-bytes equal, runs 3/3
+identical | doc/latex/ltx-talk/list-actions.tex | raw-pdf-bytes equal, runs 3/3
+identical | doc/latex/ltx-talk/list-overlays.tex | raw-pdf-bytes equal, runs 3/3
+identical | doc/latex/ltx-talk/list-relative-overlays.tex | raw-pdf-bytes equal, runs 3/3
+identical | doc/latex/ltx-talk/ltx-talk-code.tex | no pdf on either side, runs 2/2
+identical | doc/latex/ltx-talk/overlay-opacity.tex | raw-pdf-bytes equal, runs 3/3
+identical | doc/latex/ltx-talk/titlepage-styling.tex | raw-pdf-bytes equal, runs 3/3
+identical | doc/latex/ltx-talk/totalframes.tex | raw-pdf-bytes equal, runs 3/3
+identical | doc/latex/ltx-talk/verbatim-alt-env.tex | raw-pdf-bytes equal, runs 3/3
+identical | doc/latex/ltx-talk/verbatim-content.tex | raw-pdf-bytes equal, runs 3/3
+identical | doc/latex/ltxkeys/ltxkeys-guide-table1.tex | no pdf on either side, runs 1/1
+identical | doc/latex/ltxkeys/ltxkeys-guide.tex | no pdf on either side, runs 1/1
+identical | doc/latex/ltxkeys/ltxkeys-test-20121122.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/latex/lucide-admonitions/lucide-admonitions.tex | no pdf on either side, runs 1/1
+identical | doc/latex/lucide-icons/lucide-icons-doc.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/latex/macros2e/macros2e.tex | no pdf on either side, runs 2/2
+identical | doc/latex/magaz/magaz.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/latex/maine-thesis/maine-thesis-example.tex | no pdf on either side, runs 1/1
+identical | doc/latex/makebarcode/makebarcode.tex | raw-pdf-bytes equal, runs 3/3
+identical | doc/latex/makebase/makebase-test.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/latex/makebox/getversion.tex | raw-pdf-bytes equal, runs 1/1
+identical | doc/latex/makebox/testmakebox.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/latex/makecell/makecell-rus.tex | no pdf on either side, runs 1/1
+identical | doc/latex/makeglos/makeglos.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/latex/makelabels/makelabels-envlab-example.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/latex/makelabels/makelabels-example.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/latex/makerobust/makerobust.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/latex/makeshape/testsample.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/latex/malagasy-numberwords/malagasy-numberwords-example-fmtcount.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/latex/malagasy-numberwords/malagasy-numberwords-example.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/latex/malagasy-numberwords/malagasy-numberwords-guide.tex | raw-pdf-bytes equal, runs 3/3
+identical | doc/latex/manyind/mindsample.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/latex/maritime/maritime-doc.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/latex/markdown/examples/latex-pdftex.tex | no pdf on either side, runs 1/1
+identical | doc/latex/markdown/examples/latex-tex4ht.tex | no pdf on either side, runs 1/1
+identical | doc/latex/matapli/examples/couverture/couvertureModele.tex | raw-pdf-bytes equal, runs 3/3
+identical | doc/latex/matchedsplit/matchedsplit.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/latex/matchedsplit/numbered_example.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/latex/math-into-latex-4/babybeamer1.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/latex/math-into-latex-4/babybeamer10.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/latex/math-into-latex-4/babybeamer2.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/latex/math-into-latex-4/babybeamer3.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/latex/math-into-latex-4/babybeamer4.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/latex/math-into-latex-4/babybeamer5.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/latex/math-into-latex-4/babybeamer6.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/latex/math-into-latex-4/babybeamer6block.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/latex/math-into-latex-4/babybeamer6mod.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/latex/math-into-latex-4/babybeamer6mod2.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/latex/math-into-latex-4/babybeamer7.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/latex/math-into-latex-4/babybeamer8.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/latex/math-into-latex-4/babybeamer9.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/latex/math-into-latex-4/beamerstructure1.tex | raw-pdf-bytes equal, runs 3/3
+identical | doc/latex/math-into-latex-4/beamerstructure2.tex | raw-pdf-bytes equal, runs 3/3
+identical | doc/latex/math-into-latex-4/fonttbl.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/latex/math-into-latex-4/german.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/latex/math-into-latex-4/gg.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/latex/math-into-latex-4/gg2.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/latex/math-into-latex-4/intrart.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/latex/math-into-latex-4/intrarti.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/latex/math-into-latex-4/intropres.tex | no pdf on either side, runs 1/1
+identical | doc/latex/math-into-latex-4/legacy-article.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/latex/math-into-latex-4/letter.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/latex/math-into-latex-4/math.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/latex/math-into-latex-4/mathb.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/latex/math-into-latex-4/note1.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/latex/math-into-latex-4/note1b.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/latex/math-into-latex-4/note2.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/latex/math-into-latex-4/noteslug.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/latex/math-into-latex-4/quickbeamer.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/latex/math-into-latex-4/quickbeamer1.tex | raw-pdf-bytes equal, runs 3/3
+identical | doc/latex/math-into-latex-4/quickbeamer2.tex | raw-pdf-bytes equal, runs 3/3
+identical | doc/latex/math-into-latex-4/sampart-ref.tex | raw-pdf-bytes equal, runs 3/3
+identical | doc/latex/math-into-latex-4/sampart.tex | raw-pdf-bytes equal, runs 3/3
+identical | doc/latex/math-into-latex-4/sampartb.tex | raw-pdf-bytes equal, runs 3/3
+identical | doc/latex/math-into-latex-4/sampartu.tex | raw-pdf-bytes equal, runs 3/3
+identical | doc/latex/math-operator/math-operator-user-guide.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/latex/mathador/mathador-doc.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/latex/mathaidisclose/mathaidisclose.tex | no pdf on either side, runs 1/1
+identical | doc/latex/mathalpha/mathalpha-doc.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/latex/mathexam/sample.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/latex/mathfam256/mathfam256.tex | no pdf on either side, runs 2/2
+identical | doc/latex/mathfixs/mathfixs-samp.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/latex/mathformule/mathformule-doc-en.tex | raw-pdf-bytes equal, runs 3/3
+identical | doc/latex/mathformule/mwe.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/latex/mathpunctspace/mathpunctspace.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/latex/maths-symbols/maths-symbols.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/latex/maths-symbols/scriptfonts.tex | no pdf on either side, runs 1/1
+identical | doc/latex/matrix-skeleton/example.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/latex/matrix-skeleton/matrix.skeleton.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/latex/mayanumber/mayanumber-doc.tex | no pdf on either side, runs 1/1
+identical | doc/latex/maybemath/maybemath.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/latex/maze/maze.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/latex/mcaption/example.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/latex/mceinleger/mceinleger.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/latex/mcexam/mcexam.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/latex/mcexam/mcexam_example.tex | raw-pdf-bytes equal, runs 3/3
+identical | doc/latex/mciteplus/mciteplus_doc.tex | raw-pdf-bytes equal, runs 3/3
+identical | doc/latex/mcmthesis/mcmthesis-demo.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/latex/mdframed/mdframed-example-default.tex | no pdf on either side, runs 1/1
+identical | doc/latex/mdframed/mdframed-example-pstricks.tex | no pdf on either side, runs 1/1
+identical | doc/latex/mdframed/mdframed-example-texsx.tex | no pdf on either side, runs 1/1
+identical | doc/latex/mdframed/mdframed-example-tikz.tex | no pdf on either side, runs 1/1
+identical | doc/latex/mdputu/sample.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/latex/mdwtools/gpl.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/latex/mdwtools/mathenv.tex | no pdf on either side, runs 1/1
+identical | doc/latex/mdwtools/mdwtools.tex | no pdf on either side, runs 1/1
+identical | doc/latex/mecaso/mecaso.tex | raw-pdf-bytes equal, runs 3/3
+identical | doc/latex/medmath/medmath.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/latex/medstarbeamer/example.tex | raw-pdf-bytes equal, runs 3/3
+identical | doc/latex/meetingmins/samples/agenda.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/latex/meetingmins/samples/chair.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/latex/meetingmins/samples/minutes.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/latex/membranecomputing/membranecomputing.tex | no pdf on either side, runs 1/1
+identical | doc/latex/memexsupp/memexsupp.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/latex/memoir/memman.tex | raw-pdf-bytes equal, runs 4/4
+identical | doc/latex/memoir/trims-example.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/latex/memoirchapterstyles/MemoirChapStyles.tex | no pdf on either side, runs 1/1
+identical | doc/latex/memorygraphs/memorygraphs.tex | no pdf on either side, runs 2/2
+identical | doc/latex/mensa-tex/doc/mensa-tex-example.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/latex/metacapture/metacapture-sample.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/latex/metaphor/metaphor-doc.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/latex/metastr/metasamp.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/latex/method/methtest.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/latex/metre/demo.tex | no pdf on either side, runs 2/2
+identical | doc/latex/metre/greek1.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/latex/metre/greek2.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/latex/metre/greek3.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/latex/metre/igreek1.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/latex/metre/igreek2.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/latex/mfirstuc/mfirstuc-manual.tex | raw-pdf-bytes equal, runs 3/3
+identical | doc/latex/mfirstuc/sample-mfirstuc.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/latex/mfpic4ode/demo/demo.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/latex/mhequ/mhequ-example.tex | raw-pdf-bytes equal, runs 3/3
+identical | doc/latex/mi-solns/examples/create-db.tex | no pdf on either side, runs 1/1
+identical | doc/latex/mi-solns/examples/mi-solns-eqe.tex | no pdf on either side, runs 1/1
+identical | doc/latex/mi-solns/examples/use-db.tex | no pdf on either side, runs 1/1
+identical | doc/latex/midpage/midpage.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/latex/milestonetimeline/examples/example-dates.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/latex/milestonetimeline/examples/milestonetimeline-example-basic.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/latex/milestonetimeline/examples/milestonetimeline-example-compact.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/latex/milestonetimeline/test/milestonetimeline-test.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/latex/miller/millertest.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/latex/milog/milog-example.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/latex/milog/milog-formular.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/latex/miniplot/miniplot.tex | raw-pdf-bytes equal, runs 3/3
+identical | doc/latex/minitoc/examples/mtc-2c.tex | raw-pdf-bytes equal, runs 3/3
+identical | doc/latex/minitoc/examples/mtc-2nd.tex | no pdf on either side, runs 1/1
+identical | doc/latex/minitoc/examples/mtc-3co.tex | raw-pdf-bytes equal, runs 3/3
+identical | doc/latex/minitoc/examples/mtc-add.tex | raw-pdf-bytes equal, runs 3/3
+identical | doc/latex/minitoc/examples/mtc-ads.tex | raw-pdf-bytes equal, runs 3/3
+identical | doc/latex/minitoc/examples/mtc-amm.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/latex/minitoc/examples/mtc-apx.tex | raw-pdf-bytes equal, runs 3/3
+identical | doc/latex/minitoc/examples/mtc-art.tex | raw-pdf-bytes equal, runs 3/3
+identical | doc/latex/minitoc/examples/mtc-bk.tex | raw-pdf-bytes equal, runs 3/3
+identical | doc/latex/minitoc/examples/mtc-bo.tex | no pdf on either side, runs 1/1
+identical | doc/latex/minitoc/examples/mtc-ch0.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/latex/minitoc/examples/mtc-cri.tex | raw-pdf-bytes equal, runs 3/3
+identical | doc/latex/minitoc/examples/mtc-fko.tex | raw-pdf-bytes equal, runs 3/3
+identical | doc/latex/minitoc/examples/mtc-fo1.tex | raw-pdf-bytes equal, runs 3/3
+identical | doc/latex/minitoc/examples/mtc-fo2.tex | raw-pdf-bytes equal, runs 3/3
+identical | doc/latex/minitoc/examples/mtc-gap.tex | raw-pdf-bytes equal, runs 3/3
+identical | doc/latex/minitoc/examples/mtc-hi1.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/latex/minitoc/examples/mtc-hi2.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/latex/minitoc/examples/mtc-hia.tex | raw-pdf-bytes equal, runs 3/3
+identical | doc/latex/minitoc/examples/mtc-hir.tex | raw-pdf-bytes equal, runs 3/3
+identical | doc/latex/minitoc/examples/mtc-hop.tex | raw-pdf-bytes equal, runs 3/3
+identical | doc/latex/minitoc/examples/mtc-liv.tex | no pdf on either side, runs 1/1
+identical | doc/latex/minitoc/examples/mtc-mem.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/latex/minitoc/examples/mtc-mm1.tex | raw-pdf-bytes equal, runs 3/3
+identical | doc/latex/minitoc/examples/mtc-mu.tex | raw-pdf-bytes equal, runs 3/3
+identical | doc/latex/minitoc/examples/mtc-nom.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/latex/minitoc/examples/mtc-ocf.tex | raw-pdf-bytes equal, runs 3/3
+identical | doc/latex/minitoc/examples/mtc-ofs.tex | raw-pdf-bytes equal, runs 3/3
+identical | doc/latex/minitoc/examples/mtc-sbf.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/latex/minitoc/examples/mtc-scr.tex | raw-pdf-bytes equal, runs 3/3
+identical | doc/latex/minitoc/examples/mtc-syn.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/latex/minitoc/examples/mtc-tbi.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/latex/minitoc/examples/mtc-tlc.tex | raw-pdf-bytes equal, runs 3/3
+identical | doc/latex/minitoc/examples/mtc-tsf.tex | raw-pdf-bytes equal, runs 3/3
+identical | doc/latex/minitoc/examples/mtc-vti.tex | raw-pdf-bytes equal, runs 3/3
+identical | doc/latex/minorrevision/minorrevision.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/latex/minted-code/minted-code-doc.tex | no pdf on either side, runs 1/1
+identical | doc/latex/minutes/MinStyGd.tex | raw-pdf-bytes equal, runs 3/3
+identical | doc/latex/minutes/Overview.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/latex/minutes/Protokol.tex | raw-pdf-bytes equal, runs 3/3
+identical | doc/latex/minutes/Sample.tex | raw-pdf-bytes equal, runs 3/3
+identical | doc/latex/mitthesis/examples/cover_page_samples/latex_sources/No_cc_license.tex | no pdf on either side, runs 2/2
+identical | doc/latex/mitthesis/examples/cover_page_samples/latex_sources/One_author_one_degree.tex | no pdf on either side, runs 2/2
+identical | doc/latex/mitthesis/examples/cover_page_samples/latex_sources/One_author_one_degree_two_departments.tex | no pdf on either side, runs 2/2
+identical | doc/latex/mitthesis/examples/cover_page_samples/latex_sources/One_author_two_degrees.tex | no pdf on either side, runs 2/2
+identical | doc/latex/mitthesis/examples/cover_page_samples/latex_sources/One_author_two_degrees_from_one_department.tex | no pdf on either side, runs 2/2
+identical | doc/latex/mitthesis/examples/cover_page_samples/latex_sources/Two_authors_one_degree.tex | no pdf on either side, runs 2/2
+identical | doc/latex/mitthesis/examples/cover_page_samples/latex_sources/Two_authors_two_degrees.tex | no pdf on either side, runs 2/2
+identical | doc/latex/mltex/testmlft.tex | raw-pdf-bytes equal, runs 1/1
+identical | doc/latex/mltex/testmlsw.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/latex/mnras/mnras_template.tex | raw-pdf-bytes equal, runs 3/3
+identical | doc/latex/modeles-factures-belges-assocs/facture-banlieues.tex | no pdf on either side, runs 1/1
+identical | doc/latex/modeles-factures-belges-assocs/facture-basique.tex | no pdf on either side, runs 1/1
+identical | doc/latex/modernclassnotes/doc/modernclassnotes-doc.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/latex/modernclassnotes/examples/01-complete-course-notes.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/latex/modernclassnotes/examples/02-single-lecture-handout.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/latex/modernclassnotes/examples/03-homework-worksheet.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/latex/modernclassnotes/examples/04-chapter-notes.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/latex/modernnewspaper/example/modernnewspaper-example.tex | no pdf on either side, runs 1/1
+identical | doc/latex/modernposter/demo.tex | raw-pdf-bytes equal, runs 3/3
+identical | doc/latex/modernposter/modernposter.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/latex/modiagram/modiagram_en.tex | no pdf on either side, runs 1/1
+identical | doc/latex/modroman/modroman-en.tex | no pdf on either side, runs 2/2
+identical | doc/latex/modroman/modroman-fr.tex | no pdf on either side, runs 2/2
+identical | doc/latex/modular/article.tex | no pdf on either side, runs 2/2
+identical | doc/latex/modular/article_fail.tex | no pdf on either side, runs 2/2
+identical | doc/latex/modular/doc/example/octopus/article.tex | no pdf on either side, runs 2/2
+identical | doc/latex/modular/modular.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/latex/modular/prerequisites.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/latex/mohelper/mohelper-doc.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/latex/montex/mls-diag.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/latex/moreenum/moreenum-doc.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/latex/morefloats/morefloats-example.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/latex/morehype/wiki_mwe.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/latex/moresize/msizetst.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/latex/morse-simple/morse-simple.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/latex/morse-simple/morse_cheat_sheet.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/latex/mousik/mousik-doc.tex | raw-pdf-bytes equal, runs 3/3
+identical | doc/latex/movie15/movie15.tex | no pdf on either side, runs 2/2
+identical | doc/latex/movie15/overlay-example.tex | raw-pdf-bytes equal, runs 4/4
+identical | doc/latex/mpformulation/mpformulation-doc.tex | raw-pdf-bytes equal, runs 3/3
+identical | doc/latex/mpformulation/mpformulation_example.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/latex/mpformulation/mpformulation_example_twocolumn.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/latex/mpostinl/mpinlsmp.tex | raw-pdf-bytes equal, runs 3/3
+identical | doc/latex/msc/msc.tex | raw-pdf-bytes equal, runs 3/3
+identical | doc/latex/msg/msgguide.tex | no pdf on either side, runs 2/2
+identical | doc/latex/msg/msgtest.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/latex/mslapa/examp.tex | raw-pdf-bytes equal, runs 3/3
+identical | doc/latex/mslapa/mslapa.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/latex/msu-thesis/samples/MSU-thesis-chapterbib-testfile.tex | raw-pdf-bytes equal, runs 3/3
+identical | doc/latex/msu-thesis/samples/MSU-thesis-template.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/latex/mtgreek/mtgtest.tex | no pdf on either side, runs 1/1
+identical | doc/latex/mugsthesis/sample/mugsthesis_sample.tex | raw-pdf-bytes equal, runs 4/4
+identical | doc/latex/multi-sudoku/multi-sudoku-documentation.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/latex/multiaudience/sample.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/latex/multibibliography/tug-paper.tex | raw-pdf-bytes equal, runs 4/4
+identical | doc/latex/multicoltab/multicoltab-columns-example.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/latex/multicoltab/multicoltab-doc.tex | raw-pdf-bytes equal, runs 3/3
+identical | doc/latex/multicoltab/multicoltab-options-example.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/latex/multicoltab/multicoltab-repeated-head-example.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/latex/multicoltab/multicoltab-simple-example.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/latex/multidef/multidef-test.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/latex/multifootnote/multifootnote-doc.tex | no pdf on either side, runs 1/1
+identical | doc/latex/multiple-choice/multiple-choice-doc.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/latex/munich/documenation_munich_Bibtex_style.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/latex/munich/example_munich_Bibtex_style.tex | raw-pdf-bytes equal, runs 3/3
+identical | doc/latex/musical/musical.tex | no pdf on either side, runs 1/1
+identical | doc/latex/musicography/musicography.tex | raw-pdf-bytes equal, runs 3/3
+identical | doc/latex/musikui/musikui.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/latex/musixguit/musixguit_de.tex | raw-pdf-bytes equal, runs 3/3
+identical | doc/latex/na-cover/test-pdflatex.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/latex/na-fancyborders/test-pdflatex.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/latex/na-list/testpdlatex.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/latex/na-tikzornament/teste.tex | raw-pdf-bytes equal, runs 3/3
+identical | doc/latex/nag/nagdemo.tex | raw-pdf-bytes equal, runs 3/3
+identical | doc/latex/nameauth/examples.tex | raw-pdf-bytes equal, runs 3/3
+identical | doc/latex/natbib/natnotes.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/latex/natded/extended_doc.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/latex/natded/natded.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/latex/nath/nathguide.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/latex/nature/nature-template.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/latex/ncclatex/ncclatex.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/latex/ncctools/ncctools.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/latex/nddiss/template.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/latex/ndsu-thesis-2022/ndsu-thesis-2022-documentation.tex | raw-pdf-bytes equal, runs 3/3
+identical | doc/latex/ndsu-thesis/ndsu-thesis.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/latex/nehgs-register/examples/getting-started.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/latex/nehgs-register/examples/minimal-register.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/latex/nehgs-register/examples/multi-marriage.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/latex/nehgs-register/examples/stuart-register.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/latex/neuralnetwork/examples/neuralnetwork.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/latex/neuralnetwork/examples/xor.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/latex/newcommand/newcommand.tex | raw-pdf-bytes equal, runs 3/3
+identical | doc/latex/newenviron/newenviron-examples.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/latex/newlfm/chk1.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/latex/newlfm/demoa.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/latex/newlfm/test1.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/latex/newlfm/test10.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/latex/newlfm/test11.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/latex/newlfm/test12.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/latex/newlfm/test1alt.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/latex/newlfm/test2.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/latex/newlfm/test2a.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/latex/newlfm/test2alt.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/latex/newlfm/test3.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/latex/newlfm/test3alt.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/latex/newlfm/test4.tex | no pdf on either side, runs 2/2
+identical | doc/latex/newlfm/test4alt.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/latex/newlfm/test5.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/latex/newlfm/test5alt.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/latex/newlfm/test6.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/latex/newlfm/test6alt.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/latex/newlfm/test7.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/latex/newlfm/test7alt.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/latex/newlfm/test8.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/latex/newlfm/test8alt.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/latex/newlfm/test9.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/latex/newpax/doc-input1.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/latex/newpax/doc-input2.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/latex/newpax/doc-use-newpax.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/latex/newpax/doc-use-pax.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/latex/newspaper/newspaperExample.tex | no pdf on either side, runs 1/1
+identical | doc/latex/newvbtm/newvbtm-man.tex | no pdf on either side, runs 2/2
+identical | doc/latex/niceframe/example.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/latex/nicematrix/nicematrix.tex | no pdf on either side, runs 1/1
+identical | doc/latex/nih/example-biosketch.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/latex/nih/example-nih-cls.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/latex/nihbiosketch/example-nihbiosketch.tex | no pdf on either side, runs 1/1
+identical | doc/latex/ninecolors/ninecolors.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/latex/njuvisual/njuvisual-example.tex | no pdf on either side, runs 2/2
+identical | doc/latex/nl-interval/nl-interval.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/latex/nmbib/nmbib-sample.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/latex/nolbreaks/nolbreaks.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/latex/nomencl/sample01.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/latex/nomencl/sample02.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/latex/nomencl/sample03.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/latex/nomencl/sample04.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/latex/nomencl/sample05.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/latex/nomentbl/example.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/latex/nopageno/nopageno.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/latex/normalcolor/normalcolor-example.tex | raw-pdf-bytes equal, runs 3/3
+identical | doc/latex/nostarch/nssample.tex | no pdf on either side, runs 1/1
+identical | doc/latex/notebeamer/notebeamer-demo.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/latex/notes/testnotes.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/latex/notespages/np-test.tex | no pdf on either side, runs 1/1
+identical | doc/latex/notestex/NotesTeX.tex | no pdf on either side, runs 1/1
+identical | doc/latex/notoccite/notoccite.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/latex/novabeamer-theme/doc/novabeamer-doc.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/latex/novabeamer-theme/examples/novabeamer-example.tex | no pdf on either side, runs 2/2
+identical | doc/latex/nox/nox.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/latex/nrc/userguide.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/latex/nstc-proposal/example/bibliography.tex | raw-pdf-bytes equal, runs 3/3
+identical | doc/latex/nstc-proposal/example/proposal.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/latex/nstc-proposal/example/report.tex | raw-pdf-bytes equal, runs 3/3
+identical | doc/latex/ntgclass/artdoc.tex | raw-pdf-bytes equal, runs 3/3
+identical | doc/latex/ntgclass/brief-sample.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/latex/ntgclass/briefdoc.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/latex/ntgclass/classdoc.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/latex/ntgclass/rapdoc.tex | raw-pdf-bytes equal, runs 3/3
+identical | doc/latex/ntheorem-vn/src/ntheorem-doc-vn.tex | no pdf on either side, runs 1/1
+identical | doc/latex/ntheorem-vn/test.tex | no pdf on either side, runs 2/2
+identical | doc/latex/nuc/nuc.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/latex/nucleardata/nuccommandtest.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/latex/numberedblock/testnumberedblock.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/latex/onedown/Examples/Bidding.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/latex/onedown/Examples/CardSymbols.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/latex/onedown/Examples/Compass.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/latex/onedown/Examples/ExpertQuiz.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/latex/onedown/Examples/FancyColors.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/latex/onedown/Examples/Fontsizes.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/latex/onedown/Examples/Hands.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/latex/onedown/Examples/Languages.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/latex/onedown/Examples/Legends.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/latex/onedown/Examples/Play.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/latex/onedown/Examples/Select-Hands.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/latex/onedown/Examples/Suits.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/latex/onedown/Examples/Wrapping.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/latex/onedown/Examples/bidAll.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/latex/onedown/Examples/bidEW.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/latex/onedown/Examples/bidNE.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/latex/onedown/Examples/bidNS.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/latex/onedown/Examples/bidNW.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/latex/onedown/Examples/onedown-examples.tex | raw-pdf-bytes equal, runs 3/3
+identical | doc/latex/onedown/Examples/onedown-ref.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/latex/onedown/Examples/showAll.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/latex/onedown/Examples/showNS-align.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/latex/onedown/Examples/showNS-warn-I.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/latex/onedown/Examples/showNS-warn-II.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/latex/onepgnote/onepgnote-example.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/latex/onepgnote/onepgnote-manual.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/latex/onlinebrief24/examples/example-onlinebrief24-infoblock.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/latex/onlinebrief24/examples/example-onlinebrief24-modern.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/latex/onlinebrief24/onlinebrief24-doc.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/latex/onlyamsmath/onlyamsmathtest.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/latex/onrannual/skeleton.tex | raw-pdf-bytes equal, runs 3/3
+identical | doc/latex/open-everyday-symbols/open-everyday-symbols-doc.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/latex/opencolor/demo-opencolor.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/latex/oplotsymbl/oPlotSymbl-Manual-en.tex | raw-pdf-bytes equal, runs 3/3
+identical | doc/latex/optidef/optidef.tex | raw-pdf-bytes equal, runs 3/3
+identical | doc/latex/optikz/optikz_doc.tex | raw-pdf-bytes equal, runs 3/3
+identical | doc/latex/optional/optional.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/latex/orbitals/orbitals-doc.tex | raw-pdf-bytes equal, runs 3/3
+identical | doc/latex/ot-tableau/ot-tableau.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/latex/othello/othello.tex | no pdf on either side, runs 1/1
+identical | doc/latex/othelloboard/example-rose-chps1-2.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/latex/othelloboard/othelloboard.tex | raw-pdf-bytes equal, runs 3/3
+identical | doc/latex/otibet/allbasic-mule.tex | no pdf on either side, runs 2/2
+identical | doc/latex/otibet/allbasic.tex | no pdf on either side, runs 2/2
+identical | doc/latex/otibet/testtib.tex | no pdf on either side, runs 2/2
+identical | doc/latex/otibet/tiblatex.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/latex/otibet/unidoc.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/latex/otibet/yugpacan.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/latex/ou-tma/SampleTMA.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/latex/oubraces/oubraces.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/latex/oup-authoring-template/doc/oup-authoring-template-doc.tex | raw-pdf-bytes equal, runs 3/3
+identical | doc/latex/oup-authoring-template/oup-authoring-template.tex | raw-pdf-bytes equal, runs 3/3
+identical | doc/latex/outline/outline-sample.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/latex/outline/outline.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/latex/outliner/outline_test.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/latex/outlines/outlines.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/latex/overlays/sample.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/latex/packdoc/packdoc-change-history-example.tex | raw-pdf-bytes equal, runs 3/3
+identical | doc/latex/packdoc/packdoc-doc.tex | raw-pdf-bytes equal, runs 3/3
+identical | doc/latex/pagecolor/pagecolor-example.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/latex/pagelayout/example-book.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/latex/pagelayout/example-borders-and-shadows.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/latex/pagelayout/example-graphic.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/latex/pagelayout/example-grid.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/latex/pagelayout/example-template.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/latex/pagelayout/example-text.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/latex/pagelayout/pagelayout-manual-layout-guides.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/latex/pagelayout/pagelayout-manual.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/latex/pagerange/pagerange-guide.tex | no pdf on either side, runs 1/1
+identical | doc/latex/pageslts/pageslts-example.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/latex/panda/panda-doc.tex | no pdf on either side, runs 1/1
+identical | doc/latex/panneauxroute/PanneauxRoute-doc.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/latex/paper/testj.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/latex/paper/testp.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/latex/papercdcase/example.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/latex/papercdcase/interactive.tex | no pdf on either side, runs 2/2
+identical | doc/latex/papermas/papermas-example.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/latex/papertex/example/example.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/latex/papiergurvan/PapierGurvan-doc-fr.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/latex/paracol/paracol-man.tex | no pdf on either side, runs 2/2
+identical | doc/latex/paracolrule/paracolrule-sample.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/latex/parades/example/udhr.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/latex/parallel/example1.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/latex/parallel/example2.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/latex/paresse/paresse-eng.tex | raw-pdf-bytes equal, runs 3/3
+identical | doc/latex/paresse/paresse-fra.tex | raw-pdf-bytes equal, runs 3/3
+identical | doc/latex/pas-crosswords/pas-crosswords.tex | no pdf on either side, runs 1/1
+identical | doc/latex/pas-cv/examples/cv-andromede.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/latex/pas-cv/examples/cv-architecte.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/latex/pas-cv/examples/cv-centaure.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/latex/pas-cv/examples/cv-dynamique.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/latex/pas-cv/examples/cv-gaia.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/latex/pas-cv/examples/cv-jupiter.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/latex/pas-cv/examples/cv-mars.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/latex/pas-cv/examples/cv-neptune.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/latex/pas-cv/examples/cv-orion.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/latex/pas-cv/examples/cv-pegase.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/latex/pas-cv/examples/cv-pluton.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/latex/pas-cv/examples/cv-saturne.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/latex/pas-cv/examples/cv-univers.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/latex/pas-cv/examples/cv-uranus.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/latex/pas-cv/examples/cv-venus.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/latex/pas-cv/pas-cv.tex | no pdf on either side, runs 1/1
+identical | doc/latex/pas-tableur/pas-tableur.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/latex/passopt/passopt.tex | no pdf on either side, runs 1/1
+identical | doc/latex/pats-resume/pats-resume-doc.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/latex/pats-resume/pats-resume-example.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/latex/pb-diagram/pb-examples.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/latex/pb-diagram/pb-manual.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/latex/pbibtex-manual/pbibtex-manual.tex | no pdf on either side, runs 1/1
+identical | doc/latex/pbsheet/xpl/xpl-fr.tex | no pdf on either side, runs 2/2
+identical | doc/latex/pdf14/test-pdf14.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/latex/pdfannotations/3.1.README.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/latex/pdfannotations/pdfannotations.tex | no pdf on either side, runs 1/1
+identical | doc/latex/pdfcomment/example.tex | raw-pdf-bytes equal, runs 3/3
+identical | doc/latex/pdfcomment/example_math_markup-tagged.tex | raw-pdf-bytes equal, runs 3/3
+identical | doc/latex/pdfcomment/example_math_markup.tex | raw-pdf-bytes equal, runs 3/3
+identical | doc/latex/pdfcomment/pdfcomment.tex | raw-pdf-bytes equal, runs 3/3
+identical | doc/latex/pdfmarginpar/pdfmarginpar.tex | raw-pdf-bytes equal, runs 3/3
+identical | doc/latex/pdfmarginpar/pdfmarginparexample.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/latex/pdfmathaccents/pdfmathaccents-doc.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/latex/pdfpagediff/doc/pdfpagediff-doc.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/latex/pdfpagediff/example/ltest.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/latex/pdfpages/pdf-ex.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/latex/pdfpages/pdf-hyp.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/latex/pdfpages/pdf-toc.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/latex/pdfpc/pdfpc-doc.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/latex/pdfreview/pdfreview.tex | no pdf on either side, runs 1/1
+identical | doc/latex/pdfscreen/manual.tex | raw-pdf-bytes equal, runs 3/3
+identical | doc/latex/pdfscreen/slide.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/latex/pdfslide/manual.tex | no pdf on either side, runs 1/1
+identical | doc/latex/pdfsync/pdfsync-doc.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/latex/pdfwin/Bucuresti2003.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/latex/pdfx/latin2-example.tex | no pdf on either side, runs 1/1
+identical | doc/latex/pdfx/small2e-pdfx.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/latex/perfectcut/perfectcut.tex | raw-pdf-bytes equal, runs 3/3
+identical | doc/latex/perltex/example.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/latex/persian-calendar/persian-calendar-doc-fa.tex | no pdf on either side, runs 1/1
+identical | doc/latex/persian-calendar/persian-calendar-doc.tex | no pdf on either side, runs 1/1
+identical | doc/latex/persian-calendar/persian-calendar-planner.tex | no pdf on either side, runs 1/1
+identical | doc/latex/persian-calendar/persian-calendar-test.tex | no pdf on either side, runs 1/1
+identical | doc/latex/persian-calendar/persian-calendar-years.tex | no pdf on either side, runs 1/1
+identical | doc/latex/petiteannonce/petiteannonce.doc.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/latex/petiteannonce/petiteannonceexample.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/latex/pfdicons/pfdicons-changelog.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/latex/pgf-go/en/pgfgo-en.tex | no pdf on either side, runs 1/1
+identical | doc/latex/pgf-go/en/pgfgo-initialexamples.tex | no pdf on either side, runs 1/1
+identical | doc/latex/pgf-go/en/pgfgo-introduction.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/latex/pgf-go/es/pgfgo-ejemplosiniciales.tex | no pdf on either side, runs 1/1
+identical | doc/latex/pgf-go/es/pgfgo-es.tex | no pdf on either side, runs 1/1
+identical | doc/latex/pgf-go/es/pgfgo-motivacion.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/latex/pgf-go/examples/example-0.tex | no pdf on either side, runs 1/1
+identical | doc/latex/pgf-go/examples/example-1.tex | no pdf on either side, runs 1/1
+identical | doc/latex/pgf-go/examples/example-10.tex | no pdf on either side, runs 1/1
+identical | doc/latex/pgf-go/examples/example-11.tex | no pdf on either side, runs 1/1
+identical | doc/latex/pgf-go/examples/example-12.tex | no pdf on either side, runs 1/1
+identical | doc/latex/pgf-go/examples/example-13.tex | no pdf on either side, runs 1/1
+identical | doc/latex/pgf-go/examples/example-15.tex | no pdf on either side, runs 1/1
+identical | doc/latex/pgf-go/examples/example-16.tex | no pdf on either side, runs 1/1
+identical | doc/latex/pgf-go/examples/example-17.tex | no pdf on either side, runs 1/1
+identical | doc/latex/pgf-go/examples/example-18.tex | no pdf on either side, runs 1/1
+identical | doc/latex/pgf-go/examples/example-2.tex | no pdf on either side, runs 1/1
+identical | doc/latex/pgf-go/examples/example-20.tex | no pdf on either side, runs 1/1
+identical | doc/latex/pgf-go/examples/example-21.tex | no pdf on either side, runs 1/1
+identical | doc/latex/pgf-go/examples/example-22.tex | no pdf on either side, runs 1/1
+identical | doc/latex/pgf-go/examples/example-23.tex | no pdf on either side, runs 1/1
+identical | doc/latex/pgf-go/examples/example-24.tex | no pdf on either side, runs 1/1
+identical | doc/latex/pgf-go/examples/example-25.tex | no pdf on either side, runs 1/1
+identical | doc/latex/pgf-go/examples/example-26.tex | no pdf on either side, runs 1/1
+identical | doc/latex/pgf-go/examples/example-27.tex | no pdf on either side, runs 1/1
+identical | doc/latex/pgf-go/examples/example-28.tex | no pdf on either side, runs 1/1
+identical | doc/latex/pgf-go/examples/example-29.tex | no pdf on either side, runs 1/1
+identical | doc/latex/pgf-go/examples/example-3.tex | no pdf on either side, runs 1/1
+identical | doc/latex/pgf-go/examples/example-30.tex | no pdf on either side, runs 1/1
+identical | doc/latex/pgf-go/examples/example-31.tex | no pdf on either side, runs 1/1
+identical | doc/latex/pgf-go/examples/example-32.tex | no pdf on either side, runs 1/1
+identical | doc/latex/pgf-go/examples/example-33.tex | no pdf on either side, runs 1/1
+identical | doc/latex/pgf-go/examples/example-34.tex | no pdf on either side, runs 1/1
+identical | doc/latex/pgf-go/examples/example-35.tex | no pdf on either side, runs 1/1
+identical | doc/latex/pgf-go/examples/example-36.tex | no pdf on either side, runs 1/1
+identical | doc/latex/pgf-go/examples/example-37.tex | no pdf on either side, runs 1/1
+identical | doc/latex/pgf-go/examples/example-38.tex | no pdf on either side, runs 1/1
+identical | doc/latex/pgf-go/examples/example-4.tex | no pdf on either side, runs 1/1
+identical | doc/latex/pgf-go/examples/example-5.tex | no pdf on either side, runs 1/1
+identical | doc/latex/pgf-go/examples/example-6.tex | no pdf on either side, runs 1/1
+identical | doc/latex/pgf-go/examples/example-7.tex | no pdf on either side, runs 1/1
+identical | doc/latex/pgf-go/examples/example-8.tex | no pdf on either side, runs 1/1
+identical | doc/latex/pgf-go/examples/example-9.tex | no pdf on either side, runs 1/1
+identical | doc/latex/pgf-periodictable/manualfiles/pgf-PeriodicTableManual_TipsTricks.tex | no pdf on either side, runs 1/1
+identical | doc/latex/pgf-periodictable/manualfiles/pgfPT_zh_1.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/latex/pgf-periodictable/manualfiles/pgfPT_zh_2.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/latex/pgf-periodictable/manualfiles/pgfPT_zh_3.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/latex/pgf-periodictable/pgf-PeriodicTableManual.tex | no pdf on either side, runs 1/1
+identical | doc/latex/pgf-periodictable/pgfPT.colorSchemes.info.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/latex/pgf-periodictable/pgfPT_radio_symbol.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/latex/pgf-periodictable/pgfPT_radio_symbol_BW.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/latex/pgf-pie/pgf-pie-manual.tex | raw-pdf-bytes equal, runs 3/3
+identical | doc/latex/pgf-soroban/pgf-soroban-doc.tex | raw-pdf-bytes equal, runs 2/2
+identical | doc/latex/pgf-spectra/pgf-spectraManual.tex | no pdf on either side, runs 1/1
 identical | doc/lualatex/arabluatex/samples/template-01.tex | no pdf on either side, runs 1/1
 identical | doc/lualatex/autopuncitems/autopuncitems.tex | raw-pdf-bytes equal, runs 2/2
 identical | doc/lualatex/countwords/countwords-maths-example.tex | raw-pdf-bytes equal, runs 2/2
@@ -3054,6 +4013,10 @@ both-error | doc/bibtex/gost/examples/cp1251/gost.tex | ! Undefined control sequ
 both-error | doc/bibtex/gost/examples/utf8/ugost.tex | ! Undefined control sequence.
 both-error | doc/fonts/boisik/example/boisik.tex | ! Font \logo=bskrlogo10 at 30.0pt not loadable: Metric (TFM) file not found.
 both-error | doc/fonts/bookhands/auncial-tryfont.tex | ! LaTeX Error: Encoding scheme `B1' unknown.
+both-error | doc/fonts/oldlatin/test_ol_rm.tex | ! Font \olrtens=olr10s not loadable: Metric (TFM) file not found.
+both-error | doc/fonts/openglyph/openglyph-example.tex | ! Critical Class ctexart Error: CTeX fontset `fandol' is unavailable in
+both-error | doc/fonts/orkhun/rakhimov.tex | ! Font \letteror=orhant not loadable: Metric (TFM) file not found.
+both-error | doc/fonts/xq/xqexample.tex | ! Font \westxqintext=xqwestnormal not loadable: Metric (TFM) file not found.
 both-error | doc/latex/bjfuthesis/documentation/bjfuthesis.tex | ! Class bjfuthesis Error: XeLaTeX is required to compile this document.
 both-error | doc/latex/bxcjkjatype/bxcjkjatype-ja.tex | ! Package luatexja-core Error: This package requires Lua(HB)(La)TeX.
 both-error | doc/latex/bxcjkjatype/bxcjkvert-ja.tex | ! Package luatexja-core Error: This package requires Lua(HB)(La)TeX.
@@ -3084,6 +4047,12 @@ both-error | doc/latex/hust-beamer/example/minimal.tex | ! Critical Class ctexbe
 both-error | doc/latex/hust-beamer/hust-beamer-doc.tex | ! Critical Class ctexart Error: CTeX fontset `fandol' is unavailable in
 both-error | doc/latex/ifmslide/ifmman.tex | ! LaTeX Error: Option clash for package color.
 both-error | doc/latex/install-latex-guide-zh-cn/install-latex-guide-zh-cn.tex | ! Critical Class ctexrep Error: CTeX fontset `fandol' is unavailable in
+both-error | doc/latex/ledmac/ledmixed.tex | ! Package ledmac Error: Using package `ledmac' is deprecated. We suggest
+both-error | doc/latex/lshort-chinese/src/lshort-zh-cn.tex | ! Critical Package ctex Error: CTeX fontset `fandol' is unavailable in current
+both-error | doc/latex/mathformule/mathformule-doc-zh.tex | ! Critical Class ctexart Error: CTeX fontset `fandol' is unavailable in
+both-error | doc/latex/mercatormap/mercatormap-example.tex | ! Package mercatormap Error: You must invoke LaTeX with the --shell-escape
+both-error | doc/latex/montex/fontlist.tex | ! Font T1/cmfr/m/n/10=ecff1000 at 10.0pt not loadable: Metric (TFM) file not found.
+both-error | doc/latex/ndsu-thesis-2022/ndsu-example.tex | ! Extra }, or forgotten \endgroup.
 both-error | doc/lualatex/beamer-rl/Example-of-use-ar.tex | ! Class beamer-rl Error: beamer-rl require lualatex.
 both-error | doc/lualatex/beamer-rl/Example-of-use-en.tex | ! Class beamer-rl Error: beamer-rl require lualatex.
 both-error | doc/lualatex/hu-berlin-bundle/hu-berlin-letter-example-lualatex.tex | ! Use of \@pr@videpackage doesn't match its definition.
@@ -3099,6 +4068,13 @@ pdf-differs | doc/latex/heria/heria-proposal-3.3.tex | obj 133: "<\n/D [130 0 R 
 pdf-differs | doc/latex/heria/heria-proposal-3.4.tex | obj 133: "<\n/D [130 0 R /XYZ 66.892 4141.15 null]\n>>\n\nendobj\n134 obj\n<<\n/D [130 0 R /XYZ 66.948 4381.3 null]\n>" vs "<\n/D [130 0 R /XYZ 67.304 60.452 null]\n>>\n\nendobj\n134 obj\n<<\n/D [130 0 R /XYZ 67.304 300.603 null]\n>" [page1 pixels differing: 0.00%]
 pdf-differs | doc/latex/heria/heria-proposal-4.0.tex | obj 123: "/D [120 0 R /XYZ 67.043 4141.15 null]\n>>\n\nendobj\n124 obj\n<<\n/D [120 0 R /XYZ 66.994 4381.3 null]\n>>\n" vs "/D [120 0 R /XYZ 67.304 60.452 null]\n>>\n\nendobj\n124 obj\n<<\n/D [120 0 R /XYZ 67.304 300.603 null]\n>>\n" [page1 pixels differing: 0.00%]
 pdf-differs | doc/latex/heria/heria-proposal-5.1.tex | obj 118: "/D [115 0 R /XYZ 67.036 4141.15 null]\n>>\n\nendobj\n119 obj\n<<\n/D [115 0 R /XYZ 66.903 4381.3 null]\n>>\n" vs "/D [115 0 R /XYZ 67.304 60.452 null]\n>>\n\nendobj\n119 obj\n<<\n/D [115 0 R /XYZ 67.304 300.603 null]\n>>\n" [page1 pixels differing: 0.00%]
+pdf-differs | doc/latex/latex-via-exemplos/latex-via-exemplos-folder.tex | obj 41: "\n<<\n/D [39 0 R /XYZ -3260.498 4110.878 null]\n>>\n\nendobj\n10 obj\n<<\n/D [39 0 R /XYZ 819.2 490.376 null" vs "\n<<\n/D [39 0 R /XYZ 820.2 30.181 null]\n>>\n\nendobj\n10 obj\n<<\n/D [39 0 R /XYZ 819.2 490.376 null]\n>>\n\n" [page1 pixels differing: 0.00%]
+pdf-differs | doc/latex/mnras/mnras_guide.tex | obj 246: "<\n/D [250 0 R /XYZ 41.913 4130.537 null]\n>>\n\nendobj\n249 obj\n<<\n/Font << /F129 167 0 R /F130 173 0 R " vs "<\n/D [250 0 R /XYZ 42.112 49.839 null]\n>>\n\nendobj\n249 obj\n<<\n/Font << /F129 167 0 R /F130 173 0 R /F" [page1 pixels differing: 0.00%]
+pdf-differs | doc/latex/msu-thesis/samples/MSU-thesis-testfile.tex | obj 211: "D [208 0 R /XYZ 416.324 4384.689 null]\n>>\n\nendobj\n207 obj\n<<\n /ColorSpace 3 0 R /Pattern 2 0 R /ExtG" vs "D [208 0 R /XYZ 416.623 303.992 null]\n>>\n\nendobj\n207 obj\n<<\n /ColorSpace 3 0 R /Pattern 2 0 R /ExtGS" [page1 pixels differing: 0.00%]
+pdf-differs | doc/latex/pdfreview/sample.tex | obj 13: "0 R /XYZ 25.939 583.755 null]\n>>\n\nendobj\n14 obj\n<<\n/D [5 0 R /XYZ 25.939 505.933 null]\n>>\n\nendobj\n15" vs "0 R /XYZ 25.939 583.213 null]\n>>\n\nendobj\n14 obj\n<<\n/D [5 0 R /XYZ 25.939 505.371 null]\n>>\n\nendobj\n15" [page1 pixels differing: 0.00%]
+log-differs-only | doc/latex/leaflet/leaflet-manual.tex | line 46211: "Memory usage before: 21763&458788; after: 17199&457313; still untouched: 4512211" vs "Memory usage before: 0&0; after: 0&0; still untouched: 0"
+log-differs-only | doc/latex/navydocs/sampleNavyReport.tex | line 340: "pdfTeX warning: pdftex (file ./graphics/navy-logo-102.png): large interlaced PNG might cause out of memory (use non-interlaced PNG to fix this)" vs "pdfTeX warning: pdftex: large interlaced PNG might cause out of memory (use non-interlaced PNG to fix this)"
+log-differs-only | doc/latex/pdfx/sample.tex | line 1408: "Memory usage before: 2147&643266; after: 1617&643139; still untouched: 4334842" vs "Memory usage before: 0&0; after: 0&0; still untouched: 0"
 engine-error | doc/bibtex/gbt7714/gbt7714-example.tex | unsupported: bitmap (PK
 engine-error | doc/etex/base/etex_man.tex | unsupported: TeXXeT
 engine-error | doc/fonts/archaic/viking-try_vik.tex | unsupported: bitmap (PK
@@ -3137,6 +4113,28 @@ engine-error | doc/fonts/eiad/recreat.tex | unsupported: bitmap (PK
 engine-error | doc/fonts/feyn/exercise-font.tex | unsupported: bitmap (PK
 engine-error | doc/fonts/feyn/overheads.tex | unsupported: bitmap (PK
 engine-error | doc/fonts/kixfont/kixtable.tex | unsupported: bitmap (PK
+engine-error | doc/fonts/lh/samples/lh-ot2.tex | ! Font OT2/cmr/m/n/10=wnr10 at 10.0pt not loadable: Metric (TFM) file not found.
+engine-error | doc/fonts/lh/samples/lh-ot2text.tex | ! Font OT2/cmr/m/n/10=wnr10 at 10.0pt not loadable: Metric (TFM) file not found.
+engine-error | doc/fonts/mathdesign/MD-Adobe-Adobe-Garamond-Pro-example.tex | unsupported: TrueType/OpenType font files
+engine-error | doc/fonts/mathdesign/MD-Adobe-Utopia-Std-example.tex | unsupported: TrueType/OpenType font files
+engine-error | doc/fonts/mathdesign/MD-Adobe-Utopia-example.tex | unsupported: TrueType/OpenType font files
+engine-error | doc/fonts/mathdesign/MD-Bitstream-Bitstream-Charter-example.tex | unsupported: TrueType/OpenType font files
+engine-error | doc/fonts/mathdesign/MD-itc-Charter-ITC-Std-example.tex | unsupported: TrueType/OpenType font files
+engine-error | doc/fonts/mathdesign/MD-urw-GaramondNo8-example.tex | unsupported: TrueType/OpenType font files
+engine-error | doc/fonts/obnov/example_obn.tex | unsupported: bitmap (PK
+engine-error | doc/fonts/oldlatin/test_ol_all.tex | unsupported: bitmap (PK
+engine-error | doc/fonts/oldlatin/test_ol_bf.tex | unsupported: bitmap (PK
+engine-error | doc/fonts/oldlatin/test_ol_sl.tex | unsupported: bitmap (PK
+engine-error | doc/fonts/oldlatin/test_ol_ss.tex | unsupported: bitmap (PK
+engine-error | doc/fonts/oldlatin/test_ol_tt.tex | unsupported: bitmap (PK
+engine-error | doc/fonts/pacioli/tryfont.tex | unsupported: bitmap (PK
+engine-error | doc/fonts/phosphoricons/phosphoricons.tex | unsupported: TrueType/OpenType font files
+engine-error | doc/fonts/punk/punktest.tex | unsupported: bitmap (PK
+engine-error | doc/fonts/ruscap/quo-usque-tandem.tex | unsupported: bitmap (PK
+engine-error | doc/fonts/scholax/scholax-doc.tex | !pdfTeX error: pdftex (file NCXMathMI): cannot open Type 1 font file for reading
+engine-error | doc/fonts/schulschriften/schulschriften_ltx.tex | unsupported: bitmap (PK
+engine-error | doc/fonts/schulschriften/schulschriften_xpl.tex | unsupported: bitmap (PK
+engine-error | doc/fonts/wsuipa/latex2e/ipaman.tex | unsupported: bitmap (PK
 engine-error | doc/generic/babel-greek/test-encoding-switch.tex | ! Font T2A/lmr/bx/n/8=labx0800 at 8.0pt not loadable: Metric (TFM) file not found.
 engine-error | doc/generic/babel-kazakh/doc/Kazakh-pdflatex-Test.tex | ! Font T2A/cmr/m/n/14.4=larm1440 at 14.4pt not loadable: Metric (TFM) file not found.
 engine-error | doc/generic/babel-kazakh/doc/babel-kazakh-manual.tex | ! Font T2A/cmr/m/n/14.4=larm1440 at 14.4pt not loadable: Metric (TFM) file not found.
@@ -3189,8 +4187,47 @@ engine-error | doc/latex/inkpaper/inkpaper-en.tex | unsupported: bitmap (PK
 engine-error | doc/latex/jnuexam/examfc-a-answer.tex | unsupported: bitmap (PK
 engine-error | doc/latex/jnuexam/jnuexam.tex | unsupported: bitmap (PK
 engine-error | doc/latex/joinbox/joinbox.tex | unsupported: bitmap (PK
+engine-error | doc/latex/lgreek/lgreekuse.tex | unsupported: bitmap (PK
+engine-error | doc/latex/metre/igreek3.tex | unsupported: bitmap (PK
+engine-error | doc/latex/montex/mlsquick.tex | unsupported: bitmap (PK
+engine-error | doc/latex/montex/montex.tex | unsupported: bitmap (PK
+engine-error | doc/latex/montex/zanabazr.tex | unsupported: TeXXeT
+engine-error | doc/latex/numerica-plus/numerica-plus.tex | crash: Fatal format file error; I'm stymied (not a tstex format 4 file)
+engine-error | doc/latex/numerica-tables/numerica-tables.tex | crash: Fatal format file error; I'm stymied (not a tstex format 4 file)
+engine-error | doc/latex/numerica/numerica.tex | crash: Fatal format file error; I'm stymied (not a tstex format 4 file)
+engine-error | doc/latex/numericplots/src/NumericPlotsDoc.tex | crash: Fatal format file error; I'm stymied (not a tstex format 4 file)
+engine-error | doc/latex/numname/numname.tex | crash: Fatal format file error; I'm stymied (not a tstex format 4 file)
+engine-error | doc/latex/numnameru/numnameru.tex | crash: Fatal format file error; I'm stymied (not a tstex format 4 file)
+engine-error | doc/latex/numprint/getversion.tex | crash: Fatal format file error; I'm stymied (not a tstex format 4 file)
+engine-error | doc/latex/numprint/nbaseprttest.tex | crash: Fatal format file error; I'm stymied (not a tstex format 4 file)
+engine-error | doc/latex/numprint/numprinttest.tex | crash: Fatal format file error; I'm stymied (not a tstex format 4 file)
+engine-error | doc/latex/numspell/numspell.tex | crash: Fatal format file error; I'm stymied (not a tstex format 4 file)
+engine-error | doc/latex/nxtlatex/BeispielbriefNXT.tex | crash: Fatal format file error; I'm stymied (not a tstex format 4 file)
+engine-error | doc/latex/nxtlatex/BeispielfolienNXT.tex | crash: Fatal format file error; I'm stymied (not a tstex format 4 file)
+engine-error | doc/latex/nxuthesis/nxuthesis-example.tex | crash: Fatal format file error; I'm stymied (not a tstex format 4 file)
+engine-error | doc/latex/oberdiek/chemarr-example.tex | crash: Fatal format file error; I'm stymied (not a tstex format 4 file)
+engine-error | doc/latex/oberdiek/example/eolgrab-example-sec.tex | crash: Fatal format file error; I'm stymied (not a tstex format 4 file)
+engine-error | doc/latex/oberdiek/hypgotoe-example.tex | crash: Fatal format file error; I'm stymied (not a tstex format 4 file)
+engine-error | doc/latex/oberdiek/scrindex-example1.tex | crash: Fatal format file error; I'm stymied (not a tstex format 4 file)
+engine-error | doc/latex/oberdiek/scrindex-example2.tex | crash: Fatal format file error; I'm stymied (not a tstex format 4 file)
+engine-error | doc/latex/oberdiek/setouterhbox-example.tex | crash: Fatal format file error; I'm stymied (not a tstex format 4 file)
+engine-error | doc/latex/oberdiek/settobox-example.tex | crash: Fatal format file error; I'm stymied (not a tstex format 4 file)
+engine-error | doc/latex/objectz/ozguide.tex | crash: Fatal format file error; I'm stymied (not a tstex format 4 file)
+engine-error | doc/latex/objectz/oztest.tex | crash: Fatal format file error; I'm stymied (not a tstex format 4 file)
+engine-error | doc/latex/ocg-p/examples/ocg-p_example_1.tex | crash: Fatal format file error; I'm stymied (not a tstex format 4 file)
+engine-error | doc/latex/ocg-p/examples/ocg-p_example_2.tex | crash: Fatal format file error; I'm stymied (not a tstex format 4 file)
+engine-error | doc/latex/ocg-p/examples/ocg-p_example_3.tex | crash: Fatal format file error; I'm stymied (not a tstex format 4 file)
+engine-error | doc/latex/ocg-p/examples/ocg-p_example_4.tex | crash: Fatal format file error; I'm stymied (not a tstex format 4 file)
+engine-error | doc/latex/ocg-p/ocg-p.tex | crash: Fatal format file error; I'm stymied (not a tstex format 4 file)
+engine-error | doc/latex/ocr-latex/ocr.tex | crash: Fatal format file error; I'm stymied (not a tstex format 4 file)
+engine-error | doc/latex/octave/octave.tex | crash: Fatal format file error; I'm stymied (not a tstex format 4 file)
+engine-error | doc/latex/oddsmath/oddsmath.tex | crash: Fatal format file error; I'm stymied (not a tstex format 4 file)
+engine-error | doc/latex/pascaltriangle/pascaltriangle.tex | unsupported: bitmap (PK
+engine-error | doc/latex/pecha/example.tex | unsupported: bitmap (PK
+engine-error | doc/latex/pecha/pecha_docu.tex | unsupported: bitmap (PK
 timeout | doc/generic/chemfig/chemfig-en.tex | engine > 240s
 timeout | doc/generic/chemfig/chemfig-fr.tex | engine > 240s
+timeout | doc/generic/pst-kepler/images/Kepler2ndLaw-gif.tex | engine > 240s
 timeout | doc/latex-dev/base/ltnews.tex | engine > 240s
 timeout | doc/latex/atableau/atableau.tex | engine > 240s
 timeout | doc/latex/base/ltnews.tex | engine > 240s
@@ -3200,7 +4237,6 @@ timeout | doc/latex/bxcoloremoji/bxcoloremoji-shortnames.tex | engine > 240s
 timeout | doc/latex/cahierprof/cahierprof-exemple.tex | engine > 240s
 timeout | doc/latex/cbcoptic/testcop.tex | pdftex+engine > 240s
 timeout | doc/latex/ciad-beamertheme/ciadbeamer-documentation.tex | engine > 240s
-timeout | doc/latex/circularglyphs/circularglyphs-doc.tex | engine > 240s
 timeout | doc/latex/circularglyphs/circularglyphs-sample.tex | engine > 240s
 timeout | doc/latex/codehigh/codehigh.tex | pdftex+engine > 240s
 timeout | doc/latex/coffeestains/coffeestains-fr.tex | engine > 240s
@@ -3220,6 +4256,19 @@ timeout | doc/latex/hawkdraw/hawkdraw-doc.tex | engine > 240s
 timeout | doc/latex/hwemoji/hwemoji.tex | engine > 240s
 timeout | doc/latex/istgame/istgame-doc.tex | engine > 240s
 timeout | doc/latex/juramisc/doc/jmgerdoc.tex | pdftex+engine > 240s
+timeout | doc/latex/lie-hasse/lie-hasse.tex | pdftex+engine > 240s
+timeout | doc/latex/liftarm/liftarm.tex | pdftex+engine > 240s
+timeout | doc/latex/lisp-on-tex/examples/div2.tex | pdftex+engine > 240s
+timeout | doc/latex/lisp-on-tex/examples/fpnummodule-mandelbrot.tex | pdftex+engine > 240s
+timeout | doc/latex/litetable/litetable-zh-cn.tex | pdftex > 240s
+timeout | doc/latex/litetable/litetable-zh-hk.tex | pdftex > 240s
+timeout | doc/latex/mahjonggame/examples/example.tex | engine > 240s
+timeout | doc/latex/mahjonggame/mahjonggame.tex | engine > 240s
+timeout | doc/latex/makeplot/mptest.tex | pdftex+engine > 240s
+timeout | doc/latex/media4svg/example/beamer-example.tex | pdftex+engine > 240s
+timeout | doc/latex/mhchem/mhchem.tex | engine > 240s
+timeout | doc/latex/openmoji/openmoji-doc.tex | engine > 240s
+timeout | doc/latex/pegmatch/pegmatch.tex | pdftex+engine > 240s
 timeout | doc/xelatex/hithesis/examples/hitbook/chinese/thesis.tex | pdftex > 240s
 skipped | doc/bibtex/bath-bst/bath-bst-v1.tex | needs xelatex/lualatex
 skipped | doc/bibtex/bibstyles-ru/bibstyles-ru.tex | needs shell escape
@@ -3272,6 +4321,58 @@ skipped | doc/fonts/inriafonts/inriafonts.tex | needs xelatex/lualatex
 skipped | doc/fonts/jetbrainsmono-otf/jetbrainsmono-otf-doc.tex | needs xelatex/lualatex
 skipped | doc/fonts/juliamono/juliamono-doc.tex | needs xelatex/lualatex
 skipped | doc/fonts/khatalmaqala/sample-of-khatalmaqala.tex | needs xelatex/lualatex
+skipped | doc/fonts/libertine/libertine.tex | needs xelatex/lualatex
+skipped | doc/fonts/lisnoti/lisnoti.tex | needs xelatex/lualatex
+skipped | doc/fonts/lm-math/test-lualatex-latinmodern_math.tex | needs xelatex/lualatex
+skipped | doc/fonts/lm-math/test-xelatex-latinmodern_math.tex | needs xelatex/lualatex
+skipped | doc/fonts/lora/lora-sample.tex | needs xelatex/lualatex
+skipped | doc/fonts/luwiantype/luwiantype-doc.tex | needs xelatex/lualatex
+skipped | doc/fonts/lydtype/lydtype-doc.tex | needs xelatex/lualatex
+skipped | doc/fonts/mathbb-one/mathbb-one.tex | needs xelatex/lualatex
+skipped | doc/fonts/mfb-oldstyle/character-map.tex | needs xelatex/lualatex
+skipped | doc/fonts/mfb-oldstyle/mfb-oldstyle-doc.tex | needs xelatex/lualatex
+skipped | doc/fonts/mlmodern/mlmodern.tex | needs xelatex/lualatex
+skipped | doc/fonts/monaspace-otf/monaspace-otf.tex | needs xelatex/lualatex
+skipped | doc/fonts/montserrat/montserrat-doc.tex | needs xelatex/lualatex
+skipped | doc/fonts/newcomputermodern/mathkern-example.tex | needs xelatex/lualatex
+skipped | doc/fonts/newcomputermodern/mathkern-example2.tex | needs xelatex/lualatex
+skipped | doc/fonts/newcomputermodern/newcm-doc.tex | needs xelatex/lualatex
+skipped | doc/fonts/newcomputermodern/newcomputermodern-sample.tex | needs xelatex/lualatex
+skipped | doc/fonts/newcomputermodern/opticalmathlm.tex | needs xelatex/lualatex
+skipped | doc/fonts/newpx/newpxdoc.tex | needs xelatex/lualatex
+skipped | doc/fonts/newtx/implementation.tex | needs dvips/PostScript
+skipped | doc/fonts/newtx/newtxdoc.tex | needs xelatex/lualatex
+skipped | doc/fonts/newtxsf/newtxsf-doc.tex | needs xelatex/lualatex
+skipped | doc/fonts/nimbus15/nimbus15-doc.tex | needs xelatex/lualatex
+skipped | doc/fonts/ocr-b-outline/xe-test.tex | needs xelatex/lualatex
+skipped | doc/fonts/oldstandard/oldstand-manual.tex | needs xelatex/lualatex
+skipped | doc/fonts/oldstandard/oldstandard-mathtest.tex | needs xelatex/lualatex
+skipped | doc/fonts/oldstandard/oldstandard.tex | needs xelatex/lualatex
+skipped | doc/fonts/openglyph/openglyph-doc.tex | needs shell escape
+skipped | doc/fonts/pennstander-otf/pennstander-otf-doc.tex | needs xelatex/lualatex
+skipped | doc/fonts/plex-otf/plex-otf-doc.tex | needs xelatex/lualatex
+skipped | doc/fonts/qualitype/qualitype-doc.tex | needs xelatex/lualatex
+skipped | doc/fonts/rojud/rojud.tex | needs xelatex/lualatex
+skipped | doc/fonts/schulschriften/schulschriften.tex | needs EPS conversion (shell escape)
+skipped | doc/fonts/shobhika/shobhika.tex | needs xelatex/lualatex
+skipped | doc/fonts/spark-otf/spark-otf-doc.tex | needs xelatex/lualatex
+skipped | doc/fonts/splentinex/splentinex-doc.tex | needs xelatex/lualatex
+skipped | doc/fonts/stix2-otf/STIXTwoMath-Regular.tex | needs xelatex/lualatex
+skipped | doc/fonts/stix2-otf/STIXTwoText-Regular.tex | needs xelatex/lualatex
+skipped | doc/fonts/symbats3/symbats3.tex | needs Biber
+skipped | doc/fonts/tempora/tempora-doc.tex | needs xelatex/lualatex
+skipped | doc/fonts/tex-gyre-math/test-lualatex-texgyre_bonum_math.tex | needs xelatex/lualatex
+skipped | doc/fonts/tex-gyre-math/test-lualatex-texgyre_dejavu_math.tex | needs xelatex/lualatex
+skipped | doc/fonts/tex-gyre-math/test-lualatex-texgyre_pagella_math.tex | needs xelatex/lualatex
+skipped | doc/fonts/tex-gyre-math/test-lualatex-texgyre_schola_math.tex | needs xelatex/lualatex
+skipped | doc/fonts/tex-gyre-math/test-lualatex-texgyre_termes_math.tex | needs xelatex/lualatex
+skipped | doc/fonts/tex-gyre-math/test-xelatex-texgyre_bonum_math.tex | needs xelatex/lualatex
+skipped | doc/fonts/tex-gyre-math/test-xelatex-texgyre_dejavu_math.tex | needs xelatex/lualatex
+skipped | doc/fonts/tex-gyre-math/test-xelatex-texgyre_pagella_math.tex | needs xelatex/lualatex
+skipped | doc/fonts/tex-gyre-math/test-xelatex-texgyre_schola_math.tex | needs xelatex/lualatex
+skipped | doc/fonts/tex-gyre-math/test-xelatex-texgyre_termes_math.tex | needs xelatex/lualatex
+skipped | doc/fonts/xcharter/newgermanfxch.tex | needs xelatex/lualatex
+skipped | doc/fonts/xcharter/xcharter-doc.tex | needs xelatex/lualatex
 skipped | doc/generic/arrayjobx/arrayjob.tex | needs dvips/PostScript
 skipped | doc/generic/arrayjobx/arrayjobx.tex | needs dvips/PostScript
 skipped | doc/generic/babel-greek/test-athnum.tex | needs xelatex/lualatex
@@ -3290,6 +4391,302 @@ skipped | doc/generic/es-tex-faq/FAQ-CervanTeX.tex | needs EPS conversion (shell
 skipped | doc/generic/iftex/iftex.tex | needs xelatex/lualatex
 skipped | doc/generic/latex-notes-zh-cn/src/graphics.tex | needs dvips/PostScript
 skipped | doc/generic/latex-notes-zh-cn/src/lnotes.tex | needs xelatex/lualatex
+skipped | doc/generic/memoize/memoize-doc.tex | needs shell escape
+skipped | doc/generic/pgf/pgfmanual-en-library-external.tex | needs shell escape
+skipped | doc/generic/pmx/pmx300.tex | needs EPS conversion (shell escape)
+skipped | doc/generic/pst-2dplot/pst-2dplot-doc.tex | needs dvips/PostScript
+skipped | doc/generic/pst-3d/pst-3d-doc.tex | needs dvips/PostScript
+skipped | doc/generic/pst-3dplot/pst-3dplot-doc.tex | needs Biber
+skipped | doc/generic/pst-abspos/pst-abspos-doc.tex | needs dvips/PostScript
+skipped | doc/generic/pst-am/pst-am-doc.tex | needs dvips/PostScript
+skipped | doc/generic/pst-antiprism/pst-antiprism-doc.tex | needs Biber
+skipped | doc/generic/pst-arrow/pst-arrow-doc.tex | needs Biber
+skipped | doc/generic/pst-asr/pst-asr-examples.tex | needs dvips/PostScript
+skipped | doc/generic/pst-bar/pst-bar-doc.tex | needs Biber
+skipped | doc/generic/pst-bezier/pst-bezier-doc.tex | needs Biber
+skipped | doc/generic/pst-bspline/pst-bspline-doc.tex | needs dvips/PostScript
+skipped | doc/generic/pst-calculate/pst-calculate-doc.tex | needs Biber
+skipped | doc/generic/pst-chladni/pst-chladni-doc.tex | needs Biber
+skipped | doc/generic/pst-cie/pst-cie-doc.tex | needs Biber
+skipped | doc/generic/pst-circ/pst-circ-doc.tex | needs Biber
+skipped | doc/generic/pst-coil/pst-coil-doc.tex | needs Biber
+skipped | doc/generic/pst-contourplot/examples/Les-Ovales-de-Descartes.tex | needs dvips/PostScript
+skipped | doc/generic/pst-contourplot/examples/bourke.tex | needs dvips/PostScript
+skipped | doc/generic/pst-contourplot/examples/courbe-du-diable.tex | needs dvips/PostScript
+skipped | doc/generic/pst-contourplot/examples/courbes-diverses.tex | needs dvips/PostScript
+skipped | doc/generic/pst-contourplot/examples/exemples-2.tex | needs dvips/PostScript
+skipped | doc/generic/pst-contourplot/examples/exemples-3.tex | needs dvips/PostScript
+skipped | doc/generic/pst-contourplot/examples/exemples-4.tex | needs dvips/PostScript
+skipped | doc/generic/pst-contourplot/examples/four-dipoles-lignes.tex | needs dvips/PostScript
+skipped | doc/generic/pst-contourplot/examples/four-dipoles-t.tex | needs dvips/PostScript
+skipped | doc/generic/pst-contourplot/examples/four-dipoles.tex | needs dvips/PostScript
+skipped | doc/generic/pst-contourplot/examples/four-leminscates.tex | needs dvips/PostScript
+skipped | doc/generic/pst-contourplot/examples/hertz.tex | needs dvips/PostScript
+skipped | doc/generic/pst-contourplot/examples/pavage.tex | needs dvips/PostScript
+skipped | doc/generic/pst-contourplot/examples/trefoil.tex | needs dvips/PostScript
+skipped | doc/generic/pst-contourplot/examples/two-metaballs.tex | needs dvips/PostScript
+skipped | doc/generic/pst-contourplot/pst-contourplot-docEN.tex | needs dvips/PostScript
+skipped | doc/generic/pst-contourplot/pst-contourplot-docFR.tex | needs dvips/PostScript
+skipped | doc/generic/pst-cox/pst-coxcoor/Gallery.tex | needs dvips/PostScript
+skipped | doc/generic/pst-cox/pst-coxcoor/pst-coxcoor_doc.tex | needs dvips/PostScript
+skipped | doc/generic/pst-cox/pst-coxeterp/Gallery.tex | needs dvips/PostScript
+skipped | doc/generic/pst-cox/pst-coxeterp/pst-coxeterp_doc.tex | needs dvips/PostScript
+skipped | doc/generic/pst-dart/pst-dart-doc.tex | needs Biber
+skipped | doc/generic/pst-dbicons/mondial-ER.tex | needs dvips/PostScript
+skipped | doc/generic/pst-diffraction/pst-diffraction-doc.tex | needs Biber
+skipped | doc/generic/pst-electricfield/pst-electricfield-docDE.tex | needs dvips/PostScript
+skipped | doc/generic/pst-electricfield/pst-electricfield-docEN.tex | needs dvips/PostScript
+skipped | doc/generic/pst-electricfield/pst-electricfield-docFR.tex | needs dvips/PostScript
+skipped | doc/generic/pst-electrolysis/pst-electrolysis-doc.tex | needs Biber
+skipped | doc/generic/pst-ellipsoid/pst-ellipsoid-doc-exa01.tex | needs dvips/PostScript
+skipped | doc/generic/pst-ellipsoid/pst-ellipsoid-doc-exa02.tex | needs dvips/PostScript
+skipped | doc/generic/pst-ellipsoid/pst-ellipsoid-doc-exa03.tex | needs dvips/PostScript
+skipped | doc/generic/pst-ellipsoid/pst-ellipsoid-doc-exa04.tex | needs dvips/PostScript
+skipped | doc/generic/pst-ellipsoid/pst-ellipsoid-doc-exa05.tex | needs dvips/PostScript
+skipped | doc/generic/pst-ellipsoid/pst-ellipsoid-doc-exa06.tex | needs dvips/PostScript
+skipped | doc/generic/pst-ellipsoid/pst-ellipsoid-doc-exa07.tex | needs dvips/PostScript
+skipped | doc/generic/pst-ellipsoid/pst-ellipsoid-doc-exa08.tex | needs dvips/PostScript
+skipped | doc/generic/pst-ellipsoid/pst-ellipsoid-doc-exa09.tex | needs dvips/PostScript
+skipped | doc/generic/pst-ellipsoid/pst-ellipsoid-doc-exa10.tex | needs dvips/PostScript
+skipped | doc/generic/pst-ellipsoid/pst-ellipsoid-doc-exa11.tex | needs dvips/PostScript
+skipped | doc/generic/pst-ellipsoid/pst-ellipsoid-doc-exa12.tex | needs dvips/PostScript
+skipped | doc/generic/pst-ellipsoid/pst-ellipsoid-doc-exa13.tex | needs dvips/PostScript
+skipped | doc/generic/pst-ellipsoid/pst-ellipsoid-doc-exa14.tex | needs dvips/PostScript
+skipped | doc/generic/pst-ellipsoid/pst-ellipsoid-doc-exa15.tex | needs dvips/PostScript
+skipped | doc/generic/pst-ellipsoid/pst-ellipsoid-doc.tex | needs Biber
+skipped | doc/generic/pst-eps/pst-eps-doc.tex | needs dvips/PostScript
+skipped | doc/generic/pst-eqhz/pst-eqhz-doc.tex | needs Biber
+skipped | doc/generic/pst-eucl/pst-eucl-doc.tex | needs Biber
+skipped | doc/generic/pst-feyn/pst-feyn-doc.tex | needs Biber
+skipped | doc/generic/pst-fill/pst-fill-doc.tex | needs Biber
+skipped | doc/generic/pst-fit/pst-fit-doc.tex | needs Biber
+skipped | doc/generic/pst-fourbarlinkage/examples/fourbarlinkage--19-2.tex | needs dvips/PostScript
+skipped | doc/generic/pst-fourbarlinkage/examples/fourbarlinkage-1.tex | needs dvips/PostScript
+skipped | doc/generic/pst-fourbarlinkage/examples/fourbarlinkage-10c.tex | needs dvips/PostScript
+skipped | doc/generic/pst-fourbarlinkage/examples/fourbarlinkage-11c.tex | needs dvips/PostScript
+skipped | doc/generic/pst-fourbarlinkage/examples/fourbarlinkage-12.tex | needs dvips/PostScript
+skipped | doc/generic/pst-fourbarlinkage/examples/fourbarlinkage-13.tex | needs dvips/PostScript
+skipped | doc/generic/pst-fourbarlinkage/examples/fourbarlinkage-13c-bis.tex | needs dvips/PostScript
+skipped | doc/generic/pst-fourbarlinkage/examples/fourbarlinkage-14c.tex | needs dvips/PostScript
+skipped | doc/generic/pst-fourbarlinkage/examples/fourbarlinkage-15-bis.tex | needs dvips/PostScript
+skipped | doc/generic/pst-fourbarlinkage/examples/fourbarlinkage-15.tex | needs dvips/PostScript
+skipped | doc/generic/pst-fourbarlinkage/examples/fourbarlinkage-16.tex | needs dvips/PostScript
+skipped | doc/generic/pst-fourbarlinkage/examples/fourbarlinkage-17.tex | needs dvips/PostScript
+skipped | doc/generic/pst-fourbarlinkage/examples/fourbarlinkage-18.tex | needs dvips/PostScript
+skipped | doc/generic/pst-fourbarlinkage/examples/fourbarlinkage-19-3.tex | needs dvips/PostScript
+skipped | doc/generic/pst-fourbarlinkage/examples/fourbarlinkage-1c.tex | needs dvips/PostScript
+skipped | doc/generic/pst-fourbarlinkage/examples/fourbarlinkage-2.tex | needs dvips/PostScript
+skipped | doc/generic/pst-fourbarlinkage/examples/fourbarlinkage-2c.tex | needs dvips/PostScript
+skipped | doc/generic/pst-fourbarlinkage/examples/fourbarlinkage-3.tex | needs dvips/PostScript
+skipped | doc/generic/pst-fourbarlinkage/examples/fourbarlinkage-4.tex | needs dvips/PostScript
+skipped | doc/generic/pst-fourbarlinkage/examples/fourbarlinkage-5c.tex | needs dvips/PostScript
+skipped | doc/generic/pst-fourbarlinkage/examples/fourbarlinkage-6.tex | needs dvips/PostScript
+skipped | doc/generic/pst-fourbarlinkage/examples/fourbarlinkage-7.tex | needs dvips/PostScript
+skipped | doc/generic/pst-fourbarlinkage/examples/fourbarlinkage-8.tex | needs dvips/PostScript
+skipped | doc/generic/pst-fourbarlinkage/examples/fourbarlinkage-8c.tex | needs dvips/PostScript
+skipped | doc/generic/pst-fourbarlinkage/examples/fourbarlinkage-9c.tex | needs dvips/PostScript
+skipped | doc/generic/pst-fourbarlinkage/examples/fourbarlinkage-lemniscate-19.tex | needs dvips/PostScript
+skipped | doc/generic/pst-fourbarlinkage/examples/fourbarlinkage-nc-18.tex | needs dvips/PostScript
+skipped | doc/generic/pst-fourbarlinkage/pst-fourbarlinkage-doc.tex | needs Biber
+skipped | doc/generic/pst-fractal/pst-fractal-doc.tex | needs Biber
+skipped | doc/generic/pst-fun/pst-fun-doc.tex | needs dvips/PostScript
+skipped | doc/generic/pst-func/pst-func-doc.tex | needs Biber
+skipped | doc/generic/pst-gantt/pst-gantt-doc.tex | needs dvips/PostScript
+skipped | doc/generic/pst-gears/pst-gears-doc.tex | needs Biber
+skipped | doc/generic/pst-geo/examples/Africa.tex | needs dvips/PostScript
+skipped | doc/generic/pst-geo/examples/Animate0.tex | needs dvips/PostScript
+skipped | doc/generic/pst-geo/examples/Animate1.tex | needs dvips/PostScript
+skipped | doc/generic/pst-geo/examples/Animate2.tex | needs dvips/PostScript
+skipped | doc/generic/pst-geo/examples/AntarticaII.tex | needs dvips/PostScript
+skipped | doc/generic/pst-geo/examples/AsiaII.tex | needs dvips/PostScript
+skipped | doc/generic/pst-geo/examples/Berlin.tex | needs dvips/PostScript
+skipped | doc/generic/pst-geo/examples/D-Karte-3dJG.tex | needs dvips/PostScript
+skipped | doc/generic/pst-geo/examples/D-karte-3d.tex | needs dvips/PostScript
+skipped | doc/generic/pst-geo/examples/DANTE.tex | needs dvips/PostScript
+skipped | doc/generic/pst-geo/examples/Europa.tex | needs dvips/PostScript
+skipped | doc/generic/pst-geo/examples/EuropeII.tex | needs dvips/PostScript
+skipped | doc/generic/pst-geo/examples/Greek.tex | needs dvips/PostScript
+skipped | doc/generic/pst-geo/pst-geo-doc.tex | needs Biber
+skipped | doc/generic/pst-geometrictools/pst-geometrictools-doc.tex | needs Biber
+skipped | doc/generic/pst-grad/pst-grad-doc.tex | needs dvips/PostScript
+skipped | doc/generic/pst-hertz/pst-hertz-animate.tex | directory over 50 MB
+skipped | doc/generic/pst-hertz/pst-hertz-doc.tex | needs Biber
+skipped | doc/generic/pst-hertz/pst-hertz-test-0.tex | needs dvips/PostScript
+skipped | doc/generic/pst-hertz/pst-hertz-test-1.tex | directory over 50 MB
+skipped | doc/generic/pst-hertz/pst-hertz-test-2.tex | needs dvips/PostScript
+skipped | doc/generic/pst-hsb/pst-hsb-doc.tex | needs Biber
+skipped | doc/generic/pst-hyperboloid/pst-hyperboloid-doc-exa1.tex | needs dvips/PostScript
+skipped | doc/generic/pst-hyperboloid/pst-hyperboloid-doc-exa10.tex | needs dvips/PostScript
+skipped | doc/generic/pst-hyperboloid/pst-hyperboloid-doc-exa11.tex | needs dvips/PostScript
+skipped | doc/generic/pst-hyperboloid/pst-hyperboloid-doc-exa12.tex | needs dvips/PostScript
+skipped | doc/generic/pst-hyperboloid/pst-hyperboloid-doc-exa13.tex | needs dvips/PostScript
+skipped | doc/generic/pst-hyperboloid/pst-hyperboloid-doc-exa14.tex | needs dvips/PostScript
+skipped | doc/generic/pst-hyperboloid/pst-hyperboloid-doc-exa15.tex | needs dvips/PostScript
+skipped | doc/generic/pst-hyperboloid/pst-hyperboloid-doc-exa16.tex | needs dvips/PostScript
+skipped | doc/generic/pst-hyperboloid/pst-hyperboloid-doc-exa17.tex | needs dvips/PostScript
+skipped | doc/generic/pst-hyperboloid/pst-hyperboloid-doc-exa18.tex | needs dvips/PostScript
+skipped | doc/generic/pst-hyperboloid/pst-hyperboloid-doc-exa19.tex | needs dvips/PostScript
+skipped | doc/generic/pst-hyperboloid/pst-hyperboloid-doc-exa2.tex | needs dvips/PostScript
+skipped | doc/generic/pst-hyperboloid/pst-hyperboloid-doc-exa20.tex | needs dvips/PostScript
+skipped | doc/generic/pst-hyperboloid/pst-hyperboloid-doc-exa21.tex | needs dvips/PostScript
+skipped | doc/generic/pst-hyperboloid/pst-hyperboloid-doc-exa22.tex | needs dvips/PostScript
+skipped | doc/generic/pst-hyperboloid/pst-hyperboloid-doc-exa3.tex | needs dvips/PostScript
+skipped | doc/generic/pst-hyperboloid/pst-hyperboloid-doc-exa4.tex | needs dvips/PostScript
+skipped | doc/generic/pst-hyperboloid/pst-hyperboloid-doc-exa5.tex | needs dvips/PostScript
+skipped | doc/generic/pst-hyperboloid/pst-hyperboloid-doc-exa6.tex | needs dvips/PostScript
+skipped | doc/generic/pst-hyperboloid/pst-hyperboloid-doc-exa7.tex | needs dvips/PostScript
+skipped | doc/generic/pst-hyperboloid/pst-hyperboloid-doc-exa8.tex | needs dvips/PostScript
+skipped | doc/generic/pst-hyperboloid/pst-hyperboloid-doc-exa9.tex | needs dvips/PostScript
+skipped | doc/generic/pst-hyperboloid/pst-hyperboloid-doc.tex | needs Biber
+skipped | doc/generic/pst-hypertiling/pst-hypertiling-doc.tex | needs Biber
+skipped | doc/generic/pst-infixplot/pst-infixplot-doc.tex | needs dvips/PostScript
+skipped | doc/generic/pst-jtree/pst-jtree-examples.tex | needs dvips/PostScript
+skipped | doc/generic/pst-kepler/images/Keplerienne3.tex | needs dvips/PostScript
+skipped | doc/generic/pst-kepler/images/cube.tex | needs dvips/PostScript
+skipped | doc/generic/pst-kepler/images/dodekaeder.tex | needs dvips/PostScript
+skipped | doc/generic/pst-kepler/images/ikosaeder.tex | needs dvips/PostScript
+skipped | doc/generic/pst-kepler/images/model.tex | needs dvips/PostScript
+skipped | doc/generic/pst-kepler/images/octaedre.tex | needs dvips/PostScript
+skipped | doc/generic/pst-kepler/images/tet.tex | needs dvips/PostScript
+skipped | doc/generic/pst-kepler/pst-kepler-doc.tex | needs Biber
+skipped | doc/generic/pst-knot/pst-knot-doc.tex | needs dvips/PostScript
+skipped | doc/generic/pst-labo/pst-labo-doc.tex | needs Biber
+skipped | doc/generic/pst-light3d/pst-light3d-doc.tex | needs dvips/PostScript
+skipped | doc/generic/pst-lsystem/pst-lsystem-doc.tex | needs Biber
+skipped | doc/generic/pst-magneticfield/pst-magneticfield-doc.tex | needs shell escape
+skipped | doc/generic/pst-marble/examples/Blendmodes.tex | needs dvips/PostScript
+skipped | doc/generic/pst-marble/examples/Bouquet.tex | needs dvips/PostScript
+skipped | doc/generic/pst-marble/examples/BurgWave.tex | needs dvips/PostScript
+skipped | doc/generic/pst-marble/examples/Contour.tex | needs dvips/PostScript
+skipped | doc/generic/pst-marble/examples/Curl.tex | needs dvips/PostScript
+skipped | doc/generic/pst-marble/examples/EdgyStirred.tex | needs dvips/PostScript
+skipped | doc/generic/pst-marble/examples/Eggcrate.tex | needs dvips/PostScript
+skipped | doc/generic/pst-marble/examples/Latte.tex | needs dvips/PostScript
+skipped | doc/generic/pst-marble/examples/Leaves.tex | needs dvips/PostScript
+skipped | doc/generic/pst-marble/examples/Moire.tex | needs dvips/PostScript
+skipped | doc/generic/pst-marble/examples/Nautilus.tex | needs dvips/PostScript
+skipped | doc/generic/pst-marble/examples/Nonpareil.tex | needs dvips/PostScript
+skipped | doc/generic/pst-marble/examples/Rollers.tex | needs dvips/PostScript
+skipped | doc/generic/pst-marble/examples/Stone.tex | needs dvips/PostScript
+skipped | doc/generic/pst-marble/examples/Transparency.tex | needs dvips/PostScript
+skipped | doc/generic/pst-marble/examples/Wave.tex | needs dvips/PostScript
+skipped | doc/generic/pst-marble/examples/Wreath.tex | needs dvips/PostScript
+skipped | doc/generic/pst-marble/pst-marble-doc.tex | needs Biber
+skipped | doc/generic/pst-massspring/images/image0.tex | needs dvips/PostScript
+skipped | doc/generic/pst-massspring/images/image1.tex | needs dvips/PostScript
+skipped | doc/generic/pst-massspring/pst-massspring-doc.tex | needs Biber
+skipped | doc/generic/pst-math/pst-math-doc.tex | needs Biber
+skipped | doc/generic/pst-mirror/createEPS/test.tex | needs dvips/PostScript
+skipped | doc/generic/pst-mirror/pst-mirror-doc.tex | needs Biber
+skipped | doc/generic/pst-moire/examples/pattern1.tex | needs dvips/PostScript
+skipped | doc/generic/pst-moire/examples/pattern2.tex | needs dvips/PostScript
+skipped | doc/generic/pst-moire/examples/pattern3.tex | needs dvips/PostScript
+skipped | doc/generic/pst-moire/examples/pattern4.tex | needs dvips/PostScript
+skipped | doc/generic/pst-moire/examples/psGlassPattern.tex | needs dvips/PostScript
+skipped | doc/generic/pst-moire/pst-moire-doc.tex | needs Biber
+skipped | doc/generic/pst-node/psmatrix-docDE.tex | needs Biber
+skipped | doc/generic/pst-node/pst-node-doc.tex | needs Biber
+skipped | doc/generic/pst-nutation/animations/pst-nutation-doc-anim1.tex | needs dvips/PostScript
+skipped | doc/generic/pst-nutation/animations/pst-nutation-doc-anim2.tex | needs dvips/PostScript
+skipped | doc/generic/pst-nutation/animations/pst-nutation-doc-anim3.tex | needs dvips/PostScript
+skipped | doc/generic/pst-nutation/animations/pst-nutation-doc-anim4.tex | needs dvips/PostScript
+skipped | doc/generic/pst-nutation/animations/pst-nutation-doc-anim5.tex | needs dvips/PostScript
+skipped | doc/generic/pst-nutation/pst-nutation-doc.tex | needs Biber
+skipped | doc/generic/pst-ode/examples/lorenz.tex | needs dvips/PostScript
+skipped | doc/generic/pst-ode/examples/ode.tex | needs dvips/PostScript
+skipped | doc/generic/pst-ode/examples/particle.tex | needs dvips/PostScript
+skipped | doc/generic/pst-ode/pst-ode-doc.tex | needs dvips/PostScript
+skipped | doc/generic/pst-optic/pst-optic-doc.tex | needs Biber
+skipped | doc/generic/pst-osci/pst-osci-doc.tex | needs dvips/PostScript
+skipped | doc/generic/pst-ovl/pst-ovl-doc.tex | needs Biber
+skipped | doc/generic/pst-perspective/Parallelprojektion-Kreis.tex | needs dvips/PostScript
+skipped | doc/generic/pst-perspective/pst-perspective-doc.tex | needs dvips/PostScript
+skipped | doc/generic/pst-perspective/pst-perspective-docEN.tex | needs dvips/PostScript
+skipped | doc/generic/pst-platon/pst-platon-doc.tex | needs dvips/PostScript
+skipped | doc/generic/pst-plot/pst-plot-doc.tex | needs Biber
+skipped | doc/generic/pst-poly/pst-poly-doc.tex | needs dvips/PostScript
+skipped | doc/generic/pst-pulley/pst-pulley-doc.tex | needs dvips/PostScript
+skipped | doc/generic/pst-qtree/pst-qtree-manual.tex | needs dvips/PostScript
+skipped | doc/generic/pst-rputover/pst-rputover-doc.tex | needs Biber
+skipped | doc/generic/pst-rubans/pst-rubans-doc.tex | needs dvips/PostScript
+skipped | doc/generic/pst-shell/pst-shell-doc-title.tex | needs dvips/PostScript
+skipped | doc/generic/pst-shell/pst-shell-doc.tex | needs Biber
+skipped | doc/generic/pst-sigsys/pst-sigsys-doc.tex | needs dvips/PostScript
+skipped | doc/generic/pst-solarsystem/pst-solarsystem-doc.tex | needs Biber
+skipped | doc/generic/pst-solides3d/pst-solides3d-doc.tex | needs Biber
+skipped | doc/generic/pst-solides3d/text/par-geode-en.tex | needs dvips/PostScript
+skipped | doc/generic/pst-soroban/pst-soroban-doc.tex | needs dvips/PostScript
+skipped | doc/generic/pst-spectrum/pst-spectrum-doc.tex | needs Biber
+skipped | doc/generic/pst-sphericaltrochoid/animations/pst-sphericaltrochoid-doc-anim1.tex | needs dvips/PostScript
+skipped | doc/generic/pst-sphericaltrochoid/animations/pst-sphericaltrochoid-doc-anim2.tex | needs dvips/PostScript
+skipped | doc/generic/pst-sphericaltrochoid/animations/pst-sphericaltrochoid-doc-anim3.tex | needs dvips/PostScript
+skipped | doc/generic/pst-sphericaltrochoid/animations/pst-sphericaltrochoid-doc-anim4.tex | needs dvips/PostScript
+skipped | doc/generic/pst-sphericaltrochoid/animations/pst-sphericaltrochoid-doc-anim5.tex | needs dvips/PostScript
+skipped | doc/generic/pst-sphericaltrochoid/pst-sphericaltrochoid-doc.tex | needs Biber
+skipped | doc/generic/pst-spinner/pst-spinner-doc.tex | needs Biber
+skipped | doc/generic/pst-stru/pst-stru-doc.tex | needs dvips/PostScript
+skipped | doc/generic/pst-text/pst-text-doc.tex | needs Biber
+skipped | doc/generic/pst-thick/pst-thick-doc.tex | needs dvips/PostScript
+skipped | doc/generic/pst-titration/pst-titration-doc.tex | needs Biber
+skipped | doc/generic/pst-tools/pst-tools-doc.tex | needs Biber
+skipped | doc/generic/pst-tree/pst-tree-doc.tex | needs Biber
+skipped | doc/generic/pst-turtle/pst-turtle-doc.tex | needs Biber
+skipped | doc/generic/pst-tvz/pst-tvz-doc.tex | needs xelatex/lualatex
+skipped | doc/generic/pst-uml/pst-uml-doc.tex | needs dvips/PostScript
+skipped | doc/generic/pst-uml/pst-uml-encapsuled-pdf-fig.tex | needs dvips/PostScript
+skipped | doc/generic/pst-uml/pst-uml-exemples.tex | needs dvips/PostScript
+skipped | doc/generic/pst-vehicle/pst-vehicle-doc-fr.tex | needs Biber
+skipped | doc/generic/pst-vehicle/pst-vehicle-doc.tex | needs xelatex/lualatex
+skipped | doc/generic/pst-venn/pst-venn-doc.tex | needs Biber
+skipped | doc/generic/pstricks-add/data/olympic.tex | needs dvips/PostScript
+skipped | doc/generic/pstricks-add/pstricks-add-doc.tex | needs Biber
+skipped | doc/generic/pstricks/pst-news.tex | needs dvips/PostScript
+skipped | doc/generic/pstricks/pst-news05.tex | needs dvips/PostScript
+skipped | doc/generic/pstricks/pst-news06.tex | needs dvips/PostScript
+skipped | doc/generic/pstricks/pst-news08.tex | needs dvips/PostScript
+skipped | doc/generic/pstricks/pst-news09.tex | needs dvips/PostScript
+skipped | doc/generic/pstricks/pst-news10.tex | needs shell escape
+skipped | doc/generic/pstricks/pst-news11.tex | needs dvips/PostScript
+skipped | doc/generic/pstricks/pst-news12.tex | needs dvips/PostScript
+skipped | doc/generic/pstricks/pst-news13.tex | needs dvips/PostScript
+skipped | doc/generic/pstricks/pst-news14.tex | needs dvips/PostScript
+skipped | doc/generic/pstricks/pst-news15.tex | needs shell escape
+skipped | doc/generic/pstricks/pst-news16.tex | needs Biber
+skipped | doc/generic/pstricks/pst-news17.tex | needs shell escape
+skipped | doc/generic/pstricks/pst-news18.tex | needs xelatex/lualatex
+skipped | doc/generic/pstricks/pst-news19.tex | needs xelatex/lualatex
+skipped | doc/generic/pstricks/pst-news20.tex | needs shell escape
+skipped | doc/generic/pstricks/pst-news21.tex | needs Biber
+skipped | doc/generic/pstricks/pst-news22.tex | needs Biber
+skipped | doc/generic/pstricks/pst-news23.tex | needs Biber
+skipped | doc/generic/pstricks/pst-news24.tex | needs Biber
+skipped | doc/generic/pstricks/pst-news25.tex | needs Biber
+skipped | doc/generic/pstricks/pstnews1-10.tex | needs dvips/PostScript
+skipped | doc/generic/pstricks/pstnews1-11.tex | needs dvips/PostScript
+skipped | doc/generic/pstricks/pstnews1-12.tex | needs dvips/PostScript
+skipped | doc/generic/pstricks/pstnews97-15.tex | needs dvips/PostScript
+skipped | doc/generic/schemata/schematest.tex | needs xelatex/lualatex
+skipped | doc/generic/tex-locale/samples/sample-locale-xeltx.tex | needs shell escape
+skipped | doc/generic/tex-locale/samples/sample-locale.tex | needs shell escape
+skipped | doc/generic/tex-ps/poligraf/samplelx.tex | needs EPS conversion (shell escape)
+skipped | doc/generic/tex4ht/TeX4ht-doc.tex | needs Biber
+skipped | doc/generic/tracklang/samples/animals/sample-animals-de-poly.tex | needs xelatex/lualatex
+skipped | doc/generic/tracklang/samples/animals/sample-animals-poly.tex | needs xelatex/lualatex
+skipped | doc/generic/tracklang/samples/animals/sample-animals2-de4.tex | needs xelatex/lualatex
+skipped | doc/generic/tracklang/samples/animals/sample-animals2-poly.tex | needs xelatex/lualatex
+skipped | doc/generic/tracklang/samples/sample-tracklang4.tex | needs xelatex/lualatex
+skipped | doc/generic/tracklang/tracklang-manual.tex | needs xelatex/lualatex
+skipped | doc/generic/tuple/tuple-doc-en.tex | needs xelatex/lualatex
+skipped | doc/generic/tuple/tuple-doc-fr.tex | needs xelatex/lualatex
+skipped | doc/generic/velthuis/manual.tex | needs xelatex/lualatex
+skipped | doc/generic/velthuis/xetex-examples.tex | needs xelatex/lualatex
+skipped | doc/generic/velthuis/xetex-misspaal.tex | needs xelatex/lualatex
+skipped | doc/generic/xlop/xlop-doc-fr.tex | needs dvips/PostScript
+skipped | doc/generic/xlop/xlop-doc.tex | needs dvips/PostScript
+skipped | doc/generic/xstring/xstring-en.tex | needs xelatex/lualatex
+skipped | doc/generic/xstring/xstring-fr.tex | needs xelatex/lualatex
+skipped | doc/generic/xypic-tut-pt/xypictutorial.tex | needs EPS conversion (shell escape)
+skipped | doc/generic/zhspacing/zhs-man.tex | needs xelatex/lualatex
 skipped | doc/latex-dev/base/ltnews23.tex | needs xelatex/lualatex
 skipped | doc/latex-dev/base/ltnews24.tex | needs xelatex/lualatex
 skipped | doc/latex-dev/base/ltnews29.tex | needs xelatex/lualatex
@@ -4034,6 +5431,528 @@ skipped | doc/latex/latex-uni8/example_fmr.tex | needs xelatex/lualatex
 skipped | doc/latex/latex-uni8/example_fur.tex | needs xelatex/lualatex
 skipped | doc/latex/latex-uni8/example_futr.tex | needs xelatex/lualatex
 skipped | doc/latex/latex-veryshortguide/vsg.tex | needs Biber
+skipped | doc/latex/latex-via-exemplos/latex-via-exemplos-abntex2.tex | needs xelatex/lualatex
+skipped | doc/latex/latex-via-exemplos/latex-via-exemplos-abntexto.tex | needs xelatex/lualatex
+skipped | doc/latex/latex-via-exemplos/latex-via-exemplos-poster.tex | needs Biber
+skipped | doc/latex/latex-via-exemplos/latex-via-exemplos-slides.tex | needs Biber
+skipped | doc/latex/latex-via-exemplos/latex-via-exemplos.tex | needs xelatex/lualatex
+skipped | doc/latex/latex-web-companion/apb/minilatexexa.tex | needs EPS conversion (shell escape)
+skipped | doc/latex/latex-web-companion/ch3/l2hexa.tex | needs EPS conversion (shell escape)
+skipped | doc/latex/latex4musicians/Figures/bravura.tex | needs xelatex/lualatex
+skipped | doc/latex/latex4musicians/Figures/lilyglyphs.tex | needs xelatex/lualatex
+skipped | doc/latex/latex4musicians/Figures/sample-abc-all.tex | needs shell escape
+skipped | doc/latex/latex4musicians/Figures/sample-includeall.tex | needs shell escape
+skipped | doc/latex/latex4musicians/latex4musicians.tex | needs xelatex/lualatex
+skipped | doc/latex/latex4wp-it/latex4wp-it.tex | needs EPS conversion (shell escape)
+skipped | doc/latex/latexbangla/latexbangla.tex | needs xelatex/lualatex
+skipped | doc/latex/leadsheets/leadsheets_en.tex | needs Biber
+skipped | doc/latex/leanify/leanify-doc.tex | needs shell escape
+skipped | doc/latex/lettrine/lettrine-demo-arabic.tex | needs xelatex/lualatex
+skipped | doc/latex/lettrine/lettrine-demo-de.tex | needs xelatex/lualatex
+skipped | doc/latex/lettrine/lettrine-demo-fr.tex | needs xelatex/lualatex
+skipped | doc/latex/lettrine/lettrine-demo-lua.tex | needs xelatex/lualatex
+skipped | doc/latex/lilyglyphs/documentation/lilyglyphs-example-de.tex | needs xelatex/lualatex
+skipped | doc/latex/lilyglyphs/documentation/lilyglyphs.tex | needs xelatex/lualatex
+skipped | doc/latex/lilyglyphs/documentation/lilyglyphs_logo/lilyglyphs_logo.tex | needs xelatex/lualatex
+skipped | doc/latex/linguexx/linguexx-doc.tex | needs xelatex/lualatex
+skipped | doc/latex/linguexx/rtl-hebrew.tex | needs xelatex/lualatex
+skipped | doc/latex/lni/lni-paper-example-de.tex | needs Biber
+skipped | doc/latex/logreq/examples/04-biblatex+bibtex+refsections.tex | needs Biber
+skipped | doc/latex/logreq/examples/05-biblatex+biber.tex | needs Biber
+skipped | doc/latex/lshort-chinese/src/chap/chap.06.spec.tex | needs Biber
+skipped | doc/latex/lshort-estonian/src/spec.tex | needs xelatex/lualatex
+skipped | doc/latex/lshort-estonian/src/typeset.tex | needs xelatex/lualatex
+skipped | doc/latex/lshort-finnish/src/erikois.tex | needs EPS conversion (shell escape)
+skipped | doc/latex/lshort-german/fontspecbeispiel.tex | needs xelatex/lualatex
+skipped | doc/latex/lshort-german/schriften.tex | needs xelatex/lualatex
+skipped | doc/latex/lshort-spanish/fuente/src/spec.tex | needs xelatex/lualatex
+skipped | doc/latex/lshort-spanish/fuente/src/typeset.tex | needs xelatex/lualatex
+skipped | doc/latex/lstfiracode/lstfiracode.tex | needs xelatex/lualatex
+skipped | doc/latex/ltmermaid/ltmermaid-doc-ja.tex | needs shell escape
+skipped | doc/latex/ltmermaid/ltmermaid-doc.tex | needs shell escape
+skipped | doc/latex/ltmermaid/mermaid-doc-ja.tex | needs shell escape
+skipped | doc/latex/ltmermaid/mermaid-doc.tex | needs shell escape
+skipped | doc/latex/ltx-talk/ltx-talk.tex | needs xelatex/lualatex
+skipped | doc/latex/ltx-talk/math-fonts.tex | needs xelatex/lualatex
+skipped | doc/latex/ltxguidex/ltxguidex.tex | needs xelatex/lualatex
+skipped | doc/latex/lua-tikz3dtools/lua-tikz3dtools-doc.tex | needs xelatex/lualatex
+skipped | doc/latex/lualatex-doc-de/lualatex-doc-DE.tex | needs xelatex/lualatex
+skipped | doc/latex/luatikz/luatikz.tex | needs xelatex/lualatex
+skipped | doc/latex/mafr/docmafr.tex | needs EPS conversion (shell escape)
+skipped | doc/latex/magicthegathering/magicthegathering-doc.tex | needs shell escape
+skipped | doc/latex/magicwatermark/doc/magicwatermark-cn.tex | needs xelatex/lualatex
+skipped | doc/latex/magicwatermark/doc/magicwatermark-en.tex | needs xelatex/lualatex
+skipped | doc/latex/markdown/examples/latex-luatex.tex | needs xelatex/lualatex
+skipped | doc/latex/markdown/examples/latex-xetex.tex | needs xelatex/lualatex
+skipped | doc/latex/matapli/examples/modeleauteur/modele.tex | needs Biber
+skipped | doc/latex/matapli/matapli-doc.tex | needs Biber
+skipped | doc/latex/math-shorthandz/math-shorthandz.tex | needs shell escape
+skipped | doc/latex/mathfont/mathfont-example-cormorant.tex | needs xelatex/lualatex
+skipped | doc/latex/mathfont/mathfont-example-kelvinch.tex | needs xelatex/lualatex
+skipped | doc/latex/mathfont/mathfont-example-roboto.tex | needs xelatex/lualatex
+skipped | doc/latex/mathfont/mathfont-example-typey.tex | needs xelatex/lualatex
+skipped | doc/latex/mathfont/mathfont-symbol-list.tex | needs xelatex/lualatex
+skipped | doc/latex/mathfont/mathfont-user-guide.tex | needs xelatex/lualatex
+skipped | doc/latex/mathsemantics/mathsemantics-documentation.tex | needs xelatex/lualatex
+skipped | doc/latex/mensa-tex/doc/mensa-tex-doc.tex | needs xelatex/lualatex
+skipped | doc/latex/mercatormap/mercatormap.tex | needs Biber
+skipped | doc/latex/metacapture/metacapture-doc.tex | needs Biber
+skipped | doc/latex/mi-solns/docs/mi-solnsman.tex | needs shell escape
+skipped | doc/latex/mi-solns/examples/mi-solns-eq.tex | needs shell escape
+skipped | doc/latex/microtype/test-microtype.tex | needs xelatex/lualatex
+skipped | doc/latex/milsymb/milsymb.tex | needs shell escape
+skipped | doc/latex/mitthesis/MIT-thesis-template/MIT-Thesis.tex | needs Biber
+skipped | doc/latex/mitthesis/examples/design_examples/latex_sources/MIT-Thesis_libertinus_headings_UA2.tex | needs Biber
+skipped | doc/latex/mitthesis/examples/design_examples/latex_sources/MIT-Thesis_redsans_headings_UA2.tex | needs Biber
+skipped | doc/latex/mitthesis/examples/font_samples/latex_sources/Defaultfonts_sample.tex | needs Biber
+skipped | doc/latex/mitthesis/examples/font_samples/latex_sources/Fira_Newtxsf_sample.tex | needs Biber
+skipped | doc/latex/mitthesis/examples/font_samples/latex_sources/Heros-Stix2_sample.tex | needs Biber
+skipped | doc/latex/mitthesis/examples/font_samples/latex_sources/Libertinus_sample.tex | needs Biber
+skipped | doc/latex/mitthesis/examples/font_samples/latex_sources/Lmodern_sample.tex | needs Biber
+skipped | doc/latex/mitthesis/examples/font_samples/latex_sources/Lucida_sample.tex | needs Biber
+skipped | doc/latex/mitthesis/examples/font_samples/latex_sources/Newtx-sans-text_sample.tex | needs Biber
+skipped | doc/latex/mitthesis/examples/font_samples/latex_sources/Newtx_sample.tex | needs Biber
+skipped | doc/latex/mitthesis/examples/font_samples/latex_sources/Stix2_sample.tex | needs Biber
+skipped | doc/latex/mitthesis/examples/font_samples/latex_sources/Termes_sample.tex | needs Biber
+skipped | doc/latex/mitthesis/examples/font_samples/latex_sources/termes-stix2_sample.tex | needs Biber
+skipped | doc/latex/mitthesis/mitthesis-doc/mitthesis-doc.tex | needs xelatex/lualatex
+skipped | doc/latex/mlacls/mla-example.tex | needs Biber
+skipped | doc/latex/modeles-factures-belges-assocs/doc-modeles-factures-belges-assocs.tex | needs xelatex/lualatex
+skipped | doc/latex/moderncv/manual/moderncv_userguide.tex | needs xelatex/lualatex
+skipped | doc/latex/moderncv/template.tex | needs xelatex/lualatex
+skipped | doc/latex/modernnewspaper/docs/modernnewspaper-doc.tex | needs xelatex/lualatex
+skipped | doc/latex/modernruler/modernruler-doc.tex | needs xelatex/lualatex
+skipped | doc/latex/moodle/test/check_babel.tex | needs xelatex/lualatex
+skipped | doc/latex/moodle/test/check_polyglossia.tex | needs xelatex/lualatex
+skipped | doc/latex/moodle/test/test_allornothing.tex | needs xelatex/lualatex
+skipped | doc/latex/moodle/test/test_autopoints.tex | needs xelatex/lualatex
+skipped | doc/latex/moodle/test/test_calculated_lua.tex | needs xelatex/lualatex
+skipped | doc/latex/moodle/test/test_calculated_python.tex | needs xelatex/lualatex
+skipped | doc/latex/moodle/test/test_categories.tex | needs xelatex/lualatex
+skipped | doc/latex/moodle/test/test_circuitikz.tex | needs xelatex/lualatex
+skipped | doc/latex/moodle/test/test_cloze_multi.tex | needs xelatex/lualatex
+skipped | doc/latex/moodle/test/test_cloze_numerical.tex | needs xelatex/lualatex
+skipped | doc/latex/moodle/test/test_cloze_shortanswer.tex | needs xelatex/lualatex
+skipped | doc/latex/moodle/test/test_commands.tex | needs xelatex/lualatex
+skipped | doc/latex/moodle/test/test_description.tex | needs xelatex/lualatex
+skipped | doc/latex/moodle/test/test_diacritics_and_ligatures.tex | needs xelatex/lualatex
+skipped | doc/latex/moodle/test/test_environments.tex | needs xelatex/lualatex
+skipped | doc/latex/moodle/test/test_escaping_right_braces_in_cloze.tex | needs xelatex/lualatex
+skipped | doc/latex/moodle/test/test_essay.tex | needs xelatex/lualatex
+skipped | doc/latex/moodle/test/test_expandnewcommands.tex | needs xelatex/lualatex
+skipped | doc/latex/moodle/test/test_fancyvrb.tex | needs xelatex/lualatex
+skipped | doc/latex/moodle/test/test_fractions.tex | needs xelatex/lualatex
+skipped | doc/latex/moodle/test/test_french.tex | needs xelatex/lualatex
+skipped | doc/latex/moodle/test/test_generalfeedback.tex | needs xelatex/lualatex
+skipped | doc/latex/moodle/test/test_german.tex | needs xelatex/lualatex
+skipped | doc/latex/moodle/test/test_handout.tex | needs xelatex/lualatex
+skipped | doc/latex/moodle/test/test_horizontal_spacing.tex | needs xelatex/lualatex
+skipped | doc/latex/moodle/test/test_htmlonly.tex | needs xelatex/lualatex
+skipped | doc/latex/moodle/test/test_includegraphics.tex | needs xelatex/lualatex
+skipped | doc/latex/moodle/test/test_includegraphics_via_tikz.tex | needs xelatex/lualatex
+skipped | doc/latex/moodle/test/test_includegraphics_with_svg.tex | needs xelatex/lualatex
+skipped | doc/latex/moodle/test/test_matching.tex | needs xelatex/lualatex
+skipped | doc/latex/moodle/test/test_math.tex | needs xelatex/lualatex
+skipped | doc/latex/moodle/test/test_mathenv.tex | needs xelatex/lualatex
+skipped | doc/latex/moodle/test/test_minted.tex | needs xelatex/lualatex
+skipped | doc/latex/moodle/test/test_multi.tex | needs xelatex/lualatex
+skipped | doc/latex/moodle/test/test_multiple_categories.tex | needs xelatex/lualatex
+skipped | doc/latex/moodle/test/test_numerical.tex | needs xelatex/lualatex
+skipped | doc/latex/moodle/test/test_paragraph_breaks.tex | needs xelatex/lualatex
+skipped | doc/latex/moodle/test/test_penalty.tex | needs xelatex/lualatex
+skipped | doc/latex/moodle/test/test_points.tex | needs xelatex/lualatex
+skipped | doc/latex/moodle/test/test_punctuation_and_symbols.tex | needs xelatex/lualatex
+skipped | doc/latex/moodle/test/test_samepage.tex | needs xelatex/lualatex
+skipped | doc/latex/moodle/test/test_sanction.tex | needs xelatex/lualatex
+skipped | doc/latex/moodle/test/test_shortanswer.tex | needs xelatex/lualatex
+skipped | doc/latex/moodle/test/test_tags.tex | needs xelatex/lualatex
+skipped | doc/latex/moodle/test/test_tikz.tex | needs xelatex/lualatex
+skipped | doc/latex/moodle/test/test_tolerance.tex | needs xelatex/lualatex
+skipped | doc/latex/moodle/test/test_truefalse.tex | needs xelatex/lualatex
+skipped | doc/latex/moodle/test/test_turkish.tex | needs xelatex/lualatex
+skipped | doc/latex/moodle/test/test_verbatim.tex | needs xelatex/lualatex
+skipped | doc/latex/movement-arrows/movement-arrows.tex | needs xelatex/lualatex
+skipped | doc/latex/msu-thesis/docs/msu-thesis.tex | needs xelatex/lualatex
+skipped | doc/latex/multicolrule/mcrule-examples.tex | needs xelatex/lualatex
+skipped | doc/latex/mycv/Doc/mycv.tex | needs shell escape
+skipped | doc/latex/mynsfc/examples/my-proposal.tex | needs Biber
+skipped | doc/latex/na-cover/test-xelatex.tex | needs xelatex/lualatex
+skipped | doc/latex/na-fancyborders/test-xelatex.tex | needs xelatex/lualatex
+skipped | doc/latex/na-list/test.tex | needs xelatex/lualatex
+skipped | doc/latex/na-list/testarabic.tex | needs xelatex/lualatex
+skipped | doc/latex/na-urmborder/test.tex | needs xelatex/lualatex
+skipped | doc/latex/ndsu-thesis-2022/NDSU-Thesis-Extended.tex | needs Biber
+skipped | doc/latex/neoschool/neoschool-de.tex | needs shell escape
+skipped | doc/latex/neoschool/neoschool-fr.tex | needs shell escape
+skipped | doc/latex/neoschool/neoschool.tex | needs shell escape
+skipped | doc/latex/newpax/doc-extract-newpax.tex | needs xelatex/lualatex
+skipped | doc/latex/newpax/doc-extract-pax.tex | needs xelatex/lualatex
+skipped | doc/latex/newpax/newpax.tex | needs xelatex/lualatex
+skipped | doc/latex/nicematrix/nicematrix-french.tex | needs xelatex/lualatex
+skipped | doc/latex/nodepthtext/nodepthtext-doc.tex | needs xelatex/lualatex
+skipped | doc/latex/non-decimal-units/non-decimal-units.tex | needs shell escape
+skipped | doc/latex/nonfloat/nonfloat-en.tex | needs EPS conversion (shell escape)
+skipped | doc/latex/numbersets/numbersets-doc.tex | needs xelatex/lualatex
+skipped | doc/latex/nwejm/english/nwejm-en.tex | needs Biber
+skipped | doc/latex/nwejm/examples/article-in-dutch.tex | needs Biber
+skipped | doc/latex/nwejm/examples/article-in-english.tex | needs Biber
+skipped | doc/latex/nwejm/examples/article-in-french.tex | needs Biber
+skipped | doc/latex/nwejm/examples/article-in-german.tex | needs Biber
+skipped | doc/latex/nwejm/examples/issue.tex | needs Biber
+skipped | doc/latex/nwejm/examples/sample.tex | needs Biber
+skipped | doc/latex/nwejm/examples/template.tex | needs Biber
+skipped | doc/latex/nwejm/french/nwejm-fr.tex | needs Biber
+skipped | doc/latex/nxtlatex/Beispielthesis/BeispielthesisNXT.tex | needs Biber
+skipped | doc/latex/opteng/OptEngInstruct.tex | needs EPS conversion (shell escape)
+skipped | doc/latex/oscola/oscola.tex | needs Biber
+skipped | doc/latex/outilsgeomtikz/OutilsGeomTikz-doc.tex | needs xelatex/lualatex
+skipped | doc/latex/overlays/overlays.tex | needs xelatex/lualatex
+skipped | doc/latex/page-canons/page-canons.tex | needs xelatex/lualatex
+skipped | doc/latex/pagelayout/banner.tex | needs xelatex/lualatex
+skipped | doc/latex/pagelayout/quickstart.tex | needs xelatex/lualatex
+skipped | doc/latex/papiergurvan/PapierGurvan-BelleAllure-A4.tex | needs xelatex/lualatex
+skipped | doc/latex/papiergurvan/PapierGurvan-BelleAllure-A5.tex | needs xelatex/lualatex
+skipped | doc/latex/paracolrule/paracolrule-doc.tex | needs xelatex/lualatex
+skipped | doc/latex/parnotes/parnotes.tex | needs xelatex/lualatex
+skipped | doc/latex/pas-cours/pas-cours.tex | needs shell escape
+skipped | doc/latex/pdfcomment/example-lualatex-tagged.tex | needs xelatex/lualatex
+skipped | doc/latex/pdfcomment/example-lualatex.tex | needs xelatex/lualatex
+skipped | doc/latex/pdftricks/test.tex | needs shell escape
+skipped | doc/latex/pdftricks2/pdftricks2-doc.tex | needs shell escape
+skipped | doc/latex/pdfx/arm-start.tex | needs shell escape
+skipped | doc/latex/pdfx/koi8-example.tex | needs shell escape
+skipped | doc/latex/pdfx/koi8-example2.tex | needs shell escape
+skipped | doc/latex/pgf-go/examples/example-14.tex | needs xelatex/lualatex
+skipped | doc/latex/pgf-go/examples/example-19.tex | needs xelatex/lualatex
+skipped | doc/latex/pgf-periodictable/manualfiles/pgfPT_zh_fonts.tex | needs xelatex/lualatex
+skipped | doc/latex/pgfornament-han/pgfornament-han-doc.tex | needs shell escape
+skipped | doc/latex/pgfornament-han/samples/heavenlyclouds-poster-sample.tex | needs Biber
+skipped | doc/latex/pgfornament-han/samples/tianqing-poster-sample.tex | needs Biber
+skipped | doc/latex/pgfornament-han/samples/xiaoshan-poster-sample.tex | needs Biber
+skipped | doc/latex/pgfornament/pgfornament-doc.tex | needs xelatex/lualatex
+skipped | doc/latex/pgfornament/tikzrput.tex | needs xelatex/lualatex
+skipped | doc/latex/pgfplotsthemebeamer/pgfplotsthemebeamer-doc.tex | needs shell escape
+skipped | doc/latex/phonenumbers/phonenumbers-de.tex | needs xelatex/lualatex
+skipped | doc/latex/phonenumbers/phonenumbers-en.tex | needs xelatex/lualatex
+skipped | doc/latex/phonrule/phonrule-doc.tex | needs xelatex/lualatex
+skipped | doc/latex/phtitration/phtitration-doc.tex | needs xelatex/lualatex
+skipped | doc/latex/physics-patch/physics-patch.tex | needs xelatex/lualatex
+skipped | doc/latex/physics2/physics2-legacy.tex | needs xelatex/lualatex
+skipped | doc/latex/physics2/physics2.tex | needs xelatex/lualatex
+skipped | doc/latex/pinlabel/src/pinlabdoc.tex | needs EPS conversion (shell escape)
+skipped | doc/latex/pinoutikz/pinoutikz_doc_en.tex | needs xelatex/lualatex
+skipped | doc/latex/pixelart/pixelart0.tex | needs xelatex/lualatex
+skipped | doc/latex/pkginfograb/pkginfograb.tex | needs Biber
+skipped | doc/latex/pkgmeta/pkgmeta.tex | needs shell escape
+skipped | doc/latex/pkuthss/example/thesis.tex | needs Biber
+skipped | doc/latex/pkuthss/readme/pkuthss.tex | needs Biber
+skipped | doc/latex/platex-tools/pxatbegshi.tex | needs EPS conversion (shell escape)
+skipped | doc/latex/polyglossia/polyglossia.tex | needs xelatex/lualatex
+skipped | doc/latex/powerdot-fuberlin/demo-powerdotFU.tex | needs xelatex/lualatex
+skipped | doc/latex/powerdot-tuliplab/tuliplab-P00.tex | needs dvips/PostScript
+skipped | doc/latex/powerdot-tuliplab/tuliplab-P01.tex | needs shell escape
+skipped | doc/latex/powerdot-tuliplab/tuliplab-P02.tex | needs dvips/PostScript
+skipped | doc/latex/powerdot/powerdot-example3.tex | needs dvips/PostScript
+skipped | doc/latex/powerdot/powerdotDE.tex | needs dvips/PostScript
+skipped | doc/latex/prettytok/prettytok.tex | needs shell escape
+skipped | doc/latex/printcolormanager/peldadokumentum.tex | needs xelatex/lualatex
+skipped | doc/latex/profsio/ProfSio-doc-annexeV1.tex | needs xelatex/lualatex
+skipped | doc/latex/profsio/ProfSio-doc-annexeV2.tex | needs xelatex/lualatex
+skipped | doc/latex/profsio/ProfSio-doc-annexeV3.tex | needs xelatex/lualatex
+skipped | doc/latex/profsio/ProfSio-doc-fr.tex | needs xelatex/lualatex
+skipped | doc/latex/programmes-cpge/doc/programme.tex | needs xelatex/lualatex
+skipped | doc/latex/programmes-cpge/doc/programmes-cpge.tex | needs xelatex/lualatex
+skipped | doc/latex/proposal/dfg/proposal/proposal.tex | needs Biber
+skipped | doc/latex/proposal/dfg/report/finalreport.tex | needs Biber
+skipped | doc/latex/proposal/eu/strep/propB.tex | needs Biber
+skipped | doc/latex/prosper/prosper-doc.tex | needs dvips/PostScript
+skipped | doc/latex/prosper/prosper-tour.tex | needs dvips/PostScript
+skipped | doc/latex/pseudo/doc/pseudo.tex | needs Biber
+skipped | doc/latex/psfrag-italian/itpfgguide.tex | needs EPS conversion (shell escape)
+skipped | doc/latex/psfrag/pfgguide.tex | needs EPS conversion (shell escape)
+skipped | doc/latex/pst-calendar/pst-calendar-doc.tex | needs Biber
+skipped | doc/latex/pst-eucl-translation-bg/pst-eucl-docBG.tex | needs dvips/PostScript
+skipped | doc/latex/pst-exa/pst-exa-doc.tex | needs Biber
+skipped | doc/latex/pst-flags/pst-flags-doc.tex | needs dvips/PostScript
+skipped | doc/latex/pst-layout/pst-layout-doc.tex | needs dvips/PostScript
+skipped | doc/latex/pst-pdf/pst-pdf-example.tex | needs dvips/PostScript
+skipped | doc/latex/pst-poker/pst-poker-doc.tex | needs Biber
+skipped | doc/latex/pst-vectorian/psvectorian.tex | needs xelatex/lualatex
+skipped | doc/latex/pst-vowel/pst-vowel.tex | needs dvips/PostScript
+skipped | doc/latex/pstool/pstool.tex | needs shell escape
+skipped | doc/latex/pstricks_calcnotes/Convert_PstricksCode_To_Pdf/convert.tex | needs dvips/PostScript
+skipped | doc/latex/pstricks_calcnotes/For_Pdf_Output/AppThreePDF.tex | needs dvips/PostScript
+skipped | doc/latex/pstricks_calcnotes/For_Pdf_Output/ThreeAppsPDF.tex | needs dvips/PostScript
+skipped | doc/latex/pstricks_calcnotes/For_Ps_Output/AppThreePS.tex | needs dvips/PostScript
+skipped | doc/latex/pstricks_calcnotes/For_Ps_Output/ThreeAppsPS.tex | needs dvips/PostScript
+skipped | doc/latex/ptptex/manptp.tex | needs EPS conversion (shell escape)
+skipped | doc/latex/pygmentex/manual/pygmentex-manual.tex | needs shell escape
+skipped | doc/latex/pynotebook/pynotebook-doc.tex | needs shell escape
+skipped | doc/latex/pythonimmediate/pythonimmediate.tex | needs shell escape
+skipped | doc/latex/pythontex/pythontex_gallery.tex | needs xelatex/lualatex
+skipped | doc/latex/pythontex/pythontex_quickstart.tex | needs xelatex/lualatex
+skipped | doc/latex/q-and-a/doc/Q-and-A-doc.tex | needs shell escape
+skipped | doc/latex/quantumarticle/quantum-template.tex | needs Biber
+skipped | doc/latex/quantumarticle/quantumarticle.tex | needs Biber
+skipped | doc/latex/quantumcubemodel/quantumcubemodel-doc.tex | needs Biber
+skipped | doc/latex/quran-bn/quran-bn-doc.tex | needs xelatex/lualatex
+skipped | doc/latex/quran-ur/quran-ur-doc.tex | needs xelatex/lualatex
+skipped | doc/latex/quran/quran-doc-ar.tex | needs xelatex/lualatex
+skipped | doc/latex/quran/quran-doc.tex | needs xelatex/lualatex
+skipped | doc/latex/quran/quran-test-warsh.tex | needs xelatex/lualatex
+skipped | doc/latex/quran/quran-test1.tex | needs xelatex/lualatex
+skipped | doc/latex/qworld/qworld.tex | needs xelatex/lualatex
+skipped | doc/latex/qworld/qworld_en.tex | needs xelatex/lualatex
+skipped | doc/latex/ran_toks/examples/ctrl-build.tex | needs shell escape
+skipped | doc/latex/rbt-mathnotes/rbt-mathnotes.tex | needs xelatex/lualatex
+skipped | doc/latex/rec-thy/rec-thy.tex | needs xelatex/lualatex
+skipped | doc/latex/recorder-fingering/recorder-fingering.tex | needs xelatex/lualatex
+skipped | doc/latex/register-transfer-level/doc/register-transfer-level.tex | needs Biber
+skipped | doc/latex/regstats/regstats-example.tex | needs xelatex/lualatex
+skipped | doc/latex/reledmac/doc-more/page-typesetting-columns.tex | needs xelatex/lualatex
+skipped | doc/latex/reledmac/examples/3-reledpar_columns_different_languages.tex | needs xelatex/lualatex
+skipped | doc/latex/reledmac/examples/3-reledpar_pages_different_languages_lualatex.tex | needs xelatex/lualatex
+skipped | doc/latex/resolsysteme/ResolSysteme-doc.tex | needs xelatex/lualatex
+skipped | doc/latex/resolsysteme/ResolSysteme-exemples-pyluatex.tex | needs shell escape
+skipped | doc/latex/responsive/responsive-doc.tex | needs xelatex/lualatex
+skipped | doc/latex/revtex/auguide/auguide4-2.tex | needs EPS conversion (shell escape)
+skipped | doc/latex/revtex4-1/auguide/auguide4-1.tex | needs EPS conversion (shell escape)
+skipped | doc/latex/revtex4/auguide.tex | needs EPS conversion (shell escape)
+skipped | doc/latex/robust-externalize/robust-externalize.tex | needs xelatex/lualatex
+skipped | doc/latex/rub-kunstgeschichte/rub-kunstgeschichte-example.tex | needs Biber
+skipped | doc/latex/rubik/rubikexamples.tex | needs shell escape
+skipped | doc/latex/rubik/rubikpatternsLIST.tex | needs shell escape
+skipped | doc/latex/rulerbox/rulerbox.tex | needs xelatex/lualatex
+skipped | doc/latex/rulercompass/rulercompass_doc.tex | needs shell escape
+skipped | doc/latex/runcode/runcode.tex | needs shell escape
+skipped | doc/latex/runcode/runcode_troubleshoot.tex | needs shell escape
+skipped | doc/latex/sanitize-umlaut/sanitize-umlaut.tex | needs xelatex/lualatex
+skipped | doc/latex/sblarticle/sbltex-termpaper.tex | needs Biber
+skipped | doc/latex/sblbook/sbltex-book.tex | needs Biber
+skipped | doc/latex/sblreport/sbltex-thesis.tex | needs Biber
+skipped | doc/latex/schule/Beispiele/beispiel-leitprogramm.tex | needs Biber
+skipped | doc/latex/schule/Beispiele/bsp-geschichte.tex | needs Biber
+skipped | doc/latex/schulmathematik/schulmathematik.tex | needs xelatex/lualatex
+skipped | doc/latex/scsnowman/scsnowman.tex | needs xelatex/lualatex
+skipped | doc/latex/se2thesis/se2thesis-master-thesis-example.tex | needs Biber
+skipped | doc/latex/sectionbreak/sectionbreak-doc.tex | needs xelatex/lualatex
+skipped | doc/latex/sesamanuel/sesamath-doc-fr.tex | needs EPS conversion (shell escape)
+skipped | doc/latex/sfg/sfg-doc.tex | needs dvips/PostScript
+skipped | doc/latex/sgame/sgame.tex | needs dvips/PostScript
+skipped | doc/latex/shortmathj/shortmathj-biblatex-mwe.tex | needs Biber
+skipped | doc/latex/showexpl/showexpl-test.tex | needs xelatex/lualatex
+skipped | doc/latex/showhanmengrid/showhanmengrid.tex | needs xelatex/lualatex
+skipped | doc/latex/showhanmengrid/test-kanjiskip.tex | needs xelatex/lualatex
+skipped | doc/latex/showhanmengrid/test-keys.tex | needs xelatex/lualatex
+skipped | doc/latex/showhanmengrid/test-mag.tex | needs xelatex/lualatex
+skipped | doc/latex/sidenotes/caesar_example.tex | needs Biber
+skipped | doc/latex/sidenotesplus/tests-sidenoteplus.tex | needs Biber
+skipped | doc/latex/simplebnf/simplebnf-doc.tex | needs xelatex/lualatex
+skipped | doc/latex/simpler-wick/simpler-wick.tex | needs xelatex/lualatex
+skipped | doc/latex/skills/skillsdoc.tex | needs xelatex/lualatex
+skipped | doc/latex/spath3/calligraphy.tex | needs shell escape
+skipped | doc/latex/spath3/knots.tex | needs shell escape
+skipped | doc/latex/spath3/spath3.tex | needs shell escape
+skipped | doc/latex/spie/article.tex | needs EPS conversion (shell escape)
+skipped | doc/latex/spreadtab/spreadtab-en.tex | needs xelatex/lualatex
+skipped | doc/latex/spreadtab/spreadtab-fr.tex | needs xelatex/lualatex
+skipped | doc/latex/sshrc-insight/insight_proposal.tex | needs Biber
+skipped | doc/latex/starray/starray.tex | needs Biber
+skipped | doc/latex/stex/stex-docheader.tex | needs Biber
+skipped | doc/latex/stocksize/stocksize-doc.tex | needs shell escape
+skipped | doc/latex/styleitems/styleitems-doc.tex | needs xelatex/lualatex
+skipped | doc/latex/subcaptionlite/test-japanese.tex | needs xelatex/lualatex
+skipped | doc/latex/sunpath/horizontal-coordinate.tex | needs xelatex/lualatex
+skipped | doc/latex/sunpath/sunpath.article.tex | needs xelatex/lualatex
+skipped | doc/latex/sunpath/sunpath.equidistance.tex | needs xelatex/lualatex
+skipped | doc/latex/sunpath/sunpath.scrartcl.tex | needs xelatex/lualatex
+skipped | doc/latex/sunpath/sunpath.spherical.tex | needs xelatex/lualatex
+skipped | doc/latex/sunpath/sunpath.tex | needs xelatex/lualatex
+skipped | doc/latex/sunpath/sunpath.track.tex | needs xelatex/lualatex
+skipped | doc/latex/superiors/footsnippet2.tex | needs xelatex/lualatex
+skipped | doc/latex/svg-inkscape/InkscapePDFLaTeX.tex | needs shell escape
+skipped | doc/latex/switch/switch.tex | needs Biber
+skipped | doc/latex/swungdash/swungdash-documentation.tex | needs xelatex/lualatex
+skipped | doc/latex/tablor/tablor.tex | needs shell escape
+skipped | doc/latex/tabularray-abnt/tabularray-abnt-pt-br.tex | needs xelatex/lualatex
+skipped | doc/latex/tagging/tagging.tex | needs xelatex/lualatex
+skipped | doc/latex/tagpair/sample.tex | needs xelatex/lualatex
+skipped | doc/latex/tagpair/tagpair.tex | needs xelatex/lualatex
+skipped | doc/latex/tagpdf/ex-AF-file.tex | needs xelatex/lualatex
+skipped | doc/latex/tagpdf/ex-alt-actualtext.tex | needs xelatex/lualatex
+skipped | doc/latex/tagpdf/ex-formula-problem.tex | needs xelatex/lualatex
+skipped | doc/latex/tagpdf/ex-list.tex | needs xelatex/lualatex
+skipped | doc/latex/tagpdf/ex-tagpdf-template.tex | needs xelatex/lualatex
+skipped | doc/latex/tagpdf/tagpdf.tex | needs xelatex/lualatex
+skipped | doc/latex/tamu-talk/tamu-talk-doc.tex | needs xelatex/lualatex
+skipped | doc/latex/tamu-talk/tamu-talk-example.tex | needs xelatex/lualatex
+skipped | doc/latex/tblr-extras/tblr-extras-doc-EN.tex | needs xelatex/lualatex
+skipped | doc/latex/tcolorbox/tcolorbox.doc.external.tex | needs shell escape
+skipped | doc/latex/tcolorbox/tcolorbox.doc.listings.tex | needs shell escape
+skipped | doc/latex/tcolorbox/tcolorbox.tex | needs Biber
+skipped | doc/latex/technics/technics.tex | needs EPS conversion (shell escape)
+skipped | doc/latex/termsim/termsim-doc-en.tex | needs shell escape
+skipped | doc/latex/testidx/samples/sample-idx-lua.tex | needs xelatex/lualatex
+skipped | doc/latex/testidx/samples/sample-idx-xe-digraphs.tex | needs xelatex/lualatex
+skipped | doc/latex/testidx/samples/sample-idx-xe.tex | needs xelatex/lualatex
+skipped | doc/latex/testidx/samples/sample-idxgloss-bib2gls-xe.tex | needs xelatex/lualatex
+skipped | doc/latex/testidx/samples/sample-idxgloss-xe-digraphs.tex | needs xelatex/lualatex
+skipped | doc/latex/testidx/testidx-manual.tex | needs xelatex/lualatex
+skipped | doc/latex/texnegar/texnegar-luatex-glyph.tex | needs xelatex/lualatex
+skipped | doc/latex/texnegar/texnegar-luatex-leaders-glyph.tex | needs xelatex/lualatex
+skipped | doc/latex/texnegar/texnegar-luatex-leaders-hrule.tex | needs xelatex/lualatex
+skipped | doc/latex/texnegar/texnegar-xetex-bidi-glyph.tex | needs xelatex/lualatex
+skipped | doc/latex/texnegar/texnegar-xetex-bidi-leaders-glyph.tex | needs xelatex/lualatex
+skipped | doc/latex/texnegar/texnegar-xetex-bidi-leaders-hrule.tex | needs xelatex/lualatex
+skipped | doc/latex/textcsc/textcsc-documentation.tex | needs xelatex/lualatex
+skipped | doc/latex/thalie/thalie.tex | needs xelatex/lualatex
+skipped | doc/latex/tietreport/examples/overleaf-template.tex | needs Biber
+skipped | doc/latex/tietreport/examples/sample-report.tex | needs Biber
+skipped | doc/latex/tikz-dimline/tikz-dimline-doc.tex | needs xelatex/lualatex
+skipped | doc/latex/tikz-feynhand/tikz-feynhand.userguide.tex | needs shell escape
+skipped | doc/latex/tikz-feynman/tikz-feynman.tex | needs xelatex/lualatex
+skipped | doc/latex/tikz-nef/example-net.tex | needs xelatex/lualatex
+skipped | doc/latex/tikz-nef/tikz-nef-doc.tex | needs xelatex/lualatex
+skipped | doc/latex/tikz-qtree/tikz-qtree-manual.tex | needs xelatex/lualatex
+skipped | doc/latex/tikzcalendarnotes/tikzcalendarnotes.tex | needs Biber
+skipped | doc/latex/tikzdotncross/tikzdotncross.tex | needs Biber
+skipped | doc/latex/tikzfxgraph/tikzfxgraph.tex | needs Biber
+skipped | doc/latex/tikzphysics/tikzphysics.tex | needs shell escape
+skipped | doc/latex/tikzquads/tikzquads.tex | needs Biber
+skipped | doc/latex/tikzscale/test-tikzscale.tex | needs shell escape
+skipped | doc/latex/tikzviolinplots/tikzviolinplots.tex | needs shell escape
+skipped | doc/latex/tilings/tilings.tex | needs shell escape
+skipped | doc/latex/tipauni/tipauni-example.tex | needs Biber
+skipped | doc/latex/titlepages/titlepages.tex | needs xelatex/lualatex
+skipped | doc/latex/tkz-base/TKZdoc-base-main.tex | needs xelatex/lualatex
+skipped | doc/latex/tkz-berge/NamedGraphs/doc/latex/NamedGraphs-main.tex | needs xelatex/lualatex
+skipped | doc/latex/tkz-berge/doc/latex/TKZdoc-berge-main.tex | needs xelatex/lualatex
+skipped | doc/latex/tkz-bernoulli/tkz-bernoulli-doc.tex | needs xelatex/lualatex
+skipped | doc/latex/tkz-doc/tkz-doc.tex | needs xelatex/lualatex
+skipped | doc/latex/tkz-elements/TKZdoc-elements-beginning.tex | needs xelatex/lualatex
+skipped | doc/latex/tkz-elements/TKZdoc-elements-main.tex | needs xelatex/lualatex
+skipped | doc/latex/tkz-elements/TKZdoc-elements-organization.tex | needs xelatex/lualatex
+skipped | doc/latex/tkz-elements/TKZdoc-elements-presentation.tex | needs xelatex/lualatex
+skipped | doc/latex/tkz-elements/examples/tkz-elements-demo_1.tex | needs xelatex/lualatex
+skipped | doc/latex/tkz-elements/examples/tkz-elements-demo_2.tex | needs xelatex/lualatex
+skipped | doc/latex/tkz-elements/examples/tkz-elements-demo_3.tex | needs xelatex/lualatex
+skipped | doc/latex/tkz-elements/examples/tkz-elements-demo_4.tex | needs xelatex/lualatex
+skipped | doc/latex/tkz-elements/examples/tkz-elements-demo_5.tex | needs xelatex/lualatex
+skipped | doc/latex/tkz-elements/examples/tkz-elements-demo_6.tex | needs xelatex/lualatex
+skipped | doc/latex/tkz-elements/latex-3d/tkz-elements-3d.tex | needs xelatex/lualatex
+skipped | doc/latex/tkz-euclide/TKZdoc-euclide-main.tex | needs xelatex/lualatex
+skipped | doc/latex/tkz-fct/TKZdoc-fct-compilation.tex | needs shell escape
+skipped | doc/latex/tkz-fct/TKZdoc-fct-main.tex | needs xelatex/lualatex
+skipped | doc/latex/tkz-fn/latex-en/TKZdoc-fn-main.tex | needs xelatex/lualatex
+skipped | doc/latex/tkz-fn/latex-fr/TKZdoc-fn-main.tex | needs xelatex/lualatex
+skipped | doc/latex/tkz-graph/latex-en/TKZdoc-gr-en-main.tex | needs xelatex/lualatex
+skipped | doc/latex/tkz-tab/TKZdoc-tab-main.tex | needs xelatex/lualatex
+skipped | doc/latex/tkz-tab/latex-en/TKZdoc-tab-main.tex | needs xelatex/lualatex
+skipped | doc/latex/tkzexample/tkzexample.tex | needs xelatex/lualatex
+skipped | doc/latex/tokglobalstack/tokglobalstack.tex | needs Biber
+skipped | doc/latex/tokgroupmark/tokgroupmark.tex | needs Biber
+skipped | doc/latex/tonevalue/tonevalue.tex | needs xelatex/lualatex
+skipped | doc/latex/tools/tools-overview.tex | needs shell escape
+skipped | doc/latex/toptesi/FrontespizioScudo.tex | needs xelatex/lualatex
+skipped | doc/latex/toptesi/topfront-example.tex | needs xelatex/lualatex
+skipped | doc/latex/toptesi/toptesi-example-luatex.tex | needs xelatex/lualatex
+skipped | doc/latex/toptesi/toptesi-example-xetex.tex | needs xelatex/lualatex
+skipped | doc/latex/toptesi/toptesi-it.tex | needs xelatex/lualatex
+skipped | doc/latex/tramlines/tramlines-documentation.tex | needs xelatex/lualatex
+skipped | doc/latex/transition-metals/transition-metals-doc.tex | needs xelatex/lualatex
+skipped | doc/latex/translation-arsclassica-de/ArsClassica-de.tex | needs Biber
+skipped | doc/latex/translation-biblatex-de/biblatex-de-Benutzerhandbuch.tex | needs xelatex/lualatex
+skipped | doc/latex/translations/translations-manual.tex | needs Biber
+skipped | doc/latex/tuda-ci/DEMO-TUDaExercise.tex | needs Biber
+skipped | doc/latex/tuda-ci/DEMO-TUDaLeaflet.tex | needs Biber
+skipped | doc/latex/tuda-ci/DEMO-TUDaPhD.tex | needs Biber
+skipped | doc/latex/tuda-ci/DEMO-TUDaPub.tex | needs Biber
+skipped | doc/latex/tuda-ci/DEMO-TUDaSciPoster.tex | needs Biber
+skipped | doc/latex/tuda-ci/DEMO-TUDaThesis.tex | needs Biber
+skipped | doc/latex/turabian-formatting/turabian-formatting-doc.tex | needs Biber
+skipped | doc/latex/tutodoc/tutodoc-en.tex | needs shell escape
+skipped | doc/latex/tutodoc/tutodoc-fr.tex | needs shell escape
+skipped | doc/latex/typeface/typeface.tex | needs xelatex/lualatex
+skipped | doc/latex/ualberta/ualberta.tex | needs shell escape
+skipped | doc/latex/uantwerpendocs/uantwerpenbamathesis-example.tex | needs xelatex/lualatex
+skipped | doc/latex/uantwerpendocs/uantwerpenletter-example.tex | needs xelatex/lualatex
+skipped | doc/latex/uantwerpendocs/uantwerpenphdthesis-example1.tex | needs xelatex/lualatex
+skipped | doc/latex/uantwerpendocs/uantwerpenreport-example.tex | needs xelatex/lualatex
+skipped | doc/latex/ucbthesis/example/thesis.tex | needs Biber
+skipped | doc/latex/udepcolor/udepcolor-doc-EN.tex | needs xelatex/lualatex
+skipped | doc/latex/udepcolor/udepcolor-doc-ES.tex | needs xelatex/lualatex
+skipped | doc/latex/ugentdocs/example-ugentarticle.tex | needs Biber
+skipped | doc/latex/ugentdocs/example-ugentbama-1.tex | needs shell escape
+skipped | doc/latex/ugentdocs/example-ugentbama-2.tex | needs shell escape
+skipped | doc/latex/ugentdocs/example-ugentcourse.tex | needs Biber
+skipped | doc/latex/ugentdocs/example-ugentphd-1.tex | needs Biber
+skipped | doc/latex/ugentdocs/example-ugentphd-2.tex | needs Biber
+skipped | doc/latex/ugentdocs/example-ugentreport-1.tex | needs shell escape
+skipped | doc/latex/ugentdocs/example-ugentreport-2.tex | needs shell escape
+skipped | doc/latex/ukbill/ukbill-documentation.tex | needs xelatex/lualatex
+skipped | doc/latex/unbtex/unbtex-example/codigos/blockdiagram.tex | needs dvips/PostScript
+skipped | doc/latex/uni-titlepage/titlepage-TU-DD.tex | needs xelatex/lualatex
+skipped | doc/latex/uni-titlepage/titlepage-TU-HH.tex | needs xelatex/lualatex
+skipped | doc/latex/uni-wtal-ger/germanistik.tex | needs xelatex/lualatex
+skipped | doc/latex/uni-wtal-lin/uni-wtal-lin.tex | needs xelatex/lualatex
+skipped | doc/latex/unicode-alphabets/specimen.tex | needs xelatex/lualatex
+skipped | doc/latex/unicode-alphabets/unicode-alphabets.tex | needs xelatex/lualatex
+skipped | doc/latex/unicode-math-input/unicode-math-input.tex | needs xelatex/lualatex
+skipped | doc/latex/unicodefonttable/unicodefonttable-samples.tex | needs xelatex/lualatex
+skipped | doc/latex/unigrazpub/examples/monografie/DEMO-monografie.tex | needs Biber
+skipped | doc/latex/unigrazpub/examples/sammelband/DEMO-sammelband.tex | needs Biber
+skipped | doc/latex/unipersian/unipersian.tex | needs xelatex/lualatex
+skipped | doc/latex/unitn-bimrep/examples/example_bib.tex | needs Biber
+skipped | doc/latex/univie-ling/univie-ling-thesis.tex | needs shell escape
+skipped | doc/latex/unizgklasa/example.tex | needs xelatex/lualatex
+skipped | doc/latex/unswcover/thesis.tex | needs Biber
+skipped | doc/latex/uowthesistitlepage/uowthesistitlepage_doc.tex | needs xelatex/lualatex
+skipped | doc/latex/urcls/URbeamer-DEMO.tex | needs xelatex/lualatex
+skipped | doc/latex/urcls/URletter-DEMO.tex | needs xelatex/lualatex
+skipped | doc/latex/uspace/uspace.tex | needs xelatex/lualatex
+skipped | doc/latex/uvlhighlight/uvlhighlight-doc.tex | needs Biber
+skipped | doc/latex/uwmslide/test.tex | needs EPS conversion (shell escape)
+skipped | doc/latex/verbments/verbments.tex | needs shell escape
+skipped | doc/latex/versonotes/sample.tex | needs xelatex/lualatex
+skipped | doc/latex/webquiz/examples/pst2pdf.tex | needs dvips/PostScript
+skipped | doc/latex/webquiz/examples/pstricks-ex.tex | needs dvips/PostScript
+skipped | doc/latex/webquiz/examples/quiz-page.tex | needs dvips/PostScript
+skipped | doc/latex/webquiz/webquiz-online-manual.tex | needs dvips/PostScript
+skipped | doc/latex/webquiz/webquiz.tex | needs shell escape
+skipped | doc/latex/webquiz/www/doc/webquiz-online-manual.tex | needs dvips/PostScript
+skipped | doc/latex/windycity/windycity.tex | needs Biber
+skipped | doc/latex/wiseref/test/langs.tex | needs xelatex/lualatex
+skipped | doc/latex/worksheet/worksheet.tex | needs xelatex/lualatex
+skipped | doc/latex/xcolor/xcolor2.tex | needs dvips/PostScript
+skipped | doc/latex/xcomment/xcomment-doc.tex | needs dvips/PostScript
+skipped | doc/latex/xepersian/xepersian-logo.tex | needs dvips/PostScript
+skipped | doc/latex/xjyutping/tests/fancy-check.tex | needs xelatex/lualatex
+skipped | doc/latex/xjyutping/tests/layout-check.tex | needs xelatex/lualatex
+skipped | doc/latex/xjyutping/tests/regression.tex | needs xelatex/lualatex
+skipped | doc/latex/xjyutping/tests/verse-check.tex | needs xelatex/lualatex
+skipped | doc/latex/xjyutping/xjyutping-doc.tex | needs xelatex/lualatex
+skipped | doc/latex/xltabular/xltabular-doc.tex | needs xelatex/lualatex
+skipped | doc/latex/xpeekahead/xpeekahead.tex | needs Biber
+skipped | doc/latex/xprintlen/xprintlen.tex | needs shell escape
+skipped | doc/latex/xsim/examples/xsim.texsx-299534.tex | needs shell escape
+skipped | doc/latex/xsim/xsim-manual.tex | needs Biber
+skipped | doc/latex/xstacks/xstacks.tex | needs Biber
+skipped | doc/latex/xstix2/xstix2.tex | needs xelatex/lualatex
+skipped | doc/latex/xtufte/sample-book.tex | needs Biber
+skipped | doc/latex/xtufte/sample-handout.tex | needs Biber
+skipped | doc/latex/xurl/xurl.tex | needs xelatex/lualatex
+skipped | doc/latex/xwatermark/xwatermark-guide.tex | needs xelatex/lualatex
+skipped | doc/latex/yathesis/french/exemples/specimen/a-plat/these.tex | needs Biber
+skipped | doc/latex/ycbook/ycbook-doc.tex | needs xelatex/lualatex
+skipped | doc/latex/yet-another-guide-latex2e/Yet-Another-Guide-LaTeX2e_v132.tex | needs Biber
+skipped | doc/latex/yquant/yquant-doc.tex | needs xelatex/lualatex
+skipped | doc/latex/zennote/zennote.tex | needs xelatex/lualatex
+skipped | doc/latex/zref-clever/zref-clever-code.tex | needs xelatex/lualatex
+skipped | doc/latex/zref-clever/zref-clever-doc.tex | needs xelatex/lualatex
+skipped | doc/latex/zwpagelayout/zwpagelayout.tex | needs xelatex/lualatex
+skipped | doc/latex/zx-calculus/zx-calculus.tex | needs shell escape
+skipped | doc/latex/zxjafont/zxjafont.tex | needs xelatex/lualatex
+skipped | doc/latex/zxjatype/example/example.tex | needs xelatex/lualatex
 skipped | doc/lualatex/addliga/addliga.tex | needs xelatex/lualatex
 skipped | doc/lualatex/arabluatex/samples/al-Jahiz.tex | needs xelatex/lualatex
 skipped | doc/lualatex/arabluatex/samples/exporting.tex | needs shell escape
@@ -4055,6 +5974,123 @@ skipped | doc/lualatex/japanese-mathformulas/japanese-mathformulas-sample.tex | 
 skipped | doc/lualatex/japanese-mathformulas/japanese-mathformulas.tex | needs xelatex/lualatex
 skipped | doc/lualatex/jsonresume/example/example.tex | needs shell escape
 skipped | doc/lualatex/jsonresume/jsonresume-doc.tex | needs shell escape
+skipped | doc/lualatex/letgut/letgut-code.tex | needs Biber
+skipped | doc/lualatex/letgut/letgut.tex | needs Biber
+skipped | doc/lualatex/ligtype/ligtype.tex | needs xelatex/lualatex
+skipped | doc/lualatex/linebreaker/linebreaker-doc.tex | needs xelatex/lualatex
+skipped | doc/lualatex/longmath/longmath-doc.tex | needs xelatex/lualatex
+skipped | doc/lualatex/lua-list-hyphen/lua-list-hyphen-doc-demo.tex | needs xelatex/lualatex
+skipped | doc/lualatex/lua-physical/lua-physical.tex | needs xelatex/lualatex
+skipped | doc/lualatex/lua-physical/lua-physical_example.tex | needs xelatex/lualatex
+skipped | doc/lualatex/lua-regression/example/lua-regression-example.tex | needs xelatex/lualatex
+skipped | doc/lualatex/lua-regression/lua-regression-doc.tex | needs shell escape
+skipped | doc/lualatex/luabidi/luabidi.tex | needs xelatex/lualatex
+skipped | doc/lualatex/luacas/appendix/latexcode.tex | needs shell escape
+skipped | doc/lualatex/luacas/intro/intro.tex | needs shell escape
+skipped | doc/lualatex/luacas/intro/intropart.tex | needs shell escape
+skipped | doc/lualatex/luacas/luacas.tex | needs shell escape
+skipped | doc/lualatex/luacas/reference/ref.tex | needs shell escape
+skipped | doc/lualatex/luacas/reference/ref_algebra/ref_algebra.tex | needs shell escape
+skipped | doc/lualatex/luacas/reference/ref_algebra/ref_algebra_classes/ref_algebra_classes.tex | needs xelatex/lualatex
+skipped | doc/lualatex/luacas/reference/ref_algebra/ref_algebra_methods/ref_algebra_methods.tex | needs shell escape
+skipped | doc/lualatex/luacas/reference/ref_calculus/ref_calculus.tex | needs shell escape
+skipped | doc/lualatex/luacas/reference/ref_calculus/ref_calculus_classes/ref_calculus_classes.tex | needs shell escape
+skipped | doc/lualatex/luacas/reference/ref_calculus/ref_calculus_methods/ref_calculus_methods.tex | needs shell escape
+skipped | doc/lualatex/luacas/reference/ref_core/ref_core.tex | needs shell escape
+skipped | doc/lualatex/luacas/reference/ref_core/ref_core_classes/ref_core_classes.tex | needs xelatex/lualatex
+skipped | doc/lualatex/luacas/reference/ref_core/ref_core_methods/ref_core_methods.tex | needs xelatex/lualatex
+skipped | doc/lualatex/luacas/tutorial/tut.tex | needs xelatex/lualatex
+skipped | doc/lualatex/luacas/tutorial/tut1/tut1.tex | needs shell escape
+skipped | doc/lualatex/luacas/tutorial/tut2/tut2.tex | needs xelatex/lualatex
+skipped | doc/lualatex/luacas/tutorial/tut3/tut3.tex | needs xelatex/lualatex
+skipped | doc/lualatex/luacensor/luacensor-documentation.tex | needs xelatex/lualatex
+skipped | doc/lualatex/luadraw/src/luadraw-doc-en.tex | needs xelatex/lualatex
+skipped | doc/lualatex/luadraw/src/luadraw-doc-fr.tex | needs xelatex/lualatex
+skipped | doc/lualatex/luahttp/luahttp-doc.tex | needs shell escape
+skipped | doc/lualatex/luahyperbolic/documentation-luahyperbolic.tex | needs xelatex/lualatex
+skipped | doc/lualatex/luahyperbolic/examples/export_capabilities.tex | needs xelatex/lualatex
+skipped | doc/lualatex/luahyperbolic/examples/random-walks.tex | needs xelatex/lualatex
+skipped | doc/lualatex/luahyperbolic/examples/tilings.tex | needs xelatex/lualatex
+skipped | doc/lualatex/lualinalg/lualinalg.tex | needs xelatex/lualatex
+skipped | doc/lualatex/luamathaccents/luamathaccents-doc.tex | needs xelatex/lualatex
+skipped | doc/lualatex/luamaths/luamaths.tex | needs Biber
+skipped | doc/lualatex/luamesh/luamesh-doc.tex | needs xelatex/lualatex
+skipped | doc/lualatex/luamodulartables/luamodulartables.tex | needs Biber
+skipped | doc/lualatex/luanumbers/tests/smoke.tex | needs xelatex/lualatex
+skipped | doc/lualatex/luaoptions/luaoptions.tex | needs xelatex/lualatex
+skipped | doc/lualatex/luaplot/luaplot.tex | needs Biber
+skipped | doc/lualatex/luaquotes/luaquotes-documentation.tex | needs xelatex/lualatex
+skipped | doc/lualatex/luatbls/luatbls.tex | needs xelatex/lualatex
+skipped | doc/lualatex/luatruthtable/luatruthtable.tex | needs Biber
+skipped | doc/lualatex/luwa-ul/luwa-ul-doc.tex | needs xelatex/lualatex
+skipped | doc/lualatex/lyluatex/lyluatex.tex | needs xelatex/lualatex
+skipped | doc/lualatex/makecookbook/makecookbook-doc.tex | needs xelatex/lualatex
+skipped | doc/lualatex/numodel-bundle/numodel-coach-manual.tex | needs xelatex/lualatex
+skipped | doc/lualatex/numodel-bundle/numodel-manual.tex | needs xelatex/lualatex
+skipped | doc/lualatex/numodel-bundle/numodel-plot-manual.tex | needs xelatex/lualatex
+skipped | doc/lualatex/odsfile/odsfile.tex | needs xelatex/lualatex
+skipped | doc/lualatex/piton/piton-french.tex | needs xelatex/lualatex
+skipped | doc/lualatex/piton/piton.tex | needs xelatex/lualatex
+skipped | doc/lualatex/pyluatex/example/beamer.tex | needs xelatex/lualatex
+skipped | doc/lualatex/pyluatex/example/matplotlib-pgf.tex | needs xelatex/lualatex
+skipped | doc/lualatex/pyluatex/example/repl.tex | needs xelatex/lualatex
+skipped | doc/lualatex/pyluatex/example/typesetting-example.tex | needs xelatex/lualatex
+skipped | doc/lualatex/pyluatex/example/typesetting-listings.tex | needs xelatex/lualatex
+skipped | doc/lualatex/pyluatex/example/typesetting-minted.tex | needs xelatex/lualatex
+skipped | doc/lualatex/pyluatex/pyluatex.tex | needs xelatex/lualatex
+skipped | doc/lualatex/robotkarol/robotkarol-beispiel.tex | needs xelatex/lualatex
+skipped | doc/lualatex/robotkarol/robotkarol-doc.tex | needs xelatex/lualatex
+skipped | doc/lualatex/scholatex/scholatex.tex | needs shell escape
+skipped | doc/lualatex/selnolig/selnolig-bugreport.tex | needs xelatex/lualatex
+skipped | doc/lualatex/selnolig/selnolig-english-test.tex | needs xelatex/lualatex
+skipped | doc/lualatex/selnolig/selnolig-german-test.tex | needs xelatex/lualatex
+skipped | doc/lualatex/selnolig/selnolig.tex | needs xelatex/lualatex
+skipped | doc/lualatex/showhyphenation/showhyphenation.tex | needs xelatex/lualatex
+skipped | doc/lualatex/showkerning/showkerning.tex | needs xelatex/lualatex
+skipped | doc/lualatex/simurgh/simurgh-logo.tex | needs dvips/PostScript
+skipped | doc/lualatex/spacekern/spacekern.tex | needs xelatex/lualatex
+skipped | doc/lualatex/sympycalc/SympyCalc-doc.tex | needs xelatex/lualatex
+skipped | doc/lualatex/texecole/exemples/algebre2.tex | needs shell escape
+skipped | doc/lualatex/texecole/exemples/algebre3.tex | needs shell escape
+skipped | doc/lualatex/texecole/exemples/algebre4.tex | needs shell escape
+skipped | doc/lualatex/texecole/exemples/analyse2.tex | needs shell escape
+skipped | doc/lualatex/texecole/exemples/analyse3.tex | needs shell escape
+skipped | doc/lualatex/texecole/exemples/analyse4.tex | needs shell escape
+skipped | doc/lualatex/texecole/exemples/factorisation.tex | needs shell escape
+skipped | doc/lualatex/texecole/exemples/geometrie2.tex | needs shell escape
+skipped | doc/lualatex/texecole/exemples/physique-chimie3.tex | needs shell escape
+skipped | doc/lualatex/texecole/exemples/physique-chimie4.tex | needs shell escape
+skipped | doc/lualatex/texecole/exemples/statistiques-probabilites2.tex | needs shell escape
+skipped | doc/lualatex/texecole/exemples/statistiques-probabilites3.tex | needs shell escape
+skipped | doc/lualatex/texecole/exemples/statistiques-probabilites4.tex | needs shell escape
+skipped | doc/lualatex/texecole/texecole-precharge.tex | needs xelatex/lualatex
+skipped | doc/lualatex/texecole/texecole.tex | needs shell escape
+skipped | doc/lualatex/turkce-sayi/dokumanlar.tex | needs xelatex/lualatex
+skipped | doc/lualatex/turkce-sayi/ornek.tex | needs xelatex/lualatex
+skipped | doc/lualatex/uninormalize/uninormalize-doc.tex | needs xelatex/lualatex
+skipped | doc/lualatex/wallcalendar/doc/examples/cal-four-row-february-leapyear.tex | needs xelatex/lualatex
+skipped | doc/lualatex/wallcalendar/doc/examples/cal-four-row-february.tex | needs xelatex/lualatex
+skipped | doc/lualatex/wallcalendar/doc/examples/cal-marks.tex | needs xelatex/lualatex
+skipped | doc/lualatex/wallcalendar/doc/examples/cal-no-photos.tex | needs xelatex/lualatex
+skipped | doc/lualatex/wallcalendar/doc/examples/cal-photo-and-notes-sunday.tex | needs xelatex/lualatex
+skipped | doc/lualatex/wallcalendar/doc/examples/cal-photo-and-notes.tex | needs xelatex/lualatex
+skipped | doc/lualatex/wallcalendar/doc/examples/cal-thumbnails.tex | needs xelatex/lualatex
+skipped | doc/lualatex/wallcalendar/doc/examples/cal-year-planner-compact.tex | needs xelatex/lualatex
+skipped | doc/lualatex/wallcalendar/doc/examples/cal-year-planner-grid.tex | needs xelatex/lualatex
+skipped | doc/lualatex/wallcalendar/doc/examples/cal-year-planner-rows.tex | needs xelatex/lualatex
+skipped | doc/lualatex/wallcalendar/doc/examples/cal-year-planner.tex | needs xelatex/lualatex
+skipped | doc/lualatex/wallcalendar/doc/wallcalendar.tex | needs xelatex/lualatex
+skipped | doc/lualatex/xindex/tests/HADW.tex | needs xelatex/lualatex
+skipped | doc/lualatex/xindex/tests/Umlaute.tex | needs xelatex/lualatex
+skipped | doc/lualatex/xindex/tests/Umlaute2.tex | needs xelatex/lualatex
+skipped | doc/lualatex/xindex/tests/buch.tex | needs xelatex/lualatex
+skipped | doc/lualatex/xindex/tests/demo-hyperref.tex | needs xelatex/lualatex
+skipped | doc/lualatex/xindex/tests/demo.tex | needs xelatex/lualatex
+skipped | doc/lualatex/xindex/tests/demo3.tex | needs xelatex/lualatex
+skipped | doc/lualatex/xindex/tests/demo4.tex | needs xelatex/lualatex
+skipped | doc/lualatex/xindex/tests/see.tex | needs xelatex/lualatex
+skipped | doc/lualatex/xindex/xindex-doc.tex | needs xelatex/lualatex
+skipped | doc/lualatex/yamlvars/yamlvars.tex | needs xelatex/lualatex
 skipped | doc/luatex/barracuda/doc/ga-graphic-asm/barracuda-ga-asm.tex | needs xelatex/lualatex
 skipped | doc/luatex/barracuda/doc/manual/barracuda-manual.tex | needs xelatex/lualatex
 skipped | doc/luatex/barracuda/test/test-barracuda-package/01-barracuda-latex-test.tex | needs xelatex/lualatex
@@ -4067,8 +6103,36 @@ skipped | doc/luatex/evangelion-jfm/figure/fig.tex | needs xelatex/lualatex
 skipped | doc/luatex/farbe/farbe-doc.tex | needs xelatex/lualatex
 skipped | doc/luatex/gregoriotex/GregorioNabcRef.tex | needs xelatex/lualatex
 skipped | doc/luatex/gregoriotex/GregorioRef.tex | needs xelatex/lualatex
+skipped | doc/luatex/lparse/lparse-doc.tex | needs xelatex/lualatex
+skipped | doc/luatex/lua-placeholders/lua-placeholders-manual.tex | needs shell escape
+skipped | doc/luatex/lua-uni-algos/lua-uni-algos.tex | needs xelatex/lualatex
+skipped | doc/luatex/lua-visual-debug/sample-keys.tex | needs xelatex/lualatex
+skipped | doc/luatex/luacoolprop/docs/luacoolprop-tex-reference.tex | needs shell escape
+skipped | doc/luatex/luacoolprop/luacoolprop-manual.tex | needs shell escape
+skipped | doc/luatex/luakeys/luakeys-doc.tex | needs xelatex/lualatex
+skipped | doc/luatex/luamplib/test-luamplib-latex.tex | needs xelatex/lualatex
+skipped | doc/luatex/luaotfload/filegraph.tex | needs xelatex/lualatex
+skipped | doc/luatex/luaotfload/luaotfload-main.tex | needs xelatex/lualatex
+skipped | doc/luatex/luapackageloader/luapackageloader.tex | needs xelatex/lualatex
+skipped | doc/luatex/luatex-type-definitions/luatex-type-definitions-doc.tex | needs shell escape
+skipped | doc/luatex/luatexja/lltjp-geometry.tex | needs xelatex/lualatex
+skipped | doc/luatex/luatexja/luatexja-ruby.tex | needs xelatex/lualatex
+skipped | doc/luatex/luatexko/luatexko-doc.tex | needs xelatex/lualatex
+skipped | doc/luatex/luavlna/luavlna-doc.tex | needs xelatex/lualatex
+skipped | doc/luatex/luaxml/luaxml.tex | needs xelatex/lualatex
+skipped | doc/luatex/nodetree/nodetree-doc.tex | needs xelatex/lualatex
+skipped | doc/luatex/spelling/spelling-doc.tex | needs xelatex/lualatex
 skipped | doc/metapost/drawing-with-metapost/src/Drawing-with-Metapost.tex | needs xelatex/lualatex
+skipped | doc/metapost/metauml/manual/metauml-manual.tex | needs Biber
+skipped | doc/metapost/mpchess/mpchess-doc-en.tex | needs xelatex/lualatex
+skipped | doc/metapost/mpchess/mpchess-doc-fr.tex | needs xelatex/lualatex
+skipped | doc/metapost/mpkiviat/mpkiviat-doc.tex | needs Biber
+skipped | doc/metapost/mptrees/mptrees-doc.tex | needs xelatex/lualatex
+skipped | doc/metapost/repere/repere-doc.tex | needs xelatex/lualatex
+skipped | doc/pdftex/tests/38-interword-space-at-font-switch/texlive-en.tex | needs xelatex/lualatex
 skipped | doc/plain/apprendre-a-programmer-en-tex/source/apprendre-a-programmer-en-tex.tex | needs xelatex/lualatex
+skipped | doc/ptex/ptex-manual/eptexdoc.tex | needs shell escape
+skipped | doc/ptex/ptex-manual/ptex-manual.tex | needs xelatex/lualatex
 skipped | doc/support/albatross/albatross-manual.tex | needs xelatex/lualatex
 skipped | doc/support/bib2gls/examples/sample-usergroups.tex | needs xelatex/lualatex
 skipped | doc/support/checkcites/checkcites-doc.tex | needs Biber
@@ -4080,6 +6144,92 @@ skipped | doc/support/cluttex/example/minted/main.tex | needs shell escape
 skipped | doc/support/cluttex/example/simple-ja/main-luatexja.tex | needs xelatex/lualatex
 skipped | doc/support/ctanbib/ctanbib-doc.tex | needs xelatex/lualatex
 skipped | doc/support/l3sys-query/l3sys-query-tool.tex | needs shell escape
+skipped | doc/support/latex2nemeth/examples/mathpics.tex | needs dvips/PostScript
+skipped | doc/support/latexindent/latexindent.tex | needs Biber
+skipped | doc/support/ltximg/ltximg-doc.tex | needs xelatex/lualatex
+skipped | doc/support/lua-uca/lua-uca-doc.tex | needs xelatex/lualatex
+skipped | doc/support/luafindfont/luafindfont-doc.tex | needs xelatex/lualatex
+skipped | doc/support/make4ht/make4ht-doc.tex | needs xelatex/lualatex
+skipped | doc/support/patgen2-tutorial/patgen2-tutorial.tex | needs xelatex/lualatex
+skipped | doc/support/pedigree-perl/doc/pedigree.tex | needs dvips/PostScript
+skipped | doc/support/pst2pdf/pst2pdf-doc.tex | needs shell escape
+skipped | doc/support/pst2pdf/test1.tex | needs dvips/PostScript
+skipped | doc/support/pst2pdf/test2.tex | needs dvips/PostScript
+skipped | doc/support/runtexfile/examples/test.tex | needs shell escape
+skipped | doc/support/runtexfile/examples/test2.tex | needs shell escape
+skipped | doc/support/runtexfile/runtexfile-doc.tex | needs xelatex/lualatex
+skipped | doc/support/tex4ebook/tex4ebook-doc.tex | needs xelatex/lualatex
+skipped | doc/support/texaccents/texaccents.tex | needs xelatex/lualatex
+skipped | doc/support/texblend/texblend-doc.tex | needs xelatex/lualatex
+skipped | doc/support/texlogsieve/texlogsieve.tex | needs xelatex/lualatex
+skipped | doc/support/upmendex/present/src/ar00.tex | needs xelatex/lualatex
+skipped | doc/support/upmendex/present/src/br00.tex | needs xelatex/lualatex
+skipped | doc/support/upmendex/present/src/city0.tex | needs xelatex/lualatex
+skipped | doc/support/upmendex/present/src/city_texconf.tex | needs xelatex/lualatex
+skipped | doc/support/upmendex/present/src/de00.tex | needs xelatex/lualatex
+skipped | doc/support/upmendex/present/src/el00.tex | needs xelatex/lualatex
+skipped | doc/support/upmendex/present/src/he00.tex | needs xelatex/lualatex
+skipped | doc/support/upmendex/present/src/hi00.tex | needs xelatex/lualatex
+skipped | doc/support/upmendex/present/src/hu00.tex | needs xelatex/lualatex
+skipped | doc/support/upmendex/present/src/jp01.tex | needs xelatex/lualatex
+skipped | doc/support/upmendex/present/src/jp02.tex | needs xelatex/lualatex
+skipped | doc/support/upmendex/present/src/jp03.tex | needs xelatex/lualatex
+skipped | doc/support/upmendex/present/src/jp04.tex | needs xelatex/lualatex
+skipped | doc/support/upmendex/present/src/jp05.tex | needs xelatex/lualatex
+skipped | doc/support/upmendex/present/src/ko03.tex | needs xelatex/lualatex
+skipped | doc/support/upmendex/present/src/lt00.tex | needs xelatex/lualatex
+skipped | doc/support/upmendex/present/src/ru00.tex | needs xelatex/lualatex
+skipped | doc/support/upmendex/present/src/sk00.tex | needs xelatex/lualatex
+skipped | doc/support/upmendex/present/src/th00.tex | needs xelatex/lualatex
+skipped | doc/support/upmendex/present/src/th01.tex | needs xelatex/lualatex
+skipped | doc/support/upmendex/present/src/tr00.tex | needs xelatex/lualatex
+skipped | doc/support/upmendex/present/src/upmendex-slide-ctan.tex | needs xelatex/lualatex
+skipped | doc/support/upmendex/present/src/zh00.tex | needs xelatex/lualatex
+skipped | doc/support/upmendex/present/src/zh01a.tex | needs xelatex/lualatex
+skipped | doc/support/upmendex/present/src/zh01b.tex | needs xelatex/lualatex
+skipped | doc/support/upmendex/present/src/zh02.tex | needs xelatex/lualatex
+skipped | doc/support/upmendex/samples/latex/city0.tex | needs xelatex/lualatex
+skipped | doc/texlive/texlive-cz/texlive-cz.tex | needs xelatex/lualatex
+skipped | doc/texlive/texlive-de/texlive-de-html.tex | needs xelatex/lualatex
+skipped | doc/texlive/texlive-de/texlive-de.tex | needs xelatex/lualatex
+skipped | doc/texlive/texlive-en/archive/live-2008.tex | needs xelatex/lualatex
+skipped | doc/texlive/texlive-en/archive/live-2009.tex | needs xelatex/lualatex
+skipped | doc/texlive/texlive-en/archive/live-2010.tex | needs xelatex/lualatex
+skipped | doc/texlive/texlive-en/archive/live-2011.tex | needs xelatex/lualatex
+skipped | doc/texlive/texlive-en/archive/live-2012.tex | needs xelatex/lualatex
+skipped | doc/texlive/texlive-en/archive/live-2013.tex | needs xelatex/lualatex
+skipped | doc/texlive/texlive-en/archive/live-2014.tex | needs xelatex/lualatex
+skipped | doc/texlive/texlive-en/archive/live-2015.tex | needs xelatex/lualatex
+skipped | doc/texlive/texlive-en/archive/live-2016.tex | needs xelatex/lualatex
+skipped | doc/texlive/texlive-en/archive/live-2017.tex | needs xelatex/lualatex
+skipped | doc/texlive/texlive-en/archive/live-2018.tex | needs xelatex/lualatex
+skipped | doc/texlive/texlive-en/archive/live-2019.tex | needs xelatex/lualatex
+skipped | doc/texlive/texlive-en/archive/live-2020.tex | needs xelatex/lualatex
+skipped | doc/texlive/texlive-en/archive/live-2021.tex | needs xelatex/lualatex
+skipped | doc/texlive/texlive-en/archive/live-2022.tex | needs xelatex/lualatex
+skipped | doc/texlive/texlive-en/archive/live-2023.tex | needs xelatex/lualatex
+skipped | doc/texlive/texlive-en/archive/live-2024.tex | needs xelatex/lualatex
+skipped | doc/texlive/texlive-en/archive/live-2025.tex | needs xelatex/lualatex
+skipped | doc/texlive/texlive-en/texlive-en.tex | needs xelatex/lualatex
+skipped | doc/texlive/texlive-es/archive/2017/texlive-es.tex | needs xelatex/lualatex
+skipped | doc/texlive/texlive-es/archive/2018/texlive-es.tex | needs xelatex/lualatex
+skipped | doc/texlive/texlive-es/archive/2019/texlive-es.tex | needs xelatex/lualatex
+skipped | doc/texlive/texlive-es/archive/2020/texlive-es.tex | needs xelatex/lualatex
+skipped | doc/texlive/texlive-es/archive/2021/texlive-es.tex | needs xelatex/lualatex
+skipped | doc/texlive/texlive-es/archive/2022-march-2022-dec/texlive-es.tex | needs xelatex/lualatex
+skipped | doc/texlive/texlive-es/archive/2023/texlive-es.tex | needs xelatex/lualatex
+skipped | doc/texlive/texlive-es/archive/2024/texlive-es.tex | needs xelatex/lualatex
+skipped | doc/texlive/texlive-es/archive/2025/texlive-es.tex | needs xelatex/lualatex
+skipped | doc/texlive/texlive-es/texlive-es.tex | needs xelatex/lualatex
+skipped | doc/texlive/texlive-fr/texlive-fr.tex | needs xelatex/lualatex
+skipped | doc/texlive/texlive-it/texlive-it.tex | needs xelatex/lualatex
+skipped | doc/texlive/texlive-ja/texlive-ja.tex | needs xelatex/lualatex
+skipped | doc/texlive/texlive-pl/texlive-pl.tex | needs xelatex/lualatex
+skipped | doc/texlive/texlive-ru/texlive-ru.tex | needs xelatex/lualatex
+skipped | doc/texlive/texlive-sr/texlive-sr.tex | needs xelatex/lualatex
+skipped | doc/texlive/texlive-zh-cn/texlive-zh-cn.tex | needs xelatex/lualatex
+skipped | doc/uptex/uptex-base/samples/bkmk-jis.tex | needs EPS conversion (shell escape)
+skipped | doc/uptex/uptex-base/samples/bkmk-utf8.tex | needs EPS conversion (shell escape)
 skipped | doc/xelatex/arabdoc/arabdoc-doc.tex | needs xelatex/lualatex
 skipped | doc/xelatex/arabxetex/examples/ednotes_example.tex | needs xelatex/lualatex
 skipped | doc/xelatex/cqubeamer/cqubeamer.tex | needs xelatex/lualatex
@@ -4096,3 +6246,51 @@ skipped | doc/xelatex/impe-framework/manual/showcase/impe-showcase.tex | needs x
 skipped | doc/xelatex/impe-framework/manual/zh-tw/impe-manual-zh-tw.tex | needs xelatex/lualatex
 skipped | doc/xelatex/interchar/interchar.tex | needs xelatex/lualatex
 skipped | doc/xelatex/interchar/interchartest.tex | needs xelatex/lualatex
+skipped | doc/xelatex/mathspec/mathspec.tex | needs xelatex/lualatex
+skipped | doc/xelatex/na-box/na-box_doc.tex | needs xelatex/lualatex
+skipped | doc/xelatex/nanicolle/nanicolle-doc-en.tex | needs xelatex/lualatex
+skipped | doc/xelatex/persian-bib/Persian-bib-userguide.tex | needs xelatex/lualatex
+skipped | doc/xelatex/quran-de/quran-de-doc.tex | needs xelatex/lualatex
+skipped | doc/xelatex/quran-en/quran-en-doc.tex | needs xelatex/lualatex
+skipped | doc/xelatex/quran-es/quran-es-doc.tex | needs xelatex/lualatex
+skipped | doc/xelatex/quran-id/quran-id-doc.tex | needs xelatex/lualatex
+skipped | doc/xelatex/sexam/sexam_wexam_doc_ar.tex | needs xelatex/lualatex
+skipped | doc/xelatex/thesis-qom/qomthesis-guide.tex | needs shell escape
+skipped | doc/xelatex/ucharclasses/ucharclasses.tex | needs xelatex/lualatex
+skipped | doc/xelatex/xecjk/example/xeCJK-example-CJKecglue.tex | needs xelatex/lualatex
+skipped | doc/xelatex/xecjk/example/xeCJK-example-CM.tex | needs xelatex/lualatex
+skipped | doc/xelatex/xecjk/example/xeCJK-example-autofake.tex | needs xelatex/lualatex
+skipped | doc/xelatex/xecjk/example/xeCJK-example-boundary-register.tex | needs xelatex/lualatex
+skipped | doc/xelatex/xecjk/example/xeCJK-example-checksingle.tex | needs xelatex/lualatex
+skipped | doc/xelatex/xecjk/example/xeCJK-example-fallback.tex | needs xelatex/lualatex
+skipped | doc/xelatex/xecjk/example/xeCJK-example-listings.tex | needs xelatex/lualatex
+skipped | doc/xelatex/xecjk/example/xeCJK-example-mathblock.tex | needs xelatex/lualatex
+skipped | doc/xelatex/xecjk/example/xeCJK-example-punctstyle.tex | needs xelatex/lualatex
+skipped | doc/xelatex/xecjk/example/xeCJK-example-subCJKblock.tex | needs xelatex/lualatex
+skipped | doc/xelatex/xecjk/example/xeCJK-example-verbatim.tex | needs xelatex/lualatex
+skipped | doc/xelatex/xecjk/xunicode-symbols.tex | needs xelatex/lualatex
+skipped | doc/xelatex/xecyr/combined_hyphenation/combined_hyphenation_ruen-x.tex | needs xelatex/lualatex
+skipped | doc/xelatex/xecyr/grafika_v_tex.tex | needs xelatex/lualatex
+skipped | doc/xelatex/xecyr/howto-tex-ru-x.tex | needs xelatex/lualatex
+skipped | doc/xelatex/xecyr/listings-utf8-ex.tex | needs xelatex/lualatex
+skipped | doc/xelatex/xecyr/old/xecyr-ex2-ru-x.tex | needs xelatex/lualatex
+skipped | doc/xelatex/xecyr/old/xecyr-ex5-ru-x.tex | needs xelatex/lualatex
+skipped | doc/xelatex/xecyr/old/xecyr-ex7-ru-x.tex | needs xelatex/lualatex
+skipped | doc/xelatex/xecyr/pict2e-ex.tex | needs xelatex/lualatex
+skipped | doc/xelatex/xecyr/rubibtex-ex-x.tex | needs xelatex/lualatex
+skipped | doc/xelatex/xecyr/rumakeindex-ex-x.tex | needs xelatex/lualatex
+skipped | doc/xelatex/xecyr/sample2e-ru-x.tex | needs xelatex/lualatex
+skipped | doc/xelatex/xecyr/xecyr-doc-ru.tex | needs xelatex/lualatex
+skipped | doc/xelatex/xecyr/xecyr-ex3-ru-x.tex | needs xelatex/lualatex
+skipped | doc/xelatex/xecyr/xecyr-ex4-ru-x.tex | needs xelatex/lualatex
+skipped | doc/xelatex/xecyr/xecyr-ex5-ru-x.tex | needs xelatex/lualatex
+skipped | doc/xelatex/xecyr/xecyr-ex6-ru-x.tex | needs xelatex/lualatex
+skipped | doc/xelatex/xecyr/xecyr-ex7-ru-x.tex | needs xelatex/lualatex
+skipped | doc/xelatex/xeindex/xeindex.tex | needs xelatex/lualatex
+skipped | doc/xelatex/xetex-itrans/itrans-tamil-sample.tex | needs xelatex/lualatex
+skipped | doc/xelatex/xevlna/xevlna.tex | needs xelatex/lualatex
+skipped | doc/xelatex/zitie/zitie-cn.tex | needs xelatex/lualatex
+skipped | doc/xetex/base/XeTeX-notes.tex | needs xelatex/lualatex
+skipped | doc/xetex/xesearch/xesearch.tex | needs xelatex/lualatex
+skipped | doc/xetex/xetexko/xetexko-doc.tex | needs xelatex/lualatex
+skipped | doc/xetex/xetexref/xetex-reference.tex | needs xelatex/lualatex

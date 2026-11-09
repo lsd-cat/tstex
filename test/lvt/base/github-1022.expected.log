@@ -18,20 +18,80 @@ File: size10.clo 2026-06-04 v1.4n Standard LaTeX file (size option)
 \abovecaptionskip=\skip49
 \belowcaptionskip=\skip50
 \bibindent=\dimen150
+) (lipsum.sty (l3keys2e.sty (expl3.sty
+Package: expl3 2026-09-09 L3 programming layer (loader)
+(l3backend-dvips.def
+File: l3backend-dvips.def 2026-09-09 L3 backend support: dvips
+\l__pdfannot_backend_content_box=\box53
+\l__pdfannot_backend_model_box=\box54
+\g__pdfannot_backend_int=\count284
+\g__pdfannot_backend_link_int=\count285
+\g__pdfannot_backend_link_sf_int=\count286
+))
+Package: l3keys2e 2025-10-09 LaTeX2e option processing using LaTeX3 keys
 )
+Package: lipsum 2021-09-20 v2.7 150 paragraphs of Lorem Ipsum dummy text
+\g__lipsum_par_int=\count287
+\l__lipsum_a_int=\count288
+\l__lipsum_b_int=\count289
+(lipsum.ltd.tex)) (test2e.tex
+OMIT
+TIMO
+)
+No file github-1022.aux.
+\openout1 = `github-1022.aux'.
 
-! LaTeX Error: File `lipsum.sty' not found.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 9.
+LaTeX Font Info:    ... okay on input line 9.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 9.
+LaTeX Font Info:    ... okay on input line 9.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 9.
+LaTeX Font Info:    ... okay on input line 9.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 9.
+LaTeX Font Info:    ... okay on input line 9.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 9.
+LaTeX Font Info:    ... okay on input line 9.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 9.
+LaTeX Font Info:    ... okay on input line 9.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 9.
+LaTeX Font Info:    ... okay on input line 9.
+START-TEST-LOG
 
-Type X to quit or <RETURN> to proceed,
-or enter new name. (Default extension: sty)
+This is a generated file for the LaTeX2e validation system.
 
-Enter file name:
-! Emergency stop.
-<read *>
+Don't change this file in any respect.
 
-l.4 ^^M
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <7> on input line 21.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <5> on input line 21.
+Label should be on page 2
 
-*** (cannot \read from terminal in nonstop modes)
+LaTeX Warning: Reference `mypage' on page 1 undefined on input line 27.
+
+> \box0=
+\hbox(6.94444+0.0)x10.86105
+.\hbox(6.94444+0.0)x10.86105
+..\OT1/cmr/bx/n/10 ?
+..\OT1/cmr/bx/n/10 ?
+
+! OK.
+<to be read again>
+                   }
+l.28 {\showoutput\showbox0}
 
 
-No pages of output.
+OMIT
+[1
+
+] [2] (github-1022.aux)
+
+LaTeX Warning: There were undefined references.
+
+
+LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
+
+END-TEST-LOG
+ )
+
+Output written on github-1022.dvi (2 pages, 5612 bytes).

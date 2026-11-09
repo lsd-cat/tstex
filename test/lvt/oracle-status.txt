@@ -185,7 +185,7 @@ base/github-0981: ok
 base/github-0992: ok
 base/github-1015: ok
 base/github-1021: ok
-base/github-1022: fatal (! LaTeX Error: File `lipsum.sty' not found.)
+base/github-1022: ok
 base/github-1028: ok
 base/github-1033: ok
 base/github-1037: ok
@@ -674,7 +674,7 @@ graphics/tlb3873: ok
 graphics/tlb4296: ok
 graphics/utf8-filenames-001: ok
 graphics/utf8-filenames-002: ok
-hyperref/121-makeuppercase: fatal (! LaTeX Error: File `memoir.cls' not found.)
+hyperref/121-makeuppercase: ok
 hyperref/224-nameref-space: ok
 hyperref/303-textormath: ok
 hyperref/38-pdfminorversion: ok
@@ -685,9 +685,9 @@ hyperref/documentproperties: ok
 hyperref/gh118-xr-hyper: ok
 hyperref/gh167-lastskip: ok
 hyperref/gh187-whatsits-break: ok
-hyperref/gh234-ltugboat: fatal (! LaTeX Error: File `ltugboat.cls' not found.)
+hyperref/gh234-ltugboat: ok
 hyperref/gh235-hookrule: ok
-hyperref/gh236-beamer: fatal (! LaTeX Error: File `beamer.cls' not found.)
+hyperref/gh236-beamer: ok
 hyperref/gh238-draft: ok
 hyperref/gh324-amsthm-patch: ok
 hyperref/hyperget-test: ok
@@ -700,7 +700,7 @@ hyperref/next-anchor: ok
 hyperref/o50-footnotesspaces: ok
 hyperref/pdfdoc: ok
 hyperref/psdextra-greek: ok
-hyperref/test0: fatal (! LaTeX Error: File `lastpage.sty' not found.)
+hyperref/test0: ok
 hyperref/test1: ok
 hyperref/test6: ok
 hyperref/testnb: ok

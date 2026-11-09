@@ -4,20 +4,132 @@ LaTeX2e <2026-11-01>
 L3 programming layer <2026-09-09>
 (regression-test.tex
 \gTESTint=\count276
+) (ltugboat.cls
+Document Class: ltugboat 2026-09-15 v2.39 TUGboat journal class
+(article.cls
+Document Class: article 2026-06-04 v1.4n Standard LaTeX document class
+(size10.clo
+File: size10.clo 2026-06-04 v1.4n Standard LaTeX file (size option)
 )
+\c@part=\count277
+\c@section=\count278
+\c@subsection=\count279
+\c@subsubsection=\count280
+\c@paragraph=\count281
+\c@subparagraph=\count282
+\c@figure=\count283
+\c@table=\count284
+\abovecaptionskip=\skip49
+\belowcaptionskip=\skip50
+\bibindent=\dimen150
+) (mflogo.sty
+Package: mflogo 1999/03/10 v2.0 LaTeX package for Metafont and MetaPost logos
+)
+\ResetCommands=\toks17
+LaTeX Info: Redefining \mp on input line 322.
+LaTeX Encoding Info:    Redeclaring text command \textohm (encoding ?) on input line 328.
+LaTeX Info: Redefining \TeX on input line 369.
+\normalparindent=\dimen151
+   defining Unicode char U+1EBF (decimal 7871)
+\T@stBox=\box53
+\TestBox=\box54
+\T@stCount=\count285
+\TestCount=\count286
+\T@stDimen=\dimen152
+\TestDimen=\dimen153
+\hours=\count287
+\minutes=\count288
+\raggedskip=\dimen154
+\raggedstretch=\dimen155
+\raggedparfill=\skip51
+LaTeX Info: Redefining \nobreakspace on input line 568.
+LaTeX Info: Redefining \! on input line 715.
+\issueseqno=\count289
+\@TBremarkfile=\write3
+\@altfilenames=\read2
+(ushyphex.tex)
+\tubcolwidthandgutter=\dimen156
+\pagewd=\dimen157
+\trimwd=\dimen158
+\trimlgt=\dimen159
+\headmargin=\dimen160
+LaTeX Info: Redefining \LaTeX on input line 956.
+\signaturewidth=\dimen161
+\authornumber=\count290
+\stbaselineskip=\dimen162
+\stfontheight=\dimen163
+\PreTitleDrop=\dimen164
+\AboveTitleSkip=\skip52
+\BelowTitleSkip=\skip53
+\strulethickness=\dimen165
+\TBtocsectionspace=\skip54
+(gettitlestring.sty
+Package: gettitlestring 2019/12/15 v1.6 Cleanup title references (HO)
+(kvoptions.sty
+Package: kvoptions 2022-06-15 v3.15 Key value format for package options (HO)
+(keyval.sty
+Package: keyval 2026-06-01 v1.15 key=value parser (DPC)
+\KV@toks@=\toks18
+) (ltxcmds.sty
+Package: ltxcmds 2023-12-04 v1.26 LaTeX kernel commands for general use (HO)
+) (kvsetkeys.sty
+Package: kvsetkeys 2022-10-05 v1.19 Key value parser (HO)
+)))
+\@tubfullpageindent=\dimen166
+) (nameref.sty
+Package: nameref 2026-11-03 v2.60 Cross-referencing by name of section
+(refcount.sty
+Package: refcount 2019/12/15 v3.6 Data extraction from label references (HO)
+(infwarerr.sty
+Package: infwarerr 2019/12/03 v1.5 Providing info/warning/error messages (HO)
+))
+\c@section@level=\count291
+) (l3backend-dvips.def
+File: l3backend-dvips.def 2026-09-09 L3 backend support: dvips
+\l__pdfannot_backend_content_box=\box55
+\l__pdfannot_backend_model_box=\box56
+\g__pdfannot_backend_int=\count292
+\g__pdfannot_backend_link_int=\count293
+\g__pdfannot_backend_link_sf_int=\count294
+)
+No file gh234-ltugboat.aux.
+\openout1 = `gh234-ltugboat.aux'.
 
-! LaTeX Error: File `ltugboat.cls' not found.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 4.
+LaTeX Font Info:    ... okay on input line 4.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 4.
+LaTeX Font Info:    ... okay on input line 4.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 4.
+LaTeX Font Info:    ... okay on input line 4.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 4.
+LaTeX Font Info:    ... okay on input line 4.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 4.
+LaTeX Font Info:    ... okay on input line 4.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 4.
+LaTeX Font Info:    ... okay on input line 4.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 4.
+LaTeX Font Info:    ... okay on input line 4.
 
-Type X to quit or <RETURN> to proceed,
-or enter new name. (Default extension: cls)
+START-TEST-LOG
 
-Enter file name:
-! Emergency stop.
-<read *>
 
-l.3 \usepackage
-               {nameref}^^M
-*** (cannot \read from terminal in nonstop modes)
+This is a generated file for the l3build validation system.
 
+Don't change this file in any respect.
+
+
+> \nameref=document command:
+  #1:s
+->\IfBooleanTF {#1}{\@namerefstar }{\T@nameref }.
+<recently read> }
+
+l.7 \ShowCommand\nameref
+
+
+(gh234-ltugboat.aux)
+
+END-TEST-LOG
+
+ )
 
 No pages of output.
