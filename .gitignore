@@ -3,9 +3,11 @@ node_modules
 *.log
 !*.expected.log
 *.fmt
+!bundles/minimal/fmt/latex.fmt
 test/lvt/_src/
 !*.expected.dvi
 build/
 dist/
 dist-node/
 .claude/
+*.cpuprofile
