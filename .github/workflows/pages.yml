@@ -17,6 +17,9 @@ jobs:
           mkdir -p site/bundles
           cp -r web dist site/ && cp -r bundles/minimal site/bundles/
           echo '<!doctype html><meta http-equiv="refresh" content="0; url=web/">' > site/index.html
+      - uses: actions/configure-pages@v5
+        with:
+          enablement: true
       - uses: actions/upload-pages-artifact@v3
         with: { path: site }
       - id: deploy
