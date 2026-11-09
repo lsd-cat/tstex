@@ -1,5 +1,6 @@
 // Nightly differential runner: pdflatex (TeX Live) vs this engine over whole documents. See test/corpus/README.md.
 // usage: node tools/corpus.ts [--texlive-docs] [--samples] [--list FILE] [--only RE] [--jobs N] [--timeout S] [--slow] [--update-skip] [--resume]
+// --only RE, --list FILE and --resume merge into the existing ledger (documents not selected keep their entries); --samples/--texlive-docs alone rewrite it
 // Internal: node tools/corpus.ts --side pdftex|engine DIR MAIN  (one side, in its own process; prints a JSON result)
 import { readFileSync, writeFileSync, readdirSync, statSync, statfsSync, mkdtempSync, mkdirSync, cpSync, rmSync, existsSync, appendFileSync } from 'node:fs'
 import { spawn, spawnSync } from 'node:child_process'
@@ -152,13 +153,13 @@ const args = process.argv.slice(2), arg = (n: string) => args.includes(n) ? args
 if (!args.some(a => ['--texlive-docs', '--samples', '--list'].includes(a))) { process.stderr.write('usage: node tools/corpus.ts [--texlive-docs] [--samples] [--list FILE] [--only RE] [--jobs N] [--timeout S] [--slow] [--update-skip]\n'); process.exit(2) }
 const skipFile = root + '/test/corpus/skip.txt', statusFile = root + '/test/corpus/status.md'
 const skip = new Map(readFileSync(skipFile, 'utf8').split('\n').filter(l => l && !l.startsWith('#')).map(l => [l.split(': ')[0]!, l.split(': ').slice(1).join(': ')]))
-const only = arg('--only') ? new RegExp(arg('--only')!) : null, jobs = +(arg('--jobs') ?? 8), timeout = +(arg('--timeout') ?? 120)
+const list = args.includes('--list'), only = arg('--only') ? new RegExp(arg('--only')!) : null, jobs = +(arg('--jobs') ?? 8), timeout = +(arg('--timeout') ?? 120)
 const git = spawnSync('git', ['log', '-1', '--format=%h', '--', 'src'], { cwd: root, encoding: 'utf8' }).stdout.trim() // the engine: last commit touching src/
 // the ledger so far: kept for --only (other documents) and --resume (same engine commit: documents with a final category)
 const lines = new Map<string, string[]>() // id -> [cat, detail]
 const prev = existsSync(statusFile) ? readFileSync(statusFile, 'utf8') : ''
 const resume = args.includes('--resume') && prev.match(/^Engine (\w+);/m)?.[1] === git
-if (only || resume) for (const l of prev.split('\n')) { const m = l.match(/^([a-z-]+) \| (.*?) \| (.*)$/); if (m && m[1] !== 'category') lines.set(m[2]!, [m[1]!, m[3]!]) }
+if (only || list || resume) for (const l of prev.split('\n')) { const m = l.match(/^([a-z-]+) \| (.*?) \| (.*)$/); if (m && m[1] !== 'category') lines.set(m[2]!, [m[1]!, m[3]!]) }
 const final = (id: string) => { const l = lines.get(id); return resume && l !== undefined && l[0] !== 'timeout' && !(l[0] === 'skipped' && /^(disk|runner)/.test(l[1]!)) }
 const docs = discover(args).filter(d => !only || only.test(d.id))
 const results = new Map<string, Res>(), newSkips: string[] = []
@@ -190,7 +191,7 @@ function ledger(): string[] {
   const tlv = spawnSync('pdftex', ['--version'], { env, encoding: 'utf8' }).stdout.split('\n')[0]
   const groups = new Map<string, number>()
   for (const [, [c, d]] of lines) if (c === 'engine-error') groups.set(d!, (groups.get(d!) ?? 0) + 1)
-  const out = [`# Corpus status`, '', `Engine ${git}; ${tlv}; ${lines.size} documents${only || resume ? ' (partial rerun merged; timings are from this run only)' : ''}.`, '',
+  const out = [`# Corpus status`, '', `Engine ${git}; ${tlv}; ${lines.size} documents${only || list || resume ? ' (partial rerun merged; timings are from this run only)' : ''}.`, '',
     '| category | count |', '|---|---|', ...cats.map(c => `| ${c} | ${[...lines.values()].filter(v => v[0] === c).length} |`), '',
     '| side | p50 | p95 | (this run, documents run: ' + tp.length + ') |', '|---|---|---|---|', `| pdftex | ${pct(tp, .5)} | ${pct(tp, .95)} | |`, `| engine | ${pct(te, .5)} | ${pct(te, .95)} | |`, '']
   if (groups.size) out.push('## engine-error by message', '', ...[...groups].sort((a, b) => b[1] - a[1]).map(([m, n]) => `- ${n}x ${m}`), '')
