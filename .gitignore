@@ -8,3 +8,4 @@ test/lvt/_src/
 build/
 dist/
 dist-node/
+.claude/
