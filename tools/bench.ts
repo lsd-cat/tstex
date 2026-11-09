@@ -1,7 +1,7 @@
 // Performance benchmark: median of 5 in-process runs after 1 warm-up, in ms.
 // usage: [TSTEX_FMT=path] node tools/bench.ts [--pdftex] [--n N] [name...]   (names: hello beamer acmart guide loop)
 // Wall time and process CPU time (user+system; less sensitive to a loaded machine) are both reported.
-// --pdftex also times TeX Live's pdftex once on the same inputs (same env as tools/oracle.sh).
+// --pdftex also times TeX Live's pdftex on the same inputs (same env as tools/oracle.sh), wall and cpu, and the cpu ratio.
 import { readFileSync, mkdtempSync, writeFileSync, cpSync, existsSync, readdirSync, rmSync } from 'node:fs'
 import { spawnSync } from 'node:child_process'
 import { tmpdir } from 'node:os'
@@ -58,18 +58,27 @@ async function engineRun(b: B, base: TexFS, format: Awaited<ReturnType<typeof lo
   return e!
 }
 
-function pdftex(b: B): number {
+// pdftex's wall and cpu (user+sys, from /usr/bin/time -p) ms for the bench's runs, median of 3
+function pdftex(b: B): [number, number] {
   const bin = readdirSync(TL + '/bin').map(d => `${TL}/bin/${d}/pdftex`).find(existsSync)
-  if (bin === undefined) return NaN
-  const d = mkdtempSync(join(tmpdir(), 'tstex-bench-pdftex-'))
-  cpSync(b.dir, d, { recursive: true })
+  if (bin === undefined) return [NaN, NaN]
   const env = { ...process.env, SOURCE_DATE_EPOCH: '0', FORCE_SOURCE_DATE: '1', max_print_line: '9999', TEXINPUTS: `.:${lvt}:${texmf}:`, TFMFONTS: `${texmf}:`, VFFONTS: `${texmf}:` }
   const a = b.mode === 'etex' ? ['-ini', '-etex'] : ['-fmt', 'pdflatex']
-  const t0 = performance.now()
-  for (let i = 0; i < b.runs; i++) spawnSync(bin, [...a, '-interaction=batchmode', `-jobname=${b.job}`, `${b.job}.tex`], { cwd: d, env, stdio: 'ignore' })
-  const t = performance.now() - t0
-  rmSync(d, { recursive: true, force: true })
-  return t
+  const wall: number[] = [], cpu: number[] = []
+  for (let k = 0; k < 3; k++) {
+    const d = mkdtempSync(join(tmpdir(), 'tstex-bench-pdftex-'))
+    cpSync(b.dir, d, { recursive: true })
+    let w = 0, c = 0
+    for (let i = 0; i < b.runs; i++) {
+      const t0 = performance.now()
+      const r = spawnSync('/usr/bin/time', ['-p', bin, ...a, '-interaction=batchmode', `-jobname=${b.job}`, `${b.job}.tex`], { cwd: d, env, stdio: ['ignore', 'ignore', 'pipe'], encoding: 'utf8' })
+      w += performance.now() - t0
+      for (const m of r.stderr.matchAll(/^(user|sys)\s+([\d.]+)/gm)) c += 1000 * Number(m[2])
+    }
+    wall.push(w); cpu.push(c)
+    rmSync(d, { recursive: true, force: true })
+  }
+  return [median(wall), median(cpu)]
 }
 
 console.log(`bench: median of ${N} after 1 warm-up, ms`)
@@ -86,7 +95,7 @@ for (const b of benches) {
     if (i > 0) { fmt.push(t1 - t0); run.push(t2 - t1); cpu.push((c.user + c.system) / 1000) }
     lines = e.log.length
   }
-  const ref = withPdftex ? `  pdftex ${ms(pdftex(b))}` : ''
+  const ref = withPdftex ? (([w, c]) => `  pdftex ${ms(w)}  pdftex cpu ${ms(c)}  cpu ratio ${(median(cpu) / c).toFixed(2)}`)(pdftex(b)) : ''
   console.log(`${b.name.padEnd(7)} total ${ms(median(fmt.map((f, i) => f + run[i]!)))}  loadFormat ${ms(median(fmt))}  run ${ms(median(run))}  cpu ${ms(median(cpu))}  (log ${lines} B)${ref}`)
 }
 rmSync(tmp, { recursive: true, force: true })
