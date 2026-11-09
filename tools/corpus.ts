@@ -20,12 +20,12 @@ const JOB = 'main', FIRST = (main: string) => `\\pdfsetrandomseed 1 \\pdfcompres
 
 // ---- one side: run -> (bibtex after run 1) -> rerun while an AUX file changed, at most 4 runs
 async function side(kind: string, dir: string, main: string) {
-  const t0 = Date.now(), deadline = t0 + Number(process.env.CORPUS_TIMEOUT ?? 120) * 1000
+  const t0 = Date.now(), deadline = t0 + Number(process.env.CORPUS_TIMEOUT ?? 120) * 4000 // pdftex inherits ulimit -t; this only catches a hang
   const sig = () => readdirSync(dir).filter(f => AUX.test(f)).sort().map(f => f + '\0' + readFileSync(join(dir, f), 'latin1')).join('\0\0')
   const bib = readdirSync(dir).some(f => f.endsWith('.bib')) && /\\bibliography\s*\{/.test(readFileSync(join(dir, main), 'latin1'))
   let once: () => Promise<void> | void
   if (kind === 'pdftex') {
-    once = () => { const r = spawnSync('pdftex', ['-fmt', 'pdflatex', '-interaction=batchmode', `-jobname=${JOB}`, FIRST(main)], { cwd: dir, env, timeout: deadline - Date.now(), stdio: 'ignore' }); if (r.error) throw new Error('timeout') }
+    once = () => { const r = spawnSync('pdftex', ['-fmt', 'pdflatex', '-interaction=batchmode', `-jobname=${JOB}`, FIRST(main)], { cwd: dir, env, timeout: deadline - Date.now(), stdio: 'ignore' }); if (r.error || r.signal) throw new Error('timeout') }
   } else {
     const [{ compileRuns }, { nodeFS }, { loadFormat }] = await Promise.all([import('../src/compile.ts'), import('../src/platform/node.ts'), import('../src/format.ts')])
     const format = await loadFormat(readFileSync(root + '/build/latex.fmt'))
@@ -91,12 +91,17 @@ function prepare(doc: Doc, to: string) {
   if (doc.main !== JOB + '.tex' && existsSync(join(to, JOB + '.tex'))) throw new Error(`directory contains ${JOB}.tex`)
 }
 const runSide = (kind: string, dir: string, main: string, timeout: number) => new Promise<{ ms: number, runs?: number, crash?: string, timeout?: boolean }>(res => {
-  // ulimit -t: the kernel stops a side after `timeout' CPU seconds even when this process's timers run late (a background
-  // QoS process on macOS had its kill timer fire after 17 minutes)
-  const t0 = Date.now(), p = spawn('/bin/sh', ['-c', `ulimit -t ${timeout + 10}; exec "$0" "$@"`, process.execPath, fileURLToPath(import.meta.url), '--side', kind, dir, main], { env: { ...env, CORPUS_TIMEOUT: String(timeout) }, stdio: ['ignore', 'pipe', 'pipe'] })
+  // The limit is CPU time (ulimit -t, enforced by the kernel); the wall timer only catches a side that hangs. A side's own JSON
+  // decides, never the timer: after this process was blocked (a slow synchronous copy under background I/O throttling) the
+  // timers of sides that had already finished fired before their 'close' events and turned them into timeouts.
+  const t0 = Date.now(), p = spawn('/bin/sh', ['-c', `ulimit -t ${timeout}; exec "$0" "$@"`, process.execPath, fileURLToPath(import.meta.url), '--side', kind, dir, main], { env: { ...env, CORPUS_TIMEOUT: String(timeout) }, stdio: ['ignore', 'pipe', 'pipe'] })
   let out = '', err = ''; p.stdout.on('data', d => out += d); p.stderr.on('data', d => err += d)
-  const timer = setTimeout(() => { p.kill('SIGKILL'); res({ ms: Date.now() - t0, timeout: true }) }, (timeout + 10) * 1000)
-  p.on('close', (_code, signal) => { clearTimeout(timer); if (signal !== null) { res({ ms: Date.now() - t0, timeout: true }); return } try { const r = JSON.parse(out); res(r.crash === 'timeout' ? { ms: r.ms || Date.now() - t0, timeout: true } : r) } catch { res({ ms: Date.now() - t0, crash: (err.trim().split('\n').pop() ?? 'no output').slice(0, 200) }) } })
+  const timer = setTimeout(() => p.kill('SIGKILL'), timeout * 4000)
+  p.on('close', () => {
+    clearTimeout(timer)
+    try { const r = JSON.parse(out); res(r.crash === 'timeout' ? { ms: r.ms || Date.now() - t0, timeout: true } : r) }
+    catch { res(p.signalCode !== null ? { ms: Date.now() - t0, timeout: true } : { ms: Date.now() - t0, crash: (err.trim().split('\n').pop() ?? 'no output').slice(0, 200) }) }
+  })
 })
 
 const { normalizeLog } = await import('./normalize-log.ts'), { normalizePdf } = await import('./pdf-normalize.ts')

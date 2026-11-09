@@ -7,7 +7,7 @@ Differential runs of whole documents: TeX Live `pdftex -fmt pdflatex` vs this en
     npm run corpus -- --samples                  # test/corpus/samples.txt
     npm run corpus -- --texlive-docs             # every main .tex under texmf-dist/doc
     npm run corpus -- --list FILE                # paths, one per line
-    options: --only REGEX  --jobs N (8)  --timeout S (120)  --slow  --update-skip  --resume
+    options: --only REGEX  --jobs N (8)  --timeout S (120, CPU seconds per side)  --slow  --update-skip  --resume
 
 - `status.md`: the ledger (summary, engine-error groups, `category | path | detail` per document). `--only` merges into it; it is rewritten every 20 documents, and `--resume` (same engine commit, the last one touching `src/`, as its header) skips documents it already has with a final category (not `timeout`, not a `disk`/`runner` skip). A document is `skipped: disk` when the temp directory has under 2 GB free.
 - `skip.txt`: `path: reason`, consulted before running. Content heuristics (xelatex/lualatex, shell escape, Biber, dvips, EPS)
