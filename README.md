@@ -5,6 +5,21 @@ pdfLaTeX in pure TypeScript: the pdfTeX engine ported from `pdftex.web`, produci
 
 Install: `npm install tstex`, or `npm run build` here → `dist/` (browser ESM + `.d.ts`), `dist-node/` (Node, CLI).
 
+
+**Demo:** https://lsd-cat.github.io/tstex/ (editor, compiles in your browser)
+
+## Status
+
+A port of pdfTeX from `pdftex.web`, not a reimplementation: logs and PDFs are byte-identical to `pdflatex` 2026.
+
+- 355 oracle tests against real pdftex output; trip and etrip pass.
+- 899 of 903 tests of the LaTeX project's regression suite.
+- 3,014 of 4,060 TeX Live documents compile byte-identically; CPU time is 1.0 to 1.4 times pdftex's.
+
+Works: Type 1 fonts, PNG/JPEG/PDF figures, hyperref, TikZ/pgf, beamer, microtype, SyncTeX, multi-run builds (`runs: 'auto'`).
+Does not: XeLaTeX/LuaLaTeX, OpenType/TrueType, shell escape (`minted`), EPS, Biber, BibTeX (not yet), PK fonts.
+See [AUDIT.md](AUDIT.md) for the rest.
+
 ## Usage
 
 ```js
@@ -52,7 +67,7 @@ bundle from TeX Live 2026 and a format made by `node tools/build-format.ts`. `--
 
 | preset | contents | files | size | gzipped | index |
 | --- | --- | --- | --- | --- | --- |
-| `minimal` | the files the test corpus opens (`tools/minimal-files.txt`): article, amsmath, hyperref, graphicx, geometry, xcolor, TikZ, beamer with CM fonts | 380 | 13.2 MB + 2.3 MB format | 6.1 MB | one file |
+| `minimal` | the files the test corpus opens (`tools/minimal-files.txt`; committed as `bundles/minimal`): article, amsmath, hyperref, graphicx, geometry, xcolor, TikZ, beamer with CM fonts | 511 | 16.7 MB + 3.1 MB format | ~8 MB | one file |
 | `basic` | `tex/` and `fonts/` of scheme-basic plus pgf, beamer, hyperref, xcolor, geometry, cm-super, lm, and the Type 1 families lato, sourcesans, fira, libertinus, tex-gyre, libertine, inconsolata | 17234 | 342 MB | 192 MB | one file |
 | `full` | all of texmf-dist `tex/`, `fonts/{tfm,vf,type1,enc,map}`, `bibtex/{bst,bib}`, `web2c/cp227.tcx` (scheme-full; no doc, source, OpenType/TrueType, pk, metapost, dvips) | 159424 | 2.4 GB | 1.27 GB | 649 shards, 3.5 MB |
 
@@ -62,8 +77,14 @@ bundle from TeX Live 2026 and a format made by `node tools/build-format.ts`. `--
 cached in `~/.cache/tstex/<version>/` and a file missing there restarts the compile after fetching it (slow on a cold
 cache: `prefetch` first). CLI: `tstex --fmt latex.fmt --pdf --runs auto [--synctex 1] file.tex` over a TeX Live tree (`TEXMFDIST`).
 
-## Unsupported
+## Tests
 
-No XeTeX/LuaTeX/OpenType, no `\write18`, no BibTeX/makeindex, no embedding of PDF images, no font subsetting,
-`microtype` font expansion, and the rest listed in [AUDIT.md](AUDIT.md). Tests: `npm test`, `npm run test:browser`
+`npm test`, `npm run test:browser`
 (needs the `playwright` devDependency and its browsers; not needed to build or use the library).
+
+## Licence
+
+GPL-3.0-or-later (see `LICENSE`). tstex is derived from pdfTeX; `spec/` holds the upstream sources (`pdftex.web`, change files)
+under their own licences. The minimal bundle in `bundles/minimal/` carries TeX Live files under theirs (see its README).
+
+Acknowledgements: Donald Knuth, Peter Breitenlohner, Han The Thanh, and the LaTeX project's regression test suite.
