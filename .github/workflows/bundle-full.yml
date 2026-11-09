@@ -1,0 +1,40 @@
+name: bundle-full
+on:
+  workflow_dispatch:
+  schedule: [{ cron: '0 3 1 * *' }]
+permissions: { contents: read }
+jobs:
+  full:
+    runs-on: ubuntu-latest
+    env:
+      TL: '${{ runner.temp }}/tl'
+      RCLONE_CONFIG_R2_TYPE: s3
+      RCLONE_CONFIG_R2_PROVIDER: Cloudflare
+      RCLONE_CONFIG_R2_ACCESS_KEY_ID: '${{ secrets.R2_ACCESS_KEY_ID }}'
+      RCLONE_CONFIG_R2_SECRET_ACCESS_KEY: '${{ secrets.R2_SECRET_ACCESS_KEY }}'
+      RCLONE_CONFIG_R2_ENDPOINT: 'https://${{ secrets.R2_ACCOUNT_ID }}.r2.cloudflarestorage.com'
+      RCLONE_CONFIG_R2_NO_CHECK_BUCKET: 'true'
+    steps:
+      - id: chk   # `if:` cannot read secrets, so test them here
+        env: { B: '${{ secrets.R2_BUCKET }}', K: '${{ secrets.R2_ACCESS_KEY_ID }}', S: '${{ secrets.R2_SECRET_ACCESS_KEY }}', A: '${{ secrets.R2_ACCOUNT_ID }}' }
+        run: |
+          if [ -n "$B" ] && [ -n "$K" ] && [ -n "$S" ] && [ -n "$A" ]; then echo go=true >> "$GITHUB_OUTPUT"; else echo "R2 secrets not set: skipping"; fi
+      - if: steps.chk.outputs.go == 'true'
+        uses: actions/checkout@v7
+      - if: steps.chk.outputs.go == 'true'
+        uses: actions/setup-node@v7
+        with: { node-version: '24' }
+      - if: steps.chk.outputs.go == 'true'
+        uses: ./.github/actions/texlive
+        with: { scheme: scheme-full }
+      - if: steps.chk.outputs.go == 'true'
+        run: |
+          node tools/build-format.ts --texmf "$TL/texmf-var" --texmf "$TL/texmf-dist" --out build/latex.fmt
+          node tools/pack-texmf.ts --preset full --texmf-dist "$TL/texmf-dist" --texmf-var "$TL/texmf-var" --fmt build/latex.fmt --out bundles/full
+      - if: steps.chk.outputs.go == 'true'
+        env: { BUCKET: '${{ secrets.R2_BUCKET }}' }
+        run: |
+          sudo apt-get install -y rclone
+          v=$(zcat bundles/full/index.json.gz | node -pe 'JSON.parse(require("fs").readFileSync(0)).version')
+          rclone copy bundles/full "r2:$BUCKET/full/$v" --transfers 32 --checkers 32 --header-upload "Cache-Control: public, max-age=31536000, immutable"
+          echo "uploaded: full/$v/" | tee -a "$GITHUB_STEP_SUMMARY"

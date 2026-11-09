@@ -1,0 +1,44 @@
+name: texlive
+description: Install TeX Live (no docs, no sources) into $RUNNER_TEMP/tl, cached; puts its bin on PATH
+inputs:
+  scheme: { description: 'scheme-basic or scheme-full', required: true }
+  packages: { description: 'space-separated tlmgr packages to add', default: '' }
+  year: { description: 'TeX Live release; part of the cache key (bump with tlnet)', default: '2026' }
+runs:
+  using: composite
+  steps:
+    - id: key
+      shell: bash
+      env: { SCHEME: '${{ inputs.scheme }}', PKGS: '${{ inputs.packages }}', YEAR: '${{ inputs.year }}' }
+      run: echo "key=tl-$YEAR-$SCHEME-$(echo "$PKGS" | sha256sum | cut -c1-16)" >> "$GITHUB_OUTPUT"
+    - id: cache
+      uses: actions/cache@v6
+      with: { path: '${{ runner.temp }}/tl', key: '${{ steps.key.outputs.key }}' }
+    - if: steps.cache.outputs.cache-hit != 'true'
+      shell: bash
+      env: { SCHEME: '${{ inputs.scheme }}', PKGS: '${{ inputs.packages }}' }
+      run: |
+        set -euo pipefail
+        TL="$RUNNER_TEMP/tl"; MIRROR=https://mirror.ctan.org/systems/texlive/tlnet
+        mkdir "$RUNNER_TEMP/tl-installer"
+        curl -fsSL "$MIRROR/install-tl-unx.tar.gz" | tar xz --strip-components=1 -C "$RUNNER_TEMP/tl-installer"
+        cat > "$RUNNER_TEMP/tl.profile" <<EOF
+        selected_scheme $SCHEME
+        TEXDIR $TL
+        TEXMFLOCAL $TL/texmf-local
+        TEXMFSYSVAR $TL/texmf-var
+        TEXMFSYSCONFIG $TL/texmf-config
+        TEXMFVAR $TL/texmf-var
+        TEXMFCONFIG $TL/texmf-config
+        tlpdbopt_install_docfiles 0
+        tlpdbopt_install_srcfiles 0
+        tlpdbopt_autobackup 0
+        instopt_adjustpath 0
+        instopt_letter 0
+        EOF
+        sed -i 's/^ *//' "$RUNNER_TEMP/tl.profile"
+        perl "$RUNNER_TEMP/tl-installer/install-tl" -profile "$RUNNER_TEMP/tl.profile" -repository "$MIRROR"
+        if [ -n "$PKGS" ]; then "$TL"/bin/x86_64-linux/tlmgr install $PKGS; fi
+        rm -rf "$RUNNER_TEMP/tl-installer"
+    - shell: bash
+      run: echo "$RUNNER_TEMP/tl/bin/x86_64-linux" >> "$GITHUB_PATH"
