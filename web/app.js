@@ -140,16 +140,18 @@ ed.onscroll = () => { gutter.scrollTop = ed.scrollTop }
 ed.onkeydown = e => { if (e.key === 'Tab' && !e.shiftKey) { e.preventDefault(); ed.setRangeText('  ', ed.selectionStart, ed.selectionEnd, 'end'); ed.oninput() } }
 document.onkeydown = e => { if ((e.ctrlKey || e.metaKey) && (e.key === 's' || e.key === 'Enter')) { e.preventDefault(); compile() } }
 $('new').onclick = () => { const n = prompt('File name', 'chapter.tex'); if (n && !(n in files)) { files[n] = ''; cur = n; save(); show() } }
-// [relative path, File] pairs -> project files. Skips .git/node_modules, files > 20 MB, binaries beyond 50 MB total.
+// [relative path, File] pairs -> project files. Skips .git/node_modules, compile outputs (not .bbl: there is no BibTeX yet), files > 100 MB, binaries beyond 500 MB total
 async function addFiles(pairs, folder) {
-  let skipped = 0, bin = 0
+  let skipped = 0, bin = 0; const skippedNames = []
   if (folder) { name = folder; files = {}; if (![...$('project').options].some(o => o.value === name)) $('project').add(new Option(name, name)); $('project').value = name }
   for (const [p, f] of pairs) {
-    if (/(^|\/)(\.git|node_modules)\//.test(p) || f.size > 20e6 || !isText(p) && (bin += f.size) > 50e6) { skipped++; continue }
+    // skip VCS dirs, compile outputs of a .tex in the same folder (regenerated anyway), and only truly huge files
+    const out = /\.(aux|log|out|toc|lof|lot|nav|snm|synctex(\.gz)?|fls|fdb_latexmk)$/.test(p) || (p.endsWith('.pdf') && pairs.some(([q]) => q === p.replace(/\.pdf$/, '.tex')))
+    if (/(^|\/)(\.git|node_modules)\//.test(p) || out || f.size > 100e6 || !isText(p) && (bin += f.size) > 500e6) { skipped++; skippedNames.push(p); continue }
     files[p] = isText(p) ? await f.text() : new Uint8Array(await f.arrayBuffer())
   }
   if (folder) { main = detectMain(); cur = main }
-  await save(); show(); state.textContent = skipped ? `skipped ${skipped} files (.git, node_modules, size limits)` : state.textContent
+  await save(); show(); state.textContent = skipped ? `skipped ${skipped}: ${skippedNames.slice(0, 4).join(', ')}${skipped > 4 ? ', …' : ''}` : state.textContent
   if (folder) compile()
 }
 const strip = p => p.split('/').slice(1).join('/')
