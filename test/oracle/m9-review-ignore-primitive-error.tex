@@ -1,0 +1,11 @@
+%! oracle: etex
+\catcode`\{=1 \catcode`\}=2 \catcode`\#=6
+% \ignoreprimitiveerror bit 1: the \vsplit infinite-shrink error only goes to the log as `ignored: ...' (print_ignored_err:
+% wlog_cr and wlog do not reset file_offset, so the line is wrapped by the count of what came before)
+\def\t#1{\ignoreprimitiveerror=#1 \setbox1\vbox{\hrule height 1pt\vskip 0pt minus 1fil\hrule height 1pt\vskip 0pt minus 1fil\hrule height 10pt}\setbox2\vsplit1 to 5pt}
+\message{some text before}\t1 \message{after}
+\t{-1}\message{neg}
+\t2 \message{bit 2 only}
+\t3 \t0
+\message{0123456789012345678901234567890123456789012345678901234567890123456789}\t1 \message{x}
+\end

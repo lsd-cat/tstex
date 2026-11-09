@@ -1,0 +1,79 @@
+entering extended mode
+(m9-review-ignore-primitive-error.tex some text before
+ignored: Infinite glue shrinkage
+ found in box being split
+ignored: Infinite glue shrinkage found in box being split
+Underfull \vbox (badness 10000) detected at line 6
+
+\vbox(5.0+0.0)x0.0 []
+
+after
+ignored: Infinite glue shrinkage found in box being split
+ignored: Infinite glue shrinkage fo
+und in box being split
+Underfull \vbox (badness 10000) detected at line 7
+
+\vbox(5.0+0.0)x0.0 []
+
+neg
+! Infinite glue shrinkage found in box being split.
+l.8 \t2
+        \message{bit 2 only}
+The box you are \vsplitting contains some infinitely
+shrinkable glue, e.g., `\vss' or `\vskip 0pt minus 1fil'.
+Such glue doesn't belong there; but you can safely proceed,
+since the offensive shrinkability has been made finite.
+
+! Infinite glue shrinkage found in box being split.
+l.8 \t2
+        \message{bit 2 only}
+The box you are \vsplitting contains some infinitely
+shrinkable glue, e.g., `\vss' or `\vskip 0pt minus 1fil'.
+Such glue doesn't belong there; but you can safely proceed,
+since the offensive shrinkability has been made finite.
+
+
+Underfull \vbox (badness 10000) detected at line 8
+
+\vbox(5.0+0.0)x0.0 []
+
+bit 2 only
+ignored: Infinite glue shrinkage found in box being split
+ignored: Infinite glue shrinka
+ge found in box being split
+Underfull \vbox (badness 10000) detected at line 9
+
+\vbox(5.0+0.0)x0.0 []
+
+! Infinite glue shrinkage found in box being split.
+l.9 \t3 \t0
+
+The box you are \vsplitting contains some infinitely
+shrinkable glue, e.g., `\vss' or `\vskip 0pt minus 1fil'.
+Such glue doesn't belong there; but you can safely proceed,
+since the offensive shrinkability has been made finite.
+
+! Infinite glue shrinkage found in box being split.
+l.9 \t3 \t0
+
+The box you are \vsplitting contains some infinitely
+shrinkable glue, e.g., `\vss' or `\vskip 0pt minus 1fil'.
+Such glue doesn't belong there; but you can safely proceed,
+since the offensive shrinkability has been made finite.
+
+
+Underfull \vbox (badness 10000) detected at line 9
+
+\vbox(5.0+0.0)x0.0 []
+
+0123456789012345678901234567890123456789012345678901234567890123456789
+ignored: Infinite
+glue shrinkage found in box being split
+ignored: Infinite glue shrinkage found in box bei
+ng split
+Underfull \vbox (badness 10000) detected at line 10
+
+\vbox(5.0+0.0)x0.0 []
+
+x )
+No pages of output.

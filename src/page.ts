@@ -4,7 +4,7 @@ import type { Engine } from './engine.ts'
 import { do_marks, vsplit_init, fire_up_init, fire_up_done, find_sa_element, sa, mark_val, saving_vdiscards_code } from './etex.ts'
 import type { MarkNode } from './nodes.ts'
 import { last_box_code, copy_code, vsplit_code } from './main.ts'
-import { vmode } from './types.ts'
+import { vmode, log_only } from './types.ts'
 import { print, print_char, print_esc, print_int, print_nl, print_ln, begin_diagnostic, end_diagnostic } from './print.ts'
 import { print_scaled, badness, x_over_n, inf_bad } from './arith.ts'
 import { error, print_err, help, confusion, output_text, backed_up, token_list } from './error.ts'
@@ -126,10 +126,15 @@ export function vert_break(e: Engine, p: Node | null, h: number, d: number): Nod
         active_height[2 + q.stretch_order] = (active_height[2 + q.stretch_order]! + q.stretch) | 0
         active_height[6] = (active_height[6]! + q.shrink) | 0
         if (q.shrink_order !== normal && q.shrink !== 0) {
-          print_err(e, 'Infinite glue shrinkage found in box being split')
-          help(e, 'The box you are \\vsplitting contains some infinitely', "shrinkable glue, e.g., `\\vss' or `\\vskip 0pt minus 1fil'.",
-            "Such glue doesn't belong there; but you can safely proceed,", 'since the offensive shrinkability has been made finite.')
-          error(e)
+          if (int_par(e, 111) % 2 !== 0) { // is_bit_set(\ignoreprimitiveerror, 1): print_ignored_err; wlog_cr and wlog leave file_offset alone
+            const old = e.selector; e.selector = log_only; e.log += '\nignored: '
+            print(e, 'Infinite glue shrinkage found in box being split'); e.selector = old
+          } else {
+            print_err(e, 'Infinite glue shrinkage found in box being split')
+            help(e, 'The box you are \\vsplitting contains some infinitely', "shrinkable glue, e.g., `\\vss' or `\\vskip 0pt minus 1fil'.",
+              "Such glue doesn't belong there; but you can safely proceed,", 'since the offensive shrinkability has been made finite.')
+            error(e)
+          }
           const r = new_spec(e, gp.glue_ptr); e.spec[r]!.shrink_order = normal; delete_glue_ref(e, gp.glue_ptr)
           gp.glue_ptr = r; q = e.spec[r]!
         }
